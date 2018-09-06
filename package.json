@@ -1,0 +1,34 @@
+{
+  "name": "asposeslidescloud",
+  "version": "18.8.0",
+  "description": "Aspose.Slides Cloud SDK for Node.js",
+  "homepage": "https://products.aspose.cloud/slides/cloud",
+  "author": {
+    "name": "Victor Putrov"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4.8"
+  },
+  "keywords": [
+    "Aspose",
+    "Cloud",
+    "Slides"
+  ],
+  "scripts": {
+    "compile": "tsc",
+    "test": "mocha -r ts-node/register tests/**/*.ts --timeout 25000 --reporter mocha-junit-reporter --reporter-options mochaFile=./testResults.xml"
+  },
+  "dependencies": {
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^8.10.9",
+    "asposestoragecloud": "^1.0.4",
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.17.0",
+    "npm": "^6.4.1",
+    "request": "^2.85.0",
+    "request-debug": "^0.2.0",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.7.2"
+  }
+}

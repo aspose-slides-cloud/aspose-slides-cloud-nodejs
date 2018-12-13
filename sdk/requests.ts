@@ -64,7 +64,7 @@ export class GetSlidesDocumentWithFormatRequest {
     /**
      * The conversion format.
      */
-    public format: number;
+    public format: string;
     /**
      * Quality of the JPEG images inside PDF document.
      */
@@ -111,9 +111,9 @@ export class PostSlidesDocumentRequest {
      */
     public templateStorage: string;
     /**
-     * Is Image Data Embeeded
+     * Is Image Data Embedded
      */
-    public isImageDataEmbeeded: boolean;
+    public isImageDataEmbedded: boolean;
     /**
      * The document password.
      */
@@ -151,7 +151,7 @@ export class PostSlidesSaveAsRequest {
     /**
      * Export format
      */
-    public format: number;
+    public format: string;
     /**
      * Tiff export options
      */
@@ -192,7 +192,7 @@ export class PostSlidesSplitRequest {
     /**
      * The format. Default value is jpeg.
      */
-    public format: number;
+    public format: string;
     /**
      * The width of created images.
      */
@@ -270,7 +270,7 @@ export class PutSlidesConvertRequest {
     /**
      * The format.
      */
-    public format: number;
+    public format: string;
     /**
      * Gets or sets document
      */
@@ -344,11 +344,11 @@ export class PutSlidesSlideSizeRequest {
     /**
      * Standard slide size type.
      */
-    public sizeType: number;
+    public sizeType: string;
     /**
      * Standard slide scale type.
      */
-    public scaleType: number;
+    public scaleType: string;
 }
 
 /**
@@ -366,7 +366,7 @@ export class GetSlidesImageWithFormatRequest {
     /**
      * Export format (png, jpg, gif). Pass null to export image 'as is'.
      */
-    public format: number;
+    public format: string;
     /**
      * Document password.
      */
@@ -432,11 +432,11 @@ export class GetSlidesSlideImagesRequest {
  */
 export class GetLayoutSlideRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * Index of the slide.
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -444,11 +444,11 @@ export class GetLayoutSlideRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -457,7 +457,7 @@ export class GetLayoutSlideRequest {
  */
 export class GetLayoutSlidesListRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
@@ -465,11 +465,11 @@ export class GetLayoutSlidesListRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -478,35 +478,35 @@ export class GetLayoutSlidesListRequest {
  */
 export class PostCopyLayoutSlideFromSourcePresentationRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * Source presentation to clone layoutSlide from.
+     * Name of the document to clone layoutSlide from.
      */
     public cloneFrom: string;
     /**
-     * Position of cloning layout slide.
+     * Position of cloned layout slide.
      */
     public cloneFromPosition: number;
     /**
-     * Source presentation password.
+     * Password for the document to clone layoutSlide from.
      */
     public cloneFromPassword: string;
     /**
-     * Storage source presentation to clone layoutSlide from.
+     * Storage of the document to clone layoutSlide from.
      */
     public cloneFromStorage: string;
     /**
-     * The presentation password.
+     * Document password.
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -515,27 +515,27 @@ export class PostCopyLayoutSlideFromSourcePresentationRequest {
  */
 export class PutLayoutSlideRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * Index of the slide update to.
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * Gets or sets slideDto
+     * Slide update data.
      */
     public slideDto: model.LayoutSlide;
     /**
-     * The presentation password.
+     * Document password.
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -545,11 +545,11 @@ export class PutLayoutSlideRequest {
  */
 export class GetMasterSlideRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -557,11 +557,11 @@ export class GetMasterSlideRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -570,7 +570,7 @@ export class GetMasterSlideRequest {
  */
 export class GetMasterSlidesListRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
@@ -578,11 +578,11 @@ export class GetMasterSlidesListRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -591,39 +591,39 @@ export class GetMasterSlidesListRequest {
  */
 export class PostCopyMasterSlideFromSourcePresentationRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * Source presentation to clone masterSlide from.
+     * Name of the document to clone masterSlide from.
      */
     public cloneFrom: string;
     /**
-     * Position of cloning master slide.
+     * Position of cloned master slide.
      */
     public cloneFromPosition: number;
     /**
-     * Source presentation password.
+     * Password for the document to clone masterSlide from.
      */
     public cloneFromPassword: string;
     /**
-     * Storage source presentation to clone masterSlide from.
+     * Storage of the document to clone masterSlide from.
      */
     public cloneFromStorage: string;
     /**
-     * Apply cloned master slide to every existed slide. Optional parameter, false by default
+     * True to apply cloned master slide to every existing slide.
      */
     public applyToAll: boolean;
     /**
-     * The presentation password.
+     * Document password.
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -633,7 +633,7 @@ export class PostCopyMasterSlideFromSourcePresentationRequest {
  */
 export class PostPresentationMergeRequest {
     /**
-     * Original presentation name.
+     * Document name.
      */
     public name: string;
     /**
@@ -641,15 +641,15 @@ export class PostPresentationMergeRequest {
      */
     public request: model.PresentationsMergeRequest;
     /**
-     * Original presentation password.
+     * Document password.
      */
     public password: string;
     /**
-     * The storage.
+     * Document storage.
      */
     public storage: string;
     /**
-     * The folder.
+     * Document folder.
      */
     public folder: string;
 }
@@ -658,23 +658,23 @@ export class PostPresentationMergeRequest {
  */
 export class PutPresentationMergeRequest {
     /**
-     * Original presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * with a list of presentations to merge.
+     * with a list of presentations and slide indices to merge.
      */
     public request: model.OrderedMergeRequest;
     /**
-     * Original presentation password.
+     * Document password.
      */
     public password: string;
     /**
-     * The storage.
+     * Document storage.
      */
     public storage: string;
     /**
-     * The folder.
+     * Document folder.
      */
     public folder: string;
 }
@@ -744,7 +744,7 @@ export class GetNotesSlideWithFormatRequest {
     /**
      * Export format.
      */
-    public format: number;
+    public format: string;
     /**
      * Gets or sets width
      */
@@ -1247,7 +1247,7 @@ export class GetNotesSlideShapeWithFormatRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * Document password.
      */
@@ -1456,7 +1456,7 @@ export class PostNotesSlideShapeSaveAsRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * export options
      */
@@ -2176,7 +2176,7 @@ export class GetShapeWithFormatRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * Document password.
      */
@@ -2451,7 +2451,7 @@ export class PostShapeSaveAsRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * export options
      */
@@ -2703,7 +2703,7 @@ export class GetSlideWithFormatRequest {
     /**
      * Gets or sets format
      */
-    public format: number;
+    public format: string;
     /**
      * Gets or sets width
      */
@@ -2844,7 +2844,7 @@ export class PostSlideSaveAsRequest {
     /**
      * Gets or sets format
      */
-    public format: number;
+    public format: string;
     /**
      * export options
      */

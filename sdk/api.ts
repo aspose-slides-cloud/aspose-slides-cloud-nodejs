@@ -115,6 +115,10 @@ export class DocumentApi extends ApiBase {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlidesDocumentWithFormat.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling getSlidesDocumentWithFormat.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "jpegQuality", requestObj.jpegQuality);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -159,7 +163,7 @@ export class DocumentApi extends ApiBase {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "templatePath", requestObj.templatePath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "templateStorage", requestObj.templateStorage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "isImageDataEmbeeded", requestObj.isImageDataEmbeeded);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "isImageDataEmbedded", requestObj.isImageDataEmbedded);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -168,11 +172,11 @@ export class DocumentApi extends ApiBase {
             qs: queryParameters,
             uri: localVarPath,
             body: requestObj.data,
-            json: true
+            json: false
         };
         checkMultipartContent(requestOptions, requestObj);
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const result = ObjectSerializer.deserialize(JSON.parse(response.body), "DocumentResponse");
         return Promise.resolve({body: result, response});
     }
     /**
@@ -213,6 +217,10 @@ export class DocumentApi extends ApiBase {
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlidesSaveAs.');
+        }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postSlidesSaveAs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -312,6 +320,10 @@ export class DocumentApi extends ApiBase {
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/convert";
         const queryParameters: any = {};
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling putSlidesConvert.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -357,11 +369,11 @@ export class DocumentApi extends ApiBase {
             qs: queryParameters,
             uri: localVarPath,
             body: requestObj.html,
-            json: true
+            json: false
         };
         checkMultipartContent(requestOptions, requestObj);
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const result = ObjectSerializer.deserialize(JSON.parse(response.body), "DocumentResponse");
         return Promise.resolve({body: result, response});
     }
     /**
@@ -617,7 +629,7 @@ export class LayoutSlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Read presentation layoutSlide info. 
+     * Update a layoutSlide. 
      * @param requestObj contains request parameters
      */
     public async putLayoutSlide(requestObj: requests.PutLayoutSlideRequest): Promise<{response: http.ClientResponse, body: model.LayoutSlideResponse}> {
@@ -774,7 +786,7 @@ export class MergeDocumentApi extends ApiBase {
     }
 
     /**
-     * Merge presentations. 
+     * Merge the presentation with other presentations specified in the request parameter. 
      * @param requestObj contains request parameters
      */
     public async postPresentationMerge(requestObj: requests.PostPresentationMergeRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -804,7 +816,7 @@ export class MergeDocumentApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Merge presentations. 
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter. 
      * @param requestObj contains request parameters
      */
     public async putPresentationMerge(requestObj: requests.PutPresentationMergeRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -924,6 +936,10 @@ export class NotesSlideApi extends ApiBase {
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideWithFormat.');
+        }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling getNotesSlideWithFormat.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
@@ -1452,6 +1468,10 @@ export class NotesSlideShapesApi extends ApiBase {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideShapeWithFormat.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling getNotesSlideShapeWithFormat.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -1640,6 +1660,10 @@ export class NotesSlideShapesApi extends ApiBase {
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postNotesSlideShapeSaveAs.');
+        }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postNotesSlideShapeSaveAs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2434,6 +2458,10 @@ export class ShapesApi extends ApiBase {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getShapeWithFormat.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling getShapeWithFormat.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -2697,6 +2725,10 @@ export class ShapesApi extends ApiBase {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postShapeSaveAs.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postShapeSaveAs.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -2955,6 +2987,10 @@ export class SlidesApi extends ApiBase {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlideWithFormat.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling getSlideWithFormat.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
@@ -3113,6 +3149,10 @@ export class SlidesApi extends ApiBase {
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlideSaveAs.');
+        }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postSlideSaveAs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);

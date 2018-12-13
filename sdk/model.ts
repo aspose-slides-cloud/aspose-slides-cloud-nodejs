@@ -474,213 +474,6 @@ export interface ChartWall {
     * 
     */
 export enum CombinedShapeType {
-    Custom = <any> 0,
-    Line = <any> 1,
-    LineInverse = <any> 2,
-    Triangle = <any> 3,
-    RightTriangle = <any> 4,
-    Rectangle = <any> 5,
-    Diamond = <any> 6,
-    Parallelogram = <any> 7,
-    Trapezoid = <any> 8,
-    NonIsoscelesTrapezoid = <any> 9,
-    Pentagon = <any> 10,
-    Hexagon = <any> 11,
-    Heptagon = <any> 12,
-    Octagon = <any> 13,
-    Decagon = <any> 14,
-    Dodecagon = <any> 15,
-    FourPointedStar = <any> 16,
-    FivePointedStar = <any> 17,
-    SixPointedStar = <any> 18,
-    SevenPointedStar = <any> 19,
-    EightPointedStar = <any> 20,
-    TenPointedStar = <any> 21,
-    TwelvePointedStar = <any> 22,
-    SixteenPointedStar = <any> 23,
-    TwentyFourPointedStar = <any> 24,
-    ThirtyTwoPointedStar = <any> 25,
-    RoundCornerRectangle = <any> 26,
-    OneRoundCornerRectangle = <any> 27,
-    TwoSamesideRoundCornerRectangle = <any> 28,
-    TwoDiagonalRoundCornerRectangle = <any> 29,
-    OneSnipOneRoundCornerRectangle = <any> 30,
-    OneSnipCornerRectangle = <any> 31,
-    TwoSamesideSnipCornerRectangle = <any> 32,
-    TwoDiagonalSnipCornerRectangle = <any> 33,
-    Plaque = <any> 34,
-    Ellipse = <any> 35,
-    Teardrop = <any> 36,
-    HomePlate = <any> 37,
-    Chevron = <any> 38,
-    PieWedge = <any> 39,
-    Pie = <any> 40,
-    BlockArc = <any> 41,
-    Donut = <any> 42,
-    NoSmoking = <any> 43,
-    RightArrow = <any> 44,
-    LeftArrow = <any> 45,
-    UpArrow = <any> 46,
-    DownArrow = <any> 47,
-    StripedRightArrow = <any> 48,
-    NotchedRightArrow = <any> 49,
-    BentUpArrow = <any> 50,
-    LeftRightArrow = <any> 51,
-    UpDownArrow = <any> 52,
-    LeftUpArrow = <any> 53,
-    LeftRightUpArrow = <any> 54,
-    QuadArrow = <any> 55,
-    CalloutLeftArrow = <any> 56,
-    CalloutRightArrow = <any> 57,
-    CalloutUpArrow = <any> 58,
-    CalloutDownArrow = <any> 59,
-    CalloutLeftRightArrow = <any> 60,
-    CalloutUpDownArrow = <any> 61,
-    CalloutQuadArrow = <any> 62,
-    BentArrow = <any> 63,
-    UTurnArrow = <any> 64,
-    CircularArrow = <any> 65,
-    LeftCircularArrow = <any> 66,
-    LeftRightCircularArrow = <any> 67,
-    CurvedRightArrow = <any> 68,
-    CurvedLeftArrow = <any> 69,
-    CurvedUpArrow = <any> 70,
-    CurvedDownArrow = <any> 71,
-    SwooshArrow = <any> 72,
-    Cube = <any> 73,
-    Can = <any> 74,
-    LightningBolt = <any> 75,
-    Heart = <any> 76,
-    Sun = <any> 77,
-    Moon = <any> 78,
-    SmileyFace = <any> 79,
-    IrregularSeal1 = <any> 80,
-    IrregularSeal2 = <any> 81,
-    FoldedCorner = <any> 82,
-    Bevel = <any> 83,
-    Frame = <any> 84,
-    HalfFrame = <any> 85,
-    Corner = <any> 86,
-    DiagonalStripe = <any> 87,
-    Chord = <any> 88,
-    CurvedArc = <any> 89,
-    LeftBracket = <any> 90,
-    RightBracket = <any> 91,
-    LeftBrace = <any> 92,
-    RightBrace = <any> 93,
-    BracketPair = <any> 94,
-    BracePair = <any> 95,
-    StraightConnector1 = <any> 96,
-    BentConnector2 = <any> 97,
-    BentConnector3 = <any> 98,
-    BentConnector4 = <any> 99,
-    BentConnector5 = <any> 100,
-    CurvedConnector2 = <any> 101,
-    CurvedConnector3 = <any> 102,
-    CurvedConnector4 = <any> 103,
-    CurvedConnector5 = <any> 104,
-    Callout1 = <any> 105,
-    Callout2 = <any> 106,
-    Callout3 = <any> 107,
-    Callout1WithAccent = <any> 108,
-    Callout2WithAccent = <any> 109,
-    Callout3WithAccent = <any> 110,
-    Callout1WithBorder = <any> 111,
-    Callout2WithBorder = <any> 112,
-    Callout3WithBorder = <any> 113,
-    Callout1WithBorderAndAccent = <any> 114,
-    Callout2WithBorderAndAccent = <any> 115,
-    Callout3WithBorderAndAccent = <any> 116,
-    CalloutWedgeRectangle = <any> 117,
-    CalloutWedgeRoundRectangle = <any> 118,
-    CalloutWedgeEllipse = <any> 119,
-    CalloutCloud = <any> 120,
-    Cloud = <any> 121,
-    Ribbon = <any> 122,
-    Ribbon2 = <any> 123,
-    EllipseRibbon = <any> 124,
-    EllipseRibbon2 = <any> 125,
-    LeftRightRibbon = <any> 126,
-    VerticalScroll = <any> 127,
-    HorizontalScroll = <any> 128,
-    Wave = <any> 129,
-    DoubleWave = <any> 130,
-    Plus = <any> 131,
-    ProcessFlow = <any> 132,
-    DecisionFlow = <any> 133,
-    InputOutputFlow = <any> 134,
-    PredefinedProcessFlow = <any> 135,
-    InternalStorageFlow = <any> 136,
-    DocumentFlow = <any> 137,
-    MultiDocumentFlow = <any> 138,
-    TerminatorFlow = <any> 139,
-    PreparationFlow = <any> 140,
-    ManualInputFlow = <any> 141,
-    ManualOperationFlow = <any> 142,
-    ConnectorFlow = <any> 143,
-    PunchedCardFlow = <any> 144,
-    PunchedTapeFlow = <any> 145,
-    SummingJunctionFlow = <any> 146,
-    OrFlow = <any> 147,
-    CollateFlow = <any> 148,
-    SortFlow = <any> 149,
-    ExtractFlow = <any> 150,
-    MergeFlow = <any> 151,
-    OfflineStorageFlow = <any> 152,
-    OnlineStorageFlow = <any> 153,
-    MagneticTapeFlow = <any> 154,
-    MagneticDiskFlow = <any> 155,
-    MagneticDrumFlow = <any> 156,
-    DisplayFlow = <any> 157,
-    DelayFlow = <any> 158,
-    AlternateProcessFlow = <any> 159,
-    OffPageConnectorFlow = <any> 160,
-    BlankButton = <any> 161,
-    HomeButton = <any> 162,
-    HelpButton = <any> 163,
-    InformationButton = <any> 164,
-    ForwardOrNextButton = <any> 165,
-    BackOrPreviousButton = <any> 166,
-    EndButton = <any> 167,
-    BeginningButton = <any> 168,
-    ReturnButton = <any> 169,
-    DocumentButton = <any> 170,
-    SoundButton = <any> 171,
-    MovieButton = <any> 172,
-    Gear6 = <any> 173,
-    Gear9 = <any> 174,
-    Funnel = <any> 175,
-    PlusMath = <any> 176,
-    MinusMath = <any> 177,
-    MultiplyMath = <any> 178,
-    DivideMath = <any> 179,
-    EqualMath = <any> 180,
-    NotEqualMath = <any> 181,
-    CornerTabs = <any> 182,
-    SquareTabs = <any> 183,
-    PlaqueTabs = <any> 184,
-    ChartX = <any> 185,
-    ChartStar = <any> 186,
-    ChartPlus = <any> 187,
-    Chart = <any> 188,
-    Table = <any> 189,
-    PictureFrame = <any> 190,
-    VideoFrame = <any> 191,
-    AudioFrame = <any> 192,
-    Diagram = <any> 193,
-    OleObjectFrame = <any> 194,
-    GroupShape = <any> 195,
-    GraphicalObject = <any> 196,
-    NotDefined = <any> -1
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum CombinedShapeType2 {
     Custom = <any> 'Custom',
     Line = <any> 'Line',
     LineInverse = <any> 'LineInverse',
@@ -888,9 +681,9 @@ export enum CombinedShapeType2 {
     * Represents the rule to render comments into exported document
     */
 export enum CommentsPositions {
-    None = <any> 0,
-    Bottom = <any> 1,
-    Right = <any> 2
+    None = <any> 'None',
+    Bottom = <any> 'Bottom',
+    Right = <any> 'Right'
 }
 
 /**
@@ -983,30 +776,6 @@ export interface EffectFormat {
     * Available export formats
     */
 export enum ExportFormat {
-    Pdf = <any> 0,
-    Xps = <any> 1,
-    Tiff = <any> 2,
-    Pptx = <any> 3,
-    Odp = <any> 4,
-    Otp = <any> 5,
-    Ppt = <any> 6,
-    Pps = <any> 7,
-    Ppsx = <any> 8,
-    Pptm = <any> 9,
-    Ppsm = <any> 10,
-    Potx = <any> 11,
-    Potm = <any> 12,
-    Html = <any> 13,
-    Swf = <any> 14
-}
-
-/**
- * Available export formats
- */
-    /**
-    * Available export formats
-    */
-export enum ExportFormat2 {
     Pdf = <any> 'Pdf',
     Xps = <any> 'Xps',
     Tiff = <any> 'Tiff',
@@ -1021,7 +790,12 @@ export enum ExportFormat2 {
     Potx = <any> 'Potx',
     Potm = <any> 'Potm',
     Html = <any> 'Html',
-    Swf = <any> 'Swf'
+    Swf = <any> 'Swf',
+    Svg = <any> 'Svg',
+    Jpeg = <any> 'Jpeg',
+    Png = <any> 'Png',
+    Gif = <any> 'Gif',
+    Bmp = <any> 'Bmp'
 }
 
 /**
@@ -1039,9 +813,9 @@ export interface ExportOptions {
     * Represents a way to handle external fonts used for text drawing.
     */
 export enum ExternalFontsHandling {
-    AddLinksToFontFiles = <any> 0,
-    Embed = <any> 1,
-    Vectorize = <any> 2
+    AddLinksToFontFiles = <any> 'AddLinksToFontFiles',
+    Embed = <any> 'Embed',
+    Vectorize = <any> 'Vectorize'
 }
 
 /**
@@ -1328,10 +1102,10 @@ export interface GlowEffect {
 }
 
 /**
- * 
+ * Gradient style.
  */
     /**
-    * 
+    * Gradient style.
     */
 export enum GradientDirection {
     FromCorner1 = <any> 'FromCorner1',
@@ -1392,11 +1166,11 @@ export interface IShapeExportOptions {
     * Represents a format for image export.
     */
 export enum ImageExportFormat {
-    Jpeg = <any> 0,
-    Png = <any> 1,
-    Gif = <any> 2,
-    Bmp = <any> 3,
-    Tiff = <any> 4
+    Jpeg = <any> 'Jpeg',
+    Png = <any> 'Png',
+    Gif = <any> 'Gif',
+    Bmp = <any> 'Bmp',
+    Tiff = <any> 'Tiff'
 }
 
 /**
@@ -1406,11 +1180,11 @@ export enum ImageExportFormat {
     * Specifies the pixel format for the generated images.
     */
 export enum ImagePixelFormat {
-    Format1bppIndexed = <any> 1,
-    Format4bppIndexed = <any> 4,
-    Format8bppIndexed = <any> 8,
-    Format24bppRgb = <any> 24,
-    Format32bppArgb = <any> 32
+    Format1bppIndexed = <any> 'Format1bppIndexed',
+    Format4bppIndexed = <any> 'Format4bppIndexed',
+    Format8bppIndexed = <any> 'Format8bppIndexed',
+    Format24bppRgb = <any> 'Format24bppRgb',
+    Format32bppArgb = <any> 'Format32bppArgb'
 }
 
 /**
@@ -1666,10 +1440,10 @@ export enum LineCapStyle {
 }
 
 /**
- * 
+ * Dash style of a line.
  */
     /**
-    * 
+    * Dash style of a line.
     */
 export enum LineDashStyle {
     Solid = <any> 'Solid',
@@ -1778,9 +1552,9 @@ export interface MergingSource {
     * Represents the rule to render notes into exported document
     */
 export enum NotesPositions {
-    None = <any> 0,
-    BottomFull = <any> 1,
-    BottomTruncated = <any> 2
+    None = <any> 'None',
+    BottomFull = <any> 'BottomFull',
+    BottomTruncated = <any> 'BottomTruncated'
 }
 
 /**
@@ -1790,11 +1564,11 @@ export enum NotesPositions {
     * 
     */
 export enum NotesSlideExportFormat {
-    Jpeg = <any> 0,
-    Png = <any> 1,
-    Gif = <any> 2,
-    Bmp = <any> 3,
-    Tiff = <any> 4
+    Jpeg = <any> 'Jpeg',
+    Png = <any> 'Png',
+    Gif = <any> 'Gif',
+    Bmp = <any> 'Bmp',
+    Tiff = <any> 'Tiff'
 }
 
 /**
@@ -1804,9 +1578,9 @@ export enum NotesSlideExportFormat {
     * 
     */
 export enum NullableBool {
-    False = <any> 0,
-    True = <any> 1,
-    NotDefined = <any> -1
+    False = <any> 'False',
+    True = <any> 'True',
+    NotDefined = <any> 'NotDefined'
 }
 
 /**
@@ -2010,8 +1784,8 @@ export enum PatternStyle {
     * Constants which define the PDF standards compliance level.
     */
 export enum PdfCompliance {
-    Pdf15 = <any> 0,
-    PdfA1b = <any> 1
+    Pdf15 = <any> 'Pdf15',
+    PdfA1b = <any> 'PdfA1b'
 }
 
 /**
@@ -2021,8 +1795,8 @@ export enum PdfCompliance {
     * Constants which define the type of a compression applied to all content in the PDF file except images.
     */
 export enum PdfTextCompression {
-    None = <any> 0,
-    Flate = <any> 1
+    None = <any> 'None',
+    Flate = <any> 'Flate'
 }
 
 /**
@@ -2056,27 +1830,12 @@ export enum PictureType {
     * Represents the pictures compression level
     */
 export enum PicturesCompression {
-    Dpi330 = <any> 0,
-    Dpi220 = <any> 1,
-    Dpi150 = <any> 2,
-    Dpi96 = <any> 3,
-    Dpi72 = <any> 4,
-    DocumentResolution = <any> 5
-}
-
-/**
- * Represents the pictures compression level
- */
-    /**
-    * Represents the pictures compression level
-    */
-export enum PicturesCompression2 {
-    Dpi330 = <any> 0,
-    Dpi220 = <any> 1,
-    Dpi150 = <any> 2,
-    Dpi96 = <any> 3,
-    Dpi72 = <any> 4,
-    DocumentResolution = <any> 5
+    Dpi330 = <any> 'Dpi330',
+    Dpi220 = <any> 'Dpi220',
+    Dpi150 = <any> 'Dpi150',
+    Dpi96 = <any> 'Dpi96',
+    Dpi72 = <any> 'Dpi72',
+    DocumentResolution = <any> 'DocumentResolution'
 }
 
 /**
@@ -2102,8 +1861,8 @@ export interface Pipeline {
     * 
     */
 export enum PlaceholderOrientation {
-    Horizontal = <any> 0,
-    Vertical = <any> 1
+    Horizontal = <any> 'Horizontal',
+    Vertical = <any> 'Vertical'
 }
 
 /**
@@ -2113,9 +1872,9 @@ export enum PlaceholderOrientation {
     * 
     */
 export enum PlaceholderSize {
-    Full = <any> 0,
-    Half = <any> 1,
-    Quarter = <any> 2
+    Full = <any> 'Full',
+    Half = <any> 'Half',
+    Quarter = <any> 'Quarter'
 }
 
 /**
@@ -2125,22 +1884,22 @@ export enum PlaceholderSize {
     * 
     */
 export enum PlaceholderType {
-    Title = <any> 0,
-    Body = <any> 1,
-    CenteredTitle = <any> 2,
-    Subtitle = <any> 3,
-    DateAndTime = <any> 4,
-    SlideNumber = <any> 5,
-    Footer = <any> 6,
-    Header = <any> 7,
-    Object = <any> 8,
-    Chart = <any> 9,
-    Table = <any> 10,
-    ClipArt = <any> 11,
-    Diagram = <any> 12,
-    Media = <any> 13,
-    SlideImage = <any> 14,
-    Picture = <any> 15
+    Title = <any> 'Title',
+    Body = <any> 'Body',
+    CenteredTitle = <any> 'CenteredTitle',
+    Subtitle = <any> 'Subtitle',
+    DateAndTime = <any> 'DateAndTime',
+    SlideNumber = <any> 'SlideNumber',
+    Footer = <any> 'Footer',
+    Header = <any> 'Header',
+    Object = <any> 'Object',
+    Chart = <any> 'Chart',
+    Table = <any> 'Table',
+    ClipArt = <any> 'ClipArt',
+    Diagram = <any> 'Diagram',
+    Media = <any> 'Media',
+    SlideImage = <any> 'SlideImage',
+    Picture = <any> 'Picture'
 }
 
 /**
@@ -2437,14 +2196,23 @@ export interface SaaSposeResponse {
     * 
     */
 export enum ScaleType {
-    DoNotScale = <any> 0,
-    EnsureFit = <any> 1,
-    Maximize = <any> 2
+    DoNotScale = <any> 'DoNotScale',
+    EnsureFit = <any> 'EnsureFit',
+    Maximize = <any> 'Maximize'
 }
 
+/**
+ * Scatter chart (two-dimensional) data point
+ */
 export interface ScatterChartDataPoint {
+    /**
+     * X-value
+     */
     xValue: number;
 
+    /**
+     * Y-value
+     */
     yValue: number;
 
 }
@@ -2583,21 +2351,6 @@ export interface SeriesMarker {
     * Represents a format for export individual shape.
     */
 export enum ShapeExportFormat {
-    Jpeg = <any> 0,
-    Png = <any> 1,
-    Gif = <any> 2,
-    Bmp = <any> 3,
-    Tiff = <any> 4,
-    Svg = <any> 5
-}
-
-/**
- * Represents a format for export individual shape.
- */
-    /**
-    * Represents a format for export individual shape.
-    */
-export enum ShapeExportFormat2 {
     Jpeg = <any> 'Jpeg',
     Png = <any> 'Png',
     Gif = <any> 'Gif',
@@ -2645,10 +2398,10 @@ export enum ShapeThumbnailBounds {
 }
 
 /**
- * 
+ * Shape type
  */
     /**
-    * 
+    * Shape type
     */
 export enum ShapeType {
     Shape = <any> 'Shape',
@@ -2672,22 +2425,22 @@ export enum ShapeType {
     * 
     */
 export enum SizeType {
-    OnScreen = <any> 0,
-    LetterPaper = <any> 1,
-    A4Paper = <any> 2,
-    Slide35mm = <any> 3,
-    Overhead = <any> 4,
-    Banner = <any> 5,
-    Custom = <any> 6,
-    Ledger = <any> 7,
-    A3Paper = <any> 8,
-    B4IsoPaper = <any> 9,
-    B5IsoPaper = <any> 10,
-    B4JisPaper = <any> 11,
-    B5JisPaper = <any> 12,
-    HagakiCard = <any> 13,
-    OnScreen16x9 = <any> 14,
-    OnScreen16x10 = <any> 15
+    OnScreen = <any> 'OnScreen',
+    LetterPaper = <any> 'LetterPaper',
+    A4Paper = <any> 'A4Paper',
+    Slide35mm = <any> 'Slide35mm',
+    Overhead = <any> 'Overhead',
+    Banner = <any> 'Banner',
+    Custom = <any> 'Custom',
+    Ledger = <any> 'Ledger',
+    A3Paper = <any> 'A3Paper',
+    B4IsoPaper = <any> 'B4IsoPaper',
+    B5IsoPaper = <any> 'B5IsoPaper',
+    B4JisPaper = <any> 'B4JisPaper',
+    B5JisPaper = <any> 'B5JisPaper',
+    HagakiCard = <any> 'HagakiCard',
+    OnScreen16x9 = <any> 'OnScreen16x9',
+    OnScreen16x10 = <any> 'OnScreen16x10'
 }
 
 /**
@@ -2709,34 +2462,6 @@ export interface SlideComment {
     * Slide Export Format
     */
 export enum SlideExportFormat {
-    Jpeg = <any> 0,
-    Png = <any> 1,
-    Gif = <any> 2,
-    Bmp = <any> 3,
-    Tiff = <any> 4,
-    Html = <any> 5,
-    Pdf = <any> 6,
-    Xps = <any> 7,
-    Pptx = <any> 8,
-    Odp = <any> 9,
-    Otp = <any> 10,
-    Ppt = <any> 11,
-    Pps = <any> 12,
-    Ppsx = <any> 13,
-    Pptm = <any> 14,
-    Ppsm = <any> 15,
-    Potx = <any> 16,
-    Potm = <any> 17,
-    Svg = <any> 18
-}
-
-/**
- * Slide Export Format
- */
-    /**
-    * Slide Export Format
-    */
-export enum SlideExportFormat2 {
     Jpeg = <any> 'Jpeg',
     Png = <any> 'Png',
     Gif = <any> 'Gif',
@@ -2946,10 +2671,17 @@ export enum SmartArtLayoutType {
     VerticalPictureAccentList = <any> 'VerticalPictureAccentList',
     VerticalPictureList = <any> 'VerticalPictureList',
     VerticalProcess = <any> 'VerticalProcess',
-    Custom = <any> 'Custom'
+    Custom = <any> 'Custom',
+    PictureOrganizationChart = <any> 'PictureOrganizationChart'
 }
 
+/**
+ * Smart art node.
+ */
 export interface SmartArtNode {
+    /**
+     * Node list.
+     */
     nodes?: Array<SmartArtNode>;
 
     /**
@@ -2957,10 +2689,19 @@ export interface SmartArtNode {
      */
     shapes?: ResourceUriElement;
 
+    /**
+     * True for and assistant node.
+     */
     isAssistant: boolean;
 
+    /**
+     * Node text.
+     */
     text?: string;
 
+    /**
+     * Organization chart layout type associated with current node.
+     */
     orgChartLayout: OrganizationChartLayoutType;
 
 }
@@ -3180,6 +2921,7 @@ export enum TableStylePreset {
     DarkStyle2Accent1Accent2 = <any> 'DarkStyle2Accent1Accent2',
     DarkStyle2Accent3Accent4 = <any> 'DarkStyle2Accent3Accent4',
     DarkStyle2Accent5Accent6 = <any> 'DarkStyle2Accent5Accent6',
+    LightStyle1Accent5 = <any> 'LightStyle1Accent5',
     Custom = <any> 'Custom'
 }
 
@@ -3369,12 +3111,12 @@ export enum TickMarkType {
     * Provides options that control how a presentation is compressed in TIFF format.
     */
 export enum TiffCompressionType {
-    Default = <any> 0,
-    None = <any> 1,
-    CCITT3 = <any> 2,
-    CCITT4 = <any> 3,
-    LZW = <any> 4,
-    RLE = <any> 5
+    Default = <any> 'Default',
+    None = <any> 'None',
+    CCITT3 = <any> 'CCITT3',
+    CCITT4 = <any> 'CCITT4',
+    LZW = <any> 'LZW',
+    RLE = <any> 'RLE'
 }
 
 /**
@@ -3409,11 +3151,23 @@ export interface AddLayoutSlide extends Task {
 
 }
 
+/**
+ * Add master slide task.
+ */
 export interface AddMasterSlide extends Task {
+    /**
+     * Source presentation clone from.
+     */
     cloneFromFile?: InputFile;
 
+    /**
+     * Index of slide to clone.
+     */
     cloneFromPosition?: number;
 
+    /**
+     * True if cloned master slide is applied to all slides.
+     */
     applyToAll?: boolean;
 
 }
@@ -3745,6 +3499,11 @@ export interface HtmlExportOptions extends ExportOptions {
      */
     commentsAreaColor?: string;
 
+    /**
+     * True if comments that have no author are displayed. (Applies only if comments are displayed).
+     */
+    showCommentsByNoAuthor?: boolean;
+
 }
 
 /**
@@ -3887,7 +3646,13 @@ export interface MasterSlides extends ResourceBase {
 
 }
 
+/**
+ * Merge presentations task.
+ */
 export interface Merge extends Task {
+    /**
+     * Information about documents and slides being merging sources.
+     */
     presentations?: Array<MergingSource>;
 
 }
@@ -4144,6 +3909,21 @@ export interface PdfExportOptions extends ExportOptions {
      */
     commentsAreaColor?: string;
 
+    /**
+     * True if comments that have no author are displayed. (Applies only if comments are displayed).
+     */
+    showCommentsByNoAuthor?: boolean;
+
+    /**
+     * Image transparent color.
+     */
+    imageTransparentColor?: string;
+
+    /**
+     * True to apply specified   to an image.
+     */
+    applyImageTransparent?: boolean;
+
 }
 
 export interface PictureFill extends FillFormat {
@@ -4313,13 +4093,28 @@ export interface ReorderSlide extends Task {
 
 }
 
+/**
+ * Replace text task.
+ */
 export interface ReplaceText extends Task {
+    /**
+     * Text to be replaced.
+     */
     oldText?: string;
 
+    /**
+     * Text to replace with.
+     */
     newText?: string;
 
+    /**
+     * True to ignore case in replace pattern search.
+     */
     ignoreCase?: boolean;
 
+    /**
+     * One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation.
+     */
     slidePosition?: number;
 
 }
@@ -4355,13 +4150,28 @@ export interface Save extends Task {
 
 }
 
+/**
+ * Save shape task.
+ */
 export interface SaveShape extends Task {
+    /**
+     * Format.
+     */
     format?: ShapeExportFormat;
 
+    /**
+     * Shape path.
+     */
     shapePath?: string;
 
+    /**
+     * Output file.
+     */
     output?: OutputFile;
 
+    /**
+     * Save options.
+     */
     options?: IShapeExportOptions;
 
 }
@@ -4837,6 +4647,11 @@ export interface SwfExportOptions extends ExportOptions {
      */
     commentsAreaColor?: string;
 
+    /**
+     * True if comments that have no author are displayed. (Applies only if comments are displayed).
+     */
+    showCommentsByNoAuthor?: boolean;
+
 }
 
 /**
@@ -4926,6 +4741,11 @@ export interface TiffExportOptions extends ExportOptions {
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
      */
     commentsAreaColor?: string;
+
+    /**
+     * True if comments that have no author are displayed. (Applies only if comments are displayed).
+     */
+    showCommentsByNoAuthor?: boolean;
 
 }
 

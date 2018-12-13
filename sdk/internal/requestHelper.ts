@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2017 Aspose Pty Ltd
+* Copyright (c) 2018 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+
 
 import request = require("request");
 import requestDebug = require("request-debug");
@@ -119,7 +120,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "18.8";
+    requestOptions.headers["x-aspose-client-version"] = "18.11.0";
 
     const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {
@@ -142,8 +143,12 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                         if (bodyContent instanceof Buffer) {
                             bodyContent = JSON.parse(bodyContent.toString("utf8"));
                         }
-
-                        const result = ObjectSerializer.deserialize(bodyContent, "SlidesApiErrorResponse");
+                        let result = ObjectSerializer.deserialize(bodyContent, "SlidesApiErrorResponse");
+                        try {
+                            result = JSON.parse(result);
+                        } catch {
+                             //Error means the object is already deserialized
+                        }
                         reject({ message: result.Message, code: response.statusCode });
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });

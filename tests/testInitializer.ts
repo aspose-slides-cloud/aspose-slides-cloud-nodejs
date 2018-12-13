@@ -17,6 +17,7 @@ let storageApi;
 export class TestInitializer {
     public static readonly fileFolder = "TempSlidesSDK";
     public static readonly fileName = "test.ppt";
+    public static readonly templateFileName = "TemplateCV.pptx";
     public static readonly changedFileName = "changedtest.ppt";
 
     public static getStreamValue() {
@@ -31,10 +32,13 @@ export class TestInitializer {
             return null;
         }
         if (name == "folder") {
+            if (functionName == "postSlidesDocument") {
+                return null;
+            }
             return TestInitializer.fileFolder;
         }
         if (name == "name") {
-            if (functionName == "putNewPresentation") {
+            if (functionName == "putNewPresentation" || functionName == "postSlidesDocument") {
                 return TestInitializer.changedFileName;
             }
             if (functionName == "getSlidesPlaceholder") {
@@ -46,6 +50,9 @@ export class TestInitializer {
             return TestInitializer.fileName;
         }
         if (name == "templatePath" || name == "cloneFrom") {
+            if (functionName == "postSlidesDocument") {
+                return TestInitializer.fileFolder + "/" + TestInitializer.templateFileName;
+            }
             return TestInitializer.fileFolder + "/" + TestInitializer.fileName;
         }
         if (name == "path") {
@@ -113,7 +120,7 @@ export class TestInitializer {
         return "test" + name;
     }
 
-    public static invalidizeValue(value: any, type: string) : any {
+    public static invalidizeValue(value: any, name: string, type: string) : any {
         if (type == "number") {
             return 593;
         }
@@ -128,6 +135,9 @@ export class TestInitializer {
         }
         if (value && typeof value === "object") {
             return null;
+        }
+        if (name == "name") {
+            return "invalid" + value;
         }
         return value + "invalid";
     }
@@ -161,20 +171,24 @@ export class TestInitializer {
                     });
             }));
         }
-        promises.push(new Promise((resolve) => {
-            storageApi.DeleteFile(
-                TestInitializer.fileFolder + "/" + TestInitializer.fileName + "invalid",
-                null,
-                null,
-                (responseMessage) => {
-                    assert.equal("OK", responseMessage.status);
-                    resolve();
-                });
-        }));
+        if (invalidFieldName == "name") {
+            promises.push(new Promise((resolve) => {
+                storageApi.DeleteFile(
+                    TestInitializer.fileFolder + "/invalid" + TestInitializer.fileName,
+                    null,
+                    null,
+                    (responseMessage) => {
+                        assert.equal("OK", responseMessage.status);
+                        resolve();
+                    });
+            }));
+        }
         promises.push(new Promise((resolve) => {
             var name = functionName == 'deleteSlidesCleanSlidesList' || functionName == "putSlidesSlide"
                 ? 'test-unprotected.ppt'
-                : TestInitializer.fileName;
+                : functionName == "postSlidesDocument"
+                    ? TestInitializer.templateFileName
+                    : TestInitializer.fileName;
             storageApi.PutCreate(
                 TestInitializer.fileFolder + "/" + name,
                 null,
@@ -185,7 +199,7 @@ export class TestInitializer {
                     resolve();
                 });
         }));
-        if (functionName == "putNewPresentation") {
+        if (functionName == "putNewPresentation" || functionName == "postSlidesDocument") {
             promises.push(new Promise((resolve) => {
                 storageApi.DeleteFile(
                     TestInitializer.fileFolder + "invalid/" + TestInitializer.changedFileName,
@@ -198,7 +212,27 @@ export class TestInitializer {
             }));
             promises.push(new Promise((resolve) => {
                 storageApi.DeleteFile(
+                    TestInitializer.fileFolder + "/invalid" + TestInitializer.changedFileName,
+                    null,
+                    null,
+                    (responseMessage) => {
+                        assert.equal("OK", responseMessage.status);
+                        resolve();
+                    });
+            }));
+            promises.push(new Promise((resolve) => {
+                storageApi.DeleteFile(
                     TestInitializer.fileFolder + "/" + TestInitializer.changedFileName,
+                    null,
+                    null,
+                    (responseMessage) => {
+                        assert.equal("OK", responseMessage.status);
+                        resolve();
+                    });
+            }));
+            promises.push(new Promise((resolve) => {
+                storageApi.DeleteFile(
+                    TestInitializer.changedFileName,
                     null,
                     null,
                     (responseMessage) => {
@@ -221,8 +255,7 @@ export class TestInitializer {
                 assert.equal(200, Math.floor(result.body.Code / 100) * 100);
             }
         }).catch((err) => {
-            if (functionName != "postSlidesDocument"
-                && functionName != "postNotesSlideAddNewShape"
+            if (functionName != "postNotesSlideAddNewShape"
                 && functionName != "postAddNewShape"
                 && functionName != "deleteNotesSlideShape"
                 && functionName != "deleteSlideShape") {
@@ -245,9 +278,11 @@ export class TestInitializer {
                     && fieldName != "fontsFolder"
                     && fieldName != "destFolder"
                     && fieldName != "slideToCopy"
+                    && fieldName != "isImageDataEmbedded"
                     && fieldName != "jpegQuality"
                     && fieldName != "applyToAll"
                     && fieldName != "scaleType"
+                    && fieldName != "sizeType"
                     && fieldName != "slides"
                     && fieldName != "shapes"
                     && fieldName != "shapeToClone"
@@ -264,12 +299,13 @@ export class TestInitializer {
                     && fieldName != "files"
                     && fieldName != "options"
                     && fieldName != "background"
-                    && functionName != "postSlidesDocument"
                     && !(functionName == "getSlidesImageWithFormat" && fieldName == "format")
                     && !(functionName == "postSlidesReorderPosition" && (fieldName == "position" || fieldName == "slideToClone"))
                     && !(functionName == "postAddNotesSlide" && (fieldName == "slideIndex" || fieldName == "dto"))
-                    && !(functionName == "putSlidesDocumentFromHtml" && fieldName == "folder")
-                    && !(functionName == "putNewPresentation" && (fieldName == "folder" || fieldName == "password"))) {
+                    && !((functionName == "putSlidesDocumentFromHtml"
+                            || functionName == "putNewPresentation"
+                            || functionName == "postSlidesDocument")
+                        && (fieldName == "name" || fieldName == "folder" || fieldName == "password"))) {
                     failed = true;
                     assert.fail('Must have failed');
                 }
@@ -283,8 +319,7 @@ export class TestInitializer {
                             assert.equal(404, err.code);
                         }
                     } else {
-                        if (functionName != "postSlidesDocument"
-                            && functionName != "postNotesSlideAddNewShape"
+                        if (functionName != "postNotesSlideAddNewShape"
                             && functionName != "postAddNewShape"
                             && functionName != "deleteNotesSlideShape"
                             && functionName != "deleteSlideShape") {
@@ -330,7 +365,7 @@ export class TestInitializer {
                             } else if (fieldName == "color") {
                                 assert(err.message.startsWith("Color must be in format"));
                             } else if (fieldName == "format") {
-                                assert(err.message.startsWith("Format 593 is not supported"));
+                                assert(err.message.startsWith("Format ") && err.message.endsWith(" is not supported."));
                             } else if (fieldName == "scaleX" || fieldName == "scaleY") {
                                 assert(err.message.startsWith("Out of memory") || err.message.startsWith("Parameter is not valid"));
                             } else {
@@ -350,8 +385,7 @@ export class TestInitializer {
                                     && fieldName != "slideToClone"
                                     && fieldName != "templatePath"
                                     && fieldName != "templateStorage"
-                                    && fieldName != "cloneFromPassword"
-                                    && functionName != "postSlidesDocument") {
+                                    && fieldName != "cloneFromPassword") {
                                     assert(err.message.startsWith("The specified storage was not found or is not associated with the application")
                                         || err.message.startsWith("Object reference not set"));
                                 }

@@ -44,12 +44,12 @@ export class TestInitializer {
             if (functionName == "getSlidesPlaceholder") {
                 return "placeholders.pptx";
             }
-            if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide") {
+            if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide" || functionName == "postSlidesAdd") {
                 return "test-unprotected.ppt";
             }
             return TestInitializer.fileName;
         }
-        if (name == "templatePath" || name == "cloneFrom") {
+        if (name == "templatePath" || name == "cloneFrom" || name == "source") {
             if (functionName == "postSlidesDocument") {
                 return TestInitializer.fileFolder + "/" + TestInitializer.templateFileName;
             }
@@ -59,7 +59,7 @@ export class TestInitializer {
             return "";
         }
         if (name.toLowerCase().endsWith("password")) {
-            if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide") {
+            if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide" || functionName == "postSlidesAdd") {
                 return null;
             }
             return "password";
@@ -87,7 +87,19 @@ export class TestInitializer {
         if (name == "shapeIndex") {
             return 3;
         }
-        if (name.toLowerCase().endsWith("index") || name.toLowerCase().endsWith("position") || name == "width" || name == "height" || name == "scaleX" || name == "scaleY") {
+        if (name == "oldPositions") {
+            return [1, 2];
+        }
+        if (name == "newPositions") {
+            return [2, 1];
+        }
+        if (name.toLowerCase().endsWith("index")
+            || name.toLowerCase().endsWith("position")
+            || name == "width"
+            || name == "height"
+            || name == "scaleX"
+            || name == "scaleY"
+            || name == "slideToCopy") {
             return 1;
         }
         if (name == "pipeline" || name == "request" || name == "options" || name == "paragraphDto") {
@@ -184,7 +196,7 @@ export class TestInitializer {
             }));
         }
         promises.push(new Promise((resolve) => {
-            var name = functionName == 'deleteSlidesCleanSlidesList' || functionName == "putSlidesSlide"
+            var name = functionName == 'deleteSlidesCleanSlidesList' || functionName == "putSlidesSlide" || functionName == "postSlidesAdd"
                 ? 'test-unprotected.ppt'
                 : functionName == "postSlidesDocument"
                     ? TestInitializer.templateFileName
@@ -290,6 +302,8 @@ export class TestInitializer {
                     && fieldName != "layoutAlias"
                     && fieldName != "oldValue"
                     && fieldName != "newValue"
+                    && fieldName != "oldPositions"
+                    && fieldName != "newPositions"
                     && fieldName != "ignoreCase"
                     && fieldName != "outPath"
                     && fieldName != "stream"
@@ -314,7 +328,11 @@ export class TestInitializer {
                 if (failed) {
                     assert.fail(err);
                 } else {
-                    if (fieldName == "name" || fieldName == "folder" || fieldName == "cloneFrom" || fieldName == "propertyName") {
+                    if (fieldName == "name"
+                        || fieldName == "folder"
+                        || fieldName == "cloneFrom"
+                        || fieldName == "propertyName"
+                        || fieldName == "source") {
                         if (!functionName.startsWith('post') && !functionName.startsWith('put')) {
                             assert.equal(404, err.code);
                         }
@@ -334,18 +352,22 @@ export class TestInitializer {
                             } else {
                                 assert.equal(400, err.code);
                             }
-                            if (fieldName == "password") {
-                                if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide") {
+                            if (fieldName == "password" || fieldName == "sourcePassword") {
+                                if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide" || functionName == "postSlidesAdd") {
                                     assert(err.message.startsWith("An attempt was made to move the position before the beginning of the stream."));
                                 } else {
                                     assert(err.message.startsWith("Invalid password")
                                         || err.message.startsWith("Object reference not set"));
                                 }
-                            } else if (fieldName == "index") {
+                            } else if (fieldName == "index" || fieldName == "oldPositions" || fieldName == "newPositions") {
                                 assert(err.message.startsWith("Specified argument was out of the range of valid values."));
-                            } else if (fieldName == "slideIndex" || fieldName == "slides" || fieldName == "cloneFromPosition") {
+                            } else if (fieldName == "slideIndex"
+                                || fieldName == "slides"
+                                || fieldName == "cloneFromPosition"
+                                || fieldName == "slideToCopy") {
                                 assert(err.message.startsWith("Wrong slide index.")
                                     || err.message.startsWith("Invalid index:")
+                                    || err.message.startsWith("Index was out of range")
                                     || err.message.startsWith("Placeholder with specified index doesn't exist."));
                             } else if (fieldName == "shapeIndex" || fieldName == "shapes") {
                                 assert(err.message.startsWith("Wrong shape index.")

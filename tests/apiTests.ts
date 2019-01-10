@@ -1059,11 +1059,59 @@ class TestUtils {
         return request;
     }
 
+    public static getPostSlidesAddRequest(): requests.PostSlidesAddRequest {
+        const request = new requests.PostSlidesAddRequest();
+        request.name = <string>TestInitializer.getValue("postSlidesAdd", "name");
+        request.position = <number>TestInitializer.getValue("postSlidesAdd", "position");
+        request.password = <string>TestInitializer.getValue("postSlidesAdd", "password");
+        request.folder = <string>TestInitializer.getValue("postSlidesAdd", "folder");
+        request.storage = <string>TestInitializer.getValue("postSlidesAdd", "storage");
+        request.layoutAlias = <string>TestInitializer.getValue("postSlidesAdd", "layoutAlias");
+        return request;
+    }
+
+    public static getPostSlidesCopyRequest(): requests.PostSlidesCopyRequest {
+        const request = new requests.PostSlidesCopyRequest();
+        request.name = <string>TestInitializer.getValue("postSlidesCopy", "name");
+        request.slideToCopy = <number>TestInitializer.getValue("postSlidesCopy", "slideToCopy");
+        request.position = <number>TestInitializer.getValue("postSlidesCopy", "position");
+        request.source = <string>TestInitializer.getValue("postSlidesCopy", "source");
+        request.sourcePassword = <string>TestInitializer.getValue("postSlidesCopy", "sourcePassword");
+        request.password = <string>TestInitializer.getValue("postSlidesCopy", "password");
+        request.folder = <string>TestInitializer.getValue("postSlidesCopy", "folder");
+        request.storage = <string>TestInitializer.getValue("postSlidesCopy", "storage");
+        return request;
+    }
+
+    public static getPostSlidesReorderRequest(): requests.PostSlidesReorderRequest {
+        const request = new requests.PostSlidesReorderRequest();
+        request.name = <string>TestInitializer.getValue("postSlidesReorder", "name");
+        request.slideIndex = <number>TestInitializer.getValue("postSlidesReorder", "slideIndex");
+        request.newPosition = <number>TestInitializer.getValue("postSlidesReorder", "newPosition");
+        request.password = <string>TestInitializer.getValue("postSlidesReorder", "password");
+        request.folder = <string>TestInitializer.getValue("postSlidesReorder", "folder");
+        request.storage = <string>TestInitializer.getValue("postSlidesReorder", "storage");
+        return request;
+    }
+
+    public static getPostSlidesReorderManyRequest(): requests.PostSlidesReorderManyRequest {
+        const request = new requests.PostSlidesReorderManyRequest();
+        request.name = <string>TestInitializer.getValue("postSlidesReorderMany", "name");
+        request.oldPositions = <Array<number>>TestInitializer.getValue("postSlidesReorderMany", "oldPositions");
+        request.newPositions = <Array<number>>TestInitializer.getValue("postSlidesReorderMany", "newPositions");
+        request.password = <string>TestInitializer.getValue("postSlidesReorderMany", "password");
+        request.folder = <string>TestInitializer.getValue("postSlidesReorderMany", "folder");
+        request.storage = <string>TestInitializer.getValue("postSlidesReorderMany", "storage");
+        return request;
+    }
+
     public static getPostSlidesReorderPositionRequest(): requests.PostSlidesReorderPositionRequest {
         const request = new requests.PostSlidesReorderPositionRequest();
         request.name = <string>TestInitializer.getValue("postSlidesReorderPosition", "name");
         request.oldPosition = <number>TestInitializer.getValue("postSlidesReorderPosition", "oldPosition");
         request.newPosition = <number>TestInitializer.getValue("postSlidesReorderPosition", "newPosition");
+        request.oldPositions = <Array<number>>TestInitializer.getValue("postSlidesReorderPosition", "oldPositions");
+        request.newPositions = <Array<number>>TestInitializer.getValue("postSlidesReorderPosition", "newPositions");
         request.slideToCopy = <number>TestInitializer.getValue("postSlidesReorderPosition", "slideToCopy");
         request.position = <number>TestInitializer.getValue("postSlidesReorderPosition", "position");
         request.slideToClone = <number>TestInitializer.getValue("postSlidesReorderPosition", "slideToClone");
@@ -8764,6 +8812,336 @@ describe("Tests for postSlideSaveAs", () => {
     });
 });
 
+describe("Tests for postSlidesAdd", () => {
+    it("main test", () => {
+        return TestInitializer.initialize("postSlidesAdd", null, null).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            const request = TestUtils.getPostSlidesAddRequest();
+            return TestInitializer.assertValidCall(api.postSlidesAdd(request), false, "postSlidesAdd");
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSlidesAddRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string");
+        return TestInitializer.initialize("postSlidesAdd", field, request.name).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field);
+        });
+    });
+
+    it("invalid position test", () => {
+        const field = "position";
+        const request = TestUtils.getPostSlidesAddRequest();
+        request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number");
+        return TestInitializer.initialize("postSlidesAdd", field, request.position).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field);
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSlidesAddRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string");
+        return TestInitializer.initialize("postSlidesAdd", field, request.password).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field);
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSlidesAddRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string");
+        return TestInitializer.initialize("postSlidesAdd", field, request.folder).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field);
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSlidesAddRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string");
+        return TestInitializer.initialize("postSlidesAdd", field, request.storage).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field);
+        });
+    });
+
+    it("invalid layoutAlias test", () => {
+        const field = "layoutAlias";
+        const request = TestUtils.getPostSlidesAddRequest();
+        request.layoutAlias = <string>TestInitializer.invalidizeValue(request.layoutAlias, field, "string");
+        return TestInitializer.initialize("postSlidesAdd", field, request.layoutAlias).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field);
+        });
+    });
+});
+
+describe("Tests for postSlidesCopy", () => {
+    it("main test", () => {
+        return TestInitializer.initialize("postSlidesCopy", null, null).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            const request = TestUtils.getPostSlidesCopyRequest();
+            return TestInitializer.assertValidCall(api.postSlidesCopy(request), false, "postSlidesCopy");
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string");
+        return TestInitializer.initialize("postSlidesCopy", field, request.name).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+
+    it("invalid slideToCopy test", () => {
+        const field = "slideToCopy";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.slideToCopy = <number>TestInitializer.invalidizeValue(request.slideToCopy, field, "number");
+        return TestInitializer.initialize("postSlidesCopy", field, request.slideToCopy).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+
+    it("invalid position test", () => {
+        const field = "position";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number");
+        return TestInitializer.initialize("postSlidesCopy", field, request.position).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+
+    it("invalid source test", () => {
+        const field = "source";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.source = <string>TestInitializer.invalidizeValue(request.source, field, "string");
+        return TestInitializer.initialize("postSlidesCopy", field, request.source).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+
+    it("invalid sourcePassword test", () => {
+        const field = "sourcePassword";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.sourcePassword = <string>TestInitializer.invalidizeValue(request.sourcePassword, field, "string");
+        return TestInitializer.initialize("postSlidesCopy", field, request.sourcePassword).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string");
+        return TestInitializer.initialize("postSlidesCopy", field, request.password).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string");
+        return TestInitializer.initialize("postSlidesCopy", field, request.folder).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSlidesCopyRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string");
+        return TestInitializer.initialize("postSlidesCopy", field, request.storage).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field);
+        });
+    });
+});
+
+describe("Tests for postSlidesReorder", () => {
+    it("main test", () => {
+        return TestInitializer.initialize("postSlidesReorder", null, null).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            const request = TestUtils.getPostSlidesReorderRequest();
+            return TestInitializer.assertValidCall(api.postSlidesReorder(request), false, "postSlidesReorder");
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSlidesReorderRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string");
+        return TestInitializer.initialize("postSlidesReorder", field, request.name).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field);
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostSlidesReorderRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number");
+        return TestInitializer.initialize("postSlidesReorder", field, request.slideIndex).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field);
+        });
+    });
+
+    it("invalid newPosition test", () => {
+        const field = "newPosition";
+        const request = TestUtils.getPostSlidesReorderRequest();
+        request.newPosition = <number>TestInitializer.invalidizeValue(request.newPosition, field, "number");
+        return TestInitializer.initialize("postSlidesReorder", field, request.newPosition).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field);
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSlidesReorderRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string");
+        return TestInitializer.initialize("postSlidesReorder", field, request.password).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field);
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSlidesReorderRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string");
+        return TestInitializer.initialize("postSlidesReorder", field, request.folder).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field);
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSlidesReorderRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string");
+        return TestInitializer.initialize("postSlidesReorder", field, request.storage).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field);
+        });
+    });
+});
+
+describe("Tests for postSlidesReorderMany", () => {
+    it("main test", () => {
+        return TestInitializer.initialize("postSlidesReorderMany", null, null).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            const request = TestUtils.getPostSlidesReorderManyRequest();
+            return TestInitializer.assertValidCall(api.postSlidesReorderMany(request), false, "postSlidesReorderMany");
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSlidesReorderManyRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string");
+        return TestInitializer.initialize("postSlidesReorderMany", field, request.name).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field);
+        });
+    });
+
+    it("invalid oldPositions test", () => {
+        const field = "oldPositions";
+        const request = TestUtils.getPostSlidesReorderManyRequest();
+        request.oldPositions = <Array<number>>TestInitializer.invalidizeValue(request.oldPositions, field, "Array&lt;number&gt;");
+        return TestInitializer.initialize("postSlidesReorderMany", field, request.oldPositions).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field);
+        });
+    });
+
+    it("invalid newPositions test", () => {
+        const field = "newPositions";
+        const request = TestUtils.getPostSlidesReorderManyRequest();
+        request.newPositions = <Array<number>>TestInitializer.invalidizeValue(request.newPositions, field, "Array&lt;number&gt;");
+        return TestInitializer.initialize("postSlidesReorderMany", field, request.newPositions).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field);
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSlidesReorderManyRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string");
+        return TestInitializer.initialize("postSlidesReorderMany", field, request.password).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field);
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSlidesReorderManyRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string");
+        return TestInitializer.initialize("postSlidesReorderMany", field, request.folder).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field);
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSlidesReorderManyRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string");
+        return TestInitializer.initialize("postSlidesReorderMany", field, request.storage).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field);
+        });
+    });
+});
+
 describe("Tests for postSlidesReorderPosition", () => {
     it("main test", () => {
         return TestInitializer.initialize("postSlidesReorderPosition", null, null).then(() => {
@@ -8801,6 +9179,28 @@ describe("Tests for postSlidesReorderPosition", () => {
         const request = TestUtils.getPostSlidesReorderPositionRequest();
         request.newPosition = <number>TestInitializer.invalidizeValue(request.newPosition, field, "number");
         return TestInitializer.initialize("postSlidesReorderPosition", field, request.newPosition).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderPosition(request), "postSlidesReorderPosition", field);
+        });
+    });
+
+    it("invalid oldPositions test", () => {
+        const field = "oldPositions";
+        const request = TestUtils.getPostSlidesReorderPositionRequest();
+        request.oldPositions = <Array<number>>TestInitializer.invalidizeValue(request.oldPositions, field, "Array&lt;number&gt;");
+        return TestInitializer.initialize("postSlidesReorderPosition", field, request.oldPositions).then(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+            return TestInitializer.assertInvalidCall(api.postSlidesReorderPosition(request), "postSlidesReorderPosition", field);
+        });
+    });
+
+    it("invalid newPositions test", () => {
+        const field = "newPositions";
+        const request = TestUtils.getPostSlidesReorderPositionRequest();
+        request.newPositions = <Array<number>>TestInitializer.invalidizeValue(request.newPositions, field, "Array&lt;number&gt;");
+        return TestInitializer.initialize("postSlidesReorderPosition", field, request.newPositions).then(() => {
             const config = require("../testConfig.json");
             const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
             return TestInitializer.assertInvalidCall(api.postSlidesReorderPosition(request), "postSlidesReorderPosition", field);

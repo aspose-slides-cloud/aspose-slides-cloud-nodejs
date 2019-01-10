@@ -424,7 +424,7 @@ export class ImagesApi extends ApiBase {
     }
 
     /**
-     * Gets image in specified format. 
+     * Get image in specified format. 
      * @param requestObj contains request parameters
      */
     public async getSlidesImageWithFormat(requestObj: requests.GetSlidesImageWithFormatRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -1094,10 +1094,10 @@ export class NotesSlideShapesApi extends ApiBase {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlideParagraphs.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -1172,10 +1172,10 @@ export class NotesSlideShapesApi extends ApiBase {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlidePortions.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -1246,10 +1246,10 @@ export class NotesSlideShapesApi extends ApiBase {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlideShapes.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -2158,10 +2158,10 @@ export class ShapesApi extends ApiBase {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteParagraphs.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -2236,10 +2236,10 @@ export class ShapesApi extends ApiBase {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling deletePortions.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -2310,10 +2310,10 @@ export class ShapesApi extends ApiBase {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteSlideShapes.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -2878,7 +2878,7 @@ export class SlidesApi extends ApiBase {
     }
 
     /**
-     * Delete presentation slide by its index. 
+     * Delete a presentation slide by its index. 
      * @param requestObj contains request parameters
      */
     public async deleteSlideByIndex(requestObj: requests.DeleteSlideByIndexRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
@@ -2924,10 +2924,10 @@ export class SlidesApi extends ApiBase {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteSlidesCleanSlidesList.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", requestObj.slides);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", requestObj.slides);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -2940,7 +2940,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Remove presentation slide background color. 
+     * Remove background from a slide. 
      * @param requestObj contains request parameters
      */
     public async deleteSlidesSlideBackground(requestObj: requests.DeleteSlidesSlideBackgroundRequest): Promise<{response: http.ClientResponse, body: model.SlideBackgroundResponse}> {
@@ -2971,7 +2971,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Convert slide to some format. 
+     * Convert a slide to some format. 
      * @param requestObj contains request parameters
      */
     public async getSlideWithFormat(requestObj: requests.GetSlideWithFormatRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -3011,7 +3011,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Read slide info. 
+     * Read a slide info. 
      * @param requestObj contains request parameters
      */
     public async getSlidesSlide(requestObj: requests.GetSlidesSlideRequest): Promise<{response: http.ClientResponse, body: model.SlideResponse}> {
@@ -3042,7 +3042,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Read presentation slide background color type. 
+     * Read background info for a slide. 
      * @param requestObj contains request parameters
      */
     public async getSlidesSlideBackground(requestObj: requests.GetSlidesSlideBackgroundRequest): Promise<{response: http.ClientResponse, body: model.SlideBackgroundResponse}> {
@@ -3134,7 +3134,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Convert slide to some format. 
+     * Convert a slide to some format. 
      * @param requestObj contains request parameters
      */
     public async postSlideSaveAs(requestObj: requests.PostSlideSaveAsRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -3178,6 +3178,136 @@ export class SlidesApi extends ApiBase {
      * Reorder presentation slide position 
      * @param requestObj contains request parameters
      */
+    public async postSlidesAdd(requestObj: requests.PostSlidesAddRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesAdd.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/add";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlidesAdd.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "layoutAlias", requestObj.layoutAlias);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true
+        };
+        checkMultipartContent(requestOptions, requestObj);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideListResponse");
+        return Promise.resolve({body: result, response});
+    }
+    /**
+     * Reorder presentation slide position 
+     * @param requestObj contains request parameters
+     */
+    public async postSlidesCopy(requestObj: requests.PostSlidesCopyRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesCopy.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/copy";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlidesCopy.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slideToCopy", requestObj.slideToCopy);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "source", requestObj.source);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sourcePassword", requestObj.sourcePassword);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true
+        };
+        checkMultipartContent(requestOptions, requestObj);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideListResponse");
+        return Promise.resolve({body: result, response});
+    }
+    /**
+     * Reorder presentation slide position 
+     * @param requestObj contains request parameters
+     */
+    public async postSlidesReorder(requestObj: requests.PostSlidesReorderRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesReorder.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/move";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlidesReorder.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newPosition", requestObj.newPosition);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true
+        };
+        checkMultipartContent(requestOptions, requestObj);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideListResponse");
+        return Promise.resolve({body: result, response});
+    }
+    /**
+     * Reorder presentation slide position 
+     * @param requestObj contains request parameters
+     */
+    public async postSlidesReorderMany(requestObj: requests.PostSlidesReorderManyRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesReorderMany.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/reorder";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlidesReorderMany.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldPositions", requestObj.oldPositions);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newPositions", requestObj.newPositions);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true
+        };
+        checkMultipartContent(requestOptions, requestObj);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideListResponse");
+        return Promise.resolve({body: result, response});
+    }
+    /**
+     * Create, copy or reorder presentation slides. 
+     * @param requestObj contains request parameters
+     */
     public async postSlidesReorderPosition(requestObj: requests.PostSlidesReorderPositionRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesReorderPosition.');
@@ -3192,6 +3322,8 @@ export class SlidesApi extends ApiBase {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldPosition", requestObj.oldPosition);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newPosition", requestObj.newPosition);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldPositions", requestObj.oldPositions);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newPositions", requestObj.newPositions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slideToCopy", requestObj.slideToCopy);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slideToClone", requestObj.slideToClone);
@@ -3212,7 +3344,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Update slide properties. 
+     * Update a slide. 
      * @param requestObj contains request parameters
      */
     public async putSlidesSlide(requestObj: requests.PutSlidesSlideRequest): Promise<{response: http.ClientResponse, body: model.SlideResponse}> {
@@ -3243,7 +3375,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Set presentation slide background color. 
+     * Set background for a slide. 
      * @param requestObj contains request parameters
      */
     public async putSlidesSlideBackground(requestObj: requests.PutSlidesSlideBackgroundRequest): Promise<{response: http.ClientResponse, body: model.SlideBackgroundResponse}> {

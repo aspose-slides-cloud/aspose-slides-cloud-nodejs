@@ -4141,11 +4141,23 @@ export interface ResetSlide extends Task {
 export interface ResponseOutputFile extends OutputFile {
 }
 
+/**
+ * Save slide task.
+ */
 export interface Save extends Task {
+    /**
+     * Format.
+     */
     format?: ExportFormat;
 
+    /**
+     * Output file.
+     */
     output?: OutputFile;
 
+    /**
+     * Save options.
+     */
     options?: ExportOptions;
 
 }

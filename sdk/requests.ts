@@ -2618,11 +2618,11 @@ export class PutSlideShapeInfoRequest {
  */
 export class DeleteSlideByIndexRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * The slide index.
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -2630,11 +2630,11 @@ export class DeleteSlideByIndexRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * The presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -2643,7 +2643,7 @@ export class DeleteSlideByIndexRequest {
  */
 export class DeleteSlidesCleanSlidesListRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
@@ -2655,11 +2655,11 @@ export class DeleteSlidesCleanSlidesListRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -2668,11 +2668,11 @@ export class DeleteSlidesCleanSlidesListRequest {
  */
 export class DeleteSlidesSlideBackgroundRequest {
     /**
-     * Gets or sets name
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -2680,11 +2680,11 @@ export class DeleteSlidesSlideBackgroundRequest {
      */
     public password: string;
     /**
-     * Gets or sets folder
+     * Document folder.
      */
     public folder: string;
     /**
-     * Gets or sets storage
+     * Document storage.
      */
     public storage: string;
 }
@@ -2693,43 +2693,43 @@ export class DeleteSlidesSlideBackgroundRequest {
  */
 export class GetSlideWithFormatRequest {
     /**
-     * Gets or sets name
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * Gets or sets format
+     * Output file format.
      */
     public format: string;
     /**
-     * Gets or sets width
+     * Output file width; 0 to not adjust the size. Default is 0.
      */
     public width: number;
     /**
-     * Gets or sets height
+     * Output file height; 0 to not adjust the size. Default is 0.
      */
     public height: number;
     /**
-     * Gets or sets password
+     * Document password.
      */
     public password: string;
     /**
-     * Gets or sets folder
+     * Document folder.
      */
     public folder: string;
     /**
-     * Gets or sets storage
+     * Document storage.
      */
     public storage: string;
     /**
-     * Gets or sets outPath
+     * Path to upload the output file to.
      */
     public outPath: string;
     /**
-     * Gets or sets fontsFolder
+     * Storage folder containing custom fonts to be used with the document.
      */
     public fontsFolder: string;
 }
@@ -2738,11 +2738,11 @@ export class GetSlideWithFormatRequest {
  */
 export class GetSlidesSlideRequest {
     /**
-     * Gets or sets name
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -2750,11 +2750,11 @@ export class GetSlidesSlideRequest {
      */
     public password: string;
     /**
-     * Gets or sets folder
+     * Document folder.
      */
     public folder: string;
     /**
-     * Gets or sets storage
+     * Document storage.
      */
     public storage: string;
 }
@@ -2763,11 +2763,11 @@ export class GetSlidesSlideRequest {
  */
 export class GetSlidesSlideBackgroundRequest {
     /**
-     * Gets or sets name
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -2775,11 +2775,11 @@ export class GetSlidesSlideBackgroundRequest {
      */
     public password: string;
     /**
-     * Gets or sets folder
+     * Document folder.
      */
     public folder: string;
     /**
-     * Gets or sets storage
+     * Document storage.
      */
     public storage: string;
 }
@@ -2788,11 +2788,11 @@ export class GetSlidesSlideBackgroundRequest {
  */
 export class GetSlidesSlideCommentsRequest {
     /**
-     * Gets or sets name
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * The position of the slide to be reordered.
      */
     public slideIndex: number;
     /**
@@ -2800,11 +2800,11 @@ export class GetSlidesSlideCommentsRequest {
      */
     public password: string;
     /**
-     * Gets or sets folder
+     * Document folder.
      */
     public folder: string;
     /**
-     * Gets or sets storage
+     * Document storage.
      */
     public storage: string;
 }
@@ -2813,7 +2813,7 @@ export class GetSlidesSlideCommentsRequest {
  */
 export class GetSlidesSlidesListRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
@@ -2821,11 +2821,11 @@ export class GetSlidesSlidesListRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -2834,80 +2834,212 @@ export class GetSlidesSlidesListRequest {
  */
 export class PostSlideSaveAsRequest {
     /**
-     * Gets or sets name
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * Gets or sets format
+     * Output file format.
      */
     public format: string;
     /**
-     * export options
+     * Export options.
      */
     public options: model.ExportOptions;
     /**
-     * Gets or sets width
+     * Output file width; 0 to not adjust the size. Default is 0.
      */
     public width: number;
     /**
-     * Gets or sets height
+     * Output file height; 0 to not adjust the size. Default is 0.
      */
     public height: number;
     /**
-     * Gets or sets password
+     * Document password.
      */
     public password: string;
     /**
-     * Gets or sets folder
+     * Document folder.
      */
     public folder: string;
     /**
-     * Gets or sets storage
+     * Document storage.
      */
     public storage: string;
     /**
-     * Gets or sets outPath
+     * Path to upload the output file to.
      */
     public outPath: string;
     /**
-     * Gets or sets fontsFolder
+     * Storage folder containing custom fonts to be used with the document.
      */
     public fontsFolder: string;
+}
+/**
+ * Request model for PostSlidesAdd operation.
+ */
+export class PostSlidesAddRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The target position at which to create the slide. Add to the end by default.
+     */
+    public position: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Alias of layout slide for new slide. Alias may be the type of layout, name of layout slide or index
+     */
+    public layoutAlias: string;
+}
+/**
+ * Request model for PostSlidesCopy operation.
+ */
+export class PostSlidesCopyRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The index of the slide to be copied from the source presentation.
+     */
+    public slideToCopy: number;
+    /**
+     * The target position at which to copy the slide. Copy to the end by default.
+     */
+    public position: number;
+    /**
+     * Name of the document to copy a slide from.
+     */
+    public source: string;
+    /**
+     * Password for the document to copy a slide from.
+     */
+    public sourcePassword: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostSlidesReorder operation.
+ */
+export class PostSlidesReorderRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The position of the slide to be reordered.
+     */
+    public slideIndex: number;
+    /**
+     * The new position of the reordered slide.
+     */
+    public newPosition: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostSlidesReorderMany operation.
+ */
+export class PostSlidesReorderManyRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * A comma separated array of positions of slides to be reordered.
+     */
+    public oldPositions: Array<number>;
+    /**
+     * A comma separated array of new slide positions.
+     */
+    public newPositions: Array<number>;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PostSlidesReorderPosition operation.
  */
 export class PostSlidesReorderPositionRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * The new presentation slide position.
+     * The position of the slide to be reordered.
      */
     public oldPosition: number;
     /**
-     * The new presentation slide position.
+     * The new position of the reordered slide.
      */
     public newPosition: number;
     /**
-     * The presentation slide to copy.
+     * A comma separated array of positions of slides to be reordered.
+     */
+    public oldPositions: Array<number>;
+    /**
+     * A comma separated array of new slide positions.
+     */
+    public newPositions: Array<number>;
+    /**
+     * The index of the slide to be copied from the source presentation.
      */
     public slideToCopy: number;
     /**
-     * The presentation slide position.
+     * The target position at which to copy or create the slide.
      */
     public position: number;
     /**
-     * The presentation slide to clone.
+     * The index of the slide to be cloned.
      */
     public slideToClone: number;
     /**
-     * The source presentation.
+     * Name of the document to copy a slide from.
      */
     public source: string;
     /**
@@ -2915,15 +3047,15 @@ export class PostSlidesReorderPositionRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * The presentation storage.
+     * Document storage.
      */
     public storage: string;
     /**
-     * Alias of layout slide for new slide. Alias could be the type of layout, name of layout slide or index
+     * Alias of layout slide for new slide. Alias may be the type of layout, name of layout slide or index
      */
     public layoutAlias: string;
 }
@@ -2932,27 +3064,27 @@ export class PostSlidesReorderPositionRequest {
  */
 export class PutSlidesSlideRequest {
     /**
-     * Name of the presentation.
+     * Document name.
      */
     public name: string;
     /**
-     * Index of the slide update to.
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * DTO of the slide.
+     * Slide update data.
      */
     public slideDto: model.Slide;
     /**
-     * Gets or sets password
+     * Document password.
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * The presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -2961,19 +3093,19 @@ export class PutSlidesSlideRequest {
  */
 export class PutSlidesSlideBackgroundRequest {
     /**
-     * Gets or sets name
+     * Document name.
      */
     public name: string;
     /**
-     * Gets or sets slideIndex
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * Gets or sets background
+     * Slide background update data. Required unless color parameter is specified.
      */
     public background: model.SlideBackground;
     /**
-     * Gets or sets folder
+     * Document folder.
      */
     public folder: string;
     /**
@@ -2981,11 +3113,11 @@ export class PutSlidesSlideBackgroundRequest {
      */
     public password: string;
     /**
-     * Gets or sets storage
+     * Document storage.
      */
     public storage: string;
     /**
-     * Gets or sets color
+     * Slide background target color in RRGGBB format. Ignored if background parameter is specified. Required unless background parameter is specified.
      */
     public color: string;
 }

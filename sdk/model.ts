@@ -687,6 +687,18 @@ export enum CommentsPositions {
 }
 
 /**
+ * The conformance class to which the PresentationML document conforms.
+ */
+    /**
+    * The conformance class to which the PresentationML document conforms.
+    */
+export enum Conformance {
+    Ecma3762006 = <any> 'Ecma376_2006',
+    Iso295002008Transitional = <any> 'Iso29500_2008_Transitional',
+    Iso295002008Strict = <any> 'Iso29500_2008_Strict'
+}
+
+/**
  * Determines where axis will cross.
  */
     /**
@@ -2831,11 +2843,23 @@ export interface TableColumn {
 
 }
 
+/**
+ * Table Row.
+ */
 export interface TableRow {
+    /**
+     * Cells for the row.
+     */
     cells?: Array<TableCell>;
 
+    /**
+     * Minimal height of the row.
+     */
     minimalHeight: number;
 
+    /**
+     * Height of the row.
+     */
     height: number;
 
 }
@@ -3431,16 +3455,34 @@ export interface FormatSchemeResponse extends SaaSposeResponse {
  * Represents gradient fill format
  */
 export interface GradientFill extends FillFormat {
+    /**
+     * Gradient style.
+     */
     direction?: GradientDirection;
 
+    /**
+     * Gradient shape.
+     */
     shape?: GradientShapeType;
 
+    /**
+     * Gradient stops.
+     */
     stops?: Array<GradientFillStop>;
 
+    /**
+     * Gradient angle.
+     */
     linearAngle?: number;
 
+    /**
+     * True if the gradient is scaled.
+     */
     isScaled?: boolean;
 
+    /**
+     * Gradient flipping mode.
+     */
     tileFlip?: GradientTileFlip;
 
 }
@@ -4073,6 +4115,14 @@ export interface PortionResponse extends SaaSposeResponse {
      * Gets or sets the  DTO
      */
     portion?: Portion;
+
+}
+
+export interface PptxExportOptions extends ExportOptions {
+    /**
+     * The conformance class to which the PresentationML document conforms. Read/write .
+     */
+    conformance?: Conformance;
 
 }
 

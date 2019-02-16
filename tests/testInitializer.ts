@@ -171,6 +171,20 @@ export class TestInitializer {
     public static initialize(functionName: string, invalidFieldName: string, invalidFieldValue: any) {
         const promises = [];
         const storageApi = TestInitializer.initializeStorageApi();
+        if (functionName == "getSlidesPlaceholder") {
+            promises.push(new Promise((resolve) => {
+                var name = "placeholders.pptx";
+                storageApi.PutCreate(
+                    TestInitializer.fileFolder + "/" + name,
+                    null,
+                    null,
+                    "TestData/" + name,
+                    (responseMessage) => {
+                        assert.equal("OK", responseMessage.status);
+                        resolve();
+                    });
+                }));
+        }
         if (invalidFieldName == "folder") {
             promises.push(new Promise((resolve) => {
                 storageApi.DeleteFile(

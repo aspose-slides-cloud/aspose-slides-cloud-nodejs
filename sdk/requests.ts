@@ -684,11 +684,11 @@ export class PutPresentationMergeRequest {
  */
 export class DeleteNotesSlideRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * The slide index.
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -696,11 +696,11 @@ export class DeleteNotesSlideRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -709,11 +709,11 @@ export class DeleteNotesSlideRequest {
  */
 export class GetNotesSlideRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * The slide index.
+     * Slide index.
      */
     public slideIndex: number;
     /**
@@ -721,11 +721,11 @@ export class GetNotesSlideRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -734,23 +734,23 @@ export class GetNotesSlideRequest {
  */
 export class GetNotesSlideWithFormatRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * The slide index.
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * Export format.
+     * Output file format.
      */
     public format: string;
     /**
-     * Gets or sets width
+     * Output file width.
      */
     public width: number;
     /**
-     * Gets or sets height
+     * Output file height.
      */
     public height: number;
     /**
@@ -758,11 +758,11 @@ export class GetNotesSlideWithFormatRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -771,15 +771,15 @@ export class GetNotesSlideWithFormatRequest {
  */
 export class PostAddNotesSlideRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * The slide index.
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * Gets or sets dto
+     * A  object with notes slide data.
      */
     public dto: model.NotesSlide;
     /**
@@ -787,11 +787,11 @@ export class PostAddNotesSlideRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -800,15 +800,15 @@ export class PostAddNotesSlideRequest {
  */
 export class PutUpdateNotesSlideRequest {
     /**
-     * The presentation name.
+     * Document name.
      */
     public name: string;
     /**
-     * The slide index.
+     * Slide index.
      */
     public slideIndex: number;
     /**
-     * Gets or sets dto
+     * A  object with notes slide data.
      */
     public dto: model.NotesSlide;
     /**
@@ -816,11 +816,11 @@ export class PutUpdateNotesSlideRequest {
      */
     public password: string;
     /**
-     * The presentation folder.
+     * Document folder.
      */
     public folder: string;
     /**
-     * Presentation storage.
+     * Document storage.
      */
     public storage: string;
 }

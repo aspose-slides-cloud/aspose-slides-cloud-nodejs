@@ -3175,7 +3175,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Reorder presentation slide position 
+     * Create a slide. 
      * @param requestObj contains request parameters
      */
     public async postSlidesAdd(requestObj: requests.PostSlidesAddRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
@@ -3207,7 +3207,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Reorder presentation slide position 
+     * Copy a slide from the current or another presentation. 
      * @param requestObj contains request parameters
      */
     public async postSlidesCopy(requestObj: requests.PostSlidesCopyRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
@@ -3241,7 +3241,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Reorder presentation slide position 
+     * Reorder presentation slide position. 
      * @param requestObj contains request parameters
      */
     public async postSlidesReorder(requestObj: requests.PostSlidesReorderRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {
@@ -3273,7 +3273,7 @@ export class SlidesApi extends ApiBase {
         return Promise.resolve({body: result, response});
     }
     /**
-     * Reorder presentation slide position 
+     * Reorder presentation slides positions. 
      * @param requestObj contains request parameters
      */
     public async postSlidesReorderMany(requestObj: requests.PostSlidesReorderManyRequest): Promise<{response: http.ClientResponse, body: model.SlideListResponse}> {

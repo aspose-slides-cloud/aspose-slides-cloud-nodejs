@@ -120,7 +120,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "18.12.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.1.0";
 
     const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {

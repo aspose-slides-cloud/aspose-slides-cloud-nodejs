@@ -28,19 +28,31 @@ import requestDebug = require("request-debug");
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
         
-export function checkMultipartContent(options: request.Options, requestObj: any) {
-    if ("files" in requestObj) {
+export function checkMultipartContent(options: request.Options, requestObj: any, files: any) {
+    if (requestObj.files && requestObj.files.length) {
+        const data = {
+            pipeline: JSON.stringify(options.json),
+            attachments: []
+        };
         if (requestObj.files && requestObj.files.length) {
-            const data = [{
-                'content-type': 'application/json',
-                body: JSON.stringify(options.json)
-            }];
-            options.json = null;
             for (var i = 0; i < requestObj.files.length; i++) {
-                data.push({ 'content-type': null, body: requestObj.files[i] });
+                data.attachments.push(requestObj.files[i]);
             }
+        }        
+        options.formData = data;
+        options.json = null;
+    } else if (files && files.length) {
+        const data = [];
+        for (var i = 0; i < files.length; i++) {
+            data.push({ 'content-type': null, body: files[i] });
+        }
+        if (data.length == 1 && typeof(data[0]) != 'undefined') {
+            options.encoding = null;
+            options.body = data[0].body;
+        } else {
             options.multipart = data;
         }
+        options.json = null;
     }
 }
 
@@ -120,7 +132,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.1.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.5.0";
 
     const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {
@@ -149,7 +161,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                         } catch {
                              //Error means the object is already deserialized
                         }
-                        reject({ message: result.Message, code: response.statusCode });
+                        reject({ message: result.Error.Message, code: response.statusCode });
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });
                     }

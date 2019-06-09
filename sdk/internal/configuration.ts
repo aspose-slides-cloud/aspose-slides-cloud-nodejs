@@ -51,13 +51,22 @@ export class Configuration {
     public baseUrl: string = defaultBasePath;
 
     /**
+     * Base Url.
+     */
+    public authBaseUrl: string = defaultBasePath;
+
+    /**
      *  Gets or sets a value indicating whether debug mode. In debug mode all requests and responses are logged to console.
      */
     public debugMode: boolean;
 
-    constructor(appSid: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
+            this.authBaseUrl = baseUrl;
+        }
+        if (authBaseUrl) {
+            this.authBaseUrl = authBaseUrl;
         }
 
         this.appSid = appSid;
@@ -71,6 +80,6 @@ export class Configuration {
      * Returns api base url
      */
     public getApiBaseUrl(): string {
-        return this.baseUrl + "/v1.1";
+        return this.baseUrl + "/v3.0";
     }
 }

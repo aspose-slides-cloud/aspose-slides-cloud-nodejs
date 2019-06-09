@@ -23,40 +23,52 @@
 */
 
 
+/**
+ * Represents response for ApiInfo  DTO
+ */
+export interface ApiInfo {
+    /**
+     * Product name.
+     */
+    name?: string;
+
+    /**
+     * API version.
+     */
+    version?: string;
+
+}
+
 export interface ArrowHeadProperties {
-    length: LineArrowheadLength;
+    length: ArrowHeadProperties.LengthEnum;
 
-    style: LineArrowheadStyle;
+    style: ArrowHeadProperties.StyleEnum;
 
-    width: LineArrowheadWidth;
+    width: ArrowHeadProperties.WidthEnum;
 
 }
-
-/**
- * Constants which define how a sound is played.
- */
-    /**
-    * Constants which define how a sound is played.
-    */
-export enum AudioPlayModePreset {
-    Auto = <any> 'Auto',
-    OnClick = <any> 'OnClick',
-    AllSlides = <any> 'AllSlides',
-    Mixed = <any> 'Mixed'
-}
-
-/**
- * Constants which define audio volume.
- */
-    /**
-    * Constants which define audio volume.
-    */
-export enum AudioVolumeMode {
-    Mute = <any> 'Mute',
-    Low = <any> 'Low',
-    Medium = <any> 'Medium',
-    Loud = <any> 'Loud',
-    Mixed = <any> 'Mixed'
+export namespace ArrowHeadProperties {
+    export enum LengthEnum {
+        Short = <any> 'Short',
+        Medium = <any> 'Medium',
+        Long = <any> 'Long',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum StyleEnum {
+        None = <any> 'None',
+        Triangle = <any> 'Triangle',
+        Stealth = <any> 'Stealth',
+        Diamond = <any> 'Diamond',
+        Oval = <any> 'Oval',
+        Open = <any> 'Open',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum WidthEnum {
+        Narrow = <any> 'Narrow',
+        Medium = <any> 'Medium',
+        Wide = <any> 'Wide',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -102,17 +114,17 @@ export interface Axis {
     /**
      * Axis position
      */
-    position: AxisPositionType;
+    position: Axis.PositionEnum;
 
     /**
      * The scaling value of the display units for the value axis
      */
-    displayUnit: DisplayUnitType;
+    displayUnit: Axis.DisplayUnitEnum;
 
     /**
      * The smallest time unit that is represented on the date axis
      */
-    baseUnitScale: TimeUnitType;
+    baseUnitScale: Axis.BaseUnitScaleEnum;
 
     /**
      * True the major unit of the axis is automatically assigned
@@ -127,12 +139,12 @@ export interface Axis {
     /**
      * The major unit scale for the date axis
      */
-    majorUnitScale: TimeUnitType;
+    majorUnitScale: Axis.MajorUnitScaleEnum;
 
     /**
      * The type of major tick mark for the specified axis
      */
-    majorTickMark: TickMarkType;
+    majorTickMark: Axis.MajorTickMarkEnum;
 
     /**
      * True the minor unit of the axis is automatically assigned
@@ -147,12 +159,12 @@ export interface Axis {
     /**
      * The minor unit scale for the date axis
      */
-    minorUnitScale: TimeUnitType;
+    minorUnitScale: Axis.MinorUnitScaleEnum;
 
     /**
      * The type of minor tick mark for the specified axis
      */
-    minorTickMark: TickMarkType;
+    minorTickMark: Axis.MinorTickMarkEnum;
 
     /**
      * True if the max value is automatically assigned
@@ -187,7 +199,7 @@ export interface Axis {
     /**
      * The type of the category axis
      */
-    categoryAxisType: CategoryAxisType;
+    categoryAxisType: Axis.CategoryAxisTypeEnum;
 
     /**
      * True if the value axis crosses the category axis between categories. This property applies only to category axes, and it doesn't apply to 3-D charts
@@ -217,7 +229,7 @@ export interface Axis {
     /**
      * The CrossType on the specified axis where the other axis crosses
      */
-    crossType: CrossesType;
+    crossType: Axis.CrossTypeEnum;
 
     /**
      * The point on the axis where the perpendicular axis crosses it
@@ -247,7 +259,7 @@ export interface Axis {
     /**
      * The position of tick-mark labels on the specified axis.
      */
-    tickLabelPosition: TickLabelPositionType;
+    tickLabelPosition: Axis.TickLabelPositionEnum;
 
     /**
      * Represents the rotation angle of tick labels.
@@ -270,18 +282,68 @@ export interface Axis {
     lineFormat?: LineFormat;
 
 }
-
-/**
- * Determines the position of an axis.
- */
-    /**
-    * Determines the position of an axis.
-    */
-export enum AxisPositionType {
-    Bottom = <any> 'Bottom',
-    Left = <any> 'Left',
-    Right = <any> 'Right',
-    Top = <any> 'Top'
+export namespace Axis {
+    export enum PositionEnum {
+        Bottom = <any> 'Bottom',
+        Left = <any> 'Left',
+        Right = <any> 'Right',
+        Top = <any> 'Top'
+    }
+    export enum DisplayUnitEnum {
+        None = <any> 'None',
+        Hundreds = <any> 'Hundreds',
+        Thousands = <any> 'Thousands',
+        TenThousands = <any> 'TenThousands',
+        HundredThousands = <any> 'HundredThousands',
+        Millions = <any> 'Millions',
+        TenMillions = <any> 'TenMillions',
+        HundredMillions = <any> 'HundredMillions',
+        Billions = <any> 'Billions',
+        Trillions = <any> 'Trillions',
+        CustomValue = <any> 'CustomValue'
+    }
+    export enum BaseUnitScaleEnum {
+        Days = <any> 'Days',
+        Months = <any> 'Months',
+        Years = <any> 'Years'
+    }
+    export enum MajorUnitScaleEnum {
+        Days = <any> 'Days',
+        Months = <any> 'Months',
+        Years = <any> 'Years'
+    }
+    export enum MajorTickMarkEnum {
+        Cross = <any> 'Cross',
+        Inside = <any> 'Inside',
+        None = <any> 'None',
+        Outside = <any> 'Outside'
+    }
+    export enum MinorUnitScaleEnum {
+        Days = <any> 'Days',
+        Months = <any> 'Months',
+        Years = <any> 'Years'
+    }
+    export enum MinorTickMarkEnum {
+        Cross = <any> 'Cross',
+        Inside = <any> 'Inside',
+        None = <any> 'None',
+        Outside = <any> 'Outside'
+    }
+    export enum CategoryAxisTypeEnum {
+        Text = <any> 'Text',
+        Date = <any> 'Date'
+    }
+    export enum CrossTypeEnum {
+        AxisCrossesAtZero = <any> 'AxisCrossesAtZero',
+        Maximum = <any> 'Maximum',
+        Custom = <any> 'Custom'
+    }
+    export enum TickLabelPositionEnum {
+        High = <any> 'High',
+        Low = <any> 'Low',
+        NextTo = <any> 'NextTo',
+        None = <any> 'None'
+    }
 }
 
 /**
@@ -301,43 +363,6 @@ export interface BlurEffect {
 }
 
 /**
- * 
- */
-    /**
-    * 
-    */
-export enum BulletType {
-    None = <any> 'None',
-    Symbol = <any> 'Symbol',
-    Numbered = <any> 'Numbered',
-    Picture = <any> 'Picture',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Represents a type of a category axis
- */
-    /**
-    * Represents a type of a category axis
-    */
-export enum CategoryAxisType {
-    Text = <any> 'Text',
-    Date = <any> 'Date'
-}
-
-/**
- * Represents type of data points in series.
- */
-    /**
-    * Represents type of data points in series.
-    */
-export enum ChartDataPointType {
-    OneValue = <any> 'OneValue',
-    Scatter = <any> 'Scatter',
-    Bubble = <any> 'Bubble'
-}
-
-/**
  * Represents chart title
  */
 export interface ChartTitle {
@@ -351,89 +376,6 @@ export interface ChartTitle {
      */
     hasTitle: boolean;
 
-}
-
-/**
- * Represents a type of chart.
- */
-    /**
-    * Represents a type of chart.
-    */
-export enum ChartType {
-    ClusteredColumn = <any> 'ClusteredColumn',
-    StackedColumn = <any> 'StackedColumn',
-    PercentsStackedColumn = <any> 'PercentsStackedColumn',
-    ClusteredColumn3D = <any> 'ClusteredColumn3D',
-    StackedColumn3D = <any> 'StackedColumn3D',
-    PercentsStackedColumn3D = <any> 'PercentsStackedColumn3D',
-    Column3D = <any> 'Column3D',
-    ClusteredCylinder = <any> 'ClusteredCylinder',
-    StackedCylinder = <any> 'StackedCylinder',
-    PercentsStackedCylinder = <any> 'PercentsStackedCylinder',
-    Cylinder3D = <any> 'Cylinder3D',
-    ClusteredCone = <any> 'ClusteredCone',
-    StackedCone = <any> 'StackedCone',
-    PercentsStackedCone = <any> 'PercentsStackedCone',
-    Cone3D = <any> 'Cone3D',
-    ClusteredPyramid = <any> 'ClusteredPyramid',
-    StackedPyramid = <any> 'StackedPyramid',
-    PercentsStackedPyramid = <any> 'PercentsStackedPyramid',
-    Pyramid3D = <any> 'Pyramid3D',
-    Line = <any> 'Line',
-    StackedLine = <any> 'StackedLine',
-    PercentsStackedLine = <any> 'PercentsStackedLine',
-    LineWithMarkers = <any> 'LineWithMarkers',
-    StackedLineWithMarkers = <any> 'StackedLineWithMarkers',
-    PercentsStackedLineWithMarkers = <any> 'PercentsStackedLineWithMarkers',
-    Line3D = <any> 'Line3D',
-    Pie = <any> 'Pie',
-    Pie3D = <any> 'Pie3D',
-    PieOfPie = <any> 'PieOfPie',
-    ExplodedPie = <any> 'ExplodedPie',
-    ExplodedPie3D = <any> 'ExplodedPie3D',
-    BarOfPie = <any> 'BarOfPie',
-    PercentsStackedBar = <any> 'PercentsStackedBar',
-    ClusteredBar3D = <any> 'ClusteredBar3D',
-    ClusteredBar = <any> 'ClusteredBar',
-    StackedBar = <any> 'StackedBar',
-    StackedBar3D = <any> 'StackedBar3D',
-    PercentsStackedBar3D = <any> 'PercentsStackedBar3D',
-    ClusteredHorizontalCylinder = <any> 'ClusteredHorizontalCylinder',
-    StackedHorizontalCylinder = <any> 'StackedHorizontalCylinder',
-    PercentsStackedHorizontalCylinder = <any> 'PercentsStackedHorizontalCylinder',
-    ClusteredHorizontalCone = <any> 'ClusteredHorizontalCone',
-    StackedHorizontalCone = <any> 'StackedHorizontalCone',
-    PercentsStackedHorizontalCone = <any> 'PercentsStackedHorizontalCone',
-    ClusteredHorizontalPyramid = <any> 'ClusteredHorizontalPyramid',
-    StackedHorizontalPyramid = <any> 'StackedHorizontalPyramid',
-    PercentsStackedHorizontalPyramid = <any> 'PercentsStackedHorizontalPyramid',
-    Area = <any> 'Area',
-    StackedArea = <any> 'StackedArea',
-    PercentsStackedArea = <any> 'PercentsStackedArea',
-    Area3D = <any> 'Area3D',
-    StackedArea3D = <any> 'StackedArea3D',
-    PercentsStackedArea3D = <any> 'PercentsStackedArea3D',
-    ScatterWithMarkers = <any> 'ScatterWithMarkers',
-    ScatterWithSmoothLinesAndMarkers = <any> 'ScatterWithSmoothLinesAndMarkers',
-    ScatterWithSmoothLines = <any> 'ScatterWithSmoothLines',
-    ScatterWithStraightLinesAndMarkers = <any> 'ScatterWithStraightLinesAndMarkers',
-    ScatterWithStraightLines = <any> 'ScatterWithStraightLines',
-    HighLowClose = <any> 'HighLowClose',
-    OpenHighLowClose = <any> 'OpenHighLowClose',
-    VolumeHighLowClose = <any> 'VolumeHighLowClose',
-    VolumeOpenHighLowClose = <any> 'VolumeOpenHighLowClose',
-    Surface3D = <any> 'Surface3D',
-    WireframeSurface3D = <any> 'WireframeSurface3D',
-    Contour = <any> 'Contour',
-    WireframeContour = <any> 'WireframeContour',
-    Doughnut = <any> 'Doughnut',
-    ExplodedDoughnut = <any> 'ExplodedDoughnut',
-    Bubble = <any> 'Bubble',
-    BubbleWith3D = <any> 'BubbleWith3D',
-    Radar = <any> 'Radar',
-    RadarWithMarkers = <any> 'RadarWithMarkers',
-    FilledRadar = <any> 'FilledRadar',
-    SeriesOfMixedTypes = <any> 'SeriesOfMixedTypes'
 }
 
 /**
@@ -463,251 +405,16 @@ export interface ChartWall {
     /**
      * Get or sets mode of bar picture filling.
      */
-    pictureType: PictureType;
+    pictureType: ChartWall.PictureTypeEnum;
 
 }
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum CombinedShapeType {
-    Custom = <any> 'Custom',
-    Line = <any> 'Line',
-    LineInverse = <any> 'LineInverse',
-    Triangle = <any> 'Triangle',
-    RightTriangle = <any> 'RightTriangle',
-    Rectangle = <any> 'Rectangle',
-    Diamond = <any> 'Diamond',
-    Parallelogram = <any> 'Parallelogram',
-    Trapezoid = <any> 'Trapezoid',
-    NonIsoscelesTrapezoid = <any> 'NonIsoscelesTrapezoid',
-    Pentagon = <any> 'Pentagon',
-    Hexagon = <any> 'Hexagon',
-    Heptagon = <any> 'Heptagon',
-    Octagon = <any> 'Octagon',
-    Decagon = <any> 'Decagon',
-    Dodecagon = <any> 'Dodecagon',
-    FourPointedStar = <any> 'FourPointedStar',
-    FivePointedStar = <any> 'FivePointedStar',
-    SixPointedStar = <any> 'SixPointedStar',
-    SevenPointedStar = <any> 'SevenPointedStar',
-    EightPointedStar = <any> 'EightPointedStar',
-    TenPointedStar = <any> 'TenPointedStar',
-    TwelvePointedStar = <any> 'TwelvePointedStar',
-    SixteenPointedStar = <any> 'SixteenPointedStar',
-    TwentyFourPointedStar = <any> 'TwentyFourPointedStar',
-    ThirtyTwoPointedStar = <any> 'ThirtyTwoPointedStar',
-    RoundCornerRectangle = <any> 'RoundCornerRectangle',
-    OneRoundCornerRectangle = <any> 'OneRoundCornerRectangle',
-    TwoSamesideRoundCornerRectangle = <any> 'TwoSamesideRoundCornerRectangle',
-    TwoDiagonalRoundCornerRectangle = <any> 'TwoDiagonalRoundCornerRectangle',
-    OneSnipOneRoundCornerRectangle = <any> 'OneSnipOneRoundCornerRectangle',
-    OneSnipCornerRectangle = <any> 'OneSnipCornerRectangle',
-    TwoSamesideSnipCornerRectangle = <any> 'TwoSamesideSnipCornerRectangle',
-    TwoDiagonalSnipCornerRectangle = <any> 'TwoDiagonalSnipCornerRectangle',
-    Plaque = <any> 'Plaque',
-    Ellipse = <any> 'Ellipse',
-    Teardrop = <any> 'Teardrop',
-    HomePlate = <any> 'HomePlate',
-    Chevron = <any> 'Chevron',
-    PieWedge = <any> 'PieWedge',
-    Pie = <any> 'Pie',
-    BlockArc = <any> 'BlockArc',
-    Donut = <any> 'Donut',
-    NoSmoking = <any> 'NoSmoking',
-    RightArrow = <any> 'RightArrow',
-    LeftArrow = <any> 'LeftArrow',
-    UpArrow = <any> 'UpArrow',
-    DownArrow = <any> 'DownArrow',
-    StripedRightArrow = <any> 'StripedRightArrow',
-    NotchedRightArrow = <any> 'NotchedRightArrow',
-    BentUpArrow = <any> 'BentUpArrow',
-    LeftRightArrow = <any> 'LeftRightArrow',
-    UpDownArrow = <any> 'UpDownArrow',
-    LeftUpArrow = <any> 'LeftUpArrow',
-    LeftRightUpArrow = <any> 'LeftRightUpArrow',
-    QuadArrow = <any> 'QuadArrow',
-    CalloutLeftArrow = <any> 'CalloutLeftArrow',
-    CalloutRightArrow = <any> 'CalloutRightArrow',
-    CalloutUpArrow = <any> 'CalloutUpArrow',
-    CalloutDownArrow = <any> 'CalloutDownArrow',
-    CalloutLeftRightArrow = <any> 'CalloutLeftRightArrow',
-    CalloutUpDownArrow = <any> 'CalloutUpDownArrow',
-    CalloutQuadArrow = <any> 'CalloutQuadArrow',
-    BentArrow = <any> 'BentArrow',
-    UTurnArrow = <any> 'UTurnArrow',
-    CircularArrow = <any> 'CircularArrow',
-    LeftCircularArrow = <any> 'LeftCircularArrow',
-    LeftRightCircularArrow = <any> 'LeftRightCircularArrow',
-    CurvedRightArrow = <any> 'CurvedRightArrow',
-    CurvedLeftArrow = <any> 'CurvedLeftArrow',
-    CurvedUpArrow = <any> 'CurvedUpArrow',
-    CurvedDownArrow = <any> 'CurvedDownArrow',
-    SwooshArrow = <any> 'SwooshArrow',
-    Cube = <any> 'Cube',
-    Can = <any> 'Can',
-    LightningBolt = <any> 'LightningBolt',
-    Heart = <any> 'Heart',
-    Sun = <any> 'Sun',
-    Moon = <any> 'Moon',
-    SmileyFace = <any> 'SmileyFace',
-    IrregularSeal1 = <any> 'IrregularSeal1',
-    IrregularSeal2 = <any> 'IrregularSeal2',
-    FoldedCorner = <any> 'FoldedCorner',
-    Bevel = <any> 'Bevel',
-    Frame = <any> 'Frame',
-    HalfFrame = <any> 'HalfFrame',
-    Corner = <any> 'Corner',
-    DiagonalStripe = <any> 'DiagonalStripe',
-    Chord = <any> 'Chord',
-    CurvedArc = <any> 'CurvedArc',
-    LeftBracket = <any> 'LeftBracket',
-    RightBracket = <any> 'RightBracket',
-    LeftBrace = <any> 'LeftBrace',
-    RightBrace = <any> 'RightBrace',
-    BracketPair = <any> 'BracketPair',
-    BracePair = <any> 'BracePair',
-    StraightConnector1 = <any> 'StraightConnector1',
-    BentConnector2 = <any> 'BentConnector2',
-    BentConnector3 = <any> 'BentConnector3',
-    BentConnector4 = <any> 'BentConnector4',
-    BentConnector5 = <any> 'BentConnector5',
-    CurvedConnector2 = <any> 'CurvedConnector2',
-    CurvedConnector3 = <any> 'CurvedConnector3',
-    CurvedConnector4 = <any> 'CurvedConnector4',
-    CurvedConnector5 = <any> 'CurvedConnector5',
-    Callout1 = <any> 'Callout1',
-    Callout2 = <any> 'Callout2',
-    Callout3 = <any> 'Callout3',
-    Callout1WithAccent = <any> 'Callout1WithAccent',
-    Callout2WithAccent = <any> 'Callout2WithAccent',
-    Callout3WithAccent = <any> 'Callout3WithAccent',
-    Callout1WithBorder = <any> 'Callout1WithBorder',
-    Callout2WithBorder = <any> 'Callout2WithBorder',
-    Callout3WithBorder = <any> 'Callout3WithBorder',
-    Callout1WithBorderAndAccent = <any> 'Callout1WithBorderAndAccent',
-    Callout2WithBorderAndAccent = <any> 'Callout2WithBorderAndAccent',
-    Callout3WithBorderAndAccent = <any> 'Callout3WithBorderAndAccent',
-    CalloutWedgeRectangle = <any> 'CalloutWedgeRectangle',
-    CalloutWedgeRoundRectangle = <any> 'CalloutWedgeRoundRectangle',
-    CalloutWedgeEllipse = <any> 'CalloutWedgeEllipse',
-    CalloutCloud = <any> 'CalloutCloud',
-    Cloud = <any> 'Cloud',
-    Ribbon = <any> 'Ribbon',
-    Ribbon2 = <any> 'Ribbon2',
-    EllipseRibbon = <any> 'EllipseRibbon',
-    EllipseRibbon2 = <any> 'EllipseRibbon2',
-    LeftRightRibbon = <any> 'LeftRightRibbon',
-    VerticalScroll = <any> 'VerticalScroll',
-    HorizontalScroll = <any> 'HorizontalScroll',
-    Wave = <any> 'Wave',
-    DoubleWave = <any> 'DoubleWave',
-    Plus = <any> 'Plus',
-    ProcessFlow = <any> 'ProcessFlow',
-    DecisionFlow = <any> 'DecisionFlow',
-    InputOutputFlow = <any> 'InputOutputFlow',
-    PredefinedProcessFlow = <any> 'PredefinedProcessFlow',
-    InternalStorageFlow = <any> 'InternalStorageFlow',
-    DocumentFlow = <any> 'DocumentFlow',
-    MultiDocumentFlow = <any> 'MultiDocumentFlow',
-    TerminatorFlow = <any> 'TerminatorFlow',
-    PreparationFlow = <any> 'PreparationFlow',
-    ManualInputFlow = <any> 'ManualInputFlow',
-    ManualOperationFlow = <any> 'ManualOperationFlow',
-    ConnectorFlow = <any> 'ConnectorFlow',
-    PunchedCardFlow = <any> 'PunchedCardFlow',
-    PunchedTapeFlow = <any> 'PunchedTapeFlow',
-    SummingJunctionFlow = <any> 'SummingJunctionFlow',
-    OrFlow = <any> 'OrFlow',
-    CollateFlow = <any> 'CollateFlow',
-    SortFlow = <any> 'SortFlow',
-    ExtractFlow = <any> 'ExtractFlow',
-    MergeFlow = <any> 'MergeFlow',
-    OfflineStorageFlow = <any> 'OfflineStorageFlow',
-    OnlineStorageFlow = <any> 'OnlineStorageFlow',
-    MagneticTapeFlow = <any> 'MagneticTapeFlow',
-    MagneticDiskFlow = <any> 'MagneticDiskFlow',
-    MagneticDrumFlow = <any> 'MagneticDrumFlow',
-    DisplayFlow = <any> 'DisplayFlow',
-    DelayFlow = <any> 'DelayFlow',
-    AlternateProcessFlow = <any> 'AlternateProcessFlow',
-    OffPageConnectorFlow = <any> 'OffPageConnectorFlow',
-    BlankButton = <any> 'BlankButton',
-    HomeButton = <any> 'HomeButton',
-    HelpButton = <any> 'HelpButton',
-    InformationButton = <any> 'InformationButton',
-    ForwardOrNextButton = <any> 'ForwardOrNextButton',
-    BackOrPreviousButton = <any> 'BackOrPreviousButton',
-    EndButton = <any> 'EndButton',
-    BeginningButton = <any> 'BeginningButton',
-    ReturnButton = <any> 'ReturnButton',
-    DocumentButton = <any> 'DocumentButton',
-    SoundButton = <any> 'SoundButton',
-    MovieButton = <any> 'MovieButton',
-    Gear6 = <any> 'Gear6',
-    Gear9 = <any> 'Gear9',
-    Funnel = <any> 'Funnel',
-    PlusMath = <any> 'PlusMath',
-    MinusMath = <any> 'MinusMath',
-    MultiplyMath = <any> 'MultiplyMath',
-    DivideMath = <any> 'DivideMath',
-    EqualMath = <any> 'EqualMath',
-    NotEqualMath = <any> 'NotEqualMath',
-    CornerTabs = <any> 'CornerTabs',
-    SquareTabs = <any> 'SquareTabs',
-    PlaqueTabs = <any> 'PlaqueTabs',
-    ChartX = <any> 'ChartX',
-    ChartStar = <any> 'ChartStar',
-    ChartPlus = <any> 'ChartPlus',
-    Chart = <any> 'Chart',
-    Table = <any> 'Table',
-    PictureFrame = <any> 'PictureFrame',
-    VideoFrame = <any> 'VideoFrame',
-    AudioFrame = <any> 'AudioFrame',
-    Diagram = <any> 'Diagram',
-    OleObjectFrame = <any> 'OleObjectFrame',
-    GroupShape = <any> 'GroupShape',
-    GraphicalObject = <any> 'GraphicalObject',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Represents the rule to render comments into exported document
- */
-    /**
-    * Represents the rule to render comments into exported document
-    */
-export enum CommentsPositions {
-    None = <any> 'None',
-    Bottom = <any> 'Bottom',
-    Right = <any> 'Right'
-}
-
-/**
- * The conformance class to which the PresentationML document conforms.
- */
-    /**
-    * The conformance class to which the PresentationML document conforms.
-    */
-export enum Conformance {
-    Ecma3762006 = <any> 'Ecma376_2006',
-    Iso295002008Transitional = <any> 'Iso29500_2008_Transitional',
-    Iso295002008Strict = <any> 'Iso29500_2008_Strict'
-}
-
-/**
- * Determines where axis will cross.
- */
-    /**
-    * Determines where axis will cross.
-    */
-export enum CrossesType {
-    AxisCrossesAtZero = <any> 'AxisCrossesAtZero',
-    Maximum = <any> 'Maximum',
-    Custom = <any> 'Custom'
+export namespace ChartWall {
+    export enum PictureTypeEnum {
+        Stack = <any> 'Stack',
+        StackScale = <any> 'StackScale',
+        Stretch = <any> 'Stretch',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 export interface CustomDashPattern {
@@ -716,23 +423,325 @@ export interface CustomDashPattern {
 }
 
 /**
- * Determines multiplicity of the displayed data.
+ * Class for disc space information.
  */
+export interface DiscUsage {
     /**
-    * Determines multiplicity of the displayed data.
-    */
-export enum DisplayUnitType {
-    None = <any> 'None',
-    Hundreds = <any> 'Hundreds',
-    Thousands = <any> 'Thousands',
-    TenThousands = <any> 'TenThousands',
-    HundredThousands = <any> 'HundredThousands',
-    Millions = <any> 'Millions',
-    TenMillions = <any> 'TenMillions',
-    HundredMillions = <any> 'HundredMillions',
-    Billions = <any> 'Billions',
-    Trillions = <any> 'Trillions',
-    CustomValue = <any> 'CustomValue'
+     * Application used disc space.
+     */
+    usedSize: number;
+
+    /**
+     * Total disc space.
+     */
+    totalSize: number;
+
+}
+
+/**
+ * Represents comment of slide
+ */
+export interface Effect {
+    /**
+     * Effect type.
+     */
+    type?: Effect.TypeEnum;
+
+    /**
+     * Effect subtype.
+     */
+    subtype?: Effect.SubtypeEnum;
+
+    /**
+     * Preset class type.
+     */
+    presetClassType?: Effect.PresetClassTypeEnum;
+
+    /**
+     * Shape index.
+     */
+    shapeIndex: number;
+
+    /**
+     * Effect trigger type.
+     */
+    triggerType?: Effect.TriggerTypeEnum;
+
+    /**
+     * The percentage of duration accelerate behavior effect.
+     */
+    accelerate?: number;
+
+    /**
+     * True to automatically play the animation in reverse after playing it in the forward direction.
+     */
+    autoReverse?: boolean;
+
+    /**
+     * The percentage of duration decelerate behavior effect.
+     */
+    decelerate?: number;
+
+    /**
+     * The duration of animation effect.
+     */
+    duration?: number;
+
+    /**
+     * The number of times the effect should repeat.
+     */
+    repeatCount?: number;
+
+    /**
+     * The number of times the effect should repeat.
+     */
+    repeatDuration?: number;
+
+    /**
+     * The way for a effect to restart after complete.
+     */
+    restart?: Effect.RestartEnum;
+
+    /**
+     * The percentage by which to speed up (or slow down) the timing.
+     */
+    speed?: number;
+
+    /**
+     * Delay time after trigger.
+     */
+    triggerDelayTime?: number;
+
+}
+export namespace Effect {
+    export enum TypeEnum {
+        Appear = <any> 'Appear',
+        CurveUpDown = <any> 'CurveUpDown',
+        Ascend = <any> 'Ascend',
+        Blast = <any> 'Blast',
+        Blinds = <any> 'Blinds',
+        Blink = <any> 'Blink',
+        BoldFlash = <any> 'BoldFlash',
+        BoldReveal = <any> 'BoldReveal',
+        Boomerang = <any> 'Boomerang',
+        Bounce = <any> 'Bounce',
+        Box = <any> 'Box',
+        BrushOnColor = <any> 'BrushOnColor',
+        BrushOnUnderline = <any> 'BrushOnUnderline',
+        CenterRevolve = <any> 'CenterRevolve',
+        ChangeFillColor = <any> 'ChangeFillColor',
+        ChangeFont = <any> 'ChangeFont',
+        ChangeFontColor = <any> 'ChangeFontColor',
+        ChangeFontSize = <any> 'ChangeFontSize',
+        ChangeFontStyle = <any> 'ChangeFontStyle',
+        ChangeLineColor = <any> 'ChangeLineColor',
+        Checkerboard = <any> 'Checkerboard',
+        Circle = <any> 'Circle',
+        ColorBlend = <any> 'ColorBlend',
+        ColorTypewriter = <any> 'ColorTypewriter',
+        ColorWave = <any> 'ColorWave',
+        ComplementaryColor = <any> 'ComplementaryColor',
+        ComplementaryColor2 = <any> 'ComplementaryColor2',
+        Compress = <any> 'Compress',
+        ContrastingColor = <any> 'ContrastingColor',
+        Crawl = <any> 'Crawl',
+        Credits = <any> 'Credits',
+        Custom = <any> 'Custom',
+        Darken = <any> 'Darken',
+        Desaturate = <any> 'Desaturate',
+        Descend = <any> 'Descend',
+        Diamond = <any> 'Diamond',
+        Dissolve = <any> 'Dissolve',
+        EaseInOut = <any> 'EaseInOut',
+        Expand = <any> 'Expand',
+        Fade = <any> 'Fade',
+        FadedSwivel = <any> 'FadedSwivel',
+        FadedZoom = <any> 'FadedZoom',
+        FlashBulb = <any> 'FlashBulb',
+        FlashOnce = <any> 'FlashOnce',
+        Flicker = <any> 'Flicker',
+        Flip = <any> 'Flip',
+        Float = <any> 'Float',
+        Fly = <any> 'Fly',
+        Fold = <any> 'Fold',
+        Glide = <any> 'Glide',
+        GrowAndTurn = <any> 'GrowAndTurn',
+        GrowShrink = <any> 'GrowShrink',
+        GrowWithColor = <any> 'GrowWithColor',
+        Lighten = <any> 'Lighten',
+        LightSpeed = <any> 'LightSpeed',
+        MediaPause = <any> 'MediaPause',
+        MediaPlay = <any> 'MediaPlay',
+        MediaStop = <any> 'MediaStop',
+        Path4PointStar = <any> 'Path4PointStar',
+        Path5PointStar = <any> 'Path5PointStar',
+        Path6PointStar = <any> 'Path6PointStar',
+        Path8PointStar = <any> 'Path8PointStar',
+        PathArcDown = <any> 'PathArcDown',
+        PathArcLeft = <any> 'PathArcLeft',
+        PathArcRight = <any> 'PathArcRight',
+        PathArcUp = <any> 'PathArcUp',
+        PathBean = <any> 'PathBean',
+        PathBounceLeft = <any> 'PathBounceLeft',
+        PathBounceRight = <any> 'PathBounceRight',
+        PathBuzzsaw = <any> 'PathBuzzsaw',
+        PathCircle = <any> 'PathCircle',
+        PathCrescentMoon = <any> 'PathCrescentMoon',
+        PathCurvedSquare = <any> 'PathCurvedSquare',
+        PathCurvedX = <any> 'PathCurvedX',
+        PathCurvyLeft = <any> 'PathCurvyLeft',
+        PathCurvyRight = <any> 'PathCurvyRight',
+        PathCurvyStar = <any> 'PathCurvyStar',
+        PathDecayingWave = <any> 'PathDecayingWave',
+        PathDiagonalDownRight = <any> 'PathDiagonalDownRight',
+        PathDiagonalUpRight = <any> 'PathDiagonalUpRight',
+        PathDiamond = <any> 'PathDiamond',
+        PathDown = <any> 'PathDown',
+        PathEqualTriangle = <any> 'PathEqualTriangle',
+        PathFigure8Four = <any> 'PathFigure8Four',
+        PathFootball = <any> 'PathFootball',
+        PathFunnel = <any> 'PathFunnel',
+        PathHeart = <any> 'PathHeart',
+        PathHeartbeat = <any> 'PathHeartbeat',
+        PathHexagon = <any> 'PathHexagon',
+        PathHorizontalFigure8 = <any> 'PathHorizontalFigure8',
+        PathInvertedSquare = <any> 'PathInvertedSquare',
+        PathInvertedTriangle = <any> 'PathInvertedTriangle',
+        PathLeft = <any> 'PathLeft',
+        PathLoopdeLoop = <any> 'PathLoopdeLoop',
+        PathNeutron = <any> 'PathNeutron',
+        PathOctagon = <any> 'PathOctagon',
+        PathParallelogram = <any> 'PathParallelogram',
+        PathPeanut = <any> 'PathPeanut',
+        PathPentagon = <any> 'PathPentagon',
+        PathPlus = <any> 'PathPlus',
+        PathPointyStar = <any> 'PathPointyStar',
+        PathRight = <any> 'PathRight',
+        PathRightTriangle = <any> 'PathRightTriangle',
+        PathSCurve1 = <any> 'PathSCurve1',
+        PathSCurve2 = <any> 'PathSCurve2',
+        PathSineWave = <any> 'PathSineWave',
+        PathSpiralLeft = <any> 'PathSpiralLeft',
+        PathSpiralRight = <any> 'PathSpiralRight',
+        PathSpring = <any> 'PathSpring',
+        PathSquare = <any> 'PathSquare',
+        PathStairsDown = <any> 'PathStairsDown',
+        PathSwoosh = <any> 'PathSwoosh',
+        PathTeardrop = <any> 'PathTeardrop',
+        PathTrapezoid = <any> 'PathTrapezoid',
+        PathTurnDown = <any> 'PathTurnDown',
+        PathTurnRight = <any> 'PathTurnRight',
+        PathTurnUp = <any> 'PathTurnUp',
+        PathTurnUpRight = <any> 'PathTurnUpRight',
+        PathUp = <any> 'PathUp',
+        PathUser = <any> 'PathUser',
+        PathVerticalFigure8 = <any> 'PathVerticalFigure8',
+        PathWave = <any> 'PathWave',
+        PathZigzag = <any> 'PathZigzag',
+        Peek = <any> 'Peek',
+        Pinwheel = <any> 'Pinwheel',
+        Plus = <any> 'Plus',
+        RandomBars = <any> 'RandomBars',
+        RandomEffects = <any> 'RandomEffects',
+        RiseUp = <any> 'RiseUp',
+        Shimmer = <any> 'Shimmer',
+        Sling = <any> 'Sling',
+        Spin = <any> 'Spin',
+        Spinner = <any> 'Spinner',
+        Spiral = <any> 'Spiral',
+        Split = <any> 'Split',
+        Stretch = <any> 'Stretch',
+        Strips = <any> 'Strips',
+        StyleEmphasis = <any> 'StyleEmphasis',
+        Swish = <any> 'Swish',
+        Swivel = <any> 'Swivel',
+        Teeter = <any> 'Teeter',
+        Thread = <any> 'Thread',
+        Transparency = <any> 'Transparency',
+        Unfold = <any> 'Unfold',
+        VerticalGrow = <any> 'VerticalGrow',
+        Wave = <any> 'Wave',
+        Wedge = <any> 'Wedge',
+        Wheel = <any> 'Wheel',
+        Whip = <any> 'Whip',
+        Wipe = <any> 'Wipe',
+        Magnify = <any> 'Magnify',
+        Zoom = <any> 'Zoom',
+        OLEObjectShow = <any> 'OLEObjectShow',
+        OLEObjectEdit = <any> 'OLEObjectEdit',
+        OLEObjectOpen = <any> 'OLEObjectOpen'
+    }
+    export enum SubtypeEnum {
+        None = <any> 'None',
+        Across = <any> 'Across',
+        Bottom = <any> 'Bottom',
+        BottomLeft = <any> 'BottomLeft',
+        BottomRight = <any> 'BottomRight',
+        Center = <any> 'Center',
+        Clockwise = <any> 'Clockwise',
+        CounterClockwise = <any> 'CounterClockwise',
+        GradualAndCycleClockwise = <any> 'GradualAndCycleClockwise',
+        GradualAndCycleCounterClockwise = <any> 'GradualAndCycleCounterClockwise',
+        Down = <any> 'Down',
+        DownLeft = <any> 'DownLeft',
+        DownRight = <any> 'DownRight',
+        FontAllCaps = <any> 'FontAllCaps',
+        FontBold = <any> 'FontBold',
+        FontItalic = <any> 'FontItalic',
+        FontShadow = <any> 'FontShadow',
+        FontStrikethrough = <any> 'FontStrikethrough',
+        FontUnderline = <any> 'FontUnderline',
+        Gradual = <any> 'Gradual',
+        Horizontal = <any> 'Horizontal',
+        HorizontalIn = <any> 'HorizontalIn',
+        HorizontalOut = <any> 'HorizontalOut',
+        In = <any> 'In',
+        InBottom = <any> 'InBottom',
+        InCenter = <any> 'InCenter',
+        InSlightly = <any> 'InSlightly',
+        Instant = <any> 'Instant',
+        Left = <any> 'Left',
+        OrdinalMask = <any> 'OrdinalMask',
+        Out = <any> 'Out',
+        OutBottom = <any> 'OutBottom',
+        OutCenter = <any> 'OutCenter',
+        OutSlightly = <any> 'OutSlightly',
+        Right = <any> 'Right',
+        Slightly = <any> 'Slightly',
+        Top = <any> 'Top',
+        TopLeft = <any> 'TopLeft',
+        TopRight = <any> 'TopRight',
+        Up = <any> 'Up',
+        UpLeft = <any> 'UpLeft',
+        UpRight = <any> 'UpRight',
+        Vertical = <any> 'Vertical',
+        VerticalIn = <any> 'VerticalIn',
+        VerticalOut = <any> 'VerticalOut',
+        Wheel1 = <any> 'Wheel1',
+        Wheel2 = <any> 'Wheel2',
+        Wheel3 = <any> 'Wheel3',
+        Wheel4 = <any> 'Wheel4',
+        Wheel8 = <any> 'Wheel8'
+    }
+    export enum PresetClassTypeEnum {
+        Entrance = <any> 'Entrance',
+        Exit = <any> 'Exit',
+        Emphasis = <any> 'Emphasis',
+        Path = <any> 'Path',
+        MediaCall = <any> 'MediaCall',
+        OLEActionVerbs = <any> 'OLEActionVerbs'
+    }
+    export enum TriggerTypeEnum {
+        AfterPrevious = <any> 'AfterPrevious',
+        OnClick = <any> 'OnClick',
+        WithPrevious = <any> 'WithPrevious'
+    }
+    export enum RestartEnum {
+        Always = <any> 'Always',
+        WhenNotActive = <any> 'WhenNotActive',
+        Never = <any> 'Never',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -782,32 +791,48 @@ export interface EffectFormat {
 }
 
 /**
+ * The error details
+ */
+export interface ErrorDetails {
+    /**
+     * The request id
+     */
+    requestId?: string;
+
+    /**
+     * Date
+     */
+    date: Date;
+
+}
+
+/**
  * Available export formats
  */
     /**
     * Available export formats
     */
 export enum ExportFormat {
-    Pdf = <any> 'Pdf',
-    Xps = <any> 'Xps',
-    Tiff = <any> 'Tiff',
-    Pptx = <any> 'Pptx',
-    Odp = <any> 'Odp',
-    Otp = <any> 'Otp',
-    Ppt = <any> 'Ppt',
-    Pps = <any> 'Pps',
-    Ppsx = <any> 'Ppsx',
-    Pptm = <any> 'Pptm',
-    Ppsm = <any> 'Ppsm',
-    Potx = <any> 'Potx',
-    Potm = <any> 'Potm',
-    Html = <any> 'Html',
-    Swf = <any> 'Swf',
-    Svg = <any> 'Svg',
-    Jpeg = <any> 'Jpeg',
-    Png = <any> 'Png',
-    Gif = <any> 'Gif',
-    Bmp = <any> 'Bmp'
+    'Pdf' = <any> "'Pdf'",
+    'Xps' = <any> "'Xps'",
+    'Tiff' = <any> "'Tiff'",
+    'Pptx' = <any> "'Pptx'",
+    'Odp' = <any> "'Odp'",
+    'Otp' = <any> "'Otp'",
+    'Ppt' = <any> "'Ppt'",
+    'Pps' = <any> "'Pps'",
+    'Ppsx' = <any> "'Ppsx'",
+    'Pptm' = <any> "'Pptm'",
+    'Ppsm' = <any> "'Ppsm'",
+    'Potx' = <any> "'Potx'",
+    'Potm' = <any> "'Potm'",
+    'Html' = <any> "'Html'",
+    'Swf' = <any> "'Swf'",
+    'Svg' = <any> "'Svg'",
+    'Jpeg' = <any> "'Jpeg'",
+    'Png' = <any> "'Png'",
+    'Gif' = <any> "'Gif'",
+    'Bmp' = <any> "'Bmp'"
 }
 
 /**
@@ -819,34 +844,56 @@ export interface ExportOptions {
 }
 
 /**
- * Represents a way to handle external fonts used for text drawing.
+ * File versions FileVersion.
  */
+export interface FileVersions {
     /**
-    * Represents a way to handle external fonts used for text drawing.
-    */
-export enum ExternalFontsHandling {
-    AddLinksToFontFiles = <any> 'AddLinksToFontFiles',
-    Embed = <any> 'Embed',
-    Vectorize = <any> 'Vectorize'
+     * File versions FileVersion.
+     */
+    value?: Array<FileVersion>;
+
 }
 
 /**
- * fill blend modes
+ * Files list
  */
+export interface FilesList {
     /**
-    * fill blend modes
-    */
-export enum FillBlendMode {
-    Darken = <any> 'Darken',
-    Lighten = <any> 'Lighten',
-    Multiply = <any> 'Multiply',
-    Overlay = <any> 'Overlay',
-    Screen = <any> 'Screen'
+     * Files and folders contained by folder StorageFile.
+     */
+    value?: Array<StorageFile>;
+
+}
+
+/**
+ * File upload result
+ */
+export interface FilesUploadResult {
+    /**
+     * List of uploaded file names
+     */
+    uploaded?: Array<string>;
+
+    /**
+     * List of errors.
+     */
+    errors?: Array<Error>;
+
 }
 
 export interface FillFormat {
-    type: FillType;
+    type?: FillFormat.TypeEnum;
 
+}
+export namespace FillFormat {
+    export enum TypeEnum {
+        NoFill = <any> 'NoFill',
+        Solid = <any> 'Solid',
+        Gradient = <any> 'Gradient',
+        Pattern = <any> 'Pattern',
+        Picture = <any> 'Picture',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -856,38 +903,17 @@ export interface FillOverlayEffect {
     /**
      * blend mode
      */
-    blend: FillBlendMode;
+    blend: FillOverlayEffect.BlendEnum;
 
 }
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum FillType {
-    NoFill = <any> 'NoFill',
-    Solid = <any> 'Solid',
-    Gradient = <any> 'Gradient',
-    Pattern = <any> 'Pattern',
-    Picture = <any> 'Picture',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum FontAlignment {
-    Automatic = <any> 'Automatic',
-    Top = <any> 'Top',
-    Center = <any> 'Center',
-    Bottom = <any> 'Bottom',
-    Baseline = <any> 'Baseline',
-    Default = <any> 'Default'
+export namespace FillOverlayEffect {
+    export enum BlendEnum {
+        Darken = <any> 'Darken',
+        Lighten = <any> 'Lighten',
+        Multiply = <any> 'Multiply',
+        Overlay = <any> 'Overlay',
+        Screen = <any> 'Screen'
+    }
 }
 
 export interface FontSet {
@@ -897,204 +923,6 @@ export interface FontSet {
 
     latin?: string;
 
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum GeometryShapeType {
-    Custom = <any> 'Custom',
-    Line = <any> 'Line',
-    LineInverse = <any> 'LineInverse',
-    Triangle = <any> 'Triangle',
-    RightTriangle = <any> 'RightTriangle',
-    Rectangle = <any> 'Rectangle',
-    Diamond = <any> 'Diamond',
-    Parallelogram = <any> 'Parallelogram',
-    Trapezoid = <any> 'Trapezoid',
-    NonIsoscelesTrapezoid = <any> 'NonIsoscelesTrapezoid',
-    Pentagon = <any> 'Pentagon',
-    Hexagon = <any> 'Hexagon',
-    Heptagon = <any> 'Heptagon',
-    Octagon = <any> 'Octagon',
-    Decagon = <any> 'Decagon',
-    Dodecagon = <any> 'Dodecagon',
-    FourPointedStar = <any> 'FourPointedStar',
-    FivePointedStar = <any> 'FivePointedStar',
-    SixPointedStar = <any> 'SixPointedStar',
-    SevenPointedStar = <any> 'SevenPointedStar',
-    EightPointedStar = <any> 'EightPointedStar',
-    TenPointedStar = <any> 'TenPointedStar',
-    TwelvePointedStar = <any> 'TwelvePointedStar',
-    SixteenPointedStar = <any> 'SixteenPointedStar',
-    TwentyFourPointedStar = <any> 'TwentyFourPointedStar',
-    ThirtyTwoPointedStar = <any> 'ThirtyTwoPointedStar',
-    RoundCornerRectangle = <any> 'RoundCornerRectangle',
-    OneRoundCornerRectangle = <any> 'OneRoundCornerRectangle',
-    TwoSamesideRoundCornerRectangle = <any> 'TwoSamesideRoundCornerRectangle',
-    TwoDiagonalRoundCornerRectangle = <any> 'TwoDiagonalRoundCornerRectangle',
-    OneSnipOneRoundCornerRectangle = <any> 'OneSnipOneRoundCornerRectangle',
-    OneSnipCornerRectangle = <any> 'OneSnipCornerRectangle',
-    TwoSamesideSnipCornerRectangle = <any> 'TwoSamesideSnipCornerRectangle',
-    TwoDiagonalSnipCornerRectangle = <any> 'TwoDiagonalSnipCornerRectangle',
-    Plaque = <any> 'Plaque',
-    Ellipse = <any> 'Ellipse',
-    Teardrop = <any> 'Teardrop',
-    HomePlate = <any> 'HomePlate',
-    Chevron = <any> 'Chevron',
-    PieWedge = <any> 'PieWedge',
-    Pie = <any> 'Pie',
-    BlockArc = <any> 'BlockArc',
-    Donut = <any> 'Donut',
-    NoSmoking = <any> 'NoSmoking',
-    RightArrow = <any> 'RightArrow',
-    LeftArrow = <any> 'LeftArrow',
-    UpArrow = <any> 'UpArrow',
-    DownArrow = <any> 'DownArrow',
-    StripedRightArrow = <any> 'StripedRightArrow',
-    NotchedRightArrow = <any> 'NotchedRightArrow',
-    BentUpArrow = <any> 'BentUpArrow',
-    LeftRightArrow = <any> 'LeftRightArrow',
-    UpDownArrow = <any> 'UpDownArrow',
-    LeftUpArrow = <any> 'LeftUpArrow',
-    LeftRightUpArrow = <any> 'LeftRightUpArrow',
-    QuadArrow = <any> 'QuadArrow',
-    CalloutLeftArrow = <any> 'CalloutLeftArrow',
-    CalloutRightArrow = <any> 'CalloutRightArrow',
-    CalloutUpArrow = <any> 'CalloutUpArrow',
-    CalloutDownArrow = <any> 'CalloutDownArrow',
-    CalloutLeftRightArrow = <any> 'CalloutLeftRightArrow',
-    CalloutUpDownArrow = <any> 'CalloutUpDownArrow',
-    CalloutQuadArrow = <any> 'CalloutQuadArrow',
-    BentArrow = <any> 'BentArrow',
-    UTurnArrow = <any> 'UTurnArrow',
-    CircularArrow = <any> 'CircularArrow',
-    LeftCircularArrow = <any> 'LeftCircularArrow',
-    LeftRightCircularArrow = <any> 'LeftRightCircularArrow',
-    CurvedRightArrow = <any> 'CurvedRightArrow',
-    CurvedLeftArrow = <any> 'CurvedLeftArrow',
-    CurvedUpArrow = <any> 'CurvedUpArrow',
-    CurvedDownArrow = <any> 'CurvedDownArrow',
-    SwooshArrow = <any> 'SwooshArrow',
-    Cube = <any> 'Cube',
-    Can = <any> 'Can',
-    LightningBolt = <any> 'LightningBolt',
-    Heart = <any> 'Heart',
-    Sun = <any> 'Sun',
-    Moon = <any> 'Moon',
-    SmileyFace = <any> 'SmileyFace',
-    IrregularSeal1 = <any> 'IrregularSeal1',
-    IrregularSeal2 = <any> 'IrregularSeal2',
-    FoldedCorner = <any> 'FoldedCorner',
-    Bevel = <any> 'Bevel',
-    Frame = <any> 'Frame',
-    HalfFrame = <any> 'HalfFrame',
-    Corner = <any> 'Corner',
-    DiagonalStripe = <any> 'DiagonalStripe',
-    Chord = <any> 'Chord',
-    CurvedArc = <any> 'CurvedArc',
-    LeftBracket = <any> 'LeftBracket',
-    RightBracket = <any> 'RightBracket',
-    LeftBrace = <any> 'LeftBrace',
-    RightBrace = <any> 'RightBrace',
-    BracketPair = <any> 'BracketPair',
-    BracePair = <any> 'BracePair',
-    StraightConnector1 = <any> 'StraightConnector1',
-    BentConnector2 = <any> 'BentConnector2',
-    BentConnector3 = <any> 'BentConnector3',
-    BentConnector4 = <any> 'BentConnector4',
-    BentConnector5 = <any> 'BentConnector5',
-    CurvedConnector2 = <any> 'CurvedConnector2',
-    CurvedConnector3 = <any> 'CurvedConnector3',
-    CurvedConnector4 = <any> 'CurvedConnector4',
-    CurvedConnector5 = <any> 'CurvedConnector5',
-    Callout1 = <any> 'Callout1',
-    Callout2 = <any> 'Callout2',
-    Callout3 = <any> 'Callout3',
-    Callout1WithAccent = <any> 'Callout1WithAccent',
-    Callout2WithAccent = <any> 'Callout2WithAccent',
-    Callout3WithAccent = <any> 'Callout3WithAccent',
-    Callout1WithBorder = <any> 'Callout1WithBorder',
-    Callout2WithBorder = <any> 'Callout2WithBorder',
-    Callout3WithBorder = <any> 'Callout3WithBorder',
-    Callout1WithBorderAndAccent = <any> 'Callout1WithBorderAndAccent',
-    Callout2WithBorderAndAccent = <any> 'Callout2WithBorderAndAccent',
-    Callout3WithBorderAndAccent = <any> 'Callout3WithBorderAndAccent',
-    CalloutWedgeRectangle = <any> 'CalloutWedgeRectangle',
-    CalloutWedgeRoundRectangle = <any> 'CalloutWedgeRoundRectangle',
-    CalloutWedgeEllipse = <any> 'CalloutWedgeEllipse',
-    CalloutCloud = <any> 'CalloutCloud',
-    Cloud = <any> 'Cloud',
-    Ribbon = <any> 'Ribbon',
-    Ribbon2 = <any> 'Ribbon2',
-    EllipseRibbon = <any> 'EllipseRibbon',
-    EllipseRibbon2 = <any> 'EllipseRibbon2',
-    LeftRightRibbon = <any> 'LeftRightRibbon',
-    VerticalScroll = <any> 'VerticalScroll',
-    HorizontalScroll = <any> 'HorizontalScroll',
-    Wave = <any> 'Wave',
-    DoubleWave = <any> 'DoubleWave',
-    Plus = <any> 'Plus',
-    ProcessFlow = <any> 'ProcessFlow',
-    DecisionFlow = <any> 'DecisionFlow',
-    InputOutputFlow = <any> 'InputOutputFlow',
-    PredefinedProcessFlow = <any> 'PredefinedProcessFlow',
-    InternalStorageFlow = <any> 'InternalStorageFlow',
-    DocumentFlow = <any> 'DocumentFlow',
-    MultiDocumentFlow = <any> 'MultiDocumentFlow',
-    TerminatorFlow = <any> 'TerminatorFlow',
-    PreparationFlow = <any> 'PreparationFlow',
-    ManualInputFlow = <any> 'ManualInputFlow',
-    ManualOperationFlow = <any> 'ManualOperationFlow',
-    ConnectorFlow = <any> 'ConnectorFlow',
-    PunchedCardFlow = <any> 'PunchedCardFlow',
-    PunchedTapeFlow = <any> 'PunchedTapeFlow',
-    SummingJunctionFlow = <any> 'SummingJunctionFlow',
-    OrFlow = <any> 'OrFlow',
-    CollateFlow = <any> 'CollateFlow',
-    SortFlow = <any> 'SortFlow',
-    ExtractFlow = <any> 'ExtractFlow',
-    MergeFlow = <any> 'MergeFlow',
-    OfflineStorageFlow = <any> 'OfflineStorageFlow',
-    OnlineStorageFlow = <any> 'OnlineStorageFlow',
-    MagneticTapeFlow = <any> 'MagneticTapeFlow',
-    MagneticDiskFlow = <any> 'MagneticDiskFlow',
-    MagneticDrumFlow = <any> 'MagneticDrumFlow',
-    DisplayFlow = <any> 'DisplayFlow',
-    DelayFlow = <any> 'DelayFlow',
-    AlternateProcessFlow = <any> 'AlternateProcessFlow',
-    OffPageConnectorFlow = <any> 'OffPageConnectorFlow',
-    BlankButton = <any> 'BlankButton',
-    HomeButton = <any> 'HomeButton',
-    HelpButton = <any> 'HelpButton',
-    InformationButton = <any> 'InformationButton',
-    ForwardOrNextButton = <any> 'ForwardOrNextButton',
-    BackOrPreviousButton = <any> 'BackOrPreviousButton',
-    EndButton = <any> 'EndButton',
-    BeginningButton = <any> 'BeginningButton',
-    ReturnButton = <any> 'ReturnButton',
-    DocumentButton = <any> 'DocumentButton',
-    SoundButton = <any> 'SoundButton',
-    MovieButton = <any> 'MovieButton',
-    Gear6 = <any> 'Gear6',
-    Gear9 = <any> 'Gear9',
-    Funnel = <any> 'Funnel',
-    PlusMath = <any> 'PlusMath',
-    MinusMath = <any> 'MinusMath',
-    MultiplyMath = <any> 'MultiplyMath',
-    DivideMath = <any> 'DivideMath',
-    EqualMath = <any> 'EqualMath',
-    NotEqualMath = <any> 'NotEqualMath',
-    CornerTabs = <any> 'CornerTabs',
-    SquareTabs = <any> 'SquareTabs',
-    PlaqueTabs = <any> 'PlaqueTabs',
-    ChartX = <any> 'ChartX',
-    ChartStar = <any> 'ChartStar',
-    ChartPlus = <any> 'ChartPlus',
-    NotDefined = <any> 'NotDefined'
 }
 
 /**
@@ -1113,54 +941,11 @@ export interface GlowEffect {
 
 }
 
-/**
- * Gradient style.
- */
-    /**
-    * Gradient style.
-    */
-export enum GradientDirection {
-    FromCorner1 = <any> 'FromCorner1',
-    FromCorner2 = <any> 'FromCorner2',
-    FromCorner3 = <any> 'FromCorner3',
-    FromCorner4 = <any> 'FromCorner4',
-    FromCenter = <any> 'FromCenter',
-    NotDefined = <any> 'NotDefined'
-}
-
 export interface GradientFillStop {
     color?: string;
 
     position: number;
 
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum GradientShapeType {
-    Linear = <any> 'Linear',
-    Rectangle = <any> 'Rectangle',
-    Radial = <any> 'Radial',
-    Path = <any> 'Path',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum GradientTileFlip {
-    NoFlip = <any> 'NoFlip',
-    FlipX = <any> 'FlipX',
-    FlipY = <any> 'FlipY',
-    FlipBoth = <any> 'FlipBoth',
-    NotDefined = <any> 'NotDefined'
 }
 
 /**
@@ -1178,25 +963,11 @@ export interface IShapeExportOptions {
     * Represents a format for image export.
     */
 export enum ImageExportFormat {
-    Jpeg = <any> 'Jpeg',
-    Png = <any> 'Png',
-    Gif = <any> 'Gif',
-    Bmp = <any> 'Bmp',
-    Tiff = <any> 'Tiff'
-}
-
-/**
- * Specifies the pixel format for the generated images.
- */
-    /**
-    * Specifies the pixel format for the generated images.
-    */
-export enum ImagePixelFormat {
-    Format1bppIndexed = <any> 'Format1bppIndexed',
-    Format4bppIndexed = <any> 'Format4bppIndexed',
-    Format8bppIndexed = <any> 'Format8bppIndexed',
-    Format24bppRgb = <any> 'Format24bppRgb',
-    Format32bppArgb = <any> 'Format32bppArgb'
+    'Jpeg' = <any> "'Jpeg'",
+    'Png' = <any> "'Png'",
+    'Gif' = <any> "'Gif'",
+    'Bmp' = <any> "'Bmp'",
+    'Tiff' = <any> "'Tiff'"
 }
 
 /**
@@ -1251,72 +1022,29 @@ export interface Input {
  */
 export interface InputFile {
     /**
-     * Gets type of input source.
-     */
-    type: InputFileType;
-
-    /**
      * Get or sets password to open document.
      */
     password?: string;
 
+    type?: InputFile.TypeEnum;
+
+}
+export namespace InputFile {
+    export enum TypeEnum {
+        Path = <any> 'Path',
+        Request = <any> 'Request',
+        Base64 = <any> 'Base64'
+    }
 }
 
 /**
- * Represents type of input file source in pipeline.
+ * Represents comments collection of slide
  */
-    /**
-    * Represents type of input file source in pipeline.
-    */
-export enum InputFileType {
-    Path = <any> 'Path',
-    Request = <any> 'Request',
-    Base64 = <any> 'Base64'
-}
+export interface InteractiveSequence {
+    effects?: Array<Effect>;
 
-/**
- * Represents type of Layout Slide
- */
-    /**
-    * Represents type of Layout Slide
-    */
-export enum LayoutSlideType {
-    Title = <any> 'Title',
-    Text = <any> 'Text',
-    TwoColumnText = <any> 'TwoColumnText',
-    Table = <any> 'Table',
-    TextAndChart = <any> 'TextAndChart',
-    ChartAndText = <any> 'ChartAndText',
-    Diagram = <any> 'Diagram',
-    Chart = <any> 'Chart',
-    TextAndClipArt = <any> 'TextAndClipArt',
-    ClipArtAndText = <any> 'ClipArtAndText',
-    TitleOnly = <any> 'TitleOnly',
-    Blank = <any> 'Blank',
-    TextAndObject = <any> 'TextAndObject',
-    ObjectAndText = <any> 'ObjectAndText',
-    Object = <any> 'Object',
-    TitleAndObject = <any> 'TitleAndObject',
-    TextAndMedia = <any> 'TextAndMedia',
-    MediaAndText = <any> 'MediaAndText',
-    ObjectOverText = <any> 'ObjectOverText',
-    TextOverObject = <any> 'TextOverObject',
-    TextAndTwoObjects = <any> 'TextAndTwoObjects',
-    TwoObjectsAndText = <any> 'TwoObjectsAndText',
-    TwoObjectsOverText = <any> 'TwoObjectsOverText',
-    FourObjects = <any> 'FourObjects',
-    VerticalText = <any> 'VerticalText',
-    ClipArtAndVerticalText = <any> 'ClipArtAndVerticalText',
-    VerticalTitleAndText = <any> 'VerticalTitleAndText',
-    VerticalTitleAndTextOverChart = <any> 'VerticalTitleAndTextOverChart',
-    TwoObjects = <any> 'TwoObjects',
-    ObjectAndTwoObject = <any> 'ObjectAndTwoObject',
-    TwoObjectsAndObject = <any> 'TwoObjectsAndObject',
-    SectionHeader = <any> 'SectionHeader',
-    TwoTextAndTwoObjects = <any> 'TwoTextAndTwoObjects',
-    TitleObjectAndCaption = <any> 'TitleObjectAndCaption',
-    PictureAndCaption = <any> 'PictureAndCaption',
-    Custom = <any> 'Custom'
+    triggerShapeIndex: number;
+
 }
 
 /**
@@ -1326,7 +1054,7 @@ export interface Legend {
     /**
      * position
      */
-    position: LegendPositionType;
+    position: Legend.PositionEnum;
 
     /**
      * the X location
@@ -1369,120 +1097,26 @@ export interface Legend {
     lineFormat?: LineFormat;
 
 }
-
-/**
- * the position of the legend on the chart
- */
-    /**
-    * the position of the legend on the chart
-    */
-export enum LegendPositionType {
-    Bottom = <any> 'Bottom',
-    Left = <any> 'Left',
-    Right = <any> 'Right',
-    Top = <any> 'Top',
-    TopRight = <any> 'TopRight'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum LineAlignment {
-    Center = <any> 'Center',
-    Inset = <any> 'Inset',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum LineArrowheadLength {
-    Short = <any> 'Short',
-    Medium = <any> 'Medium',
-    Long = <any> 'Long',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum LineArrowheadStyle {
-    None = <any> 'None',
-    Triangle = <any> 'Triangle',
-    Stealth = <any> 'Stealth',
-    Diamond = <any> 'Diamond',
-    Oval = <any> 'Oval',
-    Open = <any> 'Open',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum LineArrowheadWidth {
-    Narrow = <any> 'Narrow',
-    Medium = <any> 'Medium',
-    Wide = <any> 'Wide',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum LineCapStyle {
-    Round = <any> 'Round',
-    Square = <any> 'Square',
-    Flat = <any> 'Flat',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Dash style of a line.
- */
-    /**
-    * Dash style of a line.
-    */
-export enum LineDashStyle {
-    Solid = <any> 'Solid',
-    Dot = <any> 'Dot',
-    Dash = <any> 'Dash',
-    LargeDash = <any> 'LargeDash',
-    DashDot = <any> 'DashDot',
-    LargeDashDot = <any> 'LargeDashDot',
-    LargeDashDotDot = <any> 'LargeDashDotDot',
-    SystemDash = <any> 'SystemDash',
-    SystemDot = <any> 'SystemDot',
-    SystemDashDot = <any> 'SystemDashDot',
-    SystemDashDotDot = <any> 'SystemDashDotDot',
-    Custom = <any> 'Custom',
-    NotDefined = <any> 'NotDefined'
+export namespace Legend {
+    export enum PositionEnum {
+        Bottom = <any> 'Bottom',
+        Left = <any> 'Left',
+        Right = <any> 'Right',
+        Top = <any> 'Top',
+        TopRight = <any> 'TopRight'
+    }
 }
 
 export interface LineFormat {
-    alignment: LineAlignment;
+    alignment: LineFormat.AlignmentEnum;
 
-    capStyle: LineCapStyle;
+    capStyle: LineFormat.CapStyleEnum;
 
-    dashStyle: LineDashStyle;
+    dashStyle: LineFormat.DashStyleEnum;
 
-    joinStyle: LineJoinStyle;
+    joinStyle: LineFormat.JoinStyleEnum;
 
-    style: LineStyle;
+    style: LineFormat.StyleEnum;
 
     beginArrowHead?: ArrowHeadProperties;
 
@@ -1497,57 +1131,47 @@ export interface LineFormat {
     width: number;
 
 }
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum LineJoinStyle {
-    Round = <any> 'Round',
-    Bevel = <any> 'Bevel',
-    Miter = <any> 'Miter',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum LineStyle {
-    Single = <any> 'Single',
-    ThinThin = <any> 'ThinThin',
-    ThinThick = <any> 'ThinThick',
-    ThickThin = <any> 'ThickThin',
-    ThickBetweenThin = <any> 'ThickBetweenThin',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Determines form of marker on chart's data point
- */
-    /**
-    * Determines form of marker on chart's data point
-    */
-export enum MarkerStyleType {
-    Circle = <any> 'Circle',
-    Dash = <any> 'Dash',
-    Diamond = <any> 'Diamond',
-    Dot = <any> 'Dot',
-    None = <any> 'None',
-    Picture = <any> 'Picture',
-    Plus = <any> 'Plus',
-    Square = <any> 'Square',
-    Star = <any> 'Star',
-    Triangle = <any> 'Triangle',
-    X = <any> 'X',
-    NotDefined = <any> 'NotDefined'
-}
-
-export interface MarshalByRefObject {
+export namespace LineFormat {
+    export enum AlignmentEnum {
+        Center = <any> 'Center',
+        Inset = <any> 'Inset',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum CapStyleEnum {
+        Round = <any> 'Round',
+        Square = <any> 'Square',
+        Flat = <any> 'Flat',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum DashStyleEnum {
+        Solid = <any> 'Solid',
+        Dot = <any> 'Dot',
+        Dash = <any> 'Dash',
+        LargeDash = <any> 'LargeDash',
+        DashDot = <any> 'DashDot',
+        LargeDashDot = <any> 'LargeDashDot',
+        LargeDashDotDot = <any> 'LargeDashDotDot',
+        SystemDash = <any> 'SystemDash',
+        SystemDot = <any> 'SystemDot',
+        SystemDashDot = <any> 'SystemDashDot',
+        SystemDashDotDot = <any> 'SystemDashDotDot',
+        Custom = <any> 'Custom',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum JoinStyleEnum {
+        Round = <any> 'Round',
+        Bevel = <any> 'Bevel',
+        Miter = <any> 'Miter',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum StyleEnum {
+        Single = <any> 'Single',
+        ThinThin = <any> 'ThinThin',
+        ThinThick = <any> 'ThinThick',
+        ThickThin = <any> 'ThickThin',
+        ThickBetweenThin = <any> 'ThickBetweenThin',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 export interface MergingSource {
@@ -1558,15 +1182,29 @@ export interface MergingSource {
 }
 
 /**
- * Represents the rule to render notes into exported document
+ * Error
  */
+export interface ModelError {
     /**
-    * Represents the rule to render notes into exported document
-    */
-export enum NotesPositions {
-    None = <any> 'None',
-    BottomFull = <any> 'BottomFull',
-    BottomTruncated = <any> 'BottomTruncated'
+     * Code             
+     */
+    code?: string;
+
+    /**
+     * Message             
+     */
+    message?: string;
+
+    /**
+     * Description             
+     */
+    description?: string;
+
+    /**
+     * Inner Error             
+     */
+    innerError?: ErrorDetails;
+
 }
 
 /**
@@ -1576,74 +1214,27 @@ export enum NotesPositions {
     * 
     */
 export enum NotesSlideExportFormat {
-    Jpeg = <any> 'Jpeg',
-    Png = <any> 'Png',
-    Gif = <any> 'Gif',
-    Bmp = <any> 'Bmp',
-    Tiff = <any> 'Tiff'
+    'Jpeg' = <any> "'Jpeg'",
+    'Png' = <any> "'Png'",
+    'Gif' = <any> "'Gif'",
+    'Bmp' = <any> "'Bmp'",
+    'Tiff' = <any> "'Tiff'"
 }
 
 /**
- * 
+ * Object exists
  */
+export interface ObjectExist {
     /**
-    * 
-    */
-export enum NullableBool {
-    False = <any> 'False',
-    True = <any> 'True',
-    NotDefined = <any> 'NotDefined'
-}
+     * Indicates that the file or folder exists.
+     */
+    exists: boolean;
 
-/**
- * 
- */
     /**
-    * 
-    */
-export enum NumberedBulletStyle {
-    BulletAlphaLCPeriod = <any> 'BulletAlphaLCPeriod',
-    BulletAlphaUCPeriod = <any> 'BulletAlphaUCPeriod',
-    BulletArabicParenRight = <any> 'BulletArabicParenRight',
-    BulletArabicPeriod = <any> 'BulletArabicPeriod',
-    BulletRomanLCParenBoth = <any> 'BulletRomanLCParenBoth',
-    BulletRomanLCParenRight = <any> 'BulletRomanLCParenRight',
-    BulletRomanLCPeriod = <any> 'BulletRomanLCPeriod',
-    BulletRomanUCPeriod = <any> 'BulletRomanUCPeriod',
-    BulletAlphaLCParenBoth = <any> 'BulletAlphaLCParenBoth',
-    BulletAlphaLCParenRight = <any> 'BulletAlphaLCParenRight',
-    BulletAlphaUCParenBoth = <any> 'BulletAlphaUCParenBoth',
-    BulletAlphaUCParenRight = <any> 'BulletAlphaUCParenRight',
-    BulletArabicParenBoth = <any> 'BulletArabicParenBoth',
-    BulletArabicPlain = <any> 'BulletArabicPlain',
-    BulletRomanUCParenBoth = <any> 'BulletRomanUCParenBoth',
-    BulletRomanUCParenRight = <any> 'BulletRomanUCParenRight',
-    BulletSimpChinPlain = <any> 'BulletSimpChinPlain',
-    BulletSimpChinPeriod = <any> 'BulletSimpChinPeriod',
-    BulletCircleNumDBPlain = <any> 'BulletCircleNumDBPlain',
-    BulletCircleNumWDWhitePlain = <any> 'BulletCircleNumWDWhitePlain',
-    BulletCircleNumWDBlackPlain = <any> 'BulletCircleNumWDBlackPlain',
-    BulletTradChinPlain = <any> 'BulletTradChinPlain',
-    BulletTradChinPeriod = <any> 'BulletTradChinPeriod',
-    BulletArabicAlphaDash = <any> 'BulletArabicAlphaDash',
-    BulletArabicAbjadDash = <any> 'BulletArabicAbjadDash',
-    BulletHebrewAlphaDash = <any> 'BulletHebrewAlphaDash',
-    BulletKanjiKoreanPlain = <any> 'BulletKanjiKoreanPlain',
-    BulletKanjiKoreanPeriod = <any> 'BulletKanjiKoreanPeriod',
-    BulletArabicDBPlain = <any> 'BulletArabicDBPlain',
-    BulletArabicDBPeriod = <any> 'BulletArabicDBPeriod',
-    BulletThaiAlphaPeriod = <any> 'BulletThaiAlphaPeriod',
-    BulletThaiAlphaParenRight = <any> 'BulletThaiAlphaParenRight',
-    BulletThaiAlphaParenBoth = <any> 'BulletThaiAlphaParenBoth',
-    BulletThaiNumPeriod = <any> 'BulletThaiNumPeriod',
-    BulletThaiNumParenRight = <any> 'BulletThaiNumParenRight',
-    BulletThaiNumParenBoth = <any> 'BulletThaiNumParenBoth',
-    BulletHindiAlphaPeriod = <any> 'BulletHindiAlphaPeriod',
-    BulletHindiNumPeriod = <any> 'BulletHindiNumPeriod',
-    BulletKanjiSimpChinDBPeriod = <any> 'BulletKanjiSimpChinDBPeriod',
-    BulletHindiNumParenRight = <any> 'BulletHindiNumParenRight',
-    BulletHindiAlpha1Period = <any> 'BulletHindiAlpha1Period',
-    NotDefined = <any> 'NotDefined'
+     * True if it is a folder, false if it is a file.
+     */
+    isFolder: boolean;
+
 }
 
 export interface OneValueChartDataPoint {
@@ -1660,20 +1251,6 @@ export interface OrderedMergeRequest {
      */
     presentations?: Array<PresentationToMerge>;
 
-}
-
-/**
- * Represents formatting type the child nodes in an organization chart
- */
-    /**
-    * Represents formatting type the child nodes in an organization chart
-    */
-export enum OrganizationChartLayoutType {
-    Initial = <any> 'Initial',
-    Standart = <any> 'Standart',
-    BothHanging = <any> 'BothHanging',
-    LeftHanging = <any> 'LeftHanging',
-    RightHanging = <any> 'RightHanging'
 }
 
 /**
@@ -1706,148 +1283,14 @@ export interface OuterShadowEffect {
  * Represents output file destination in pipeline.
  */
 export interface OutputFile {
-    /**
-     * Gets type of output destination.
-     */
-    type: OutputFileType;
+    type?: OutputFile.TypeEnum;
 
 }
-
-/**
- * Represents type of output file destination in pipeline.
- */
-    /**
-    * Represents type of output file destination in pipeline.
-    */
-export enum OutputFileType {
-    Path = <any> 'Path',
-    Response = <any> 'Response'
-}
-
-/**
- * Available pattern styles
- */
-    /**
-    * Available pattern styles
-    */
-export enum PatternStyle {
-    Unknown = <any> 'Unknown',
-    Percent05 = <any> 'Percent05',
-    Percent10 = <any> 'Percent10',
-    Percent20 = <any> 'Percent20',
-    Percent25 = <any> 'Percent25',
-    Percent30 = <any> 'Percent30',
-    Percent40 = <any> 'Percent40',
-    Percent50 = <any> 'Percent50',
-    Percent60 = <any> 'Percent60',
-    Percent70 = <any> 'Percent70',
-    Percent75 = <any> 'Percent75',
-    Percent80 = <any> 'Percent80',
-    Percent90 = <any> 'Percent90',
-    DarkHorizontal = <any> 'DarkHorizontal',
-    DarkVertical = <any> 'DarkVertical',
-    DarkDownwardDiagonal = <any> 'DarkDownwardDiagonal',
-    DarkUpwardDiagonal = <any> 'DarkUpwardDiagonal',
-    SmallCheckerBoard = <any> 'SmallCheckerBoard',
-    Trellis = <any> 'Trellis',
-    LightHorizontal = <any> 'LightHorizontal',
-    LightVertical = <any> 'LightVertical',
-    LightDownwardDiagonal = <any> 'LightDownwardDiagonal',
-    LightUpwardDiagonal = <any> 'LightUpwardDiagonal',
-    SmallGrid = <any> 'SmallGrid',
-    DottedDiamond = <any> 'DottedDiamond',
-    WideDownwardDiagonal = <any> 'WideDownwardDiagonal',
-    WideUpwardDiagonal = <any> 'WideUpwardDiagonal',
-    DashedUpwardDiagonal = <any> 'DashedUpwardDiagonal',
-    DashedDownwardDiagonal = <any> 'DashedDownwardDiagonal',
-    NarrowVertical = <any> 'NarrowVertical',
-    NarrowHorizontal = <any> 'NarrowHorizontal',
-    DashedVertical = <any> 'DashedVertical',
-    DashedHorizontal = <any> 'DashedHorizontal',
-    LargeConfetti = <any> 'LargeConfetti',
-    LargeGrid = <any> 'LargeGrid',
-    HorizontalBrick = <any> 'HorizontalBrick',
-    LargeCheckerBoard = <any> 'LargeCheckerBoard',
-    SmallConfetti = <any> 'SmallConfetti',
-    Zigzag = <any> 'Zigzag',
-    SolidDiamond = <any> 'SolidDiamond',
-    DiagonalBrick = <any> 'DiagonalBrick',
-    OutlinedDiamond = <any> 'OutlinedDiamond',
-    Plaid = <any> 'Plaid',
-    Sphere = <any> 'Sphere',
-    Weave = <any> 'Weave',
-    DottedGrid = <any> 'DottedGrid',
-    Divot = <any> 'Divot',
-    Shingle = <any> 'Shingle',
-    Wave = <any> 'Wave',
-    Horizontal = <any> 'Horizontal',
-    Vertical = <any> 'Vertical',
-    Cross = <any> 'Cross',
-    DownwardDiagonal = <any> 'DownwardDiagonal',
-    UpwardDiagonal = <any> 'UpwardDiagonal',
-    DiagonalCross = <any> 'DiagonalCross',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Constants which define the PDF standards compliance level.
- */
-    /**
-    * Constants which define the PDF standards compliance level.
-    */
-export enum PdfCompliance {
-    Pdf15 = <any> 'Pdf15',
-    PdfA1b = <any> 'PdfA1b'
-}
-
-/**
- * Constants which define the type of a compression applied to all content in the PDF file except images.
- */
-    /**
-    * Constants which define the type of a compression applied to all content in the PDF file except images.
-    */
-export enum PdfTextCompression {
-    None = <any> 'None',
-    Flate = <any> 'Flate'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum PictureFillMode {
-    Tile = <any> 'Tile',
-    Stretch = <any> 'Stretch'
-}
-
-/**
- * Determines mode of bar picture filling.
- */
-    /**
-    * Determines mode of bar picture filling.
-    */
-export enum PictureType {
-    Stack = <any> 'Stack',
-    StackScale = <any> 'StackScale',
-    Stretch = <any> 'Stretch',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Represents the pictures compression level
- */
-    /**
-    * Represents the pictures compression level
-    */
-export enum PicturesCompression {
-    Dpi330 = <any> 'Dpi330',
-    Dpi220 = <any> 'Dpi220',
-    Dpi150 = <any> 'Dpi150',
-    Dpi96 = <any> 'Dpi96',
-    Dpi72 = <any> 'Dpi72',
-    DocumentResolution = <any> 'DocumentResolution'
+export namespace OutputFile {
+    export enum TypeEnum {
+        Path = <any> 'Path',
+        Response = <any> 'Response'
+    }
 }
 
 /**
@@ -1864,54 +1307,6 @@ export interface Pipeline {
      */
     tasks?: Array<Task>;
 
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum PlaceholderOrientation {
-    Horizontal = <any> 'Horizontal',
-    Vertical = <any> 'Vertical'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum PlaceholderSize {
-    Full = <any> 'Full',
-    Half = <any> 'Half',
-    Quarter = <any> 'Quarter'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum PlaceholderType {
-    Title = <any> 'Title',
-    Body = <any> 'Body',
-    CenteredTitle = <any> 'CenteredTitle',
-    Subtitle = <any> 'Subtitle',
-    DateAndTime = <any> 'DateAndTime',
-    SlideNumber = <any> 'SlideNumber',
-    Footer = <any> 'Footer',
-    Header = <any> 'Header',
-    Object = <any> 'Object',
-    Chart = <any> 'Chart',
-    Table = <any> 'Table',
-    ClipArt = <any> 'ClipArt',
-    Diagram = <any> 'Diagram',
-    Media = <any> 'Media',
-    SlideImage = <any> 'SlideImage',
-    Picture = <any> 'Picture'
 }
 
 /**
@@ -2009,7 +1404,7 @@ export interface PresetShadowEffect {
     /**
      * preset
      */
-    preset: PresetShadowType;
+    preset: PresetShadowEffect.PresetEnum;
 
     /**
      * shadow color
@@ -2017,53 +1412,29 @@ export interface PresetShadowEffect {
     shadowColor?: string;
 
 }
-
-/**
- * preset shadow types
- */
-    /**
-    * preset shadow types
-    */
-export enum PresetShadowType {
-    TopLeftDropShadow = <any> 'TopLeftDropShadow',
-    TopLeftLargeDropShadow = <any> 'TopLeftLargeDropShadow',
-    BackLeftLongPerspectiveShadow = <any> 'BackLeftLongPerspectiveShadow',
-    BackRightLongPerspectiveShadow = <any> 'BackRightLongPerspectiveShadow',
-    TopLeftDoubleDropShadow = <any> 'TopLeftDoubleDropShadow',
-    BottomRightSmallDropShadow = <any> 'BottomRightSmallDropShadow',
-    FrontLeftLongPerspectiveShadow = <any> 'FrontLeftLongPerspectiveShadow',
-    FrontRightLongPerspectiveShadow = <any> 'FrontRightLongPerspectiveShadow',
-    OuterBoxShadow3D = <any> 'OuterBoxShadow3D',
-    InnerBoxShadow3D = <any> 'InnerBoxShadow3D',
-    BackCenterPerspectiveShadow = <any> 'BackCenterPerspectiveShadow',
-    TopRightDropShadow = <any> 'TopRightDropShadow',
-    FrontBottomShadow = <any> 'FrontBottomShadow',
-    BackLeftPerspectiveShadow = <any> 'BackLeftPerspectiveShadow',
-    BackRightPerspectiveShadow = <any> 'BackRightPerspectiveShadow',
-    BottomLeftDropShadow = <any> 'BottomLeftDropShadow',
-    BottomRightDropShadow = <any> 'BottomRightDropShadow',
-    FrontLeftPerspectiveShadow = <any> 'FrontLeftPerspectiveShadow',
-    FrontRightPerspectiveShadow = <any> 'FrontRightPerspectiveShadow',
-    TopLeftSmallDropShadow = <any> 'TopLeftSmallDropShadow'
-}
-
-/**
- * rectangle alignment types
- */
-    /**
-    * rectangle alignment types
-    */
-export enum RectangleAlignment {
-    TopLeft = <any> 'TopLeft',
-    Top = <any> 'Top',
-    TopRight = <any> 'TopRight',
-    Left = <any> 'Left',
-    Center = <any> 'Center',
-    Right = <any> 'Right',
-    BottomLeft = <any> 'BottomLeft',
-    Bottom = <any> 'Bottom',
-    BottomRight = <any> 'BottomRight',
-    NotDefined = <any> 'NotDefined'
+export namespace PresetShadowEffect {
+    export enum PresetEnum {
+        TopLeftDropShadow = <any> 'TopLeftDropShadow',
+        TopLeftLargeDropShadow = <any> 'TopLeftLargeDropShadow',
+        BackLeftLongPerspectiveShadow = <any> 'BackLeftLongPerspectiveShadow',
+        BackRightLongPerspectiveShadow = <any> 'BackRightLongPerspectiveShadow',
+        TopLeftDoubleDropShadow = <any> 'TopLeftDoubleDropShadow',
+        BottomRightSmallDropShadow = <any> 'BottomRightSmallDropShadow',
+        FrontLeftLongPerspectiveShadow = <any> 'FrontLeftLongPerspectiveShadow',
+        FrontRightLongPerspectiveShadow = <any> 'FrontRightLongPerspectiveShadow',
+        OuterBoxShadow3D = <any> 'OuterBoxShadow3D',
+        InnerBoxShadow3D = <any> 'InnerBoxShadow3D',
+        BackCenterPerspectiveShadow = <any> 'BackCenterPerspectiveShadow',
+        TopRightDropShadow = <any> 'TopRightDropShadow',
+        FrontBottomShadow = <any> 'FrontBottomShadow',
+        BackLeftPerspectiveShadow = <any> 'BackLeftPerspectiveShadow',
+        BackRightPerspectiveShadow = <any> 'BackRightPerspectiveShadow',
+        BottomLeftDropShadow = <any> 'BottomLeftDropShadow',
+        BottomRightDropShadow = <any> 'BottomRightDropShadow',
+        FrontLeftPerspectiveShadow = <any> 'FrontLeftPerspectiveShadow',
+        FrontRightPerspectiveShadow = <any> 'FrontRightPerspectiveShadow',
+        TopLeftSmallDropShadow = <any> 'TopLeftSmallDropShadow'
+    }
 }
 
 /**
@@ -2133,13 +1504,27 @@ export interface ReflectionEffect {
     /**
      * rectangle alignment
      */
-    rectangleAlign: RectangleAlignment;
+    rectangleAlign: ReflectionEffect.RectangleAlignEnum;
 
     /**
      * true if the reflection should rotate with the shape when the shape is rotated
      */
     rotateShadowWithShape: boolean;
 
+}
+export namespace ReflectionEffect {
+    export enum RectangleAlignEnum {
+        TopLeft = <any> 'TopLeft',
+        Top = <any> 'Top',
+        TopRight = <any> 'TopRight',
+        Left = <any> 'Left',
+        Center = <any> 'Center',
+        Right = <any> 'Right',
+        BottomLeft = <any> 'BottomLeft',
+        Bottom = <any> 'Bottom',
+        BottomRight = <any> 'BottomRight',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -2152,11 +1537,6 @@ export interface ResourceBase {
     selfUri?: ResourceUri;
 
     alternateLinks?: Array<ResourceUri>;
-
-    /**
-     * A list of links that originate from this document.
-     */
-    links?: Array<ResourceUri>;
 
 }
 
@@ -2192,25 +1572,15 @@ export interface ResourceUriElement {
 }
 
 /**
- * The basic SaaSposeResponse response class kept from the old Aspose for Cloud Platform. We keep this base class and use it because most probably users are already using it to get API responses. The plan in future is to get rid of this name, but who knows when ?!
- */
-export interface SaaSposeResponse {
-    code: number;
-
-    status?: string;
-
-}
-
-/**
  * 
  */
     /**
     * 
     */
 export enum ScaleType {
-    DoNotScale = <any> 'DoNotScale',
-    EnsureFit = <any> 'EnsureFit',
-    Maximize = <any> 'Maximize'
+    'DoNotScale' = <any> "'DoNotScale'",
+    'EnsureFit' = <any> "'EnsureFit'",
+    'Maximize' = <any> "'Maximize'"
 }
 
 /**
@@ -2234,14 +1604,9 @@ export interface ScatterChartDataPoint {
  */
 export interface Series {
     /**
-     * Data point type.
-     */
-    dataPointType: ChartDataPointType;
-
-    /**
      * Series type.
      */
-    type: ChartType;
+    type: Series.TypeEnum;
 
     /**
      * Series name.
@@ -2324,6 +1689,84 @@ export interface Series {
     lineFormat?: LineFormat;
 
 }
+export namespace Series {
+    export enum TypeEnum {
+        ClusteredColumn = <any> 'ClusteredColumn',
+        StackedColumn = <any> 'StackedColumn',
+        PercentsStackedColumn = <any> 'PercentsStackedColumn',
+        ClusteredColumn3D = <any> 'ClusteredColumn3D',
+        StackedColumn3D = <any> 'StackedColumn3D',
+        PercentsStackedColumn3D = <any> 'PercentsStackedColumn3D',
+        Column3D = <any> 'Column3D',
+        ClusteredCylinder = <any> 'ClusteredCylinder',
+        StackedCylinder = <any> 'StackedCylinder',
+        PercentsStackedCylinder = <any> 'PercentsStackedCylinder',
+        Cylinder3D = <any> 'Cylinder3D',
+        ClusteredCone = <any> 'ClusteredCone',
+        StackedCone = <any> 'StackedCone',
+        PercentsStackedCone = <any> 'PercentsStackedCone',
+        Cone3D = <any> 'Cone3D',
+        ClusteredPyramid = <any> 'ClusteredPyramid',
+        StackedPyramid = <any> 'StackedPyramid',
+        PercentsStackedPyramid = <any> 'PercentsStackedPyramid',
+        Pyramid3D = <any> 'Pyramid3D',
+        Line = <any> 'Line',
+        StackedLine = <any> 'StackedLine',
+        PercentsStackedLine = <any> 'PercentsStackedLine',
+        LineWithMarkers = <any> 'LineWithMarkers',
+        StackedLineWithMarkers = <any> 'StackedLineWithMarkers',
+        PercentsStackedLineWithMarkers = <any> 'PercentsStackedLineWithMarkers',
+        Line3D = <any> 'Line3D',
+        Pie = <any> 'Pie',
+        Pie3D = <any> 'Pie3D',
+        PieOfPie = <any> 'PieOfPie',
+        ExplodedPie = <any> 'ExplodedPie',
+        ExplodedPie3D = <any> 'ExplodedPie3D',
+        BarOfPie = <any> 'BarOfPie',
+        PercentsStackedBar = <any> 'PercentsStackedBar',
+        ClusteredBar3D = <any> 'ClusteredBar3D',
+        ClusteredBar = <any> 'ClusteredBar',
+        StackedBar = <any> 'StackedBar',
+        StackedBar3D = <any> 'StackedBar3D',
+        PercentsStackedBar3D = <any> 'PercentsStackedBar3D',
+        ClusteredHorizontalCylinder = <any> 'ClusteredHorizontalCylinder',
+        StackedHorizontalCylinder = <any> 'StackedHorizontalCylinder',
+        PercentsStackedHorizontalCylinder = <any> 'PercentsStackedHorizontalCylinder',
+        ClusteredHorizontalCone = <any> 'ClusteredHorizontalCone',
+        StackedHorizontalCone = <any> 'StackedHorizontalCone',
+        PercentsStackedHorizontalCone = <any> 'PercentsStackedHorizontalCone',
+        ClusteredHorizontalPyramid = <any> 'ClusteredHorizontalPyramid',
+        StackedHorizontalPyramid = <any> 'StackedHorizontalPyramid',
+        PercentsStackedHorizontalPyramid = <any> 'PercentsStackedHorizontalPyramid',
+        Area = <any> 'Area',
+        StackedArea = <any> 'StackedArea',
+        PercentsStackedArea = <any> 'PercentsStackedArea',
+        Area3D = <any> 'Area3D',
+        StackedArea3D = <any> 'StackedArea3D',
+        PercentsStackedArea3D = <any> 'PercentsStackedArea3D',
+        ScatterWithMarkers = <any> 'ScatterWithMarkers',
+        ScatterWithSmoothLinesAndMarkers = <any> 'ScatterWithSmoothLinesAndMarkers',
+        ScatterWithSmoothLines = <any> 'ScatterWithSmoothLines',
+        ScatterWithStraightLinesAndMarkers = <any> 'ScatterWithStraightLinesAndMarkers',
+        ScatterWithStraightLines = <any> 'ScatterWithStraightLines',
+        HighLowClose = <any> 'HighLowClose',
+        OpenHighLowClose = <any> 'OpenHighLowClose',
+        VolumeHighLowClose = <any> 'VolumeHighLowClose',
+        VolumeOpenHighLowClose = <any> 'VolumeOpenHighLowClose',
+        Surface3D = <any> 'Surface3D',
+        WireframeSurface3D = <any> 'WireframeSurface3D',
+        Contour = <any> 'Contour',
+        WireframeContour = <any> 'WireframeContour',
+        Doughnut = <any> 'Doughnut',
+        ExplodedDoughnut = <any> 'ExplodedDoughnut',
+        Bubble = <any> 'Bubble',
+        BubbleWith3D = <any> 'BubbleWith3D',
+        Radar = <any> 'Radar',
+        RadarWithMarkers = <any> 'RadarWithMarkers',
+        FilledRadar = <any> 'FilledRadar',
+        SeriesOfMixedTypes = <any> 'SeriesOfMixedTypes'
+    }
+}
 
 /**
  * Represents a series marker
@@ -2337,7 +1780,7 @@ export interface SeriesMarker {
     /**
      * symbol
      */
-    symbol: MarkerStyleType;
+    symbol: SeriesMarker.SymbolEnum;
 
     /**
      * Get or sets the fill format.
@@ -2355,6 +1798,22 @@ export interface SeriesMarker {
     lineFormat?: LineFormat;
 
 }
+export namespace SeriesMarker {
+    export enum SymbolEnum {
+        Circle = <any> 'Circle',
+        Dash = <any> 'Dash',
+        Diamond = <any> 'Diamond',
+        Dot = <any> 'Dot',
+        None = <any> 'None',
+        Picture = <any> 'Picture',
+        Plus = <any> 'Plus',
+        Square = <any> 'Square',
+        Star = <any> 'Star',
+        Triangle = <any> 'Triangle',
+        X = <any> 'X',
+        NotDefined = <any> 'NotDefined'
+    }
+}
 
 /**
  * Represents a format for export individual shape.
@@ -2362,13 +1821,13 @@ export interface SeriesMarker {
     /**
     * Represents a format for export individual shape.
     */
-export enum ShapeExportFormat {
-    Jpeg = <any> 'Jpeg',
-    Png = <any> 'Png',
-    Gif = <any> 'Gif',
-    Bmp = <any> 'Bmp',
-    Tiff = <any> 'Tiff',
-    Svg = <any> 'Svg'
+export enum ShapeExportFormat2 {
+    'Jpeg' = <any> "'Jpeg'",
+    'Png' = <any> "'Png'",
+    'Gif' = <any> "'Gif'",
+    'Bmp' = <any> "'Bmp'",
+    'Tiff' = <any> "'Tiff'",
+    'Svg' = <any> "'Svg'"
 }
 
 /**
@@ -2388,13 +1847,20 @@ export interface ShapeImageExportOptions {
     /**
      * Get or sets thumbnail bounds
      */
-    thumbnailBounds: ShapeThumbnailBounds;
+    thumbnailBounds: ShapeImageExportOptions.ThumbnailBoundsEnum;
 
     /**
      * Gets export format.
      */
     format?: string;
 
+}
+export namespace ShapeImageExportOptions {
+    export enum ThumbnailBoundsEnum {
+        Slide = <any> 'Slide',
+        Shape = <any> 'Shape',
+        Appearance = <any> 'Appearance'
+    }
 }
 
 /**
@@ -2403,31 +1869,10 @@ export interface ShapeImageExportOptions {
     /**
     * Represents thumnail bounds settings.
     */
-export enum ShapeThumbnailBounds {
-    Slide = <any> 'Slide',
-    Shape = <any> 'Shape',
-    Appearance = <any> 'Appearance'
-}
-
-/**
- * Shape type
- */
-    /**
-    * Shape type
-    */
-export enum ShapeType {
-    Shape = <any> 'Shape',
-    Chart = <any> 'Chart',
-    Table = <any> 'Table',
-    PictureFrame = <any> 'PictureFrame',
-    VideoFrame = <any> 'VideoFrame',
-    AudioFrame = <any> 'AudioFrame',
-    SmartArt = <any> 'SmartArt',
-    OleObjectFrame = <any> 'OleObjectFrame',
-    GroupShape = <any> 'GroupShape',
-    GraphicalObject = <any> 'GraphicalObject',
-    Connector = <any> 'Connector',
-    SmartArtShape = <any> 'SmartArtShape'
+export enum ShapeThumbnailBounds2 {
+    'Slide' = <any> "'Slide'",
+    'Shape' = <any> "'Shape'",
+    'Appearance' = <any> "'Appearance'"
 }
 
 /**
@@ -2437,22 +1882,22 @@ export enum ShapeType {
     * 
     */
 export enum SizeType {
-    OnScreen = <any> 'OnScreen',
-    LetterPaper = <any> 'LetterPaper',
-    A4Paper = <any> 'A4Paper',
-    Slide35mm = <any> 'Slide35mm',
-    Overhead = <any> 'Overhead',
-    Banner = <any> 'Banner',
-    Custom = <any> 'Custom',
-    Ledger = <any> 'Ledger',
-    A3Paper = <any> 'A3Paper',
-    B4IsoPaper = <any> 'B4IsoPaper',
-    B5IsoPaper = <any> 'B5IsoPaper',
-    B4JisPaper = <any> 'B4JisPaper',
-    B5JisPaper = <any> 'B5JisPaper',
-    HagakiCard = <any> 'HagakiCard',
-    OnScreen16x9 = <any> 'OnScreen16x9',
-    OnScreen16x10 = <any> 'OnScreen16x10'
+    'OnScreen' = <any> "'OnScreen'",
+    'LetterPaper' = <any> "'LetterPaper'",
+    'A4Paper' = <any> "'A4Paper'",
+    'Slide35mm' = <any> "'Slide35mm'",
+    'Overhead' = <any> "'Overhead'",
+    'Banner' = <any> "'Banner'",
+    'Custom' = <any> "'Custom'",
+    'Ledger' = <any> "'Ledger'",
+    'A3Paper' = <any> "'A3Paper'",
+    'B4IsoPaper' = <any> "'B4IsoPaper'",
+    'B5IsoPaper' = <any> "'B5IsoPaper'",
+    'B4JisPaper' = <any> "'B4JisPaper'",
+    'B5JisPaper' = <any> "'B5JisPaper'",
+    'HagakiCard' = <any> "'HagakiCard'",
+    'OnScreen16x9' = <any> "'OnScreen16x9'",
+    'OnScreen16x10' = <any> "'OnScreen16x10'"
 }
 
 /**
@@ -2474,217 +1919,25 @@ export interface SlideComment {
     * Slide Export Format
     */
 export enum SlideExportFormat {
-    Jpeg = <any> 'Jpeg',
-    Png = <any> 'Png',
-    Gif = <any> 'Gif',
-    Bmp = <any> 'Bmp',
-    Tiff = <any> 'Tiff',
-    Html = <any> 'Html',
-    Pdf = <any> 'Pdf',
-    Xps = <any> 'Xps',
-    Pptx = <any> 'Pptx',
-    Odp = <any> 'Odp',
-    Otp = <any> 'Otp',
-    Ppt = <any> 'Ppt',
-    Pps = <any> 'Pps',
-    Ppsx = <any> 'Ppsx',
-    Pptm = <any> 'Pptm',
-    Ppsm = <any> 'Ppsm',
-    Potx = <any> 'Potx',
-    Potm = <any> 'Potm',
-    Svg = <any> 'Svg'
-}
-
-/**
- * Represents color scheme of a SmartArt diagram.
- */
-    /**
-    * Represents color scheme of a SmartArt diagram.
-    */
-export enum SmartArtColorType {
-    Dark1Outline = <any> 'Dark1Outline',
-    Dark2Outline = <any> 'Dark2Outline',
-    DarkFill = <any> 'DarkFill',
-    ColorfulAccentColors = <any> 'ColorfulAccentColors',
-    ColorfulAccentColors2to3 = <any> 'ColorfulAccentColors2to3',
-    ColorfulAccentColors3to4 = <any> 'ColorfulAccentColors3to4',
-    ColorfulAccentColors4to5 = <any> 'ColorfulAccentColors4to5',
-    ColorfulAccentColors5to6 = <any> 'ColorfulAccentColors5to6',
-    ColoredOutlineAccent1 = <any> 'ColoredOutlineAccent1',
-    ColoredFillAccent1 = <any> 'ColoredFillAccent1',
-    GradientRangeAccent1 = <any> 'GradientRangeAccent1',
-    GradientLoopAccent1 = <any> 'GradientLoopAccent1',
-    TransparentGradientRangeAccent1 = <any> 'TransparentGradientRangeAccent1',
-    ColoredOutlineAccent2 = <any> 'ColoredOutlineAccent2',
-    ColoredFillAccent2 = <any> 'ColoredFillAccent2',
-    GradientRangeAccent2 = <any> 'GradientRangeAccent2',
-    GradientLoopAccent2 = <any> 'GradientLoopAccent2',
-    TransparentGradientRangeAccent2 = <any> 'TransparentGradientRangeAccent2',
-    ColoredOutlineAccent3 = <any> 'ColoredOutlineAccent3',
-    ColoredFillAccent3 = <any> 'ColoredFillAccent3',
-    GradientRangeAccent3 = <any> 'GradientRangeAccent3',
-    GradientLoopAccent3 = <any> 'GradientLoopAccent3',
-    TransparentGradientRangeAccent3 = <any> 'TransparentGradientRangeAccent3',
-    ColoredOutlineAccent4 = <any> 'ColoredOutlineAccent4',
-    ColoredFillAccent4 = <any> 'ColoredFillAccent4',
-    GradientRangeAccent4 = <any> 'GradientRangeAccent4',
-    GradientLoopAccent4 = <any> 'GradientLoopAccent4',
-    TransparentGradientRangeAccent4 = <any> 'TransparentGradientRangeAccent4',
-    ColoredOutlineAccent5 = <any> 'ColoredOutlineAccent5',
-    ColoredFillAccent5 = <any> 'ColoredFillAccent5',
-    GradientRangeAccent5 = <any> 'GradientRangeAccent5',
-    GradientLoopAccent5 = <any> 'GradientLoopAccent5',
-    TransparentGradientRangeAccent5 = <any> 'TransparentGradientRangeAccent5',
-    ColoredOutlineAccent6 = <any> 'ColoredOutlineAccent6',
-    ColoredFillAccent6 = <any> 'ColoredFillAccent6',
-    GradientRangeAccent6 = <any> 'GradientRangeAccent6',
-    GradientLoopAccent6 = <any> 'GradientLoopAccent6',
-    TransparentGradientRangeAccent6 = <any> 'TransparentGradientRangeAccent6'
-}
-
-/**
- * Represents layout type of a SmartArt diagram.
- */
-    /**
-    * Represents layout type of a SmartArt diagram.
-    */
-export enum SmartArtLayoutType {
-    AccentProcess = <any> 'AccentProcess',
-    AccentedPicture = <any> 'AccentedPicture',
-    AlternatingFlow = <any> 'AlternatingFlow',
-    AlternatingHexagons = <any> 'AlternatingHexagons',
-    AlternatingPictureBlocks = <any> 'AlternatingPictureBlocks',
-    AlternatingPictureCircles = <any> 'AlternatingPictureCircles',
-    ArrowRibbon = <any> 'ArrowRibbon',
-    AscendingPictureAccentProcess = <any> 'AscendingPictureAccentProcess',
-    Balance = <any> 'Balance',
-    BasicBendingProcess = <any> 'BasicBendingProcess',
-    BasicBlockList = <any> 'BasicBlockList',
-    BasicChevronProcess = <any> 'BasicChevronProcess',
-    BasicCycle = <any> 'BasicCycle',
-    BasicMatrix = <any> 'BasicMatrix',
-    BasicPie = <any> 'BasicPie',
-    BasicProcess = <any> 'BasicProcess',
-    BasicPyramid = <any> 'BasicPyramid',
-    BasicRadial = <any> 'BasicRadial',
-    BasicTarget = <any> 'BasicTarget',
-    BasicTimeline = <any> 'BasicTimeline',
-    BasicVenn = <any> 'BasicVenn',
-    BendingPictureAccentList = <any> 'BendingPictureAccentList',
-    BendingPictureBlocks = <any> 'BendingPictureBlocks',
-    BendingPictureCaption = <any> 'BendingPictureCaption',
-    BendingPictureCaptionList = <any> 'BendingPictureCaptionList',
-    BendingPictureSemiTransparentText = <any> 'BendingPictureSemiTransparentText',
-    BlockCycle = <any> 'BlockCycle',
-    BubblePictureList = <any> 'BubblePictureList',
-    CaptionedPictures = <any> 'CaptionedPictures',
-    ChevronList = <any> 'ChevronList',
-    CircleAccentTimeline = <any> 'CircleAccentTimeline',
-    CircleArrowProcess = <any> 'CircleArrowProcess',
-    CirclePictureHierarchy = <any> 'CirclePictureHierarchy',
-    CircleRelationship = <any> 'CircleRelationship',
-    CircularBendingProcess = <any> 'CircularBendingProcess',
-    CircularPictureCallout = <any> 'CircularPictureCallout',
-    ClosedChevronProcess = <any> 'ClosedChevronProcess',
-    ContinuousArrowProcess = <any> 'ContinuousArrowProcess',
-    ContinuousBlockProcess = <any> 'ContinuousBlockProcess',
-    ContinuousCycle = <any> 'ContinuousCycle',
-    ContinuousPictureList = <any> 'ContinuousPictureList',
-    ConvergingArrows = <any> 'ConvergingArrows',
-    ConvergingRadial = <any> 'ConvergingRadial',
-    CounterbalanceArrows = <any> 'CounterbalanceArrows',
-    CycleMatrix = <any> 'CycleMatrix',
-    DescendingBlockList = <any> 'DescendingBlockList',
-    DescendingProcess = <any> 'DescendingProcess',
-    DetailedProcess = <any> 'DetailedProcess',
-    DivergingArrows = <any> 'DivergingArrows',
-    DivergingRadial = <any> 'DivergingRadial',
-    Equation = <any> 'Equation',
-    FramedTextPicture = <any> 'FramedTextPicture',
-    Funnel = <any> 'Funnel',
-    Gear = <any> 'Gear',
-    GridMatrix = <any> 'GridMatrix',
-    GroupedList = <any> 'GroupedList',
-    HalfCircleOrganizationChart = <any> 'HalfCircleOrganizationChart',
-    HexagonCluster = <any> 'HexagonCluster',
-    Hierarchy = <any> 'Hierarchy',
-    HierarchyList = <any> 'HierarchyList',
-    HorizontalBulletList = <any> 'HorizontalBulletList',
-    HorizontalHierarchy = <any> 'HorizontalHierarchy',
-    HorizontalLabeledHierarchy = <any> 'HorizontalLabeledHierarchy',
-    HorizontalMultiLevelHierarchy = <any> 'HorizontalMultiLevelHierarchy',
-    HorizontalOrganizationChart = <any> 'HorizontalOrganizationChart',
-    HorizontalPictureList = <any> 'HorizontalPictureList',
-    IncreasingArrowsProcess = <any> 'IncreasingArrowsProcess',
-    IncreasingCircleProcess = <any> 'IncreasingCircleProcess',
-    InvertedPyramid = <any> 'InvertedPyramid',
-    LabeledHierarchy = <any> 'LabeledHierarchy',
-    LinearVenn = <any> 'LinearVenn',
-    LinedList = <any> 'LinedList',
-    MultidirectionalCycle = <any> 'MultidirectionalCycle',
-    NameandTitleOrganizationChart = <any> 'NameandTitleOrganizationChart',
-    NestedTarget = <any> 'NestedTarget',
-    NondirectionalCycle = <any> 'NondirectionalCycle',
-    OpposingArrows = <any> 'OpposingArrows',
-    OpposingIdeas = <any> 'OpposingIdeas',
-    OrganizationChart = <any> 'OrganizationChart',
-    PhasedProcess = <any> 'PhasedProcess',
-    PictureAccentBlocks = <any> 'PictureAccentBlocks',
-    PictureAccentList = <any> 'PictureAccentList',
-    PictureAccentProcess = <any> 'PictureAccentProcess',
-    PictureCaptionList = <any> 'PictureCaptionList',
-    PictureGrid = <any> 'PictureGrid',
-    PictureLineup = <any> 'PictureLineup',
-    PictureStrips = <any> 'PictureStrips',
-    PieProcess = <any> 'PieProcess',
-    PlusandMinus = <any> 'PlusandMinus',
-    ProcessArrows = <any> 'ProcessArrows',
-    ProcessList = <any> 'ProcessList',
-    PyramidList = <any> 'PyramidList',
-    RadialCluster = <any> 'RadialCluster',
-    RadialCycle = <any> 'RadialCycle',
-    RadialList = <any> 'RadialList',
-    RadialVenn = <any> 'RadialVenn',
-    RandomToResultProcess = <any> 'RandomToResultProcess',
-    RepeatingBendingProcess = <any> 'RepeatingBendingProcess',
-    ReverseList = <any> 'ReverseList',
-    SegmentedCycle = <any> 'SegmentedCycle',
-    SegmentedProcess = <any> 'SegmentedProcess',
-    SegmentedPyramid = <any> 'SegmentedPyramid',
-    SnapshotPictureList = <any> 'SnapshotPictureList',
-    SpiralPicture = <any> 'SpiralPicture',
-    SquareAccentList = <any> 'SquareAccentList',
-    StackedList = <any> 'StackedList',
-    StackedVenn = <any> 'StackedVenn',
-    StaggeredProcess = <any> 'StaggeredProcess',
-    StepDownProcess = <any> 'StepDownProcess',
-    StepUpProcess = <any> 'StepUpProcess',
-    SubStepProcess = <any> 'SubStepProcess',
-    TableHierarchy = <any> 'TableHierarchy',
-    TableList = <any> 'TableList',
-    TargetList = <any> 'TargetList',
-    TextCycle = <any> 'TextCycle',
-    TitlePictureLineup = <any> 'TitlePictureLineup',
-    TitledMatrix = <any> 'TitledMatrix',
-    TitledPictureAccentList = <any> 'TitledPictureAccentList',
-    TitledPictureBlocks = <any> 'TitledPictureBlocks',
-    TrapezoidList = <any> 'TrapezoidList',
-    UpwardArrow = <any> 'UpwardArrow',
-    VerticalAccentList = <any> 'VerticalAccentList',
-    VerticalArrowList = <any> 'VerticalArrowList',
-    VerticalBendingProcess = <any> 'VerticalBendingProcess',
-    VerticalBlockList = <any> 'VerticalBlockList',
-    VerticalBoxList = <any> 'VerticalBoxList',
-    VerticalBulletList = <any> 'VerticalBulletList',
-    VerticalChevronList = <any> 'VerticalChevronList',
-    VerticalCircleList = <any> 'VerticalCircleList',
-    VerticalCurvedList = <any> 'VerticalCurvedList',
-    VerticalEquation = <any> 'VerticalEquation',
-    VerticalPictureAccentList = <any> 'VerticalPictureAccentList',
-    VerticalPictureList = <any> 'VerticalPictureList',
-    VerticalProcess = <any> 'VerticalProcess',
-    Custom = <any> 'Custom',
-    PictureOrganizationChart = <any> 'PictureOrganizationChart'
+    'Jpeg' = <any> "'Jpeg'",
+    'Png' = <any> "'Png'",
+    'Gif' = <any> "'Gif'",
+    'Bmp' = <any> "'Bmp'",
+    'Tiff' = <any> "'Tiff'",
+    'Html' = <any> "'Html'",
+    'Pdf' = <any> "'Pdf'",
+    'Xps' = <any> "'Xps'",
+    'Pptx' = <any> "'Pptx'",
+    'Odp' = <any> "'Odp'",
+    'Otp' = <any> "'Otp'",
+    'Ppt' = <any> "'Ppt'",
+    'Pps' = <any> "'Pps'",
+    'Ppsx' = <any> "'Ppsx'",
+    'Pptm' = <any> "'Pptm'",
+    'Ppsm' = <any> "'Ppsm'",
+    'Potx' = <any> "'Potx'",
+    'Potm' = <any> "'Potm'",
+    'Svg' = <any> "'Svg'"
 }
 
 /**
@@ -2714,31 +1967,17 @@ export interface SmartArtNode {
     /**
      * Organization chart layout type associated with current node.
      */
-    orgChartLayout: OrganizationChartLayoutType;
+    orgChartLayout: SmartArtNode.OrgChartLayoutEnum;
 
 }
-
-/**
- * Represents style scheme of a SmartArt diagram.
- */
-    /**
-    * Represents style scheme of a SmartArt diagram.
-    */
-export enum SmartArtQuickStyleType {
-    SimpleFill = <any> 'SimpleFill',
-    WhiteOutline = <any> 'WhiteOutline',
-    SubtleEffect = <any> 'SubtleEffect',
-    ModerateEffect = <any> 'ModerateEffect',
-    IntenceEffect = <any> 'IntenceEffect',
-    Polished = <any> 'Polished',
-    Inset = <any> 'Inset',
-    Cartoon = <any> 'Cartoon',
-    Powder = <any> 'Powder',
-    BrickScene = <any> 'BrickScene',
-    FlatScene = <any> 'FlatScene',
-    MetallicScene = <any> 'MetallicScene',
-    SunsetScene = <any> 'SunsetScene',
-    BirdsEyeScene = <any> 'BirdsEyeScene'
+export namespace SmartArtNode {
+    export enum OrgChartLayoutEnum {
+        Initial = <any> 'Initial',
+        Standart = <any> 'Standart',
+        BothHanging = <any> 'BothHanging',
+        LeftHanging = <any> 'LeftHanging',
+        RightHanging = <any> 'RightHanging'
+    }
 }
 
 /**
@@ -2749,6 +1988,48 @@ export interface SoftEdgeEffect {
      * radius
      */
     radius: number;
+
+}
+
+/**
+ * Storage exists
+ */
+export interface StorageExist {
+    /**
+     * Shows that the storage exists.             
+     */
+    exists: boolean;
+
+}
+
+/**
+ * File or folder information
+ */
+export interface StorageFile {
+    /**
+     * File or folder name.
+     */
+    name?: string;
+
+    /**
+     * True if it is a folder.
+     */
+    isFolder: boolean;
+
+    /**
+     * File or folder last modified DateTime.
+     */
+    modifiedDate?: Date;
+
+    /**
+     * File or folder size.
+     */
+    size: number;
+
+    /**
+     * File or folder path.
+     */
+    path?: string;
 
 }
 
@@ -2794,12 +2075,12 @@ export interface TableCell {
     /**
      * Text anchor type.
      */
-    textAnchorType: TextAnchorType;
+    textAnchorType: TableCell.TextAnchorTypeEnum;
 
     /**
      * The type of vertical text.
      */
-    textVerticalType: TextVerticalType;
+    textVerticalType: TableCell.TextVerticalTypeEnum;
 
     /**
      * Fill properties set of the cell.
@@ -2837,6 +2118,26 @@ export interface TableCell {
     borderDiagonalDown?: LineFormat;
 
 }
+export namespace TableCell {
+    export enum TextAnchorTypeEnum {
+        Top = <any> 'Top',
+        Center = <any> 'Center',
+        Bottom = <any> 'Bottom',
+        Justified = <any> 'Justified',
+        Distributed = <any> 'Distributed',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum TextVerticalTypeEnum {
+        Horizontal = <any> 'Horizontal',
+        Vertical = <any> 'Vertical',
+        Vertical270 = <any> 'Vertical270',
+        WordArtVertical = <any> 'WordArtVertical',
+        EastAsianVertical = <any> 'EastAsianVertical',
+        MongolianVertical = <any> 'MongolianVertical',
+        WordArtVerticalRightToLeft = <any> 'WordArtVerticalRightToLeft',
+        NotDefined = <any> 'NotDefined'
+    }
+}
 
 export interface TableColumn {
     width: number;
@@ -2865,171 +2166,34 @@ export interface TableRow {
 }
 
 /**
- * 
- */
-    /**
-    * 
-    */
-export enum TableStylePreset {
-    None = <any> 'None',
-    MediumStyle2Accent1 = <any> 'MediumStyle2Accent1',
-    MediumStyle2 = <any> 'MediumStyle2',
-    NoStyleNoGrid = <any> 'NoStyleNoGrid',
-    ThemedStyle1Accent1 = <any> 'ThemedStyle1Accent1',
-    ThemedStyle1Accent2 = <any> 'ThemedStyle1Accent2',
-    ThemedStyle1Accent3 = <any> 'ThemedStyle1Accent3',
-    ThemedStyle1Accent4 = <any> 'ThemedStyle1Accent4',
-    ThemedStyle1Accent5 = <any> 'ThemedStyle1Accent5',
-    ThemedStyle1Accent6 = <any> 'ThemedStyle1Accent6',
-    NoStyleTableGrid = <any> 'NoStyleTableGrid',
-    ThemedStyle2Accent1 = <any> 'ThemedStyle2Accent1',
-    ThemedStyle2Accent2 = <any> 'ThemedStyle2Accent2',
-    ThemedStyle2Accent3 = <any> 'ThemedStyle2Accent3',
-    ThemedStyle2Accent4 = <any> 'ThemedStyle2Accent4',
-    ThemedStyle2Accent5 = <any> 'ThemedStyle2Accent5',
-    ThemedStyle2Accent6 = <any> 'ThemedStyle2Accent6',
-    LightStyle1 = <any> 'LightStyle1',
-    LightStyle1Accent1 = <any> 'LightStyle1Accent1',
-    LightStyle1Accent2 = <any> 'LightStyle1Accent2',
-    LightStyle1Accent3 = <any> 'LightStyle1Accent3',
-    LightStyle1Accent4 = <any> 'LightStyle1Accent4',
-    LightStyle2Accent5 = <any> 'LightStyle2Accent5',
-    LightStyle1Accent6 = <any> 'LightStyle1Accent6',
-    LightStyle2 = <any> 'LightStyle2',
-    LightStyle2Accent1 = <any> 'LightStyle2Accent1',
-    LightStyle2Accent2 = <any> 'LightStyle2Accent2',
-    LightStyle2Accent3 = <any> 'LightStyle2Accent3',
-    MediumStyle2Accent3 = <any> 'MediumStyle2Accent3',
-    MediumStyle2Accent4 = <any> 'MediumStyle2Accent4',
-    MediumStyle2Accent5 = <any> 'MediumStyle2Accent5',
-    LightStyle2Accent6 = <any> 'LightStyle2Accent6',
-    LightStyle2Accent4 = <any> 'LightStyle2Accent4',
-    LightStyle3 = <any> 'LightStyle3',
-    LightStyle3Accent1 = <any> 'LightStyle3Accent1',
-    MediumStyle2Accent2 = <any> 'MediumStyle2Accent2',
-    LightStyle3Accent2 = <any> 'LightStyle3Accent2',
-    LightStyle3Accent3 = <any> 'LightStyle3Accent3',
-    LightStyle3Accent4 = <any> 'LightStyle3Accent4',
-    LightStyle3Accent5 = <any> 'LightStyle3Accent5',
-    LightStyle3Accent6 = <any> 'LightStyle3Accent6',
-    MediumStyle1 = <any> 'MediumStyle1',
-    MediumStyle1Accent1 = <any> 'MediumStyle1Accent1',
-    MediumStyle1Accent2 = <any> 'MediumStyle1Accent2',
-    MediumStyle1Accent3 = <any> 'MediumStyle1Accent3',
-    MediumStyle1Accent4 = <any> 'MediumStyle1Accent4',
-    MediumStyle1Accent5 = <any> 'MediumStyle1Accent5',
-    MediumStyle1Accent6 = <any> 'MediumStyle1Accent6',
-    MediumStyle2Accent6 = <any> 'MediumStyle2Accent6',
-    MediumStyle3 = <any> 'MediumStyle3',
-    MediumStyle3Accent1 = <any> 'MediumStyle3Accent1',
-    MediumStyle3Accent2 = <any> 'MediumStyle3Accent2',
-    MediumStyle3Accent3 = <any> 'MediumStyle3Accent3',
-    MediumStyle3Accent4 = <any> 'MediumStyle3Accent4',
-    MediumStyle3Accent5 = <any> 'MediumStyle3Accent5',
-    MediumStyle3Accent6 = <any> 'MediumStyle3Accent6',
-    MediumStyle4 = <any> 'MediumStyle4',
-    MediumStyle4Accent1 = <any> 'MediumStyle4Accent1',
-    MediumStyle4Accent2 = <any> 'MediumStyle4Accent2',
-    MediumStyle4Accent3 = <any> 'MediumStyle4Accent3',
-    MediumStyle4Accent4 = <any> 'MediumStyle4Accent4',
-    MediumStyle4Accent5 = <any> 'MediumStyle4Accent5',
-    MediumStyle4Accent6 = <any> 'MediumStyle4Accent6',
-    DarkStyle1 = <any> 'DarkStyle1',
-    DarkStyle1Accent1 = <any> 'DarkStyle1Accent1',
-    DarkStyle1Accent2 = <any> 'DarkStyle1Accent2',
-    DarkStyle1Accent3 = <any> 'DarkStyle1Accent3',
-    DarkStyle1Accent4 = <any> 'DarkStyle1Accent4',
-    DarkStyle1Accent5 = <any> 'DarkStyle1Accent5',
-    DarkStyle1Accent6 = <any> 'DarkStyle1Accent6',
-    DarkStyle2 = <any> 'DarkStyle2',
-    DarkStyle2Accent1Accent2 = <any> 'DarkStyle2Accent1Accent2',
-    DarkStyle2Accent3Accent4 = <any> 'DarkStyle2Accent3Accent4',
-    DarkStyle2Accent5Accent6 = <any> 'DarkStyle2Accent5Accent6',
-    LightStyle1Accent5 = <any> 'LightStyle1Accent5',
-    Custom = <any> 'Custom'
-}
-
-/**
  * Represents task for pipeline.
  */
 export interface Task {
-    /**
-     * Gets type of task.
-     */
-    type: TaskType;
+    type?: Task.TypeEnum;
 
+}
+export namespace Task {
+    export enum TypeEnum {
+        Save = <any> 'Save',
+        SaveSlide = <any> 'SaveSlide',
+        SaveShape = <any> 'SaveShape',
+        AddSlide = <any> 'AddSlide',
+        AddMasterSlide = <any> 'AddMasterSlide',
+        AddLayoutSlide = <any> 'AddLayoutSlide',
+        RemoveSlide = <any> 'RemoveSlide',
+        ReoderSlide = <any> 'ReoderSlide',
+        Merge = <any> 'Merge',
+        UpdateBackground = <any> 'UpdateBackground',
+        ResetSlide = <any> 'ResetSlide',
+        AddShape = <any> 'AddShape',
+        RemoveShape = <any> 'RemoveShape',
+        UpdateShape = <any> 'UpdateShape',
+        ReplaceText = <any> 'ReplaceText'
+    }
 }
 
 /**
- * Pipeline task type.
- */
-    /**
-    * Pipeline task type.
-    */
-export enum TaskType {
-    Save = <any> 'Save',
-    SaveSlide = <any> 'SaveSlide',
-    SaveShape = <any> 'SaveShape',
-    AddSlide = <any> 'AddSlide',
-    AddMasterSlide = <any> 'AddMasterSlide',
-    AddLayoutSlide = <any> 'AddLayoutSlide',
-    RemoveSlide = <any> 'RemoveSlide',
-    ReoderSlide = <any> 'ReoderSlide',
-    Merge = <any> 'Merge',
-    UpdateBackground = <any> 'UpdateBackground',
-    ResetSlide = <any> 'ResetSlide',
-    AddShape = <any> 'AddShape',
-    RemoveShape = <any> 'RemoveShape',
-    UpdateShape = <any> 'UpdateShape',
-    ReplaceText = <any> 'ReplaceText'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum TextAlignment {
-    Left = <any> 'Left',
-    Center = <any> 'Center',
-    Right = <any> 'Right',
-    Justify = <any> 'Justify',
-    JustifyLow = <any> 'JustifyLow',
-    Distributed = <any> 'Distributed',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Text box alignment within a text area.
- */
-    /**
-    * Text box alignment within a text area.
-    */
-export enum TextAnchorType {
-    Top = <any> 'Top',
-    Center = <any> 'Center',
-    Bottom = <any> 'Bottom',
-    Justified = <any> 'Justified',
-    Distributed = <any> 'Distributed',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum TextCapType {
-    None = <any> 'None',
-    Small = <any> 'Small',
-    All = <any> 'All',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Represents text item, referenced by 
+ * Represents text item, referenced by TextItems
  */
 export interface TextItem {
     /**
@@ -3044,135 +2208,13 @@ export interface TextItem {
 
 }
 
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum TextStrikethroughType {
-    None = <any> 'None',
-    Single = <any> 'Single',
-    Double = <any> 'Double',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum TextUnderlineType {
-    None = <any> 'None',
-    Words = <any> 'Words',
-    Single = <any> 'Single',
-    Double = <any> 'Double',
-    Heavy = <any> 'Heavy',
-    Dotted = <any> 'Dotted',
-    HeavyDotted = <any> 'HeavyDotted',
-    Dashed = <any> 'Dashed',
-    HeavyDashed = <any> 'HeavyDashed',
-    LongDashed = <any> 'LongDashed',
-    HeavyLongDashed = <any> 'HeavyLongDashed',
-    DotDash = <any> 'DotDash',
-    HeavyDotDash = <any> 'HeavyDotDash',
-    DotDotDash = <any> 'DotDotDash',
-    HeavyDotDotDash = <any> 'HeavyDotDotDash',
-    Wavy = <any> 'Wavy',
-    HeavyWavy = <any> 'HeavyWavy',
-    DoubleWavy = <any> 'DoubleWavy',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Vertical text writing mode
- */
-    /**
-    * Vertical text writing mode
-    */
-export enum TextVerticalType {
-    Horizontal = <any> 'Horizontal',
-    Vertical = <any> 'Vertical',
-    Vertical270 = <any> 'Vertical270',
-    WordArtVertical = <any> 'WordArtVertical',
-    EastAsianVertical = <any> 'EastAsianVertical',
-    MongolianVertical = <any> 'MongolianVertical',
-    WordArtVerticalRightToLeft = <any> 'WordArtVerticalRightToLeft',
-    NotDefined = <any> 'NotDefined'
-}
-
-/**
- * Represents the position type of tick-mark labels on the specified axis.
- */
-    /**
-    * Represents the position type of tick-mark labels on the specified axis.
-    */
-export enum TickLabelPositionType {
-    High = <any> 'High',
-    Low = <any> 'Low',
-    NextTo = <any> 'NextTo',
-    None = <any> 'None'
-}
-
-/**
- * Represents the tick mark type for the specified axis.
- */
-    /**
-    * Represents the tick mark type for the specified axis.
-    */
-export enum TickMarkType {
-    Cross = <any> 'Cross',
-    Inside = <any> 'Inside',
-    None = <any> 'None',
-    Outside = <any> 'Outside'
-}
-
-/**
- * Provides options that control how a presentation is compressed in TIFF format.
- */
-    /**
-    * Provides options that control how a presentation is compressed in TIFF format.
-    */
-export enum TiffCompressionType {
-    Default = <any> 'Default',
-    None = <any> 'None',
-    CCITT3 = <any> 'CCITT3',
-    CCITT4 = <any> 'CCITT4',
-    LZW = <any> 'LZW',
-    RLE = <any> 'RLE'
-}
-
-/**
- * Represents the base unit for the category axis
- */
-    /**
-    * Represents the base unit for the category axis
-    */
-export enum TimeUnitType {
-    Days = <any> 'Days',
-    Months = <any> 'Months',
-    Years = <any> 'Years'
-}
-
-/**
- * 
- */
-    /**
-    * 
-    */
-export enum VideoPlayModePreset {
-    Auto = <any> 'Auto',
-    OnClick = <any> 'OnClick',
-    AllSlides = <any> 'AllSlides',
-    Mixed = <any> 'Mixed'
-}
-
 export interface AddLayoutSlide extends Task {
     cloneFromFile?: InputFile;
 
-    cloneFromPosition?: number;
+    cloneFromPosition: number;
 
+}
+export namespace AddLayoutSlide {
 }
 
 /**
@@ -3187,13 +2229,15 @@ export interface AddMasterSlide extends Task {
     /**
      * Index of slide to clone.
      */
-    cloneFromPosition?: number;
+    cloneFromPosition: number;
 
     /**
      * True if cloned master slide is applied to all slides.
      */
-    applyToAll?: boolean;
+    applyToAll: boolean;
 
+}
+export namespace AddMasterSlide {
 }
 
 export interface AddShape extends Task {
@@ -3201,6 +2245,8 @@ export interface AddShape extends Task {
 
     shapePath?: string;
 
+}
+export namespace AddShape {
 }
 
 /**
@@ -3215,12 +2261,12 @@ export interface AddSlide extends Task {
     /**
      * Position of the slide to clone.
      */
-    cloneFromPosition?: number;
+    cloneFromPosition: number;
 
     /**
      * Position at which to insert the slide.
      */
-    position?: number;
+    position: number;
 
     /**
      * Alias of layout (href, index or type). If value is null a blank slide is added.
@@ -3228,21 +2274,7 @@ export interface AddSlide extends Task {
     layoutAlias?: string;
 
 }
-
-/**
- * Represents response for   DTO
- */
-export interface ApiInfoResponse extends SaaSposeResponse {
-    /**
-     * Product name.
-     */
-    name?: string;
-
-    /**
-     * API version.
-     */
-    version?: string;
-
+export namespace AddSlide {
 }
 
 /**
@@ -3255,9 +2287,11 @@ export interface Base64InputFile extends InputFile {
     data?: string;
 
 }
+export namespace Base64InputFile {
+}
 
 export interface BubbleChartDataPoint extends ScatterChartDataPoint {
-    bubbleSize?: number;
+    bubbleSize: number;
 
 }
 
@@ -3266,10 +2300,22 @@ export interface BubbleChartDataPoint extends ScatterChartDataPoint {
  */
 export interface BubbleSeries extends Series {
     /**
+     * Data point type.
+     */
+    dataPointType: BubbleSeries.DataPointTypeEnum;
+
+    /**
      * Gets or sets the values.
      */
     dataPoints?: Array<BubbleChartDataPoint>;
 
+}
+export namespace BubbleSeries {
+    export enum DataPointTypeEnum {
+        OneValue = <any> 'OneValue',
+        Scatter = <any> 'Scatter',
+        Bubble = <any> 'Bubble'
+    }
 }
 
 /**
@@ -3299,17 +2345,6 @@ export interface ColorScheme extends ResourceBase {
     light1?: string;
 
     light2?: string;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface ColorSchemeResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    colorScheme?: ColorScheme;
 
 }
 
@@ -3352,45 +2387,28 @@ export interface DocumentProperties extends ResourceBase {
 
 }
 
-/**
- * Represents response for   DTO
- */
-export interface DocumentPropertiesResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    documentProperties?: DocumentProperties;
-
-}
-
 export interface DocumentProperty extends ResourceBase {
     name?: string;
 
     value?: string;
 
-    builtIn?: boolean;
+    builtIn: boolean;
 
 }
 
 /**
- * Represents response for   DTO
+ * File Version
  */
-export interface DocumentPropertyResponse extends SaaSposeResponse {
+export interface FileVersion extends StorageFile {
     /**
-     * Gets or sets the  DTO
+     * File Version ID.
      */
-    documentProperty?: DocumentProperty;
+    versionId?: string;
 
-}
-
-/**
- * Represents response for   DTO
- */
-export interface DocumentResponse extends SaaSposeResponse {
     /**
-     * Gets or sets the  DTO
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
      */
-    document?: Document;
+    isLatest: boolean;
 
 }
 
@@ -3416,17 +2434,6 @@ export interface FontScheme extends ResourceBase {
 }
 
 /**
- * Represents response for   DTO
- */
-export interface FontSchemeResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    fontScheme?: FontScheme;
-
-}
-
-/**
  * Represents Format Scheme for slide's theme
  */
 export interface FormatScheme extends ResourceBase {
@@ -3441,29 +2448,18 @@ export interface FormatScheme extends ResourceBase {
 }
 
 /**
- * Represents response for   DTO
- */
-export interface FormatSchemeResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    formatScheme?: FormatScheme;
-
-}
-
-/**
  * Represents gradient fill format
  */
 export interface GradientFill extends FillFormat {
     /**
      * Gradient style.
      */
-    direction?: GradientDirection;
+    direction: GradientFill.DirectionEnum;
 
     /**
      * Gradient shape.
      */
-    shape?: GradientShapeType;
+    shape: GradientFill.ShapeEnum;
 
     /**
      * Gradient stops.
@@ -3473,18 +2469,42 @@ export interface GradientFill extends FillFormat {
     /**
      * Gradient angle.
      */
-    linearAngle?: number;
+    linearAngle: number;
 
     /**
      * True if the gradient is scaled.
      */
-    isScaled?: boolean;
+    isScaled: boolean;
 
     /**
      * Gradient flipping mode.
      */
-    tileFlip?: GradientTileFlip;
+    tileFlip: GradientFill.TileFlipEnum;
 
+}
+export namespace GradientFill {
+    export enum DirectionEnum {
+        FromCorner1 = <any> 'FromCorner1',
+        FromCorner2 = <any> 'FromCorner2',
+        FromCorner3 = <any> 'FromCorner3',
+        FromCorner4 = <any> 'FromCorner4',
+        FromCenter = <any> 'FromCenter',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum ShapeEnum {
+        Linear = <any> 'Linear',
+        Rectangle = <any> 'Rectangle',
+        Radial = <any> 'Radial',
+        Path = <any> 'Path',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum TileFlipEnum {
+        NoFlip = <any> 'NoFlip',
+        FlipX = <any> 'FlipX',
+        FlipY = <any> 'FlipY',
+        FlipBoth = <any> 'FlipBoth',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -3494,7 +2514,7 @@ export interface HtmlExportOptions extends ExportOptions {
     /**
      * Get or sets flag for save presentation as zip file
      */
-    saveAsZip?: boolean;
+    saveAsZip: boolean;
 
     /**
      * Get or set name of subdirectory in zip-file for store external files
@@ -3504,37 +2524,37 @@ export interface HtmlExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides?: boolean;
+    showHiddenSlides: boolean;
 
     /**
      * Returns or sets a value determining the quality of the JPEG images inside PDF document.
      */
-    jpegQuality?: number;
+    jpegQuality: number;
 
     /**
      * Represents the pictures compression level
      */
-    picturesCompression?: PicturesCompression;
+    picturesCompression?: HtmlExportOptions.PicturesCompressionEnum;
 
     /**
      * A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)
      */
-    deletePicturesCroppedAreas?: boolean;
+    deletePicturesCroppedAreas: boolean;
 
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition?: NotesPositions;
+    notesPosition: HtmlExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition?: CommentsPositions;
+    commentsPosition: HtmlExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth?: number;
+    commentsAreaWidth: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -3544,8 +2564,28 @@ export interface HtmlExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor?: boolean;
+    showCommentsByNoAuthor: boolean;
 
+}
+export namespace HtmlExportOptions {
+    export enum PicturesCompressionEnum {
+        Dpi330 = <any> 'Dpi330',
+        Dpi220 = <any> 'Dpi220',
+        Dpi150 = <any> 'Dpi150',
+        Dpi96 = <any> 'Dpi96',
+        Dpi72 = <any> 'Dpi72',
+        DocumentResolution = <any> 'DocumentResolution'
+    }
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
 }
 
 /**
@@ -3555,12 +2595,12 @@ export interface Image extends ResourceBase {
     /**
      * Get or sets the width of an image.
      */
-    width?: number;
+    width: number;
 
     /**
      * Get or sets the height of an image.
      */
-    height?: number;
+    height: number;
 
     /**
      * Get or sets the content type of an image.
@@ -3576,23 +2616,35 @@ export interface ImageExportOptions extends ExportOptions {
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition?: NotesPositions;
+    notesPosition: ImageExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition?: CommentsPositions;
+    commentsPosition: ImageExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth?: number;
+    commentsAreaWidth: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
      */
     commentsAreaColor?: string;
 
+}
+export namespace ImageExportOptions {
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
 }
 
 /**
@@ -3603,48 +2655,55 @@ export interface Images extends ResourceBase {
 
 }
 
-/**
- * Represents response for   DTO
- */
-export interface ImagesResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    images?: Images;
-
-}
-
 export interface LayoutSlide extends ResourceBase {
     name?: string;
 
-    type?: LayoutSlideType;
+    type: LayoutSlide.TypeEnum;
 
     masterSlide?: ResourceUriElement;
 
     dependingSlides?: Array<ResourceUriElement>;
 
 }
-
-/**
- * Represents response for   DTO
- */
-export interface LayoutSlideListResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    slides?: LayoutSlides;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface LayoutSlideResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    slide?: LayoutSlide;
-
+export namespace LayoutSlide {
+    export enum TypeEnum {
+        Title = <any> 'Title',
+        Text = <any> 'Text',
+        TwoColumnText = <any> 'TwoColumnText',
+        Table = <any> 'Table',
+        TextAndChart = <any> 'TextAndChart',
+        ChartAndText = <any> 'ChartAndText',
+        Diagram = <any> 'Diagram',
+        Chart = <any> 'Chart',
+        TextAndClipArt = <any> 'TextAndClipArt',
+        ClipArtAndText = <any> 'ClipArtAndText',
+        TitleOnly = <any> 'TitleOnly',
+        Blank = <any> 'Blank',
+        TextAndObject = <any> 'TextAndObject',
+        ObjectAndText = <any> 'ObjectAndText',
+        Object = <any> 'Object',
+        TitleAndObject = <any> 'TitleAndObject',
+        TextAndMedia = <any> 'TextAndMedia',
+        MediaAndText = <any> 'MediaAndText',
+        ObjectOverText = <any> 'ObjectOverText',
+        TextOverObject = <any> 'TextOverObject',
+        TextAndTwoObjects = <any> 'TextAndTwoObjects',
+        TwoObjectsAndText = <any> 'TwoObjectsAndText',
+        TwoObjectsOverText = <any> 'TwoObjectsOverText',
+        FourObjects = <any> 'FourObjects',
+        VerticalText = <any> 'VerticalText',
+        ClipArtAndVerticalText = <any> 'ClipArtAndVerticalText',
+        VerticalTitleAndText = <any> 'VerticalTitleAndText',
+        VerticalTitleAndTextOverChart = <any> 'VerticalTitleAndTextOverChart',
+        TwoObjects = <any> 'TwoObjects',
+        ObjectAndTwoObject = <any> 'ObjectAndTwoObject',
+        TwoObjectsAndObject = <any> 'TwoObjectsAndObject',
+        SectionHeader = <any> 'SectionHeader',
+        TwoTextAndTwoObjects = <any> 'TwoTextAndTwoObjects',
+        TitleObjectAndCaption = <any> 'TitleObjectAndCaption',
+        PictureAndCaption = <any> 'PictureAndCaption',
+        Custom = <any> 'Custom'
+    }
 }
 
 export interface LayoutSlides extends ResourceBase {
@@ -3658,28 +2717,6 @@ export interface MasterSlide extends ResourceBase {
     layoutSlides?: Array<ResourceUriElement>;
 
     dependingSlides?: Array<ResourceUriElement>;
-
-}
-
-/**
- * Represents response for   DTO.
- */
-export interface MasterSlideListResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO.
-     */
-    slides?: MasterSlides;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface MasterSlideResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    slide?: MasterSlide;
 
 }
 
@@ -3698,11 +2735,15 @@ export interface Merge extends Task {
     presentations?: Array<MergingSource>;
 
 }
+export namespace Merge {
+}
 
 /**
  * Represents empty fill
  */
 export interface NoFill extends FillFormat {
+}
+export namespace NoFill {
 }
 
 /**
@@ -3722,25 +2763,26 @@ export interface NotesSlide extends ResourceBase {
 }
 
 /**
- * Represents response for   DTO.
- */
-export interface NotesSlideResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO.
-     */
-    slide?: NotesSlide;
-
-}
-
-/**
  * One value series.
  */
 export interface OneValueSeries extends Series {
+    /**
+     * Data point type.
+     */
+    dataPointType: OneValueSeries.DataPointTypeEnum;
+
     /**
      * Gets or sets the values.
      */
     dataPoints?: Array<OneValueChartDataPoint>;
 
+}
+export namespace OneValueSeries {
+    export enum DataPointTypeEnum {
+        OneValue = <any> 'OneValue',
+        Scatter = <any> 'Scatter',
+        Bubble = <any> 'Bubble'
+    }
 }
 
 /**
@@ -3759,9 +2801,9 @@ export interface Paragraph extends ResourceBase {
 
     indent?: number;
 
-    alignment?: TextAlignment;
+    alignment?: Paragraph.AlignmentEnum;
 
-    fontAlignment?: FontAlignment;
+    fontAlignment?: Paragraph.FontAlignmentEnum;
 
     defaultTabSize?: number;
 
@@ -3771,51 +2813,119 @@ export interface Paragraph extends ResourceBase {
 
     bulletHeight?: number;
 
-    bulletType?: BulletType;
+    bulletType?: Paragraph.BulletTypeEnum;
 
     numberedBulletStartWith?: number;
 
-    numberedBulletStyle?: NumberedBulletStyle;
+    numberedBulletStyle?: Paragraph.NumberedBulletStyleEnum;
 
-    hangingPunctuation?: NullableBool;
+    hangingPunctuation?: Paragraph.HangingPunctuationEnum;
 
-    eastAsianLineBreak?: NullableBool;
+    eastAsianLineBreak?: Paragraph.EastAsianLineBreakEnum;
 
-    latinLineBreak?: NullableBool;
+    latinLineBreak?: Paragraph.LatinLineBreakEnum;
 
-    rightToLeft?: NullableBool;
+    rightToLeft?: Paragraph.RightToLeftEnum;
 
     portionList?: Array<ResourceUriElement>;
 
+}
+export namespace Paragraph {
+    export enum AlignmentEnum {
+        Left = <any> 'Left',
+        Center = <any> 'Center',
+        Right = <any> 'Right',
+        Justify = <any> 'Justify',
+        JustifyLow = <any> 'JustifyLow',
+        Distributed = <any> 'Distributed',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum FontAlignmentEnum {
+        Automatic = <any> 'Automatic',
+        Top = <any> 'Top',
+        Center = <any> 'Center',
+        Bottom = <any> 'Bottom',
+        Baseline = <any> 'Baseline',
+        Default = <any> 'Default'
+    }
+    export enum BulletTypeEnum {
+        None = <any> 'None',
+        Symbol = <any> 'Symbol',
+        Numbered = <any> 'Numbered',
+        Picture = <any> 'Picture',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum NumberedBulletStyleEnum {
+        BulletAlphaLCPeriod = <any> 'BulletAlphaLCPeriod',
+        BulletAlphaUCPeriod = <any> 'BulletAlphaUCPeriod',
+        BulletArabicParenRight = <any> 'BulletArabicParenRight',
+        BulletArabicPeriod = <any> 'BulletArabicPeriod',
+        BulletRomanLCParenBoth = <any> 'BulletRomanLCParenBoth',
+        BulletRomanLCParenRight = <any> 'BulletRomanLCParenRight',
+        BulletRomanLCPeriod = <any> 'BulletRomanLCPeriod',
+        BulletRomanUCPeriod = <any> 'BulletRomanUCPeriod',
+        BulletAlphaLCParenBoth = <any> 'BulletAlphaLCParenBoth',
+        BulletAlphaLCParenRight = <any> 'BulletAlphaLCParenRight',
+        BulletAlphaUCParenBoth = <any> 'BulletAlphaUCParenBoth',
+        BulletAlphaUCParenRight = <any> 'BulletAlphaUCParenRight',
+        BulletArabicParenBoth = <any> 'BulletArabicParenBoth',
+        BulletArabicPlain = <any> 'BulletArabicPlain',
+        BulletRomanUCParenBoth = <any> 'BulletRomanUCParenBoth',
+        BulletRomanUCParenRight = <any> 'BulletRomanUCParenRight',
+        BulletSimpChinPlain = <any> 'BulletSimpChinPlain',
+        BulletSimpChinPeriod = <any> 'BulletSimpChinPeriod',
+        BulletCircleNumDBPlain = <any> 'BulletCircleNumDBPlain',
+        BulletCircleNumWDWhitePlain = <any> 'BulletCircleNumWDWhitePlain',
+        BulletCircleNumWDBlackPlain = <any> 'BulletCircleNumWDBlackPlain',
+        BulletTradChinPlain = <any> 'BulletTradChinPlain',
+        BulletTradChinPeriod = <any> 'BulletTradChinPeriod',
+        BulletArabicAlphaDash = <any> 'BulletArabicAlphaDash',
+        BulletArabicAbjadDash = <any> 'BulletArabicAbjadDash',
+        BulletHebrewAlphaDash = <any> 'BulletHebrewAlphaDash',
+        BulletKanjiKoreanPlain = <any> 'BulletKanjiKoreanPlain',
+        BulletKanjiKoreanPeriod = <any> 'BulletKanjiKoreanPeriod',
+        BulletArabicDBPlain = <any> 'BulletArabicDBPlain',
+        BulletArabicDBPeriod = <any> 'BulletArabicDBPeriod',
+        BulletThaiAlphaPeriod = <any> 'BulletThaiAlphaPeriod',
+        BulletThaiAlphaParenRight = <any> 'BulletThaiAlphaParenRight',
+        BulletThaiAlphaParenBoth = <any> 'BulletThaiAlphaParenBoth',
+        BulletThaiNumPeriod = <any> 'BulletThaiNumPeriod',
+        BulletThaiNumParenRight = <any> 'BulletThaiNumParenRight',
+        BulletThaiNumParenBoth = <any> 'BulletThaiNumParenBoth',
+        BulletHindiAlphaPeriod = <any> 'BulletHindiAlphaPeriod',
+        BulletHindiNumPeriod = <any> 'BulletHindiNumPeriod',
+        BulletKanjiSimpChinDBPeriod = <any> 'BulletKanjiSimpChinDBPeriod',
+        BulletHindiNumParenRight = <any> 'BulletHindiNumParenRight',
+        BulletHindiAlpha1Period = <any> 'BulletHindiAlpha1Period',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum HangingPunctuationEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum EastAsianLineBreakEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum LatinLineBreakEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum RightToLeftEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
  * Represents list of Links to Paragraphs resources
  */
-export interface ParagraphList extends ResourceBase {
+export interface Paragraphs extends ResourceBase {
     paragraphLinks?: Array<ResourceUriElement>;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface ParagraphListResponse extends SaaSposeResponse {
-    /**
-     * Represents response for   DTO
-     */
-    paragraphs?: ParagraphList;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface ParagraphResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    paragraph?: Paragraph;
 
 }
 
@@ -3834,6 +2944,8 @@ export interface PathInputFile extends InputFile {
     storage?: string;
 
 }
+export namespace PathInputFile {
+}
 
 /**
  * Represents fileSystem file with path.
@@ -3849,6 +2961,8 @@ export interface PathOutputFile extends OutputFile {
      */
     storage?: string;
 
+}
+export namespace PathOutputFile {
 }
 
 /**
@@ -3868,8 +2982,68 @@ export interface PatternFill extends FillFormat {
     /**
      * Gets or sets the style of pattern fill.
      */
-    style?: PatternStyle;
+    style: PatternFill.StyleEnum;
 
+}
+export namespace PatternFill {
+    export enum StyleEnum {
+        Unknown = <any> 'Unknown',
+        Percent05 = <any> 'Percent05',
+        Percent10 = <any> 'Percent10',
+        Percent20 = <any> 'Percent20',
+        Percent25 = <any> 'Percent25',
+        Percent30 = <any> 'Percent30',
+        Percent40 = <any> 'Percent40',
+        Percent50 = <any> 'Percent50',
+        Percent60 = <any> 'Percent60',
+        Percent70 = <any> 'Percent70',
+        Percent75 = <any> 'Percent75',
+        Percent80 = <any> 'Percent80',
+        Percent90 = <any> 'Percent90',
+        DarkHorizontal = <any> 'DarkHorizontal',
+        DarkVertical = <any> 'DarkVertical',
+        DarkDownwardDiagonal = <any> 'DarkDownwardDiagonal',
+        DarkUpwardDiagonal = <any> 'DarkUpwardDiagonal',
+        SmallCheckerBoard = <any> 'SmallCheckerBoard',
+        Trellis = <any> 'Trellis',
+        LightHorizontal = <any> 'LightHorizontal',
+        LightVertical = <any> 'LightVertical',
+        LightDownwardDiagonal = <any> 'LightDownwardDiagonal',
+        LightUpwardDiagonal = <any> 'LightUpwardDiagonal',
+        SmallGrid = <any> 'SmallGrid',
+        DottedDiamond = <any> 'DottedDiamond',
+        WideDownwardDiagonal = <any> 'WideDownwardDiagonal',
+        WideUpwardDiagonal = <any> 'WideUpwardDiagonal',
+        DashedUpwardDiagonal = <any> 'DashedUpwardDiagonal',
+        DashedDownwardDiagonal = <any> 'DashedDownwardDiagonal',
+        NarrowVertical = <any> 'NarrowVertical',
+        NarrowHorizontal = <any> 'NarrowHorizontal',
+        DashedVertical = <any> 'DashedVertical',
+        DashedHorizontal = <any> 'DashedHorizontal',
+        LargeConfetti = <any> 'LargeConfetti',
+        LargeGrid = <any> 'LargeGrid',
+        HorizontalBrick = <any> 'HorizontalBrick',
+        LargeCheckerBoard = <any> 'LargeCheckerBoard',
+        SmallConfetti = <any> 'SmallConfetti',
+        Zigzag = <any> 'Zigzag',
+        SolidDiamond = <any> 'SolidDiamond',
+        DiagonalBrick = <any> 'DiagonalBrick',
+        OutlinedDiamond = <any> 'OutlinedDiamond',
+        Plaid = <any> 'Plaid',
+        Sphere = <any> 'Sphere',
+        Weave = <any> 'Weave',
+        DottedGrid = <any> 'DottedGrid',
+        Divot = <any> 'Divot',
+        Shingle = <any> 'Shingle',
+        Wave = <any> 'Wave',
+        Horizontal = <any> 'Horizontal',
+        Vertical = <any> 'Vertical',
+        Cross = <any> 'Cross',
+        DownwardDiagonal = <any> 'DownwardDiagonal',
+        UpwardDiagonal = <any> 'UpwardDiagonal',
+        DiagonalCross = <any> 'DiagonalCross',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -3879,42 +3053,42 @@ export interface PdfExportOptions extends ExportOptions {
     /**
      * Specifies compression type to be used for all textual content in the document.
      */
-    textCompression?: PdfTextCompression;
+    textCompression: PdfExportOptions.TextCompressionEnum;
 
     /**
      * Determines if all characters of font should be embedded or only used subset.
      */
-    embedFullFonts?: boolean;
+    embedFullFonts: boolean;
 
     /**
      * Desired conformance level for generated PDF document.
      */
-    compliance?: PdfCompliance;
+    compliance: PdfExportOptions.ComplianceEnum;
 
     /**
-     * Returns or sets a value determining resolution of images inside PDF document. Property affects on file size, time of export and image quality.The default value is 96.
+     * Returns or sets a value determining resolution of images inside PDF document.  Property affects on file size, time of export and image quality. The default value is 96.
      */
-    sufficientResolution?: number;
+    sufficientResolution: number;
 
     /**
      * Returns or sets a value determining the quality of the JPEG images inside PDF document.
      */
-    jpegQuality?: number;
+    jpegQuality: number;
 
     /**
      * True to draw black frame around each slide.
      */
-    drawSlidesFrame?: boolean;
+    drawSlidesFrame: boolean;
 
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides?: boolean;
+    showHiddenSlides: boolean;
 
     /**
      * True to convert all metafiles used in a presentation to the PNG images.
      */
-    saveMetafilesAsPng?: boolean;
+    saveMetafilesAsPng: boolean;
 
     /**
      * Setting user password to protect the PDF document. 
@@ -3924,7 +3098,7 @@ export interface PdfExportOptions extends ExportOptions {
     /**
      * Determines if Aspose.Slides will embed common fonts for ASCII (33..127 code range) text. Fonts for character codes greater than 127 are always embedded. Common fonts list includes PDF's base 14 fonts and additional user specified fonts.
      */
-    embedTrueTypeFontsForASCII?: boolean;
+    embedTrueTypeFontsForASCII: boolean;
 
     /**
      * Returns or sets an array of user-defined names of font families which Aspose.Slides should consider common.
@@ -3934,17 +3108,17 @@ export interface PdfExportOptions extends ExportOptions {
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition?: NotesPositions;
+    notesPosition: PdfExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition?: CommentsPositions;
+    commentsPosition: PdfExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth?: number;
+    commentsAreaWidth: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -3954,7 +3128,7 @@ export interface PdfExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor?: boolean;
+    showCommentsByNoAuthor: boolean;
 
     /**
      * Image transparent color.
@@ -3962,22 +3136,42 @@ export interface PdfExportOptions extends ExportOptions {
     imageTransparentColor?: string;
 
     /**
-     * True to apply specified   to an image.
+     * True to apply specified ImageTransparentColor  to an image.
      */
-    applyImageTransparent?: boolean;
+    applyImageTransparent: boolean;
 
+}
+export namespace PdfExportOptions {
+    export enum TextCompressionEnum {
+        None = <any> 'None',
+        Flate = <any> 'Flate'
+    }
+    export enum ComplianceEnum {
+        Pdf15 = <any> 'Pdf15',
+        PdfA1b = <any> 'PdfA1b'
+    }
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
 }
 
 export interface PictureFill extends FillFormat {
-    cropBottom?: number;
+    cropBottom: number;
 
-    cropLeft?: number;
+    cropLeft: number;
 
-    cropRight?: number;
+    cropRight: number;
 
-    cropTop?: number;
+    cropTop: number;
 
-    dpi?: number;
+    dpi: number;
 
     image?: ResourceUriElement;
 
@@ -3985,50 +3179,63 @@ export interface PictureFill extends FillFormat {
 
     svgData?: string;
 
-    pictureFillMode?: PictureFillMode;
+    pictureFillMode: PictureFill.PictureFillModeEnum;
 
+}
+export namespace PictureFill {
+    export enum PictureFillModeEnum {
+        Tile = <any> 'Tile',
+        Stretch = <any> 'Stretch'
+    }
 }
 
 /**
  * Represents placeholder
  */
 export interface Placeholder extends ResourceBase {
-    index?: number;
+    index: number;
 
-    orientation?: PlaceholderOrientation;
+    orientation: Placeholder.OrientationEnum;
 
-    size?: PlaceholderSize;
+    size: Placeholder.SizeEnum;
 
-    type?: PlaceholderType;
+    type: Placeholder.TypeEnum;
 
     shape?: ResourceUriElement;
 
 }
-
-/**
- * Represents response for   DTO
- */
-export interface PlaceholderResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    placeholder?: Placeholder;
-
+export namespace Placeholder {
+    export enum OrientationEnum {
+        Horizontal = <any> 'Horizontal',
+        Vertical = <any> 'Vertical'
+    }
+    export enum SizeEnum {
+        Full = <any> 'Full',
+        Half = <any> 'Half',
+        Quarter = <any> 'Quarter'
+    }
+    export enum TypeEnum {
+        Title = <any> 'Title',
+        Body = <any> 'Body',
+        CenteredTitle = <any> 'CenteredTitle',
+        Subtitle = <any> 'Subtitle',
+        DateAndTime = <any> 'DateAndTime',
+        SlideNumber = <any> 'SlideNumber',
+        Footer = <any> 'Footer',
+        Header = <any> 'Header',
+        Object = <any> 'Object',
+        Chart = <any> 'Chart',
+        Table = <any> 'Table',
+        ClipArt = <any> 'ClipArt',
+        Diagram = <any> 'Diagram',
+        Media = <any> 'Media',
+        SlideImage = <any> 'SlideImage',
+        Picture = <any> 'Picture'
+    }
 }
 
 export interface Placeholders extends ResourceBase {
     placeholderLinks?: Array<ResourceUri>;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface PlaceholdersResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    placeholders?: Placeholders;
 
 }
 
@@ -4038,15 +3245,15 @@ export interface PlaceholdersResponse extends SaaSposeResponse {
 export interface Portion extends ResourceBase {
     text?: string;
 
-    fontBold?: NullableBool;
+    fontBold?: Portion.FontBoldEnum;
 
-    fontItalic?: NullableBool;
+    fontItalic?: Portion.FontItalicEnum;
 
-    fontUnderline?: TextUnderlineType;
+    fontUnderline?: Portion.FontUnderlineEnum;
 
-    strikethroughType?: TextStrikethroughType;
+    strikethroughType?: Portion.StrikethroughTypeEnum;
 
-    textCapType?: TextCapType;
+    textCapType?: Portion.TextCapTypeEnum;
 
     escapement?: number;
 
@@ -4058,23 +3265,23 @@ export interface Portion extends ResourceBase {
 
     fontHeight?: number;
 
-    normaliseHeight?: NullableBool;
+    normaliseHeight?: Portion.NormaliseHeightEnum;
 
-    proofDisabled?: NullableBool;
+    proofDisabled?: Portion.ProofDisabledEnum;
 
     smartTagClean?: boolean;
 
     kerningMinimalSize?: number;
 
-    kumimoji?: NullableBool;
+    kumimoji?: Portion.KumimojiEnum;
 
     languageId?: string;
 
     alternativeLanguageId?: string;
 
-    isHardUnderlineFill?: NullableBool;
+    isHardUnderlineFill?: Portion.IsHardUnderlineFillEnum;
 
-    isHardUnderlineLine?: NullableBool;
+    isHardUnderlineLine?: Portion.IsHardUnderlineLineEnum;
 
     fillFormat?: FillFormat;
 
@@ -4087,60 +3294,121 @@ export interface Portion extends ResourceBase {
     underlineLineFormat?: LineFormat;
 
 }
+export namespace Portion {
+    export enum FontBoldEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum FontItalicEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum FontUnderlineEnum {
+        None = <any> 'None',
+        Words = <any> 'Words',
+        Single = <any> 'Single',
+        Double = <any> 'Double',
+        Heavy = <any> 'Heavy',
+        Dotted = <any> 'Dotted',
+        HeavyDotted = <any> 'HeavyDotted',
+        Dashed = <any> 'Dashed',
+        HeavyDashed = <any> 'HeavyDashed',
+        LongDashed = <any> 'LongDashed',
+        HeavyLongDashed = <any> 'HeavyLongDashed',
+        DotDash = <any> 'DotDash',
+        HeavyDotDash = <any> 'HeavyDotDash',
+        DotDotDash = <any> 'DotDotDash',
+        HeavyDotDotDash = <any> 'HeavyDotDotDash',
+        Wavy = <any> 'Wavy',
+        HeavyWavy = <any> 'HeavyWavy',
+        DoubleWavy = <any> 'DoubleWavy',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum StrikethroughTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Double = <any> 'Double',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum TextCapTypeEnum {
+        None = <any> 'None',
+        Small = <any> 'Small',
+        All = <any> 'All',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum NormaliseHeightEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum ProofDisabledEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum KumimojiEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum IsHardUnderlineFillEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum IsHardUnderlineLineEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+}
 
 /**
  * Represents list of Links to Paragraphs resources
  */
-export interface PortionList extends ResourceBase {
+export interface Portions extends ResourceBase {
     portionLinks?: Array<ResourceUriElement>;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface PortionListResponse extends SaaSposeResponse {
-    /**
-     * Represents response for   DTO
-     */
-    portions?: PortionList;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface PortionResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    portion?: Portion;
 
 }
 
 export interface PptxExportOptions extends ExportOptions {
     /**
-     * The conformance class to which the PresentationML document conforms. Read/write .
+     * The conformance class to which the PresentationML document conforms. Read/write Conformance.
      */
-    conformance?: Conformance;
+    conformance: PptxExportOptions.ConformanceEnum;
 
+}
+export namespace PptxExportOptions {
+    export enum ConformanceEnum {
+        Ecma3762006 = <any> 'Ecma376_2006',
+        Iso295002008Transitional = <any> 'Iso29500_2008_Transitional',
+        Iso295002008Strict = <any> 'Iso29500_2008_Strict'
+    }
 }
 
 export interface RemoveShape extends Task {
     shapePath?: string;
 
 }
+export namespace RemoveShape {
+}
 
 export interface RemoveSlide extends Task {
-    position?: number;
+    position: number;
 
+}
+export namespace RemoveSlide {
 }
 
 export interface ReorderSlide extends Task {
-    oldPosition?: number;
+    oldPosition: number;
 
-    newPosition?: number;
+    newPosition: number;
 
+}
+export namespace ReorderSlide {
 }
 
 /**
@@ -4160,13 +3428,15 @@ export interface ReplaceText extends Task {
     /**
      * True to ignore case in replace pattern search.
      */
-    ignoreCase?: boolean;
+    ignoreCase: boolean;
 
     /**
      * One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation.
      */
-    slidePosition?: number;
+    slidePosition: number;
 
+}
+export namespace ReplaceText {
 }
 
 /**
@@ -4176,19 +3446,25 @@ export interface RequestInputFile extends InputFile {
     /**
      * Get or sets index of file from request.
      */
-    index?: number;
+    index: number;
 
+}
+export namespace RequestInputFile {
 }
 
 export interface ResetSlide extends Task {
-    position?: number;
+    position: number;
 
+}
+export namespace ResetSlide {
 }
 
 /**
  * Represents output file that will be sent to response.
  */
 export interface ResponseOutputFile extends OutputFile {
+}
+export namespace ResponseOutputFile {
 }
 
 /**
@@ -4198,7 +3474,7 @@ export interface Save extends Task {
     /**
      * Format.
      */
-    format?: ExportFormat;
+    format: Save.FormatEnum;
 
     /**
      * Output file.
@@ -4211,6 +3487,30 @@ export interface Save extends Task {
     options?: ExportOptions;
 
 }
+export namespace Save {
+    export enum FormatEnum {
+        Pdf = <any> 'Pdf',
+        Xps = <any> 'Xps',
+        Tiff = <any> 'Tiff',
+        Pptx = <any> 'Pptx',
+        Odp = <any> 'Odp',
+        Otp = <any> 'Otp',
+        Ppt = <any> 'Ppt',
+        Pps = <any> 'Pps',
+        Ppsx = <any> 'Ppsx',
+        Pptm = <any> 'Pptm',
+        Ppsm = <any> 'Ppsm',
+        Potx = <any> 'Potx',
+        Potm = <any> 'Potm',
+        Html = <any> 'Html',
+        Swf = <any> 'Swf',
+        Svg = <any> 'Svg',
+        Jpeg = <any> 'Jpeg',
+        Png = <any> 'Png',
+        Gif = <any> 'Gif',
+        Bmp = <any> 'Bmp'
+    }
+}
 
 /**
  * Save shape task.
@@ -4219,7 +3519,7 @@ export interface SaveShape extends Task {
     /**
      * Format.
      */
-    format?: ShapeExportFormat;
+    format: SaveShape.FormatEnum;
 
     /**
      * Shape path.
@@ -4237,6 +3537,16 @@ export interface SaveShape extends Task {
     options?: IShapeExportOptions;
 
 }
+export namespace SaveShape {
+    export enum FormatEnum {
+        Jpeg = <any> 'Jpeg',
+        Png = <any> 'Png',
+        Gif = <any> 'Gif',
+        Bmp = <any> 'Bmp',
+        Tiff = <any> 'Tiff',
+        Svg = <any> 'Svg'
+    }
+}
 
 /**
  * Save slide task.
@@ -4250,7 +3560,7 @@ export interface SaveSlide extends Task {
     /**
      * Save format.
      */
-    format?: SlideExportFormat;
+    format: SaveSlide.FormatEnum;
 
     /**
      * Save options.
@@ -4270,8 +3580,31 @@ export interface SaveSlide extends Task {
     /**
      * Slide index.
      */
-    position?: number;
+    position: number;
 
+}
+export namespace SaveSlide {
+    export enum FormatEnum {
+        Jpeg = <any> 'Jpeg',
+        Png = <any> 'Png',
+        Gif = <any> 'Gif',
+        Bmp = <any> 'Bmp',
+        Tiff = <any> 'Tiff',
+        Html = <any> 'Html',
+        Pdf = <any> 'Pdf',
+        Xps = <any> 'Xps',
+        Pptx = <any> 'Pptx',
+        Odp = <any> 'Odp',
+        Otp = <any> 'Otp',
+        Ppt = <any> 'Ppt',
+        Pps = <any> 'Pps',
+        Ppsx = <any> 'Ppsx',
+        Pptm = <any> 'Pptm',
+        Ppsm = <any> 'Ppsm',
+        Potx = <any> 'Potx',
+        Potm = <any> 'Potm',
+        Svg = <any> 'Svg'
+    }
 }
 
 /**
@@ -4279,20 +3612,25 @@ export interface SaveSlide extends Task {
  */
 export interface ScatterSeries extends Series {
     /**
+     * Data point type.
+     */
+    dataPointType: ScatterSeries.DataPointTypeEnum;
+
+    /**
      * Gets or sets the values.
      */
     dataPoints?: Array<ScatterChartDataPoint>;
 
 }
+export namespace ScatterSeries {
+    export enum DataPointTypeEnum {
+        OneValue = <any> 'OneValue',
+        Scatter = <any> 'Scatter',
+        Bubble = <any> 'Bubble'
+    }
+}
 
 export interface ShapeBase extends ResourceBase {
-    type?: ShapeType;
-
-    /**
-     * Gets or sets the type of the shape.
-     */
-    shapeType?: CombinedShapeType;
-
     /**
      * Gets or sets the name.
      */
@@ -4314,7 +3652,7 @@ export interface ShapeBase extends ResourceBase {
     alternativeText?: string;
 
     /**
-     * Gets or sets a value indicating whether this  is hidden.
+     * Gets or sets a value indicating whether this ShapeBase is hidden.
      */
     hidden?: boolean;
 
@@ -4331,7 +3669,7 @@ export interface ShapeBase extends ResourceBase {
     /**
      * Gets z-order position of shape
      */
-    zOrderPosition?: number;
+    zOrderPosition: number;
 
     /**
      * Gets or sets the link to shapes.
@@ -4353,28 +3691,226 @@ export interface ShapeBase extends ResourceBase {
      */
     lineFormat?: LineFormat;
 
-}
+    type?: ShapeBase.TypeEnum;
 
-/**
- * Represents response for   DTO
- */
-export interface ShapeListResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    shapeList?: Shapes;
+    shapeType?: ShapeBase.ShapeTypeEnum;
 
 }
-
-/**
- * Represents response for   DTO
- */
-export interface ShapeResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    shape?: ShapeBase;
-
+export namespace ShapeBase {
+    export enum TypeEnum {
+        Shape = <any> 'Shape',
+        Chart = <any> 'Chart',
+        Table = <any> 'Table',
+        PictureFrame = <any> 'PictureFrame',
+        VideoFrame = <any> 'VideoFrame',
+        AudioFrame = <any> 'AudioFrame',
+        SmartArt = <any> 'SmartArt',
+        OleObjectFrame = <any> 'OleObjectFrame',
+        GroupShape = <any> 'GroupShape',
+        GraphicalObject = <any> 'GraphicalObject',
+        Connector = <any> 'Connector',
+        SmartArtShape = <any> 'SmartArtShape'
+    }
+    export enum ShapeTypeEnum {
+        Custom = <any> 'Custom',
+        Line = <any> 'Line',
+        LineInverse = <any> 'LineInverse',
+        Triangle = <any> 'Triangle',
+        RightTriangle = <any> 'RightTriangle',
+        Rectangle = <any> 'Rectangle',
+        Diamond = <any> 'Diamond',
+        Parallelogram = <any> 'Parallelogram',
+        Trapezoid = <any> 'Trapezoid',
+        NonIsoscelesTrapezoid = <any> 'NonIsoscelesTrapezoid',
+        Pentagon = <any> 'Pentagon',
+        Hexagon = <any> 'Hexagon',
+        Heptagon = <any> 'Heptagon',
+        Octagon = <any> 'Octagon',
+        Decagon = <any> 'Decagon',
+        Dodecagon = <any> 'Dodecagon',
+        FourPointedStar = <any> 'FourPointedStar',
+        FivePointedStar = <any> 'FivePointedStar',
+        SixPointedStar = <any> 'SixPointedStar',
+        SevenPointedStar = <any> 'SevenPointedStar',
+        EightPointedStar = <any> 'EightPointedStar',
+        TenPointedStar = <any> 'TenPointedStar',
+        TwelvePointedStar = <any> 'TwelvePointedStar',
+        SixteenPointedStar = <any> 'SixteenPointedStar',
+        TwentyFourPointedStar = <any> 'TwentyFourPointedStar',
+        ThirtyTwoPointedStar = <any> 'ThirtyTwoPointedStar',
+        RoundCornerRectangle = <any> 'RoundCornerRectangle',
+        OneRoundCornerRectangle = <any> 'OneRoundCornerRectangle',
+        TwoSamesideRoundCornerRectangle = <any> 'TwoSamesideRoundCornerRectangle',
+        TwoDiagonalRoundCornerRectangle = <any> 'TwoDiagonalRoundCornerRectangle',
+        OneSnipOneRoundCornerRectangle = <any> 'OneSnipOneRoundCornerRectangle',
+        OneSnipCornerRectangle = <any> 'OneSnipCornerRectangle',
+        TwoSamesideSnipCornerRectangle = <any> 'TwoSamesideSnipCornerRectangle',
+        TwoDiagonalSnipCornerRectangle = <any> 'TwoDiagonalSnipCornerRectangle',
+        Plaque = <any> 'Plaque',
+        Ellipse = <any> 'Ellipse',
+        Teardrop = <any> 'Teardrop',
+        HomePlate = <any> 'HomePlate',
+        Chevron = <any> 'Chevron',
+        PieWedge = <any> 'PieWedge',
+        Pie = <any> 'Pie',
+        BlockArc = <any> 'BlockArc',
+        Donut = <any> 'Donut',
+        NoSmoking = <any> 'NoSmoking',
+        RightArrow = <any> 'RightArrow',
+        LeftArrow = <any> 'LeftArrow',
+        UpArrow = <any> 'UpArrow',
+        DownArrow = <any> 'DownArrow',
+        StripedRightArrow = <any> 'StripedRightArrow',
+        NotchedRightArrow = <any> 'NotchedRightArrow',
+        BentUpArrow = <any> 'BentUpArrow',
+        LeftRightArrow = <any> 'LeftRightArrow',
+        UpDownArrow = <any> 'UpDownArrow',
+        LeftUpArrow = <any> 'LeftUpArrow',
+        LeftRightUpArrow = <any> 'LeftRightUpArrow',
+        QuadArrow = <any> 'QuadArrow',
+        CalloutLeftArrow = <any> 'CalloutLeftArrow',
+        CalloutRightArrow = <any> 'CalloutRightArrow',
+        CalloutUpArrow = <any> 'CalloutUpArrow',
+        CalloutDownArrow = <any> 'CalloutDownArrow',
+        CalloutLeftRightArrow = <any> 'CalloutLeftRightArrow',
+        CalloutUpDownArrow = <any> 'CalloutUpDownArrow',
+        CalloutQuadArrow = <any> 'CalloutQuadArrow',
+        BentArrow = <any> 'BentArrow',
+        UTurnArrow = <any> 'UTurnArrow',
+        CircularArrow = <any> 'CircularArrow',
+        LeftCircularArrow = <any> 'LeftCircularArrow',
+        LeftRightCircularArrow = <any> 'LeftRightCircularArrow',
+        CurvedRightArrow = <any> 'CurvedRightArrow',
+        CurvedLeftArrow = <any> 'CurvedLeftArrow',
+        CurvedUpArrow = <any> 'CurvedUpArrow',
+        CurvedDownArrow = <any> 'CurvedDownArrow',
+        SwooshArrow = <any> 'SwooshArrow',
+        Cube = <any> 'Cube',
+        Can = <any> 'Can',
+        LightningBolt = <any> 'LightningBolt',
+        Heart = <any> 'Heart',
+        Sun = <any> 'Sun',
+        Moon = <any> 'Moon',
+        SmileyFace = <any> 'SmileyFace',
+        IrregularSeal1 = <any> 'IrregularSeal1',
+        IrregularSeal2 = <any> 'IrregularSeal2',
+        FoldedCorner = <any> 'FoldedCorner',
+        Bevel = <any> 'Bevel',
+        Frame = <any> 'Frame',
+        HalfFrame = <any> 'HalfFrame',
+        Corner = <any> 'Corner',
+        DiagonalStripe = <any> 'DiagonalStripe',
+        Chord = <any> 'Chord',
+        CurvedArc = <any> 'CurvedArc',
+        LeftBracket = <any> 'LeftBracket',
+        RightBracket = <any> 'RightBracket',
+        LeftBrace = <any> 'LeftBrace',
+        RightBrace = <any> 'RightBrace',
+        BracketPair = <any> 'BracketPair',
+        BracePair = <any> 'BracePair',
+        StraightConnector1 = <any> 'StraightConnector1',
+        BentConnector2 = <any> 'BentConnector2',
+        BentConnector3 = <any> 'BentConnector3',
+        BentConnector4 = <any> 'BentConnector4',
+        BentConnector5 = <any> 'BentConnector5',
+        CurvedConnector2 = <any> 'CurvedConnector2',
+        CurvedConnector3 = <any> 'CurvedConnector3',
+        CurvedConnector4 = <any> 'CurvedConnector4',
+        CurvedConnector5 = <any> 'CurvedConnector5',
+        Callout1 = <any> 'Callout1',
+        Callout2 = <any> 'Callout2',
+        Callout3 = <any> 'Callout3',
+        Callout1WithAccent = <any> 'Callout1WithAccent',
+        Callout2WithAccent = <any> 'Callout2WithAccent',
+        Callout3WithAccent = <any> 'Callout3WithAccent',
+        Callout1WithBorder = <any> 'Callout1WithBorder',
+        Callout2WithBorder = <any> 'Callout2WithBorder',
+        Callout3WithBorder = <any> 'Callout3WithBorder',
+        Callout1WithBorderAndAccent = <any> 'Callout1WithBorderAndAccent',
+        Callout2WithBorderAndAccent = <any> 'Callout2WithBorderAndAccent',
+        Callout3WithBorderAndAccent = <any> 'Callout3WithBorderAndAccent',
+        CalloutWedgeRectangle = <any> 'CalloutWedgeRectangle',
+        CalloutWedgeRoundRectangle = <any> 'CalloutWedgeRoundRectangle',
+        CalloutWedgeEllipse = <any> 'CalloutWedgeEllipse',
+        CalloutCloud = <any> 'CalloutCloud',
+        Cloud = <any> 'Cloud',
+        Ribbon = <any> 'Ribbon',
+        Ribbon2 = <any> 'Ribbon2',
+        EllipseRibbon = <any> 'EllipseRibbon',
+        EllipseRibbon2 = <any> 'EllipseRibbon2',
+        LeftRightRibbon = <any> 'LeftRightRibbon',
+        VerticalScroll = <any> 'VerticalScroll',
+        HorizontalScroll = <any> 'HorizontalScroll',
+        Wave = <any> 'Wave',
+        DoubleWave = <any> 'DoubleWave',
+        Plus = <any> 'Plus',
+        ProcessFlow = <any> 'ProcessFlow',
+        DecisionFlow = <any> 'DecisionFlow',
+        InputOutputFlow = <any> 'InputOutputFlow',
+        PredefinedProcessFlow = <any> 'PredefinedProcessFlow',
+        InternalStorageFlow = <any> 'InternalStorageFlow',
+        DocumentFlow = <any> 'DocumentFlow',
+        MultiDocumentFlow = <any> 'MultiDocumentFlow',
+        TerminatorFlow = <any> 'TerminatorFlow',
+        PreparationFlow = <any> 'PreparationFlow',
+        ManualInputFlow = <any> 'ManualInputFlow',
+        ManualOperationFlow = <any> 'ManualOperationFlow',
+        ConnectorFlow = <any> 'ConnectorFlow',
+        PunchedCardFlow = <any> 'PunchedCardFlow',
+        PunchedTapeFlow = <any> 'PunchedTapeFlow',
+        SummingJunctionFlow = <any> 'SummingJunctionFlow',
+        OrFlow = <any> 'OrFlow',
+        CollateFlow = <any> 'CollateFlow',
+        SortFlow = <any> 'SortFlow',
+        ExtractFlow = <any> 'ExtractFlow',
+        MergeFlow = <any> 'MergeFlow',
+        OfflineStorageFlow = <any> 'OfflineStorageFlow',
+        OnlineStorageFlow = <any> 'OnlineStorageFlow',
+        MagneticTapeFlow = <any> 'MagneticTapeFlow',
+        MagneticDiskFlow = <any> 'MagneticDiskFlow',
+        MagneticDrumFlow = <any> 'MagneticDrumFlow',
+        DisplayFlow = <any> 'DisplayFlow',
+        DelayFlow = <any> 'DelayFlow',
+        AlternateProcessFlow = <any> 'AlternateProcessFlow',
+        OffPageConnectorFlow = <any> 'OffPageConnectorFlow',
+        BlankButton = <any> 'BlankButton',
+        HomeButton = <any> 'HomeButton',
+        HelpButton = <any> 'HelpButton',
+        InformationButton = <any> 'InformationButton',
+        ForwardOrNextButton = <any> 'ForwardOrNextButton',
+        BackOrPreviousButton = <any> 'BackOrPreviousButton',
+        EndButton = <any> 'EndButton',
+        BeginningButton = <any> 'BeginningButton',
+        ReturnButton = <any> 'ReturnButton',
+        DocumentButton = <any> 'DocumentButton',
+        SoundButton = <any> 'SoundButton',
+        MovieButton = <any> 'MovieButton',
+        Gear6 = <any> 'Gear6',
+        Gear9 = <any> 'Gear9',
+        Funnel = <any> 'Funnel',
+        PlusMath = <any> 'PlusMath',
+        MinusMath = <any> 'MinusMath',
+        MultiplyMath = <any> 'MultiplyMath',
+        DivideMath = <any> 'DivideMath',
+        EqualMath = <any> 'EqualMath',
+        NotEqualMath = <any> 'NotEqualMath',
+        CornerTabs = <any> 'CornerTabs',
+        SquareTabs = <any> 'SquareTabs',
+        PlaqueTabs = <any> 'PlaqueTabs',
+        ChartX = <any> 'ChartX',
+        ChartStar = <any> 'ChartStar',
+        ChartPlus = <any> 'ChartPlus',
+        Chart = <any> 'Chart',
+        Table = <any> 'Table',
+        PictureFrame = <any> 'PictureFrame',
+        VideoFrame = <any> 'VideoFrame',
+        AudioFrame = <any> 'AudioFrame',
+        Diagram = <any> 'Diagram',
+        OleObjectFrame = <any> 'OleObjectFrame',
+        GroupShape = <any> 'GroupShape',
+        GraphicalObject = <any> 'GraphicalObject',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -4389,17 +3925,17 @@ export interface Slide extends ResourceBase {
     /**
      * Gets or sets the width.
      */
-    width?: number;
+    width: number;
 
     /**
      * Gets or sets the height.
      */
-    height?: number;
+    height: number;
 
     /**
      * Specifies if shapes of the master slide should be shown on the slide. True by default.
      */
-    showMasterShapes?: boolean;
+    showMasterShapes: boolean;
 
     /**
      * Gets or sets the  link to the layout slide.
@@ -4444,26 +3980,35 @@ export interface Slide extends ResourceBase {
 }
 
 /**
+ * Represents comments collection of slide
+ */
+export interface SlideAnimation extends ResourceBase {
+    mainSequence?: Array<Effect>;
+
+    interactiveSequences?: Array<InteractiveSequence>;
+
+}
+
+/**
  * Represents background of slide
  */
 export interface SlideBackground extends ResourceBase {
-    type?: FillType;
+    type: SlideBackground.TypeEnum;
 
     fillFormat?: FillFormat;
 
     effectFormat?: EffectFormat;
 
 }
-
-/**
- * Represents response for  DTO
- */
-export interface SlideBackgroundResponse extends SaaSposeResponse {
-    /**
-     * Get or sets slide's background DTO
-     */
-    background?: SlideBackground;
-
+export namespace SlideBackground {
+    export enum TypeEnum {
+        NoFill = <any> 'NoFill',
+        Solid = <any> 'Solid',
+        Gradient = <any> 'Gradient',
+        Pattern = <any> 'Pattern',
+        Picture = <any> 'Picture',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -4471,39 +4016,6 @@ export interface SlideBackgroundResponse extends SaaSposeResponse {
  */
 export interface SlideComments extends ResourceBase {
     list?: Array<SlideComment>;
-
-}
-
-/**
- * Represents response for  DTO
- */
-export interface SlideCommentsResponse extends SaaSposeResponse {
-    /**
-     * Get or sets the  DTO
-     */
-    slideComments?: SlideComments;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface SlideListResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    slides?: Slides;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface SlideResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    slide?: Slide;
 
 }
 
@@ -4519,10 +4031,7 @@ export interface SolidFill extends FillFormat {
     color?: string;
 
 }
-
-export interface SplitDocumentResponse extends SaaSposeResponse {
-    splitResult?: SplitDocumentResult;
-
+export namespace SolidFill {
 }
 
 export interface SplitDocumentResult extends ResourceBase {
@@ -4530,84 +4039,67 @@ export interface SplitDocumentResult extends ResourceBase {
 
 }
 
-export interface Stream extends MarshalByRefObject {
-    canRead?: boolean;
-
-    canSeek?: boolean;
-
-    canTimeout?: boolean;
-
-    canWrite?: boolean;
-
-    length?: number;
-
-    position?: number;
-
-    readTimeout?: number;
-
-    writeTimeout?: number;
-
-    null?: Stream;
-
-}
-
-/**
- * Represents response from replace text operation
- */
-export interface StringReplaceResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the number of matches 
-     */
-    matches?: number;
-
-}
-
 export interface SvgExportOptions extends ExportOptions {
     /**
      * Determines whether the text on a slide will be saved as graphics.
      */
-    vectorizeText?: boolean;
+    vectorizeText: boolean;
 
     /**
      * Returns or sets the lower resolution limit for metafile rasterization.
      */
-    metafileRasterizationDpi?: number;
+    metafileRasterizationDpi: number;
 
     /**
      * Determines whether the 3D text is disabled in SVG.
      */
-    disable3DText?: boolean;
+    disable3DText: boolean;
 
     /**
      * Disables splitting FromCornerX and FromCenter gradients.
      */
-    disableGradientSplit?: boolean;
+    disableGradientSplit: boolean;
 
     /**
      * SVG 1.1 lacks ability to define insets for markers. Aspose.Slides SVG writing engine has workaround for that problem: it crops end of line with arrow, so, line doesn't overlap markers. This option switches off such behavior.
      */
-    disableLineEndCropping?: boolean;
+    disableLineEndCropping: boolean;
 
     /**
      * Determines JPEG encoding quality.
      */
-    jpegQuality?: number;
+    jpegQuality: number;
 
     /**
      * Represents the pictures compression level
      */
-    picturesCompression?: PicturesCompression;
+    picturesCompression: SvgExportOptions.PicturesCompressionEnum;
 
     /**
      * A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)
      */
-    deletePicturesCroppedAreas?: boolean;
+    deletePicturesCroppedAreas: boolean;
 
     /**
      * Determines a way of handling externally loaded fonts.
      */
-    externalFontsHandling?: ExternalFontsHandling;
+    externalFontsHandling: SvgExportOptions.ExternalFontsHandlingEnum;
 
+}
+export namespace SvgExportOptions {
+    export enum PicturesCompressionEnum {
+        Dpi330 = <any> 'Dpi330',
+        Dpi220 = <any> 'Dpi220',
+        Dpi150 = <any> 'Dpi150',
+        Dpi96 = <any> 'Dpi96',
+        Dpi72 = <any> 'Dpi72',
+        DocumentResolution = <any> 'DocumentResolution'
+    }
+    export enum ExternalFontsHandlingEnum {
+        AddLinksToFontFiles = <any> 'AddLinksToFontFiles',
+        Embed = <any> 'Embed',
+        Vectorize = <any> 'Vectorize'
+    }
 }
 
 /**
@@ -4617,62 +4109,62 @@ export interface SwfExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides?: boolean;
+    showHiddenSlides: boolean;
 
     /**
      * Specifies whether the generated SWF document should be compressed or not. Default is true. 
      */
-    compressed?: boolean;
+    compressed: boolean;
 
     /**
      * Specifies whether the generated SWF document should include the integrated document viewer or not. Default is true. 
      */
-    viewerIncluded?: boolean;
+    viewerIncluded: boolean;
 
     /**
      * Specifies whether border around pages should be shown. Default is true. 
      */
-    showPageBorder?: boolean;
+    showPageBorder: boolean;
 
     /**
      * Show/hide fullscreen button. Can be overridden in flashvars. Default is true. 
      */
-    showFullScreen?: boolean;
+    showFullScreen: boolean;
 
     /**
      * Show/hide page stepper. Can be overridden in flashvars. Default is true. 
      */
-    showPageStepper?: boolean;
+    showPageStepper: boolean;
 
     /**
      * Show/hide search section. Can be overridden in flashvars. Default is true. 
      */
-    showSearch?: boolean;
+    showSearch: boolean;
 
     /**
      * Show/hide whole top pane. Can be overridden in flashvars. Default is true. 
      */
-    showTopPane?: boolean;
+    showTopPane: boolean;
 
     /**
      * Show/hide bottom pane. Can be overridden in flashvars. Default is true. 
      */
-    showBottomPane?: boolean;
+    showBottomPane: boolean;
 
     /**
      * Show/hide left pane. Can be overridden in flashvars. Default is true. 
      */
-    showLeftPane?: boolean;
+    showLeftPane: boolean;
 
     /**
      * Start with opened left pane. Can be overridden in flashvars. Default is false. 
      */
-    startOpenLeftPane?: boolean;
+    startOpenLeftPane: boolean;
 
     /**
      * Enable/disable context menu. Default is true. 
      */
-    enableContextMenu?: boolean;
+    enableContextMenu: boolean;
 
     /**
      * Image that will be displayed as logo in the top right corner of the viewer. The image data is a base 64 string. Image should be 32x64 pixels PNG image, otherwise logo can be displayed improperly. 
@@ -4680,29 +4172,29 @@ export interface SwfExportOptions extends ExportOptions {
     logoImage?: string;
 
     /**
-     * Gets or sets the full hyperlink address for a logo. Has an effect only if a  is specified. 
+     * Gets or sets the full hyperlink address for a logo. Has an effect only if a LogoImage is specified. 
      */
     logoLink?: string;
 
     /**
      * Specifies the quality of JPEG images. Default is 95.
      */
-    jpegQuality?: number;
+    jpegQuality: number;
 
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition?: NotesPositions;
+    notesPosition: SwfExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition?: CommentsPositions;
+    commentsPosition: SwfExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth?: number;
+    commentsAreaWidth: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -4712,8 +4204,20 @@ export interface SwfExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor?: boolean;
+    showCommentsByNoAuthor: boolean;
 
+}
+export namespace SwfExportOptions {
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
 }
 
 /**
@@ -4724,17 +4228,6 @@ export interface TextItems extends ResourceBase {
      * Gets or sets the text items.
      */
     items?: Array<TextItem>;
-
-}
-
-/**
- * Represents response for   DTO
- */
-export interface TextItemsResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    textItems?: TextItems;
 
 }
 
@@ -4752,19 +4245,8 @@ export interface Theme extends ResourceBase {
 
 }
 
-/**
- * Represents response for   DTO
- */
-export interface ThemeResponse extends SaaSposeResponse {
-    /**
-     * Gets or sets the  DTO
-     */
-    theme?: Theme;
-
-}
-
 export interface TiffExportOptions extends ExportOptions {
-    compression?: TiffCompressionType;
+    compression: TiffExportOptions.CompressionEnum;
 
     width?: number;
 
@@ -4777,27 +4259,27 @@ export interface TiffExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides?: boolean;
+    showHiddenSlides: boolean;
 
     /**
-     * Specifies the pixel format for the generated images. Read/write .
+     * Specifies the pixel format for the generated images. Read/write ImagePixelFormat.
      */
-    pixelFormat?: ImagePixelFormat;
+    pixelFormat: TiffExportOptions.PixelFormatEnum;
 
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition?: NotesPositions;
+    notesPosition: TiffExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition?: CommentsPositions;
+    commentsPosition: TiffExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth?: number;
+    commentsAreaWidth: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -4807,8 +4289,35 @@ export interface TiffExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor?: boolean;
+    showCommentsByNoAuthor: boolean;
 
+}
+export namespace TiffExportOptions {
+    export enum CompressionEnum {
+        Default = <any> 'Default',
+        None = <any> 'None',
+        CCITT3 = <any> 'CCITT3',
+        CCITT4 = <any> 'CCITT4',
+        LZW = <any> 'LZW',
+        RLE = <any> 'RLE'
+    }
+    export enum PixelFormatEnum {
+        Format1bppIndexed = <any> 'Format1bppIndexed',
+        Format4bppIndexed = <any> 'Format4bppIndexed',
+        Format8bppIndexed = <any> 'Format8bppIndexed',
+        Format24bppRgb = <any> 'Format24bppRgb',
+        Format32bppArgb = <any> 'Format32bppArgb'
+    }
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
 }
 
 export interface UpdateBackground extends Task {
@@ -4817,6 +4326,8 @@ export interface UpdateBackground extends Task {
     background?: SlideBackground;
 
 }
+export namespace UpdateBackground {
+}
 
 export interface UpdateShape extends Task {
     shape?: ShapeBase;
@@ -4824,22 +4335,24 @@ export interface UpdateShape extends Task {
     shapePath?: string;
 
 }
+export namespace UpdateShape {
+}
 
 export interface XpsExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides?: boolean;
+    showHiddenSlides: boolean;
 
     /**
      * True to convert all metafiles used in a presentation to the PNG images.
      */
-    saveMetafilesAsPng?: boolean;
+    saveMetafilesAsPng: boolean;
 
     /**
      * True to draw black frame around each slide.
      */
-    drawSlidesFrame?: boolean;
+    drawSlidesFrame: boolean;
 
 }
 
@@ -4850,7 +4363,7 @@ export interface Chart extends ShapeBase {
     /**
      * Gets or sets the type of the chart.
      */
-    chartType?: ChartType;
+    chartType: Chart.ChartTypeEnum;
 
     /**
      * Gets or sets the series of chart data values.
@@ -4898,13 +4411,295 @@ export interface Chart extends ShapeBase {
     plotArea?: PlotArea;
 
 }
+export namespace Chart {
+    export enum ChartTypeEnum {
+        ClusteredColumn = <any> 'ClusteredColumn',
+        StackedColumn = <any> 'StackedColumn',
+        PercentsStackedColumn = <any> 'PercentsStackedColumn',
+        ClusteredColumn3D = <any> 'ClusteredColumn3D',
+        StackedColumn3D = <any> 'StackedColumn3D',
+        PercentsStackedColumn3D = <any> 'PercentsStackedColumn3D',
+        Column3D = <any> 'Column3D',
+        ClusteredCylinder = <any> 'ClusteredCylinder',
+        StackedCylinder = <any> 'StackedCylinder',
+        PercentsStackedCylinder = <any> 'PercentsStackedCylinder',
+        Cylinder3D = <any> 'Cylinder3D',
+        ClusteredCone = <any> 'ClusteredCone',
+        StackedCone = <any> 'StackedCone',
+        PercentsStackedCone = <any> 'PercentsStackedCone',
+        Cone3D = <any> 'Cone3D',
+        ClusteredPyramid = <any> 'ClusteredPyramid',
+        StackedPyramid = <any> 'StackedPyramid',
+        PercentsStackedPyramid = <any> 'PercentsStackedPyramid',
+        Pyramid3D = <any> 'Pyramid3D',
+        Line = <any> 'Line',
+        StackedLine = <any> 'StackedLine',
+        PercentsStackedLine = <any> 'PercentsStackedLine',
+        LineWithMarkers = <any> 'LineWithMarkers',
+        StackedLineWithMarkers = <any> 'StackedLineWithMarkers',
+        PercentsStackedLineWithMarkers = <any> 'PercentsStackedLineWithMarkers',
+        Line3D = <any> 'Line3D',
+        Pie = <any> 'Pie',
+        Pie3D = <any> 'Pie3D',
+        PieOfPie = <any> 'PieOfPie',
+        ExplodedPie = <any> 'ExplodedPie',
+        ExplodedPie3D = <any> 'ExplodedPie3D',
+        BarOfPie = <any> 'BarOfPie',
+        PercentsStackedBar = <any> 'PercentsStackedBar',
+        ClusteredBar3D = <any> 'ClusteredBar3D',
+        ClusteredBar = <any> 'ClusteredBar',
+        StackedBar = <any> 'StackedBar',
+        StackedBar3D = <any> 'StackedBar3D',
+        PercentsStackedBar3D = <any> 'PercentsStackedBar3D',
+        ClusteredHorizontalCylinder = <any> 'ClusteredHorizontalCylinder',
+        StackedHorizontalCylinder = <any> 'StackedHorizontalCylinder',
+        PercentsStackedHorizontalCylinder = <any> 'PercentsStackedHorizontalCylinder',
+        ClusteredHorizontalCone = <any> 'ClusteredHorizontalCone',
+        StackedHorizontalCone = <any> 'StackedHorizontalCone',
+        PercentsStackedHorizontalCone = <any> 'PercentsStackedHorizontalCone',
+        ClusteredHorizontalPyramid = <any> 'ClusteredHorizontalPyramid',
+        StackedHorizontalPyramid = <any> 'StackedHorizontalPyramid',
+        PercentsStackedHorizontalPyramid = <any> 'PercentsStackedHorizontalPyramid',
+        Area = <any> 'Area',
+        StackedArea = <any> 'StackedArea',
+        PercentsStackedArea = <any> 'PercentsStackedArea',
+        Area3D = <any> 'Area3D',
+        StackedArea3D = <any> 'StackedArea3D',
+        PercentsStackedArea3D = <any> 'PercentsStackedArea3D',
+        ScatterWithMarkers = <any> 'ScatterWithMarkers',
+        ScatterWithSmoothLinesAndMarkers = <any> 'ScatterWithSmoothLinesAndMarkers',
+        ScatterWithSmoothLines = <any> 'ScatterWithSmoothLines',
+        ScatterWithStraightLinesAndMarkers = <any> 'ScatterWithStraightLinesAndMarkers',
+        ScatterWithStraightLines = <any> 'ScatterWithStraightLines',
+        HighLowClose = <any> 'HighLowClose',
+        OpenHighLowClose = <any> 'OpenHighLowClose',
+        VolumeHighLowClose = <any> 'VolumeHighLowClose',
+        VolumeOpenHighLowClose = <any> 'VolumeOpenHighLowClose',
+        Surface3D = <any> 'Surface3D',
+        WireframeSurface3D = <any> 'WireframeSurface3D',
+        Contour = <any> 'Contour',
+        WireframeContour = <any> 'WireframeContour',
+        Doughnut = <any> 'Doughnut',
+        ExplodedDoughnut = <any> 'ExplodedDoughnut',
+        Bubble = <any> 'Bubble',
+        BubbleWith3D = <any> 'BubbleWith3D',
+        Radar = <any> 'Radar',
+        RadarWithMarkers = <any> 'RadarWithMarkers',
+        FilledRadar = <any> 'FilledRadar',
+        SeriesOfMixedTypes = <any> 'SeriesOfMixedTypes'
+    }
+}
+
+/**
+ * Represents document replace result DTO.
+ */
+export interface DocumentReplaceResult extends Document {
+    /**
+     * Gets or sets the number of matches 
+     */
+    matches: number;
+
+}
 
 /**
  * Represents GeometryShape resource.
  */
 export interface GeometryShape extends ShapeBase {
-    geometryShapeType?: GeometryShapeType;
+    geometryShapeType: GeometryShape.GeometryShapeTypeEnum;
 
+}
+export namespace GeometryShape {
+    export enum GeometryShapeTypeEnum {
+        Custom = <any> 'Custom',
+        Line = <any> 'Line',
+        LineInverse = <any> 'LineInverse',
+        Triangle = <any> 'Triangle',
+        RightTriangle = <any> 'RightTriangle',
+        Rectangle = <any> 'Rectangle',
+        Diamond = <any> 'Diamond',
+        Parallelogram = <any> 'Parallelogram',
+        Trapezoid = <any> 'Trapezoid',
+        NonIsoscelesTrapezoid = <any> 'NonIsoscelesTrapezoid',
+        Pentagon = <any> 'Pentagon',
+        Hexagon = <any> 'Hexagon',
+        Heptagon = <any> 'Heptagon',
+        Octagon = <any> 'Octagon',
+        Decagon = <any> 'Decagon',
+        Dodecagon = <any> 'Dodecagon',
+        FourPointedStar = <any> 'FourPointedStar',
+        FivePointedStar = <any> 'FivePointedStar',
+        SixPointedStar = <any> 'SixPointedStar',
+        SevenPointedStar = <any> 'SevenPointedStar',
+        EightPointedStar = <any> 'EightPointedStar',
+        TenPointedStar = <any> 'TenPointedStar',
+        TwelvePointedStar = <any> 'TwelvePointedStar',
+        SixteenPointedStar = <any> 'SixteenPointedStar',
+        TwentyFourPointedStar = <any> 'TwentyFourPointedStar',
+        ThirtyTwoPointedStar = <any> 'ThirtyTwoPointedStar',
+        RoundCornerRectangle = <any> 'RoundCornerRectangle',
+        OneRoundCornerRectangle = <any> 'OneRoundCornerRectangle',
+        TwoSamesideRoundCornerRectangle = <any> 'TwoSamesideRoundCornerRectangle',
+        TwoDiagonalRoundCornerRectangle = <any> 'TwoDiagonalRoundCornerRectangle',
+        OneSnipOneRoundCornerRectangle = <any> 'OneSnipOneRoundCornerRectangle',
+        OneSnipCornerRectangle = <any> 'OneSnipCornerRectangle',
+        TwoSamesideSnipCornerRectangle = <any> 'TwoSamesideSnipCornerRectangle',
+        TwoDiagonalSnipCornerRectangle = <any> 'TwoDiagonalSnipCornerRectangle',
+        Plaque = <any> 'Plaque',
+        Ellipse = <any> 'Ellipse',
+        Teardrop = <any> 'Teardrop',
+        HomePlate = <any> 'HomePlate',
+        Chevron = <any> 'Chevron',
+        PieWedge = <any> 'PieWedge',
+        Pie = <any> 'Pie',
+        BlockArc = <any> 'BlockArc',
+        Donut = <any> 'Donut',
+        NoSmoking = <any> 'NoSmoking',
+        RightArrow = <any> 'RightArrow',
+        LeftArrow = <any> 'LeftArrow',
+        UpArrow = <any> 'UpArrow',
+        DownArrow = <any> 'DownArrow',
+        StripedRightArrow = <any> 'StripedRightArrow',
+        NotchedRightArrow = <any> 'NotchedRightArrow',
+        BentUpArrow = <any> 'BentUpArrow',
+        LeftRightArrow = <any> 'LeftRightArrow',
+        UpDownArrow = <any> 'UpDownArrow',
+        LeftUpArrow = <any> 'LeftUpArrow',
+        LeftRightUpArrow = <any> 'LeftRightUpArrow',
+        QuadArrow = <any> 'QuadArrow',
+        CalloutLeftArrow = <any> 'CalloutLeftArrow',
+        CalloutRightArrow = <any> 'CalloutRightArrow',
+        CalloutUpArrow = <any> 'CalloutUpArrow',
+        CalloutDownArrow = <any> 'CalloutDownArrow',
+        CalloutLeftRightArrow = <any> 'CalloutLeftRightArrow',
+        CalloutUpDownArrow = <any> 'CalloutUpDownArrow',
+        CalloutQuadArrow = <any> 'CalloutQuadArrow',
+        BentArrow = <any> 'BentArrow',
+        UTurnArrow = <any> 'UTurnArrow',
+        CircularArrow = <any> 'CircularArrow',
+        LeftCircularArrow = <any> 'LeftCircularArrow',
+        LeftRightCircularArrow = <any> 'LeftRightCircularArrow',
+        CurvedRightArrow = <any> 'CurvedRightArrow',
+        CurvedLeftArrow = <any> 'CurvedLeftArrow',
+        CurvedUpArrow = <any> 'CurvedUpArrow',
+        CurvedDownArrow = <any> 'CurvedDownArrow',
+        SwooshArrow = <any> 'SwooshArrow',
+        Cube = <any> 'Cube',
+        Can = <any> 'Can',
+        LightningBolt = <any> 'LightningBolt',
+        Heart = <any> 'Heart',
+        Sun = <any> 'Sun',
+        Moon = <any> 'Moon',
+        SmileyFace = <any> 'SmileyFace',
+        IrregularSeal1 = <any> 'IrregularSeal1',
+        IrregularSeal2 = <any> 'IrregularSeal2',
+        FoldedCorner = <any> 'FoldedCorner',
+        Bevel = <any> 'Bevel',
+        Frame = <any> 'Frame',
+        HalfFrame = <any> 'HalfFrame',
+        Corner = <any> 'Corner',
+        DiagonalStripe = <any> 'DiagonalStripe',
+        Chord = <any> 'Chord',
+        CurvedArc = <any> 'CurvedArc',
+        LeftBracket = <any> 'LeftBracket',
+        RightBracket = <any> 'RightBracket',
+        LeftBrace = <any> 'LeftBrace',
+        RightBrace = <any> 'RightBrace',
+        BracketPair = <any> 'BracketPair',
+        BracePair = <any> 'BracePair',
+        StraightConnector1 = <any> 'StraightConnector1',
+        BentConnector2 = <any> 'BentConnector2',
+        BentConnector3 = <any> 'BentConnector3',
+        BentConnector4 = <any> 'BentConnector4',
+        BentConnector5 = <any> 'BentConnector5',
+        CurvedConnector2 = <any> 'CurvedConnector2',
+        CurvedConnector3 = <any> 'CurvedConnector3',
+        CurvedConnector4 = <any> 'CurvedConnector4',
+        CurvedConnector5 = <any> 'CurvedConnector5',
+        Callout1 = <any> 'Callout1',
+        Callout2 = <any> 'Callout2',
+        Callout3 = <any> 'Callout3',
+        Callout1WithAccent = <any> 'Callout1WithAccent',
+        Callout2WithAccent = <any> 'Callout2WithAccent',
+        Callout3WithAccent = <any> 'Callout3WithAccent',
+        Callout1WithBorder = <any> 'Callout1WithBorder',
+        Callout2WithBorder = <any> 'Callout2WithBorder',
+        Callout3WithBorder = <any> 'Callout3WithBorder',
+        Callout1WithBorderAndAccent = <any> 'Callout1WithBorderAndAccent',
+        Callout2WithBorderAndAccent = <any> 'Callout2WithBorderAndAccent',
+        Callout3WithBorderAndAccent = <any> 'Callout3WithBorderAndAccent',
+        CalloutWedgeRectangle = <any> 'CalloutWedgeRectangle',
+        CalloutWedgeRoundRectangle = <any> 'CalloutWedgeRoundRectangle',
+        CalloutWedgeEllipse = <any> 'CalloutWedgeEllipse',
+        CalloutCloud = <any> 'CalloutCloud',
+        Cloud = <any> 'Cloud',
+        Ribbon = <any> 'Ribbon',
+        Ribbon2 = <any> 'Ribbon2',
+        EllipseRibbon = <any> 'EllipseRibbon',
+        EllipseRibbon2 = <any> 'EllipseRibbon2',
+        LeftRightRibbon = <any> 'LeftRightRibbon',
+        VerticalScroll = <any> 'VerticalScroll',
+        HorizontalScroll = <any> 'HorizontalScroll',
+        Wave = <any> 'Wave',
+        DoubleWave = <any> 'DoubleWave',
+        Plus = <any> 'Plus',
+        ProcessFlow = <any> 'ProcessFlow',
+        DecisionFlow = <any> 'DecisionFlow',
+        InputOutputFlow = <any> 'InputOutputFlow',
+        PredefinedProcessFlow = <any> 'PredefinedProcessFlow',
+        InternalStorageFlow = <any> 'InternalStorageFlow',
+        DocumentFlow = <any> 'DocumentFlow',
+        MultiDocumentFlow = <any> 'MultiDocumentFlow',
+        TerminatorFlow = <any> 'TerminatorFlow',
+        PreparationFlow = <any> 'PreparationFlow',
+        ManualInputFlow = <any> 'ManualInputFlow',
+        ManualOperationFlow = <any> 'ManualOperationFlow',
+        ConnectorFlow = <any> 'ConnectorFlow',
+        PunchedCardFlow = <any> 'PunchedCardFlow',
+        PunchedTapeFlow = <any> 'PunchedTapeFlow',
+        SummingJunctionFlow = <any> 'SummingJunctionFlow',
+        OrFlow = <any> 'OrFlow',
+        CollateFlow = <any> 'CollateFlow',
+        SortFlow = <any> 'SortFlow',
+        ExtractFlow = <any> 'ExtractFlow',
+        MergeFlow = <any> 'MergeFlow',
+        OfflineStorageFlow = <any> 'OfflineStorageFlow',
+        OnlineStorageFlow = <any> 'OnlineStorageFlow',
+        MagneticTapeFlow = <any> 'MagneticTapeFlow',
+        MagneticDiskFlow = <any> 'MagneticDiskFlow',
+        MagneticDrumFlow = <any> 'MagneticDrumFlow',
+        DisplayFlow = <any> 'DisplayFlow',
+        DelayFlow = <any> 'DelayFlow',
+        AlternateProcessFlow = <any> 'AlternateProcessFlow',
+        OffPageConnectorFlow = <any> 'OffPageConnectorFlow',
+        BlankButton = <any> 'BlankButton',
+        HomeButton = <any> 'HomeButton',
+        HelpButton = <any> 'HelpButton',
+        InformationButton = <any> 'InformationButton',
+        ForwardOrNextButton = <any> 'ForwardOrNextButton',
+        BackOrPreviousButton = <any> 'BackOrPreviousButton',
+        EndButton = <any> 'EndButton',
+        BeginningButton = <any> 'BeginningButton',
+        ReturnButton = <any> 'ReturnButton',
+        DocumentButton = <any> 'DocumentButton',
+        SoundButton = <any> 'SoundButton',
+        MovieButton = <any> 'MovieButton',
+        Gear6 = <any> 'Gear6',
+        Gear9 = <any> 'Gear9',
+        Funnel = <any> 'Funnel',
+        PlusMath = <any> 'PlusMath',
+        MinusMath = <any> 'MinusMath',
+        MultiplyMath = <any> 'MultiplyMath',
+        DivideMath = <any> 'DivideMath',
+        EqualMath = <any> 'EqualMath',
+        NotEqualMath = <any> 'NotEqualMath',
+        CornerTabs = <any> 'CornerTabs',
+        SquareTabs = <any> 'SquareTabs',
+        PlaqueTabs = <any> 'PlaqueTabs',
+        ChartX = <any> 'ChartX',
+        ChartStar = <any> 'ChartStar',
+        ChartPlus = <any> 'ChartPlus',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -4912,11 +4707,15 @@ export interface GeometryShape extends ShapeBase {
  */
 export interface GraphicalObject extends ShapeBase {
 }
+export namespace GraphicalObject {
+}
 
 /**
  * Represents GroupShape resource.
  */
 export interface GroupShape extends ShapeBase {
+}
+export namespace GroupShape {
 }
 
 /**
@@ -4924,26 +4723,17 @@ export interface GroupShape extends ShapeBase {
  */
 export interface OleObjectFrame extends ShapeBase {
 }
-
-/**
- * Represents response from string replace operation for Presentation resource 
- */
-export interface PresentationStringReplaceResponse extends StringReplaceResponse {
-    /**
-     * Gets or sets the document.
-     */
-    document?: Document;
-
+export namespace OleObjectFrame {
 }
 
 /**
- * Represents response from string replace operation for Slide resource
+ * Represents slide replace result DTO.
  */
-export interface SlideStringReplaceResponse extends StringReplaceResponse {
+export interface SlideReplaceResult extends Slide {
     /**
-     * Gets or sets the slide.
+     * Gets or sets the number of matches 
      */
-    slide?: Slide;
+    matches: number;
 
 }
 
@@ -4954,17 +4744,17 @@ export interface SmartArt extends ShapeBase {
     /**
      * Layout type.
      */
-    layout?: SmartArtLayoutType;
+    layout: SmartArt.LayoutEnum;
 
     /**
      * Quick style.
      */
-    quickStyle?: SmartArtQuickStyleType;
+    quickStyle: SmartArt.QuickStyleEnum;
 
     /**
      * Color style.
      */
-    colorStyle?: SmartArtColorType;
+    colorStyle: SmartArt.ColorStyleEnum;
 
     /**
      * Collection of nodes in SmartArt object.             
@@ -4974,14 +4764,212 @@ export interface SmartArt extends ShapeBase {
     /**
      * The state of the SmartArt diagram with regard to (left-to-right) LTR or (right-to-left) RTL, if the diagram supports reversal.
      */
-    isReversed?: boolean;
+    isReversed: boolean;
 
+}
+export namespace SmartArt {
+    export enum LayoutEnum {
+        AccentProcess = <any> 'AccentProcess',
+        AccentedPicture = <any> 'AccentedPicture',
+        AlternatingFlow = <any> 'AlternatingFlow',
+        AlternatingHexagons = <any> 'AlternatingHexagons',
+        AlternatingPictureBlocks = <any> 'AlternatingPictureBlocks',
+        AlternatingPictureCircles = <any> 'AlternatingPictureCircles',
+        ArrowRibbon = <any> 'ArrowRibbon',
+        AscendingPictureAccentProcess = <any> 'AscendingPictureAccentProcess',
+        Balance = <any> 'Balance',
+        BasicBendingProcess = <any> 'BasicBendingProcess',
+        BasicBlockList = <any> 'BasicBlockList',
+        BasicChevronProcess = <any> 'BasicChevronProcess',
+        BasicCycle = <any> 'BasicCycle',
+        BasicMatrix = <any> 'BasicMatrix',
+        BasicPie = <any> 'BasicPie',
+        BasicProcess = <any> 'BasicProcess',
+        BasicPyramid = <any> 'BasicPyramid',
+        BasicRadial = <any> 'BasicRadial',
+        BasicTarget = <any> 'BasicTarget',
+        BasicTimeline = <any> 'BasicTimeline',
+        BasicVenn = <any> 'BasicVenn',
+        BendingPictureAccentList = <any> 'BendingPictureAccentList',
+        BendingPictureBlocks = <any> 'BendingPictureBlocks',
+        BendingPictureCaption = <any> 'BendingPictureCaption',
+        BendingPictureCaptionList = <any> 'BendingPictureCaptionList',
+        BendingPictureSemiTransparentText = <any> 'BendingPictureSemiTransparentText',
+        BlockCycle = <any> 'BlockCycle',
+        BubblePictureList = <any> 'BubblePictureList',
+        CaptionedPictures = <any> 'CaptionedPictures',
+        ChevronList = <any> 'ChevronList',
+        CircleAccentTimeline = <any> 'CircleAccentTimeline',
+        CircleArrowProcess = <any> 'CircleArrowProcess',
+        CirclePictureHierarchy = <any> 'CirclePictureHierarchy',
+        CircleRelationship = <any> 'CircleRelationship',
+        CircularBendingProcess = <any> 'CircularBendingProcess',
+        CircularPictureCallout = <any> 'CircularPictureCallout',
+        ClosedChevronProcess = <any> 'ClosedChevronProcess',
+        ContinuousArrowProcess = <any> 'ContinuousArrowProcess',
+        ContinuousBlockProcess = <any> 'ContinuousBlockProcess',
+        ContinuousCycle = <any> 'ContinuousCycle',
+        ContinuousPictureList = <any> 'ContinuousPictureList',
+        ConvergingArrows = <any> 'ConvergingArrows',
+        ConvergingRadial = <any> 'ConvergingRadial',
+        CounterbalanceArrows = <any> 'CounterbalanceArrows',
+        CycleMatrix = <any> 'CycleMatrix',
+        DescendingBlockList = <any> 'DescendingBlockList',
+        DescendingProcess = <any> 'DescendingProcess',
+        DetailedProcess = <any> 'DetailedProcess',
+        DivergingArrows = <any> 'DivergingArrows',
+        DivergingRadial = <any> 'DivergingRadial',
+        Equation = <any> 'Equation',
+        FramedTextPicture = <any> 'FramedTextPicture',
+        Funnel = <any> 'Funnel',
+        Gear = <any> 'Gear',
+        GridMatrix = <any> 'GridMatrix',
+        GroupedList = <any> 'GroupedList',
+        HalfCircleOrganizationChart = <any> 'HalfCircleOrganizationChart',
+        HexagonCluster = <any> 'HexagonCluster',
+        Hierarchy = <any> 'Hierarchy',
+        HierarchyList = <any> 'HierarchyList',
+        HorizontalBulletList = <any> 'HorizontalBulletList',
+        HorizontalHierarchy = <any> 'HorizontalHierarchy',
+        HorizontalLabeledHierarchy = <any> 'HorizontalLabeledHierarchy',
+        HorizontalMultiLevelHierarchy = <any> 'HorizontalMultiLevelHierarchy',
+        HorizontalOrganizationChart = <any> 'HorizontalOrganizationChart',
+        HorizontalPictureList = <any> 'HorizontalPictureList',
+        IncreasingArrowsProcess = <any> 'IncreasingArrowsProcess',
+        IncreasingCircleProcess = <any> 'IncreasingCircleProcess',
+        InvertedPyramid = <any> 'InvertedPyramid',
+        LabeledHierarchy = <any> 'LabeledHierarchy',
+        LinearVenn = <any> 'LinearVenn',
+        LinedList = <any> 'LinedList',
+        MultidirectionalCycle = <any> 'MultidirectionalCycle',
+        NameandTitleOrganizationChart = <any> 'NameandTitleOrganizationChart',
+        NestedTarget = <any> 'NestedTarget',
+        NondirectionalCycle = <any> 'NondirectionalCycle',
+        OpposingArrows = <any> 'OpposingArrows',
+        OpposingIdeas = <any> 'OpposingIdeas',
+        OrganizationChart = <any> 'OrganizationChart',
+        PhasedProcess = <any> 'PhasedProcess',
+        PictureAccentBlocks = <any> 'PictureAccentBlocks',
+        PictureAccentList = <any> 'PictureAccentList',
+        PictureAccentProcess = <any> 'PictureAccentProcess',
+        PictureCaptionList = <any> 'PictureCaptionList',
+        PictureGrid = <any> 'PictureGrid',
+        PictureLineup = <any> 'PictureLineup',
+        PictureStrips = <any> 'PictureStrips',
+        PieProcess = <any> 'PieProcess',
+        PlusandMinus = <any> 'PlusandMinus',
+        ProcessArrows = <any> 'ProcessArrows',
+        ProcessList = <any> 'ProcessList',
+        PyramidList = <any> 'PyramidList',
+        RadialCluster = <any> 'RadialCluster',
+        RadialCycle = <any> 'RadialCycle',
+        RadialList = <any> 'RadialList',
+        RadialVenn = <any> 'RadialVenn',
+        RandomToResultProcess = <any> 'RandomToResultProcess',
+        RepeatingBendingProcess = <any> 'RepeatingBendingProcess',
+        ReverseList = <any> 'ReverseList',
+        SegmentedCycle = <any> 'SegmentedCycle',
+        SegmentedProcess = <any> 'SegmentedProcess',
+        SegmentedPyramid = <any> 'SegmentedPyramid',
+        SnapshotPictureList = <any> 'SnapshotPictureList',
+        SpiralPicture = <any> 'SpiralPicture',
+        SquareAccentList = <any> 'SquareAccentList',
+        StackedList = <any> 'StackedList',
+        StackedVenn = <any> 'StackedVenn',
+        StaggeredProcess = <any> 'StaggeredProcess',
+        StepDownProcess = <any> 'StepDownProcess',
+        StepUpProcess = <any> 'StepUpProcess',
+        SubStepProcess = <any> 'SubStepProcess',
+        TableHierarchy = <any> 'TableHierarchy',
+        TableList = <any> 'TableList',
+        TargetList = <any> 'TargetList',
+        TextCycle = <any> 'TextCycle',
+        TitlePictureLineup = <any> 'TitlePictureLineup',
+        TitledMatrix = <any> 'TitledMatrix',
+        TitledPictureAccentList = <any> 'TitledPictureAccentList',
+        TitledPictureBlocks = <any> 'TitledPictureBlocks',
+        TrapezoidList = <any> 'TrapezoidList',
+        UpwardArrow = <any> 'UpwardArrow',
+        VerticalAccentList = <any> 'VerticalAccentList',
+        VerticalArrowList = <any> 'VerticalArrowList',
+        VerticalBendingProcess = <any> 'VerticalBendingProcess',
+        VerticalBlockList = <any> 'VerticalBlockList',
+        VerticalBoxList = <any> 'VerticalBoxList',
+        VerticalBulletList = <any> 'VerticalBulletList',
+        VerticalChevronList = <any> 'VerticalChevronList',
+        VerticalCircleList = <any> 'VerticalCircleList',
+        VerticalCurvedList = <any> 'VerticalCurvedList',
+        VerticalEquation = <any> 'VerticalEquation',
+        VerticalPictureAccentList = <any> 'VerticalPictureAccentList',
+        VerticalPictureList = <any> 'VerticalPictureList',
+        VerticalProcess = <any> 'VerticalProcess',
+        Custom = <any> 'Custom',
+        PictureOrganizationChart = <any> 'PictureOrganizationChart'
+    }
+    export enum QuickStyleEnum {
+        SimpleFill = <any> 'SimpleFill',
+        WhiteOutline = <any> 'WhiteOutline',
+        SubtleEffect = <any> 'SubtleEffect',
+        ModerateEffect = <any> 'ModerateEffect',
+        IntenceEffect = <any> 'IntenceEffect',
+        Polished = <any> 'Polished',
+        Inset = <any> 'Inset',
+        Cartoon = <any> 'Cartoon',
+        Powder = <any> 'Powder',
+        BrickScene = <any> 'BrickScene',
+        FlatScene = <any> 'FlatScene',
+        MetallicScene = <any> 'MetallicScene',
+        SunsetScene = <any> 'SunsetScene',
+        BirdsEyeScene = <any> 'BirdsEyeScene'
+    }
+    export enum ColorStyleEnum {
+        Dark1Outline = <any> 'Dark1Outline',
+        Dark2Outline = <any> 'Dark2Outline',
+        DarkFill = <any> 'DarkFill',
+        ColorfulAccentColors = <any> 'ColorfulAccentColors',
+        ColorfulAccentColors2to3 = <any> 'ColorfulAccentColors2to3',
+        ColorfulAccentColors3to4 = <any> 'ColorfulAccentColors3to4',
+        ColorfulAccentColors4to5 = <any> 'ColorfulAccentColors4to5',
+        ColorfulAccentColors5to6 = <any> 'ColorfulAccentColors5to6',
+        ColoredOutlineAccent1 = <any> 'ColoredOutlineAccent1',
+        ColoredFillAccent1 = <any> 'ColoredFillAccent1',
+        GradientRangeAccent1 = <any> 'GradientRangeAccent1',
+        GradientLoopAccent1 = <any> 'GradientLoopAccent1',
+        TransparentGradientRangeAccent1 = <any> 'TransparentGradientRangeAccent1',
+        ColoredOutlineAccent2 = <any> 'ColoredOutlineAccent2',
+        ColoredFillAccent2 = <any> 'ColoredFillAccent2',
+        GradientRangeAccent2 = <any> 'GradientRangeAccent2',
+        GradientLoopAccent2 = <any> 'GradientLoopAccent2',
+        TransparentGradientRangeAccent2 = <any> 'TransparentGradientRangeAccent2',
+        ColoredOutlineAccent3 = <any> 'ColoredOutlineAccent3',
+        ColoredFillAccent3 = <any> 'ColoredFillAccent3',
+        GradientRangeAccent3 = <any> 'GradientRangeAccent3',
+        GradientLoopAccent3 = <any> 'GradientLoopAccent3',
+        TransparentGradientRangeAccent3 = <any> 'TransparentGradientRangeAccent3',
+        ColoredOutlineAccent4 = <any> 'ColoredOutlineAccent4',
+        ColoredFillAccent4 = <any> 'ColoredFillAccent4',
+        GradientRangeAccent4 = <any> 'GradientRangeAccent4',
+        GradientLoopAccent4 = <any> 'GradientLoopAccent4',
+        TransparentGradientRangeAccent4 = <any> 'TransparentGradientRangeAccent4',
+        ColoredOutlineAccent5 = <any> 'ColoredOutlineAccent5',
+        ColoredFillAccent5 = <any> 'ColoredFillAccent5',
+        GradientRangeAccent5 = <any> 'GradientRangeAccent5',
+        GradientLoopAccent5 = <any> 'GradientLoopAccent5',
+        TransparentGradientRangeAccent5 = <any> 'TransparentGradientRangeAccent5',
+        ColoredOutlineAccent6 = <any> 'ColoredOutlineAccent6',
+        ColoredFillAccent6 = <any> 'ColoredFillAccent6',
+        GradientRangeAccent6 = <any> 'GradientRangeAccent6',
+        GradientLoopAccent6 = <any> 'GradientLoopAccent6',
+        TransparentGradientRangeAccent6 = <any> 'TransparentGradientRangeAccent6'
+    }
 }
 
 /**
  * Represents SmartArt resource.
  */
 export interface SmartArtShape extends ShapeBase {
+}
+export namespace SmartArtShape {
 }
 
 /**
@@ -4991,7 +4979,7 @@ export interface Table extends ShapeBase {
     /**
      * Builtin table style.
      */
-    style?: TableStylePreset;
+    style: Table.StyleEnum;
 
     /**
      * Rows.
@@ -5006,38 +4994,118 @@ export interface Table extends ShapeBase {
     /**
      * Determines whether the first column of a table has to be drawn with a special formatting.
      */
-    firstCol?: boolean;
+    firstCol: boolean;
 
     /**
      * Determines whether the first row of a table has to be drawn with a special formatting.
      */
-    firstRow?: boolean;
+    firstRow: boolean;
 
     /**
      * Determines whether the even rows has to be drawn with a different formatting.
      */
-    horizontalBanding?: boolean;
+    horizontalBanding: boolean;
 
     /**
      * Determines whether the last column of a table has to be drawn with a special formatting.
      */
-    lastCol?: boolean;
+    lastCol: boolean;
 
     /**
      * Determines whether the last row of a table has to be drawn with a special formatting.
      */
-    lastRow?: boolean;
+    lastRow: boolean;
 
     /**
      * Determines whether the table has right to left reading order.
      */
-    rightToLeft?: boolean;
+    rightToLeft: boolean;
 
     /**
      * Determines whether the even columns has to be drawn with a different formatting.
      */
-    verticalBanding?: boolean;
+    verticalBanding: boolean;
 
+}
+export namespace Table {
+    export enum StyleEnum {
+        None = <any> 'None',
+        MediumStyle2Accent1 = <any> 'MediumStyle2Accent1',
+        MediumStyle2 = <any> 'MediumStyle2',
+        NoStyleNoGrid = <any> 'NoStyleNoGrid',
+        ThemedStyle1Accent1 = <any> 'ThemedStyle1Accent1',
+        ThemedStyle1Accent2 = <any> 'ThemedStyle1Accent2',
+        ThemedStyle1Accent3 = <any> 'ThemedStyle1Accent3',
+        ThemedStyle1Accent4 = <any> 'ThemedStyle1Accent4',
+        ThemedStyle1Accent5 = <any> 'ThemedStyle1Accent5',
+        ThemedStyle1Accent6 = <any> 'ThemedStyle1Accent6',
+        NoStyleTableGrid = <any> 'NoStyleTableGrid',
+        ThemedStyle2Accent1 = <any> 'ThemedStyle2Accent1',
+        ThemedStyle2Accent2 = <any> 'ThemedStyle2Accent2',
+        ThemedStyle2Accent3 = <any> 'ThemedStyle2Accent3',
+        ThemedStyle2Accent4 = <any> 'ThemedStyle2Accent4',
+        ThemedStyle2Accent5 = <any> 'ThemedStyle2Accent5',
+        ThemedStyle2Accent6 = <any> 'ThemedStyle2Accent6',
+        LightStyle1 = <any> 'LightStyle1',
+        LightStyle1Accent1 = <any> 'LightStyle1Accent1',
+        LightStyle1Accent2 = <any> 'LightStyle1Accent2',
+        LightStyle1Accent3 = <any> 'LightStyle1Accent3',
+        LightStyle1Accent4 = <any> 'LightStyle1Accent4',
+        LightStyle2Accent5 = <any> 'LightStyle2Accent5',
+        LightStyle1Accent6 = <any> 'LightStyle1Accent6',
+        LightStyle2 = <any> 'LightStyle2',
+        LightStyle2Accent1 = <any> 'LightStyle2Accent1',
+        LightStyle2Accent2 = <any> 'LightStyle2Accent2',
+        LightStyle2Accent3 = <any> 'LightStyle2Accent3',
+        MediumStyle2Accent3 = <any> 'MediumStyle2Accent3',
+        MediumStyle2Accent4 = <any> 'MediumStyle2Accent4',
+        MediumStyle2Accent5 = <any> 'MediumStyle2Accent5',
+        LightStyle2Accent6 = <any> 'LightStyle2Accent6',
+        LightStyle2Accent4 = <any> 'LightStyle2Accent4',
+        LightStyle3 = <any> 'LightStyle3',
+        LightStyle3Accent1 = <any> 'LightStyle3Accent1',
+        MediumStyle2Accent2 = <any> 'MediumStyle2Accent2',
+        LightStyle3Accent2 = <any> 'LightStyle3Accent2',
+        LightStyle3Accent3 = <any> 'LightStyle3Accent3',
+        LightStyle3Accent4 = <any> 'LightStyle3Accent4',
+        LightStyle3Accent5 = <any> 'LightStyle3Accent5',
+        LightStyle3Accent6 = <any> 'LightStyle3Accent6',
+        MediumStyle1 = <any> 'MediumStyle1',
+        MediumStyle1Accent1 = <any> 'MediumStyle1Accent1',
+        MediumStyle1Accent2 = <any> 'MediumStyle1Accent2',
+        MediumStyle1Accent3 = <any> 'MediumStyle1Accent3',
+        MediumStyle1Accent4 = <any> 'MediumStyle1Accent4',
+        MediumStyle1Accent5 = <any> 'MediumStyle1Accent5',
+        MediumStyle1Accent6 = <any> 'MediumStyle1Accent6',
+        MediumStyle2Accent6 = <any> 'MediumStyle2Accent6',
+        MediumStyle3 = <any> 'MediumStyle3',
+        MediumStyle3Accent1 = <any> 'MediumStyle3Accent1',
+        MediumStyle3Accent2 = <any> 'MediumStyle3Accent2',
+        MediumStyle3Accent3 = <any> 'MediumStyle3Accent3',
+        MediumStyle3Accent4 = <any> 'MediumStyle3Accent4',
+        MediumStyle3Accent5 = <any> 'MediumStyle3Accent5',
+        MediumStyle3Accent6 = <any> 'MediumStyle3Accent6',
+        MediumStyle4 = <any> 'MediumStyle4',
+        MediumStyle4Accent1 = <any> 'MediumStyle4Accent1',
+        MediumStyle4Accent2 = <any> 'MediumStyle4Accent2',
+        MediumStyle4Accent3 = <any> 'MediumStyle4Accent3',
+        MediumStyle4Accent4 = <any> 'MediumStyle4Accent4',
+        MediumStyle4Accent5 = <any> 'MediumStyle4Accent5',
+        MediumStyle4Accent6 = <any> 'MediumStyle4Accent6',
+        DarkStyle1 = <any> 'DarkStyle1',
+        DarkStyle1Accent1 = <any> 'DarkStyle1Accent1',
+        DarkStyle1Accent2 = <any> 'DarkStyle1Accent2',
+        DarkStyle1Accent3 = <any> 'DarkStyle1Accent3',
+        DarkStyle1Accent4 = <any> 'DarkStyle1Accent4',
+        DarkStyle1Accent5 = <any> 'DarkStyle1Accent5',
+        DarkStyle1Accent6 = <any> 'DarkStyle1Accent6',
+        DarkStyle2 = <any> 'DarkStyle2',
+        DarkStyle2Accent1Accent2 = <any> 'DarkStyle2Accent1Accent2',
+        DarkStyle2Accent3Accent4 = <any> 'DarkStyle2Accent3Accent4',
+        DarkStyle2Accent5Accent6 = <any> 'DarkStyle2Accent5Accent6',
+        LightStyle1Accent5 = <any> 'LightStyle1Accent5',
+        Custom = <any> 'Custom'
+    }
 }
 
 /**
@@ -5082,18 +5150,33 @@ export interface AudioFrame extends GeometryShape {
     /**
      * Returns or sets the audio play mode.
      */
-    playMode?: AudioPlayModePreset;
+    playMode?: AudioFrame.PlayModeEnum;
 
     /**
      * Returns or sets the audio volume.
      */
-    volume?: AudioVolumeMode;
+    volume?: AudioFrame.VolumeEnum;
 
     /**
      * Audio data encoded in base64.
      */
     base64Data?: string;
 
+}
+export namespace AudioFrame {
+    export enum PlayModeEnum {
+        Auto = <any> 'Auto',
+        OnClick = <any> 'OnClick',
+        AllSlides = <any> 'AllSlides',
+        Mixed = <any> 'Mixed'
+    }
+    export enum VolumeEnum {
+        Mute = <any> 'Mute',
+        Low = <any> 'Low',
+        Medium = <any> 'Medium',
+        Loud = <any> 'Loud',
+        Mixed = <any> 'Mixed'
+    }
 }
 
 /**
@@ -5109,6 +5192,8 @@ export interface Connector extends GeometryShape {
     endShapeConnectedToIndex?: number;
 
 }
+export namespace Connector {
+}
 
 /**
  * Represents PictureFrame resource.
@@ -5116,6 +5201,8 @@ export interface Connector extends GeometryShape {
 export interface PictureFrame extends GeometryShape {
     pictureFillFormat?: PictureFill;
 
+}
+export namespace PictureFrame {
 }
 
 /**
@@ -5132,6 +5219,8 @@ export interface Shape extends GeometryShape {
      */
     paragraphs?: ResourceUriElement;
 
+}
+export namespace Shape {
 }
 
 /**
@@ -5156,7 +5245,7 @@ export interface VideoFrame extends GeometryShape {
     /**
      * Returns or sets the video play mode.  
      */
-    playMode?: VideoPlayModePreset;
+    playMode?: VideoFrame.PlayModeEnum;
 
     /**
      * Determines whether a video is automatically rewinded to start as soon as the movie has finished playing
@@ -5166,11 +5255,26 @@ export interface VideoFrame extends GeometryShape {
     /**
      * Returns or sets the audio volume.
      */
-    volume?: AudioVolumeMode;
+    volume?: VideoFrame.VolumeEnum;
 
     /**
      * Video data encoded in base64.
      */
     base64Data?: string;
 
+}
+export namespace VideoFrame {
+    export enum PlayModeEnum {
+        Auto = <any> 'Auto',
+        OnClick = <any> 'OnClick',
+        AllSlides = <any> 'AllSlides',
+        Mixed = <any> 'Mixed'
+    }
+    export enum VolumeEnum {
+        Mute = <any> 'Mute',
+        Low = <any> 'Low',
+        Medium = <any> 'Medium',
+        Loud = <any> 'Loud',
+        Mixed = <any> 'Mixed'
+    }
 }

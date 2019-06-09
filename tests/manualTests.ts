@@ -12,20 +12,20 @@
 
 var assert = require('assert');
 import * as model from "../sdk/model";
-import { PostSlidesPipelineRequest, DocumentApi } from "../sdk/api";
+import { PostSlidesPipelineRequest, SlidesApi } from "../sdk/api";
 
 describe("Additional tests for pipeline", () => {
     it("multiple files upload", () => {
         const config = require("../testConfig.json");
         const fs = require('fs');
-        const api = new DocumentApi(config.AppSid, config.AppKey, config.BaseUrl, config.debug);
+        const api = new SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
         const request = new PostSlidesPipelineRequest();
-        const file1 : model.RequestInputFile = { type: model.InputFileType.Request, index: 0 };
-        const file2 : model.RequestInputFile = { type: model.InputFileType.Request, index: 1 };
+        const file1 : model.RequestInputFile = { type: model.InputFile.TypeEnum.Request, index: 0 };
+        const file2 : model.RequestInputFile = { type: model.InputFile.TypeEnum.Request, index: 1 };
         const task : model.Save = {
-            format: model.ExportFormat.Pptx,
-            output: { type: model.OutputFileType.Response },
-            type: model.TaskType.Save
+            format: model.Save.FormatEnum.Pptx,
+            output: { type: model.OutputFile.TypeEnum.Response },
+            type: model.Task.TypeEnum.Save
         };
         request.pipeline = { input: { templateData: file1, template: file2 }, tasks: [ task ] };
         request.files = [

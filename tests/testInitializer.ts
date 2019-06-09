@@ -10,425 +10,152 @@
  * Do not edit the class manually.
  */
 
+import * as sdkApi from "../sdk/api";
+import * as requests from "../sdk/requests";
+
 var assert = require('assert');
 
-let storageApi;
-
 export class TestInitializer {
-    public static readonly fileFolder = "TempSlidesSDK";
-    public static readonly fileName = "test.ppt";
-    public static readonly templateFileName = "TemplateCV.pptx";
-    public static readonly changedFileName = "changedtest.ppt";
+    static readonly testRules = require("../testRules.json");
 
     public static getStreamValue() {
-        return require('fs').createReadStream("TestData/" + TestInitializer.fileName);
+        return require('fs').createReadStream("TestData/" + "test.ppt");
     }
 
-    public static getValue(functionName: string, name: string) {
-        if (name.toLowerCase().endsWith("storage")
-            || name == "outPath"
-            || name == "jpegQuality"
-            || name == "isImageDataEmbeeded") {
-            return null;
-        }
-        if (name == "folder") {
-            if (functionName == "postSlidesDocument") {
-                return null;
+    public static getValue(functionName: string, name: string) : any {
+        var value = "test" + name;
+        TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, function(r) {
+            if ("Value" in r) {
+                value = r.Value;
             }
-            return TestInitializer.fileFolder;
-        }
-        if (name == "name") {
-            if (functionName == "putNewPresentation" || functionName == "postSlidesDocument") {
-                return TestInitializer.changedFileName;
-            }
-            if (functionName == "getSlidesPlaceholder") {
-                return "placeholders.pptx";
-            }
-            if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide" || functionName == "postSlidesAdd") {
-                return "test-unprotected.ppt";
-            }
-            return TestInitializer.fileName;
-        }
-        if (name == "templatePath" || name == "cloneFrom" || name == "source") {
-            if (functionName == "postSlidesDocument") {
-                return TestInitializer.fileFolder + "/" + TestInitializer.templateFileName;
-            }
-            return TestInitializer.fileFolder + "/" + TestInitializer.fileName;
-        }
-        if (name == "path") {
-            return "";
-        }
-        if (name.toLowerCase().endsWith("password")) {
-            if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide" || functionName == "postSlidesAdd") {
-                return null;
-            }
-            return "password";
-        }
-        if (name == "format") {
-           if (functionName == "getNotesSlideShapeWithFormat"
-               || functionName == "getNotesSlideWithFormat"
-               || functionName == "getSlidesImageWithFormat"
-               || functionName == "getShapeWithFormat"
-               || functionName == "postShapeSaveAs"
-               || functionName == "postNotesSlideShapeSaveAs") {
-               return "png";
-           }
-           return "pdf";
-        }
-        if (name == "bounds") {
-            return "Shape";
-        }
-        if (name == "propertyName") {
-            return "testProperty";
-        }
-        if (name == "data") {
-            return "<staff><person><name>John Doe</name><address><line1>10 Downing Street</line1><line2>London</line2></address><phone>+457 123456</phone><bio>Hi, I'm John and this is my CV</bio><skills><skill><title>C#</title><level>Excellent</level></skill><skill><title>C++</title><level>Good</level></skill><skill><title>Java</title><level>Average</level></skill></skills></person></staff>";
-        }
-        if (name == "shapeIndex") {
-            return 3;
-        }
-        if (name == "oldPositions") {
-            return [1, 2];
-        }
-        if (name == "newPositions") {
-            return [2, 1];
-        }
-        if (name.toLowerCase().endsWith("index")
-            || name.toLowerCase().endsWith("position")
-            || name == "width"
-            || name == "height"
-            || name == "scaleX"
-            || name == "scaleY"
-            || name == "slideToCopy") {
-            return 1;
-        }
-        if (name == "pipeline" || name == "request" || name == "options" || name == "paragraphDto") {
-            return {};
-        }
-        if (name == "portionDto") {
-            return { "Text": "testPortion" };
-        }
-        if (name == "slideDto") {
-            if (functionName == "putSlidesSlide") {
-                return { "LayoutSlide": { "Uri": { "Href": "TitleOnly" } } };
-            }
-            return { "MasterSlide": { "Uri": { "Href": "masterSlides/2" } } };
-        }
-        if (name == "dto") {
-            return { "Text": "testNote" };
-        }
-        if (name == "properties") {
-            return { "List": [] };
-        }
-        if (name == "property") {
-            return { "Name": "testProperty001", "Value": "testValue002" };
-        }
-        if (name == "color") {
-            return "#FF0000dd";
-        }
-        if (name == "slides" || name == "shapes" || name == "paragraphs" || name == "portions") {
-            return null;
-        }
-        return "test" + name;
+        });
+        return value;
     }
 
-    public static invalidizeValue(value: any, name: string, type: string) : any {
-        if (type == "number") {
-            return 593;
-        }
-        if (type == "boolean") {
-            return !value;
-        }
-        if (type == "Buffer") {
+    public static invalidizeValue(value: any, name: string, type: string, functionName: string) : any {
+        var invalidValue = null;
+        if (type == "Buffer" || type == "Array&lt;Buffer&gt;") {
             return null;
         }
-        if (type == "Array&lt;number&gt;") {
-            return [ 1, 593 ];
-        }
-        if (value && typeof value === "object") {
-            return null;
-        }
-        if (name == "name") {
-            return "invalid" + value;
-        }
-        return value + "invalid";
+        TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, function(r) {
+            if ("InvalidValue" in r) {
+                invalidValue = r.InvalidValue;
+            }
+        });
+        return TestInitializer.untemplatize(invalidValue, value);
     }
 
-    public static initializeStorageApi() {
-        if (!storageApi) {
-            const config = require("../testConfig.json");
-            const StorageApi = require("asposestoragecloud");
-            storageApi = new StorageApi({
-                appSid: config.AppSid,
-                apiKey: config.AppKey,
-                baseURI: config.BaseUrl + "/v1.1",
-                debug: config.debug
-            });
-        }
-        return storageApi;
+    public static initializeFileApi() {
+        const config = require("../testConfig.json");
+        return new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
     }
 
     public static initialize(functionName: string, invalidFieldName: string, invalidFieldValue: any) {
+        const files = [];
+        TestInitializer.enumerateRules(TestInitializer.testRules.Files, functionName, invalidFieldName, function(r) {
+            const actualName = TestInitializer.untemplatize(r.File, invalidFieldValue);
+            var path = "TempSlidesSDK";
+            if ("Folder" in r) {
+                path = TestInitializer.untemplatize(r.Folder, invalidFieldValue)
+            }
+            path = path + "/" + actualName;
+            files[path] = r;
+            files[path].ActualName = actualName;
+        });
         const promises = [];
-        const storageApi = TestInitializer.initializeStorageApi();
-        if (functionName == "getSlidesPlaceholder") {
-            promises.push(new Promise((resolve) => {
-                var name = "placeholders.pptx";
-                storageApi.PutCreate(
-                    TestInitializer.fileFolder + "/" + name,
-                    null,
-                    null,
-                    "TestData/" + name,
-                    (responseMessage) => {
-                        assert.equal("OK", responseMessage.status);
-                        resolve();
-                    });
+        const fileApi = TestInitializer.initializeFileApi();
+        for (var path in files) {
+            var rule = files[path];
+            if (rule.Action == "Put") {
+                promises.push(new Promise((resolve, reject) => {
+                    const request = new requests.UploadFileRequest();
+                    request.file = require('fs').createReadStream("TestData/" + files[path].ActualName);
+                    request.path = path;
+                    fileApi
+                        .uploadFile(request)
+                        .then(() => resolve())
+                        .catch(() => reject(new Error("Could not upload file " + path)));
                 }));
-        }
-        if (invalidFieldName == "folder") {
-            promises.push(new Promise((resolve) => {
-                storageApi.DeleteFile(
-                    invalidFieldValue + "/" + TestInitializer.fileName,
-                    null,
-                    null,
-                    (responseMessage) => {
-                        assert.equal("OK", responseMessage.status);
-                        resolve();
-                    });
-            }));
-        }
-        if (invalidFieldName == "name") {
-            promises.push(new Promise((resolve) => {
-                storageApi.DeleteFile(
-                    TestInitializer.fileFolder + "/invalid" + TestInitializer.fileName,
-                    null,
-                    null,
-                    (responseMessage) => {
-                        assert.equal("OK", responseMessage.status);
-                        resolve();
-                    });
-            }));
-        }
-        promises.push(new Promise((resolve) => {
-            var name = functionName == 'deleteSlidesCleanSlidesList' || functionName == "putSlidesSlide" || functionName == "postSlidesAdd"
-                ? 'test-unprotected.ppt'
-                : functionName == "postSlidesDocument"
-                    ? TestInitializer.templateFileName
-                    : TestInitializer.fileName;
-            storageApi.PutCreate(
-                TestInitializer.fileFolder + "/" + name,
-                null,
-                null,
-                "TestData/" + name,
-                (responseMessage) => {
-                    assert.equal("OK", responseMessage.status);
-                    resolve();
-                });
-        }));
-        if (functionName == "putNewPresentation" || functionName == "postSlidesDocument") {
-            promises.push(new Promise((resolve) => {
-                storageApi.DeleteFile(
-                    TestInitializer.fileFolder + "invalid/" + TestInitializer.changedFileName,
-                    null,
-                    null,
-                    (responseMessage) => {
-                        assert.equal("OK", responseMessage.status);
-                        resolve();
-                    });
-            }));
-            promises.push(new Promise((resolve) => {
-                storageApi.DeleteFile(
-                    TestInitializer.fileFolder + "/invalid" + TestInitializer.changedFileName,
-                    null,
-                    null,
-                    (responseMessage) => {
-                        assert.equal("OK", responseMessage.status);
-                        resolve();
-                    });
-            }));
-            promises.push(new Promise((resolve) => {
-                storageApi.DeleteFile(
-                    TestInitializer.fileFolder + "/" + TestInitializer.changedFileName,
-                    null,
-                    null,
-                    (responseMessage) => {
-                        assert.equal("OK", responseMessage.status);
-                        resolve();
-                    });
-            }));
-            promises.push(new Promise((resolve) => {
-                storageApi.DeleteFile(
-                    TestInitializer.changedFileName,
-                    null,
-                    null,
-                    (responseMessage) => {
-                        assert.equal("OK", responseMessage.status);
-                        resolve();
-                    });
-            }));
+            } else if (rule.Action == "Delete") {
+                promises.push(new Promise((resolve, reject) => {
+                    const request = new requests.DeleteFileRequest();
+                    request.path = path;
+                    fileApi
+                        .deleteFile(request)
+                        .then(() => resolve())
+                        .catch(() => reject(new Error("Could not delete file " + path)));
+                }));
+            }
         }
         return Promise.all(promises);
     }
 
     public static assertValidCall(call: Promise<any>, isBinary: boolean, functionName: string) {
         return call.then((result) => {
-            assert.equal(200, Math.floor(result.response.statusCode / 100) * 100);
-            if (isBinary) {
-                if (functionName != "postSlidesPipeline") {
-                    assert(result.body.length > 0);
+            var code = 0;
+            TestInitializer.enumerateRules(TestInitializer.testRules.Results, functionName, null, function(r) {
+                if ("Code" in r) {
+                    code = r.Code;
                 }
-            } else {
-                assert.equal(200, Math.floor(result.body.Code / 100) * 100);
+            });
+            assert.equal(code, result.response.statusCode);
+            if (result.body && isBinary) {
+                assert(result.body.length > 0);
             }
         }).catch((err) => {
-            if (functionName != "postNotesSlideAddNewShape"
-                && functionName != "postAddNewShape"
-                && functionName != "deleteNotesSlideShape"
-                && functionName != "deleteSlideShape") {
-                assert.fail(err);
-            }
+            assert.fail(err);
         });
     }
 
-    public static assertInvalidCall(call: Promise<any>, functionName: string, fieldName: string) {
+    public static assertInvalidCall(call: Promise<any>, functionName: string, fieldName: string, fieldValue: any) {
         var failed = false;
         return call
             .then(() => {
-                if (fieldName != "from"
-                    && fieldName != "to"
-                    && fieldName != "width"
-                    && fieldName != "height"
-                    && fieldName != "scaleX"
-                    && fieldName != "scaleY"
-                    && fieldName != "bounds"
-                    && fieldName != "fontsFolder"
-                    && fieldName != "destFolder"
-                    && fieldName != "slideToCopy"
-                    && fieldName != "isImageDataEmbedded"
-                    && fieldName != "jpegQuality"
-                    && fieldName != "applyToAll"
-                    && fieldName != "scaleType"
-                    && fieldName != "sizeType"
-                    && fieldName != "slides"
-                    && fieldName != "shapes"
-                    && fieldName != "shapeToClone"
-                    && fieldName != "source"
-                    && fieldName != "layoutAlias"
-                    && fieldName != "oldValue"
-                    && fieldName != "newValue"
-                    && fieldName != "oldPositions"
-                    && fieldName != "newPositions"
-                    && fieldName != "ignoreCase"
-                    && fieldName != "outPath"
-                    && fieldName != "stream"
-                    && fieldName != "html"
-                    && fieldName != "withEmpty"
-                    && fieldName != "propertyName"
-                    && fieldName != "files"
-                    && fieldName != "options"
-                    && fieldName != "background"
-                    && !(functionName == "getSlidesImageWithFormat" && fieldName == "format")
-                    && !(functionName == "postSlidesReorderPosition" && (fieldName == "position" || fieldName == "slideToClone"))
-                    && !(functionName == "postAddNotesSlide" && (fieldName == "slideIndex" || fieldName == "dto"))
-                    && !((functionName == "putSlidesDocumentFromHtml"
-                            || functionName == "putNewPresentation"
-                            || functionName == "postSlidesDocument")
-                        && (fieldName == "name" || fieldName == "folder" || fieldName == "password"))) {
-                    failed = true;
+                failed = true;
+                TestInitializer.enumerateRules(TestInitializer.testRules.OKToNotFail, functionName, fieldName, function() { failed = false; });
+                if (failed) {
                     assert.fail('Must have failed');
                 }
             }).catch((err) => {
-                console.log(err);
                 if (failed) {
                     assert.fail(err);
                 } else {
-                    if (fieldName == "name"
-                        || fieldName == "folder"
-                        || fieldName == "cloneFrom"
-                        || fieldName == "propertyName"
-                        || fieldName == "source") {
-                        if (!functionName.startsWith('post') && !functionName.startsWith('put')) {
-                            assert.equal(404, err.code);
+                    var code = 0;
+                    var message = "Unexpeceted message";
+                    TestInitializer.enumerateRules(TestInitializer.testRules.Results, functionName, fieldName, function(r) {
+                        if ("Code" in r) {
+                            code = r.Code;
                         }
-                    } else {
-                        if (functionName != "postNotesSlideAddNewShape"
-                            && functionName != "postAddNewShape"
-                            && functionName != "deleteNotesSlideShape"
-                            && functionName != "deleteSlideShape") {
-                            if (fieldName == "path"
-                                || fieldName == "pipeline"
-                                || fieldName == "dto"
-                                || fieldName == "paragraphDto"
-                                || fieldName == "portionDto") {
-                                assert(err.code == 500 || err.code == 400);
-                            } else if (fieldName == "pipeline" ||fieldName == "options") {
-                                assert.equal(500, err.code);
-                            } else {
-                                assert.equal(400, err.code);
-                            }
-                            if (fieldName == "password" || fieldName == "sourcePassword") {
-                                if (functionName == "deleteSlidesCleanSlidesList" || functionName == "putSlidesSlide" || functionName == "postSlidesAdd") {
-                                    assert(err.message.startsWith("An attempt was made to move the position before the beginning of the stream."));
-                                } else {
-                                    assert(err.message.startsWith("Invalid password")
-                                        || err.message.startsWith("Object reference not set"));
-                                }
-                            } else if (fieldName == "index" || fieldName == "oldPositions" || fieldName == "newPositions") {
-                                assert(err.message.startsWith("Specified argument was out of the range of valid values."));
-                            } else if (fieldName == "slideIndex"
-                                || fieldName == "slides"
-                                || fieldName == "cloneFromPosition"
-                                || fieldName == "slideToCopy") {
-                                assert(err.message.startsWith("Wrong slide index.")
-                                    || err.message.startsWith("Invalid index:")
-                                    || err.message.startsWith("Index was out of range")
-                                    || err.message.startsWith("Placeholder with specified index doesn't exist."));
-                            } else if (fieldName == "shapeIndex" || fieldName == "shapes") {
-                                assert(err.message.startsWith("Wrong shape index.")
-                                    || err.message.startsWith("Shape index out of bounds"));
-                            } else if (fieldName == "paragraphIndex") {
-                                assert(err.message.startsWith("Paragraph index out of bounds")
-                                    || err.message.startsWith("Wrong paragraph index. Shape paragraphs Count"));
-                            } else if (fieldName == "portionIndex") {
-                                assert(err.message.startsWith("Portion index out of bounds")
-                                    || err.message.startsWith("Wrong portion index. Shape paragraph portions Count"));
-                            } else if (fieldName == "paragraphs") {
-                                assert(err.message.startsWith("Wrong paragraph index."));
-                            } else if (fieldName == "portions") {
-                                assert(err.message.startsWith("Wrong portion index."));
-                            } else if (fieldName == "placeholderIndex") {
-                                assert(err.message.startsWith("Placeholder with specified index doesn't exist."));
-                            } else if (fieldName == "color") {
-                                assert(err.message.startsWith("Color must be in format"));
-                            } else if (fieldName == "format") {
-                                assert(err.message.startsWith("Format ") && err.message.endsWith(" is not supported."));
-                            } else if (fieldName == "scaleX" || fieldName == "scaleY") {
-                                assert(err.message.startsWith("Out of memory") || err.message.startsWith("Parameter is not valid"));
-                            } else {
-                                if (fieldName != "pipeline"
-                                    && !fieldName.toLowerCase().endsWith("dto")
-                                    && fieldName != "document"
-                                    && fieldName != "options"
-                                    && fieldName != "path"
-                                    && fieldName != "sizeType"
-                                    && fieldName != "properties"
-                                    && fieldName != "property"
-                                    && fieldName != "to"
-                                    && fieldName != "position"
-                                    && fieldName != "oldPosition"
-                                    && fieldName != "newPosition"
-                                    && fieldName != "request"
-                                    && fieldName != "slideToClone"
-                                    && fieldName != "templatePath"
-                                    && fieldName != "templateStorage"
-                                    && fieldName != "cloneFromPassword") {
-                                    assert(err.message.startsWith("The specified storage was not found or is not associated with the application")
-                                        || err.message.startsWith("Object reference not set"));
-                                }
-                            }
+                        if ("Message" in r) {
+                            message = r.Message;
                         }
-                    }
+                    });
+                }
+                if (err.code) {
+                    assert.equal(code, err.code);
+                }
+                if (err.message) {
+                    assert(err.message.includes(TestInitializer.untemplatize(message, fieldValue)));
                 }
             });
+    }
+
+    private static enumerateRules(rules: any, functionName: string, fieldName: string, action: (rule: any) => void) {
+        for (var i in rules) {
+            if (TestInitializer.applies(rules[i], functionName, fieldName)) {
+                action(rules[i]);
+            }
+        }
+    }
+
+    private static applies(rule: any, functionName: string, fieldName: string) : boolean {
+        return (!("Method" in rule) || (functionName && rule.Method.toLowerCase() == functionName.toLowerCase()))
+            && (!("Invalid" in rule) || rule.Invalid == !!fieldName)
+            && (!("Parameter" in rule) || (fieldName && rule.Parameter.toLowerCase() == fieldName.toLowerCase()))
+            && (!("Language" in rule) || rule.Language.toLowerCase() == "nodejs");
+    }
+
+    private static untemplatize(t: any, value: any) : string {
+        return t && t.replace ? t.replace("%v", value) : t;
     }
 }

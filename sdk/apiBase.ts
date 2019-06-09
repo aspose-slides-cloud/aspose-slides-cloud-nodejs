@@ -36,7 +36,7 @@ export abstract class ApiBase {
      * @param baseUrl Base api Url.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
      */
-    constructor(appSid: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
-        this.configuration = new Configuration(appSid, appKey, baseUrl, debugMode);
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean) {
+        this.configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode);
     }
 }

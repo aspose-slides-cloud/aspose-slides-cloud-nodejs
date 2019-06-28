@@ -12,7 +12,8 @@
 
 var assert = require('assert');
 import * as model from "../sdk/model";
-import { PostSlidesPipelineRequest, SlidesApi } from "../sdk/api";
+import { PostSlidesPipelineRequest, /*PostSlideSaveAsRequest, */SlidesApi } from "../sdk/api";
+/*import { TestInitializer } from "./testInitializer";*/
 
 describe("Additional tests for pipeline", () => {
     it("multiple files upload", () => {
@@ -38,3 +39,26 @@ describe("Additional tests for pipeline", () => {
         });
     });
 });
+
+/*unstable test
+describe("Tests for timeout configuration parameter", () => {
+    it("convert slide to svg", () => {
+        return TestInitializer.initialize("postSlideSaveAs", null, null).then(() => {
+            const config = require("../testConfig.json");
+            const fs = require('fs');
+            const api = new SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug, 1);
+            const request = new PostSlideSaveAsRequest();
+            request.format = "svg";
+            request.name = "test.ppt";
+            request.folder = "TempSlidesSDK";
+            request.password = "password";
+            request.slideIndex = 1;
+            return api.postSlideSaveAs(request)
+                .then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.fail("must have failed because of timeout");
+                }).catch((e) => {
+                });
+        }).catch((err) => assert.fail(err));
+    });
+});*/

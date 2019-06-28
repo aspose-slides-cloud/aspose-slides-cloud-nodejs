@@ -22,18 +22,12 @@
 * SOFTWARE.
 */
 
-import { IAuthentication, OAuth  } from "../internal/auth";
-
 const defaultBasePath = "https://api.aspose.cloud";
 
 /**
  * Slides API configuration
  */
 export class Configuration {
-    /**
-     * Authentication.
-     */
-    public authentication: IAuthentication;
 
     /**
      * App SID.
@@ -44,6 +38,12 @@ export class Configuration {
      * App key.
      */
     public appKey: string;
+
+
+    /**
+     * access token.
+     */
+    public accessToken: string;
 
     /**
      * Base Url.
@@ -56,11 +56,16 @@ export class Configuration {
     public authBaseUrl: string = defaultBasePath;
 
     /**
+     *  Gets or sets slides operation timeout in seconds. 0 stands for no timeout. The timeout applies to the Slides operation, not to the HTTP request.
+     */
+    public timeout: number;
+
+    /**
      *  Gets or sets a value indicating whether debug mode. In debug mode all requests and responses are logged to console.
      */
     public debugMode: boolean;
 
-    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean) {
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
             this.authBaseUrl = baseUrl;
@@ -72,8 +77,7 @@ export class Configuration {
         this.appSid = appSid;
         this.appKey = appKey;
         this.debugMode = debugMode;
-
-        this.authentication = new OAuth() as IAuthentication;
+        this.timeout = timeout;
     }
 
     /**

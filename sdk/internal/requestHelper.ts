@@ -132,11 +132,13 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.5.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.6.0";
+    if (confguration.timeout) {
+        requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
+    }
 
-    const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {
-        await auth.applyToRequest(requestOptions, confguration);
+        await addAuthHeader(requestOptions, confguration);
     }
 
     return new Promise<request.RequestResponse>((resolve, reject) => {
@@ -147,7 +149,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     resolve(response);
                 } else if (response.statusCode === 401 && !notApplyAuthToRequest) {
-                    await auth.handle401response(confguration);
+                    await requestToken(confguration);
                     reject(new NeedRepeatException());
                 } else {
                     try {
@@ -161,7 +163,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                         } catch {
                              //Error means the object is already deserialized
                         }
-                        reject({ message: result.Error.Message, code: response.statusCode });
+                        reject({ message: result.error.message, code: response.statusCode });
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });
                     }
@@ -170,6 +172,32 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         });
         (r as any).writeDebugToConsole = confguration.debugMode;
     });
+}
+
+async function addAuthHeader(requestOptions: request.Options, configuration: Configuration): Promise<void> {
+    if (configuration.accessToken == null) {
+        await requestToken(configuration);
+    }
+    if (requestOptions && requestOptions.headers) {
+        requestOptions.headers.Authorization = "Bearer " + configuration.accessToken;
+    }
+    return Promise.resolve();
+}
+
+async function requestToken(configuration: Configuration): Promise<void> {
+    const requestOptions: request.Options = {
+        method: "POST",
+        json: true,
+        uri: configuration.authBaseUrl + "/connect/token",
+        form: {
+            grant_type: "client_credentials",
+            client_id: configuration.appSid,
+            client_secret: configuration.appKey,
+        },
+    };
+    const response = await invokeApiMethod(requestOptions, configuration, true);
+    configuration.accessToken = response.body.access_token;
+    return Promise.resolve();
 }
 
 /**

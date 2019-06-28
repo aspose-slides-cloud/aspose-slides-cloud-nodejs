@@ -26,9 +26,9 @@
 import http = require("http");
 import request = require("request");
 
+import { Configuration } from "./internal/configuration";
 import { ObjectSerializer } from "./internal/objectSerializer";
 import { addQueryParameterToUrl, addPathParameterToUrl, invokeApiMethod, checkMultipartContent } from "./internal/requestHelper";
-import { ApiBase } from "./apiBase";
 import * as model from "./model";
 import * as requests from "./requests";
 
@@ -36,16 +36,19 @@ export * from "./model";
 export * from "./requests";
 
 
-export class SlidesApi extends ApiBase {
+export class SlidesApi {
+    private configuration: Configuration;
+
     /**
      * @param appSid App SID.
      * @param appKey App key.
      * @param baseUrl Base api Url.
      * @param authBaseUrl Base authentication Url.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
+     * @param timeout Timeout (in seconds) for an operation. Applies to the Slides operation, not to the HTTP request.
      */
-    constructor(appSID: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean) {
-        super(appSID, appKey, baseUrl, authBaseUrl, debugMode);
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
+        this.configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout);
     }
 
     /**
@@ -137,7 +140,7 @@ export class SlidesApi extends ApiBase {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true
@@ -4605,7 +4608,7 @@ export class SlidesApi extends ApiBase {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true

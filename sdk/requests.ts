@@ -2448,7 +2448,7 @@ export class PostNotesSlideShapeSaveAsRequest {
      */
     public slideIndex: number;
     /**
-     * Gets or sets path
+     * Shape path (for smart art and group shapes).
      */
     public path: string;
     /**
@@ -2530,7 +2530,7 @@ export class PostShapeSaveAsRequest {
      */
     public slideIndex: number;
     /**
-     * Gets or sets path
+     * Shape path (for smart art and group shapes).
      */
     public path: string;
     /**
@@ -3223,7 +3223,7 @@ export class PutNotesSlideShapeSaveAsRequest {
      */
     public slideIndex: number;
     /**
-     * Gets or sets path
+     * Shape path (for smart art and group shapes).
      */
     public path: string;
     /**
@@ -3395,7 +3395,7 @@ export class PutShapeSaveAsRequest {
      */
     public slideIndex: number;
     /**
-     * Gets or sets path
+     * Shape path (for smart art and group shapes).
      */
     public path: string;
     /**

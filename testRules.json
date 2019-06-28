@@ -146,7 +146,8 @@
 		{ "Value": null, "InvalidValue": 593, "Parameter": "JpegQuality" },
 		{ "Value": null, "InvalidValue": 593.5, "Parameter": "ScaleX" },
 		{ "Value": null, "InvalidValue": 593.5, "Parameter": "ScaleY" },
-		{ "Value": null, "Parameter": "VersionId" }
+		{ "Value": null, "Parameter": "VersionId" },
+		{ "Value": null, "InvalidValue": null, "Parameter": "Files" }
 	],
 	"OKToReturnNull": [
 		{ "Method": "PostSlidesPipeline" }
@@ -186,6 +187,7 @@
 		{ "Parameter": "Color" },
 		{ "Parameter": "Format", "Method": "PutSlidesSlide" },
 		{ "Parameter": "Format", "Language": "NET" },
+		{ "Parameter": "Format", "Language": "Java", "Method": "PostSlidesSplit" },
 		{ "Parameter": "Dto", "Method": "PostAddNotesSlide" },
 		{ "Parameter": "Position", "Method": "PostSlidesReorderPosition" },
 		{ "Parameter": "Name", "Method": "PostSlidesDocument" },
@@ -305,19 +307,22 @@
 		{ "Message": "Color must be in format #FF000000", "Parameter": "Color" },
 		{ "Code": 404, "Message": "Property %v does not exist.", "Parameter": "PropertyName" },
 		{ "Message": "Data at the root level is invalid.", "Parameter": "Data" },
+		{ "Message": "Can't read MSCDFileSystem.", "Parameter": "Data", "Language": "Python", "Method": "PostSlidesDocument" },
 		{ "Message": "Can't read MSCDFileSystem.", "Parameter": "Document" },
 		{ "Message": "The stream is empty.", "Parameter": "Document", "Language": "NodeJS" },
+		{ "Message": "The stream is empty.", "Parameter": "Document", "Language": "Python" },
 		{ "Message": " DTO expected.", "Parameter": "DTO" },
 		{ "Message": " DTO expected.", "Parameter": "SlideDTO" },
 		{ "Message": " DTO expected.", "Parameter": "Background" },
 		{ "Message": " DTO expected.", "Parameter": "Pipeline" },
-		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Properties" },
-		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Property" },
+		{ "Message": " DTO expected.", "Parameter": "Properties" },
+		{ "Message": " DTO expected.", "Parameter": "Property" },
+		{ "Message": " DTO expected.", "Parameter": "Animation" },
+		{ "Message": " DTO expected.", "Parameter": "Sequence" },
+		{ "Message": " DTO expected.", "Parameter": "Effect" },
 		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Request" },
 		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Bounds" },
-		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Animation" },
-		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Sequence" },
-		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Effect" },
+		{ "Code": 409, "Message": " is not empty.", "Parameter": "Recursive" },
 		{ "Message": "An error has occurred.", "Code": 500, "Parameter": "Options" },
 		{ "Message": "Required parameter", "Parameter": "File" }
 	]

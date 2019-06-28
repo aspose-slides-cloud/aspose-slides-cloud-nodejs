@@ -39,11 +39,23 @@ export interface ApiInfo {
 
 }
 
+/**
+ * Arrow head properties.
+ */
 export interface ArrowHeadProperties {
+    /**
+     * Length.
+     */
     length: ArrowHeadProperties.LengthEnum;
 
+    /**
+     * Style.
+     */
     style: ArrowHeadProperties.StyleEnum;
 
+    /**
+     * Width.
+     */
     width: ArrowHeadProperties.WidthEnum;
 
 }
@@ -1041,8 +1053,14 @@ export namespace InputFile {
  * Represents comments collection of slide
  */
 export interface InteractiveSequence {
+    /**
+     * Effect list.
+     */
     effects?: Array<Effect>;
 
+    /**
+     * Index of the shape that triggers the sequence.
+     */
     triggerShapeIndex: number;
 
 }
@@ -1572,10 +1590,10 @@ export interface ResourceUriElement {
 }
 
 /**
- * 
+ * Scale type of slide content.
  */
     /**
-    * 
+    * Scale type of slide content.
     */
 export enum ScaleType {
     'DoNotScale' = <any> "'DoNotScale'",
@@ -1821,7 +1839,7 @@ export namespace SeriesMarker {
     /**
     * Represents a format for export individual shape.
     */
-export enum ShapeExportFormat2 {
+export enum ShapeExportFormat {
     'Jpeg' = <any> "'Jpeg'",
     'Png' = <any> "'Png'",
     'Gif' = <any> "'Gif'",
@@ -1869,17 +1887,17 @@ export namespace ShapeImageExportOptions {
     /**
     * Represents thumnail bounds settings.
     */
-export enum ShapeThumbnailBounds2 {
+export enum ShapeThumbnailBounds {
     'Slide' = <any> "'Slide'",
     'Shape' = <any> "'Shape'",
     'Appearance' = <any> "'Appearance'"
 }
 
 /**
- * 
+ * Slide size preset.
  */
     /**
-    * 
+    * Slide size preset.
     */
 export enum SizeType {
     'OnScreen' = <any> "'OnScreen'",
@@ -2383,15 +2401,30 @@ export interface Document extends ResourceBase {
  * Slides document properties.
  */
 export interface DocumentProperties extends ResourceBase {
+    /**
+     * Document property list.
+     */
     list?: Array<DocumentProperty>;
 
 }
 
+/**
+ * Document property.
+ */
 export interface DocumentProperty extends ResourceBase {
+    /**
+     * Name.
+     */
     name?: string;
 
+    /**
+     * Value.
+     */
     value?: string;
 
+    /**
+     * True for builtin property.
+     */
     builtIn: boolean;
 
 }
@@ -3983,8 +4016,14 @@ export interface Slide extends ResourceBase {
  * Represents comments collection of slide
  */
 export interface SlideAnimation extends ResourceBase {
+    /**
+     * Main sequence.
+     */
     mainSequence?: Array<Effect>;
 
+    /**
+     * Interactive sequence list.
+     */
     interactiveSequences?: Array<InteractiveSequence>;
 
 }

@@ -429,7 +429,13 @@ export namespace ChartWall {
     }
 }
 
+/**
+ * Custom dash pattern.
+ */
 export interface CustomDashPattern {
+    /**
+     * Pattern items.
+     */
     items?: Array<number>;
 
 }
@@ -836,6 +842,7 @@ export enum ExportFormat {
     'Ppsx' = <any> "'Ppsx'",
     'Pptm' = <any> "'Pptm'",
     'Ppsm' = <any> "'Ppsm'",
+    'Pot' = <any> "'Pot'",
     'Potx' = <any> "'Potx'",
     'Potm' = <any> "'Potm'",
     'Html' = <any> "'Html'",
@@ -893,6 +900,9 @@ export interface FilesUploadResult {
 
 }
 
+/**
+ * Base class for fill formats 
+ */
 export interface FillFormat {
     type?: FillFormat.TypeEnum;
 
@@ -928,11 +938,23 @@ export namespace FillOverlayEffect {
     }
 }
 
+/**
+ * Font set.
+ */
 export interface FontSet {
+    /**
+     * Complex script font.
+     */
     complexScript?: string;
 
+    /**
+     * East Asian font.
+     */
     eastAsian?: string;
 
+    /**
+     * Latin font.
+     */
     latin?: string;
 
 }
@@ -953,9 +975,18 @@ export interface GlowEffect {
 
 }
 
+/**
+ * Gradient stop.
+ */
 export interface GradientFillStop {
+    /**
+     * Color.
+     */
     color?: string;
 
+    /**
+     * Stop position (0..1).
+     */
     position: number;
 
 }
@@ -964,6 +995,9 @@ export interface GradientFillStop {
  * Represents export options for whole presentation.
  */
 export interface IShapeExportOptions {
+    /**
+     * Export format.
+     */
     format?: string;
 
 }
@@ -1125,27 +1159,63 @@ export namespace Legend {
     }
 }
 
+/**
+ * Line format.
+ */
 export interface LineFormat {
+    /**
+     * Alignment.
+     */
     alignment: LineFormat.AlignmentEnum;
 
+    /**
+     * Cap style.
+     */
     capStyle: LineFormat.CapStyleEnum;
 
+    /**
+     * Dash style.
+     */
     dashStyle: LineFormat.DashStyleEnum;
 
+    /**
+     * Join style.
+     */
     joinStyle: LineFormat.JoinStyleEnum;
 
+    /**
+     * Style.
+     */
     style: LineFormat.StyleEnum;
 
+    /**
+     * Begin arrowhead.
+     */
     beginArrowHead?: ArrowHeadProperties;
 
+    /**
+     * End arrowhead.
+     */
     endArrowHead?: ArrowHeadProperties;
 
+    /**
+     * Custom dash pattern.
+     */
     customDashPattern?: CustomDashPattern;
 
+    /**
+     * Fill format.
+     */
     fillFormat?: FillFormat;
 
+    /**
+     * Miter limit.
+     */
     miterLimit: number;
 
+    /**
+     * Width.
+     */
     width: number;
 
 }
@@ -1192,9 +1262,18 @@ export namespace LineFormat {
     }
 }
 
+/**
+ * Merging source.
+ */
 export interface MergingSource {
+    /**
+     * Source file.
+     */
     input?: InputFile;
 
+    /**
+     * Indices of slides to be merged.
+     */
     slides?: Array<number>;
 
 }
@@ -1226,10 +1305,10 @@ export interface ModelError {
 }
 
 /**
- * 
+ * Represents a format for notes slide export.
  */
     /**
-    * 
+    * Represents a format for notes slide export.
     */
 export enum NotesSlideExportFormat {
     'Jpeg' = <any> "'Jpeg'",
@@ -1255,7 +1334,13 @@ export interface ObjectExist {
 
 }
 
+/**
+ * One value chart data point.
+ */
 export interface OneValueChartDataPoint {
+    /**
+     * Value.
+     */
     value: number;
 
 }
@@ -1554,6 +1639,9 @@ export interface ResourceBase {
      */
     selfUri?: ResourceUri;
 
+    /**
+     * List of alternate links.
+     */
     alternateLinks?: Array<ResourceUri>;
 
 }
@@ -1584,7 +1672,13 @@ export interface ResourceUri {
 
 }
 
+/**
+ * Resource URI element.
+ */
 export interface ResourceUriElement {
+    /**
+     * Resource URI.
+     */
     uri?: ResourceUri;
 
 }
@@ -1834,10 +1928,10 @@ export namespace SeriesMarker {
 }
 
 /**
- * Represents a format for export individual shape.
+ * Represents a format for individual shape export.
  */
     /**
-    * Represents a format for export individual shape.
+    * Represents a format for individual shape export.
     */
 export enum ShapeExportFormat {
     'Jpeg' = <any> "'Jpeg'",
@@ -1922,11 +2016,25 @@ export enum SizeType {
  * Represents comment of slide
  */
 export interface SlideComment {
+    /**
+     * Author.
+     */
     author?: string;
 
+    /**
+     * Text.
+     */
     text?: string;
 
+    /**
+     * Creation time.
+     */
     createdTime?: string;
+
+    /**
+     * Child comments.
+     */
+    childComments?: Array<SlideComment>;
 
 }
 
@@ -1954,6 +2062,7 @@ export enum SlideExportFormat {
     'Pptm' = <any> "'Pptm'",
     'Ppsm' = <any> "'Ppsm'",
     'Potx' = <any> "'Potx'",
+    'Pot' = <any> "'Pot'",
     'Potm' = <any> "'Potm'",
     'Svg' = <any> "'Svg'"
 }
@@ -2157,7 +2266,13 @@ export namespace TableCell {
     }
 }
 
+/**
+ * Table column.
+ */
 export interface TableColumn {
+    /**
+     * Width.
+     */
     width: number;
 
 }
@@ -2226,9 +2341,18 @@ export interface TextItem {
 
 }
 
+/**
+ * Add layout slide task.
+ */
 export interface AddLayoutSlide extends Task {
+    /**
+     * Source file.
+     */
     cloneFromFile?: InputFile;
 
+    /**
+     * Source layout slide position.
+     */
     cloneFromPosition: number;
 
 }
@@ -2258,9 +2382,18 @@ export interface AddMasterSlide extends Task {
 export namespace AddMasterSlide {
 }
 
+/**
+ * Add shape task.
+ */
 export interface AddShape extends Task {
+    /**
+     * Shape DTO.
+     */
     shape?: ShapeBase;
 
+    /**
+     * Shape path for a grouped shape or smart art shape.
+     */
     shapePath?: string;
 
 }
@@ -2308,7 +2441,13 @@ export interface Base64InputFile extends InputFile {
 export namespace Base64InputFile {
 }
 
+/**
+ * Bubble chart data point.
+ */
 export interface BubbleChartDataPoint extends ScatterChartDataPoint {
+    /**
+     * Bubble size.
+     */
     bubbleSize: number;
 
 }
@@ -2340,28 +2479,64 @@ export namespace BubbleSeries {
  * Slide's color scheme DTO
  */
 export interface ColorScheme extends ResourceBase {
+    /**
+     * First accent color.
+     */
     accent1?: string;
 
+    /**
+     * Second accent color.
+     */
     accent2?: string;
 
+    /**
+     * Third accent color.
+     */
     accent3?: string;
 
+    /**
+     * Fourth accent color.
+     */
     accent4?: string;
 
+    /**
+     * Fifth accent color.
+     */
     accent5?: string;
 
+    /**
+     * Sixth accent color.
+     */
     accent6?: string;
 
+    /**
+     * First dark color.
+     */
     dark1?: string;
 
+    /**
+     * Second dark color.
+     */
     dark2?: string;
 
+    /**
+     * Visited hyperlink color.
+     */
     followedHyperlink?: string;
 
+    /**
+     * Hyperlink color/
+     */
     hyperlink?: string;
 
+    /**
+     * First light color.
+     */
     light1?: string;
 
+    /**
+     * Second light color.
+     */
     light2?: string;
 
 }
@@ -2470,12 +2645,24 @@ export interface FontScheme extends ResourceBase {
  * Represents Format Scheme for slide's theme
  */
 export interface FormatScheme extends ResourceBase {
+    /**
+     * Background style links.
+     */
     backgroundStyles?: Array<ResourceUri>;
 
+    /**
+     * Effect style links.
+     */
     effectStyles?: Array<ResourceUri>;
 
+    /**
+     * Fill style links.
+     */
     fillStyles?: Array<ResourceUri>;
 
+    /**
+     * Line style links.
+     */
     lineStyles?: Array<ResourceUri>;
 
 }
@@ -2558,6 +2745,11 @@ export interface HtmlExportOptions extends ExportOptions {
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
     showHiddenSlides: boolean;
+
+    /**
+     * True to make layout responsive by excluding width and height attributes from svg container.
+     */
+    svgResponsiveLayout: boolean;
 
     /**
      * Returns or sets a value determining the quality of the JPEG images inside PDF document.
@@ -2684,17 +2876,35 @@ export namespace ImageExportOptions {
  * List of images.
  */
 export interface Images extends ResourceBase {
+    /**
+     * Image list.
+     */
     list?: Array<Image>;
 
 }
 
+/**
+ * Layout slide.
+ */
 export interface LayoutSlide extends ResourceBase {
+    /**
+     * Name.
+     */
     name?: string;
 
+    /**
+     * Layout slide type.
+     */
     type: LayoutSlide.TypeEnum;
 
+    /**
+     * Master slide link.
+     */
     masterSlide?: ResourceUriElement;
 
+    /**
+     * List of depending slides.
+     */
     dependingSlides?: Array<ResourceUriElement>;
 
 }
@@ -2739,21 +2949,45 @@ export namespace LayoutSlide {
     }
 }
 
+/**
+ * Layout slide list.
+ */
 export interface LayoutSlides extends ResourceBase {
+    /**
+     * List of layout slide links.
+     */
     slideList?: Array<ResourceUriElement>;
 
 }
 
+/**
+ * Master slide.
+ */
 export interface MasterSlide extends ResourceBase {
+    /**
+     * Name.
+     */
     name?: string;
 
+    /**
+     * List of layout slide links.
+     */
     layoutSlides?: Array<ResourceUriElement>;
 
+    /**
+     * List of depending slide links.
+     */
     dependingSlides?: Array<ResourceUriElement>;
 
 }
 
+/**
+ * Master slide list.
+ */
 export interface MasterSlides extends ResourceBase {
+    /**
+     * List of slide links.
+     */
     slideList?: Array<ResourceUriElement>;
 
 }
@@ -2822,44 +3056,104 @@ export namespace OneValueSeries {
  * Represents paragraph resource
  */
 export interface Paragraph extends ResourceBase {
+    /**
+     * Left margin.
+     */
     marginLeft?: number;
 
+    /**
+     * Right margin.
+     */
     marginRight?: number;
 
+    /**
+     * Left spacing.
+     */
     spaceBefore?: number;
 
+    /**
+     * Right spacing.
+     */
     spaceAfter?: number;
 
+    /**
+     * Spacing between lines.
+     */
     spaceWithin?: number;
 
+    /**
+     * First line indent.
+     */
     indent?: number;
 
+    /**
+     * Text alignment.
+     */
     alignment?: Paragraph.AlignmentEnum;
 
+    /**
+     * Font alignment.
+     */
     fontAlignment?: Paragraph.FontAlignmentEnum;
 
+    /**
+     * Default tabulation size.
+     */
     defaultTabSize?: number;
 
+    /**
+     * Depth.
+     */
     depth?: number;
 
+    /**
+     * Bullet char.
+     */
     bulletChar?: string;
 
+    /**
+     * Bullet height.
+     */
     bulletHeight?: number;
 
+    /**
+     * Bullet type.
+     */
     bulletType?: Paragraph.BulletTypeEnum;
 
+    /**
+     * Starting number for a numbered bullet.
+     */
     numberedBulletStartWith?: number;
 
+    /**
+     * Numbered bullet style.
+     */
     numberedBulletStyle?: Paragraph.NumberedBulletStyleEnum;
 
+    /**
+     * True if hanging punctuation is used with the paragraph.
+     */
     hangingPunctuation?: Paragraph.HangingPunctuationEnum;
 
+    /**
+     * True if East Asian line break is used with the paragraph.
+     */
     eastAsianLineBreak?: Paragraph.EastAsianLineBreakEnum;
 
+    /**
+     * True if Latin line break is used with the paragraph.
+     */
     latinLineBreak?: Paragraph.LatinLineBreakEnum;
 
+    /**
+     * True if right to left direction is used with the paragraph.
+     */
     rightToLeft?: Paragraph.RightToLeftEnum;
 
+    /**
+     * List of portion links.
+     */
     portionList?: Array<ResourceUriElement>;
 
 }
@@ -2958,6 +3252,9 @@ export namespace Paragraph {
  * Represents list of Links to Paragraphs resources
  */
 export interface Paragraphs extends ResourceBase {
+    /**
+     * List of paragraph links.
+     */
     paragraphLinks?: Array<ResourceUriElement>;
 
 }
@@ -3195,23 +3492,53 @@ export namespace PdfExportOptions {
     }
 }
 
+/**
+ * Picture fill.
+ */
 export interface PictureFill extends FillFormat {
+    /**
+     * Percentage of image height that is cropped from the bottom.
+     */
     cropBottom: number;
 
+    /**
+     * Percentage of image height that is cropped from the left.
+     */
     cropLeft: number;
 
+    /**
+     * Percentage of image height that is cropped from the right.
+     */
     cropRight: number;
 
+    /**
+     * Percentage of image height that is cropped from the top.
+     */
     cropTop: number;
 
+    /**
+     * Picture resolution.
+     */
     dpi: number;
 
+    /**
+     * Internal image link.
+     */
     image?: ResourceUriElement;
 
+    /**
+     * Base 64 image data.
+     */
     base64Data?: string;
 
+    /**
+     * SVG image data.
+     */
     svgData?: string;
 
+    /**
+     * Fill mode.
+     */
     pictureFillMode: PictureFill.PictureFillModeEnum;
 
 }
@@ -3226,14 +3553,29 @@ export namespace PictureFill {
  * Represents placeholder
  */
 export interface Placeholder extends ResourceBase {
+    /**
+     * Index.
+     */
     index: number;
 
+    /**
+     * Orientation.
+     */
     orientation: Placeholder.OrientationEnum;
 
+    /**
+     * Size.
+     */
     size: Placeholder.SizeEnum;
 
+    /**
+     * Placeholder type.
+     */
     type: Placeholder.TypeEnum;
 
+    /**
+     * Shape link.
+     */
     shape?: ResourceUriElement;
 
 }
@@ -3267,7 +3609,13 @@ export namespace Placeholder {
     }
 }
 
+/**
+ * Placeholder list.
+ */
 export interface Placeholders extends ResourceBase {
+    /**
+     * List for placeholder links.
+     */
     placeholderLinks?: Array<ResourceUri>;
 
 }
@@ -3276,54 +3624,129 @@ export interface Placeholders extends ResourceBase {
  * Represents portion resource
  */
 export interface Portion extends ResourceBase {
+    /**
+     * Text.
+     */
     text?: string;
 
+    /**
+     * True for bold font.
+     */
     fontBold?: Portion.FontBoldEnum;
 
+    /**
+     * True for italic font.
+     */
     fontItalic?: Portion.FontItalicEnum;
 
+    /**
+     * Text underline type.
+     */
     fontUnderline?: Portion.FontUnderlineEnum;
 
+    /**
+     * Text strikethrough type.
+     */
     strikethroughType?: Portion.StrikethroughTypeEnum;
 
+    /**
+     * Text capitalization type.
+     */
     textCapType?: Portion.TextCapTypeEnum;
 
+    /**
+     * Superscript or subscript of the text.
+     */
     escapement?: number;
 
+    /**
+     * Intercharacter spacing increment.
+     */
     spacing?: number;
 
+    /**
+     * Font color.
+     */
     fontColor?: string;
 
+    /**
+     * Highlight color.
+     */
     highlightColor?: string;
 
+    /**
+     * Font height.
+     */
     fontHeight?: number;
 
+    /**
+     * True to normalize the text.
+     */
     normaliseHeight?: Portion.NormaliseHeightEnum;
 
+    /**
+     * True if the text proof should be disabled.
+     */
     proofDisabled?: Portion.ProofDisabledEnum;
 
+    /**
+     * True if smart tag should be cleaned.
+     */
     smartTagClean?: boolean;
 
+    /**
+     * Minimal font size for kerning.
+     */
     kerningMinimalSize?: number;
 
+    /**
+     * True if numbers should ignore East-Asian specific vertical text layout.
+     */
     kumimoji?: Portion.KumimojiEnum;
 
+    /**
+     * Proving language ID.
+     */
     languageId?: string;
 
+    /**
+     * Alternative proving language ID.
+     */
     alternativeLanguageId?: string;
 
+    /**
+     * True if underline style has own FillFormat properties.
+     */
     isHardUnderlineFill?: Portion.IsHardUnderlineFillEnum;
 
+    /**
+     * True if underline style has own LineFormat properties.
+     */
     isHardUnderlineLine?: Portion.IsHardUnderlineLineEnum;
 
+    /**
+     * Fill format.
+     */
     fillFormat?: FillFormat;
 
+    /**
+     * Effect format.
+     */
     effectFormat?: EffectFormat;
 
+    /**
+     * Line format.
+     */
     lineFormat?: LineFormat;
 
+    /**
+     * Underline fill format.
+     */
     underlineFillFormat?: FillFormat;
 
+    /**
+     * Underline line format.
+     */
     underlineLineFormat?: LineFormat;
 
 }
@@ -3402,10 +3825,16 @@ export namespace Portion {
  * Represents list of Links to Paragraphs resources
  */
 export interface Portions extends ResourceBase {
+    /**
+     * List of portion links.
+     */
     portionLinks?: Array<ResourceUriElement>;
 
 }
 
+/**
+ * Provides options that control how a presentation is saved in PPTX format.
+ */
 export interface PptxExportOptions extends ExportOptions {
     /**
      * The conformance class to which the PresentationML document conforms. Read/write Conformance.
@@ -3421,23 +3850,44 @@ export namespace PptxExportOptions {
     }
 }
 
+/**
+ * Remove shape task.
+ */
 export interface RemoveShape extends Task {
+    /**
+     * Shape path for a grouped or smart art shape.
+     */
     shapePath?: string;
 
 }
 export namespace RemoveShape {
 }
 
+/**
+ * Remove slide task.
+ */
 export interface RemoveSlide extends Task {
+    /**
+     * Position of slide to be removed.
+     */
     position: number;
 
 }
 export namespace RemoveSlide {
 }
 
+/**
+ * Reorder slide task.
+ */
 export interface ReorderSlide extends Task {
+    /**
+     * Old position.
+     */
     oldPosition: number;
 
+    /**
+     * New position.
+     */
     newPosition: number;
 
 }
@@ -3485,7 +3935,13 @@ export interface RequestInputFile extends InputFile {
 export namespace RequestInputFile {
 }
 
+/**
+ * Reset slide task.
+ */
 export interface ResetSlide extends Task {
+    /**
+     * Slide position.
+     */
     position: number;
 
 }
@@ -3533,6 +3989,7 @@ export namespace Save {
         Ppsx = <any> 'Ppsx',
         Pptm = <any> 'Pptm',
         Ppsm = <any> 'Ppsm',
+        Pot = <any> 'Pot',
         Potx = <any> 'Potx',
         Potm = <any> 'Potm',
         Html = <any> 'Html',
@@ -3635,6 +4092,7 @@ export namespace SaveSlide {
         Pptm = <any> 'Pptm',
         Ppsm = <any> 'Ppsm',
         Potx = <any> 'Potx',
+        Pot = <any> 'Pot',
         Potm = <any> 'Potm',
         Svg = <any> 'Svg'
     }
@@ -3663,6 +4121,9 @@ export namespace ScatterSeries {
     }
 }
 
+/**
+ * Slide shape.
+ */
 export interface ShapeBase extends ResourceBase {
     /**
      * Gets or sets the name.
@@ -3683,6 +4144,11 @@ export interface ShapeBase extends ResourceBase {
      * Gets or sets the alternative text.
      */
     alternativeText?: string;
+
+    /**
+     * The title of alternative text associated with the shape.
+     */
+    alternativeTextTitle?: string;
 
     /**
      * Gets or sets a value indicating whether this ShapeBase is hidden.
@@ -3950,10 +4416,16 @@ export namespace ShapeBase {
  * Represents list of Links to Shapes resources
  */
 export interface Shapes extends ResourceBase {
+    /**
+     * List of shape links.
+     */
     shapesLinks?: Array<ResourceUriElement>;
 
 }
 
+/**
+ * Presentation slide.
+ */
 export interface Slide extends ResourceBase {
     /**
      * Gets or sets the width.
@@ -4032,10 +4504,19 @@ export interface SlideAnimation extends ResourceBase {
  * Represents background of slide
  */
 export interface SlideBackground extends ResourceBase {
+    /**
+     * Fill type.
+     */
     type: SlideBackground.TypeEnum;
 
+    /**
+     * Fill format.
+     */
     fillFormat?: FillFormat;
 
+    /**
+     * Effect format.
+     */
     effectFormat?: EffectFormat;
 
 }
@@ -4054,11 +4535,20 @@ export namespace SlideBackground {
  * Represents comments collection of slide
  */
 export interface SlideComments extends ResourceBase {
+    /**
+     * Slide comment list.
+     */
     list?: Array<SlideComment>;
 
 }
 
+/**
+ * Slide list.
+ */
 export interface Slides extends ResourceBase {
+    /**
+     * List of slide links.
+     */
     slideList?: Array<ResourceUriElement>;
 
 }
@@ -4067,17 +4557,29 @@ export interface Slides extends ResourceBase {
  * Represents solid fill format 
  */
 export interface SolidFill extends FillFormat {
+    /**
+     * Color.
+     */
     color?: string;
 
 }
 export namespace SolidFill {
 }
 
+/**
+ * Split document result.
+ */
 export interface SplitDocumentResult extends ResourceBase {
+    /**
+     * List of slide links.
+     */
     slides?: Array<ResourceUri>;
 
 }
 
+/**
+ * Provides options that control how a presentation is saved in SVG format.
+ */
 export interface SvgExportOptions extends ExportOptions {
     /**
      * Determines whether the text on a slide will be saved as graphics.
@@ -4274,25 +4776,55 @@ export interface TextItems extends ResourceBase {
  * Represents Slide's theme 
  */
 export interface Theme extends ResourceBase {
+    /**
+     * Name.
+     */
     name?: string;
 
+    /**
+     * Color scheme.
+     */
     colorScheme?: ResourceUriElement;
 
+    /**
+     * Font scheme.
+     */
     fontScheme?: ResourceUriElement;
 
+    /**
+     * Format scheme.
+     */
     formatScheme?: ResourceUriElement;
 
 }
 
+/**
+ * Provides options that control how a presentation is saved in TIFF format.
+ */
 export interface TiffExportOptions extends ExportOptions {
+    /**
+     * Compression type.
+     */
     compression: TiffExportOptions.CompressionEnum;
 
+    /**
+     * Width.
+     */
     width?: number;
 
+    /**
+     * Height.
+     */
     height?: number;
 
+    /**
+     * Horizontal resolution, in dots per inch.
+     */
     dpiX?: number;
 
+    /**
+     * Vertical resolution, in dots per inch.
+     */
     dpiY?: number;
 
     /**
@@ -4359,24 +4891,45 @@ export namespace TiffExportOptions {
     }
 }
 
+/**
+ * Update background task.
+ */
 export interface UpdateBackground extends Task {
+    /**
+     * List of slide indices.
+     */
     slides?: Array<number>;
 
+    /**
+     * Background DTO.
+     */
     background?: SlideBackground;
 
 }
 export namespace UpdateBackground {
 }
 
+/**
+ * Update shape task.
+ */
 export interface UpdateShape extends Task {
+    /**
+     * Shape DTO.
+     */
     shape?: ShapeBase;
 
+    /**
+     * Shape path for a grouped or SmartArt shape.
+     */
     shapePath?: string;
 
 }
 export namespace UpdateShape {
 }
 
+/**
+ * Provides options that control how a presentation is saved in XPS format.
+ */
 export interface XpsExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
@@ -4544,6 +5097,9 @@ export interface DocumentReplaceResult extends Document {
  * Represents GeometryShape resource.
  */
 export interface GeometryShape extends ShapeBase {
+    /**
+     * Geometry shape type.
+     */
     geometryShapeType: GeometryShape.GeometryShapeTypeEnum;
 
 }
@@ -4761,6 +5317,16 @@ export namespace GroupShape {
  * Represents OleObjectFrame resource.
  */
 export interface OleObjectFrame extends ShapeBase {
+    /**
+     * True if an object is visible as icon.
+     */
+    isObjectIcon: boolean;
+
+    /**
+     * The title for OleObject icon.             
+     */
+    substitutePictureTitle?: string;
+
 }
 export namespace OleObjectFrame {
 }
@@ -5222,12 +5788,24 @@ export namespace AudioFrame {
  * Represents Connector resource.
  */
 export interface Connector extends GeometryShape {
+    /**
+     * Start shape link.
+     */
     startShapeConnectedTo?: ResourceUri;
 
+    /**
+     * Start shape index.
+     */
     startShapeConnectedToIndex?: number;
 
+    /**
+     * End shape link.
+     */
     endShapeConnectedTo?: ResourceUri;
 
+    /**
+     * End shape index.
+     */
     endShapeConnectedToIndex?: number;
 
 }
@@ -5238,6 +5816,9 @@ export namespace Connector {
  * Represents PictureFrame resource.
  */
 export interface PictureFrame extends GeometryShape {
+    /**
+     * Fill format.
+     */
     pictureFillFormat?: PictureFill;
 
 }

@@ -1270,7 +1270,7 @@ export class GetNotesSlideWithFormatRequest {
     /**
      * Output file format.
      */
-    public format: number;
+    public format: string;
     /**
      * Output file width.
      */
@@ -1647,7 +1647,7 @@ export class GetSlidesImageWithFormatRequest {
     /**
      * Export format (png, jpg, gif).
      */
-    public format: number;
+    public format: string;
     /**
      * Document password.
      */
@@ -2458,7 +2458,7 @@ export class PostNotesSlideShapeSaveAsRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * export options
      */
@@ -2486,7 +2486,7 @@ export class PostNotesSlideShapeSaveAsRequest {
     /**
      * Shape thumbnail bounds type.
      */
-    public bounds: number;
+    public bounds: string;
     /**
      * Fonts folder.
      */
@@ -2540,7 +2540,7 @@ export class PostShapeSaveAsRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * export options
      */
@@ -2568,7 +2568,7 @@ export class PostShapeSaveAsRequest {
     /**
      * Shape thumbnail bounds type.
      */
-    public bounds: number;
+    public bounds: string;
     /**
      * Fonts folder.
      */
@@ -2680,7 +2680,7 @@ export class PostSlideSaveAsRequest {
     /**
      * Output file format.
      */
-    public format: number;
+    public format: string;
     /**
      * Export options.
      */
@@ -2746,7 +2746,7 @@ export class PostSlidesConvertRequest {
     /**
      * Export format.
      */
-    public format: number;
+    public format: string;
     /**
      * Document data.
      */
@@ -3044,7 +3044,7 @@ export class PostSlidesSaveAsRequest {
     /**
      * Export format.
      */
-    public format: number;
+    public format: string;
     /**
      * Export options.
      */
@@ -3143,7 +3143,7 @@ export class PostSlidesSplitRequest {
     /**
      * Export format. Default value is jpeg.
      */
-    public format: number;
+    public format: string;
     /**
      * The width of created images.
      */
@@ -3233,7 +3233,7 @@ export class PutNotesSlideShapeSaveAsRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * Output path.
      */
@@ -3265,7 +3265,7 @@ export class PutNotesSlideShapeSaveAsRequest {
     /**
      * Shape thumbnail bounds type.
      */
-    public bounds: number;
+    public bounds: string;
     /**
      * Fonts folder.
      */
@@ -3405,7 +3405,7 @@ export class PutShapeSaveAsRequest {
     /**
      * Export picture format.
      */
-    public format: number;
+    public format: string;
     /**
      * Output path.
      */
@@ -3437,7 +3437,7 @@ export class PutShapeSaveAsRequest {
     /**
      * Shape thumbnail bounds type.
      */
-    public bounds: number;
+    public bounds: string;
     /**
      * Fonts folder.
      */
@@ -3557,7 +3557,7 @@ export class PutSlideSaveAsRequest {
     /**
      * Output file format.
      */
-    public format: number;
+    public format: string;
     /**
      * Path to upload the output file to.
      */
@@ -3635,7 +3635,7 @@ export class PutSlidesConvertRequest {
     /**
      * Export format.
      */
-    public format: number;
+    public format: string;
     /**
      * Path to save result.
      */
@@ -3693,7 +3693,7 @@ export class PutSlidesSaveAsRequest {
     /**
      * Export format.
      */
-    public format: number;
+    public format: string;
     /**
      * Export options.
      */
@@ -3862,11 +3862,11 @@ export class PutSlidesSlideSizeRequest {
     /**
      * Standard slide size type.
      */
-    public sizeType: number;
+    public sizeType: string;
     /**
      * Standard slide scale type.
      */
-    public scaleType: number;
+    public scaleType: string;
 }
 /**
  * Request model for PutUpdateNotesSlide operation.

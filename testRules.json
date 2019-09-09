@@ -110,6 +110,8 @@
 		},
 		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PostAddNewPortion" },
 		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PostNotesSlideAddNewPortion" },
+		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PutSetParagraphPortionProperties" },
+		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PutUpdateNotesSlideShapePortion" },
 		{ "Value": { "MasterSlide": { "Uri": { "Href": "masterSlides/2" } } }, "InvalidValue": null, "Type": "LayoutSlide", "Parameter": "SlideDTO" },
 		{ "Value": { "LayoutSlide": { "Uri": { "Href": "TitleOnly" } } }, "InvalidValue": null, "Type": "Slide", "Parameter": "SlideDTO", "Method": "PutSlidesSlide" },
 		{ "Value": { "List": [] }, "InvalidValue": null, "Type": "DocumentProperties", "Parameter": "Properties" },

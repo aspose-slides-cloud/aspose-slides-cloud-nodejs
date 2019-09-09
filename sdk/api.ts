@@ -1588,6 +1588,10 @@ export class SlidesApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideWithFormat.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling getNotesSlideWithFormat.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
@@ -2040,6 +2044,10 @@ export class SlidesApi {
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlidesImageWithFormat.');
+        }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling getSlidesImageWithFormat.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2976,6 +2984,10 @@ export class SlidesApi {
         if (requestObj.path === null || requestObj.path === undefined) {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling postNotesSlideShapeSaveAs.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postNotesSlideShapeSaveAs.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -3050,6 +3062,10 @@ export class SlidesApi {
             // verify required parameter 'requestObj.path' is not null or undefined
         if (requestObj.path === null || requestObj.path === undefined) {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling postShapeSaveAs.');
+        }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postShapeSaveAs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -3186,6 +3202,10 @@ export class SlidesApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlideSaveAs.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postSlideSaveAs.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
@@ -3250,6 +3270,10 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/convert/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
         const queryParameters: any = {};
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postSlidesConvert.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
@@ -3589,6 +3613,10 @@ export class SlidesApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSlidesSaveAs.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postSlidesSaveAs.');
+        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -3774,6 +3802,10 @@ export class SlidesApi {
         if (requestObj.path === null || requestObj.path === undefined) {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling putNotesSlideShapeSaveAs.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling putNotesSlideShapeSaveAs.');
+        }
             // verify required parameter 'requestObj.outPath' is not null or undefined
         if (requestObj.outPath === null || requestObj.outPath === undefined) {
             throw new Error('Required parameter "requestObj.outPath" was null or undefined when calling putNotesSlideShapeSaveAs.');
@@ -3932,6 +3964,10 @@ export class SlidesApi {
         if (requestObj.path === null || requestObj.path === undefined) {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling putShapeSaveAs.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling putShapeSaveAs.');
+        }
             // verify required parameter 'requestObj.outPath' is not null or undefined
         if (requestObj.outPath === null || requestObj.outPath === undefined) {
             throw new Error('Required parameter "requestObj.outPath" was null or undefined when calling putShapeSaveAs.');
@@ -4073,6 +4109,10 @@ export class SlidesApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putSlideSaveAs.');
         }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling putSlideSaveAs.');
+        }
             // verify required parameter 'requestObj.outPath' is not null or undefined
         if (requestObj.outPath === null || requestObj.outPath === undefined) {
             throw new Error('Required parameter "requestObj.outPath" was null or undefined when calling putSlideSaveAs.');
@@ -4146,6 +4186,10 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/convert/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
         const queryParameters: any = {};
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling putSlidesConvert.');
+        }
             // verify required parameter 'requestObj.outPath' is not null or undefined
         if (requestObj.outPath === null || requestObj.outPath === undefined) {
             throw new Error('Required parameter "requestObj.outPath" was null or undefined when calling putSlidesConvert.');
@@ -4218,6 +4262,10 @@ export class SlidesApi {
             // verify required parameter 'requestObj.outPath' is not null or undefined
         if (requestObj.outPath === null || requestObj.outPath === undefined) {
             throw new Error('Required parameter "requestObj.outPath" was null or undefined when calling putSlidesSaveAs.');
+        }
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling putSlidesSaveAs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);

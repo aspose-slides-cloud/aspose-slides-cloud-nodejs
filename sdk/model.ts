@@ -1437,6 +1437,11 @@ export interface PlotArea {
     height: number;
 
     /**
+     * If layout of the plot area is defined manually specifies whether to layout the plot area by its inside (not including axis and axis labels) or outside.
+     */
+    layoutTargetType: PlotArea.LayoutTargetTypeEnum;
+
+    /**
      * Get or sets the fill format.
      */
     fillFormat?: FillFormat;
@@ -1451,6 +1456,12 @@ export interface PlotArea {
      */
     lineFormat?: LineFormat;
 
+}
+export namespace PlotArea {
+    export enum LayoutTargetTypeEnum {
+        Inner = <any> 'Inner',
+        Outer = <any> 'Outer'
+    }
 }
 
 /**
@@ -2009,7 +2020,8 @@ export enum SizeType {
     'B5JisPaper' = <any> "'B5JisPaper'",
     'HagakiCard' = <any> "'HagakiCard'",
     'OnScreen16x9' = <any> "'OnScreen16x9'",
-    'OnScreen16x10' = <any> "'OnScreen16x10'"
+    'OnScreen16x10' = <any> "'OnScreen16x10'",
+    'Widescreen' = <any> "'Widescreen'"
 }
 
 /**

@@ -132,9 +132,12 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.9.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.10.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
+    }
+    for (var key in confguration.customHeaders) {
+        requestOptions.headers[key] = confguration.customHeaders[key];
     }
 
     if (!notApplyAuthToRequest) {

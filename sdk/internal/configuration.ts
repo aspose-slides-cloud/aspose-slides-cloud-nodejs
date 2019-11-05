@@ -65,6 +65,11 @@ export class Configuration {
      */
     public debugMode: boolean;
 
+    /**
+     *  Gets or sets collection of custom headers to be added to HTTP requests.
+     */
+    public customHeaders: { [key: string]: string } ;
+
     constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
@@ -78,6 +83,7 @@ export class Configuration {
         this.appKey = appKey;
         this.debugMode = debugMode;
         this.timeout = timeout;
+        this.customHeaders = {};
     }
 
     /**

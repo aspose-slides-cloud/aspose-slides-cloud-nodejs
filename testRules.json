@@ -6,7 +6,7 @@
 		{ "Action": "Delete", "File": "test.ppt", "Method": "UploadFile" },
 		{ "Action": "Put", "File": "test-unprotected.ppt", "Method": "DeleteSlidesCleanSlidesList" },
 		{ "Action": "Put", "File": "test-unprotected.ppt", "Method": "PutSlidesSlide" },
-		{ "Action": "Put", "File": "templateCV.pptx", "Method": "PostSlidesDocument" },
+		{ "Action": "Put", "File": "TemplateCV.pptx", "Method": "PostSlidesDocument" },
 		{ "Action": "Delete", "Folder": "%v", "File": "test.ppt", "Parameter": "Folder" },
 		{ "Action": "Delete", "File": "%v", "Parameter": "Name" },
 		{ "Action": "Delete", "File": "changedtest.ppt", "Method": "PostSlidesDocument" },
@@ -20,7 +20,9 @@
 		{ "Action": "Delete", "Folder": "TempSlidesSDKinvalid", "File": "changedtest.ppt", "Method": "PostSlidesDocumentFromTemplate" },
 		{ "Action": "Delete", "File": "changedtest.ppt", "Method": "PutNewPresentation" },
 		{ "Action": "Delete", "File": "invalidchangedtest.ppt", "Method": "PutNewPresentation" },
-		{ "Action": "Delete", "Folder": "TempSlidesSDKinvalid", "File": "changedtest.ppt", "Method": "PutNewPresentation" }
+		{ "Action": "Delete", "Folder": "TempSlidesSDKinvalid", "File": "changedtest.ppt", "Method": "PutNewPresentation" },
+		{ "Action": "Delete", "Folder": "invalidTempSlidesSDK", "File": "test.ppt", "Parameter": "CloneFrom" },
+		{ "Action": "Delete", "Folder": "invalidTempSlidesSDK", "File": "test.ppt", "Parameter": "SourcePath" }
 	],
 	"Values": [
 		{ "InvalidValue": "%vinvalid" },
@@ -36,7 +38,7 @@
 		{ "Value": "TempSlidesSDK/test.ppt", "InvalidValue": "invalid%v", "Parameter": "SrcPath" },
 		{ "Value": "TempSlidesSDK/changedtest.ppt", "InvalidValue": "invalid%v", "Parameter": "DestPath" },
 		{ "Value": "TempSlidesSDK/test.ppt", "InvalidValue": "invalid%v", "Parameter": "TemplatePath" },
-		{ "Value": "TempSlidesSDK/templateCV.pptx", "InvalidValue": "invalid%v", "Parameter": "TemplatePath", "Method": "PostSlidesDocument" },
+		{ "Value": "TempSlidesSDK/TemplateCV.pptx", "InvalidValue": "invalid%v", "Parameter": "TemplatePath", "Method": "PostSlidesDocument" },
 		{ "Value": "TempSlidesSDK/test.ppt", "InvalidValue": "invalid%v", "Parameter": "CloneFrom" },
 		{ "Value": "TempSlidesSDK/test.ppt", "InvalidValue": "invalid%v", "Parameter": "Source" },
 		{ "Value": "TempSlidesSDK/out.pdf", "Parameter": "OutPath" },

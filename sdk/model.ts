@@ -26,7 +26,8 @@
 /**
  * Represents response for ApiInfo  DTO
  */
-export interface ApiInfo {
+export class ApiInfo {
+
     /**
      * Product name.
      */
@@ -42,7 +43,8 @@ export interface ApiInfo {
 /**
  * Arrow head properties.
  */
-export interface ArrowHeadProperties {
+export class ArrowHeadProperties {
+
     /**
      * Length.
      */
@@ -86,7 +88,8 @@ export namespace ArrowHeadProperties {
 /**
  * Represents chart axes
  */
-export interface Axes {
+export class Axes {
+
     /**
      * Gets or sets the horizontal axis.
      */
@@ -112,7 +115,8 @@ export interface Axes {
 /**
  * Represents a chart axis
  */
-export interface Axis {
+export class Axis {
+
     /**
      * True if the axis is visible
      */
@@ -361,7 +365,8 @@ export namespace Axis {
 /**
  * Represents blur effect 
  */
-export interface BlurEffect {
+export class BlurEffect {
+
     /**
      * radius
      */
@@ -377,7 +382,8 @@ export interface BlurEffect {
 /**
  * Represents chart title
  */
-export interface ChartTitle {
+export class ChartTitle {
+
     /**
      * Get or sets the text.
      */
@@ -393,7 +399,8 @@ export interface ChartTitle {
 /**
  * Represents a chart wall
  */
-export interface ChartWall {
+export class ChartWall {
+
     /**
      * Get or sets the fill format.
      */
@@ -432,7 +439,8 @@ export namespace ChartWall {
 /**
  * Custom dash pattern.
  */
-export interface CustomDashPattern {
+export class CustomDashPattern {
+
     /**
      * Pattern items.
      */
@@ -443,7 +451,8 @@ export interface CustomDashPattern {
 /**
  * Class for disc space information.
  */
-export interface DiscUsage {
+export class DiscUsage {
+
     /**
      * Application used disc space.
      */
@@ -459,7 +468,8 @@ export interface DiscUsage {
 /**
  * Represents comment of slide
  */
-export interface Effect {
+export class Effect {
+
     /**
      * Effect type.
      */
@@ -765,7 +775,8 @@ export namespace Effect {
 /**
  * Effect format
  */
-export interface EffectFormat {
+export class EffectFormat {
+
     /**
      * blur effect
      */
@@ -811,7 +822,8 @@ export interface EffectFormat {
 /**
  * The error details
  */
-export interface ErrorDetails {
+export class ErrorDetails {
+
     /**
      * The request id
      */
@@ -857,7 +869,8 @@ export enum ExportFormat {
 /**
  * Represents export options for whole presentation.
  */
-export interface ExportOptions {
+export class ExportOptions {
+
     format?: string;
 
 }
@@ -865,7 +878,8 @@ export interface ExportOptions {
 /**
  * File versions FileVersion.
  */
-export interface FileVersions {
+export class FileVersions {
+
     /**
      * File versions FileVersion.
      */
@@ -876,7 +890,8 @@ export interface FileVersions {
 /**
  * Files list
  */
-export interface FilesList {
+export class FilesList {
+
     /**
      * Files and folders contained by folder StorageFile.
      */
@@ -887,7 +902,8 @@ export interface FilesList {
 /**
  * File upload result
  */
-export interface FilesUploadResult {
+export class FilesUploadResult {
+
     /**
      * List of uploaded file names
      */
@@ -903,7 +919,8 @@ export interface FilesUploadResult {
 /**
  * Base class for fill formats 
  */
-export interface FillFormat {
+export class FillFormat {
+
     type?: FillFormat.TypeEnum;
 
 }
@@ -921,7 +938,8 @@ export namespace FillFormat {
 /**
  * Represents fill overlay effect 
  */
-export interface FillOverlayEffect {
+export class FillOverlayEffect {
+
     /**
      * blend mode
      */
@@ -941,7 +959,8 @@ export namespace FillOverlayEffect {
 /**
  * Font set.
  */
-export interface FontSet {
+export class FontSet {
+
     /**
      * Complex script font.
      */
@@ -962,7 +981,8 @@ export interface FontSet {
 /**
  * Represents glow effect 
  */
-export interface GlowEffect {
+export class GlowEffect {
+
     /**
      * radius
      */
@@ -978,7 +998,8 @@ export interface GlowEffect {
 /**
  * Gradient stop.
  */
-export interface GradientFillStop {
+export class GradientFillStop {
+
     /**
      * Color.
      */
@@ -994,7 +1015,8 @@ export interface GradientFillStop {
 /**
  * Represents export options for whole presentation.
  */
-export interface IShapeExportOptions {
+export class IShapeExportOptions {
+
     /**
      * Export format.
      */
@@ -1019,7 +1041,8 @@ export enum ImageExportFormat {
 /**
  * Represents inner shadow effect 
  */
-export interface InnerShadowEffect {
+export class InnerShadowEffect {
+
     /**
      * direction
      */
@@ -1045,7 +1068,8 @@ export interface InnerShadowEffect {
 /**
  * Represents input document for pipeline.
  */
-export interface Input {
+export class Input {
+
     /**
      * Get or sets template document. If property is null new empty presentation will be created.
      */
@@ -1066,7 +1090,8 @@ export interface Input {
 /**
  * Represents abstract input file source for pipeline.
  */
-export interface InputFile {
+export class InputFile {
+
     /**
      * Get or sets password to open document.
      */
@@ -1086,7 +1111,8 @@ export namespace InputFile {
 /**
  * Represents comments collection of slide
  */
-export interface InteractiveSequence {
+export class InteractiveSequence {
+
     /**
      * Effect list.
      */
@@ -1102,7 +1128,8 @@ export interface InteractiveSequence {
 /**
  * Represents a chart legend
  */
-export interface Legend {
+export class Legend {
+
     /**
      * position
      */
@@ -1162,7 +1189,8 @@ export namespace Legend {
 /**
  * Line format.
  */
-export interface LineFormat {
+export class LineFormat {
+
     /**
      * Alignment.
      */
@@ -1265,7 +1293,8 @@ export namespace LineFormat {
 /**
  * Merging source.
  */
-export interface MergingSource {
+export class MergingSource {
+
     /**
      * Source file.
      */
@@ -1281,7 +1310,8 @@ export interface MergingSource {
 /**
  * Error
  */
-export interface ModelError {
+export class ModelError {
+
     /**
      * Code             
      */
@@ -1321,7 +1351,8 @@ export enum NotesSlideExportFormat {
 /**
  * Object exists
  */
-export interface ObjectExist {
+export class ObjectExist {
+
     /**
      * Indicates that the file or folder exists.
      */
@@ -1337,7 +1368,8 @@ export interface ObjectExist {
 /**
  * One value chart data point.
  */
-export interface OneValueChartDataPoint {
+export class OneValueChartDataPoint {
+
     /**
      * Value.
      */
@@ -1348,7 +1380,8 @@ export interface OneValueChartDataPoint {
 /**
  * Request for presentations merge with optional order of slides
  */
-export interface OrderedMergeRequest {
+export class OrderedMergeRequest {
+
     /**
      * Gets or sets the presentation paths.
      */
@@ -1359,7 +1392,8 @@ export interface OrderedMergeRequest {
 /**
  * Represents outer shadow effect 
  */
-export interface OuterShadowEffect {
+export class OuterShadowEffect {
+
     /**
      * direction
      */
@@ -1385,7 +1419,8 @@ export interface OuterShadowEffect {
 /**
  * Represents output file destination in pipeline.
  */
-export interface OutputFile {
+export class OutputFile {
+
     type?: OutputFile.TypeEnum;
 
 }
@@ -1399,7 +1434,8 @@ export namespace OutputFile {
 /**
  * Represents pipeline for one input document.
  */
-export interface Pipeline {
+export class Pipeline {
+
     /**
      * Get or sets input document.
      */
@@ -1415,7 +1451,8 @@ export interface Pipeline {
 /**
  * Represents the plot area
  */
-export interface PlotArea {
+export class PlotArea {
+
     /**
      * the X location
      */
@@ -1467,7 +1504,8 @@ export namespace PlotArea {
 /**
  * Represents presentation to merge
  */
-export interface PresentationToMerge {
+export class PresentationToMerge {
+
     /**
      * Get or sets the presentation path
      */
@@ -1488,7 +1526,8 @@ export interface PresentationToMerge {
 /**
  * Request for presentations merge
  */
-export interface PresentationsMergeRequest {
+export class PresentationsMergeRequest {
+
     /**
      * Gets or sets the presentation paths.
      */
@@ -1504,7 +1543,8 @@ export interface PresentationsMergeRequest {
 /**
  * Represents preset shadow effect 
  */
-export interface PresetShadowEffect {
+export class PresetShadowEffect {
+
     /**
      * direction
      */
@@ -1554,7 +1594,8 @@ export namespace PresetShadowEffect {
 /**
  * Represents reflection effect 
  */
-export interface ReflectionEffect {
+export class ReflectionEffect {
+
     /**
      * direction
      */
@@ -1644,7 +1685,8 @@ export namespace ReflectionEffect {
 /**
  * Base class for all Slide's DTO objects 
  */
-export interface ResourceBase {
+export class ResourceBase {
+
     /**
      * Gets or sets the link to this resource.
      */
@@ -1660,7 +1702,8 @@ export interface ResourceBase {
 /**
  * Represents Resource URI
  */
-export interface ResourceUri {
+export class ResourceUri {
+
     /**
      * Gets or sets the href.
      */
@@ -1686,7 +1729,8 @@ export interface ResourceUri {
 /**
  * Resource URI element.
  */
-export interface ResourceUriElement {
+export class ResourceUriElement {
+
     /**
      * Resource URI.
      */
@@ -1709,7 +1753,8 @@ export enum ScaleType {
 /**
  * Scatter chart (two-dimensional) data point
  */
-export interface ScatterChartDataPoint {
+export class ScatterChartDataPoint {
+
     /**
      * X-value
      */
@@ -1725,7 +1770,8 @@ export interface ScatterChartDataPoint {
 /**
  * A chart series.
  */
-export interface Series {
+export class Series {
+
     /**
      * Series type.
      */
@@ -1894,7 +1940,8 @@ export namespace Series {
 /**
  * Represents a series marker
  */
-export interface SeriesMarker {
+export class SeriesMarker {
+
     /**
      * size
      */
@@ -1956,7 +2003,8 @@ export enum ShapeExportFormat {
 /**
  * Provides options that control how a shape is saved in thumbnail.
  */
-export interface ShapeImageExportOptions {
+export class ShapeImageExportOptions {
+
     /**
      * Get or sets scaling ratio by X axis.
      */
@@ -2027,7 +2075,8 @@ export enum SizeType {
 /**
  * Represents comment of slide
  */
-export interface SlideComment {
+export class SlideComment {
+
     /**
      * Author.
      */
@@ -2082,7 +2131,8 @@ export enum SlideExportFormat {
 /**
  * Smart art node.
  */
-export interface SmartArtNode {
+export class SmartArtNode {
+
     /**
      * Node list.
      */
@@ -2122,7 +2172,8 @@ export namespace SmartArtNode {
 /**
  * Represents soft edge effect 
  */
-export interface SoftEdgeEffect {
+export class SoftEdgeEffect {
+
     /**
      * radius
      */
@@ -2133,7 +2184,8 @@ export interface SoftEdgeEffect {
 /**
  * Storage exists
  */
-export interface StorageExist {
+export class StorageExist {
+
     /**
      * Shows that the storage exists.             
      */
@@ -2144,7 +2196,8 @@ export interface StorageExist {
 /**
  * File or folder information
  */
-export interface StorageFile {
+export class StorageFile {
+
     /**
      * File or folder name.
      */
@@ -2175,7 +2228,8 @@ export interface StorageFile {
 /**
  * Represents one cell of table.
  */
-export interface TableCell {
+export class TableCell {
+
     /**
      * Cell text.
      */
@@ -2281,7 +2335,8 @@ export namespace TableCell {
 /**
  * Table column.
  */
-export interface TableColumn {
+export class TableColumn {
+
     /**
      * Width.
      */
@@ -2292,7 +2347,8 @@ export interface TableColumn {
 /**
  * Table Row.
  */
-export interface TableRow {
+export class TableRow {
+
     /**
      * Cells for the row.
      */
@@ -2313,7 +2369,8 @@ export interface TableRow {
 /**
  * Represents task for pipeline.
  */
-export interface Task {
+export class Task {
+
     type?: Task.TypeEnum;
 
 }
@@ -2340,7 +2397,8 @@ export namespace Task {
 /**
  * Represents text item, referenced by TextItems
  */
-export interface TextItem {
+export class TextItem {
+
     /**
      * Gets or sets the URI to resource that contains text
      */
@@ -2356,7 +2414,12 @@ export interface TextItem {
 /**
  * Add layout slide task.
  */
-export interface AddLayoutSlide extends Task {
+export class AddLayoutSlide extends Task {
+    constructor() {
+        super();
+        this.type = AddLayoutSlide.TypeEnum.AddLayoutSlide;
+    }
+
     /**
      * Source file.
      */
@@ -2374,7 +2437,12 @@ export namespace AddLayoutSlide {
 /**
  * Add master slide task.
  */
-export interface AddMasterSlide extends Task {
+export class AddMasterSlide extends Task {
+    constructor() {
+        super();
+        this.type = AddMasterSlide.TypeEnum.AddMasterSlide;
+    }
+
     /**
      * Source presentation clone from.
      */
@@ -2397,7 +2465,12 @@ export namespace AddMasterSlide {
 /**
  * Add shape task.
  */
-export interface AddShape extends Task {
+export class AddShape extends Task {
+    constructor() {
+        super();
+        this.type = AddShape.TypeEnum.AddShape;
+    }
+
     /**
      * Shape DTO.
      */
@@ -2415,7 +2488,12 @@ export namespace AddShape {
 /**
  * Add slide task.
  */
-export interface AddSlide extends Task {
+export class AddSlide extends Task {
+    constructor() {
+        super();
+        this.type = AddSlide.TypeEnum.AddSlide;
+    }
+
     /**
      * File to clone a slide from.
      */
@@ -2443,7 +2521,12 @@ export namespace AddSlide {
 /**
  * Represents base64 inline encoded file.
  */
-export interface Base64InputFile extends InputFile {
+export class Base64InputFile extends InputFile {
+    constructor() {
+        super();
+        this.type = Base64InputFile.TypeEnum.Base64;
+    }
+
     /**
      * Get or sets base64 data.
      */
@@ -2456,7 +2539,11 @@ export namespace Base64InputFile {
 /**
  * Bubble chart data point.
  */
-export interface BubbleChartDataPoint extends ScatterChartDataPoint {
+export class BubbleChartDataPoint extends ScatterChartDataPoint {
+    constructor() {
+        super();
+    }
+
     /**
      * Bubble size.
      */
@@ -2467,7 +2554,11 @@ export interface BubbleChartDataPoint extends ScatterChartDataPoint {
 /**
  * A bubble series.
  */
-export interface BubbleSeries extends Series {
+export class BubbleSeries extends Series {
+    constructor() {
+        super();
+    }
+
     /**
      * Data point type.
      */
@@ -2490,7 +2581,11 @@ export namespace BubbleSeries {
 /**
  * Slide's color scheme DTO
  */
-export interface ColorScheme extends ResourceBase {
+export class ColorScheme extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * First accent color.
      */
@@ -2556,7 +2651,11 @@ export interface ColorScheme extends ResourceBase {
 /**
  * Represents document DTO.
  */
-export interface Document extends ResourceBase {
+export class Document extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Link to Document properties.
      */
@@ -2587,7 +2686,11 @@ export interface Document extends ResourceBase {
 /**
  * Slides document properties.
  */
-export interface DocumentProperties extends ResourceBase {
+export class DocumentProperties extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Document property list.
      */
@@ -2598,7 +2701,11 @@ export interface DocumentProperties extends ResourceBase {
 /**
  * Document property.
  */
-export interface DocumentProperty extends ResourceBase {
+export class DocumentProperty extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Name.
      */
@@ -2619,7 +2726,11 @@ export interface DocumentProperty extends ResourceBase {
 /**
  * File Version
  */
-export interface FileVersion extends StorageFile {
+export class FileVersion extends StorageFile {
+    constructor() {
+        super();
+    }
+
     /**
      * File Version ID.
      */
@@ -2635,7 +2746,11 @@ export interface FileVersion extends StorageFile {
 /**
  * Represents font scheme
  */
-export interface FontScheme extends ResourceBase {
+export class FontScheme extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Gets or sets fonts collection for a \"heading\" part of the slide.
      */
@@ -2656,7 +2771,11 @@ export interface FontScheme extends ResourceBase {
 /**
  * Represents Format Scheme for slide's theme
  */
-export interface FormatScheme extends ResourceBase {
+export class FormatScheme extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Background style links.
      */
@@ -2682,7 +2801,12 @@ export interface FormatScheme extends ResourceBase {
 /**
  * Represents gradient fill format
  */
-export interface GradientFill extends FillFormat {
+export class GradientFill extends FillFormat {
+    constructor() {
+        super();
+        this.type = GradientFill.TypeEnum.Gradient;
+    }
+
     /**
      * Gradient style.
      */
@@ -2742,7 +2866,12 @@ export namespace GradientFill {
 /**
  * Provides options that control how a presentation is saved in Html format.
  */
-export interface HtmlExportOptions extends ExportOptions {
+export class HtmlExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'html';
+    }
+
     /**
      * Get or sets flag for save presentation as zip file
      */
@@ -2828,7 +2957,11 @@ export namespace HtmlExportOptions {
 /**
  * Represents image DTO.
  */
-export interface Image extends ResourceBase {
+export class Image extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Get or sets the width of an image.
      */
@@ -2849,7 +2982,12 @@ export interface Image extends ResourceBase {
 /**
  * Provides options that control how a presentation is saved in an image format.
  */
-export interface ImageExportOptions extends ExportOptions {
+export class ImageExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'image';
+    }
+
     /**
      * Gets or sets the position of the notes on the page.
      */
@@ -2887,7 +3025,11 @@ export namespace ImageExportOptions {
 /**
  * List of images.
  */
-export interface Images extends ResourceBase {
+export class Images extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Image list.
      */
@@ -2898,7 +3040,11 @@ export interface Images extends ResourceBase {
 /**
  * Layout slide.
  */
-export interface LayoutSlide extends ResourceBase {
+export class LayoutSlide extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Name.
      */
@@ -2964,7 +3110,11 @@ export namespace LayoutSlide {
 /**
  * Layout slide list.
  */
-export interface LayoutSlides extends ResourceBase {
+export class LayoutSlides extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List of layout slide links.
      */
@@ -2975,7 +3125,11 @@ export interface LayoutSlides extends ResourceBase {
 /**
  * Master slide.
  */
-export interface MasterSlide extends ResourceBase {
+export class MasterSlide extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Name.
      */
@@ -2996,7 +3150,11 @@ export interface MasterSlide extends ResourceBase {
 /**
  * Master slide list.
  */
-export interface MasterSlides extends ResourceBase {
+export class MasterSlides extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List of slide links.
      */
@@ -3007,7 +3165,12 @@ export interface MasterSlides extends ResourceBase {
 /**
  * Merge presentations task.
  */
-export interface Merge extends Task {
+export class Merge extends Task {
+    constructor() {
+        super();
+        this.type = Merge.TypeEnum.Merge;
+    }
+
     /**
      * Information about documents and slides being merging sources.
      */
@@ -3020,7 +3183,12 @@ export namespace Merge {
 /**
  * Represents empty fill
  */
-export interface NoFill extends FillFormat {
+export class NoFill extends FillFormat {
+    constructor() {
+        super();
+        this.type = NoFill.TypeEnum.NoFill;
+    }
+
 }
 export namespace NoFill {
 }
@@ -3028,7 +3196,11 @@ export namespace NoFill {
 /**
  * Represents notes slide DTO.
  */
-export interface NotesSlide extends ResourceBase {
+export class NotesSlide extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Get or sets text of notes slide.
      */
@@ -3044,7 +3216,11 @@ export interface NotesSlide extends ResourceBase {
 /**
  * One value series.
  */
-export interface OneValueSeries extends Series {
+export class OneValueSeries extends Series {
+    constructor() {
+        super();
+    }
+
     /**
      * Data point type.
      */
@@ -3067,7 +3243,11 @@ export namespace OneValueSeries {
 /**
  * Represents paragraph resource
  */
-export interface Paragraph extends ResourceBase {
+export class Paragraph extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Left margin.
      */
@@ -3263,7 +3443,11 @@ export namespace Paragraph {
 /**
  * Represents list of Links to Paragraphs resources
  */
-export interface Paragraphs extends ResourceBase {
+export class Paragraphs extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List of paragraph links.
      */
@@ -3274,7 +3458,12 @@ export interface Paragraphs extends ResourceBase {
 /**
  * Represents input file from filesystem.
  */
-export interface PathInputFile extends InputFile {
+export class PathInputFile extends InputFile {
+    constructor() {
+        super();
+        this.type = PathInputFile.TypeEnum.Path;
+    }
+
     /**
      * Get or sets path to file.
      */
@@ -3292,7 +3481,12 @@ export namespace PathInputFile {
 /**
  * Represents fileSystem file with path.
  */
-export interface PathOutputFile extends OutputFile {
+export class PathOutputFile extends OutputFile {
+    constructor() {
+        super();
+        this.type = PathOutputFile.TypeEnum.Path;
+    }
+
     /**
      * Get or sets path to file.
      */
@@ -3310,7 +3504,12 @@ export namespace PathOutputFile {
 /**
  * Represents Pattern Fill
  */
-export interface PatternFill extends FillFormat {
+export class PatternFill extends FillFormat {
+    constructor() {
+        super();
+        this.type = PatternFill.TypeEnum.Pattern;
+    }
+
     /**
      * Gets or sets the back color of the pattern fill.
      */
@@ -3391,7 +3590,12 @@ export namespace PatternFill {
 /**
  * Provides options that control how a presentation is saved in Pdf format.
  */
-export interface PdfExportOptions extends ExportOptions {
+export class PdfExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'pdf';
+    }
+
     /**
      * Specifies compression type to be used for all textual content in the document.
      */
@@ -3507,7 +3711,12 @@ export namespace PdfExportOptions {
 /**
  * Picture fill.
  */
-export interface PictureFill extends FillFormat {
+export class PictureFill extends FillFormat {
+    constructor() {
+        super();
+        this.type = PictureFill.TypeEnum.Picture;
+    }
+
     /**
      * Percentage of image height that is cropped from the bottom.
      */
@@ -3564,7 +3773,11 @@ export namespace PictureFill {
 /**
  * Represents placeholder
  */
-export interface Placeholder extends ResourceBase {
+export class Placeholder extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Index.
      */
@@ -3624,7 +3837,11 @@ export namespace Placeholder {
 /**
  * Placeholder list.
  */
-export interface Placeholders extends ResourceBase {
+export class Placeholders extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List for placeholder links.
      */
@@ -3635,7 +3852,11 @@ export interface Placeholders extends ResourceBase {
 /**
  * Represents portion resource
  */
-export interface Portion extends ResourceBase {
+export class Portion extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Text.
      */
@@ -3836,7 +4057,11 @@ export namespace Portion {
 /**
  * Represents list of Links to Paragraphs resources
  */
-export interface Portions extends ResourceBase {
+export class Portions extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List of portion links.
      */
@@ -3847,7 +4072,12 @@ export interface Portions extends ResourceBase {
 /**
  * Provides options that control how a presentation is saved in PPTX format.
  */
-export interface PptxExportOptions extends ExportOptions {
+export class PptxExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'pptx';
+    }
+
     /**
      * The conformance class to which the PresentationML document conforms. Read/write Conformance.
      */
@@ -3865,7 +4095,12 @@ export namespace PptxExportOptions {
 /**
  * Remove shape task.
  */
-export interface RemoveShape extends Task {
+export class RemoveShape extends Task {
+    constructor() {
+        super();
+        this.type = RemoveShape.TypeEnum.RemoveShape;
+    }
+
     /**
      * Shape path for a grouped or smart art shape.
      */
@@ -3878,7 +4113,12 @@ export namespace RemoveShape {
 /**
  * Remove slide task.
  */
-export interface RemoveSlide extends Task {
+export class RemoveSlide extends Task {
+    constructor() {
+        super();
+        this.type = RemoveSlide.TypeEnum.RemoveSlide;
+    }
+
     /**
      * Position of slide to be removed.
      */
@@ -3891,7 +4131,12 @@ export namespace RemoveSlide {
 /**
  * Reorder slide task.
  */
-export interface ReorderSlide extends Task {
+export class ReorderSlide extends Task {
+    constructor() {
+        super();
+        this.type = ReorderSlide.TypeEnum.ReoderSlide;
+    }
+
     /**
      * Old position.
      */
@@ -3909,7 +4154,12 @@ export namespace ReorderSlide {
 /**
  * Replace text task.
  */
-export interface ReplaceText extends Task {
+export class ReplaceText extends Task {
+    constructor() {
+        super();
+        this.type = ReplaceText.TypeEnum.ReplaceText;
+    }
+
     /**
      * Text to be replaced.
      */
@@ -3937,7 +4187,12 @@ export namespace ReplaceText {
 /**
  * Represents input file from multipart request.
  */
-export interface RequestInputFile extends InputFile {
+export class RequestInputFile extends InputFile {
+    constructor() {
+        super();
+        this.type = RequestInputFile.TypeEnum.Request;
+    }
+
     /**
      * Get or sets index of file from request.
      */
@@ -3950,7 +4205,12 @@ export namespace RequestInputFile {
 /**
  * Reset slide task.
  */
-export interface ResetSlide extends Task {
+export class ResetSlide extends Task {
+    constructor() {
+        super();
+        this.type = ResetSlide.TypeEnum.ResetSlide;
+    }
+
     /**
      * Slide position.
      */
@@ -3963,7 +4223,12 @@ export namespace ResetSlide {
 /**
  * Represents output file that will be sent to response.
  */
-export interface ResponseOutputFile extends OutputFile {
+export class ResponseOutputFile extends OutputFile {
+    constructor() {
+        super();
+        this.type = ResponseOutputFile.TypeEnum.Response;
+    }
+
 }
 export namespace ResponseOutputFile {
 }
@@ -3971,7 +4236,12 @@ export namespace ResponseOutputFile {
 /**
  * Save slide task.
  */
-export interface Save extends Task {
+export class Save extends Task {
+    constructor() {
+        super();
+        this.type = Save.TypeEnum.Save;
+    }
+
     /**
      * Format.
      */
@@ -4017,7 +4287,12 @@ export namespace Save {
 /**
  * Save shape task.
  */
-export interface SaveShape extends Task {
+export class SaveShape extends Task {
+    constructor() {
+        super();
+        this.type = SaveShape.TypeEnum.SaveShape;
+    }
+
     /**
      * Format.
      */
@@ -4053,7 +4328,12 @@ export namespace SaveShape {
 /**
  * Save slide task.
  */
-export interface SaveSlide extends Task {
+export class SaveSlide extends Task {
+    constructor() {
+        super();
+        this.type = SaveSlide.TypeEnum.SaveSlide;
+    }
+
     /**
      * Output to save the slide to.
      */
@@ -4113,7 +4393,11 @@ export namespace SaveSlide {
 /**
  * A scatter series
  */
-export interface ScatterSeries extends Series {
+export class ScatterSeries extends Series {
+    constructor() {
+        super();
+    }
+
     /**
      * Data point type.
      */
@@ -4136,7 +4420,11 @@ export namespace ScatterSeries {
 /**
  * Slide shape.
  */
-export interface ShapeBase extends ResourceBase {
+export class ShapeBase extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Gets or sets the name.
      */
@@ -4427,7 +4715,11 @@ export namespace ShapeBase {
 /**
  * Represents list of Links to Shapes resources
  */
-export interface Shapes extends ResourceBase {
+export class Shapes extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List of shape links.
      */
@@ -4438,7 +4730,11 @@ export interface Shapes extends ResourceBase {
 /**
  * Presentation slide.
  */
-export interface Slide extends ResourceBase {
+export class Slide extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Gets or sets the width.
      */
@@ -4499,7 +4795,11 @@ export interface Slide extends ResourceBase {
 /**
  * Represents comments collection of slide
  */
-export interface SlideAnimation extends ResourceBase {
+export class SlideAnimation extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Main sequence.
      */
@@ -4515,7 +4815,11 @@ export interface SlideAnimation extends ResourceBase {
 /**
  * Represents background of slide
  */
-export interface SlideBackground extends ResourceBase {
+export class SlideBackground extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Fill type.
      */
@@ -4546,7 +4850,11 @@ export namespace SlideBackground {
 /**
  * Represents comments collection of slide
  */
-export interface SlideComments extends ResourceBase {
+export class SlideComments extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Slide comment list.
      */
@@ -4557,7 +4865,11 @@ export interface SlideComments extends ResourceBase {
 /**
  * Slide list.
  */
-export interface Slides extends ResourceBase {
+export class Slides extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List of slide links.
      */
@@ -4568,7 +4880,12 @@ export interface Slides extends ResourceBase {
 /**
  * Represents solid fill format 
  */
-export interface SolidFill extends FillFormat {
+export class SolidFill extends FillFormat {
+    constructor() {
+        super();
+        this.type = SolidFill.TypeEnum.Solid;
+    }
+
     /**
      * Color.
      */
@@ -4581,7 +4898,11 @@ export namespace SolidFill {
 /**
  * Split document result.
  */
-export interface SplitDocumentResult extends ResourceBase {
+export class SplitDocumentResult extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * List of slide links.
      */
@@ -4592,7 +4913,12 @@ export interface SplitDocumentResult extends ResourceBase {
 /**
  * Provides options that control how a presentation is saved in SVG format.
  */
-export interface SvgExportOptions extends ExportOptions {
+export class SvgExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'svg';
+    }
+
     /**
      * Determines whether the text on a slide will be saved as graphics.
      */
@@ -4658,7 +4984,12 @@ export namespace SvgExportOptions {
 /**
  * Provides options that control how a presentation is saved in SWF format.
  */
-export interface SwfExportOptions extends ExportOptions {
+export class SwfExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'swf';
+    }
+
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
@@ -4776,7 +5107,11 @@ export namespace SwfExportOptions {
 /**
  * Represents text of resource
  */
-export interface TextItems extends ResourceBase {
+export class TextItems extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Gets or sets the text items.
      */
@@ -4787,7 +5122,11 @@ export interface TextItems extends ResourceBase {
 /**
  * Represents Slide's theme 
  */
-export interface Theme extends ResourceBase {
+export class Theme extends ResourceBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Name.
      */
@@ -4813,7 +5152,12 @@ export interface Theme extends ResourceBase {
 /**
  * Provides options that control how a presentation is saved in TIFF format.
  */
-export interface TiffExportOptions extends ExportOptions {
+export class TiffExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'tiff';
+    }
+
     /**
      * Compression type.
      */
@@ -4906,7 +5250,12 @@ export namespace TiffExportOptions {
 /**
  * Update background task.
  */
-export interface UpdateBackground extends Task {
+export class UpdateBackground extends Task {
+    constructor() {
+        super();
+        this.type = UpdateBackground.TypeEnum.UpdateBackground;
+    }
+
     /**
      * List of slide indices.
      */
@@ -4924,7 +5273,12 @@ export namespace UpdateBackground {
 /**
  * Update shape task.
  */
-export interface UpdateShape extends Task {
+export class UpdateShape extends Task {
+    constructor() {
+        super();
+        this.type = UpdateShape.TypeEnum.UpdateShape;
+    }
+
     /**
      * Shape DTO.
      */
@@ -4942,7 +5296,12 @@ export namespace UpdateShape {
 /**
  * Provides options that control how a presentation is saved in XPS format.
  */
-export interface XpsExportOptions extends ExportOptions {
+export class XpsExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'xps';
+    }
+
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
@@ -4963,11 +5322,22 @@ export interface XpsExportOptions extends ExportOptions {
 /**
  * Represents chart resource
  */
-export interface Chart extends ShapeBase {
+export class Chart extends ShapeBase {
+    constructor() {
+        super();
+        this.type = Chart.TypeEnum.Chart;
+        this.shapeType = Chart.ShapeTypeEnum.Chart;
+    }
+
     /**
      * Gets or sets the type of the chart.
      */
     chartType: Chart.ChartTypeEnum;
+
+    /**
+     * True if data labels over the maximum of the chart shall be shown.
+     */
+    showDataLabelsOverMaximum?: boolean;
 
     /**
      * Gets or sets the series of chart data values.
@@ -5097,7 +5467,11 @@ export namespace Chart {
 /**
  * Represents document replace result DTO.
  */
-export interface DocumentReplaceResult extends Document {
+export class DocumentReplaceResult extends Document {
+    constructor() {
+        super();
+    }
+
     /**
      * Gets or sets the number of matches 
      */
@@ -5108,7 +5482,11 @@ export interface DocumentReplaceResult extends Document {
 /**
  * Represents GeometryShape resource.
  */
-export interface GeometryShape extends ShapeBase {
+export class GeometryShape extends ShapeBase {
+    constructor() {
+        super();
+    }
+
     /**
      * Geometry shape type.
      */
@@ -5312,7 +5690,13 @@ export namespace GeometryShape {
 /**
  * Represents AudioFrame resource.
  */
-export interface GraphicalObject extends ShapeBase {
+export class GraphicalObject extends ShapeBase {
+    constructor() {
+        super();
+        this.type = GraphicalObject.TypeEnum.GraphicalObject;
+        this.shapeType = GraphicalObject.ShapeTypeEnum.GraphicalObject;
+    }
+
 }
 export namespace GraphicalObject {
 }
@@ -5320,7 +5704,13 @@ export namespace GraphicalObject {
 /**
  * Represents GroupShape resource.
  */
-export interface GroupShape extends ShapeBase {
+export class GroupShape extends ShapeBase {
+    constructor() {
+        super();
+        this.type = GroupShape.TypeEnum.GroupShape;
+        this.shapeType = GroupShape.ShapeTypeEnum.GroupShape;
+    }
+
 }
 export namespace GroupShape {
 }
@@ -5328,7 +5718,13 @@ export namespace GroupShape {
 /**
  * Represents OleObjectFrame resource.
  */
-export interface OleObjectFrame extends ShapeBase {
+export class OleObjectFrame extends ShapeBase {
+    constructor() {
+        super();
+        this.type = OleObjectFrame.TypeEnum.OleObjectFrame;
+        this.shapeType = OleObjectFrame.ShapeTypeEnum.OleObjectFrame;
+    }
+
     /**
      * True if an object is visible as icon.
      */
@@ -5346,7 +5742,11 @@ export namespace OleObjectFrame {
 /**
  * Represents slide replace result DTO.
  */
-export interface SlideReplaceResult extends Slide {
+export class SlideReplaceResult extends Slide {
+    constructor() {
+        super();
+    }
+
     /**
      * Gets or sets the number of matches 
      */
@@ -5357,7 +5757,13 @@ export interface SlideReplaceResult extends Slide {
 /**
  * Represents SmartArt shape resource.
  */
-export interface SmartArt extends ShapeBase {
+export class SmartArt extends ShapeBase {
+    constructor() {
+        super();
+        this.type = SmartArt.TypeEnum.SmartArt;
+        this.shapeType = SmartArt.ShapeTypeEnum.Diagram;
+    }
+
     /**
      * Layout type.
      */
@@ -5584,7 +5990,13 @@ export namespace SmartArt {
 /**
  * Represents SmartArt resource.
  */
-export interface SmartArtShape extends ShapeBase {
+export class SmartArtShape extends ShapeBase {
+    constructor() {
+        super();
+        this.type = SmartArtShape.TypeEnum.SmartArtShape;
+        this.shapeType = SmartArtShape.ShapeTypeEnum.Custom;
+    }
+
 }
 export namespace SmartArtShape {
 }
@@ -5592,7 +6004,13 @@ export namespace SmartArtShape {
 /**
  * Represents Table shape resource.
  */
-export interface Table extends ShapeBase {
+export class Table extends ShapeBase {
+    constructor() {
+        super();
+        this.type = Table.TypeEnum.Table;
+        this.shapeType = Table.ShapeTypeEnum.Table;
+    }
+
     /**
      * Builtin table style.
      */
@@ -5728,7 +6146,13 @@ export namespace Table {
 /**
  * Represents AudioFrame resource.
  */
-export interface AudioFrame extends GeometryShape {
+export class AudioFrame extends GeometryShape {
+    constructor() {
+        super();
+        this.type = AudioFrame.TypeEnum.AudioFrame;
+        this.shapeType = AudioFrame.ShapeTypeEnum.AudioFrame;
+    }
+
     /**
      * Returns or sets a last track index.
      */
@@ -5799,7 +6223,12 @@ export namespace AudioFrame {
 /**
  * Represents Connector resource.
  */
-export interface Connector extends GeometryShape {
+export class Connector extends GeometryShape {
+    constructor() {
+        super();
+        this.type = Connector.TypeEnum.Connector;
+    }
+
     /**
      * Start shape link.
      */
@@ -5827,7 +6256,13 @@ export namespace Connector {
 /**
  * Represents PictureFrame resource.
  */
-export interface PictureFrame extends GeometryShape {
+export class PictureFrame extends GeometryShape {
+    constructor() {
+        super();
+        this.type = PictureFrame.TypeEnum.PictureFrame;
+        this.shapeType = PictureFrame.ShapeTypeEnum.PictureFrame;
+    }
+
     /**
      * Fill format.
      */
@@ -5840,7 +6275,12 @@ export namespace PictureFrame {
 /**
  * Represents AutoShape resource.
  */
-export interface Shape extends GeometryShape {
+export class Shape extends GeometryShape {
+    constructor() {
+        super();
+        this.type = Shape.TypeEnum.Shape;
+    }
+
     /**
      * Gets or sets the text.
      */
@@ -5858,7 +6298,13 @@ export namespace Shape {
 /**
  * Represents VideoFrame resource.
  */
-export interface VideoFrame extends GeometryShape {
+export class VideoFrame extends GeometryShape {
+    constructor() {
+        super();
+        this.type = VideoFrame.TypeEnum.VideoFrame;
+        this.shapeType = VideoFrame.ShapeTypeEnum.VideoFrame;
+    }
+
     /**
      * Determines whether a video is shown in full screen mode.
      */

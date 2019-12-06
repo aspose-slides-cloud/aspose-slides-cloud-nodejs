@@ -27,7 +27,7 @@ From the command line:
 
 ### Sample usage
 
-The example code below converts a PowerPoint document to PDF format using Aspose.Slides-Cloud library:
+The example code below converts a PowerPoint document to PDF format using asposeslidescloud library:
 ```js
 const api = require("asposeslidescloud");
 const fs = require('fs');

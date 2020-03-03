@@ -48,17 +48,17 @@ export class ArrowHeadProperties {
     /**
      * Length.
      */
-    length: ArrowHeadProperties.LengthEnum;
+    length?: ArrowHeadProperties.LengthEnum;
 
     /**
      * Style.
      */
-    style: ArrowHeadProperties.StyleEnum;
+    style?: ArrowHeadProperties.StyleEnum;
 
     /**
      * Width.
      */
-    width: ArrowHeadProperties.WidthEnum;
+    width?: ArrowHeadProperties.WidthEnum;
 
 }
 export namespace ArrowHeadProperties {
@@ -120,122 +120,122 @@ export class Axis {
     /**
      * True if the axis is visible
      */
-    isVisible: boolean;
+    isVisible?: boolean;
 
     /**
      * True if the axis has a visible title
      */
-    hasTitle: boolean;
+    hasTitle?: boolean;
 
     /**
      * Axis position
      */
-    position: Axis.PositionEnum;
+    position?: Axis.PositionEnum;
 
     /**
      * The scaling value of the display units for the value axis
      */
-    displayUnit: Axis.DisplayUnitEnum;
+    displayUnit?: Axis.DisplayUnitEnum;
 
     /**
      * The smallest time unit that is represented on the date axis
      */
-    baseUnitScale: Axis.BaseUnitScaleEnum;
+    baseUnitScale?: Axis.BaseUnitScaleEnum;
 
     /**
      * True the major unit of the axis is automatically assigned
      */
-    isAutomaticMajorUnit: boolean;
+    isAutomaticMajorUnit?: boolean;
 
     /**
      * The major units for the date or value axis
      */
-    majorUnit: number;
+    majorUnit?: number;
 
     /**
      * The major unit scale for the date axis
      */
-    majorUnitScale: Axis.MajorUnitScaleEnum;
+    majorUnitScale?: Axis.MajorUnitScaleEnum;
 
     /**
      * The type of major tick mark for the specified axis
      */
-    majorTickMark: Axis.MajorTickMarkEnum;
+    majorTickMark?: Axis.MajorTickMarkEnum;
 
     /**
      * True the minor unit of the axis is automatically assigned
      */
-    isAutomaticMinorUnit: boolean;
+    isAutomaticMinorUnit?: boolean;
 
     /**
      * The minor units for the date or value axis
      */
-    minorUnit: number;
+    minorUnit?: number;
 
     /**
      * The minor unit scale for the date axis
      */
-    minorUnitScale: Axis.MinorUnitScaleEnum;
+    minorUnitScale?: Axis.MinorUnitScaleEnum;
 
     /**
      * The type of minor tick mark for the specified axis
      */
-    minorTickMark: Axis.MinorTickMarkEnum;
+    minorTickMark?: Axis.MinorTickMarkEnum;
 
     /**
      * True if the max value is automatically assigned
      */
-    isAutomaticMaxValue: boolean;
+    isAutomaticMaxValue?: boolean;
 
     /**
      * The maximum value on the value axis
      */
-    maxValue: number;
+    maxValue?: number;
 
     /**
      * True if the min value is automatically assigned
      */
-    isAutomaticMinValue: boolean;
+    isAutomaticMinValue?: boolean;
 
     /**
      * The minimum value on the value axis
      */
-    minValue: number;
+    minValue?: number;
 
     /**
      * True if the value axis scale type is logarithmic
      */
-    isLogarithmic: boolean;
+    isLogarithmic?: boolean;
 
     /**
      * The logarithmic base. Default value is 10
      */
-    logBase: number;
+    logBase?: number;
 
     /**
      * The type of the category axis
      */
-    categoryAxisType: Axis.CategoryAxisTypeEnum;
+    categoryAxisType?: Axis.CategoryAxisTypeEnum;
 
     /**
      * True if the value axis crosses the category axis between categories. This property applies only to category axes, and it doesn't apply to 3-D charts
      */
-    axisBetweenCategories: boolean;
+    axisBetweenCategories?: boolean;
 
     /**
      * The distance of labels from the axis. Applied to category or date axis. Value must be between 0% and 1000%.             
      */
-    labelOffset: number;
+    labelOffset?: number;
 
     /**
      * True if MS PowerPoint plots data points from last to first
      */
-    isPlotOrderReversed: boolean;
+    isPlotOrderReversed?: boolean;
 
     /**
      * True if the format is linked to source data
      */
-    isNumberFormatLinkedToSource: boolean;
+    isNumberFormatLinkedToSource?: boolean;
 
     /**
      * the format string for the Axis Labels
@@ -245,42 +245,42 @@ export class Axis {
     /**
      * The CrossType on the specified axis where the other axis crosses
      */
-    crossType: Axis.CrossTypeEnum;
+    crossType?: Axis.CrossTypeEnum;
 
     /**
      * The point on the axis where the perpendicular axis crosses it
      */
-    crossAt: number;
+    crossAt?: number;
 
     /**
      * True for automatic tick marks spacing value
      */
-    isAutomaticTickMarksSpacing: boolean;
+    isAutomaticTickMarksSpacing?: boolean;
 
     /**
      * Specifies how many tick marks shall be skipped before the next one shall be drawn. Applied to category or series axis.
      */
-    tickMarksSpacing: number;
+    tickMarksSpacing?: number;
 
     /**
      * True for automatic tick label spacing value
      */
-    isAutomaticTickLabelSpacing: boolean;
+    isAutomaticTickLabelSpacing?: boolean;
 
     /**
      * Specifies how many tick labels to skip between label that is drawn.
      */
-    tickLabelSpacing: number;
+    tickLabelSpacing?: number;
 
     /**
      * The position of tick-mark labels on the specified axis.
      */
-    tickLabelPosition: Axis.TickLabelPositionEnum;
+    tickLabelPosition?: Axis.TickLabelPositionEnum;
 
     /**
      * Represents the rotation angle of tick labels.
      */
-    tickLabelRotationAngle: number;
+    tickLabelRotationAngle?: number;
 
     /**
      * Get or sets the fill format.
@@ -419,12 +419,12 @@ export class ChartWall {
     /**
      * Get or sets wall thickness as a percentage of the largest dimension of the plot volume.
      */
-    thickness: number;
+    thickness?: number;
 
     /**
      * Get or sets mode of bar picture filling.
      */
-    pictureType: ChartWall.PictureTypeEnum;
+    pictureType?: ChartWall.PictureTypeEnum;
 
 }
 export namespace ChartWall {
@@ -1133,32 +1133,32 @@ export class Legend {
     /**
      * position
      */
-    position: Legend.PositionEnum;
+    position?: Legend.PositionEnum;
 
     /**
      * the X location
      */
-    x: number;
+    x?: number;
 
     /**
      * the Y location
      */
-    y: number;
+    y?: number;
 
     /**
      * Width
      */
-    width: number;
+    width?: number;
 
     /**
      * Height
      */
-    height: number;
+    height?: number;
 
     /**
      * true if other elements are allowed to overlay the legend
      */
-    overlay: boolean;
+    overlay?: boolean;
 
     /**
      * Get or sets the fill format.
@@ -1194,27 +1194,27 @@ export class LineFormat {
     /**
      * Alignment.
      */
-    alignment: LineFormat.AlignmentEnum;
+    alignment?: LineFormat.AlignmentEnum;
 
     /**
      * Cap style.
      */
-    capStyle: LineFormat.CapStyleEnum;
+    capStyle?: LineFormat.CapStyleEnum;
 
     /**
      * Dash style.
      */
-    dashStyle: LineFormat.DashStyleEnum;
+    dashStyle?: LineFormat.DashStyleEnum;
 
     /**
      * Join style.
      */
-    joinStyle: LineFormat.JoinStyleEnum;
+    joinStyle?: LineFormat.JoinStyleEnum;
 
     /**
      * Style.
      */
-    style: LineFormat.StyleEnum;
+    style?: LineFormat.StyleEnum;
 
     /**
      * Begin arrowhead.
@@ -1239,12 +1239,12 @@ export class LineFormat {
     /**
      * Miter limit.
      */
-    miterLimit: number;
+    miterLimit?: number;
 
     /**
      * Width.
      */
-    width: number;
+    width?: number;
 
 }
 export namespace LineFormat {
@@ -1456,27 +1456,27 @@ export class PlotArea {
     /**
      * the X location
      */
-    x: number;
+    x?: number;
 
     /**
      * the Y location
      */
-    y: number;
+    y?: number;
 
     /**
      * Width
      */
-    width: number;
+    width?: number;
 
     /**
      * Height
      */
-    height: number;
+    height?: number;
 
     /**
      * If layout of the plot area is defined manually specifies whether to layout the plot area by its inside (not including axis and axis labels) or outside.
      */
-    layoutTargetType: PlotArea.LayoutTargetTypeEnum;
+    layoutTargetType?: PlotArea.LayoutTargetTypeEnum;
 
     /**
      * Get or sets the fill format.
@@ -1775,7 +1775,7 @@ export class Series {
     /**
      * Series type.
      */
-    type: Series.TypeEnum;
+    type?: Series.TypeEnum;
 
     /**
      * Series name.
@@ -1785,7 +1785,7 @@ export class Series {
     /**
      * True if each data marker in the series has a different color.
      */
-    isColorVaried: boolean;
+    isColorVaried?: boolean;
 
     /**
      * Invert solid color for the series.
@@ -1795,17 +1795,17 @@ export class Series {
     /**
      * True if curve smoothing is turned on. Applies only to line and scatter connected by lines charts.
      */
-    smooth: boolean;
+    smooth?: boolean;
 
     /**
      * True if the series is plotted on second value axis.
      */
-    plotOnSecondAxis: boolean;
+    plotOnSecondAxis?: boolean;
 
     /**
      * Series order.
      */
-    order: number;
+    order?: number;
 
     /**
      * The number format for the series y values.
@@ -1830,12 +1830,12 @@ export class Series {
     /**
      * True if the series shall invert its colors if the value is negative. Applies to bar, column and bubble series.
      */
-    invertIfNegative: boolean;
+    invertIfNegative?: boolean;
 
     /**
      * The distance of an open pie slice from the center of the pie chart is expressed as a percentage of the pie diameter.
      */
-    explosion: number;
+    explosion?: number;
 
     /**
      * Series marker.
@@ -1945,12 +1945,12 @@ export class SeriesMarker {
     /**
      * size
      */
-    size: number;
+    size?: number;
 
     /**
      * symbol
      */
-    symbol: SeriesMarker.SymbolEnum;
+    symbol?: SeriesMarker.SymbolEnum;
 
     /**
      * Get or sets the fill format.
@@ -2238,42 +2238,42 @@ export class TableCell {
     /**
      * The number of rows spanned by a merged cell.
      */
-    rowSpan: number;
+    rowSpan?: number;
 
     /**
      * The number of columns spanned by a merged cell.
      */
-    colSpan: number;
+    colSpan?: number;
 
     /**
      * The top margin of the cell.
      */
-    marginTop: number;
+    marginTop?: number;
 
     /**
      * The right margin of the cell.
      */
-    marginRight: number;
+    marginRight?: number;
 
     /**
      * The left margin of the cell.
      */
-    marginLeft: number;
+    marginLeft?: number;
 
     /**
      * The bottom margin of the cell.
      */
-    marginBottom: number;
+    marginBottom?: number;
 
     /**
      * Text anchor type.
      */
-    textAnchorType: TableCell.TextAnchorTypeEnum;
+    textAnchorType?: TableCell.TextAnchorTypeEnum;
 
     /**
      * The type of vertical text.
      */
-    textVerticalType: TableCell.TextVerticalTypeEnum;
+    textVerticalType?: TableCell.TextVerticalTypeEnum;
 
     /**
      * Fill properties set of the cell.
@@ -6014,7 +6014,7 @@ export class Table extends ShapeBase {
     /**
      * Builtin table style.
      */
-    style: Table.StyleEnum;
+    style?: Table.StyleEnum;
 
     /**
      * Rows.
@@ -6029,37 +6029,37 @@ export class Table extends ShapeBase {
     /**
      * Determines whether the first column of a table has to be drawn with a special formatting.
      */
-    firstCol: boolean;
+    firstCol?: boolean;
 
     /**
      * Determines whether the first row of a table has to be drawn with a special formatting.
      */
-    firstRow: boolean;
+    firstRow?: boolean;
 
     /**
      * Determines whether the even rows has to be drawn with a different formatting.
      */
-    horizontalBanding: boolean;
+    horizontalBanding?: boolean;
 
     /**
      * Determines whether the last column of a table has to be drawn with a special formatting.
      */
-    lastCol: boolean;
+    lastCol?: boolean;
 
     /**
      * Determines whether the last row of a table has to be drawn with a special formatting.
      */
-    lastRow: boolean;
+    lastRow?: boolean;
 
     /**
      * Determines whether the table has right to left reading order.
      */
-    rightToLeft: boolean;
+    rightToLeft?: boolean;
 
     /**
      * Determines whether the even columns has to be drawn with a different formatting.
      */
-    verticalBanding: boolean;
+    verticalBanding?: boolean;
 
 }
 export namespace Table {

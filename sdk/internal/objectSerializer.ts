@@ -133,6 +133,15 @@ export class ObjectSerializer {
         }
     }
 
+
+    /**
+     * cast object to string
+     */
+    public static toString(data: any) {
+        if (data === undefined) return "";
+        return String(data);
+    }
+
     private static findCorrectType(data: any, expectedType: string) {
         if (data === undefined) {
             return expectedType;

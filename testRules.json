@@ -316,6 +316,7 @@
 		{ "Message": "Can't read MSCDFileSystem.", "Parameter": "Document" },
 		{ "Message": "The stream is empty.", "Parameter": "Document", "Language": "NodeJS" },
 		{ "Message": "The stream is empty.", "Parameter": "Document", "Language": "Python" },
+		{ "Message": "The stream is empty.", "Parameter": "Document", "Language": "Go" },
 		{ "Message": "The stream is empty.", "Parameter": "Document", "Language": "Ruby" },
 		{ "Message": " DTO expected.", "Parameter": "DTO" },
 		{ "Message": " DTO expected.", "Parameter": "SlideDTO" },

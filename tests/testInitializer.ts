@@ -147,6 +147,11 @@ export class TestInitializer {
         }
     }
 
+    public static runTest(test: () => Promise<any>) {
+        //retry each test on failure to minimize accidental failure chance
+        return test().catch(async () => await test()).catch((err) => assert.fail(err));
+    }
+
     public static assertValidCall(call: Promise<any>, isBinary: boolean, functionName: string) {
         return call.then((result) => {
             var code = 0;

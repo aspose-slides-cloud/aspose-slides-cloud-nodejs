@@ -60,7 +60,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFile.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/file/copy/{srcPath}";
-        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", String(requestObj.srcPath));
+        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", ObjectSerializer.toString(requestObj.srcPath));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.srcPath' is not null or undefined
         if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
@@ -96,7 +96,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFolder.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/copy/{srcPath}";
-        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", String(requestObj.srcPath));
+        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", ObjectSerializer.toString(requestObj.srcPath));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.srcPath' is not null or undefined
         if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
@@ -131,12 +131,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createFolder.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling createFolder.');
-        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         const requestOptions: request.Options = {
@@ -160,12 +156,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFile.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/file/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteFile.');
-        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
@@ -190,12 +182,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFolder.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteFolder.');
-        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "recursive", requestObj.recursive);
@@ -220,8 +208,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteNotesSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -252,19 +240,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteNotesSlideParagraph.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteNotesSlideParagraph.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlideParagraph.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -291,18 +275,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteNotesSlideParagraphs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteNotesSlideParagraphs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlideParagraphs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
@@ -330,20 +310,16 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteNotesSlidePortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", String(requestObj.portionIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteNotesSlidePortion.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlidePortion.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -370,19 +346,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteNotesSlidePortions.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteNotesSlidePortions.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlidePortions.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
@@ -410,18 +382,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteNotesSlideShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteNotesSlideShape.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlideShape.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -448,17 +416,13 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteNotesSlideShapes.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteNotesSlideShapes.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteNotesSlideShapes.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
@@ -486,19 +450,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraph.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteParagraph.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteParagraph.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -525,18 +485,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteParagraphs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteParagraphs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
@@ -564,20 +520,16 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deletePortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", String(requestObj.portionIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deletePortion.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deletePortion.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -604,19 +556,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deletePortions.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deletePortions.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deletePortions.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
@@ -644,8 +592,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideAnimation.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -676,9 +624,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideAnimationEffect.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/mainSequence/{effectIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", String(requestObj.effectIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -709,9 +657,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideAnimationInteractiveSequence.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", String(requestObj.sequenceIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -742,10 +690,10 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideAnimationInteractiveSequenceEffect.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}/{effectIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", String(requestObj.sequenceIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", String(requestObj.effectIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -776,8 +724,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideAnimationInteractiveSequences.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -808,8 +756,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideAnimationMainSequence.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/mainSequence";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -840,8 +788,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideByIndex.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -872,18 +820,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteSlideShape.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteSlideShape.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -910,17 +854,13 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlideShapes.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteSlideShapes.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteSlideShapes.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
@@ -948,7 +888,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlidesCleanSlidesList.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -980,7 +920,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlidesDocumentProperties.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1011,8 +951,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlidesDocumentProperty.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties/{propertyName}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "propertyName", String(requestObj.propertyName));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "propertyName", ObjectSerializer.toString(requestObj.propertyName));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1047,8 +987,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSlidesSlideBackground.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/background";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1079,12 +1019,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling downloadFile.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/file/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling downloadFile.');
-        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
@@ -1133,12 +1069,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFileVersions.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/version/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getFileVersions.');
-        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         const requestOptions: request.Options = {
@@ -1162,12 +1094,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFilesList.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getFilesList.');
-        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         const requestOptions: request.Options = {
@@ -1191,8 +1119,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getLayoutSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/layoutSlides/{slideIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1223,7 +1151,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getLayoutSlidesList.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/layoutSlides";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1254,8 +1182,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getMasterSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/masterSlides/{slideIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1286,7 +1214,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getMasterSlidesList.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/masterSlides";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1317,8 +1245,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1349,18 +1277,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlideShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideShape.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getNotesSlideShape.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1387,19 +1311,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlideShapeParagraph.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideShapeParagraph.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getNotesSlideShapeParagraph.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1426,18 +1346,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlideShapeParagraphs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideShapeParagraphs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getNotesSlideShapeParagraphs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1464,20 +1380,16 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlideShapePortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", String(requestObj.portionIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideShapePortion.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getNotesSlideShapePortion.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1504,19 +1416,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlideShapePortions.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideShapePortions.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getNotesSlideShapePortions.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1543,17 +1451,13 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlideShapes.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getNotesSlideShapes.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getNotesSlideShapes.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1580,9 +1484,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getNotesSlideWithFormat.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1620,20 +1524,16 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphPortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", String(requestObj.portionIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getParagraphPortion.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getParagraphPortion.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1660,19 +1560,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphPortions.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getParagraphPortions.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getParagraphPortions.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1699,8 +1595,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlideAnimation.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1732,18 +1628,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlideShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlideShape.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getSlideShape.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1770,19 +1662,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlideShapeParagraph.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlideShapeParagraph.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getSlideShapeParagraph.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1809,18 +1697,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlideShapeParagraphs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlideShapeParagraphs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getSlideShapeParagraphs.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1847,17 +1731,13 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlideShapes.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlideShapes.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getSlideShapes.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -1907,7 +1787,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesDocument.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1938,7 +1818,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesDocumentProperties.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1969,8 +1849,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesDocumentProperty.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties/{propertyName}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "propertyName", String(requestObj.propertyName));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "propertyName", ObjectSerializer.toString(requestObj.propertyName));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2005,8 +1885,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesImageWithDefaultFormat.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images/{index}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "index", String(requestObj.index));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "index", ObjectSerializer.toString(requestObj.index));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2037,9 +1917,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesImageWithFormat.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images/{index}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "index", String(requestObj.index));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "index", ObjectSerializer.toString(requestObj.index));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2074,7 +1954,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesImages.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2105,9 +1985,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesPlaceholder.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/placeholders/{placeholderIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "placeholderIndex", String(requestObj.placeholderIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "placeholderIndex", ObjectSerializer.toString(requestObj.placeholderIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2138,8 +2018,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesPlaceholders.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/placeholders";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2170,7 +2050,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesPresentationTextItems.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/textItems";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2202,8 +2082,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2234,8 +2114,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesSlideBackground.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/background";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2266,8 +2146,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesSlideComments.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/comments";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2298,8 +2178,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesSlideImages.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/images";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2330,8 +2210,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesSlideTextItems.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/textItems";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2363,7 +2243,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesSlidesList.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2394,8 +2274,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesTheme.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/theme";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2426,8 +2306,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesThemeColorScheme.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/theme/colorScheme";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2458,8 +2338,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesThemeFontScheme.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/theme/fontScheme";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2490,8 +2370,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesThemeFormatScheme.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/theme/formatScheme";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2522,7 +2402,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFile.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/file/move/{srcPath}";
-        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", String(requestObj.srcPath));
+        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", ObjectSerializer.toString(requestObj.srcPath));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.srcPath' is not null or undefined
         if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
@@ -2558,7 +2438,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFolder.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/move/{srcPath}";
-        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", String(requestObj.srcPath));
+        localVarPath = addPathParameterToUrl(localVarPath, "srcPath", ObjectSerializer.toString(requestObj.srcPath));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.srcPath' is not null or undefined
         if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
@@ -2593,12 +2473,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling objectExists.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/exist/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling objectExists.');
-        }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
@@ -2623,18 +2499,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postAddNewParagraph.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postAddNewParagraph.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postAddNewParagraph.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2662,19 +2534,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postAddNewPortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postAddNewPortion.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postAddNewPortion.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2702,17 +2570,13 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postAddNewShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postAddNewShape.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postAddNewShape.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2741,8 +2605,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postAddNotesSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2773,7 +2637,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postCopyLayoutSlideFromSourcePresentation.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/layoutSlides";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2812,7 +2676,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postCopyMasterSlideFromSourcePresentation.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/masterSlides";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2852,18 +2716,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postNotesSlideAddNewParagraph.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postNotesSlideAddNewParagraph.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postNotesSlideAddNewParagraph.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2891,19 +2751,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postNotesSlideAddNewPortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postNotesSlideAddNewPortion.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postNotesSlideAddNewPortion.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2931,17 +2787,13 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postNotesSlideAddNewShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postNotesSlideAddNewShape.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postNotesSlideAddNewShape.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -2970,19 +2822,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postNotesSlideShapeSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postNotesSlideShapeSaveAs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postNotesSlideShapeSaveAs.');
         }
             // verify required parameter 'requestObj.format' is not null or undefined
         if (requestObj.format === null || requestObj.format === undefined) {
@@ -3018,7 +2866,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postPresentationMerge.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/merge";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3049,19 +2897,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postShapeSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postShapeSaveAs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling postShapeSaveAs.');
         }
             // verify required parameter 'requestObj.format' is not null or undefined
         if (requestObj.format === null || requestObj.format === undefined) {
@@ -3097,8 +2941,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlideAnimationEffect.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/mainSequence";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3129,8 +2973,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlideAnimationInteractiveSequence.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3161,9 +3005,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlideAnimationInteractiveSequenceEffect.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", String(requestObj.sequenceIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3194,9 +3038,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlideSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3235,7 +3079,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesAdd.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3268,7 +3112,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesConvert.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/convert/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.format' is not null or undefined
         if (requestObj.format === null || requestObj.format === undefined) {
@@ -3299,7 +3143,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesCopy.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/copy";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3335,7 +3179,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesDocument.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3368,7 +3212,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesDocumentFromHtml.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromHtml";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3400,7 +3244,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesDocumentFromSource.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromSource";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3434,7 +3278,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesDocumentFromTemplate.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromTemplate";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3498,7 +3342,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesPresentationReplaceText.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/replaceText";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3540,8 +3384,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesReorder.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/move";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3573,7 +3417,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesReorderMany.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/reorder";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3606,8 +3450,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3644,7 +3488,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesSetDocumentProperties.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3675,8 +3519,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesSlideReplaceText.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/replaceText";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3718,7 +3562,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSlidesSplit.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/split";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3756,8 +3600,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putLayoutSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/layoutSlides/{slideIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3788,19 +3632,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putNotesSlideShapeSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putNotesSlideShapeSaveAs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putNotesSlideShapeSaveAs.');
         }
             // verify required parameter 'requestObj.format' is not null or undefined
         if (requestObj.format === null || requestObj.format === undefined) {
@@ -3840,7 +3680,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putPresentationMerge.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/merge";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3871,20 +3711,16 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSetParagraphPortionProperties.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", String(requestObj.portionIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putSetParagraphPortionProperties.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putSetParagraphPortionProperties.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -3911,19 +3747,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSetParagraphProperties.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putSetParagraphProperties.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putSetParagraphProperties.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -3950,19 +3782,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putShapeSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putShapeSaveAs.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putShapeSaveAs.');
         }
             // verify required parameter 'requestObj.format' is not null or undefined
         if (requestObj.format === null || requestObj.format === undefined) {
@@ -4002,8 +3830,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlideAnimation.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4034,9 +3862,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlideAnimationEffect.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/mainSequence/{effectIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", String(requestObj.effectIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4067,10 +3895,10 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlideAnimationInteractiveSequenceEffect.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}/{effectIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", String(requestObj.sequenceIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", String(requestObj.effectIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4101,9 +3929,9 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlideSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4146,18 +3974,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlideShapeInfo.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putSlideShapeInfo.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putSlideShapeInfo.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -4184,7 +4008,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesConvert.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/convert/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.format' is not null or undefined
         if (requestObj.format === null || requestObj.format === undefined) {
@@ -4220,7 +4044,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesDocumentFromHtml.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromHtml";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4252,8 +4076,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesSaveAs.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", String(requestObj.format));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4294,8 +4118,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesSetDocumentProperty.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties/{propertyName}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "propertyName", String(requestObj.propertyName));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "propertyName", ObjectSerializer.toString(requestObj.propertyName));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4330,8 +4154,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4362,8 +4186,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesSlideBackground.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/background";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4394,8 +4218,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesSlideBackgroundColor.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/backgroundColor";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4431,7 +4255,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesSlideSize.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slideSize";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4466,8 +4290,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putUpdateNotesSlide.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4498,18 +4322,14 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putUpdateNotesSlideShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putUpdateNotesSlideShape.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putUpdateNotesSlideShape.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -4536,19 +4356,15 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putUpdateNotesSlideShapeParagraph.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putUpdateNotesSlideShapeParagraph.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putUpdateNotesSlideShapeParagraph.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -4575,20 +4391,16 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putUpdateNotesSlideShapePortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", String(requestObj.name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", String(requestObj.slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", String(requestObj.shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", String(requestObj.paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", String(requestObj.portionIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling putUpdateNotesSlideShapePortion.');
-        }
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling putUpdateNotesSlideShapePortion.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
@@ -4615,7 +4427,7 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling storageExists.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/{storageName}/exist";
-        localVarPath = addPathParameterToUrl(localVarPath, "storageName", String(requestObj.storageName));
+        localVarPath = addPathParameterToUrl(localVarPath, "storageName", ObjectSerializer.toString(requestObj.storageName));
         const queryParameters: any = {};
             // verify required parameter 'requestObj.storageName' is not null or undefined
         if (requestObj.storageName === null || requestObj.storageName === undefined) {
@@ -4643,12 +4455,8 @@ export class SlidesApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling uploadFile.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/file/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "path", String(requestObj.path));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-            // verify required parameter 'requestObj.path' is not null or undefined
-        if (requestObj.path === null || requestObj.path === undefined) {
-            throw new Error('Required parameter "requestObj.path" was null or undefined when calling uploadFile.');
-        }
             // verify required parameter 'requestObj.file' is not null or undefined
         if (requestObj.file === null || requestObj.file === undefined) {
             throw new Error('Required parameter "requestObj.file" was null or undefined when calling uploadFile.');

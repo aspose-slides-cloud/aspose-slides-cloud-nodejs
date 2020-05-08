@@ -380,6 +380,38 @@ export class BlurEffect {
 }
 
 /**
+ * Represents chart category resource
+ */
+export class ChartCategory {
+
+    /**
+     * Gets or sets the categories for chart data
+     */
+    categories?: Array<ChartCategory>;
+
+    /**
+     * Category value
+     */
+    value?: string;
+
+    /**
+     * Get or sets the fill format.
+     */
+    fillFormat?: FillFormat;
+
+    /**
+     * Get or sets the effect format.
+     */
+    effectFormat?: EffectFormat;
+
+    /**
+     * Get or sets the line format.
+     */
+    lineFormat?: LineFormat;
+
+}
+
+/**
  * Represents chart title
  */
 export class ChartTitle {
@@ -434,6 +466,23 @@ export namespace ChartWall {
         Stretch = <any> 'Stretch',
         NotDefined = <any> 'NotDefined'
     }
+}
+
+/**
+ * Slide view properties.
+ */
+export class CommonSlideViewProperties {
+
+    /**
+     * The view scaling ratio (percentage).
+     */
+    scale?: number;
+
+    /**
+     * True if the view content should automatically scale to best fit the current window size.
+     */
+    variableScale?: boolean;
+
 }
 
 /**
@@ -1335,6 +1384,23 @@ export class ModelError {
 }
 
 /**
+ * The sizing of the slide region.
+ */
+export class NormalViewRestoredProperties {
+
+    /**
+     * True if the size of the side content region should compensate for the new size when resizing the window containing the view within the application.
+     */
+    autoAdjust?: boolean;
+
+    /**
+     * The size of the slide region.
+     */
+    dimensionSize?: number;
+
+}
+
+/**
  * Represents a format for notes slide export.
  */
     /**
@@ -1933,7 +1999,14 @@ export namespace Series {
         Radar = <any> 'Radar',
         RadarWithMarkers = <any> 'RadarWithMarkers',
         FilledRadar = <any> 'FilledRadar',
-        SeriesOfMixedTypes = <any> 'SeriesOfMixedTypes'
+        SeriesOfMixedTypes = <any> 'SeriesOfMixedTypes',
+        Treemap = <any> 'Treemap',
+        Sunburst = <any> 'Sunburst',
+        Histogram = <any> 'Histogram',
+        ParetoLine = <any> 'ParetoLine',
+        BoxAndWhisker = <any> 'BoxAndWhisker',
+        Waterfall = <any> 'Waterfall',
+        Funnel = <any> 'Funnel'
     }
 }
 
@@ -2660,6 +2733,11 @@ export class Document extends ResourceBase {
      * Link to Document properties.
      */
     documentProperties?: ResourceUriElement;
+
+    /**
+     * Link to Document properties.
+     */
+    viewProperties?: ResourceUriElement;
 
     /**
      * Link to slides collection.
@@ -5294,6 +5372,89 @@ export namespace UpdateShape {
 }
 
 /**
+ * Slides document properties.
+ */
+export class ViewProperties extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Last used view mode.
+     */
+    lastView?: ViewProperties.LastViewEnum;
+
+    /**
+     * Horizontal bar state.
+     */
+    horizontalBarState?: ViewProperties.HorizontalBarStateEnum;
+
+    /**
+     * Vertical bar state.
+     */
+    verticalBarState?: ViewProperties.VerticalBarStateEnum;
+
+    /**
+     * True to prefer single view.
+     */
+    preferSingleView?: boolean;
+
+    /**
+     * The sizing of the side content region of the normal view, when the region is of a variable restored size.
+     */
+    restoredLeft?: NormalViewRestoredProperties;
+
+    /**
+     * The sizing of the top slide region of the normal view, when the region is of a variable restored size.
+     */
+    restoredTop?: NormalViewRestoredProperties;
+
+    /**
+     * Slide view mode properties.
+     */
+    slideViewProperties?: CommonSlideViewProperties;
+
+    /**
+     * Notes view mode properties.
+     */
+    notesViewProperties?: CommonSlideViewProperties;
+
+    /**
+     * True if the comments should be shown.
+     */
+    showComments?: ViewProperties.ShowCommentsEnum;
+
+}
+export namespace ViewProperties {
+    export enum LastViewEnum {
+        NotDefined = <any> 'NotDefined',
+        SlideView = <any> 'SlideView',
+        SlideMasterView = <any> 'SlideMasterView',
+        NotesView = <any> 'NotesView',
+        HandoutView = <any> 'HandoutView',
+        NotesMasterView = <any> 'NotesMasterView',
+        OutlineView = <any> 'OutlineView',
+        SlideSorterView = <any> 'SlideSorterView',
+        SlideThumbnailView = <any> 'SlideThumbnailView'
+    }
+    export enum HorizontalBarStateEnum {
+        Minimized = <any> 'Minimized',
+        Restored = <any> 'Restored',
+        Maximized = <any> 'Maximized'
+    }
+    export enum VerticalBarStateEnum {
+        Minimized = <any> 'Minimized',
+        Restored = <any> 'Restored',
+        Maximized = <any> 'Maximized'
+    }
+    export enum ShowCommentsEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+}
+
+/**
  * Provides options that control how a presentation is saved in XPS format.
  */
 export class XpsExportOptions extends ExportOptions {
@@ -5317,6 +5478,47 @@ export class XpsExportOptions extends ExportOptions {
      */
     drawSlidesFrame: boolean;
 
+}
+
+/**
+ * One value series.
+ */
+export class BoxAndWhiskerSeries extends OneValueSeries {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Quartile method.
+     */
+    quartileMethod?: BoxAndWhiskerSeries.QuartileMethodEnum;
+
+    /**
+     * True if inner points are shown.
+     */
+    showInnerPoints?: boolean;
+
+    /**
+     * True if mean line is shown.
+     */
+    showMeanLine?: boolean;
+
+    /**
+     * True if mean markers are shown.
+     */
+    showMeanMarkers?: boolean;
+
+    /**
+     * True if outlier points are shown.
+     */
+    showOutlierPoints?: boolean;
+
+}
+export namespace BoxAndWhiskerSeries {
+    export enum QuartileMethodEnum {
+        Exclusive = <any> 'Exclusive',
+        Inclusive = <any> 'Inclusive'
+    }
 }
 
 /**
@@ -5347,7 +5549,7 @@ export class Chart extends ShapeBase {
     /**
      * Gets or sets the categories for chart data
      */
-    categories?: Array<string>;
+    categories?: Array<ChartCategory>;
 
     /**
      * Gets or sets the title.
@@ -5460,7 +5662,14 @@ export namespace Chart {
         Radar = <any> 'Radar',
         RadarWithMarkers = <any> 'RadarWithMarkers',
         FilledRadar = <any> 'FilledRadar',
-        SeriesOfMixedTypes = <any> 'SeriesOfMixedTypes'
+        SeriesOfMixedTypes = <any> 'SeriesOfMixedTypes',
+        Treemap = <any> 'Treemap',
+        Sunburst = <any> 'Sunburst',
+        Histogram = <any> 'Histogram',
+        ParetoLine = <any> 'ParetoLine',
+        BoxAndWhisker = <any> 'BoxAndWhisker',
+        Waterfall = <any> 'Waterfall',
+        Funnel = <any> 'Funnel'
     }
 }
 
@@ -6141,6 +6350,23 @@ export namespace Table {
         LightStyle1Accent5 = <any> 'LightStyle1Accent5',
         Custom = <any> 'Custom'
     }
+}
+
+/**
+ * One value series.
+ */
+export class WaterfallSeries extends OneValueSeries {
+    constructor() {
+        super();
+    }
+
+    /**
+     * True if inner points are shown.
+     */
+    showConnectorLines?: boolean;
+
+}
+export namespace WaterfallSeries {
 }
 
 /**

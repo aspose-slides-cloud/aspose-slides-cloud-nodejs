@@ -132,7 +132,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "20.2.0";
+    requestOptions.headers["x-aspose-client-version"] = "20.4.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }
@@ -178,8 +178,14 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
 }
 
 async function addAuthHeader(requestOptions: request.Options, configuration: Configuration): Promise<void> {
-    if (configuration.accessToken == null) {
-        await requestToken(configuration);
+    if (isRequestTokenPending) {
+        await requestingToken;
+    }
+    if (!configuration.accessToken) {
+        isRequestTokenPending = true;
+        requestingToken = requestToken(configuration);
+
+        await requestingToken;
     }
     if (requestOptions && requestOptions.headers) {
         requestOptions.headers.Authorization = "Bearer " + configuration.accessToken;
@@ -202,6 +208,9 @@ async function requestToken(configuration: Configuration): Promise<void> {
     configuration.accessToken = response.body.access_token;
     return Promise.resolve();
 }
+
+var requestingToken : Promise<void> = null;
+var isRequestTokenPending : boolean = false;
 
 /**
  * Exception, indicating necessity of request repeat

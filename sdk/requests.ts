@@ -2012,6 +2012,27 @@ export class GetSlidesThemeFormatSchemeRequest {
     public storage: string;
 }
 /**
+ * Request model for GetSlidesViewProperties operation.
+ */
+export class GetSlidesViewPropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for MoveFile operation.
  */
 export class MoveFileRequest {
@@ -3867,6 +3888,31 @@ export class PutSlidesSlideSizeRequest {
      * Standard slide scale type.
      */
     public scaleType: string;
+}
+/**
+ * Request model for PutSlidesViewProperties operation.
+ */
+export class PutSlidesViewPropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The view properties data.
+     */
+    public dto: model.ViewProperties;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutUpdateNotesSlide operation.

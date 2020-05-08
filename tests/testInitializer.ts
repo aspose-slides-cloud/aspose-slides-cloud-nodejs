@@ -32,6 +32,7 @@ export class TestInitializer {
     static readonly testRules = require("../testRules.json");
     static isInitialized : boolean = false;
     static expectedFilesVersion = "1";
+    static api : sdkApi.SlidesApi;
 
     public static getStreamValue() {
         return fs.createReadStream("TestData/" + "test.ppt");
@@ -60,12 +61,16 @@ export class TestInitializer {
         return TestInitializer.untemplatize(invalidValue, value);
     }
 
-    public static initializeFileApi() {
-        const config = require("../testConfig.json");
-        return new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+    public static getApi() {
+        if (!TestInitializer.api) {
+            const config = require("../testConfig.json");
+            TestInitializer.api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+        }
+        return TestInitializer.api;
     }
 
     public static initialize(functionName: string, invalidFieldName: string, invalidFieldValue: any) {
+        const api = TestInitializer.getApi();
         if (!TestInitializer.isInitialized) {
             TestInitializer.initializeStorage();
             TestInitializer.isInitialized = true;
@@ -82,7 +87,6 @@ export class TestInitializer {
             files[path].ActualName = actualName;
         });
         const promises = [];
-        const fileApi = TestInitializer.initializeFileApi();
         for (var path in files) {
             var rule = files[path];
             if (rule.Action == "Put") {
@@ -90,7 +94,7 @@ export class TestInitializer {
                     const request = new requests.CopyFileRequest();
                     request.srcPath = "TempTests/" + files[path].ActualName;
                     request.destPath = path;
-                    fileApi
+                    api
                         .copyFile(request)
                         .then(() => resolve())
                         .catch(() => reject(new Error("Could not upload file " + path)));
@@ -99,7 +103,7 @@ export class TestInitializer {
                 promises.push(new Promise((resolve, reject) => {
                     const request = new requests.DeleteFileRequest();
                     request.path = path;
-                    fileApi
+                    api
                         .deleteFile(request)
                         .then(() => resolve())
                         .catch(() => reject(new Error("Could not delete file " + path)));
@@ -110,12 +114,12 @@ export class TestInitializer {
     }
 
     public static async initializeStorage() {
+        const api = TestInitializer.getApi();
         const versionFilePath = "TempTests/version.txt";
-        const fileApi = TestInitializer.initializeFileApi();
         let uploaded = false;
         const request = new requests.DownloadFileRequest();
         request.path = versionFilePath;
-        await fileApi.downloadFile(request).then((result) => {
+        await api.downloadFile(request).then((result) => {
             if (TestInitializer.expectedFilesVersion == result.body.toString()) {
                 uploaded = true;
             }
@@ -132,18 +136,14 @@ export class TestInitializer {
                     const uploadRequest = new requests.UploadFileRequest();
                     uploadRequest.file = fs.createReadStream("TestData/" + file);
                     uploadRequest.path = "TempTests/" + file;
-                    promises.push(fileApi
-                        .uploadFile(uploadRequest)
-                        .catch((err) => { console.log(err); }));
+                    promises.push(api.uploadFile(uploadRequest).catch((err) => { console.log(err); }));
                 });
             });
             await Promise.all(promises);
             const request = new requests.UploadFileRequest();
             request.file = Buffer.from(TestInitializer.expectedFilesVersion, 'utf8');
             request.path = versionFilePath;
-            await fileApi
-                .uploadFile(request)
-                .catch((err) => { console.log(err); });
+            await api.uploadFile(request).catch((err) => { console.log(err); });
         }
     }
 

@@ -2394,6 +2394,37 @@ export class SlidesApi {
         return Promise.resolve({ body: result, response });
     }
     /**
+     * Read presentation document properties. 
+     * @param requestObj contains request parameters
+     */
+    public async getSlidesViewProperties(requestObj: requests.GetSlidesViewPropertiesRequest): Promise<{response: http.ClientResponse, body: model.ViewProperties}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesViewProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/viewProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSlidesViewProperties.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "ViewProperties");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
      * Move file 
      * @param requestObj contains request parameters
      */
@@ -4279,6 +4310,37 @@ export class SlidesApi {
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Update presentation document properties. 
+     * @param requestObj contains request parameters
+     */
+    public async putSlidesViewProperties(requestObj: requests.PutSlidesViewPropertiesRequest): Promise<{response: http.ClientResponse, body: model.DocumentProperty}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesViewProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/viewProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling putSlidesViewProperties.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: requestObj.dto
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "DocumentProperty");
         return Promise.resolve({ body: result, response });
     }
     /**

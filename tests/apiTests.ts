@@ -25,7 +25,6 @@
 import "mocha";
 import * as model from "../sdk/model";
 import * as requests from "../sdk/requests";
-import * as sdkApi from "../sdk/api";
 import { TestInitializer } from "./testInitializer";
 
 class TestUtils {
@@ -796,6 +795,15 @@ class TestUtils {
         return request;
     }
 
+    public static getGetSlidesViewPropertiesRequest(): requests.GetSlidesViewPropertiesRequest {
+        const request = new requests.GetSlidesViewPropertiesRequest();
+        request.name = <string>TestInitializer.getValue("getSlidesViewProperties", "name");
+        request.password = <string>TestInitializer.getValue("getSlidesViewProperties", "password");
+        request.folder = <string>TestInitializer.getValue("getSlidesViewProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlidesViewProperties", "storage");
+        return request;
+    }
+
     public static getMoveFileRequest(): requests.MoveFileRequest {
         const request = new requests.MoveFileRequest();
         request.srcPath = <string>TestInitializer.getValue("moveFile", "srcPath");
@@ -1459,6 +1467,16 @@ class TestUtils {
         return request;
     }
 
+    public static getPutSlidesViewPropertiesRequest(): requests.PutSlidesViewPropertiesRequest {
+        const request = new requests.PutSlidesViewPropertiesRequest();
+        request.name = <string>TestInitializer.getValue("putSlidesViewProperties", "name");
+        request.dto = <model.ViewProperties>TestInitializer.getValue("putSlidesViewProperties", "dto");
+        request.password = <string>TestInitializer.getValue("putSlidesViewProperties", "password");
+        request.folder = <string>TestInitializer.getValue("putSlidesViewProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("putSlidesViewProperties", "storage");
+        return request;
+    }
+
     public static getPutUpdateNotesSlideRequest(): requests.PutUpdateNotesSlideRequest {
         const request = new requests.PutUpdateNotesSlideRequest();
         request.name = <string>TestInitializer.getValue("putUpdateNotesSlide", "name");
@@ -1530,11 +1548,9 @@ class TestUtils {
 describe("Tests for copyFile", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getCopyFileRequest();
             return TestInitializer.initialize("copyFile", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getCopyFileRequest();
-                return TestInitializer.assertValidCall(api.copyFile(request), false, "copyFile");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().copyFile(request), false, "copyFile");
             });
         });
     });
@@ -1545,9 +1561,7 @@ describe("Tests for copyFile", () => {
         request.srcPath = <string>TestInitializer.invalidizeValue(request.srcPath, field, "string", "copyFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFile", field, request.srcPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFile(request), "copyFile", field, request.srcPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFile(request), "copyFile", field, request.srcPath);
             });
         });
     });
@@ -1558,9 +1572,7 @@ describe("Tests for copyFile", () => {
         request.destPath = <string>TestInitializer.invalidizeValue(request.destPath, field, "string", "copyFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFile", field, request.destPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFile(request), "copyFile", field, request.destPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFile(request), "copyFile", field, request.destPath);
             });
         });
     });
@@ -1571,9 +1583,7 @@ describe("Tests for copyFile", () => {
         request.srcStorageName = <string>TestInitializer.invalidizeValue(request.srcStorageName, field, "string", "copyFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFile", field, request.srcStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFile(request), "copyFile", field, request.srcStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFile(request), "copyFile", field, request.srcStorageName);
             });
         });
     });
@@ -1584,9 +1594,7 @@ describe("Tests for copyFile", () => {
         request.destStorageName = <string>TestInitializer.invalidizeValue(request.destStorageName, field, "string", "copyFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFile", field, request.destStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFile(request), "copyFile", field, request.destStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFile(request), "copyFile", field, request.destStorageName);
             });
         });
     });
@@ -1597,9 +1605,7 @@ describe("Tests for copyFile", () => {
         request.versionId = <string>TestInitializer.invalidizeValue(request.versionId, field, "string", "copyFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFile", field, request.versionId).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFile(request), "copyFile", field, request.versionId);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFile(request), "copyFile", field, request.versionId);
             });
         });
     });
@@ -1608,11 +1614,9 @@ describe("Tests for copyFile", () => {
 describe("Tests for copyFolder", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getCopyFolderRequest();
             return TestInitializer.initialize("copyFolder", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getCopyFolderRequest();
-                return TestInitializer.assertValidCall(api.copyFolder(request), false, "copyFolder");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().copyFolder(request), false, "copyFolder");
             });
         });
     });
@@ -1623,9 +1627,7 @@ describe("Tests for copyFolder", () => {
         request.srcPath = <string>TestInitializer.invalidizeValue(request.srcPath, field, "string", "copyFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFolder", field, request.srcPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFolder(request), "copyFolder", field, request.srcPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFolder(request), "copyFolder", field, request.srcPath);
             });
         });
     });
@@ -1636,9 +1638,7 @@ describe("Tests for copyFolder", () => {
         request.destPath = <string>TestInitializer.invalidizeValue(request.destPath, field, "string", "copyFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFolder", field, request.destPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFolder(request), "copyFolder", field, request.destPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFolder(request), "copyFolder", field, request.destPath);
             });
         });
     });
@@ -1649,9 +1649,7 @@ describe("Tests for copyFolder", () => {
         request.srcStorageName = <string>TestInitializer.invalidizeValue(request.srcStorageName, field, "string", "copyFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFolder", field, request.srcStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFolder(request), "copyFolder", field, request.srcStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFolder(request), "copyFolder", field, request.srcStorageName);
             });
         });
     });
@@ -1662,9 +1660,7 @@ describe("Tests for copyFolder", () => {
         request.destStorageName = <string>TestInitializer.invalidizeValue(request.destStorageName, field, "string", "copyFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("copyFolder", field, request.destStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.copyFolder(request), "copyFolder", field, request.destStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().copyFolder(request), "copyFolder", field, request.destStorageName);
             });
         });
     });
@@ -1673,11 +1669,9 @@ describe("Tests for copyFolder", () => {
 describe("Tests for createFolder", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getCreateFolderRequest();
             return TestInitializer.initialize("createFolder", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getCreateFolderRequest();
-                return TestInitializer.assertValidCall(api.createFolder(request), false, "createFolder");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().createFolder(request), false, "createFolder");
             });
         });
     });
@@ -1688,9 +1682,7 @@ describe("Tests for createFolder", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "createFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createFolder", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.createFolder(request), "createFolder", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createFolder(request), "createFolder", field, request.path);
             });
         });
     });
@@ -1701,9 +1693,7 @@ describe("Tests for createFolder", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "createFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createFolder", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.createFolder(request), "createFolder", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createFolder(request), "createFolder", field, request.storageName);
             });
         });
     });
@@ -1712,11 +1702,9 @@ describe("Tests for createFolder", () => {
 describe("Tests for deleteFile", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteFileRequest();
             return TestInitializer.initialize("deleteFile", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteFileRequest();
-                return TestInitializer.assertValidCall(api.deleteFile(request), false, "deleteFile");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteFile(request), false, "deleteFile");
             });
         });
     });
@@ -1727,9 +1715,7 @@ describe("Tests for deleteFile", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteFile", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteFile(request), "deleteFile", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteFile(request), "deleteFile", field, request.path);
             });
         });
     });
@@ -1740,9 +1726,7 @@ describe("Tests for deleteFile", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "deleteFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteFile", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteFile(request), "deleteFile", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteFile(request), "deleteFile", field, request.storageName);
             });
         });
     });
@@ -1753,9 +1737,7 @@ describe("Tests for deleteFile", () => {
         request.versionId = <string>TestInitializer.invalidizeValue(request.versionId, field, "string", "deleteFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteFile", field, request.versionId).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteFile(request), "deleteFile", field, request.versionId);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteFile(request), "deleteFile", field, request.versionId);
             });
         });
     });
@@ -1764,11 +1746,9 @@ describe("Tests for deleteFile", () => {
 describe("Tests for deleteFolder", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteFolderRequest();
             return TestInitializer.initialize("deleteFolder", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteFolderRequest();
-                return TestInitializer.assertValidCall(api.deleteFolder(request), false, "deleteFolder");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteFolder(request), false, "deleteFolder");
             });
         });
     });
@@ -1779,9 +1759,7 @@ describe("Tests for deleteFolder", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteFolder", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteFolder(request), "deleteFolder", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteFolder(request), "deleteFolder", field, request.path);
             });
         });
     });
@@ -1792,9 +1770,7 @@ describe("Tests for deleteFolder", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "deleteFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteFolder", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteFolder(request), "deleteFolder", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteFolder(request), "deleteFolder", field, request.storageName);
             });
         });
     });
@@ -1805,9 +1781,7 @@ describe("Tests for deleteFolder", () => {
         request.recursive = <boolean>TestInitializer.invalidizeValue(request.recursive, field, "boolean", "deleteFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteFolder", field, request.recursive).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteFolder(request), "deleteFolder", field, request.recursive);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteFolder(request), "deleteFolder", field, request.recursive);
             });
         });
     });
@@ -1816,11 +1790,9 @@ describe("Tests for deleteFolder", () => {
 describe("Tests for deleteNotesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteNotesSlideRequest();
             return TestInitializer.initialize("deleteNotesSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteNotesSlideRequest();
-                return TestInitializer.assertValidCall(api.deleteNotesSlide(request), false, "deleteNotesSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteNotesSlide(request), false, "deleteNotesSlide");
             });
         });
     });
@@ -1831,9 +1803,7 @@ describe("Tests for deleteNotesSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlide(request), "deleteNotesSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlide(request), "deleteNotesSlide", field, request.name);
             });
         });
     });
@@ -1844,9 +1814,7 @@ describe("Tests for deleteNotesSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlide(request), "deleteNotesSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlide(request), "deleteNotesSlide", field, request.slideIndex);
             });
         });
     });
@@ -1857,9 +1825,7 @@ describe("Tests for deleteNotesSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlide(request), "deleteNotesSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlide(request), "deleteNotesSlide", field, request.password);
             });
         });
     });
@@ -1870,9 +1836,7 @@ describe("Tests for deleteNotesSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlide(request), "deleteNotesSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlide(request), "deleteNotesSlide", field, request.folder);
             });
         });
     });
@@ -1883,9 +1847,7 @@ describe("Tests for deleteNotesSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlide(request), "deleteNotesSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlide(request), "deleteNotesSlide", field, request.storage);
             });
         });
     });
@@ -1894,11 +1856,9 @@ describe("Tests for deleteNotesSlide", () => {
 describe("Tests for deleteNotesSlideParagraph", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteNotesSlideParagraphRequest();
             return TestInitializer.initialize("deleteNotesSlideParagraph", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteNotesSlideParagraphRequest();
-                return TestInitializer.assertValidCall(api.deleteNotesSlideParagraph(request), false, "deleteNotesSlideParagraph");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), false, "deleteNotesSlideParagraph");
             });
         });
     });
@@ -1909,9 +1869,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.name);
             });
         });
     });
@@ -1922,9 +1880,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.slideIndex);
             });
         });
     });
@@ -1935,9 +1891,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.path);
             });
         });
     });
@@ -1948,9 +1902,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.shapeIndex);
             });
         });
     });
@@ -1961,9 +1913,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.paragraphIndex);
             });
         });
     });
@@ -1974,9 +1924,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.password);
             });
         });
     });
@@ -1987,9 +1935,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.folder);
             });
         });
     });
@@ -2000,9 +1946,7 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteNotesSlideParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.storage);
             });
         });
     });
@@ -2011,11 +1955,9 @@ describe("Tests for deleteNotesSlideParagraph", () => {
 describe("Tests for deleteNotesSlideParagraphs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteNotesSlideParagraphsRequest();
             return TestInitializer.initialize("deleteNotesSlideParagraphs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteNotesSlideParagraphsRequest();
-                return TestInitializer.assertValidCall(api.deleteNotesSlideParagraphs(request), false, "deleteNotesSlideParagraphs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), false, "deleteNotesSlideParagraphs");
             });
         });
     });
@@ -2026,9 +1968,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.name);
             });
         });
     });
@@ -2039,9 +1979,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.slideIndex);
             });
         });
     });
@@ -2052,9 +1990,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.path);
             });
         });
     });
@@ -2065,9 +2001,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.shapeIndex);
             });
         });
     });
@@ -2078,9 +2012,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.paragraphs = <Array<number>>TestInitializer.invalidizeValue(request.paragraphs, field, "Array&lt;number&gt;", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.paragraphs).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.paragraphs);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.paragraphs);
             });
         });
     });
@@ -2091,9 +2023,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.password);
             });
         });
     });
@@ -2104,9 +2034,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.folder);
             });
         });
     });
@@ -2117,9 +2045,7 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteNotesSlideParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.storage);
             });
         });
     });
@@ -2128,11 +2054,9 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
 describe("Tests for deleteNotesSlidePortion", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteNotesSlidePortionRequest();
             return TestInitializer.initialize("deleteNotesSlidePortion", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteNotesSlidePortionRequest();
-                return TestInitializer.assertValidCall(api.deleteNotesSlidePortion(request), false, "deleteNotesSlidePortion");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), false, "deleteNotesSlidePortion");
             });
         });
     });
@@ -2143,9 +2067,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.name);
             });
         });
     });
@@ -2156,9 +2078,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.slideIndex);
             });
         });
     });
@@ -2169,9 +2089,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.path);
             });
         });
     });
@@ -2182,9 +2100,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.shapeIndex);
             });
         });
     });
@@ -2195,9 +2111,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.paragraphIndex);
             });
         });
     });
@@ -2208,9 +2122,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.portionIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.portionIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.portionIndex);
             });
         });
     });
@@ -2221,9 +2133,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.password);
             });
         });
     });
@@ -2234,9 +2144,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.folder);
             });
         });
     });
@@ -2247,9 +2155,7 @@ describe("Tests for deleteNotesSlidePortion", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteNotesSlidePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.storage);
             });
         });
     });
@@ -2258,11 +2164,9 @@ describe("Tests for deleteNotesSlidePortion", () => {
 describe("Tests for deleteNotesSlidePortions", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteNotesSlidePortionsRequest();
             return TestInitializer.initialize("deleteNotesSlidePortions", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteNotesSlidePortionsRequest();
-                return TestInitializer.assertValidCall(api.deleteNotesSlidePortions(request), false, "deleteNotesSlidePortions");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), false, "deleteNotesSlidePortions");
             });
         });
     });
@@ -2273,9 +2177,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.name);
             });
         });
     });
@@ -2286,9 +2188,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.slideIndex);
             });
         });
     });
@@ -2299,9 +2199,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.path);
             });
         });
     });
@@ -2312,9 +2210,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.shapeIndex);
             });
         });
     });
@@ -2325,9 +2221,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.paragraphIndex);
             });
         });
     });
@@ -2338,9 +2232,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.portions = <Array<number>>TestInitializer.invalidizeValue(request.portions, field, "Array&lt;number&gt;", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.portions).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.portions);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.portions);
             });
         });
     });
@@ -2351,9 +2243,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.password);
             });
         });
     });
@@ -2364,9 +2254,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.folder);
             });
         });
     });
@@ -2377,9 +2265,7 @@ describe("Tests for deleteNotesSlidePortions", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteNotesSlidePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortions", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.storage);
             });
         });
     });
@@ -2388,11 +2274,9 @@ describe("Tests for deleteNotesSlidePortions", () => {
 describe("Tests for deleteNotesSlideShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteNotesSlideShapeRequest();
             return TestInitializer.initialize("deleteNotesSlideShape", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteNotesSlideShapeRequest();
-                return TestInitializer.assertValidCall(api.deleteNotesSlideShape(request), false, "deleteNotesSlideShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteNotesSlideShape(request), false, "deleteNotesSlideShape");
             });
         });
     });
@@ -2403,9 +2287,7 @@ describe("Tests for deleteNotesSlideShape", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShape", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.name);
             });
         });
     });
@@ -2416,9 +2298,7 @@ describe("Tests for deleteNotesSlideShape", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShape", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.slideIndex);
             });
         });
     });
@@ -2429,9 +2309,7 @@ describe("Tests for deleteNotesSlideShape", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShape", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.path);
             });
         });
     });
@@ -2442,9 +2320,7 @@ describe("Tests for deleteNotesSlideShape", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShape", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.shapeIndex);
             });
         });
     });
@@ -2455,9 +2331,7 @@ describe("Tests for deleteNotesSlideShape", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShape", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.password);
             });
         });
     });
@@ -2468,9 +2342,7 @@ describe("Tests for deleteNotesSlideShape", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShape", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.folder);
             });
         });
     });
@@ -2481,9 +2353,7 @@ describe("Tests for deleteNotesSlideShape", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShape", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.storage);
             });
         });
     });
@@ -2492,11 +2362,9 @@ describe("Tests for deleteNotesSlideShape", () => {
 describe("Tests for deleteNotesSlideShapes", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteNotesSlideShapesRequest();
             return TestInitializer.initialize("deleteNotesSlideShapes", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteNotesSlideShapesRequest();
-                return TestInitializer.assertValidCall(api.deleteNotesSlideShapes(request), false, "deleteNotesSlideShapes");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), false, "deleteNotesSlideShapes");
             });
         });
     });
@@ -2507,9 +2375,7 @@ describe("Tests for deleteNotesSlideShapes", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShapes", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.name);
             });
         });
     });
@@ -2520,9 +2386,7 @@ describe("Tests for deleteNotesSlideShapes", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShapes", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.slideIndex);
             });
         });
     });
@@ -2533,9 +2397,7 @@ describe("Tests for deleteNotesSlideShapes", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShapes", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.path);
             });
         });
     });
@@ -2546,9 +2408,7 @@ describe("Tests for deleteNotesSlideShapes", () => {
         request.shapes = <Array<number>>TestInitializer.invalidizeValue(request.shapes, field, "Array&lt;number&gt;", "deleteNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShapes", field, request.shapes).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.shapes);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.shapes);
             });
         });
     });
@@ -2559,9 +2419,7 @@ describe("Tests for deleteNotesSlideShapes", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShapes", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.password);
             });
         });
     });
@@ -2572,9 +2430,7 @@ describe("Tests for deleteNotesSlideShapes", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShapes", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.folder);
             });
         });
     });
@@ -2585,9 +2441,7 @@ describe("Tests for deleteNotesSlideShapes", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlideShapes", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.storage);
             });
         });
     });
@@ -2596,11 +2450,9 @@ describe("Tests for deleteNotesSlideShapes", () => {
 describe("Tests for deleteParagraph", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteParagraphRequest();
             return TestInitializer.initialize("deleteParagraph", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteParagraphRequest();
-                return TestInitializer.assertValidCall(api.deleteParagraph(request), false, "deleteParagraph");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteParagraph(request), false, "deleteParagraph");
             });
         });
     });
@@ -2611,9 +2463,7 @@ describe("Tests for deleteParagraph", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.name);
             });
         });
     });
@@ -2624,9 +2474,7 @@ describe("Tests for deleteParagraph", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.slideIndex);
             });
         });
     });
@@ -2637,9 +2485,7 @@ describe("Tests for deleteParagraph", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.path);
             });
         });
     });
@@ -2650,9 +2496,7 @@ describe("Tests for deleteParagraph", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.shapeIndex);
             });
         });
     });
@@ -2663,9 +2507,7 @@ describe("Tests for deleteParagraph", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.paragraphIndex);
             });
         });
     });
@@ -2676,9 +2518,7 @@ describe("Tests for deleteParagraph", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.password);
             });
         });
     });
@@ -2689,9 +2529,7 @@ describe("Tests for deleteParagraph", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.folder);
             });
         });
     });
@@ -2702,9 +2540,7 @@ describe("Tests for deleteParagraph", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraph(request), "deleteParagraph", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.storage);
             });
         });
     });
@@ -2713,11 +2549,9 @@ describe("Tests for deleteParagraph", () => {
 describe("Tests for deleteParagraphs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteParagraphsRequest();
             return TestInitializer.initialize("deleteParagraphs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteParagraphsRequest();
-                return TestInitializer.assertValidCall(api.deleteParagraphs(request), false, "deleteParagraphs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteParagraphs(request), false, "deleteParagraphs");
             });
         });
     });
@@ -2728,9 +2562,7 @@ describe("Tests for deleteParagraphs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.name);
             });
         });
     });
@@ -2741,9 +2573,7 @@ describe("Tests for deleteParagraphs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.slideIndex);
             });
         });
     });
@@ -2754,9 +2584,7 @@ describe("Tests for deleteParagraphs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.path);
             });
         });
     });
@@ -2767,9 +2595,7 @@ describe("Tests for deleteParagraphs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.shapeIndex);
             });
         });
     });
@@ -2780,9 +2606,7 @@ describe("Tests for deleteParagraphs", () => {
         request.paragraphs = <Array<number>>TestInitializer.invalidizeValue(request.paragraphs, field, "Array&lt;number&gt;", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.paragraphs).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.paragraphs);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.paragraphs);
             });
         });
     });
@@ -2793,9 +2617,7 @@ describe("Tests for deleteParagraphs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.password);
             });
         });
     });
@@ -2806,9 +2628,7 @@ describe("Tests for deleteParagraphs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.folder);
             });
         });
     });
@@ -2819,9 +2639,7 @@ describe("Tests for deleteParagraphs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraphs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteParagraphs(request), "deleteParagraphs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.storage);
             });
         });
     });
@@ -2830,11 +2648,9 @@ describe("Tests for deleteParagraphs", () => {
 describe("Tests for deletePortion", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeletePortionRequest();
             return TestInitializer.initialize("deletePortion", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeletePortionRequest();
-                return TestInitializer.assertValidCall(api.deletePortion(request), false, "deletePortion");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deletePortion(request), false, "deletePortion");
             });
         });
     });
@@ -2845,9 +2661,7 @@ describe("Tests for deletePortion", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.name);
             });
         });
     });
@@ -2858,9 +2672,7 @@ describe("Tests for deletePortion", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.slideIndex);
             });
         });
     });
@@ -2871,9 +2683,7 @@ describe("Tests for deletePortion", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.path);
             });
         });
     });
@@ -2884,9 +2694,7 @@ describe("Tests for deletePortion", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.shapeIndex);
             });
         });
     });
@@ -2897,9 +2705,7 @@ describe("Tests for deletePortion", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.paragraphIndex);
             });
         });
     });
@@ -2910,9 +2716,7 @@ describe("Tests for deletePortion", () => {
         request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.portionIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.portionIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.portionIndex);
             });
         });
     });
@@ -2923,9 +2727,7 @@ describe("Tests for deletePortion", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.password);
             });
         });
     });
@@ -2936,9 +2738,7 @@ describe("Tests for deletePortion", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.folder);
             });
         });
     });
@@ -2949,9 +2749,7 @@ describe("Tests for deletePortion", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deletePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortion(request), "deletePortion", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.storage);
             });
         });
     });
@@ -2960,11 +2758,9 @@ describe("Tests for deletePortion", () => {
 describe("Tests for deletePortions", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeletePortionsRequest();
             return TestInitializer.initialize("deletePortions", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeletePortionsRequest();
-                return TestInitializer.assertValidCall(api.deletePortions(request), false, "deletePortions");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deletePortions(request), false, "deletePortions");
             });
         });
     });
@@ -2975,9 +2771,7 @@ describe("Tests for deletePortions", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.name);
             });
         });
     });
@@ -2988,9 +2782,7 @@ describe("Tests for deletePortions", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.slideIndex);
             });
         });
     });
@@ -3001,9 +2793,7 @@ describe("Tests for deletePortions", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.path);
             });
         });
     });
@@ -3014,9 +2804,7 @@ describe("Tests for deletePortions", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.shapeIndex);
             });
         });
     });
@@ -3027,9 +2815,7 @@ describe("Tests for deletePortions", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.paragraphIndex);
             });
         });
     });
@@ -3040,9 +2826,7 @@ describe("Tests for deletePortions", () => {
         request.portions = <Array<number>>TestInitializer.invalidizeValue(request.portions, field, "Array&lt;number&gt;", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.portions).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.portions);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.portions);
             });
         });
     });
@@ -3053,9 +2837,7 @@ describe("Tests for deletePortions", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.password);
             });
         });
     });
@@ -3066,9 +2848,7 @@ describe("Tests for deletePortions", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.folder);
             });
         });
     });
@@ -3079,9 +2859,7 @@ describe("Tests for deletePortions", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deletePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deletePortions(request), "deletePortions", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.storage);
             });
         });
     });
@@ -3090,11 +2868,9 @@ describe("Tests for deletePortions", () => {
 describe("Tests for deleteSlideAnimation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideAnimationRequest();
             return TestInitializer.initialize("deleteSlideAnimation", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideAnimationRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideAnimation(request), false, "deleteSlideAnimation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideAnimation(request), false, "deleteSlideAnimation");
             });
         });
     });
@@ -3105,9 +2881,7 @@ describe("Tests for deleteSlideAnimation", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimation", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimation(request), "deleteSlideAnimation", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimation(request), "deleteSlideAnimation", field, request.name);
             });
         });
     });
@@ -3118,9 +2892,7 @@ describe("Tests for deleteSlideAnimation", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimation", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimation(request), "deleteSlideAnimation", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimation(request), "deleteSlideAnimation", field, request.slideIndex);
             });
         });
     });
@@ -3131,9 +2903,7 @@ describe("Tests for deleteSlideAnimation", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimation", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimation(request), "deleteSlideAnimation", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimation(request), "deleteSlideAnimation", field, request.password);
             });
         });
     });
@@ -3144,9 +2914,7 @@ describe("Tests for deleteSlideAnimation", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimation", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimation(request), "deleteSlideAnimation", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimation(request), "deleteSlideAnimation", field, request.folder);
             });
         });
     });
@@ -3157,9 +2925,7 @@ describe("Tests for deleteSlideAnimation", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimation", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimation(request), "deleteSlideAnimation", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimation(request), "deleteSlideAnimation", field, request.storage);
             });
         });
     });
@@ -3168,11 +2934,9 @@ describe("Tests for deleteSlideAnimation", () => {
 describe("Tests for deleteSlideAnimationEffect", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideAnimationEffectRequest();
             return TestInitializer.initialize("deleteSlideAnimationEffect", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideAnimationEffectRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideAnimationEffect(request), false, "deleteSlideAnimationEffect");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideAnimationEffect(request), false, "deleteSlideAnimationEffect");
             });
         });
     });
@@ -3183,9 +2947,7 @@ describe("Tests for deleteSlideAnimationEffect", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationEffect", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.name);
             });
         });
     });
@@ -3196,9 +2958,7 @@ describe("Tests for deleteSlideAnimationEffect", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationEffect", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.slideIndex);
             });
         });
     });
@@ -3209,9 +2969,7 @@ describe("Tests for deleteSlideAnimationEffect", () => {
         request.effectIndex = <number>TestInitializer.invalidizeValue(request.effectIndex, field, "number", "deleteSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationEffect", field, request.effectIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.effectIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.effectIndex);
             });
         });
     });
@@ -3222,9 +2980,7 @@ describe("Tests for deleteSlideAnimationEffect", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationEffect", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.password);
             });
         });
     });
@@ -3235,9 +2991,7 @@ describe("Tests for deleteSlideAnimationEffect", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationEffect", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.folder);
             });
         });
     });
@@ -3248,9 +3002,7 @@ describe("Tests for deleteSlideAnimationEffect", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationEffect", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationEffect(request), "deleteSlideAnimationEffect", field, request.storage);
             });
         });
     });
@@ -3259,11 +3011,9 @@ describe("Tests for deleteSlideAnimationEffect", () => {
 describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideAnimationInteractiveSequenceRequest();
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequence", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideAnimationInteractiveSequenceRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideAnimationInteractiveSequence(request), false, "deleteSlideAnimationInteractiveSequence");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequence(request), false, "deleteSlideAnimationInteractiveSequence");
             });
         });
     });
@@ -3274,9 +3024,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequence", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.name);
             });
         });
     });
@@ -3287,9 +3035,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequence", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.slideIndex);
             });
         });
     });
@@ -3300,9 +3046,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
         request.sequenceIndex = <number>TestInitializer.invalidizeValue(request.sequenceIndex, field, "number", "deleteSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequence", field, request.sequenceIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.sequenceIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.sequenceIndex);
             });
         });
     });
@@ -3313,9 +3057,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequence", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.password);
             });
         });
     });
@@ -3326,9 +3068,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequence", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.folder);
             });
         });
     });
@@ -3339,9 +3079,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequence", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequence(request), "deleteSlideAnimationInteractiveSequence", field, request.storage);
             });
         });
     });
@@ -3350,11 +3088,9 @@ describe("Tests for deleteSlideAnimationInteractiveSequence", () => {
 describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideAnimationInteractiveSequenceEffectRequest();
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideAnimationInteractiveSequenceEffectRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), false, "deleteSlideAnimationInteractiveSequenceEffect");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), false, "deleteSlideAnimationInteractiveSequenceEffect");
             });
         });
     });
@@ -3365,9 +3101,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.name);
             });
         });
     });
@@ -3378,9 +3112,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.slideIndex);
             });
         });
     });
@@ -3391,9 +3123,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
         request.sequenceIndex = <number>TestInitializer.invalidizeValue(request.sequenceIndex, field, "number", "deleteSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex);
             });
         });
     });
@@ -3404,9 +3134,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
         request.effectIndex = <number>TestInitializer.invalidizeValue(request.effectIndex, field, "number", "deleteSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", field, request.effectIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.effectIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.effectIndex);
             });
         });
     });
@@ -3417,9 +3145,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.password);
             });
         });
     });
@@ -3430,9 +3156,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.folder);
             });
         });
     });
@@ -3443,9 +3167,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequenceEffect", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequenceEffect(request), "deleteSlideAnimationInteractiveSequenceEffect", field, request.storage);
             });
         });
     });
@@ -3454,11 +3176,9 @@ describe("Tests for deleteSlideAnimationInteractiveSequenceEffect", () => {
 describe("Tests for deleteSlideAnimationInteractiveSequences", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideAnimationInteractiveSequencesRequest();
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequences", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideAnimationInteractiveSequencesRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideAnimationInteractiveSequences(request), false, "deleteSlideAnimationInteractiveSequences");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequences(request), false, "deleteSlideAnimationInteractiveSequences");
             });
         });
     });
@@ -3469,9 +3189,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequences", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideAnimationInteractiveSequences");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequences", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.name);
             });
         });
     });
@@ -3482,9 +3200,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequences", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideAnimationInteractiveSequences");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequences", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.slideIndex);
             });
         });
     });
@@ -3495,9 +3211,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequences", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideAnimationInteractiveSequences");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequences", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.password);
             });
         });
     });
@@ -3508,9 +3222,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequences", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideAnimationInteractiveSequences");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequences", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.folder);
             });
         });
     });
@@ -3521,9 +3233,7 @@ describe("Tests for deleteSlideAnimationInteractiveSequences", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideAnimationInteractiveSequences");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationInteractiveSequences", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationInteractiveSequences(request), "deleteSlideAnimationInteractiveSequences", field, request.storage);
             });
         });
     });
@@ -3532,11 +3242,9 @@ describe("Tests for deleteSlideAnimationInteractiveSequences", () => {
 describe("Tests for deleteSlideAnimationMainSequence", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideAnimationMainSequenceRequest();
             return TestInitializer.initialize("deleteSlideAnimationMainSequence", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideAnimationMainSequenceRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideAnimationMainSequence(request), false, "deleteSlideAnimationMainSequence");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideAnimationMainSequence(request), false, "deleteSlideAnimationMainSequence");
             });
         });
     });
@@ -3547,9 +3255,7 @@ describe("Tests for deleteSlideAnimationMainSequence", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideAnimationMainSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationMainSequence", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.name);
             });
         });
     });
@@ -3560,9 +3266,7 @@ describe("Tests for deleteSlideAnimationMainSequence", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideAnimationMainSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationMainSequence", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.slideIndex);
             });
         });
     });
@@ -3573,9 +3277,7 @@ describe("Tests for deleteSlideAnimationMainSequence", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideAnimationMainSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationMainSequence", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.password);
             });
         });
     });
@@ -3586,9 +3288,7 @@ describe("Tests for deleteSlideAnimationMainSequence", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideAnimationMainSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationMainSequence", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.folder);
             });
         });
     });
@@ -3599,9 +3299,7 @@ describe("Tests for deleteSlideAnimationMainSequence", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideAnimationMainSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideAnimationMainSequence", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideAnimationMainSequence(request), "deleteSlideAnimationMainSequence", field, request.storage);
             });
         });
     });
@@ -3610,11 +3308,9 @@ describe("Tests for deleteSlideAnimationMainSequence", () => {
 describe("Tests for deleteSlideByIndex", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideByIndexRequest();
             return TestInitializer.initialize("deleteSlideByIndex", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideByIndexRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideByIndex(request), false, "deleteSlideByIndex");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideByIndex(request), false, "deleteSlideByIndex");
             });
         });
     });
@@ -3625,9 +3321,7 @@ describe("Tests for deleteSlideByIndex", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideByIndex");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideByIndex", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideByIndex(request), "deleteSlideByIndex", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideByIndex(request), "deleteSlideByIndex", field, request.name);
             });
         });
     });
@@ -3638,9 +3332,7 @@ describe("Tests for deleteSlideByIndex", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideByIndex");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideByIndex", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideByIndex(request), "deleteSlideByIndex", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideByIndex(request), "deleteSlideByIndex", field, request.slideIndex);
             });
         });
     });
@@ -3651,9 +3343,7 @@ describe("Tests for deleteSlideByIndex", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideByIndex");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideByIndex", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideByIndex(request), "deleteSlideByIndex", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideByIndex(request), "deleteSlideByIndex", field, request.password);
             });
         });
     });
@@ -3664,9 +3354,7 @@ describe("Tests for deleteSlideByIndex", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideByIndex");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideByIndex", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideByIndex(request), "deleteSlideByIndex", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideByIndex(request), "deleteSlideByIndex", field, request.folder);
             });
         });
     });
@@ -3677,9 +3365,7 @@ describe("Tests for deleteSlideByIndex", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideByIndex");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideByIndex", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideByIndex(request), "deleteSlideByIndex", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideByIndex(request), "deleteSlideByIndex", field, request.storage);
             });
         });
     });
@@ -3688,11 +3374,9 @@ describe("Tests for deleteSlideByIndex", () => {
 describe("Tests for deleteSlideShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideShapeRequest();
             return TestInitializer.initialize("deleteSlideShape", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideShapeRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideShape(request), false, "deleteSlideShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideShape(request), false, "deleteSlideShape");
             });
         });
     });
@@ -3703,9 +3387,7 @@ describe("Tests for deleteSlideShape", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShape", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShape(request), "deleteSlideShape", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.name);
             });
         });
     });
@@ -3716,9 +3398,7 @@ describe("Tests for deleteSlideShape", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShape", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShape(request), "deleteSlideShape", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.slideIndex);
             });
         });
     });
@@ -3729,9 +3409,7 @@ describe("Tests for deleteSlideShape", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShape", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShape(request), "deleteSlideShape", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.path);
             });
         });
     });
@@ -3742,9 +3420,7 @@ describe("Tests for deleteSlideShape", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShape", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShape(request), "deleteSlideShape", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.shapeIndex);
             });
         });
     });
@@ -3755,9 +3431,7 @@ describe("Tests for deleteSlideShape", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShape", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShape(request), "deleteSlideShape", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.password);
             });
         });
     });
@@ -3768,9 +3442,7 @@ describe("Tests for deleteSlideShape", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShape", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShape(request), "deleteSlideShape", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.folder);
             });
         });
     });
@@ -3781,9 +3453,7 @@ describe("Tests for deleteSlideShape", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShape", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShape(request), "deleteSlideShape", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.storage);
             });
         });
     });
@@ -3792,11 +3462,9 @@ describe("Tests for deleteSlideShape", () => {
 describe("Tests for deleteSlideShapes", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideShapesRequest();
             return TestInitializer.initialize("deleteSlideShapes", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlideShapesRequest();
-                return TestInitializer.assertValidCall(api.deleteSlideShapes(request), false, "deleteSlideShapes");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideShapes(request), false, "deleteSlideShapes");
             });
         });
     });
@@ -3807,9 +3475,7 @@ describe("Tests for deleteSlideShapes", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShapes(request), "deleteSlideShapes", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.name);
             });
         });
     });
@@ -3820,9 +3486,7 @@ describe("Tests for deleteSlideShapes", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShapes(request), "deleteSlideShapes", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.slideIndex);
             });
         });
     });
@@ -3833,9 +3497,7 @@ describe("Tests for deleteSlideShapes", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShapes(request), "deleteSlideShapes", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.path);
             });
         });
     });
@@ -3846,9 +3508,7 @@ describe("Tests for deleteSlideShapes", () => {
         request.shapes = <Array<number>>TestInitializer.invalidizeValue(request.shapes, field, "Array&lt;number&gt;", "deleteSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.shapes).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShapes(request), "deleteSlideShapes", field, request.shapes);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.shapes);
             });
         });
     });
@@ -3859,9 +3519,7 @@ describe("Tests for deleteSlideShapes", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShapes(request), "deleteSlideShapes", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.password);
             });
         });
     });
@@ -3872,9 +3530,7 @@ describe("Tests for deleteSlideShapes", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShapes(request), "deleteSlideShapes", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.folder);
             });
         });
     });
@@ -3885,9 +3541,7 @@ describe("Tests for deleteSlideShapes", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlideShapes(request), "deleteSlideShapes", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.storage);
             });
         });
     });
@@ -3896,11 +3550,9 @@ describe("Tests for deleteSlideShapes", () => {
 describe("Tests for deleteSlidesCleanSlidesList", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlidesCleanSlidesListRequest();
             return TestInitializer.initialize("deleteSlidesCleanSlidesList", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlidesCleanSlidesListRequest();
-                return TestInitializer.assertValidCall(api.deleteSlidesCleanSlidesList(request), false, "deleteSlidesCleanSlidesList");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlidesCleanSlidesList(request), false, "deleteSlidesCleanSlidesList");
             });
         });
     });
@@ -3911,9 +3563,7 @@ describe("Tests for deleteSlidesCleanSlidesList", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlidesCleanSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesCleanSlidesList", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.name);
             });
         });
     });
@@ -3924,9 +3574,7 @@ describe("Tests for deleteSlidesCleanSlidesList", () => {
         request.slides = <Array<number>>TestInitializer.invalidizeValue(request.slides, field, "Array&lt;number&gt;", "deleteSlidesCleanSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesCleanSlidesList", field, request.slides).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.slides);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.slides);
             });
         });
     });
@@ -3937,9 +3585,7 @@ describe("Tests for deleteSlidesCleanSlidesList", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlidesCleanSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesCleanSlidesList", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.password);
             });
         });
     });
@@ -3950,9 +3596,7 @@ describe("Tests for deleteSlidesCleanSlidesList", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlidesCleanSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesCleanSlidesList", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.folder);
             });
         });
     });
@@ -3963,9 +3607,7 @@ describe("Tests for deleteSlidesCleanSlidesList", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlidesCleanSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesCleanSlidesList", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesCleanSlidesList(request), "deleteSlidesCleanSlidesList", field, request.storage);
             });
         });
     });
@@ -3974,11 +3616,9 @@ describe("Tests for deleteSlidesCleanSlidesList", () => {
 describe("Tests for deleteSlidesDocumentProperties", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlidesDocumentPropertiesRequest();
             return TestInitializer.initialize("deleteSlidesDocumentProperties", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlidesDocumentPropertiesRequest();
-                return TestInitializer.assertValidCall(api.deleteSlidesDocumentProperties(request), false, "deleteSlidesDocumentProperties");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlidesDocumentProperties(request), false, "deleteSlidesDocumentProperties");
             });
         });
     });
@@ -3989,9 +3629,7 @@ describe("Tests for deleteSlidesDocumentProperties", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperties", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.name);
             });
         });
     });
@@ -4002,9 +3640,7 @@ describe("Tests for deleteSlidesDocumentProperties", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperties", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.password);
             });
         });
     });
@@ -4015,9 +3651,7 @@ describe("Tests for deleteSlidesDocumentProperties", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperties", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.folder);
             });
         });
     });
@@ -4028,9 +3662,7 @@ describe("Tests for deleteSlidesDocumentProperties", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperties", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperties(request), "deleteSlidesDocumentProperties", field, request.storage);
             });
         });
     });
@@ -4039,11 +3671,9 @@ describe("Tests for deleteSlidesDocumentProperties", () => {
 describe("Tests for deleteSlidesDocumentProperty", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlidesDocumentPropertyRequest();
             return TestInitializer.initialize("deleteSlidesDocumentProperty", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlidesDocumentPropertyRequest();
-                return TestInitializer.assertValidCall(api.deleteSlidesDocumentProperty(request), false, "deleteSlidesDocumentProperty");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlidesDocumentProperty(request), false, "deleteSlidesDocumentProperty");
             });
         });
     });
@@ -4054,9 +3684,7 @@ describe("Tests for deleteSlidesDocumentProperty", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperty", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.name);
             });
         });
     });
@@ -4067,9 +3695,7 @@ describe("Tests for deleteSlidesDocumentProperty", () => {
         request.propertyName = <string>TestInitializer.invalidizeValue(request.propertyName, field, "string", "deleteSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperty", field, request.propertyName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.propertyName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.propertyName);
             });
         });
     });
@@ -4080,9 +3706,7 @@ describe("Tests for deleteSlidesDocumentProperty", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperty", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.password);
             });
         });
     });
@@ -4093,9 +3717,7 @@ describe("Tests for deleteSlidesDocumentProperty", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperty", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.folder);
             });
         });
     });
@@ -4106,9 +3728,7 @@ describe("Tests for deleteSlidesDocumentProperty", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesDocumentProperty", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesDocumentProperty(request), "deleteSlidesDocumentProperty", field, request.storage);
             });
         });
     });
@@ -4117,11 +3737,9 @@ describe("Tests for deleteSlidesDocumentProperty", () => {
 describe("Tests for deleteSlidesSlideBackground", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlidesSlideBackgroundRequest();
             return TestInitializer.initialize("deleteSlidesSlideBackground", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDeleteSlidesSlideBackgroundRequest();
-                return TestInitializer.assertValidCall(api.deleteSlidesSlideBackground(request), false, "deleteSlidesSlideBackground");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlidesSlideBackground(request), false, "deleteSlidesSlideBackground");
             });
         });
     });
@@ -4132,9 +3750,7 @@ describe("Tests for deleteSlidesSlideBackground", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesSlideBackground", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.name);
             });
         });
     });
@@ -4145,9 +3761,7 @@ describe("Tests for deleteSlidesSlideBackground", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesSlideBackground", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.slideIndex);
             });
         });
     });
@@ -4158,9 +3772,7 @@ describe("Tests for deleteSlidesSlideBackground", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesSlideBackground", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.password);
             });
         });
     });
@@ -4171,9 +3783,7 @@ describe("Tests for deleteSlidesSlideBackground", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesSlideBackground", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.folder);
             });
         });
     });
@@ -4184,9 +3794,7 @@ describe("Tests for deleteSlidesSlideBackground", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesSlideBackground", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.storage);
             });
         });
     });
@@ -4195,11 +3803,9 @@ describe("Tests for deleteSlidesSlideBackground", () => {
 describe("Tests for downloadFile", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getDownloadFileRequest();
             return TestInitializer.initialize("downloadFile", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getDownloadFileRequest();
-                return TestInitializer.assertValidCall(api.downloadFile(request), true, "downloadFile");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().downloadFile(request), true, "downloadFile");
             });
         });
     });
@@ -4210,9 +3816,7 @@ describe("Tests for downloadFile", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "downloadFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadFile", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.downloadFile(request), "downloadFile", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadFile(request), "downloadFile", field, request.path);
             });
         });
     });
@@ -4223,9 +3827,7 @@ describe("Tests for downloadFile", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "downloadFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadFile", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.downloadFile(request), "downloadFile", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadFile(request), "downloadFile", field, request.storageName);
             });
         });
     });
@@ -4236,9 +3838,7 @@ describe("Tests for downloadFile", () => {
         request.versionId = <string>TestInitializer.invalidizeValue(request.versionId, field, "string", "downloadFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadFile", field, request.versionId).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.downloadFile(request), "downloadFile", field, request.versionId);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadFile(request), "downloadFile", field, request.versionId);
             });
         });
     });
@@ -4247,11 +3847,9 @@ describe("Tests for downloadFile", () => {
 describe("Tests for getDiscUsage", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetDiscUsageRequest();
             return TestInitializer.initialize("getDiscUsage", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetDiscUsageRequest();
-                return TestInitializer.assertValidCall(api.getDiscUsage(request), false, "getDiscUsage");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getDiscUsage(request), false, "getDiscUsage");
             });
         });
     });
@@ -4262,9 +3860,7 @@ describe("Tests for getDiscUsage", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "getDiscUsage");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getDiscUsage", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getDiscUsage(request), "getDiscUsage", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getDiscUsage(request), "getDiscUsage", field, request.storageName);
             });
         });
     });
@@ -4273,11 +3869,9 @@ describe("Tests for getDiscUsage", () => {
 describe("Tests for getFileVersions", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetFileVersionsRequest();
             return TestInitializer.initialize("getFileVersions", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetFileVersionsRequest();
-                return TestInitializer.assertValidCall(api.getFileVersions(request), false, "getFileVersions");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getFileVersions(request), false, "getFileVersions");
             });
         });
     });
@@ -4288,9 +3882,7 @@ describe("Tests for getFileVersions", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getFileVersions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getFileVersions", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getFileVersions(request), "getFileVersions", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getFileVersions(request), "getFileVersions", field, request.path);
             });
         });
     });
@@ -4301,9 +3893,7 @@ describe("Tests for getFileVersions", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "getFileVersions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getFileVersions", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getFileVersions(request), "getFileVersions", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getFileVersions(request), "getFileVersions", field, request.storageName);
             });
         });
     });
@@ -4312,11 +3902,9 @@ describe("Tests for getFileVersions", () => {
 describe("Tests for getFilesList", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetFilesListRequest();
             return TestInitializer.initialize("getFilesList", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetFilesListRequest();
-                return TestInitializer.assertValidCall(api.getFilesList(request), false, "getFilesList");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getFilesList(request), false, "getFilesList");
             });
         });
     });
@@ -4327,9 +3915,7 @@ describe("Tests for getFilesList", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getFilesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getFilesList", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getFilesList(request), "getFilesList", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getFilesList(request), "getFilesList", field, request.path);
             });
         });
     });
@@ -4340,9 +3926,7 @@ describe("Tests for getFilesList", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "getFilesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getFilesList", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getFilesList(request), "getFilesList", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getFilesList(request), "getFilesList", field, request.storageName);
             });
         });
     });
@@ -4351,11 +3935,9 @@ describe("Tests for getFilesList", () => {
 describe("Tests for getLayoutSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetLayoutSlideRequest();
             return TestInitializer.initialize("getLayoutSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetLayoutSlideRequest();
-                return TestInitializer.assertValidCall(api.getLayoutSlide(request), false, "getLayoutSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getLayoutSlide(request), false, "getLayoutSlide");
             });
         });
     });
@@ -4366,9 +3948,7 @@ describe("Tests for getLayoutSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlide(request), "getLayoutSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlide(request), "getLayoutSlide", field, request.name);
             });
         });
     });
@@ -4379,9 +3959,7 @@ describe("Tests for getLayoutSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlide(request), "getLayoutSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlide(request), "getLayoutSlide", field, request.slideIndex);
             });
         });
     });
@@ -4392,9 +3970,7 @@ describe("Tests for getLayoutSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlide(request), "getLayoutSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlide(request), "getLayoutSlide", field, request.password);
             });
         });
     });
@@ -4405,9 +3981,7 @@ describe("Tests for getLayoutSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlide(request), "getLayoutSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlide(request), "getLayoutSlide", field, request.folder);
             });
         });
     });
@@ -4418,9 +3992,7 @@ describe("Tests for getLayoutSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlide(request), "getLayoutSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlide(request), "getLayoutSlide", field, request.storage);
             });
         });
     });
@@ -4429,11 +4001,9 @@ describe("Tests for getLayoutSlide", () => {
 describe("Tests for getLayoutSlidesList", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetLayoutSlidesListRequest();
             return TestInitializer.initialize("getLayoutSlidesList", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetLayoutSlidesListRequest();
-                return TestInitializer.assertValidCall(api.getLayoutSlidesList(request), false, "getLayoutSlidesList");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getLayoutSlidesList(request), false, "getLayoutSlidesList");
             });
         });
     });
@@ -4444,9 +4014,7 @@ describe("Tests for getLayoutSlidesList", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getLayoutSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlidesList", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlidesList(request), "getLayoutSlidesList", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlidesList(request), "getLayoutSlidesList", field, request.name);
             });
         });
     });
@@ -4457,9 +4025,7 @@ describe("Tests for getLayoutSlidesList", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getLayoutSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlidesList", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlidesList(request), "getLayoutSlidesList", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlidesList(request), "getLayoutSlidesList", field, request.password);
             });
         });
     });
@@ -4470,9 +4036,7 @@ describe("Tests for getLayoutSlidesList", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getLayoutSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlidesList", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlidesList(request), "getLayoutSlidesList", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlidesList(request), "getLayoutSlidesList", field, request.folder);
             });
         });
     });
@@ -4483,9 +4047,7 @@ describe("Tests for getLayoutSlidesList", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getLayoutSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getLayoutSlidesList", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getLayoutSlidesList(request), "getLayoutSlidesList", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getLayoutSlidesList(request), "getLayoutSlidesList", field, request.storage);
             });
         });
     });
@@ -4494,11 +4056,9 @@ describe("Tests for getLayoutSlidesList", () => {
 describe("Tests for getMasterSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetMasterSlideRequest();
             return TestInitializer.initialize("getMasterSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetMasterSlideRequest();
-                return TestInitializer.assertValidCall(api.getMasterSlide(request), false, "getMasterSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getMasterSlide(request), false, "getMasterSlide");
             });
         });
     });
@@ -4509,9 +4069,7 @@ describe("Tests for getMasterSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getMasterSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlide(request), "getMasterSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlide(request), "getMasterSlide", field, request.name);
             });
         });
     });
@@ -4522,9 +4080,7 @@ describe("Tests for getMasterSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getMasterSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlide(request), "getMasterSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlide(request), "getMasterSlide", field, request.slideIndex);
             });
         });
     });
@@ -4535,9 +4091,7 @@ describe("Tests for getMasterSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getMasterSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlide(request), "getMasterSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlide(request), "getMasterSlide", field, request.password);
             });
         });
     });
@@ -4548,9 +4102,7 @@ describe("Tests for getMasterSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getMasterSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlide(request), "getMasterSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlide(request), "getMasterSlide", field, request.folder);
             });
         });
     });
@@ -4561,9 +4113,7 @@ describe("Tests for getMasterSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getMasterSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlide(request), "getMasterSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlide(request), "getMasterSlide", field, request.storage);
             });
         });
     });
@@ -4572,11 +4122,9 @@ describe("Tests for getMasterSlide", () => {
 describe("Tests for getMasterSlidesList", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetMasterSlidesListRequest();
             return TestInitializer.initialize("getMasterSlidesList", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetMasterSlidesListRequest();
-                return TestInitializer.assertValidCall(api.getMasterSlidesList(request), false, "getMasterSlidesList");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getMasterSlidesList(request), false, "getMasterSlidesList");
             });
         });
     });
@@ -4587,9 +4135,7 @@ describe("Tests for getMasterSlidesList", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getMasterSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlidesList", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlidesList(request), "getMasterSlidesList", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlidesList(request), "getMasterSlidesList", field, request.name);
             });
         });
     });
@@ -4600,9 +4146,7 @@ describe("Tests for getMasterSlidesList", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getMasterSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlidesList", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlidesList(request), "getMasterSlidesList", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlidesList(request), "getMasterSlidesList", field, request.password);
             });
         });
     });
@@ -4613,9 +4157,7 @@ describe("Tests for getMasterSlidesList", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getMasterSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlidesList", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlidesList(request), "getMasterSlidesList", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlidesList(request), "getMasterSlidesList", field, request.folder);
             });
         });
     });
@@ -4626,9 +4168,7 @@ describe("Tests for getMasterSlidesList", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getMasterSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getMasterSlidesList", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getMasterSlidesList(request), "getMasterSlidesList", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getMasterSlidesList(request), "getMasterSlidesList", field, request.storage);
             });
         });
     });
@@ -4637,11 +4177,9 @@ describe("Tests for getMasterSlidesList", () => {
 describe("Tests for getNotesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideRequest();
             return TestInitializer.initialize("getNotesSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlide(request), false, "getNotesSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlide(request), false, "getNotesSlide");
             });
         });
     });
@@ -4652,9 +4190,7 @@ describe("Tests for getNotesSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlide(request), "getNotesSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlide(request), "getNotesSlide", field, request.name);
             });
         });
     });
@@ -4665,9 +4201,7 @@ describe("Tests for getNotesSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlide(request), "getNotesSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlide(request), "getNotesSlide", field, request.slideIndex);
             });
         });
     });
@@ -4678,9 +4212,7 @@ describe("Tests for getNotesSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlide(request), "getNotesSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlide(request), "getNotesSlide", field, request.password);
             });
         });
     });
@@ -4691,9 +4223,7 @@ describe("Tests for getNotesSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlide(request), "getNotesSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlide(request), "getNotesSlide", field, request.folder);
             });
         });
     });
@@ -4704,9 +4234,7 @@ describe("Tests for getNotesSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlide(request), "getNotesSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlide(request), "getNotesSlide", field, request.storage);
             });
         });
     });
@@ -4715,11 +4243,9 @@ describe("Tests for getNotesSlide", () => {
 describe("Tests for getNotesSlideShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideShapeRequest();
             return TestInitializer.initialize("getNotesSlideShape", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideShapeRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlideShape(request), false, "getNotesSlideShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideShape(request), false, "getNotesSlideShape");
             });
         });
     });
@@ -4730,9 +4256,7 @@ describe("Tests for getNotesSlideShape", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShape(request), "getNotesSlideShape", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.name);
             });
         });
     });
@@ -4743,9 +4267,7 @@ describe("Tests for getNotesSlideShape", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShape(request), "getNotesSlideShape", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.slideIndex);
             });
         });
     });
@@ -4756,9 +4278,7 @@ describe("Tests for getNotesSlideShape", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShape(request), "getNotesSlideShape", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.path);
             });
         });
     });
@@ -4769,9 +4289,7 @@ describe("Tests for getNotesSlideShape", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShape(request), "getNotesSlideShape", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.shapeIndex);
             });
         });
     });
@@ -4782,9 +4300,7 @@ describe("Tests for getNotesSlideShape", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShape(request), "getNotesSlideShape", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.password);
             });
         });
     });
@@ -4795,9 +4311,7 @@ describe("Tests for getNotesSlideShape", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShape(request), "getNotesSlideShape", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.folder);
             });
         });
     });
@@ -4808,9 +4322,7 @@ describe("Tests for getNotesSlideShape", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShape(request), "getNotesSlideShape", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.storage);
             });
         });
     });
@@ -4819,11 +4331,9 @@ describe("Tests for getNotesSlideShape", () => {
 describe("Tests for getNotesSlideShapeParagraph", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideShapeParagraphRequest();
             return TestInitializer.initialize("getNotesSlideShapeParagraph", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideShapeParagraphRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlideShapeParagraph(request), false, "getNotesSlideShapeParagraph");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), false, "getNotesSlideShapeParagraph");
             });
         });
     });
@@ -4834,9 +4344,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.name);
             });
         });
     });
@@ -4847,9 +4355,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.slideIndex);
             });
         });
     });
@@ -4860,9 +4366,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.path);
             });
         });
     });
@@ -4873,9 +4377,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.shapeIndex);
             });
         });
     });
@@ -4886,9 +4388,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.paragraphIndex);
             });
         });
     });
@@ -4899,9 +4399,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.password);
             });
         });
     });
@@ -4912,9 +4410,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.folder);
             });
         });
     });
@@ -4925,9 +4421,7 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.storage);
             });
         });
     });
@@ -4936,11 +4430,9 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
 describe("Tests for getNotesSlideShapeParagraphs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideShapeParagraphsRequest();
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideShapeParagraphsRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlideShapeParagraphs(request), false, "getNotesSlideShapeParagraphs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), false, "getNotesSlideShapeParagraphs");
             });
         });
     });
@@ -4951,9 +4443,7 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.name);
             });
         });
     });
@@ -4964,9 +4454,7 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.slideIndex);
             });
         });
     });
@@ -4977,9 +4465,7 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.path);
             });
         });
     });
@@ -4990,9 +4476,7 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getNotesSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.shapeIndex);
             });
         });
     });
@@ -5003,9 +4487,7 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.password);
             });
         });
     });
@@ -5016,9 +4498,7 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.folder);
             });
         });
     });
@@ -5029,9 +4509,7 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.storage);
             });
         });
     });
@@ -5040,11 +4518,9 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
 describe("Tests for getNotesSlideShapePortion", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideShapePortionRequest();
             return TestInitializer.initialize("getNotesSlideShapePortion", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideShapePortionRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlideShapePortion(request), false, "getNotesSlideShapePortion");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), false, "getNotesSlideShapePortion");
             });
         });
     });
@@ -5055,9 +4531,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.name);
             });
         });
     });
@@ -5068,9 +4542,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.slideIndex);
             });
         });
     });
@@ -5081,9 +4553,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.path);
             });
         });
     });
@@ -5094,9 +4564,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.shapeIndex);
             });
         });
     });
@@ -5107,9 +4575,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.paragraphIndex);
             });
         });
     });
@@ -5120,9 +4586,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.portionIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.portionIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.portionIndex);
             });
         });
     });
@@ -5133,9 +4597,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.password);
             });
         });
     });
@@ -5146,9 +4608,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.folder);
             });
         });
     });
@@ -5159,9 +4619,7 @@ describe("Tests for getNotesSlideShapePortion", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.storage);
             });
         });
     });
@@ -5170,11 +4628,9 @@ describe("Tests for getNotesSlideShapePortion", () => {
 describe("Tests for getNotesSlideShapePortions", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideShapePortionsRequest();
             return TestInitializer.initialize("getNotesSlideShapePortions", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideShapePortionsRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlideShapePortions(request), false, "getNotesSlideShapePortions");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), false, "getNotesSlideShapePortions");
             });
         });
     });
@@ -5185,9 +4641,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.name);
             });
         });
     });
@@ -5198,9 +4652,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.slideIndex);
             });
         });
     });
@@ -5211,9 +4663,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.path);
             });
         });
     });
@@ -5224,9 +4674,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.shapeIndex);
             });
         });
     });
@@ -5237,9 +4685,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.paragraphIndex);
             });
         });
     });
@@ -5250,9 +4696,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.password);
             });
         });
     });
@@ -5263,9 +4707,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.folder);
             });
         });
     });
@@ -5276,9 +4718,7 @@ describe("Tests for getNotesSlideShapePortions", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideShapePortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortions", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.storage);
             });
         });
     });
@@ -5287,11 +4727,9 @@ describe("Tests for getNotesSlideShapePortions", () => {
 describe("Tests for getNotesSlideShapes", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideShapesRequest();
             return TestInitializer.initialize("getNotesSlideShapes", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideShapesRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlideShapes(request), false, "getNotesSlideShapes");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideShapes(request), false, "getNotesSlideShapes");
             });
         });
     });
@@ -5302,9 +4740,7 @@ describe("Tests for getNotesSlideShapes", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapes", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapes(request), "getNotesSlideShapes", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.name);
             });
         });
     });
@@ -5315,9 +4751,7 @@ describe("Tests for getNotesSlideShapes", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapes", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapes(request), "getNotesSlideShapes", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.slideIndex);
             });
         });
     });
@@ -5328,9 +4762,7 @@ describe("Tests for getNotesSlideShapes", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapes", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapes(request), "getNotesSlideShapes", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.path);
             });
         });
     });
@@ -5341,9 +4773,7 @@ describe("Tests for getNotesSlideShapes", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapes", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapes(request), "getNotesSlideShapes", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.password);
             });
         });
     });
@@ -5354,9 +4784,7 @@ describe("Tests for getNotesSlideShapes", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapes", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapes(request), "getNotesSlideShapes", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.folder);
             });
         });
     });
@@ -5367,9 +4795,7 @@ describe("Tests for getNotesSlideShapes", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapes", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideShapes(request), "getNotesSlideShapes", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.storage);
             });
         });
     });
@@ -5378,11 +4804,9 @@ describe("Tests for getNotesSlideShapes", () => {
 describe("Tests for getNotesSlideWithFormat", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideWithFormatRequest();
             return TestInitializer.initialize("getNotesSlideWithFormat", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetNotesSlideWithFormatRequest();
-                return TestInitializer.assertValidCall(api.getNotesSlideWithFormat(request), true, "getNotesSlideWithFormat");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), true, "getNotesSlideWithFormat");
             });
         });
     });
@@ -5393,9 +4817,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.name);
             });
         });
     });
@@ -5406,9 +4828,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.slideIndex);
             });
         });
     });
@@ -5419,9 +4839,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.format);
             });
         });
     });
@@ -5432,9 +4850,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.width = <number>TestInitializer.invalidizeValue(request.width, field, "number", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.width).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.width);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.width);
             });
         });
     });
@@ -5445,9 +4861,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.height = <number>TestInitializer.invalidizeValue(request.height, field, "number", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.height).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.height);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.height);
             });
         });
     });
@@ -5458,9 +4872,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.password);
             });
         });
     });
@@ -5471,9 +4883,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.folder);
             });
         });
     });
@@ -5484,9 +4894,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.storage);
             });
         });
     });
@@ -5497,9 +4905,7 @@ describe("Tests for getNotesSlideWithFormat", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "getNotesSlideWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideWithFormat", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideWithFormat(request), "getNotesSlideWithFormat", field, request.fontsFolder);
             });
         });
     });
@@ -5508,11 +4914,9 @@ describe("Tests for getNotesSlideWithFormat", () => {
 describe("Tests for getParagraphPortion", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetParagraphPortionRequest();
             return TestInitializer.initialize("getParagraphPortion", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetParagraphPortionRequest();
-                return TestInitializer.assertValidCall(api.getParagraphPortion(request), false, "getParagraphPortion");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getParagraphPortion(request), false, "getParagraphPortion");
             });
         });
     });
@@ -5523,9 +4927,7 @@ describe("Tests for getParagraphPortion", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.name);
             });
         });
     });
@@ -5536,9 +4938,7 @@ describe("Tests for getParagraphPortion", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.slideIndex);
             });
         });
     });
@@ -5549,9 +4949,7 @@ describe("Tests for getParagraphPortion", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.path);
             });
         });
     });
@@ -5562,9 +4960,7 @@ describe("Tests for getParagraphPortion", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.shapeIndex);
             });
         });
     });
@@ -5575,9 +4971,7 @@ describe("Tests for getParagraphPortion", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.paragraphIndex);
             });
         });
     });
@@ -5588,9 +4982,7 @@ describe("Tests for getParagraphPortion", () => {
         request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.portionIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.portionIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.portionIndex);
             });
         });
     });
@@ -5601,9 +4993,7 @@ describe("Tests for getParagraphPortion", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.password);
             });
         });
     });
@@ -5614,9 +5004,7 @@ describe("Tests for getParagraphPortion", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.folder);
             });
         });
     });
@@ -5627,9 +5015,7 @@ describe("Tests for getParagraphPortion", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getParagraphPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortion", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortion(request), "getParagraphPortion", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.storage);
             });
         });
     });
@@ -5638,11 +5024,9 @@ describe("Tests for getParagraphPortion", () => {
 describe("Tests for getParagraphPortions", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetParagraphPortionsRequest();
             return TestInitializer.initialize("getParagraphPortions", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetParagraphPortionsRequest();
-                return TestInitializer.assertValidCall(api.getParagraphPortions(request), false, "getParagraphPortions");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getParagraphPortions(request), false, "getParagraphPortions");
             });
         });
     });
@@ -5653,9 +5037,7 @@ describe("Tests for getParagraphPortions", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.name);
             });
         });
     });
@@ -5666,9 +5048,7 @@ describe("Tests for getParagraphPortions", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.slideIndex);
             });
         });
     });
@@ -5679,9 +5059,7 @@ describe("Tests for getParagraphPortions", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.path);
             });
         });
     });
@@ -5692,9 +5070,7 @@ describe("Tests for getParagraphPortions", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.shapeIndex);
             });
         });
     });
@@ -5705,9 +5081,7 @@ describe("Tests for getParagraphPortions", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.paragraphIndex);
             });
         });
     });
@@ -5718,9 +5092,7 @@ describe("Tests for getParagraphPortions", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.password);
             });
         });
     });
@@ -5731,9 +5103,7 @@ describe("Tests for getParagraphPortions", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.folder);
             });
         });
     });
@@ -5744,9 +5114,7 @@ describe("Tests for getParagraphPortions", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getParagraphPortions");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getParagraphPortions(request), "getParagraphPortions", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.storage);
             });
         });
     });
@@ -5755,11 +5123,9 @@ describe("Tests for getParagraphPortions", () => {
 describe("Tests for getSlideAnimation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideAnimationRequest();
             return TestInitializer.initialize("getSlideAnimation", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlideAnimationRequest();
-                return TestInitializer.assertValidCall(api.getSlideAnimation(request), false, "getSlideAnimation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideAnimation(request), false, "getSlideAnimation");
             });
         });
     });
@@ -5770,9 +5136,7 @@ describe("Tests for getSlideAnimation", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideAnimation", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideAnimation(request), "getSlideAnimation", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideAnimation(request), "getSlideAnimation", field, request.name);
             });
         });
     });
@@ -5783,9 +5147,7 @@ describe("Tests for getSlideAnimation", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideAnimation", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideAnimation(request), "getSlideAnimation", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideAnimation(request), "getSlideAnimation", field, request.slideIndex);
             });
         });
     });
@@ -5796,9 +5158,7 @@ describe("Tests for getSlideAnimation", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideAnimation", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideAnimation(request), "getSlideAnimation", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideAnimation(request), "getSlideAnimation", field, request.shapeIndex);
             });
         });
     });
@@ -5809,9 +5169,7 @@ describe("Tests for getSlideAnimation", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideAnimation", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideAnimation(request), "getSlideAnimation", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideAnimation(request), "getSlideAnimation", field, request.password);
             });
         });
     });
@@ -5822,9 +5180,7 @@ describe("Tests for getSlideAnimation", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideAnimation", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideAnimation(request), "getSlideAnimation", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideAnimation(request), "getSlideAnimation", field, request.folder);
             });
         });
     });
@@ -5835,9 +5191,7 @@ describe("Tests for getSlideAnimation", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideAnimation", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideAnimation(request), "getSlideAnimation", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideAnimation(request), "getSlideAnimation", field, request.storage);
             });
         });
     });
@@ -5846,11 +5200,9 @@ describe("Tests for getSlideAnimation", () => {
 describe("Tests for getSlideShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideShapeRequest();
             return TestInitializer.initialize("getSlideShape", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlideShapeRequest();
-                return TestInitializer.assertValidCall(api.getSlideShape(request), false, "getSlideShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideShape(request), false, "getSlideShape");
             });
         });
     });
@@ -5861,9 +5213,7 @@ describe("Tests for getSlideShape", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShape", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShape(request), "getSlideShape", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.name);
             });
         });
     });
@@ -5874,9 +5224,7 @@ describe("Tests for getSlideShape", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShape", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShape(request), "getSlideShape", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.slideIndex);
             });
         });
     });
@@ -5887,9 +5235,7 @@ describe("Tests for getSlideShape", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShape", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShape(request), "getSlideShape", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.path);
             });
         });
     });
@@ -5900,9 +5246,7 @@ describe("Tests for getSlideShape", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShape", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShape(request), "getSlideShape", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.shapeIndex);
             });
         });
     });
@@ -5913,9 +5257,7 @@ describe("Tests for getSlideShape", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShape", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShape(request), "getSlideShape", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.password);
             });
         });
     });
@@ -5926,9 +5268,7 @@ describe("Tests for getSlideShape", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShape", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShape(request), "getSlideShape", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.folder);
             });
         });
     });
@@ -5939,9 +5279,7 @@ describe("Tests for getSlideShape", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShape", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShape(request), "getSlideShape", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.storage);
             });
         });
     });
@@ -5950,11 +5288,9 @@ describe("Tests for getSlideShape", () => {
 describe("Tests for getSlideShapeParagraph", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideShapeParagraphRequest();
             return TestInitializer.initialize("getSlideShapeParagraph", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlideShapeParagraphRequest();
-                return TestInitializer.assertValidCall(api.getSlideShapeParagraph(request), false, "getSlideShapeParagraph");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideShapeParagraph(request), false, "getSlideShapeParagraph");
             });
         });
     });
@@ -5965,9 +5301,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.name);
             });
         });
     });
@@ -5978,9 +5312,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.slideIndex);
             });
         });
     });
@@ -5991,9 +5323,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.path);
             });
         });
     });
@@ -6004,9 +5334,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.shapeIndex);
             });
         });
     });
@@ -6017,9 +5345,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.paragraphIndex);
             });
         });
     });
@@ -6030,9 +5356,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.password);
             });
         });
     });
@@ -6043,9 +5367,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.folder);
             });
         });
     });
@@ -6056,9 +5378,7 @@ describe("Tests for getSlideShapeParagraph", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.storage);
             });
         });
     });
@@ -6067,11 +5387,9 @@ describe("Tests for getSlideShapeParagraph", () => {
 describe("Tests for getSlideShapeParagraphs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideShapeParagraphsRequest();
             return TestInitializer.initialize("getSlideShapeParagraphs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlideShapeParagraphsRequest();
-                return TestInitializer.assertValidCall(api.getSlideShapeParagraphs(request), false, "getSlideShapeParagraphs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), false, "getSlideShapeParagraphs");
             });
         });
     });
@@ -6082,9 +5400,7 @@ describe("Tests for getSlideShapeParagraphs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraphs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.name);
             });
         });
     });
@@ -6095,9 +5411,7 @@ describe("Tests for getSlideShapeParagraphs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraphs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.slideIndex);
             });
         });
     });
@@ -6108,9 +5422,7 @@ describe("Tests for getSlideShapeParagraphs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraphs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.path);
             });
         });
     });
@@ -6121,9 +5433,7 @@ describe("Tests for getSlideShapeParagraphs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraphs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.shapeIndex);
             });
         });
     });
@@ -6134,9 +5444,7 @@ describe("Tests for getSlideShapeParagraphs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraphs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.password);
             });
         });
     });
@@ -6147,9 +5455,7 @@ describe("Tests for getSlideShapeParagraphs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraphs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.folder);
             });
         });
     });
@@ -6160,9 +5466,7 @@ describe("Tests for getSlideShapeParagraphs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideShapeParagraphs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraphs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.storage);
             });
         });
     });
@@ -6171,11 +5475,9 @@ describe("Tests for getSlideShapeParagraphs", () => {
 describe("Tests for getSlideShapes", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideShapesRequest();
             return TestInitializer.initialize("getSlideShapes", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlideShapesRequest();
-                return TestInitializer.assertValidCall(api.getSlideShapes(request), false, "getSlideShapes");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideShapes(request), false, "getSlideShapes");
             });
         });
     });
@@ -6186,9 +5488,7 @@ describe("Tests for getSlideShapes", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapes", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapes(request), "getSlideShapes", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.name);
             });
         });
     });
@@ -6199,9 +5499,7 @@ describe("Tests for getSlideShapes", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapes", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapes(request), "getSlideShapes", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.slideIndex);
             });
         });
     });
@@ -6212,9 +5510,7 @@ describe("Tests for getSlideShapes", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapes", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapes(request), "getSlideShapes", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.path);
             });
         });
     });
@@ -6225,9 +5521,7 @@ describe("Tests for getSlideShapes", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapes", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapes(request), "getSlideShapes", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.password);
             });
         });
     });
@@ -6238,9 +5532,7 @@ describe("Tests for getSlideShapes", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapes", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapes(request), "getSlideShapes", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.folder);
             });
         });
     });
@@ -6251,9 +5543,7 @@ describe("Tests for getSlideShapes", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapes", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlideShapes(request), "getSlideShapes", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.storage);
             });
         });
     });
@@ -6262,11 +5552,9 @@ describe("Tests for getSlideShapes", () => {
 describe("Tests for getSlidesApiInfo", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesApiInfoRequest();
             return TestInitializer.initialize("getSlidesApiInfo", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesApiInfoRequest();
-                return TestInitializer.assertValidCall(api.getSlidesApiInfo(request), false, "getSlidesApiInfo");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesApiInfo(request), false, "getSlidesApiInfo");
             });
         });
     });
@@ -6275,11 +5563,9 @@ describe("Tests for getSlidesApiInfo", () => {
 describe("Tests for getSlidesDocument", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesDocumentRequest();
             return TestInitializer.initialize("getSlidesDocument", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesDocumentRequest();
-                return TestInitializer.assertValidCall(api.getSlidesDocument(request), false, "getSlidesDocument");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesDocument(request), false, "getSlidesDocument");
             });
         });
     });
@@ -6290,9 +5576,7 @@ describe("Tests for getSlidesDocument", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocument", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocument(request), "getSlidesDocument", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocument(request), "getSlidesDocument", field, request.name);
             });
         });
     });
@@ -6303,9 +5587,7 @@ describe("Tests for getSlidesDocument", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocument", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocument(request), "getSlidesDocument", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocument(request), "getSlidesDocument", field, request.password);
             });
         });
     });
@@ -6316,9 +5598,7 @@ describe("Tests for getSlidesDocument", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocument", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocument(request), "getSlidesDocument", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocument(request), "getSlidesDocument", field, request.storage);
             });
         });
     });
@@ -6329,9 +5609,7 @@ describe("Tests for getSlidesDocument", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocument", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocument(request), "getSlidesDocument", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocument(request), "getSlidesDocument", field, request.folder);
             });
         });
     });
@@ -6340,11 +5618,9 @@ describe("Tests for getSlidesDocument", () => {
 describe("Tests for getSlidesDocumentProperties", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesDocumentPropertiesRequest();
             return TestInitializer.initialize("getSlidesDocumentProperties", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesDocumentPropertiesRequest();
-                return TestInitializer.assertValidCall(api.getSlidesDocumentProperties(request), false, "getSlidesDocumentProperties");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesDocumentProperties(request), false, "getSlidesDocumentProperties");
             });
         });
     });
@@ -6355,9 +5631,7 @@ describe("Tests for getSlidesDocumentProperties", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperties", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.name);
             });
         });
     });
@@ -6368,9 +5642,7 @@ describe("Tests for getSlidesDocumentProperties", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperties", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.password);
             });
         });
     });
@@ -6381,9 +5653,7 @@ describe("Tests for getSlidesDocumentProperties", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperties", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.folder);
             });
         });
     });
@@ -6394,9 +5664,7 @@ describe("Tests for getSlidesDocumentProperties", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperties", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperties(request), "getSlidesDocumentProperties", field, request.storage);
             });
         });
     });
@@ -6405,11 +5673,9 @@ describe("Tests for getSlidesDocumentProperties", () => {
 describe("Tests for getSlidesDocumentProperty", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesDocumentPropertyRequest();
             return TestInitializer.initialize("getSlidesDocumentProperty", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesDocumentPropertyRequest();
-                return TestInitializer.assertValidCall(api.getSlidesDocumentProperty(request), false, "getSlidesDocumentProperty");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesDocumentProperty(request), false, "getSlidesDocumentProperty");
             });
         });
     });
@@ -6420,9 +5686,7 @@ describe("Tests for getSlidesDocumentProperty", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperty", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.name);
             });
         });
     });
@@ -6433,9 +5697,7 @@ describe("Tests for getSlidesDocumentProperty", () => {
         request.propertyName = <string>TestInitializer.invalidizeValue(request.propertyName, field, "string", "getSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperty", field, request.propertyName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.propertyName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.propertyName);
             });
         });
     });
@@ -6446,9 +5708,7 @@ describe("Tests for getSlidesDocumentProperty", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperty", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.password);
             });
         });
     });
@@ -6459,9 +5719,7 @@ describe("Tests for getSlidesDocumentProperty", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperty", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.folder);
             });
         });
     });
@@ -6472,9 +5730,7 @@ describe("Tests for getSlidesDocumentProperty", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesDocumentProperty", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesDocumentProperty(request), "getSlidesDocumentProperty", field, request.storage);
             });
         });
     });
@@ -6483,11 +5739,9 @@ describe("Tests for getSlidesDocumentProperty", () => {
 describe("Tests for getSlidesImageWithDefaultFormat", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesImageWithDefaultFormatRequest();
             return TestInitializer.initialize("getSlidesImageWithDefaultFormat", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesImageWithDefaultFormatRequest();
-                return TestInitializer.assertValidCall(api.getSlidesImageWithDefaultFormat(request), true, "getSlidesImageWithDefaultFormat");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesImageWithDefaultFormat(request), true, "getSlidesImageWithDefaultFormat");
             });
         });
     });
@@ -6498,9 +5752,7 @@ describe("Tests for getSlidesImageWithDefaultFormat", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesImageWithDefaultFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithDefaultFormat", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.name);
             });
         });
     });
@@ -6511,9 +5763,7 @@ describe("Tests for getSlidesImageWithDefaultFormat", () => {
         request.index = <number>TestInitializer.invalidizeValue(request.index, field, "number", "getSlidesImageWithDefaultFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithDefaultFormat", field, request.index).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.index);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.index);
             });
         });
     });
@@ -6524,9 +5774,7 @@ describe("Tests for getSlidesImageWithDefaultFormat", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesImageWithDefaultFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithDefaultFormat", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.password);
             });
         });
     });
@@ -6537,9 +5785,7 @@ describe("Tests for getSlidesImageWithDefaultFormat", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesImageWithDefaultFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithDefaultFormat", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.folder);
             });
         });
     });
@@ -6550,9 +5796,7 @@ describe("Tests for getSlidesImageWithDefaultFormat", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesImageWithDefaultFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithDefaultFormat", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithDefaultFormat(request), "getSlidesImageWithDefaultFormat", field, request.storage);
             });
         });
     });
@@ -6561,11 +5805,9 @@ describe("Tests for getSlidesImageWithDefaultFormat", () => {
 describe("Tests for getSlidesImageWithFormat", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesImageWithFormatRequest();
             return TestInitializer.initialize("getSlidesImageWithFormat", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesImageWithFormatRequest();
-                return TestInitializer.assertValidCall(api.getSlidesImageWithFormat(request), true, "getSlidesImageWithFormat");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesImageWithFormat(request), true, "getSlidesImageWithFormat");
             });
         });
     });
@@ -6576,9 +5818,7 @@ describe("Tests for getSlidesImageWithFormat", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesImageWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithFormat", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.name);
             });
         });
     });
@@ -6589,9 +5829,7 @@ describe("Tests for getSlidesImageWithFormat", () => {
         request.index = <number>TestInitializer.invalidizeValue(request.index, field, "number", "getSlidesImageWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithFormat", field, request.index).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.index);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.index);
             });
         });
     });
@@ -6602,9 +5840,7 @@ describe("Tests for getSlidesImageWithFormat", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "getSlidesImageWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithFormat", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.format);
             });
         });
     });
@@ -6615,9 +5851,7 @@ describe("Tests for getSlidesImageWithFormat", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesImageWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithFormat", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.password);
             });
         });
     });
@@ -6628,9 +5862,7 @@ describe("Tests for getSlidesImageWithFormat", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesImageWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithFormat", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.folder);
             });
         });
     });
@@ -6641,9 +5873,7 @@ describe("Tests for getSlidesImageWithFormat", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesImageWithFormat");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImageWithFormat", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImageWithFormat(request), "getSlidesImageWithFormat", field, request.storage);
             });
         });
     });
@@ -6652,11 +5882,9 @@ describe("Tests for getSlidesImageWithFormat", () => {
 describe("Tests for getSlidesImages", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesImagesRequest();
             return TestInitializer.initialize("getSlidesImages", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesImagesRequest();
-                return TestInitializer.assertValidCall(api.getSlidesImages(request), false, "getSlidesImages");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesImages(request), false, "getSlidesImages");
             });
         });
     });
@@ -6667,9 +5895,7 @@ describe("Tests for getSlidesImages", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImages", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImages(request), "getSlidesImages", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImages(request), "getSlidesImages", field, request.name);
             });
         });
     });
@@ -6680,9 +5906,7 @@ describe("Tests for getSlidesImages", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImages", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImages(request), "getSlidesImages", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImages(request), "getSlidesImages", field, request.password);
             });
         });
     });
@@ -6693,9 +5917,7 @@ describe("Tests for getSlidesImages", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImages", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImages(request), "getSlidesImages", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImages(request), "getSlidesImages", field, request.folder);
             });
         });
     });
@@ -6706,9 +5928,7 @@ describe("Tests for getSlidesImages", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesImages", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesImages(request), "getSlidesImages", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesImages(request), "getSlidesImages", field, request.storage);
             });
         });
     });
@@ -6717,11 +5937,9 @@ describe("Tests for getSlidesImages", () => {
 describe("Tests for getSlidesPlaceholder", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesPlaceholderRequest();
             return TestInitializer.initialize("getSlidesPlaceholder", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesPlaceholderRequest();
-                return TestInitializer.assertValidCall(api.getSlidesPlaceholder(request), false, "getSlidesPlaceholder");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesPlaceholder(request), false, "getSlidesPlaceholder");
             });
         });
     });
@@ -6732,9 +5950,7 @@ describe("Tests for getSlidesPlaceholder", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesPlaceholder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholder", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.name);
             });
         });
     });
@@ -6745,9 +5961,7 @@ describe("Tests for getSlidesPlaceholder", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesPlaceholder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholder", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.slideIndex);
             });
         });
     });
@@ -6758,9 +5972,7 @@ describe("Tests for getSlidesPlaceholder", () => {
         request.placeholderIndex = <number>TestInitializer.invalidizeValue(request.placeholderIndex, field, "number", "getSlidesPlaceholder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholder", field, request.placeholderIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.placeholderIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.placeholderIndex);
             });
         });
     });
@@ -6771,9 +5983,7 @@ describe("Tests for getSlidesPlaceholder", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesPlaceholder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholder", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.password);
             });
         });
     });
@@ -6784,9 +5994,7 @@ describe("Tests for getSlidesPlaceholder", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesPlaceholder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholder", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.folder);
             });
         });
     });
@@ -6797,9 +6005,7 @@ describe("Tests for getSlidesPlaceholder", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesPlaceholder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholder", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholder(request), "getSlidesPlaceholder", field, request.storage);
             });
         });
     });
@@ -6808,11 +6014,9 @@ describe("Tests for getSlidesPlaceholder", () => {
 describe("Tests for getSlidesPlaceholders", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesPlaceholdersRequest();
             return TestInitializer.initialize("getSlidesPlaceholders", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesPlaceholdersRequest();
-                return TestInitializer.assertValidCall(api.getSlidesPlaceholders(request), false, "getSlidesPlaceholders");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesPlaceholders(request), false, "getSlidesPlaceholders");
             });
         });
     });
@@ -6823,9 +6027,7 @@ describe("Tests for getSlidesPlaceholders", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesPlaceholders");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholders", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.name);
             });
         });
     });
@@ -6836,9 +6038,7 @@ describe("Tests for getSlidesPlaceholders", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesPlaceholders");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholders", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.slideIndex);
             });
         });
     });
@@ -6849,9 +6049,7 @@ describe("Tests for getSlidesPlaceholders", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesPlaceholders");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholders", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.password);
             });
         });
     });
@@ -6862,9 +6060,7 @@ describe("Tests for getSlidesPlaceholders", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesPlaceholders");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholders", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.folder);
             });
         });
     });
@@ -6875,9 +6071,7 @@ describe("Tests for getSlidesPlaceholders", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesPlaceholders");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPlaceholders", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPlaceholders(request), "getSlidesPlaceholders", field, request.storage);
             });
         });
     });
@@ -6886,11 +6080,9 @@ describe("Tests for getSlidesPlaceholders", () => {
 describe("Tests for getSlidesPresentationTextItems", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesPresentationTextItemsRequest();
             return TestInitializer.initialize("getSlidesPresentationTextItems", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesPresentationTextItemsRequest();
-                return TestInitializer.assertValidCall(api.getSlidesPresentationTextItems(request), false, "getSlidesPresentationTextItems");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesPresentationTextItems(request), false, "getSlidesPresentationTextItems");
             });
         });
     });
@@ -6901,9 +6093,7 @@ describe("Tests for getSlidesPresentationTextItems", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesPresentationTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPresentationTextItems", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.name);
             });
         });
     });
@@ -6914,9 +6104,7 @@ describe("Tests for getSlidesPresentationTextItems", () => {
         request.withEmpty = <boolean>TestInitializer.invalidizeValue(request.withEmpty, field, "boolean", "getSlidesPresentationTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPresentationTextItems", field, request.withEmpty).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.withEmpty);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.withEmpty);
             });
         });
     });
@@ -6927,9 +6115,7 @@ describe("Tests for getSlidesPresentationTextItems", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesPresentationTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPresentationTextItems", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.password);
             });
         });
     });
@@ -6940,9 +6126,7 @@ describe("Tests for getSlidesPresentationTextItems", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesPresentationTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPresentationTextItems", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.folder);
             });
         });
     });
@@ -6953,9 +6137,7 @@ describe("Tests for getSlidesPresentationTextItems", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesPresentationTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesPresentationTextItems", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesPresentationTextItems(request), "getSlidesPresentationTextItems", field, request.storage);
             });
         });
     });
@@ -6964,11 +6146,9 @@ describe("Tests for getSlidesPresentationTextItems", () => {
 describe("Tests for getSlidesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesSlideRequest();
             return TestInitializer.initialize("getSlidesSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesSlideRequest();
-                return TestInitializer.assertValidCall(api.getSlidesSlide(request), false, "getSlidesSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesSlide(request), false, "getSlidesSlide");
             });
         });
     });
@@ -6979,9 +6159,7 @@ describe("Tests for getSlidesSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlide(request), "getSlidesSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlide(request), "getSlidesSlide", field, request.name);
             });
         });
     });
@@ -6992,9 +6170,7 @@ describe("Tests for getSlidesSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlide(request), "getSlidesSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlide(request), "getSlidesSlide", field, request.slideIndex);
             });
         });
     });
@@ -7005,9 +6181,7 @@ describe("Tests for getSlidesSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlide(request), "getSlidesSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlide(request), "getSlidesSlide", field, request.password);
             });
         });
     });
@@ -7018,9 +6192,7 @@ describe("Tests for getSlidesSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlide(request), "getSlidesSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlide(request), "getSlidesSlide", field, request.folder);
             });
         });
     });
@@ -7031,9 +6203,7 @@ describe("Tests for getSlidesSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlide(request), "getSlidesSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlide(request), "getSlidesSlide", field, request.storage);
             });
         });
     });
@@ -7042,11 +6212,9 @@ describe("Tests for getSlidesSlide", () => {
 describe("Tests for getSlidesSlideBackground", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesSlideBackgroundRequest();
             return TestInitializer.initialize("getSlidesSlideBackground", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesSlideBackgroundRequest();
-                return TestInitializer.assertValidCall(api.getSlidesSlideBackground(request), false, "getSlidesSlideBackground");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesSlideBackground(request), false, "getSlidesSlideBackground");
             });
         });
     });
@@ -7057,9 +6225,7 @@ describe("Tests for getSlidesSlideBackground", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideBackground", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.name);
             });
         });
     });
@@ -7070,9 +6236,7 @@ describe("Tests for getSlidesSlideBackground", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideBackground", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.slideIndex);
             });
         });
     });
@@ -7083,9 +6247,7 @@ describe("Tests for getSlidesSlideBackground", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideBackground", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.password);
             });
         });
     });
@@ -7096,9 +6258,7 @@ describe("Tests for getSlidesSlideBackground", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideBackground", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.folder);
             });
         });
     });
@@ -7109,9 +6269,7 @@ describe("Tests for getSlidesSlideBackground", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideBackground", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideBackground(request), "getSlidesSlideBackground", field, request.storage);
             });
         });
     });
@@ -7120,11 +6278,9 @@ describe("Tests for getSlidesSlideBackground", () => {
 describe("Tests for getSlidesSlideComments", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesSlideCommentsRequest();
             return TestInitializer.initialize("getSlidesSlideComments", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesSlideCommentsRequest();
-                return TestInitializer.assertValidCall(api.getSlidesSlideComments(request), false, "getSlidesSlideComments");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesSlideComments(request), false, "getSlidesSlideComments");
             });
         });
     });
@@ -7135,9 +6291,7 @@ describe("Tests for getSlidesSlideComments", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesSlideComments");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideComments", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideComments(request), "getSlidesSlideComments", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideComments(request), "getSlidesSlideComments", field, request.name);
             });
         });
     });
@@ -7148,9 +6302,7 @@ describe("Tests for getSlidesSlideComments", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesSlideComments");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideComments", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideComments(request), "getSlidesSlideComments", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideComments(request), "getSlidesSlideComments", field, request.slideIndex);
             });
         });
     });
@@ -7161,9 +6313,7 @@ describe("Tests for getSlidesSlideComments", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesSlideComments");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideComments", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideComments(request), "getSlidesSlideComments", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideComments(request), "getSlidesSlideComments", field, request.password);
             });
         });
     });
@@ -7174,9 +6324,7 @@ describe("Tests for getSlidesSlideComments", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesSlideComments");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideComments", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideComments(request), "getSlidesSlideComments", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideComments(request), "getSlidesSlideComments", field, request.folder);
             });
         });
     });
@@ -7187,9 +6335,7 @@ describe("Tests for getSlidesSlideComments", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesSlideComments");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideComments", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideComments(request), "getSlidesSlideComments", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideComments(request), "getSlidesSlideComments", field, request.storage);
             });
         });
     });
@@ -7198,11 +6344,9 @@ describe("Tests for getSlidesSlideComments", () => {
 describe("Tests for getSlidesSlideImages", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesSlideImagesRequest();
             return TestInitializer.initialize("getSlidesSlideImages", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesSlideImagesRequest();
-                return TestInitializer.assertValidCall(api.getSlidesSlideImages(request), false, "getSlidesSlideImages");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesSlideImages(request), false, "getSlidesSlideImages");
             });
         });
     });
@@ -7213,9 +6357,7 @@ describe("Tests for getSlidesSlideImages", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesSlideImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideImages", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideImages(request), "getSlidesSlideImages", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideImages(request), "getSlidesSlideImages", field, request.name);
             });
         });
     });
@@ -7226,9 +6368,7 @@ describe("Tests for getSlidesSlideImages", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesSlideImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideImages", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideImages(request), "getSlidesSlideImages", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideImages(request), "getSlidesSlideImages", field, request.slideIndex);
             });
         });
     });
@@ -7239,9 +6379,7 @@ describe("Tests for getSlidesSlideImages", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesSlideImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideImages", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideImages(request), "getSlidesSlideImages", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideImages(request), "getSlidesSlideImages", field, request.password);
             });
         });
     });
@@ -7252,9 +6390,7 @@ describe("Tests for getSlidesSlideImages", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesSlideImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideImages", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideImages(request), "getSlidesSlideImages", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideImages(request), "getSlidesSlideImages", field, request.folder);
             });
         });
     });
@@ -7265,9 +6401,7 @@ describe("Tests for getSlidesSlideImages", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesSlideImages");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideImages", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideImages(request), "getSlidesSlideImages", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideImages(request), "getSlidesSlideImages", field, request.storage);
             });
         });
     });
@@ -7276,11 +6410,9 @@ describe("Tests for getSlidesSlideImages", () => {
 describe("Tests for getSlidesSlideTextItems", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesSlideTextItemsRequest();
             return TestInitializer.initialize("getSlidesSlideTextItems", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesSlideTextItemsRequest();
-                return TestInitializer.assertValidCall(api.getSlidesSlideTextItems(request), false, "getSlidesSlideTextItems");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesSlideTextItems(request), false, "getSlidesSlideTextItems");
             });
         });
     });
@@ -7291,9 +6423,7 @@ describe("Tests for getSlidesSlideTextItems", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesSlideTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideTextItems", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.name);
             });
         });
     });
@@ -7304,9 +6434,7 @@ describe("Tests for getSlidesSlideTextItems", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesSlideTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideTextItems", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.slideIndex);
             });
         });
     });
@@ -7317,9 +6445,7 @@ describe("Tests for getSlidesSlideTextItems", () => {
         request.withEmpty = <boolean>TestInitializer.invalidizeValue(request.withEmpty, field, "boolean", "getSlidesSlideTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideTextItems", field, request.withEmpty).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.withEmpty);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.withEmpty);
             });
         });
     });
@@ -7330,9 +6456,7 @@ describe("Tests for getSlidesSlideTextItems", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesSlideTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideTextItems", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.password);
             });
         });
     });
@@ -7343,9 +6467,7 @@ describe("Tests for getSlidesSlideTextItems", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesSlideTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideTextItems", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.folder);
             });
         });
     });
@@ -7356,9 +6478,7 @@ describe("Tests for getSlidesSlideTextItems", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesSlideTextItems");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideTextItems", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideTextItems(request), "getSlidesSlideTextItems", field, request.storage);
             });
         });
     });
@@ -7367,11 +6487,9 @@ describe("Tests for getSlidesSlideTextItems", () => {
 describe("Tests for getSlidesSlidesList", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesSlidesListRequest();
             return TestInitializer.initialize("getSlidesSlidesList", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesSlidesListRequest();
-                return TestInitializer.assertValidCall(api.getSlidesSlidesList(request), false, "getSlidesSlidesList");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesSlidesList(request), false, "getSlidesSlidesList");
             });
         });
     });
@@ -7382,9 +6500,7 @@ describe("Tests for getSlidesSlidesList", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlidesList", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlidesList(request), "getSlidesSlidesList", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlidesList(request), "getSlidesSlidesList", field, request.name);
             });
         });
     });
@@ -7395,9 +6511,7 @@ describe("Tests for getSlidesSlidesList", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlidesList", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlidesList(request), "getSlidesSlidesList", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlidesList(request), "getSlidesSlidesList", field, request.password);
             });
         });
     });
@@ -7408,9 +6522,7 @@ describe("Tests for getSlidesSlidesList", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlidesList", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlidesList(request), "getSlidesSlidesList", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlidesList(request), "getSlidesSlidesList", field, request.folder);
             });
         });
     });
@@ -7421,9 +6533,7 @@ describe("Tests for getSlidesSlidesList", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesSlidesList");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlidesList", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesSlidesList(request), "getSlidesSlidesList", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlidesList(request), "getSlidesSlidesList", field, request.storage);
             });
         });
     });
@@ -7432,11 +6542,9 @@ describe("Tests for getSlidesSlidesList", () => {
 describe("Tests for getSlidesTheme", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesThemeRequest();
             return TestInitializer.initialize("getSlidesTheme", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesThemeRequest();
-                return TestInitializer.assertValidCall(api.getSlidesTheme(request), false, "getSlidesTheme");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesTheme(request), false, "getSlidesTheme");
             });
         });
     });
@@ -7447,9 +6555,7 @@ describe("Tests for getSlidesTheme", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesTheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesTheme", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesTheme(request), "getSlidesTheme", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesTheme(request), "getSlidesTheme", field, request.name);
             });
         });
     });
@@ -7460,9 +6566,7 @@ describe("Tests for getSlidesTheme", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesTheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesTheme", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesTheme(request), "getSlidesTheme", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesTheme(request), "getSlidesTheme", field, request.slideIndex);
             });
         });
     });
@@ -7473,9 +6577,7 @@ describe("Tests for getSlidesTheme", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesTheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesTheme", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesTheme(request), "getSlidesTheme", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesTheme(request), "getSlidesTheme", field, request.password);
             });
         });
     });
@@ -7486,9 +6588,7 @@ describe("Tests for getSlidesTheme", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesTheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesTheme", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesTheme(request), "getSlidesTheme", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesTheme(request), "getSlidesTheme", field, request.folder);
             });
         });
     });
@@ -7499,9 +6599,7 @@ describe("Tests for getSlidesTheme", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesTheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesTheme", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesTheme(request), "getSlidesTheme", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesTheme(request), "getSlidesTheme", field, request.storage);
             });
         });
     });
@@ -7510,11 +6608,9 @@ describe("Tests for getSlidesTheme", () => {
 describe("Tests for getSlidesThemeColorScheme", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesThemeColorSchemeRequest();
             return TestInitializer.initialize("getSlidesThemeColorScheme", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesThemeColorSchemeRequest();
-                return TestInitializer.assertValidCall(api.getSlidesThemeColorScheme(request), false, "getSlidesThemeColorScheme");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesThemeColorScheme(request), false, "getSlidesThemeColorScheme");
             });
         });
     });
@@ -7525,9 +6621,7 @@ describe("Tests for getSlidesThemeColorScheme", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesThemeColorScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeColorScheme", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.name);
             });
         });
     });
@@ -7538,9 +6632,7 @@ describe("Tests for getSlidesThemeColorScheme", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesThemeColorScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeColorScheme", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.slideIndex);
             });
         });
     });
@@ -7551,9 +6643,7 @@ describe("Tests for getSlidesThemeColorScheme", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesThemeColorScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeColorScheme", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.password);
             });
         });
     });
@@ -7564,9 +6654,7 @@ describe("Tests for getSlidesThemeColorScheme", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesThemeColorScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeColorScheme", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.folder);
             });
         });
     });
@@ -7577,9 +6665,7 @@ describe("Tests for getSlidesThemeColorScheme", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesThemeColorScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeColorScheme", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeColorScheme(request), "getSlidesThemeColorScheme", field, request.storage);
             });
         });
     });
@@ -7588,11 +6674,9 @@ describe("Tests for getSlidesThemeColorScheme", () => {
 describe("Tests for getSlidesThemeFontScheme", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesThemeFontSchemeRequest();
             return TestInitializer.initialize("getSlidesThemeFontScheme", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesThemeFontSchemeRequest();
-                return TestInitializer.assertValidCall(api.getSlidesThemeFontScheme(request), false, "getSlidesThemeFontScheme");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesThemeFontScheme(request), false, "getSlidesThemeFontScheme");
             });
         });
     });
@@ -7603,9 +6687,7 @@ describe("Tests for getSlidesThemeFontScheme", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesThemeFontScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFontScheme", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.name);
             });
         });
     });
@@ -7616,9 +6698,7 @@ describe("Tests for getSlidesThemeFontScheme", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesThemeFontScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFontScheme", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.slideIndex);
             });
         });
     });
@@ -7629,9 +6709,7 @@ describe("Tests for getSlidesThemeFontScheme", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesThemeFontScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFontScheme", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.password);
             });
         });
     });
@@ -7642,9 +6720,7 @@ describe("Tests for getSlidesThemeFontScheme", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesThemeFontScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFontScheme", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.folder);
             });
         });
     });
@@ -7655,9 +6731,7 @@ describe("Tests for getSlidesThemeFontScheme", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesThemeFontScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFontScheme", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFontScheme(request), "getSlidesThemeFontScheme", field, request.storage);
             });
         });
     });
@@ -7666,11 +6740,9 @@ describe("Tests for getSlidesThemeFontScheme", () => {
 describe("Tests for getSlidesThemeFormatScheme", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesThemeFormatSchemeRequest();
             return TestInitializer.initialize("getSlidesThemeFormatScheme", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getGetSlidesThemeFormatSchemeRequest();
-                return TestInitializer.assertValidCall(api.getSlidesThemeFormatScheme(request), false, "getSlidesThemeFormatScheme");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesThemeFormatScheme(request), false, "getSlidesThemeFormatScheme");
             });
         });
     });
@@ -7681,9 +6753,7 @@ describe("Tests for getSlidesThemeFormatScheme", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesThemeFormatScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFormatScheme", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.name);
             });
         });
     });
@@ -7694,9 +6764,7 @@ describe("Tests for getSlidesThemeFormatScheme", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlidesThemeFormatScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFormatScheme", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.slideIndex);
             });
         });
     });
@@ -7707,9 +6775,7 @@ describe("Tests for getSlidesThemeFormatScheme", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesThemeFormatScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFormatScheme", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.password);
             });
         });
     });
@@ -7720,9 +6786,7 @@ describe("Tests for getSlidesThemeFormatScheme", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesThemeFormatScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFormatScheme", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.folder);
             });
         });
     });
@@ -7733,9 +6797,62 @@ describe("Tests for getSlidesThemeFormatScheme", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesThemeFormatScheme");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesThemeFormatScheme", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesThemeFormatScheme(request), "getSlidesThemeFormatScheme", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSlidesViewProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesViewPropertiesRequest();
+            return TestInitializer.initialize("getSlidesViewProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesViewProperties(request), false, "getSlidesViewProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlidesViewPropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesViewProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesViewProperties(request), "getSlidesViewProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlidesViewPropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesViewProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesViewProperties(request), "getSlidesViewProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlidesViewPropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesViewProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesViewProperties(request), "getSlidesViewProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlidesViewPropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesViewProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesViewProperties(request), "getSlidesViewProperties", field, request.storage);
             });
         });
     });
@@ -7744,11 +6861,9 @@ describe("Tests for getSlidesThemeFormatScheme", () => {
 describe("Tests for moveFile", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getMoveFileRequest();
             return TestInitializer.initialize("moveFile", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getMoveFileRequest();
-                return TestInitializer.assertValidCall(api.moveFile(request), false, "moveFile");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().moveFile(request), false, "moveFile");
             });
         });
     });
@@ -7759,9 +6874,7 @@ describe("Tests for moveFile", () => {
         request.srcPath = <string>TestInitializer.invalidizeValue(request.srcPath, field, "string", "moveFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFile", field, request.srcPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFile(request), "moveFile", field, request.srcPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFile(request), "moveFile", field, request.srcPath);
             });
         });
     });
@@ -7772,9 +6885,7 @@ describe("Tests for moveFile", () => {
         request.destPath = <string>TestInitializer.invalidizeValue(request.destPath, field, "string", "moveFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFile", field, request.destPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFile(request), "moveFile", field, request.destPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFile(request), "moveFile", field, request.destPath);
             });
         });
     });
@@ -7785,9 +6896,7 @@ describe("Tests for moveFile", () => {
         request.srcStorageName = <string>TestInitializer.invalidizeValue(request.srcStorageName, field, "string", "moveFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFile", field, request.srcStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFile(request), "moveFile", field, request.srcStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFile(request), "moveFile", field, request.srcStorageName);
             });
         });
     });
@@ -7798,9 +6907,7 @@ describe("Tests for moveFile", () => {
         request.destStorageName = <string>TestInitializer.invalidizeValue(request.destStorageName, field, "string", "moveFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFile", field, request.destStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFile(request), "moveFile", field, request.destStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFile(request), "moveFile", field, request.destStorageName);
             });
         });
     });
@@ -7811,9 +6918,7 @@ describe("Tests for moveFile", () => {
         request.versionId = <string>TestInitializer.invalidizeValue(request.versionId, field, "string", "moveFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFile", field, request.versionId).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFile(request), "moveFile", field, request.versionId);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFile(request), "moveFile", field, request.versionId);
             });
         });
     });
@@ -7822,11 +6927,9 @@ describe("Tests for moveFile", () => {
 describe("Tests for moveFolder", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getMoveFolderRequest();
             return TestInitializer.initialize("moveFolder", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getMoveFolderRequest();
-                return TestInitializer.assertValidCall(api.moveFolder(request), false, "moveFolder");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().moveFolder(request), false, "moveFolder");
             });
         });
     });
@@ -7837,9 +6940,7 @@ describe("Tests for moveFolder", () => {
         request.srcPath = <string>TestInitializer.invalidizeValue(request.srcPath, field, "string", "moveFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFolder", field, request.srcPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFolder(request), "moveFolder", field, request.srcPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFolder(request), "moveFolder", field, request.srcPath);
             });
         });
     });
@@ -7850,9 +6951,7 @@ describe("Tests for moveFolder", () => {
         request.destPath = <string>TestInitializer.invalidizeValue(request.destPath, field, "string", "moveFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFolder", field, request.destPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFolder(request), "moveFolder", field, request.destPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFolder(request), "moveFolder", field, request.destPath);
             });
         });
     });
@@ -7863,9 +6962,7 @@ describe("Tests for moveFolder", () => {
         request.srcStorageName = <string>TestInitializer.invalidizeValue(request.srcStorageName, field, "string", "moveFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFolder", field, request.srcStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFolder(request), "moveFolder", field, request.srcStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFolder(request), "moveFolder", field, request.srcStorageName);
             });
         });
     });
@@ -7876,9 +6973,7 @@ describe("Tests for moveFolder", () => {
         request.destStorageName = <string>TestInitializer.invalidizeValue(request.destStorageName, field, "string", "moveFolder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("moveFolder", field, request.destStorageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.moveFolder(request), "moveFolder", field, request.destStorageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().moveFolder(request), "moveFolder", field, request.destStorageName);
             });
         });
     });
@@ -7887,11 +6982,9 @@ describe("Tests for moveFolder", () => {
 describe("Tests for objectExists", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getObjectExistsRequest();
             return TestInitializer.initialize("objectExists", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getObjectExistsRequest();
-                return TestInitializer.assertValidCall(api.objectExists(request), false, "objectExists");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().objectExists(request), false, "objectExists");
             });
         });
     });
@@ -7902,9 +6995,7 @@ describe("Tests for objectExists", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "objectExists");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("objectExists", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.objectExists(request), "objectExists", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().objectExists(request), "objectExists", field, request.path);
             });
         });
     });
@@ -7915,9 +7006,7 @@ describe("Tests for objectExists", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "objectExists");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("objectExists", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.objectExists(request), "objectExists", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().objectExists(request), "objectExists", field, request.storageName);
             });
         });
     });
@@ -7928,9 +7017,7 @@ describe("Tests for objectExists", () => {
         request.versionId = <string>TestInitializer.invalidizeValue(request.versionId, field, "string", "objectExists");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("objectExists", field, request.versionId).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.objectExists(request), "objectExists", field, request.versionId);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().objectExists(request), "objectExists", field, request.versionId);
             });
         });
     });
@@ -7939,11 +7026,9 @@ describe("Tests for objectExists", () => {
 describe("Tests for postAddNewParagraph", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostAddNewParagraphRequest();
             return TestInitializer.initialize("postAddNewParagraph", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostAddNewParagraphRequest();
-                return TestInitializer.assertValidCall(api.postAddNewParagraph(request), false, "postAddNewParagraph");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postAddNewParagraph(request), false, "postAddNewParagraph");
             });
         });
     });
@@ -7954,9 +7039,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.name);
             });
         });
     });
@@ -7967,9 +7050,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.slideIndex);
             });
         });
     });
@@ -7980,9 +7061,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.path);
             });
         });
     });
@@ -7993,9 +7072,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.shapeIndex);
             });
         });
     });
@@ -8006,9 +7083,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.dto = <model.Paragraph>TestInitializer.invalidizeValue(request.dto, field, "Paragraph", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.dto);
             });
         });
     });
@@ -8019,9 +7094,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.password);
             });
         });
     });
@@ -8032,9 +7105,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.folder);
             });
         });
     });
@@ -8045,9 +7116,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.storage);
             });
         });
     });
@@ -8058,9 +7127,7 @@ describe("Tests for postAddNewParagraph", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewParagraph", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewParagraph(request), "postAddNewParagraph", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.position);
             });
         });
     });
@@ -8069,11 +7136,9 @@ describe("Tests for postAddNewParagraph", () => {
 describe("Tests for postAddNewPortion", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostAddNewPortionRequest();
             return TestInitializer.initialize("postAddNewPortion", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostAddNewPortionRequest();
-                return TestInitializer.assertValidCall(api.postAddNewPortion(request), false, "postAddNewPortion");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postAddNewPortion(request), false, "postAddNewPortion");
             });
         });
     });
@@ -8084,9 +7149,7 @@ describe("Tests for postAddNewPortion", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.name);
             });
         });
     });
@@ -8097,9 +7160,7 @@ describe("Tests for postAddNewPortion", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.slideIndex);
             });
         });
     });
@@ -8110,9 +7171,7 @@ describe("Tests for postAddNewPortion", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.path);
             });
         });
     });
@@ -8123,9 +7182,7 @@ describe("Tests for postAddNewPortion", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.shapeIndex);
             });
         });
     });
@@ -8136,9 +7193,7 @@ describe("Tests for postAddNewPortion", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.paragraphIndex);
             });
         });
     });
@@ -8149,9 +7204,7 @@ describe("Tests for postAddNewPortion", () => {
         request.dto = <model.Portion>TestInitializer.invalidizeValue(request.dto, field, "Portion", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.dto);
             });
         });
     });
@@ -8162,9 +7215,7 @@ describe("Tests for postAddNewPortion", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.password);
             });
         });
     });
@@ -8175,9 +7226,7 @@ describe("Tests for postAddNewPortion", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.folder);
             });
         });
     });
@@ -8188,9 +7237,7 @@ describe("Tests for postAddNewPortion", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.storage);
             });
         });
     });
@@ -8201,9 +7248,7 @@ describe("Tests for postAddNewPortion", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewPortion(request), "postAddNewPortion", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.position);
             });
         });
     });
@@ -8212,11 +7257,9 @@ describe("Tests for postAddNewPortion", () => {
 describe("Tests for postAddNewShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostAddNewShapeRequest();
             return TestInitializer.initialize("postAddNewShape", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostAddNewShapeRequest();
-                return TestInitializer.assertValidCall(api.postAddNewShape(request), false, "postAddNewShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postAddNewShape(request), false, "postAddNewShape");
             });
         });
     });
@@ -8227,9 +7270,7 @@ describe("Tests for postAddNewShape", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.name);
             });
         });
     });
@@ -8240,9 +7281,7 @@ describe("Tests for postAddNewShape", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.slideIndex);
             });
         });
     });
@@ -8253,9 +7292,7 @@ describe("Tests for postAddNewShape", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.path);
             });
         });
     });
@@ -8266,9 +7303,7 @@ describe("Tests for postAddNewShape", () => {
         request.dto = <model.ShapeBase>TestInitializer.invalidizeValue(request.dto, field, "ShapeBase", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.dto);
             });
         });
     });
@@ -8279,9 +7314,7 @@ describe("Tests for postAddNewShape", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.password);
             });
         });
     });
@@ -8292,9 +7325,7 @@ describe("Tests for postAddNewShape", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.folder);
             });
         });
     });
@@ -8305,9 +7336,7 @@ describe("Tests for postAddNewShape", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.storage);
             });
         });
     });
@@ -8318,9 +7347,7 @@ describe("Tests for postAddNewShape", () => {
         request.shapeToClone = <number>TestInitializer.invalidizeValue(request.shapeToClone, field, "number", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.shapeToClone).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.shapeToClone);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.shapeToClone);
             });
         });
     });
@@ -8331,9 +7358,7 @@ describe("Tests for postAddNewShape", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNewShape(request), "postAddNewShape", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.position);
             });
         });
     });
@@ -8342,11 +7367,9 @@ describe("Tests for postAddNewShape", () => {
 describe("Tests for postAddNotesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostAddNotesSlideRequest();
             return TestInitializer.initialize("postAddNotesSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostAddNotesSlideRequest();
-                return TestInitializer.assertValidCall(api.postAddNotesSlide(request), false, "postAddNotesSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postAddNotesSlide(request), false, "postAddNotesSlide");
             });
         });
     });
@@ -8357,9 +7380,7 @@ describe("Tests for postAddNotesSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postAddNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNotesSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNotesSlide(request), "postAddNotesSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNotesSlide(request), "postAddNotesSlide", field, request.name);
             });
         });
     });
@@ -8370,9 +7391,7 @@ describe("Tests for postAddNotesSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postAddNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNotesSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNotesSlide(request), "postAddNotesSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNotesSlide(request), "postAddNotesSlide", field, request.slideIndex);
             });
         });
     });
@@ -8383,9 +7402,7 @@ describe("Tests for postAddNotesSlide", () => {
         request.dto = <model.NotesSlide>TestInitializer.invalidizeValue(request.dto, field, "NotesSlide", "postAddNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNotesSlide", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNotesSlide(request), "postAddNotesSlide", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNotesSlide(request), "postAddNotesSlide", field, request.dto);
             });
         });
     });
@@ -8396,9 +7413,7 @@ describe("Tests for postAddNotesSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postAddNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNotesSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNotesSlide(request), "postAddNotesSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNotesSlide(request), "postAddNotesSlide", field, request.password);
             });
         });
     });
@@ -8409,9 +7424,7 @@ describe("Tests for postAddNotesSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postAddNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNotesSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNotesSlide(request), "postAddNotesSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNotesSlide(request), "postAddNotesSlide", field, request.folder);
             });
         });
     });
@@ -8422,9 +7435,7 @@ describe("Tests for postAddNotesSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postAddNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNotesSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postAddNotesSlide(request), "postAddNotesSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNotesSlide(request), "postAddNotesSlide", field, request.storage);
             });
         });
     });
@@ -8433,11 +7444,9 @@ describe("Tests for postAddNotesSlide", () => {
 describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostCopyLayoutSlideFromSourcePresentationRequest();
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostCopyLayoutSlideFromSourcePresentationRequest();
-                return TestInitializer.assertValidCall(api.postCopyLayoutSlideFromSourcePresentation(request), false, "postCopyLayoutSlideFromSourcePresentation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), false, "postCopyLayoutSlideFromSourcePresentation");
             });
         });
     });
@@ -8448,9 +7457,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.name);
             });
         });
     });
@@ -8461,9 +7468,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.cloneFrom = <string>TestInitializer.invalidizeValue(request.cloneFrom, field, "string", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.cloneFrom).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFrom);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFrom);
             });
         });
     });
@@ -8474,9 +7479,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.cloneFromPosition = <number>TestInitializer.invalidizeValue(request.cloneFromPosition, field, "number", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromPosition).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromPosition);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromPosition);
             });
         });
     });
@@ -8487,9 +7490,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.cloneFromPassword = <string>TestInitializer.invalidizeValue(request.cloneFromPassword, field, "string", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromPassword).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromPassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromPassword);
             });
         });
     });
@@ -8500,9 +7501,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.cloneFromStorage = <string>TestInitializer.invalidizeValue(request.cloneFromStorage, field, "string", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromStorage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromStorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.cloneFromStorage);
             });
         });
     });
@@ -8513,9 +7512,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.password);
             });
         });
     });
@@ -8526,9 +7523,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.folder);
             });
         });
     });
@@ -8539,9 +7534,7 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postCopyLayoutSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyLayoutSlideFromSourcePresentation", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyLayoutSlideFromSourcePresentation(request), "postCopyLayoutSlideFromSourcePresentation", field, request.storage);
             });
         });
     });
@@ -8550,11 +7543,9 @@ describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
 describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostCopyMasterSlideFromSourcePresentationRequest();
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostCopyMasterSlideFromSourcePresentationRequest();
-                return TestInitializer.assertValidCall(api.postCopyMasterSlideFromSourcePresentation(request), false, "postCopyMasterSlideFromSourcePresentation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), false, "postCopyMasterSlideFromSourcePresentation");
             });
         });
     });
@@ -8565,9 +7556,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.name);
             });
         });
     });
@@ -8578,9 +7567,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.cloneFrom = <string>TestInitializer.invalidizeValue(request.cloneFrom, field, "string", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.cloneFrom).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFrom);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFrom);
             });
         });
     });
@@ -8591,9 +7578,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.cloneFromPosition = <number>TestInitializer.invalidizeValue(request.cloneFromPosition, field, "number", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.cloneFromPosition).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFromPosition);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFromPosition);
             });
         });
     });
@@ -8604,9 +7589,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.cloneFromPassword = <string>TestInitializer.invalidizeValue(request.cloneFromPassword, field, "string", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.cloneFromPassword).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFromPassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFromPassword);
             });
         });
     });
@@ -8617,9 +7600,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.cloneFromStorage = <string>TestInitializer.invalidizeValue(request.cloneFromStorage, field, "string", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.cloneFromStorage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFromStorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.cloneFromStorage);
             });
         });
     });
@@ -8630,9 +7611,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.applyToAll = <boolean>TestInitializer.invalidizeValue(request.applyToAll, field, "boolean", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.applyToAll).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.applyToAll);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.applyToAll);
             });
         });
     });
@@ -8643,9 +7622,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.password);
             });
         });
     });
@@ -8656,9 +7633,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.folder);
             });
         });
     });
@@ -8669,9 +7644,7 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postCopyMasterSlideFromSourcePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.storage);
             });
         });
     });
@@ -8680,11 +7653,9 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
 describe("Tests for postNotesSlideAddNewParagraph", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostNotesSlideAddNewParagraphRequest();
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostNotesSlideAddNewParagraphRequest();
-                return TestInitializer.assertValidCall(api.postNotesSlideAddNewParagraph(request), false, "postNotesSlideAddNewParagraph");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), false, "postNotesSlideAddNewParagraph");
             });
         });
     });
@@ -8695,9 +7666,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.name);
             });
         });
     });
@@ -8708,9 +7677,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.slideIndex);
             });
         });
     });
@@ -8721,9 +7688,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.path);
             });
         });
     });
@@ -8734,9 +7699,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.shapeIndex);
             });
         });
     });
@@ -8747,9 +7710,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.dto = <model.Paragraph>TestInitializer.invalidizeValue(request.dto, field, "Paragraph", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.dto);
             });
         });
     });
@@ -8760,9 +7721,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.password);
             });
         });
     });
@@ -8773,9 +7732,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.folder);
             });
         });
     });
@@ -8786,9 +7743,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.storage);
             });
         });
     });
@@ -8799,9 +7754,7 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postNotesSlideAddNewParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.position);
             });
         });
     });
@@ -8810,11 +7763,9 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
 describe("Tests for postNotesSlideAddNewPortion", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostNotesSlideAddNewPortionRequest();
             return TestInitializer.initialize("postNotesSlideAddNewPortion", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostNotesSlideAddNewPortionRequest();
-                return TestInitializer.assertValidCall(api.postNotesSlideAddNewPortion(request), false, "postNotesSlideAddNewPortion");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), false, "postNotesSlideAddNewPortion");
             });
         });
     });
@@ -8825,9 +7776,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.name);
             });
         });
     });
@@ -8838,9 +7787,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.slideIndex);
             });
         });
     });
@@ -8851,9 +7798,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.path);
             });
         });
     });
@@ -8864,9 +7809,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.shapeIndex);
             });
         });
     });
@@ -8877,9 +7820,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.paragraphIndex);
             });
         });
     });
@@ -8890,9 +7831,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.dto = <model.Portion>TestInitializer.invalidizeValue(request.dto, field, "Portion", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.dto);
             });
         });
     });
@@ -8903,9 +7842,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.password);
             });
         });
     });
@@ -8916,9 +7853,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.folder);
             });
         });
     });
@@ -8929,9 +7864,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.storage);
             });
         });
     });
@@ -8942,9 +7875,7 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postNotesSlideAddNewPortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.position);
             });
         });
     });
@@ -8953,11 +7884,9 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
 describe("Tests for postNotesSlideAddNewShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostNotesSlideAddNewShapeRequest();
             return TestInitializer.initialize("postNotesSlideAddNewShape", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostNotesSlideAddNewShapeRequest();
-                return TestInitializer.assertValidCall(api.postNotesSlideAddNewShape(request), false, "postNotesSlideAddNewShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), false, "postNotesSlideAddNewShape");
             });
         });
     });
@@ -8968,9 +7897,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.name);
             });
         });
     });
@@ -8981,9 +7908,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.slideIndex);
             });
         });
     });
@@ -8994,9 +7919,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.path);
             });
         });
     });
@@ -9007,9 +7930,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.dto = <model.ShapeBase>TestInitializer.invalidizeValue(request.dto, field, "ShapeBase", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.dto);
             });
         });
     });
@@ -9020,9 +7941,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.password);
             });
         });
     });
@@ -9033,9 +7952,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.folder);
             });
         });
     });
@@ -9046,9 +7963,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.storage);
             });
         });
     });
@@ -9059,9 +7974,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.shapeToClone = <number>TestInitializer.invalidizeValue(request.shapeToClone, field, "number", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.shapeToClone).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.shapeToClone);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.shapeToClone);
             });
         });
     });
@@ -9072,9 +7985,7 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postNotesSlideAddNewShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.position);
             });
         });
     });
@@ -9083,11 +7994,9 @@ describe("Tests for postNotesSlideAddNewShape", () => {
 describe("Tests for postNotesSlideShapeSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostNotesSlideShapeSaveAsRequest();
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostNotesSlideShapeSaveAsRequest();
-                return TestInitializer.assertValidCall(api.postNotesSlideShapeSaveAs(request), true, "postNotesSlideShapeSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), true, "postNotesSlideShapeSaveAs");
             });
         });
     });
@@ -9098,9 +8007,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.name);
             });
         });
     });
@@ -9111,9 +8018,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.slideIndex);
             });
         });
     });
@@ -9124,9 +8029,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.path);
             });
         });
     });
@@ -9137,9 +8040,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.shapeIndex);
             });
         });
     });
@@ -9150,9 +8051,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.format);
             });
         });
     });
@@ -9163,9 +8062,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.options = <model.IShapeExportOptions>TestInitializer.invalidizeValue(request.options, field, "IShapeExportOptions", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.options);
             });
         });
     });
@@ -9176,9 +8073,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.password);
             });
         });
     });
@@ -9189,9 +8084,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.folder);
             });
         });
     });
@@ -9202,9 +8095,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.storage);
             });
         });
     });
@@ -9215,9 +8106,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.scaleX = <number>TestInitializer.invalidizeValue(request.scaleX, field, "number", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.scaleX).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.scaleX);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.scaleX);
             });
         });
     });
@@ -9228,9 +8117,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.scaleY = <number>TestInitializer.invalidizeValue(request.scaleY, field, "number", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.scaleY).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.scaleY);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.scaleY);
             });
         });
     });
@@ -9241,9 +8128,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.bounds = <string>TestInitializer.invalidizeValue(request.bounds, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.bounds).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.bounds);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.bounds);
             });
         });
     });
@@ -9254,9 +8139,7 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -9265,11 +8148,9 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
 describe("Tests for postPresentationMerge", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostPresentationMergeRequest();
             return TestInitializer.initialize("postPresentationMerge", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostPresentationMergeRequest();
-                return TestInitializer.assertValidCall(api.postPresentationMerge(request), false, "postPresentationMerge");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postPresentationMerge(request), false, "postPresentationMerge");
             });
         });
     });
@@ -9280,9 +8161,7 @@ describe("Tests for postPresentationMerge", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postPresentationMerge", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postPresentationMerge(request), "postPresentationMerge", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postPresentationMerge(request), "postPresentationMerge", field, request.name);
             });
         });
     });
@@ -9293,9 +8172,7 @@ describe("Tests for postPresentationMerge", () => {
         request.request = <model.PresentationsMergeRequest>TestInitializer.invalidizeValue(request.request, field, "PresentationsMergeRequest", "postPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postPresentationMerge", field, request.request).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postPresentationMerge(request), "postPresentationMerge", field, request.request);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postPresentationMerge(request), "postPresentationMerge", field, request.request);
             });
         });
     });
@@ -9306,9 +8183,7 @@ describe("Tests for postPresentationMerge", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postPresentationMerge", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postPresentationMerge(request), "postPresentationMerge", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postPresentationMerge(request), "postPresentationMerge", field, request.password);
             });
         });
     });
@@ -9319,9 +8194,7 @@ describe("Tests for postPresentationMerge", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postPresentationMerge", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postPresentationMerge(request), "postPresentationMerge", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postPresentationMerge(request), "postPresentationMerge", field, request.storage);
             });
         });
     });
@@ -9332,9 +8205,7 @@ describe("Tests for postPresentationMerge", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postPresentationMerge", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postPresentationMerge(request), "postPresentationMerge", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postPresentationMerge(request), "postPresentationMerge", field, request.folder);
             });
         });
     });
@@ -9343,11 +8214,9 @@ describe("Tests for postPresentationMerge", () => {
 describe("Tests for postShapeSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostShapeSaveAsRequest();
             return TestInitializer.initialize("postShapeSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostShapeSaveAsRequest();
-                return TestInitializer.assertValidCall(api.postShapeSaveAs(request), true, "postShapeSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postShapeSaveAs(request), true, "postShapeSaveAs");
             });
         });
     });
@@ -9358,9 +8227,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.name);
             });
         });
     });
@@ -9371,9 +8238,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.slideIndex);
             });
         });
     });
@@ -9384,9 +8249,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.path);
             });
         });
     });
@@ -9397,9 +8260,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.shapeIndex);
             });
         });
     });
@@ -9410,9 +8271,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.format);
             });
         });
     });
@@ -9423,9 +8282,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.options = <model.IShapeExportOptions>TestInitializer.invalidizeValue(request.options, field, "IShapeExportOptions", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.options);
             });
         });
     });
@@ -9436,9 +8293,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.password);
             });
         });
     });
@@ -9449,9 +8304,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.folder);
             });
         });
     });
@@ -9462,9 +8315,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.storage);
             });
         });
     });
@@ -9475,9 +8326,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.scaleX = <number>TestInitializer.invalidizeValue(request.scaleX, field, "number", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.scaleX).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.scaleX);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.scaleX);
             });
         });
     });
@@ -9488,9 +8337,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.scaleY = <number>TestInitializer.invalidizeValue(request.scaleY, field, "number", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.scaleY).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.scaleY);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.scaleY);
             });
         });
     });
@@ -9501,9 +8348,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.bounds = <string>TestInitializer.invalidizeValue(request.bounds, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.bounds).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.bounds);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.bounds);
             });
         });
     });
@@ -9514,9 +8359,7 @@ describe("Tests for postShapeSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postShapeSaveAs(request), "postShapeSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -9525,11 +8368,9 @@ describe("Tests for postShapeSaveAs", () => {
 describe("Tests for postSlideAnimationEffect", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlideAnimationEffectRequest();
             return TestInitializer.initialize("postSlideAnimationEffect", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlideAnimationEffectRequest();
-                return TestInitializer.assertValidCall(api.postSlideAnimationEffect(request), false, "postSlideAnimationEffect");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlideAnimationEffect(request), false, "postSlideAnimationEffect");
             });
         });
     });
@@ -9540,9 +8381,7 @@ describe("Tests for postSlideAnimationEffect", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationEffect", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.name);
             });
         });
     });
@@ -9553,9 +8392,7 @@ describe("Tests for postSlideAnimationEffect", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationEffect", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.slideIndex);
             });
         });
     });
@@ -9566,9 +8403,7 @@ describe("Tests for postSlideAnimationEffect", () => {
         request.effect = <model.Effect>TestInitializer.invalidizeValue(request.effect, field, "Effect", "postSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationEffect", field, request.effect).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.effect);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.effect);
             });
         });
     });
@@ -9579,9 +8414,7 @@ describe("Tests for postSlideAnimationEffect", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationEffect", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.password);
             });
         });
     });
@@ -9592,9 +8425,7 @@ describe("Tests for postSlideAnimationEffect", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationEffect", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.folder);
             });
         });
     });
@@ -9605,9 +8436,7 @@ describe("Tests for postSlideAnimationEffect", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationEffect", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationEffect(request), "postSlideAnimationEffect", field, request.storage);
             });
         });
     });
@@ -9616,11 +8445,9 @@ describe("Tests for postSlideAnimationEffect", () => {
 describe("Tests for postSlideAnimationInteractiveSequence", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlideAnimationInteractiveSequenceRequest();
             return TestInitializer.initialize("postSlideAnimationInteractiveSequence", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlideAnimationInteractiveSequenceRequest();
-                return TestInitializer.assertValidCall(api.postSlideAnimationInteractiveSequence(request), false, "postSlideAnimationInteractiveSequence");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequence(request), false, "postSlideAnimationInteractiveSequence");
             });
         });
     });
@@ -9631,9 +8458,7 @@ describe("Tests for postSlideAnimationInteractiveSequence", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequence", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.name);
             });
         });
     });
@@ -9644,9 +8469,7 @@ describe("Tests for postSlideAnimationInteractiveSequence", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequence", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.slideIndex);
             });
         });
     });
@@ -9657,9 +8480,7 @@ describe("Tests for postSlideAnimationInteractiveSequence", () => {
         request.sequence = <model.InteractiveSequence>TestInitializer.invalidizeValue(request.sequence, field, "InteractiveSequence", "postSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequence", field, request.sequence).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.sequence);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.sequence);
             });
         });
     });
@@ -9670,9 +8491,7 @@ describe("Tests for postSlideAnimationInteractiveSequence", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequence", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.password);
             });
         });
     });
@@ -9683,9 +8502,7 @@ describe("Tests for postSlideAnimationInteractiveSequence", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequence", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.folder);
             });
         });
     });
@@ -9696,9 +8513,7 @@ describe("Tests for postSlideAnimationInteractiveSequence", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlideAnimationInteractiveSequence");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequence", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequence(request), "postSlideAnimationInteractiveSequence", field, request.storage);
             });
         });
     });
@@ -9707,11 +8522,9 @@ describe("Tests for postSlideAnimationInteractiveSequence", () => {
 describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlideAnimationInteractiveSequenceEffectRequest();
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlideAnimationInteractiveSequenceEffectRequest();
-                return TestInitializer.assertValidCall(api.postSlideAnimationInteractiveSequenceEffect(request), false, "postSlideAnimationInteractiveSequenceEffect");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), false, "postSlideAnimationInteractiveSequenceEffect");
             });
         });
     });
@@ -9722,9 +8535,7 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.name);
             });
         });
     });
@@ -9735,9 +8546,7 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.slideIndex);
             });
         });
     });
@@ -9748,9 +8557,7 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
         request.sequenceIndex = <number>TestInitializer.invalidizeValue(request.sequenceIndex, field, "number", "postSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex);
             });
         });
     });
@@ -9761,9 +8568,7 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
         request.effect = <model.Effect>TestInitializer.invalidizeValue(request.effect, field, "Effect", "postSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", field, request.effect).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.effect);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.effect);
             });
         });
     });
@@ -9774,9 +8579,7 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.password);
             });
         });
     });
@@ -9787,9 +8590,7 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.folder);
             });
         });
     });
@@ -9800,9 +8601,7 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideAnimationInteractiveSequenceEffect", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideAnimationInteractiveSequenceEffect(request), "postSlideAnimationInteractiveSequenceEffect", field, request.storage);
             });
         });
     });
@@ -9811,11 +8610,9 @@ describe("Tests for postSlideAnimationInteractiveSequenceEffect", () => {
 describe("Tests for postSlideSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlideSaveAsRequest();
             return TestInitializer.initialize("postSlideSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlideSaveAsRequest();
-                return TestInitializer.assertValidCall(api.postSlideSaveAs(request), true, "postSlideSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlideSaveAs(request), true, "postSlideSaveAs");
             });
         });
     });
@@ -9826,9 +8623,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.name);
             });
         });
     });
@@ -9839,9 +8634,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.slideIndex);
             });
         });
     });
@@ -9852,9 +8645,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.format);
             });
         });
     });
@@ -9865,9 +8656,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.options = <model.ExportOptions>TestInitializer.invalidizeValue(request.options, field, "ExportOptions", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.options);
             });
         });
     });
@@ -9878,9 +8667,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.width = <number>TestInitializer.invalidizeValue(request.width, field, "number", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.width).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.width);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.width);
             });
         });
     });
@@ -9891,9 +8678,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.height = <number>TestInitializer.invalidizeValue(request.height, field, "number", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.height).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.height);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.height);
             });
         });
     });
@@ -9904,9 +8689,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.password);
             });
         });
     });
@@ -9917,9 +8700,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.folder);
             });
         });
     });
@@ -9930,9 +8711,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.storage);
             });
         });
     });
@@ -9943,9 +8722,7 @@ describe("Tests for postSlideSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlideSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlideSaveAs(request), "postSlideSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlideSaveAs(request), "postSlideSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -9954,11 +8731,9 @@ describe("Tests for postSlideSaveAs", () => {
 describe("Tests for postSlidesAdd", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesAddRequest();
             return TestInitializer.initialize("postSlidesAdd", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesAddRequest();
-                return TestInitializer.assertValidCall(api.postSlidesAdd(request), false, "postSlidesAdd");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesAdd(request), false, "postSlidesAdd");
             });
         });
     });
@@ -9969,9 +8744,7 @@ describe("Tests for postSlidesAdd", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesAdd");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesAdd", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesAdd(request), "postSlidesAdd", field, request.name);
             });
         });
     });
@@ -9982,9 +8755,7 @@ describe("Tests for postSlidesAdd", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postSlidesAdd");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesAdd", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesAdd(request), "postSlidesAdd", field, request.position);
             });
         });
     });
@@ -9995,9 +8766,7 @@ describe("Tests for postSlidesAdd", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesAdd");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesAdd", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesAdd(request), "postSlidesAdd", field, request.password);
             });
         });
     });
@@ -10008,9 +8777,7 @@ describe("Tests for postSlidesAdd", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesAdd");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesAdd", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesAdd(request), "postSlidesAdd", field, request.folder);
             });
         });
     });
@@ -10021,9 +8788,7 @@ describe("Tests for postSlidesAdd", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesAdd");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesAdd", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesAdd(request), "postSlidesAdd", field, request.storage);
             });
         });
     });
@@ -10034,9 +8799,7 @@ describe("Tests for postSlidesAdd", () => {
         request.layoutAlias = <string>TestInitializer.invalidizeValue(request.layoutAlias, field, "string", "postSlidesAdd");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesAdd", field, request.layoutAlias).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesAdd(request), "postSlidesAdd", field, request.layoutAlias);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesAdd(request), "postSlidesAdd", field, request.layoutAlias);
             });
         });
     });
@@ -10045,11 +8808,9 @@ describe("Tests for postSlidesAdd", () => {
 describe("Tests for postSlidesConvert", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesConvertRequest();
             return TestInitializer.initialize("postSlidesConvert", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesConvertRequest();
-                return TestInitializer.assertValidCall(api.postSlidesConvert(request), true, "postSlidesConvert");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesConvert(request), true, "postSlidesConvert");
             });
         });
     });
@@ -10060,9 +8821,7 @@ describe("Tests for postSlidesConvert", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesConvert", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesConvert(request), "postSlidesConvert", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesConvert(request), "postSlidesConvert", field, request.format);
             });
         });
     });
@@ -10073,9 +8832,7 @@ describe("Tests for postSlidesConvert", () => {
         request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "postSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesConvert", field, request.document).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesConvert(request), "postSlidesConvert", field, request.document);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesConvert(request), "postSlidesConvert", field, request.document);
             });
         });
     });
@@ -10086,9 +8843,7 @@ describe("Tests for postSlidesConvert", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesConvert", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesConvert(request), "postSlidesConvert", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesConvert(request), "postSlidesConvert", field, request.password);
             });
         });
     });
@@ -10099,9 +8854,7 @@ describe("Tests for postSlidesConvert", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesConvert", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesConvert(request), "postSlidesConvert", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesConvert(request), "postSlidesConvert", field, request.fontsFolder);
             });
         });
     });
@@ -10110,11 +8863,9 @@ describe("Tests for postSlidesConvert", () => {
 describe("Tests for postSlidesCopy", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesCopyRequest();
             return TestInitializer.initialize("postSlidesCopy", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesCopyRequest();
-                return TestInitializer.assertValidCall(api.postSlidesCopy(request), false, "postSlidesCopy");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesCopy(request), false, "postSlidesCopy");
             });
         });
     });
@@ -10125,9 +8876,7 @@ describe("Tests for postSlidesCopy", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.name);
             });
         });
     });
@@ -10138,9 +8887,7 @@ describe("Tests for postSlidesCopy", () => {
         request.slideToCopy = <number>TestInitializer.invalidizeValue(request.slideToCopy, field, "number", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.slideToCopy).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.slideToCopy);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.slideToCopy);
             });
         });
     });
@@ -10151,9 +8898,7 @@ describe("Tests for postSlidesCopy", () => {
         request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.position).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.position);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.position);
             });
         });
     });
@@ -10164,9 +8909,7 @@ describe("Tests for postSlidesCopy", () => {
         request.source = <string>TestInitializer.invalidizeValue(request.source, field, "string", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.source).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.source);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.source);
             });
         });
     });
@@ -10177,9 +8920,7 @@ describe("Tests for postSlidesCopy", () => {
         request.sourcePassword = <string>TestInitializer.invalidizeValue(request.sourcePassword, field, "string", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.sourcePassword).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.sourcePassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.sourcePassword);
             });
         });
     });
@@ -10190,9 +8931,7 @@ describe("Tests for postSlidesCopy", () => {
         request.sourceStorage = <string>TestInitializer.invalidizeValue(request.sourceStorage, field, "string", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.sourceStorage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.sourceStorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.sourceStorage);
             });
         });
     });
@@ -10203,9 +8942,7 @@ describe("Tests for postSlidesCopy", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.password);
             });
         });
     });
@@ -10216,9 +8953,7 @@ describe("Tests for postSlidesCopy", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.folder);
             });
         });
     });
@@ -10229,9 +8964,7 @@ describe("Tests for postSlidesCopy", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesCopy");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesCopy", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesCopy(request), "postSlidesCopy", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesCopy(request), "postSlidesCopy", field, request.storage);
             });
         });
     });
@@ -10240,11 +8973,9 @@ describe("Tests for postSlidesCopy", () => {
 describe("Tests for postSlidesDocument", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesDocumentRequest();
             return TestInitializer.initialize("postSlidesDocument", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesDocumentRequest();
-                return TestInitializer.assertValidCall(api.postSlidesDocument(request), false, "postSlidesDocument");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesDocument(request), false, "postSlidesDocument");
             });
         });
     });
@@ -10255,9 +8986,7 @@ describe("Tests for postSlidesDocument", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocument", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocument(request), "postSlidesDocument", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocument(request), "postSlidesDocument", field, request.name);
             });
         });
     });
@@ -10268,9 +8997,7 @@ describe("Tests for postSlidesDocument", () => {
         request.data = <Buffer>TestInitializer.invalidizeValue(request.data, field, "Buffer", "postSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocument", field, request.data).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocument(request), "postSlidesDocument", field, request.data);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocument(request), "postSlidesDocument", field, request.data);
             });
         });
     });
@@ -10281,9 +9008,7 @@ describe("Tests for postSlidesDocument", () => {
         request.inputPassword = <string>TestInitializer.invalidizeValue(request.inputPassword, field, "string", "postSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocument", field, request.inputPassword).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocument(request), "postSlidesDocument", field, request.inputPassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocument(request), "postSlidesDocument", field, request.inputPassword);
             });
         });
     });
@@ -10294,9 +9019,7 @@ describe("Tests for postSlidesDocument", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocument", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocument(request), "postSlidesDocument", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocument(request), "postSlidesDocument", field, request.password);
             });
         });
     });
@@ -10307,9 +9030,7 @@ describe("Tests for postSlidesDocument", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocument", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocument(request), "postSlidesDocument", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocument(request), "postSlidesDocument", field, request.storage);
             });
         });
     });
@@ -10320,9 +9041,7 @@ describe("Tests for postSlidesDocument", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesDocument");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocument", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocument(request), "postSlidesDocument", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocument(request), "postSlidesDocument", field, request.folder);
             });
         });
     });
@@ -10331,11 +9050,9 @@ describe("Tests for postSlidesDocument", () => {
 describe("Tests for postSlidesDocumentFromHtml", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesDocumentFromHtmlRequest();
             return TestInitializer.initialize("postSlidesDocumentFromHtml", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesDocumentFromHtmlRequest();
-                return TestInitializer.assertValidCall(api.postSlidesDocumentFromHtml(request), false, "postSlidesDocumentFromHtml");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesDocumentFromHtml(request), false, "postSlidesDocumentFromHtml");
             });
         });
     });
@@ -10346,9 +9063,7 @@ describe("Tests for postSlidesDocumentFromHtml", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromHtml", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.name);
             });
         });
     });
@@ -10359,9 +9074,7 @@ describe("Tests for postSlidesDocumentFromHtml", () => {
         request.html = <string>TestInitializer.invalidizeValue(request.html, field, "string", "postSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromHtml", field, request.html).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.html);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.html);
             });
         });
     });
@@ -10372,9 +9085,7 @@ describe("Tests for postSlidesDocumentFromHtml", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromHtml", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.password);
             });
         });
     });
@@ -10385,9 +9096,7 @@ describe("Tests for postSlidesDocumentFromHtml", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromHtml", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.storage);
             });
         });
     });
@@ -10398,9 +9107,7 @@ describe("Tests for postSlidesDocumentFromHtml", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromHtml", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromHtml(request), "postSlidesDocumentFromHtml", field, request.folder);
             });
         });
     });
@@ -10409,11 +9116,9 @@ describe("Tests for postSlidesDocumentFromHtml", () => {
 describe("Tests for postSlidesDocumentFromSource", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesDocumentFromSourceRequest();
             return TestInitializer.initialize("postSlidesDocumentFromSource", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesDocumentFromSourceRequest();
-                return TestInitializer.assertValidCall(api.postSlidesDocumentFromSource(request), false, "postSlidesDocumentFromSource");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), false, "postSlidesDocumentFromSource");
             });
         });
     });
@@ -10424,9 +9129,7 @@ describe("Tests for postSlidesDocumentFromSource", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesDocumentFromSource");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromSource", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.name);
             });
         });
     });
@@ -10437,9 +9140,7 @@ describe("Tests for postSlidesDocumentFromSource", () => {
         request.sourcePath = <string>TestInitializer.invalidizeValue(request.sourcePath, field, "string", "postSlidesDocumentFromSource");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromSource", field, request.sourcePath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.sourcePath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.sourcePath);
             });
         });
     });
@@ -10450,9 +9151,7 @@ describe("Tests for postSlidesDocumentFromSource", () => {
         request.sourcePassword = <string>TestInitializer.invalidizeValue(request.sourcePassword, field, "string", "postSlidesDocumentFromSource");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromSource", field, request.sourcePassword).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.sourcePassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.sourcePassword);
             });
         });
     });
@@ -10463,9 +9162,7 @@ describe("Tests for postSlidesDocumentFromSource", () => {
         request.sourceStorage = <string>TestInitializer.invalidizeValue(request.sourceStorage, field, "string", "postSlidesDocumentFromSource");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromSource", field, request.sourceStorage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.sourceStorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.sourceStorage);
             });
         });
     });
@@ -10476,9 +9173,7 @@ describe("Tests for postSlidesDocumentFromSource", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesDocumentFromSource");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromSource", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.password);
             });
         });
     });
@@ -10489,9 +9184,7 @@ describe("Tests for postSlidesDocumentFromSource", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesDocumentFromSource");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromSource", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.storage);
             });
         });
     });
@@ -10502,9 +9195,7 @@ describe("Tests for postSlidesDocumentFromSource", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesDocumentFromSource");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromSource", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromSource(request), "postSlidesDocumentFromSource", field, request.folder);
             });
         });
     });
@@ -10513,11 +9204,9 @@ describe("Tests for postSlidesDocumentFromSource", () => {
 describe("Tests for postSlidesDocumentFromTemplate", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesDocumentFromTemplateRequest();
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesDocumentFromTemplateRequest();
-                return TestInitializer.assertValidCall(api.postSlidesDocumentFromTemplate(request), false, "postSlidesDocumentFromTemplate");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), false, "postSlidesDocumentFromTemplate");
             });
         });
     });
@@ -10528,9 +9217,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.name);
             });
         });
     });
@@ -10541,9 +9228,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.templatePath = <string>TestInitializer.invalidizeValue(request.templatePath, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.templatePath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.templatePath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.templatePath);
             });
         });
     });
@@ -10554,9 +9239,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.data = <string>TestInitializer.invalidizeValue(request.data, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.data).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.data);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.data);
             });
         });
     });
@@ -10567,9 +9250,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.templatePassword = <string>TestInitializer.invalidizeValue(request.templatePassword, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.templatePassword).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.templatePassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.templatePassword);
             });
         });
     });
@@ -10580,9 +9261,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.templateStorage = <string>TestInitializer.invalidizeValue(request.templateStorage, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.templateStorage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.templateStorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.templateStorage);
             });
         });
     });
@@ -10593,9 +9272,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.isImageDataEmbedded = <boolean>TestInitializer.invalidizeValue(request.isImageDataEmbedded, field, "boolean", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.isImageDataEmbedded).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.isImageDataEmbedded);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.isImageDataEmbedded);
             });
         });
     });
@@ -10606,9 +9283,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.password);
             });
         });
     });
@@ -10619,9 +9294,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.storage);
             });
         });
     });
@@ -10632,9 +9305,7 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesDocumentFromTemplate");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesDocumentFromTemplate", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromTemplate(request), "postSlidesDocumentFromTemplate", field, request.folder);
             });
         });
     });
@@ -10643,11 +9314,9 @@ describe("Tests for postSlidesDocumentFromTemplate", () => {
 describe("Tests for postSlidesPipeline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesPipelineRequest();
             return TestInitializer.initialize("postSlidesPipeline", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesPipelineRequest();
-                return TestInitializer.assertValidCall(api.postSlidesPipeline(request), true, "postSlidesPipeline");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesPipeline(request), true, "postSlidesPipeline");
             });
         });
     });
@@ -10658,9 +9327,7 @@ describe("Tests for postSlidesPipeline", () => {
         request.pipeline = <model.Pipeline>TestInitializer.invalidizeValue(request.pipeline, field, "Pipeline", "postSlidesPipeline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPipeline", field, request.pipeline).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPipeline(request), "postSlidesPipeline", field, request.pipeline);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPipeline(request), "postSlidesPipeline", field, request.pipeline);
             });
         });
     });
@@ -10671,9 +9338,7 @@ describe("Tests for postSlidesPipeline", () => {
         request.files = <Array<Buffer>>TestInitializer.invalidizeValue(request.files, field, "Array&lt;Buffer&gt;", "postSlidesPipeline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPipeline", field, request.files).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPipeline(request), "postSlidesPipeline", field, request.files);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPipeline(request), "postSlidesPipeline", field, request.files);
             });
         });
     });
@@ -10682,11 +9347,9 @@ describe("Tests for postSlidesPipeline", () => {
 describe("Tests for postSlidesPresentationReplaceText", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesPresentationReplaceTextRequest();
             return TestInitializer.initialize("postSlidesPresentationReplaceText", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesPresentationReplaceTextRequest();
-                return TestInitializer.assertValidCall(api.postSlidesPresentationReplaceText(request), false, "postSlidesPresentationReplaceText");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), false, "postSlidesPresentationReplaceText");
             });
         });
     });
@@ -10697,9 +9360,7 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesPresentationReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPresentationReplaceText", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.name);
             });
         });
     });
@@ -10710,9 +9371,7 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
         request.oldValue = <string>TestInitializer.invalidizeValue(request.oldValue, field, "string", "postSlidesPresentationReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPresentationReplaceText", field, request.oldValue).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.oldValue);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.oldValue);
             });
         });
     });
@@ -10723,9 +9382,7 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
         request.newValue = <string>TestInitializer.invalidizeValue(request.newValue, field, "string", "postSlidesPresentationReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPresentationReplaceText", field, request.newValue).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.newValue);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.newValue);
             });
         });
     });
@@ -10736,9 +9393,7 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
         request.ignoreCase = <boolean>TestInitializer.invalidizeValue(request.ignoreCase, field, "boolean", "postSlidesPresentationReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPresentationReplaceText", field, request.ignoreCase).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.ignoreCase);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.ignoreCase);
             });
         });
     });
@@ -10749,9 +9404,7 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesPresentationReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPresentationReplaceText", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.password);
             });
         });
     });
@@ -10762,9 +9415,7 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesPresentationReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPresentationReplaceText", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.folder);
             });
         });
     });
@@ -10775,9 +9426,7 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesPresentationReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesPresentationReplaceText", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesPresentationReplaceText(request), "postSlidesPresentationReplaceText", field, request.storage);
             });
         });
     });
@@ -10786,11 +9435,9 @@ describe("Tests for postSlidesPresentationReplaceText", () => {
 describe("Tests for postSlidesReorder", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesReorderRequest();
             return TestInitializer.initialize("postSlidesReorder", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesReorderRequest();
-                return TestInitializer.assertValidCall(api.postSlidesReorder(request), false, "postSlidesReorder");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesReorder(request), false, "postSlidesReorder");
             });
         });
     });
@@ -10801,9 +9448,7 @@ describe("Tests for postSlidesReorder", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesReorder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorder", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorder(request), "postSlidesReorder", field, request.name);
             });
         });
     });
@@ -10814,9 +9459,7 @@ describe("Tests for postSlidesReorder", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSlidesReorder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorder", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorder(request), "postSlidesReorder", field, request.slideIndex);
             });
         });
     });
@@ -10827,9 +9470,7 @@ describe("Tests for postSlidesReorder", () => {
         request.newPosition = <number>TestInitializer.invalidizeValue(request.newPosition, field, "number", "postSlidesReorder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorder", field, request.newPosition).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field, request.newPosition);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorder(request), "postSlidesReorder", field, request.newPosition);
             });
         });
     });
@@ -10840,9 +9481,7 @@ describe("Tests for postSlidesReorder", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesReorder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorder", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorder(request), "postSlidesReorder", field, request.password);
             });
         });
     });
@@ -10853,9 +9492,7 @@ describe("Tests for postSlidesReorder", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesReorder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorder", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorder(request), "postSlidesReorder", field, request.folder);
             });
         });
     });
@@ -10866,9 +9503,7 @@ describe("Tests for postSlidesReorder", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesReorder");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorder", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorder(request), "postSlidesReorder", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorder(request), "postSlidesReorder", field, request.storage);
             });
         });
     });
@@ -10877,11 +9512,9 @@ describe("Tests for postSlidesReorder", () => {
 describe("Tests for postSlidesReorderMany", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesReorderManyRequest();
             return TestInitializer.initialize("postSlidesReorderMany", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesReorderManyRequest();
-                return TestInitializer.assertValidCall(api.postSlidesReorderMany(request), false, "postSlidesReorderMany");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesReorderMany(request), false, "postSlidesReorderMany");
             });
         });
     });
@@ -10892,9 +9525,7 @@ describe("Tests for postSlidesReorderMany", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesReorderMany");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorderMany", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorderMany(request), "postSlidesReorderMany", field, request.name);
             });
         });
     });
@@ -10905,9 +9536,7 @@ describe("Tests for postSlidesReorderMany", () => {
         request.oldPositions = <Array<number>>TestInitializer.invalidizeValue(request.oldPositions, field, "Array&lt;number&gt;", "postSlidesReorderMany");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorderMany", field, request.oldPositions).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field, request.oldPositions);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorderMany(request), "postSlidesReorderMany", field, request.oldPositions);
             });
         });
     });
@@ -10918,9 +9547,7 @@ describe("Tests for postSlidesReorderMany", () => {
         request.newPositions = <Array<number>>TestInitializer.invalidizeValue(request.newPositions, field, "Array&lt;number&gt;", "postSlidesReorderMany");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorderMany", field, request.newPositions).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field, request.newPositions);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorderMany(request), "postSlidesReorderMany", field, request.newPositions);
             });
         });
     });
@@ -10931,9 +9558,7 @@ describe("Tests for postSlidesReorderMany", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesReorderMany");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorderMany", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorderMany(request), "postSlidesReorderMany", field, request.password);
             });
         });
     });
@@ -10944,9 +9569,7 @@ describe("Tests for postSlidesReorderMany", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesReorderMany");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorderMany", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorderMany(request), "postSlidesReorderMany", field, request.folder);
             });
         });
     });
@@ -10957,9 +9580,7 @@ describe("Tests for postSlidesReorderMany", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesReorderMany");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesReorderMany", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesReorderMany(request), "postSlidesReorderMany", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesReorderMany(request), "postSlidesReorderMany", field, request.storage);
             });
         });
     });
@@ -10968,11 +9589,9 @@ describe("Tests for postSlidesReorderMany", () => {
 describe("Tests for postSlidesSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesSaveAsRequest();
             return TestInitializer.initialize("postSlidesSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesSaveAsRequest();
-                return TestInitializer.assertValidCall(api.postSlidesSaveAs(request), true, "postSlidesSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesSaveAs(request), true, "postSlidesSaveAs");
             });
         });
     });
@@ -10983,9 +9602,7 @@ describe("Tests for postSlidesSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSaveAs(request), "postSlidesSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSaveAs(request), "postSlidesSaveAs", field, request.name);
             });
         });
     });
@@ -10996,9 +9613,7 @@ describe("Tests for postSlidesSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSaveAs(request), "postSlidesSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSaveAs(request), "postSlidesSaveAs", field, request.format);
             });
         });
     });
@@ -11009,9 +9624,7 @@ describe("Tests for postSlidesSaveAs", () => {
         request.options = <model.ExportOptions>TestInitializer.invalidizeValue(request.options, field, "ExportOptions", "postSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSaveAs(request), "postSlidesSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSaveAs(request), "postSlidesSaveAs", field, request.options);
             });
         });
     });
@@ -11022,9 +9635,7 @@ describe("Tests for postSlidesSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSaveAs(request), "postSlidesSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSaveAs(request), "postSlidesSaveAs", field, request.password);
             });
         });
     });
@@ -11035,9 +9646,7 @@ describe("Tests for postSlidesSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSaveAs(request), "postSlidesSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSaveAs(request), "postSlidesSaveAs", field, request.storage);
             });
         });
     });
@@ -11048,9 +9657,7 @@ describe("Tests for postSlidesSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSaveAs(request), "postSlidesSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSaveAs(request), "postSlidesSaveAs", field, request.folder);
             });
         });
     });
@@ -11061,9 +9668,7 @@ describe("Tests for postSlidesSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSaveAs(request), "postSlidesSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSaveAs(request), "postSlidesSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -11072,11 +9677,9 @@ describe("Tests for postSlidesSaveAs", () => {
 describe("Tests for postSlidesSetDocumentProperties", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesSetDocumentPropertiesRequest();
             return TestInitializer.initialize("postSlidesSetDocumentProperties", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesSetDocumentPropertiesRequest();
-                return TestInitializer.assertValidCall(api.postSlidesSetDocumentProperties(request), false, "postSlidesSetDocumentProperties");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesSetDocumentProperties(request), false, "postSlidesSetDocumentProperties");
             });
         });
     });
@@ -11087,9 +9690,7 @@ describe("Tests for postSlidesSetDocumentProperties", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesSetDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSetDocumentProperties", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.name);
             });
         });
     });
@@ -11100,9 +9701,7 @@ describe("Tests for postSlidesSetDocumentProperties", () => {
         request.properties = <model.DocumentProperties>TestInitializer.invalidizeValue(request.properties, field, "DocumentProperties", "postSlidesSetDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSetDocumentProperties", field, request.properties).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.properties);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.properties);
             });
         });
     });
@@ -11113,9 +9712,7 @@ describe("Tests for postSlidesSetDocumentProperties", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesSetDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSetDocumentProperties", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.password);
             });
         });
     });
@@ -11126,9 +9723,7 @@ describe("Tests for postSlidesSetDocumentProperties", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesSetDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSetDocumentProperties", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.folder);
             });
         });
     });
@@ -11139,9 +9734,7 @@ describe("Tests for postSlidesSetDocumentProperties", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesSetDocumentProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSetDocumentProperties", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSetDocumentProperties(request), "postSlidesSetDocumentProperties", field, request.storage);
             });
         });
     });
@@ -11150,11 +9743,9 @@ describe("Tests for postSlidesSetDocumentProperties", () => {
 describe("Tests for postSlidesSlideReplaceText", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesSlideReplaceTextRequest();
             return TestInitializer.initialize("postSlidesSlideReplaceText", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesSlideReplaceTextRequest();
-                return TestInitializer.assertValidCall(api.postSlidesSlideReplaceText(request), false, "postSlidesSlideReplaceText");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), false, "postSlidesSlideReplaceText");
             });
         });
     });
@@ -11165,9 +9756,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.name);
             });
         });
     });
@@ -11178,9 +9767,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.slideIndex);
             });
         });
     });
@@ -11191,9 +9778,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.oldValue = <string>TestInitializer.invalidizeValue(request.oldValue, field, "string", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.oldValue).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.oldValue);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.oldValue);
             });
         });
     });
@@ -11204,9 +9789,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.newValue = <string>TestInitializer.invalidizeValue(request.newValue, field, "string", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.newValue).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.newValue);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.newValue);
             });
         });
     });
@@ -11217,9 +9800,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.ignoreCase = <boolean>TestInitializer.invalidizeValue(request.ignoreCase, field, "boolean", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.ignoreCase).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.ignoreCase);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.ignoreCase);
             });
         });
     });
@@ -11230,9 +9811,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.password);
             });
         });
     });
@@ -11243,9 +9822,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.folder);
             });
         });
     });
@@ -11256,9 +9833,7 @@ describe("Tests for postSlidesSlideReplaceText", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesSlideReplaceText");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSlideReplaceText", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSlideReplaceText(request), "postSlidesSlideReplaceText", field, request.storage);
             });
         });
     });
@@ -11267,11 +9842,9 @@ describe("Tests for postSlidesSlideReplaceText", () => {
 describe("Tests for postSlidesSplit", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesSplitRequest();
             return TestInitializer.initialize("postSlidesSplit", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPostSlidesSplitRequest();
-                return TestInitializer.assertValidCall(api.postSlidesSplit(request), false, "postSlidesSplit");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesSplit(request), false, "postSlidesSplit");
             });
         });
     });
@@ -11282,9 +9855,7 @@ describe("Tests for postSlidesSplit", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.name);
             });
         });
     });
@@ -11295,9 +9866,7 @@ describe("Tests for postSlidesSplit", () => {
         request.options = <model.ExportOptions>TestInitializer.invalidizeValue(request.options, field, "ExportOptions", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.options);
             });
         });
     });
@@ -11308,9 +9877,7 @@ describe("Tests for postSlidesSplit", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.format);
             });
         });
     });
@@ -11321,9 +9888,7 @@ describe("Tests for postSlidesSplit", () => {
         request.width = <number>TestInitializer.invalidizeValue(request.width, field, "number", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.width).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.width);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.width);
             });
         });
     });
@@ -11334,9 +9899,7 @@ describe("Tests for postSlidesSplit", () => {
         request.height = <number>TestInitializer.invalidizeValue(request.height, field, "number", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.height).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.height);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.height);
             });
         });
     });
@@ -11347,9 +9910,7 @@ describe("Tests for postSlidesSplit", () => {
         request.to = <number>TestInitializer.invalidizeValue(request.to, field, "number", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.to).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.to);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.to);
             });
         });
     });
@@ -11360,9 +9921,7 @@ describe("Tests for postSlidesSplit", () => {
         request.from = <number>TestInitializer.invalidizeValue(request.from, field, "number", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.from).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.from);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.from);
             });
         });
     });
@@ -11373,9 +9932,7 @@ describe("Tests for postSlidesSplit", () => {
         request.destFolder = <string>TestInitializer.invalidizeValue(request.destFolder, field, "string", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.destFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.destFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.destFolder);
             });
         });
     });
@@ -11386,9 +9943,7 @@ describe("Tests for postSlidesSplit", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.password);
             });
         });
     });
@@ -11399,9 +9954,7 @@ describe("Tests for postSlidesSplit", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.storage);
             });
         });
     });
@@ -11412,9 +9965,7 @@ describe("Tests for postSlidesSplit", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.folder);
             });
         });
     });
@@ -11425,9 +9976,7 @@ describe("Tests for postSlidesSplit", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postSlidesSplit");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesSplit", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.postSlidesSplit(request), "postSlidesSplit", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesSplit(request), "postSlidesSplit", field, request.fontsFolder);
             });
         });
     });
@@ -11436,11 +9985,9 @@ describe("Tests for postSlidesSplit", () => {
 describe("Tests for putLayoutSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutLayoutSlideRequest();
             return TestInitializer.initialize("putLayoutSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutLayoutSlideRequest();
-                return TestInitializer.assertValidCall(api.putLayoutSlide(request), false, "putLayoutSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putLayoutSlide(request), false, "putLayoutSlide");
             });
         });
     });
@@ -11451,9 +9998,7 @@ describe("Tests for putLayoutSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putLayoutSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putLayoutSlide(request), "putLayoutSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putLayoutSlide(request), "putLayoutSlide", field, request.name);
             });
         });
     });
@@ -11464,9 +10009,7 @@ describe("Tests for putLayoutSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putLayoutSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putLayoutSlide(request), "putLayoutSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putLayoutSlide(request), "putLayoutSlide", field, request.slideIndex);
             });
         });
     });
@@ -11477,9 +10020,7 @@ describe("Tests for putLayoutSlide", () => {
         request.slideDto = <model.LayoutSlide>TestInitializer.invalidizeValue(request.slideDto, field, "LayoutSlide", "putLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putLayoutSlide", field, request.slideDto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putLayoutSlide(request), "putLayoutSlide", field, request.slideDto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putLayoutSlide(request), "putLayoutSlide", field, request.slideDto);
             });
         });
     });
@@ -11490,9 +10031,7 @@ describe("Tests for putLayoutSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putLayoutSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putLayoutSlide(request), "putLayoutSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putLayoutSlide(request), "putLayoutSlide", field, request.password);
             });
         });
     });
@@ -11503,9 +10042,7 @@ describe("Tests for putLayoutSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putLayoutSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putLayoutSlide(request), "putLayoutSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putLayoutSlide(request), "putLayoutSlide", field, request.folder);
             });
         });
     });
@@ -11516,9 +10053,7 @@ describe("Tests for putLayoutSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putLayoutSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putLayoutSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putLayoutSlide(request), "putLayoutSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putLayoutSlide(request), "putLayoutSlide", field, request.storage);
             });
         });
     });
@@ -11527,11 +10062,9 @@ describe("Tests for putLayoutSlide", () => {
 describe("Tests for putNotesSlideShapeSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutNotesSlideShapeSaveAsRequest();
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutNotesSlideShapeSaveAsRequest();
-                return TestInitializer.assertValidCall(api.putNotesSlideShapeSaveAs(request), false, "putNotesSlideShapeSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), false, "putNotesSlideShapeSaveAs");
             });
         });
     });
@@ -11542,9 +10075,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.name);
             });
         });
     });
@@ -11555,9 +10086,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.slideIndex);
             });
         });
     });
@@ -11568,9 +10097,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.path);
             });
         });
     });
@@ -11581,9 +10108,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.shapeIndex);
             });
         });
     });
@@ -11594,9 +10119,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.format);
             });
         });
     });
@@ -11607,9 +10130,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.outPath = <string>TestInitializer.invalidizeValue(request.outPath, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.outPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.outPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.outPath);
             });
         });
     });
@@ -11620,9 +10141,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.options = <model.IShapeExportOptions>TestInitializer.invalidizeValue(request.options, field, "IShapeExportOptions", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.options);
             });
         });
     });
@@ -11633,9 +10152,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.password);
             });
         });
     });
@@ -11646,9 +10163,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.folder);
             });
         });
     });
@@ -11659,9 +10174,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.storage);
             });
         });
     });
@@ -11672,9 +10185,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.scaleX = <number>TestInitializer.invalidizeValue(request.scaleX, field, "number", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.scaleX).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.scaleX);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.scaleX);
             });
         });
     });
@@ -11685,9 +10196,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.scaleY = <number>TestInitializer.invalidizeValue(request.scaleY, field, "number", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.scaleY).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.scaleY);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.scaleY);
             });
         });
     });
@@ -11698,9 +10207,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.bounds = <string>TestInitializer.invalidizeValue(request.bounds, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.bounds).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.bounds);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.bounds);
             });
         });
     });
@@ -11711,9 +10218,7 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "putNotesSlideShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -11722,11 +10227,9 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
 describe("Tests for putPresentationMerge", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutPresentationMergeRequest();
             return TestInitializer.initialize("putPresentationMerge", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutPresentationMergeRequest();
-                return TestInitializer.assertValidCall(api.putPresentationMerge(request), false, "putPresentationMerge");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putPresentationMerge(request), false, "putPresentationMerge");
             });
         });
     });
@@ -11737,9 +10240,7 @@ describe("Tests for putPresentationMerge", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putPresentationMerge", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putPresentationMerge(request), "putPresentationMerge", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putPresentationMerge(request), "putPresentationMerge", field, request.name);
             });
         });
     });
@@ -11750,9 +10251,7 @@ describe("Tests for putPresentationMerge", () => {
         request.request = <model.OrderedMergeRequest>TestInitializer.invalidizeValue(request.request, field, "OrderedMergeRequest", "putPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putPresentationMerge", field, request.request).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putPresentationMerge(request), "putPresentationMerge", field, request.request);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putPresentationMerge(request), "putPresentationMerge", field, request.request);
             });
         });
     });
@@ -11763,9 +10262,7 @@ describe("Tests for putPresentationMerge", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putPresentationMerge", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putPresentationMerge(request), "putPresentationMerge", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putPresentationMerge(request), "putPresentationMerge", field, request.password);
             });
         });
     });
@@ -11776,9 +10273,7 @@ describe("Tests for putPresentationMerge", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putPresentationMerge", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putPresentationMerge(request), "putPresentationMerge", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putPresentationMerge(request), "putPresentationMerge", field, request.storage);
             });
         });
     });
@@ -11789,9 +10284,7 @@ describe("Tests for putPresentationMerge", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putPresentationMerge");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putPresentationMerge", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putPresentationMerge(request), "putPresentationMerge", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putPresentationMerge(request), "putPresentationMerge", field, request.folder);
             });
         });
     });
@@ -11800,11 +10293,9 @@ describe("Tests for putPresentationMerge", () => {
 describe("Tests for putSetParagraphPortionProperties", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSetParagraphPortionPropertiesRequest();
             return TestInitializer.initialize("putSetParagraphPortionProperties", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSetParagraphPortionPropertiesRequest();
-                return TestInitializer.assertValidCall(api.putSetParagraphPortionProperties(request), false, "putSetParagraphPortionProperties");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), false, "putSetParagraphPortionProperties");
             });
         });
     });
@@ -11815,9 +10306,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.name);
             });
         });
     });
@@ -11828,9 +10317,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.slideIndex);
             });
         });
     });
@@ -11841,9 +10328,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.path);
             });
         });
     });
@@ -11854,9 +10339,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.shapeIndex);
             });
         });
     });
@@ -11867,9 +10350,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.paragraphIndex);
             });
         });
     });
@@ -11880,9 +10361,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.portionIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.portionIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.portionIndex);
             });
         });
     });
@@ -11893,9 +10372,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.dto = <model.Portion>TestInitializer.invalidizeValue(request.dto, field, "Portion", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.dto);
             });
         });
     });
@@ -11906,9 +10383,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.password);
             });
         });
     });
@@ -11919,9 +10394,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.folder);
             });
         });
     });
@@ -11932,9 +10405,7 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSetParagraphPortionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.storage);
             });
         });
     });
@@ -11943,11 +10414,9 @@ describe("Tests for putSetParagraphPortionProperties", () => {
 describe("Tests for putSetParagraphProperties", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSetParagraphPropertiesRequest();
             return TestInitializer.initialize("putSetParagraphProperties", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSetParagraphPropertiesRequest();
-                return TestInitializer.assertValidCall(api.putSetParagraphProperties(request), false, "putSetParagraphProperties");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSetParagraphProperties(request), false, "putSetParagraphProperties");
             });
         });
     });
@@ -11958,9 +10427,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.name);
             });
         });
     });
@@ -11971,9 +10438,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.slideIndex);
             });
         });
     });
@@ -11984,9 +10449,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.path);
             });
         });
     });
@@ -11997,9 +10460,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.shapeIndex);
             });
         });
     });
@@ -12010,9 +10471,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.paragraphIndex);
             });
         });
     });
@@ -12023,9 +10482,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.dto = <model.Paragraph>TestInitializer.invalidizeValue(request.dto, field, "Paragraph", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.dto);
             });
         });
     });
@@ -12036,9 +10493,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.password);
             });
         });
     });
@@ -12049,9 +10504,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.folder);
             });
         });
     });
@@ -12062,9 +10515,7 @@ describe("Tests for putSetParagraphProperties", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSetParagraphProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSetParagraphProperties", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSetParagraphProperties(request), "putSetParagraphProperties", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.storage);
             });
         });
     });
@@ -12073,11 +10524,9 @@ describe("Tests for putSetParagraphProperties", () => {
 describe("Tests for putShapeSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutShapeSaveAsRequest();
             return TestInitializer.initialize("putShapeSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutShapeSaveAsRequest();
-                return TestInitializer.assertValidCall(api.putShapeSaveAs(request), false, "putShapeSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putShapeSaveAs(request), false, "putShapeSaveAs");
             });
         });
     });
@@ -12088,9 +10537,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.name);
             });
         });
     });
@@ -12101,9 +10548,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.slideIndex);
             });
         });
     });
@@ -12114,9 +10559,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.path);
             });
         });
     });
@@ -12127,9 +10570,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.shapeIndex);
             });
         });
     });
@@ -12140,9 +10581,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.format);
             });
         });
     });
@@ -12153,9 +10592,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.outPath = <string>TestInitializer.invalidizeValue(request.outPath, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.outPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.outPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.outPath);
             });
         });
     });
@@ -12166,9 +10603,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.options = <model.IShapeExportOptions>TestInitializer.invalidizeValue(request.options, field, "IShapeExportOptions", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.options);
             });
         });
     });
@@ -12179,9 +10614,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.password);
             });
         });
     });
@@ -12192,9 +10625,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.folder);
             });
         });
     });
@@ -12205,9 +10636,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.storage);
             });
         });
     });
@@ -12218,9 +10647,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.scaleX = <number>TestInitializer.invalidizeValue(request.scaleX, field, "number", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.scaleX).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.scaleX);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.scaleX);
             });
         });
     });
@@ -12231,9 +10658,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.scaleY = <number>TestInitializer.invalidizeValue(request.scaleY, field, "number", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.scaleY).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.scaleY);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.scaleY);
             });
         });
     });
@@ -12244,9 +10669,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.bounds = <string>TestInitializer.invalidizeValue(request.bounds, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.bounds).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.bounds);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.bounds);
             });
         });
     });
@@ -12257,9 +10680,7 @@ describe("Tests for putShapeSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "putShapeSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putShapeSaveAs(request), "putShapeSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -12268,11 +10689,9 @@ describe("Tests for putShapeSaveAs", () => {
 describe("Tests for putSlideAnimation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlideAnimationRequest();
             return TestInitializer.initialize("putSlideAnimation", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlideAnimationRequest();
-                return TestInitializer.assertValidCall(api.putSlideAnimation(request), false, "putSlideAnimation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlideAnimation(request), false, "putSlideAnimation");
             });
         });
     });
@@ -12283,9 +10702,7 @@ describe("Tests for putSlideAnimation", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimation", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimation(request), "putSlideAnimation", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimation(request), "putSlideAnimation", field, request.name);
             });
         });
     });
@@ -12296,9 +10713,7 @@ describe("Tests for putSlideAnimation", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimation", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimation(request), "putSlideAnimation", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimation(request), "putSlideAnimation", field, request.slideIndex);
             });
         });
     });
@@ -12309,9 +10724,7 @@ describe("Tests for putSlideAnimation", () => {
         request.animation = <model.SlideAnimation>TestInitializer.invalidizeValue(request.animation, field, "SlideAnimation", "putSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimation", field, request.animation).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimation(request), "putSlideAnimation", field, request.animation);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimation(request), "putSlideAnimation", field, request.animation);
             });
         });
     });
@@ -12322,9 +10735,7 @@ describe("Tests for putSlideAnimation", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimation", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimation(request), "putSlideAnimation", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimation(request), "putSlideAnimation", field, request.password);
             });
         });
     });
@@ -12335,9 +10746,7 @@ describe("Tests for putSlideAnimation", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimation", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimation(request), "putSlideAnimation", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimation(request), "putSlideAnimation", field, request.folder);
             });
         });
     });
@@ -12348,9 +10757,7 @@ describe("Tests for putSlideAnimation", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimation", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimation(request), "putSlideAnimation", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimation(request), "putSlideAnimation", field, request.storage);
             });
         });
     });
@@ -12359,11 +10766,9 @@ describe("Tests for putSlideAnimation", () => {
 describe("Tests for putSlideAnimationEffect", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlideAnimationEffectRequest();
             return TestInitializer.initialize("putSlideAnimationEffect", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlideAnimationEffectRequest();
-                return TestInitializer.assertValidCall(api.putSlideAnimationEffect(request), false, "putSlideAnimationEffect");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlideAnimationEffect(request), false, "putSlideAnimationEffect");
             });
         });
     });
@@ -12374,9 +10779,7 @@ describe("Tests for putSlideAnimationEffect", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationEffect", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.name);
             });
         });
     });
@@ -12387,9 +10790,7 @@ describe("Tests for putSlideAnimationEffect", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationEffect", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.slideIndex);
             });
         });
     });
@@ -12400,9 +10801,7 @@ describe("Tests for putSlideAnimationEffect", () => {
         request.effectIndex = <number>TestInitializer.invalidizeValue(request.effectIndex, field, "number", "putSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationEffect", field, request.effectIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.effectIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.effectIndex);
             });
         });
     });
@@ -12413,9 +10812,7 @@ describe("Tests for putSlideAnimationEffect", () => {
         request.effect = <model.Effect>TestInitializer.invalidizeValue(request.effect, field, "Effect", "putSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationEffect", field, request.effect).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.effect);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.effect);
             });
         });
     });
@@ -12426,9 +10823,7 @@ describe("Tests for putSlideAnimationEffect", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationEffect", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.password);
             });
         });
     });
@@ -12439,9 +10834,7 @@ describe("Tests for putSlideAnimationEffect", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationEffect", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.folder);
             });
         });
     });
@@ -12452,9 +10845,7 @@ describe("Tests for putSlideAnimationEffect", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlideAnimationEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationEffect", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationEffect(request), "putSlideAnimationEffect", field, request.storage);
             });
         });
     });
@@ -12463,11 +10854,9 @@ describe("Tests for putSlideAnimationEffect", () => {
 describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlideAnimationInteractiveSequenceEffectRequest();
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlideAnimationInteractiveSequenceEffectRequest();
-                return TestInitializer.assertValidCall(api.putSlideAnimationInteractiveSequenceEffect(request), false, "putSlideAnimationInteractiveSequenceEffect");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), false, "putSlideAnimationInteractiveSequenceEffect");
             });
         });
     });
@@ -12478,9 +10867,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.name);
             });
         });
     });
@@ -12491,9 +10878,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.slideIndex);
             });
         });
     });
@@ -12504,9 +10889,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.sequenceIndex = <number>TestInitializer.invalidizeValue(request.sequenceIndex, field, "number", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.sequenceIndex);
             });
         });
     });
@@ -12517,9 +10900,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.effectIndex = <number>TestInitializer.invalidizeValue(request.effectIndex, field, "number", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.effectIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.effectIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.effectIndex);
             });
         });
     });
@@ -12530,9 +10911,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.effect = <model.Effect>TestInitializer.invalidizeValue(request.effect, field, "Effect", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.effect).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.effect);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.effect);
             });
         });
     });
@@ -12543,9 +10922,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.password);
             });
         });
     });
@@ -12556,9 +10933,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.folder);
             });
         });
     });
@@ -12569,9 +10944,7 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlideAnimationInteractiveSequenceEffect");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideAnimationInteractiveSequenceEffect", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideAnimationInteractiveSequenceEffect(request), "putSlideAnimationInteractiveSequenceEffect", field, request.storage);
             });
         });
     });
@@ -12580,11 +10953,9 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
 describe("Tests for putSlideSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlideSaveAsRequest();
             return TestInitializer.initialize("putSlideSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlideSaveAsRequest();
-                return TestInitializer.assertValidCall(api.putSlideSaveAs(request), false, "putSlideSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlideSaveAs(request), false, "putSlideSaveAs");
             });
         });
     });
@@ -12595,9 +10966,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.name);
             });
         });
     });
@@ -12608,9 +10977,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.slideIndex);
             });
         });
     });
@@ -12621,9 +10988,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.format);
             });
         });
     });
@@ -12634,9 +10999,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.outPath = <string>TestInitializer.invalidizeValue(request.outPath, field, "string", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.outPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.outPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.outPath);
             });
         });
     });
@@ -12647,9 +11010,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.options = <model.ExportOptions>TestInitializer.invalidizeValue(request.options, field, "ExportOptions", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.options);
             });
         });
     });
@@ -12660,9 +11021,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.width = <number>TestInitializer.invalidizeValue(request.width, field, "number", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.width).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.width);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.width);
             });
         });
     });
@@ -12673,9 +11032,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.height = <number>TestInitializer.invalidizeValue(request.height, field, "number", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.height).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.height);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.height);
             });
         });
     });
@@ -12686,9 +11043,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.password);
             });
         });
     });
@@ -12699,9 +11054,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.folder);
             });
         });
     });
@@ -12712,9 +11065,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.storage);
             });
         });
     });
@@ -12725,9 +11076,7 @@ describe("Tests for putSlideSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "putSlideSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideSaveAs(request), "putSlideSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSaveAs(request), "putSlideSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -12736,11 +11085,9 @@ describe("Tests for putSlideSaveAs", () => {
 describe("Tests for putSlideShapeInfo", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlideShapeInfoRequest();
             return TestInitializer.initialize("putSlideShapeInfo", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlideShapeInfoRequest();
-                return TestInitializer.assertValidCall(api.putSlideShapeInfo(request), false, "putSlideShapeInfo");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlideShapeInfo(request), false, "putSlideShapeInfo");
             });
         });
     });
@@ -12751,9 +11098,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.name);
             });
         });
     });
@@ -12764,9 +11109,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.slideIndex);
             });
         });
     });
@@ -12777,9 +11120,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.path);
             });
         });
     });
@@ -12790,9 +11131,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.shapeIndex);
             });
         });
     });
@@ -12803,9 +11142,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.dto = <model.ShapeBase>TestInitializer.invalidizeValue(request.dto, field, "ShapeBase", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.dto);
             });
         });
     });
@@ -12816,9 +11153,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.password);
             });
         });
     });
@@ -12829,9 +11164,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.folder);
             });
         });
     });
@@ -12842,9 +11175,7 @@ describe("Tests for putSlideShapeInfo", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlideShapeInfo");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlideShapeInfo(request), "putSlideShapeInfo", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.storage);
             });
         });
     });
@@ -12853,11 +11184,9 @@ describe("Tests for putSlideShapeInfo", () => {
 describe("Tests for putSlidesConvert", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesConvertRequest();
             return TestInitializer.initialize("putSlidesConvert", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesConvertRequest();
-                return TestInitializer.assertValidCall(api.putSlidesConvert(request), false, "putSlidesConvert");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesConvert(request), false, "putSlidesConvert");
             });
         });
     });
@@ -12868,9 +11197,7 @@ describe("Tests for putSlidesConvert", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "putSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesConvert", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesConvert(request), "putSlidesConvert", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.format);
             });
         });
     });
@@ -12881,9 +11208,7 @@ describe("Tests for putSlidesConvert", () => {
         request.outPath = <string>TestInitializer.invalidizeValue(request.outPath, field, "string", "putSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesConvert", field, request.outPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesConvert(request), "putSlidesConvert", field, request.outPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.outPath);
             });
         });
     });
@@ -12894,9 +11219,7 @@ describe("Tests for putSlidesConvert", () => {
         request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "putSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesConvert", field, request.document).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesConvert(request), "putSlidesConvert", field, request.document);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.document);
             });
         });
     });
@@ -12907,9 +11230,7 @@ describe("Tests for putSlidesConvert", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesConvert", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesConvert(request), "putSlidesConvert", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.password);
             });
         });
     });
@@ -12920,9 +11241,7 @@ describe("Tests for putSlidesConvert", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "putSlidesConvert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesConvert", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesConvert(request), "putSlidesConvert", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.fontsFolder);
             });
         });
     });
@@ -12931,11 +11250,9 @@ describe("Tests for putSlidesConvert", () => {
 describe("Tests for putSlidesDocumentFromHtml", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesDocumentFromHtmlRequest();
             return TestInitializer.initialize("putSlidesDocumentFromHtml", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesDocumentFromHtmlRequest();
-                return TestInitializer.assertValidCall(api.putSlidesDocumentFromHtml(request), false, "putSlidesDocumentFromHtml");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(request), false, "putSlidesDocumentFromHtml");
             });
         });
     });
@@ -12946,9 +11263,7 @@ describe("Tests for putSlidesDocumentFromHtml", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesDocumentFromHtml", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.name);
             });
         });
     });
@@ -12959,9 +11274,7 @@ describe("Tests for putSlidesDocumentFromHtml", () => {
         request.html = <string>TestInitializer.invalidizeValue(request.html, field, "string", "putSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesDocumentFromHtml", field, request.html).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.html);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.html);
             });
         });
     });
@@ -12972,9 +11285,7 @@ describe("Tests for putSlidesDocumentFromHtml", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesDocumentFromHtml", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.password);
             });
         });
     });
@@ -12985,9 +11296,7 @@ describe("Tests for putSlidesDocumentFromHtml", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesDocumentFromHtml", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.storage);
             });
         });
     });
@@ -12998,9 +11307,7 @@ describe("Tests for putSlidesDocumentFromHtml", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesDocumentFromHtml");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesDocumentFromHtml", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.folder);
             });
         });
     });
@@ -13009,11 +11316,9 @@ describe("Tests for putSlidesDocumentFromHtml", () => {
 describe("Tests for putSlidesSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesSaveAsRequest();
             return TestInitializer.initialize("putSlidesSaveAs", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesSaveAsRequest();
-                return TestInitializer.assertValidCall(api.putSlidesSaveAs(request), false, "putSlidesSaveAs");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSaveAs(request), false, "putSlidesSaveAs");
             });
         });
     });
@@ -13024,9 +11329,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.name);
             });
         });
     });
@@ -13037,9 +11340,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.outPath = <string>TestInitializer.invalidizeValue(request.outPath, field, "string", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.outPath).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.outPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.outPath);
             });
         });
     });
@@ -13050,9 +11351,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.format).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.format);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.format);
             });
         });
     });
@@ -13063,9 +11362,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.options = <model.ExportOptions>TestInitializer.invalidizeValue(request.options, field, "ExportOptions", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.options).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.options);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.options);
             });
         });
     });
@@ -13076,9 +11373,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.password);
             });
         });
     });
@@ -13089,9 +11384,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.storage);
             });
         });
     });
@@ -13102,9 +11395,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.folder);
             });
         });
     });
@@ -13115,9 +11406,7 @@ describe("Tests for putSlidesSaveAs", () => {
         request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "putSlidesSaveAs");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSaveAs", field, request.fontsFolder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSaveAs(request), "putSlidesSaveAs", field, request.fontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSaveAs(request), "putSlidesSaveAs", field, request.fontsFolder);
             });
         });
     });
@@ -13126,11 +11415,9 @@ describe("Tests for putSlidesSaveAs", () => {
 describe("Tests for putSlidesSetDocumentProperty", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesSetDocumentPropertyRequest();
             return TestInitializer.initialize("putSlidesSetDocumentProperty", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesSetDocumentPropertyRequest();
-                return TestInitializer.assertValidCall(api.putSlidesSetDocumentProperty(request), false, "putSlidesSetDocumentProperty");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSetDocumentProperty(request), false, "putSlidesSetDocumentProperty");
             });
         });
     });
@@ -13141,9 +11428,7 @@ describe("Tests for putSlidesSetDocumentProperty", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesSetDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSetDocumentProperty", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.name);
             });
         });
     });
@@ -13154,9 +11439,7 @@ describe("Tests for putSlidesSetDocumentProperty", () => {
         request.propertyName = <string>TestInitializer.invalidizeValue(request.propertyName, field, "string", "putSlidesSetDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSetDocumentProperty", field, request.propertyName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.propertyName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.propertyName);
             });
         });
     });
@@ -13167,9 +11450,7 @@ describe("Tests for putSlidesSetDocumentProperty", () => {
         request.property = <model.DocumentProperty>TestInitializer.invalidizeValue(request.property, field, "DocumentProperty", "putSlidesSetDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSetDocumentProperty", field, request.property).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.property);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.property);
             });
         });
     });
@@ -13180,9 +11461,7 @@ describe("Tests for putSlidesSetDocumentProperty", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesSetDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSetDocumentProperty", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.password);
             });
         });
     });
@@ -13193,9 +11472,7 @@ describe("Tests for putSlidesSetDocumentProperty", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesSetDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSetDocumentProperty", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.folder);
             });
         });
     });
@@ -13206,9 +11483,7 @@ describe("Tests for putSlidesSetDocumentProperty", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesSetDocumentProperty");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSetDocumentProperty", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSetDocumentProperty(request), "putSlidesSetDocumentProperty", field, request.storage);
             });
         });
     });
@@ -13217,11 +11492,9 @@ describe("Tests for putSlidesSetDocumentProperty", () => {
 describe("Tests for putSlidesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesSlideRequest();
             return TestInitializer.initialize("putSlidesSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesSlideRequest();
-                return TestInitializer.assertValidCall(api.putSlidesSlide(request), false, "putSlidesSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSlide(request), false, "putSlidesSlide");
             });
         });
     });
@@ -13232,9 +11505,7 @@ describe("Tests for putSlidesSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlide(request), "putSlidesSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlide(request), "putSlidesSlide", field, request.name);
             });
         });
     });
@@ -13245,9 +11516,7 @@ describe("Tests for putSlidesSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlide(request), "putSlidesSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlide(request), "putSlidesSlide", field, request.slideIndex);
             });
         });
     });
@@ -13258,9 +11527,7 @@ describe("Tests for putSlidesSlide", () => {
         request.slideDto = <model.Slide>TestInitializer.invalidizeValue(request.slideDto, field, "Slide", "putSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlide", field, request.slideDto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlide(request), "putSlidesSlide", field, request.slideDto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlide(request), "putSlidesSlide", field, request.slideDto);
             });
         });
     });
@@ -13271,9 +11538,7 @@ describe("Tests for putSlidesSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlide(request), "putSlidesSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlide(request), "putSlidesSlide", field, request.password);
             });
         });
     });
@@ -13284,9 +11549,7 @@ describe("Tests for putSlidesSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlide(request), "putSlidesSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlide(request), "putSlidesSlide", field, request.folder);
             });
         });
     });
@@ -13297,9 +11560,7 @@ describe("Tests for putSlidesSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlide(request), "putSlidesSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlide(request), "putSlidesSlide", field, request.storage);
             });
         });
     });
@@ -13308,11 +11569,9 @@ describe("Tests for putSlidesSlide", () => {
 describe("Tests for putSlidesSlideBackground", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesSlideBackgroundRequest();
             return TestInitializer.initialize("putSlidesSlideBackground", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesSlideBackgroundRequest();
-                return TestInitializer.assertValidCall(api.putSlidesSlideBackground(request), false, "putSlidesSlideBackground");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSlideBackground(request), false, "putSlidesSlideBackground");
             });
         });
     });
@@ -13323,9 +11582,7 @@ describe("Tests for putSlidesSlideBackground", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackground", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.name);
             });
         });
     });
@@ -13336,9 +11593,7 @@ describe("Tests for putSlidesSlideBackground", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackground", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.slideIndex);
             });
         });
     });
@@ -13349,9 +11604,7 @@ describe("Tests for putSlidesSlideBackground", () => {
         request.background = <model.SlideBackground>TestInitializer.invalidizeValue(request.background, field, "SlideBackground", "putSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackground", field, request.background).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.background);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.background);
             });
         });
     });
@@ -13362,9 +11615,7 @@ describe("Tests for putSlidesSlideBackground", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackground", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.folder);
             });
         });
     });
@@ -13375,9 +11626,7 @@ describe("Tests for putSlidesSlideBackground", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackground", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.password);
             });
         });
     });
@@ -13388,9 +11637,7 @@ describe("Tests for putSlidesSlideBackground", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesSlideBackground");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackground", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackground(request), "putSlidesSlideBackground", field, request.storage);
             });
         });
     });
@@ -13399,11 +11646,9 @@ describe("Tests for putSlidesSlideBackground", () => {
 describe("Tests for putSlidesSlideBackgroundColor", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesSlideBackgroundColorRequest();
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesSlideBackgroundColorRequest();
-                return TestInitializer.assertValidCall(api.putSlidesSlideBackgroundColor(request), false, "putSlidesSlideBackgroundColor");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), false, "putSlidesSlideBackgroundColor");
             });
         });
     });
@@ -13414,9 +11659,7 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesSlideBackgroundColor");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.name);
             });
         });
     });
@@ -13427,9 +11670,7 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlidesSlideBackgroundColor");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.slideIndex);
             });
         });
     });
@@ -13440,9 +11681,7 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
         request.color = <string>TestInitializer.invalidizeValue(request.color, field, "string", "putSlidesSlideBackgroundColor");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", field, request.color).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.color);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.color);
             });
         });
     });
@@ -13453,9 +11692,7 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesSlideBackgroundColor");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.folder);
             });
         });
     });
@@ -13466,9 +11703,7 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesSlideBackgroundColor");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.password);
             });
         });
     });
@@ -13479,9 +11714,7 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesSlideBackgroundColor");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.storage);
             });
         });
     });
@@ -13490,11 +11723,9 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
 describe("Tests for putSlidesSlideSize", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesSlideSizeRequest();
             return TestInitializer.initialize("putSlidesSlideSize", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutSlidesSlideSizeRequest();
-                return TestInitializer.assertValidCall(api.putSlidesSlideSize(request), false, "putSlidesSlideSize");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSlideSize(request), false, "putSlidesSlideSize");
             });
         });
     });
@@ -13505,9 +11736,7 @@ describe("Tests for putSlidesSlideSize", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.name);
             });
         });
     });
@@ -13518,9 +11747,7 @@ describe("Tests for putSlidesSlideSize", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.password);
             });
         });
     });
@@ -13531,9 +11758,7 @@ describe("Tests for putSlidesSlideSize", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.storage);
             });
         });
     });
@@ -13544,9 +11769,7 @@ describe("Tests for putSlidesSlideSize", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.folder);
             });
         });
     });
@@ -13557,9 +11780,7 @@ describe("Tests for putSlidesSlideSize", () => {
         request.width = <number>TestInitializer.invalidizeValue(request.width, field, "number", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.width).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.width);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.width);
             });
         });
     });
@@ -13570,9 +11791,7 @@ describe("Tests for putSlidesSlideSize", () => {
         request.height = <number>TestInitializer.invalidizeValue(request.height, field, "number", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.height).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.height);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.height);
             });
         });
     });
@@ -13583,9 +11802,7 @@ describe("Tests for putSlidesSlideSize", () => {
         request.sizeType = <string>TestInitializer.invalidizeValue(request.sizeType, field, "string", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.sizeType).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.sizeType);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.sizeType);
             });
         });
     });
@@ -13596,9 +11813,73 @@ describe("Tests for putSlidesSlideSize", () => {
         request.scaleType = <string>TestInitializer.invalidizeValue(request.scaleType, field, "string", "putSlidesSlideSize");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideSize", field, request.scaleType).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putSlidesSlideSize(request), "putSlidesSlideSize", field, request.scaleType);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(request), "putSlidesSlideSize", field, request.scaleType);
+            });
+        });
+    });
+});
+
+describe("Tests for putSlidesViewProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesViewPropertiesRequest();
+            return TestInitializer.initialize("putSlidesViewProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesViewProperties(request), false, "putSlidesViewProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSlidesViewPropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesViewProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesViewProperties(request), "putSlidesViewProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSlidesViewPropertiesRequest();
+        request.dto = <model.ViewProperties>TestInitializer.invalidizeValue(request.dto, field, "ViewProperties", "putSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesViewProperties", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesViewProperties(request), "putSlidesViewProperties", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSlidesViewPropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesViewProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesViewProperties(request), "putSlidesViewProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSlidesViewPropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesViewProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesViewProperties(request), "putSlidesViewProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSlidesViewPropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesViewProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesViewProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesViewProperties(request), "putSlidesViewProperties", field, request.storage);
             });
         });
     });
@@ -13607,11 +11888,9 @@ describe("Tests for putSlidesSlideSize", () => {
 describe("Tests for putUpdateNotesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutUpdateNotesSlideRequest();
             return TestInitializer.initialize("putUpdateNotesSlide", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutUpdateNotesSlideRequest();
-                return TestInitializer.assertValidCall(api.putUpdateNotesSlide(request), false, "putUpdateNotesSlide");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putUpdateNotesSlide(request), false, "putUpdateNotesSlide");
             });
         });
     });
@@ -13622,9 +11901,7 @@ describe("Tests for putUpdateNotesSlide", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putUpdateNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlide", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.name);
             });
         });
     });
@@ -13635,9 +11912,7 @@ describe("Tests for putUpdateNotesSlide", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putUpdateNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlide", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.slideIndex);
             });
         });
     });
@@ -13648,9 +11923,7 @@ describe("Tests for putUpdateNotesSlide", () => {
         request.dto = <model.NotesSlide>TestInitializer.invalidizeValue(request.dto, field, "NotesSlide", "putUpdateNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlide", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.dto);
             });
         });
     });
@@ -13661,9 +11934,7 @@ describe("Tests for putUpdateNotesSlide", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putUpdateNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlide", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.password);
             });
         });
     });
@@ -13674,9 +11945,7 @@ describe("Tests for putUpdateNotesSlide", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putUpdateNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlide", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.folder);
             });
         });
     });
@@ -13687,9 +11956,7 @@ describe("Tests for putUpdateNotesSlide", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putUpdateNotesSlide");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlide", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlide(request), "putUpdateNotesSlide", field, request.storage);
             });
         });
     });
@@ -13698,11 +11965,9 @@ describe("Tests for putUpdateNotesSlide", () => {
 describe("Tests for putUpdateNotesSlideShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutUpdateNotesSlideShapeRequest();
             return TestInitializer.initialize("putUpdateNotesSlideShape", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutUpdateNotesSlideShapeRequest();
-                return TestInitializer.assertValidCall(api.putUpdateNotesSlideShape(request), false, "putUpdateNotesSlideShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), false, "putUpdateNotesSlideShape");
             });
         });
     });
@@ -13713,9 +11978,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.name);
             });
         });
     });
@@ -13726,9 +11989,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.slideIndex);
             });
         });
     });
@@ -13739,9 +12000,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.path);
             });
         });
     });
@@ -13752,9 +12011,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.shapeIndex);
             });
         });
     });
@@ -13765,9 +12022,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.dto = <model.ShapeBase>TestInitializer.invalidizeValue(request.dto, field, "ShapeBase", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.dto);
             });
         });
     });
@@ -13778,9 +12033,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.password);
             });
         });
     });
@@ -13791,9 +12044,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.folder);
             });
         });
     });
@@ -13804,9 +12055,7 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putUpdateNotesSlideShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.storage);
             });
         });
     });
@@ -13815,11 +12064,9 @@ describe("Tests for putUpdateNotesSlideShape", () => {
 describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutUpdateNotesSlideShapeParagraphRequest();
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutUpdateNotesSlideShapeParagraphRequest();
-                return TestInitializer.assertValidCall(api.putUpdateNotesSlideShapeParagraph(request), false, "putUpdateNotesSlideShapeParagraph");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), false, "putUpdateNotesSlideShapeParagraph");
             });
         });
     });
@@ -13830,9 +12077,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.name);
             });
         });
     });
@@ -13843,9 +12088,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.slideIndex);
             });
         });
     });
@@ -13856,9 +12099,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.path);
             });
         });
     });
@@ -13869,9 +12110,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.shapeIndex);
             });
         });
     });
@@ -13882,9 +12121,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.paragraphIndex);
             });
         });
     });
@@ -13895,9 +12132,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.dto = <model.Paragraph>TestInitializer.invalidizeValue(request.dto, field, "Paragraph", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.dto);
             });
         });
     });
@@ -13908,9 +12143,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.password);
             });
         });
     });
@@ -13921,9 +12154,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.folder);
             });
         });
     });
@@ -13934,9 +12165,7 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putUpdateNotesSlideShapeParagraph");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.storage);
             });
         });
     });
@@ -13945,11 +12174,9 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
 describe("Tests for putUpdateNotesSlideShapePortion", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutUpdateNotesSlideShapePortionRequest();
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getPutUpdateNotesSlideShapePortionRequest();
-                return TestInitializer.assertValidCall(api.putUpdateNotesSlideShapePortion(request), false, "putUpdateNotesSlideShapePortion");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), false, "putUpdateNotesSlideShapePortion");
             });
         });
     });
@@ -13960,9 +12187,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.name).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.name);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.name);
             });
         });
     });
@@ -13973,9 +12198,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.slideIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.slideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.slideIndex);
             });
         });
     });
@@ -13986,9 +12209,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.path);
             });
         });
     });
@@ -13999,9 +12220,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.shapeIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.shapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.shapeIndex);
             });
         });
     });
@@ -14012,9 +12231,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.paragraphIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.paragraphIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.paragraphIndex);
             });
         });
     });
@@ -14025,9 +12242,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.portionIndex).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.portionIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.portionIndex);
             });
         });
     });
@@ -14038,9 +12253,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.dto = <model.Portion>TestInitializer.invalidizeValue(request.dto, field, "Portion", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.dto).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.dto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.dto);
             });
         });
     });
@@ -14051,9 +12264,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.password).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.password);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.password);
             });
         });
     });
@@ -14064,9 +12275,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.folder).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.folder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.folder);
             });
         });
     });
@@ -14077,9 +12286,7 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putUpdateNotesSlideShapePortion");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.storage).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.storage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.storage);
             });
         });
     });
@@ -14088,11 +12295,9 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
 describe("Tests for storageExists", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getStorageExistsRequest();
             return TestInitializer.initialize("storageExists", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getStorageExistsRequest();
-                return TestInitializer.assertValidCall(api.storageExists(request), false, "storageExists");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().storageExists(request), false, "storageExists");
             });
         });
     });
@@ -14103,9 +12308,7 @@ describe("Tests for storageExists", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "storageExists");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("storageExists", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.storageExists(request), "storageExists", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().storageExists(request), "storageExists", field, request.storageName);
             });
         });
     });
@@ -14114,11 +12317,9 @@ describe("Tests for storageExists", () => {
 describe("Tests for uploadFile", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
+            const request = TestUtils.getUploadFileRequest();
             return TestInitializer.initialize("uploadFile", null, null).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                const request = TestUtils.getUploadFileRequest();
-                return TestInitializer.assertValidCall(api.uploadFile(request), false, "uploadFile");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().uploadFile(request), false, "uploadFile");
             });
         });
     });
@@ -14129,9 +12330,7 @@ describe("Tests for uploadFile", () => {
         request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "uploadFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("uploadFile", field, request.path).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.uploadFile(request), "uploadFile", field, request.path);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().uploadFile(request), "uploadFile", field, request.path);
             });
         });
     });
@@ -14142,9 +12341,7 @@ describe("Tests for uploadFile", () => {
         request.file = <Buffer>TestInitializer.invalidizeValue(request.file, field, "Buffer", "uploadFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("uploadFile", field, request.file).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.uploadFile(request), "uploadFile", field, request.file);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().uploadFile(request), "uploadFile", field, request.file);
             });
         });
     });
@@ -14155,9 +12352,7 @@ describe("Tests for uploadFile", () => {
         request.storageName = <string>TestInitializer.invalidizeValue(request.storageName, field, "string", "uploadFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("uploadFile", field, request.storageName).then(() => {
-                const config = require("../testConfig.json");
-                const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug);
-                return TestInitializer.assertInvalidCall(api.uploadFile(request), "uploadFile", field, request.storageName);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().uploadFile(request), "uploadFile", field, request.storageName);
             });
         });
     });

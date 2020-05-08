@@ -25,14 +25,10 @@
 var assert = require('assert');
 import * as model from "../sdk/model";
 import * as requests from "../sdk/requests";
-import * as sdkApi from "../sdk/api";
 import { TestInitializer } from "./testInitializer";
 
 describe("Additional tests", () => {
     it("multiple files upload", () => {
-        const config = require("../testConfig.json");
-        const fs = require('fs');
-        const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
         const request = new requests.PostSlidesPipelineRequest();
         let file1 = new model.RequestInputFile();
         file1.index = 0;
@@ -42,13 +38,37 @@ describe("Additional tests", () => {
         task.format = model.Save.FormatEnum.Pptx;
         task.output = new model.ResponseOutputFile();
         request.pipeline = { input: { templateData: file1, template: file2 }, tasks: [ task ] };
+        const fs = require('fs');
         request.files = [
             fs.createReadStream("TestData/TemplatingCVDataWithBase64.xml"),
             fs.createReadStream("TestData/TemplateCV.pptx")
         ];
         
-        return api.postSlidesPipeline(request).then((result) => {
+        return TestInitializer.getApi().postSlidesPipeline(request).then((result) => {
             assert.equal(200, result.response.statusCode);
+        });
+    });
+
+    it.only("shape type", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.ppt";
+            const api = TestInitializer.getApi();
+            const request = new requests.CopyFileRequest();
+            request.srcPath = "TempTests/" + fileName;
+            request.destPath = folderName + "/" + fileName;
+            return api.copyFile(request).then(() => {
+                const shapeRequest = new requests.GetSlideShapeRequest();
+                shapeRequest.name = fileName;
+                shapeRequest.folder = folderName;
+                shapeRequest.password = "password";
+                shapeRequest.slideIndex = 1;
+                shapeRequest.shapeIndex = 1;
+                return api.getSlideShape(shapeRequest).then((result) => {
+                    assert.equal("Shape", (result.body as model.ShapeBase).type);
+                    assert.equal("1", (result.body as model.Shape).text);
+                });
+            });
         });
     });
 
@@ -58,7 +78,7 @@ describe("Additional tests", () => {
         assert.equal("Chart", chart.shapeType);
     });
 
-    it.only("nullable fields", () => {
+    it("nullable fields", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "placeholders.pptx";
@@ -66,7 +86,7 @@ describe("Additional tests", () => {
             const min2 = 12;
             const max1 = 104.3;
             const max2 = 87;
-            const api = TestInitializer.initializeFileApi();
+            const api = TestInitializer.getApi();
             const request = new requests.CopyFileRequest();
             request.srcPath = "TempTests/" + fileName;
             request.destPath = folderName + "/" + fileName;
@@ -130,16 +150,13 @@ describe("Additional tests", () => {
 describe("Tests for timeout configuration parameter", () => {
     it("convert slide to svg", () => {
         return TestInitializer.initialize("postSlideSaveAs", null, null).then(() => {
-            const config = require("../testConfig.json");
-            const fs = require('fs');
-            const api = new SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.debug, 1);
             const request = new PostSlideSaveAsRequest();
             request.format = "svg";
             request.name = "test.ppt";
             request.folder = "TempSlidesSDK";
             request.password = "password";
             request.slideIndex = 1;
-            return api.postSlideSaveAs(request)
+            return TestInitializer.getApi().postSlideSaveAs(request)
                 .then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.fail("must have failed because of timeout");

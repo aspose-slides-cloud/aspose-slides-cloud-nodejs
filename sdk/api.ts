@@ -2739,6 +2739,66 @@ export class SlidesApi {
         return Promise.resolve({ body: result, response });
     }
     /**
+     * Read notes slide info. 
+     * @param requestObj contains request parameters
+     */
+    public async postGetNotesSlide(requestObj: requests.PostGetNotesSlideRequest): Promise<{response: http.ClientResponse, body: model.NotesSlide}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postGetNotesSlide.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/notesSlide";
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        const queryParameters: any = {};
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            body: requestObj.document,
+            json: false
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Convert notes slide to the specified image format. 
+     * @param requestObj contains request parameters
+     */
+    public async postGetNotesSlideWithFormat(requestObj: requests.PostGetNotesSlideWithFormatRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postGetNotesSlideWithFormat.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/notesSlide/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling postGetNotesSlideWithFormat.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            body: requestObj.document,
+            encoding: null
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
      * Creates new paragraph. 
      * @param requestObj contains request parameters
      */
@@ -4316,7 +4376,7 @@ export class SlidesApi {
      * Update presentation document properties. 
      * @param requestObj contains request parameters
      */
-    public async putSlidesViewProperties(requestObj: requests.PutSlidesViewPropertiesRequest): Promise<{response: http.ClientResponse, body: model.DocumentProperty}> {
+    public async putSlidesViewProperties(requestObj: requests.PutSlidesViewPropertiesRequest): Promise<{response: http.ClientResponse, body: model.ViewProperties}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSlidesViewProperties.');
         }
@@ -4340,7 +4400,7 @@ export class SlidesApi {
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "DocumentProperty");
+        const result = ObjectSerializer.deserialize(response.body, "ViewProperties");
         return Promise.resolve({ body: result, response });
     }
     /**

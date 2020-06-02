@@ -2330,6 +2330,56 @@ export class PostCopyMasterSlideFromSourcePresentationRequest {
     public storage: string;
 }
 /**
+ * Request model for PostGetNotesSlide operation.
+ */
+export class PostGetNotesSlideRequest {
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
+ * Request model for PostGetNotesSlideWithFormat operation.
+ */
+export class PostGetNotesSlideWithFormatRequest {
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Output file format.
+     */
+    public format: string;
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Output file width.
+     */
+    public width: number;
+    /**
+     * Output file height.
+     */
+    public height: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Storage folder containing custom fonts to be used with the document.
+     */
+    public fontsFolder: string;
+}
+/**
  * Request model for PostNotesSlideAddNewParagraph operation.
  */
 export class PostNotesSlideAddNewParagraphRequest {

@@ -912,6 +912,26 @@ class TestUtils {
         return request;
     }
 
+    public static getPostGetNotesSlideRequest(): requests.PostGetNotesSlideRequest {
+        const request = new requests.PostGetNotesSlideRequest();
+        request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlide", "slideIndex");
+        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.password = <string>TestInitializer.getValue("postGetNotesSlide", "password");
+        return request;
+    }
+
+    public static getPostGetNotesSlideWithFormatRequest(): requests.PostGetNotesSlideWithFormatRequest {
+        const request = new requests.PostGetNotesSlideWithFormatRequest();
+        request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "slideIndex");
+        request.format = <string>TestInitializer.getValue("postGetNotesSlideWithFormat", "format");
+        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.width = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "width");
+        request.height = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "height");
+        request.password = <string>TestInitializer.getValue("postGetNotesSlideWithFormat", "password");
+        request.fontsFolder = <string>TestInitializer.getValue("postGetNotesSlideWithFormat", "fontsFolder");
+        return request;
+    }
+
     public static getPostNotesSlideAddNewParagraphRequest(): requests.PostNotesSlideAddNewParagraphRequest {
         const request = new requests.PostNotesSlideAddNewParagraphRequest();
         request.name = <string>TestInitializer.getValue("postNotesSlideAddNewParagraph", "name");
@@ -7645,6 +7665,138 @@ describe("Tests for postCopyMasterSlideFromSourcePresentation", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postCopyMasterSlideFromSourcePresentation", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postCopyMasterSlideFromSourcePresentation(request), "postCopyMasterSlideFromSourcePresentation", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for postGetNotesSlide", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostGetNotesSlideRequest();
+            return TestInitializer.initialize("postGetNotesSlide", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postGetNotesSlide(request), false, "postGetNotesSlide");
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostGetNotesSlideRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postGetNotesSlide");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlide", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlide(request), "postGetNotesSlide", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        const request = TestUtils.getPostGetNotesSlideRequest();
+        request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "postGetNotesSlide");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlide", field, request.document).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlide(request), "postGetNotesSlide", field, request.document);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostGetNotesSlideRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postGetNotesSlide");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlide", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlide(request), "postGetNotesSlide", field, request.password);
+            });
+        });
+    });
+});
+
+describe("Tests for postGetNotesSlideWithFormat", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), true, "postGetNotesSlideWithFormat");
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid format test", () => {
+        const field = "format";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.format).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.format);
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.document).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.document);
+            });
+        });
+    });
+
+    it("invalid width test", () => {
+        const field = "width";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.width = <number>TestInitializer.invalidizeValue(request.width, field, "number", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.width).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.width);
+            });
+        });
+    });
+
+    it("invalid height test", () => {
+        const field = "height";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.height = <number>TestInitializer.invalidizeValue(request.height, field, "number", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.height).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.height);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.password);
+            });
+        });
+    });
+
+    it("invalid fontsFolder test", () => {
+        const field = "fontsFolder";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.fontsFolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.fontsFolder);
             });
         });
     });

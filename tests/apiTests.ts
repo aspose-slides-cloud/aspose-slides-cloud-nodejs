@@ -85,7 +85,6 @@ class TestUtils {
         const request = new requests.DeleteNotesSlideParagraphRequest();
         request.name = <string>TestInitializer.getValue("deleteNotesSlideParagraph", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteNotesSlideParagraph", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteNotesSlideParagraph", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteNotesSlideParagraph", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("deleteNotesSlideParagraph", "paragraphIndex");
         request.password = <string>TestInitializer.getValue("deleteNotesSlideParagraph", "password");
@@ -98,7 +97,6 @@ class TestUtils {
         const request = new requests.DeleteNotesSlideParagraphsRequest();
         request.name = <string>TestInitializer.getValue("deleteNotesSlideParagraphs", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteNotesSlideParagraphs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteNotesSlideParagraphs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteNotesSlideParagraphs", "shapeIndex");
         request.paragraphs = <Array<number>>TestInitializer.getValue("deleteNotesSlideParagraphs", "paragraphs");
         request.password = <string>TestInitializer.getValue("deleteNotesSlideParagraphs", "password");
@@ -111,7 +109,6 @@ class TestUtils {
         const request = new requests.DeleteNotesSlidePortionRequest();
         request.name = <string>TestInitializer.getValue("deleteNotesSlidePortion", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteNotesSlidePortion", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteNotesSlidePortion", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteNotesSlidePortion", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("deleteNotesSlidePortion", "paragraphIndex");
         request.portionIndex = <number>TestInitializer.getValue("deleteNotesSlidePortion", "portionIndex");
@@ -125,7 +122,6 @@ class TestUtils {
         const request = new requests.DeleteNotesSlidePortionsRequest();
         request.name = <string>TestInitializer.getValue("deleteNotesSlidePortions", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteNotesSlidePortions", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteNotesSlidePortions", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteNotesSlidePortions", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("deleteNotesSlidePortions", "paragraphIndex");
         request.portions = <Array<number>>TestInitializer.getValue("deleteNotesSlidePortions", "portions");
@@ -139,7 +135,6 @@ class TestUtils {
         const request = new requests.DeleteNotesSlideShapeRequest();
         request.name = <string>TestInitializer.getValue("deleteNotesSlideShape", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteNotesSlideShape", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteNotesSlideShape", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteNotesSlideShape", "shapeIndex");
         request.password = <string>TestInitializer.getValue("deleteNotesSlideShape", "password");
         request.folder = <string>TestInitializer.getValue("deleteNotesSlideShape", "folder");
@@ -151,7 +146,6 @@ class TestUtils {
         const request = new requests.DeleteNotesSlideShapesRequest();
         request.name = <string>TestInitializer.getValue("deleteNotesSlideShapes", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteNotesSlideShapes", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteNotesSlideShapes", "path");
         request.shapes = <Array<number>>TestInitializer.getValue("deleteNotesSlideShapes", "shapes");
         request.password = <string>TestInitializer.getValue("deleteNotesSlideShapes", "password");
         request.folder = <string>TestInitializer.getValue("deleteNotesSlideShapes", "folder");
@@ -163,7 +157,6 @@ class TestUtils {
         const request = new requests.DeleteParagraphRequest();
         request.name = <string>TestInitializer.getValue("deleteParagraph", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteParagraph", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteParagraph", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteParagraph", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("deleteParagraph", "paragraphIndex");
         request.password = <string>TestInitializer.getValue("deleteParagraph", "password");
@@ -176,7 +169,6 @@ class TestUtils {
         const request = new requests.DeleteParagraphsRequest();
         request.name = <string>TestInitializer.getValue("deleteParagraphs", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteParagraphs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteParagraphs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteParagraphs", "shapeIndex");
         request.paragraphs = <Array<number>>TestInitializer.getValue("deleteParagraphs", "paragraphs");
         request.password = <string>TestInitializer.getValue("deleteParagraphs", "password");
@@ -189,7 +181,6 @@ class TestUtils {
         const request = new requests.DeletePortionRequest();
         request.name = <string>TestInitializer.getValue("deletePortion", "name");
         request.slideIndex = <number>TestInitializer.getValue("deletePortion", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deletePortion", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deletePortion", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("deletePortion", "paragraphIndex");
         request.portionIndex = <number>TestInitializer.getValue("deletePortion", "portionIndex");
@@ -203,7 +194,6 @@ class TestUtils {
         const request = new requests.DeletePortionsRequest();
         request.name = <string>TestInitializer.getValue("deletePortions", "name");
         request.slideIndex = <number>TestInitializer.getValue("deletePortions", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deletePortions", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deletePortions", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("deletePortions", "paragraphIndex");
         request.portions = <Array<number>>TestInitializer.getValue("deletePortions", "portions");
@@ -291,7 +281,6 @@ class TestUtils {
         const request = new requests.DeleteSlideShapeRequest();
         request.name = <string>TestInitializer.getValue("deleteSlideShape", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteSlideShape", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteSlideShape", "path");
         request.shapeIndex = <number>TestInitializer.getValue("deleteSlideShape", "shapeIndex");
         request.password = <string>TestInitializer.getValue("deleteSlideShape", "password");
         request.folder = <string>TestInitializer.getValue("deleteSlideShape", "folder");
@@ -303,11 +292,34 @@ class TestUtils {
         const request = new requests.DeleteSlideShapesRequest();
         request.name = <string>TestInitializer.getValue("deleteSlideShapes", "name");
         request.slideIndex = <number>TestInitializer.getValue("deleteSlideShapes", "slideIndex");
-        request.path = <string>TestInitializer.getValue("deleteSlideShapes", "path");
         request.shapes = <Array<number>>TestInitializer.getValue("deleteSlideShapes", "shapes");
         request.password = <string>TestInitializer.getValue("deleteSlideShapes", "password");
         request.folder = <string>TestInitializer.getValue("deleteSlideShapes", "folder");
         request.storage = <string>TestInitializer.getValue("deleteSlideShapes", "storage");
+        return request;
+    }
+
+    public static getDeleteSlideSubshapeRequest(): requests.DeleteSlideSubshapeRequest {
+        const request = new requests.DeleteSlideSubshapeRequest();
+        request.name = <string>TestInitializer.getValue("deleteSlideSubshape", "name");
+        request.slideIndex = <number>TestInitializer.getValue("deleteSlideSubshape", "slideIndex");
+        request.path = <string>TestInitializer.getValue("deleteSlideSubshape", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("deleteSlideSubshape", "shapeIndex");
+        request.password = <string>TestInitializer.getValue("deleteSlideSubshape", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSlideSubshape", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSlideSubshape", "storage");
+        return request;
+    }
+
+    public static getDeleteSlideSubshapesRequest(): requests.DeleteSlideSubshapesRequest {
+        const request = new requests.DeleteSlideSubshapesRequest();
+        request.name = <string>TestInitializer.getValue("deleteSlideSubshapes", "name");
+        request.slideIndex = <number>TestInitializer.getValue("deleteSlideSubshapes", "slideIndex");
+        request.path = <string>TestInitializer.getValue("deleteSlideSubshapes", "path");
+        request.shapes = <Array<number>>TestInitializer.getValue("deleteSlideSubshapes", "shapes");
+        request.password = <string>TestInitializer.getValue("deleteSlideSubshapes", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSlideSubshapes", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSlideSubshapes", "storage");
         return request;
     }
 
@@ -347,6 +359,60 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("deleteSlidesSlideBackground", "password");
         request.folder = <string>TestInitializer.getValue("deleteSlidesSlideBackground", "folder");
         request.storage = <string>TestInitializer.getValue("deleteSlidesSlideBackground", "storage");
+        return request;
+    }
+
+    public static getDeleteSubshapeParagraphRequest(): requests.DeleteSubshapeParagraphRequest {
+        const request = new requests.DeleteSubshapeParagraphRequest();
+        request.name = <string>TestInitializer.getValue("deleteSubshapeParagraph", "name");
+        request.slideIndex = <number>TestInitializer.getValue("deleteSubshapeParagraph", "slideIndex");
+        request.path = <string>TestInitializer.getValue("deleteSubshapeParagraph", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("deleteSubshapeParagraph", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("deleteSubshapeParagraph", "paragraphIndex");
+        request.password = <string>TestInitializer.getValue("deleteSubshapeParagraph", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSubshapeParagraph", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSubshapeParagraph", "storage");
+        return request;
+    }
+
+    public static getDeleteSubshapeParagraphsRequest(): requests.DeleteSubshapeParagraphsRequest {
+        const request = new requests.DeleteSubshapeParagraphsRequest();
+        request.name = <string>TestInitializer.getValue("deleteSubshapeParagraphs", "name");
+        request.slideIndex = <number>TestInitializer.getValue("deleteSubshapeParagraphs", "slideIndex");
+        request.path = <string>TestInitializer.getValue("deleteSubshapeParagraphs", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("deleteSubshapeParagraphs", "shapeIndex");
+        request.paragraphs = <Array<number>>TestInitializer.getValue("deleteSubshapeParagraphs", "paragraphs");
+        request.password = <string>TestInitializer.getValue("deleteSubshapeParagraphs", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSubshapeParagraphs", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSubshapeParagraphs", "storage");
+        return request;
+    }
+
+    public static getDeleteSubshapePortionRequest(): requests.DeleteSubshapePortionRequest {
+        const request = new requests.DeleteSubshapePortionRequest();
+        request.name = <string>TestInitializer.getValue("deleteSubshapePortion", "name");
+        request.slideIndex = <number>TestInitializer.getValue("deleteSubshapePortion", "slideIndex");
+        request.path = <string>TestInitializer.getValue("deleteSubshapePortion", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("deleteSubshapePortion", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("deleteSubshapePortion", "paragraphIndex");
+        request.portionIndex = <number>TestInitializer.getValue("deleteSubshapePortion", "portionIndex");
+        request.password = <string>TestInitializer.getValue("deleteSubshapePortion", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSubshapePortion", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSubshapePortion", "storage");
+        return request;
+    }
+
+    public static getDeleteSubshapePortionsRequest(): requests.DeleteSubshapePortionsRequest {
+        const request = new requests.DeleteSubshapePortionsRequest();
+        request.name = <string>TestInitializer.getValue("deleteSubshapePortions", "name");
+        request.slideIndex = <number>TestInitializer.getValue("deleteSubshapePortions", "slideIndex");
+        request.path = <string>TestInitializer.getValue("deleteSubshapePortions", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("deleteSubshapePortions", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("deleteSubshapePortions", "paragraphIndex");
+        request.portions = <Array<number>>TestInitializer.getValue("deleteSubshapePortions", "portions");
+        request.password = <string>TestInitializer.getValue("deleteSubshapePortions", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSubshapePortions", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSubshapePortions", "storage");
         return request;
     }
 
@@ -426,11 +492,20 @@ class TestUtils {
         return request;
     }
 
+    public static getGetNotesSlideExistsRequest(): requests.GetNotesSlideExistsRequest {
+        const request = new requests.GetNotesSlideExistsRequest();
+        request.name = <string>TestInitializer.getValue("getNotesSlideExists", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getNotesSlideExists", "slideIndex");
+        request.password = <string>TestInitializer.getValue("getNotesSlideExists", "password");
+        request.folder = <string>TestInitializer.getValue("getNotesSlideExists", "folder");
+        request.storage = <string>TestInitializer.getValue("getNotesSlideExists", "storage");
+        return request;
+    }
+
     public static getGetNotesSlideShapeRequest(): requests.GetNotesSlideShapeRequest {
         const request = new requests.GetNotesSlideShapeRequest();
         request.name = <string>TestInitializer.getValue("getNotesSlideShape", "name");
         request.slideIndex = <number>TestInitializer.getValue("getNotesSlideShape", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getNotesSlideShape", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getNotesSlideShape", "shapeIndex");
         request.password = <string>TestInitializer.getValue("getNotesSlideShape", "password");
         request.folder = <string>TestInitializer.getValue("getNotesSlideShape", "folder");
@@ -442,7 +517,6 @@ class TestUtils {
         const request = new requests.GetNotesSlideShapeParagraphRequest();
         request.name = <string>TestInitializer.getValue("getNotesSlideShapeParagraph", "name");
         request.slideIndex = <number>TestInitializer.getValue("getNotesSlideShapeParagraph", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getNotesSlideShapeParagraph", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getNotesSlideShapeParagraph", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("getNotesSlideShapeParagraph", "paragraphIndex");
         request.password = <string>TestInitializer.getValue("getNotesSlideShapeParagraph", "password");
@@ -455,7 +529,6 @@ class TestUtils {
         const request = new requests.GetNotesSlideShapeParagraphsRequest();
         request.name = <string>TestInitializer.getValue("getNotesSlideShapeParagraphs", "name");
         request.slideIndex = <number>TestInitializer.getValue("getNotesSlideShapeParagraphs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getNotesSlideShapeParagraphs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getNotesSlideShapeParagraphs", "shapeIndex");
         request.password = <string>TestInitializer.getValue("getNotesSlideShapeParagraphs", "password");
         request.folder = <string>TestInitializer.getValue("getNotesSlideShapeParagraphs", "folder");
@@ -467,7 +540,6 @@ class TestUtils {
         const request = new requests.GetNotesSlideShapePortionRequest();
         request.name = <string>TestInitializer.getValue("getNotesSlideShapePortion", "name");
         request.slideIndex = <number>TestInitializer.getValue("getNotesSlideShapePortion", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getNotesSlideShapePortion", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getNotesSlideShapePortion", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("getNotesSlideShapePortion", "paragraphIndex");
         request.portionIndex = <number>TestInitializer.getValue("getNotesSlideShapePortion", "portionIndex");
@@ -481,7 +553,6 @@ class TestUtils {
         const request = new requests.GetNotesSlideShapePortionsRequest();
         request.name = <string>TestInitializer.getValue("getNotesSlideShapePortions", "name");
         request.slideIndex = <number>TestInitializer.getValue("getNotesSlideShapePortions", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getNotesSlideShapePortions", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getNotesSlideShapePortions", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("getNotesSlideShapePortions", "paragraphIndex");
         request.password = <string>TestInitializer.getValue("getNotesSlideShapePortions", "password");
@@ -494,7 +565,6 @@ class TestUtils {
         const request = new requests.GetNotesSlideShapesRequest();
         request.name = <string>TestInitializer.getValue("getNotesSlideShapes", "name");
         request.slideIndex = <number>TestInitializer.getValue("getNotesSlideShapes", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getNotesSlideShapes", "path");
         request.password = <string>TestInitializer.getValue("getNotesSlideShapes", "password");
         request.folder = <string>TestInitializer.getValue("getNotesSlideShapes", "folder");
         request.storage = <string>TestInitializer.getValue("getNotesSlideShapes", "storage");
@@ -519,7 +589,6 @@ class TestUtils {
         const request = new requests.GetParagraphPortionRequest();
         request.name = <string>TestInitializer.getValue("getParagraphPortion", "name");
         request.slideIndex = <number>TestInitializer.getValue("getParagraphPortion", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getParagraphPortion", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getParagraphPortion", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("getParagraphPortion", "paragraphIndex");
         request.portionIndex = <number>TestInitializer.getValue("getParagraphPortion", "portionIndex");
@@ -533,7 +602,6 @@ class TestUtils {
         const request = new requests.GetParagraphPortionsRequest();
         request.name = <string>TestInitializer.getValue("getParagraphPortions", "name");
         request.slideIndex = <number>TestInitializer.getValue("getParagraphPortions", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getParagraphPortions", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getParagraphPortions", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("getParagraphPortions", "paragraphIndex");
         request.password = <string>TestInitializer.getValue("getParagraphPortions", "password");
@@ -557,7 +625,6 @@ class TestUtils {
         const request = new requests.GetSlideShapeRequest();
         request.name = <string>TestInitializer.getValue("getSlideShape", "name");
         request.slideIndex = <number>TestInitializer.getValue("getSlideShape", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getSlideShape", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getSlideShape", "shapeIndex");
         request.password = <string>TestInitializer.getValue("getSlideShape", "password");
         request.folder = <string>TestInitializer.getValue("getSlideShape", "folder");
@@ -569,7 +636,6 @@ class TestUtils {
         const request = new requests.GetSlideShapeParagraphRequest();
         request.name = <string>TestInitializer.getValue("getSlideShapeParagraph", "name");
         request.slideIndex = <number>TestInitializer.getValue("getSlideShapeParagraph", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getSlideShapeParagraph", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getSlideShapeParagraph", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("getSlideShapeParagraph", "paragraphIndex");
         request.password = <string>TestInitializer.getValue("getSlideShapeParagraph", "password");
@@ -582,7 +648,6 @@ class TestUtils {
         const request = new requests.GetSlideShapeParagraphsRequest();
         request.name = <string>TestInitializer.getValue("getSlideShapeParagraphs", "name");
         request.slideIndex = <number>TestInitializer.getValue("getSlideShapeParagraphs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getSlideShapeParagraphs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("getSlideShapeParagraphs", "shapeIndex");
         request.password = <string>TestInitializer.getValue("getSlideShapeParagraphs", "password");
         request.folder = <string>TestInitializer.getValue("getSlideShapeParagraphs", "folder");
@@ -594,10 +659,57 @@ class TestUtils {
         const request = new requests.GetSlideShapesRequest();
         request.name = <string>TestInitializer.getValue("getSlideShapes", "name");
         request.slideIndex = <number>TestInitializer.getValue("getSlideShapes", "slideIndex");
-        request.path = <string>TestInitializer.getValue("getSlideShapes", "path");
         request.password = <string>TestInitializer.getValue("getSlideShapes", "password");
         request.folder = <string>TestInitializer.getValue("getSlideShapes", "folder");
         request.storage = <string>TestInitializer.getValue("getSlideShapes", "storage");
+        return request;
+    }
+
+    public static getGetSlideSubshapeRequest(): requests.GetSlideSubshapeRequest {
+        const request = new requests.GetSlideSubshapeRequest();
+        request.name = <string>TestInitializer.getValue("getSlideSubshape", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getSlideSubshape", "slideIndex");
+        request.path = <string>TestInitializer.getValue("getSlideSubshape", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("getSlideSubshape", "shapeIndex");
+        request.password = <string>TestInitializer.getValue("getSlideSubshape", "password");
+        request.folder = <string>TestInitializer.getValue("getSlideSubshape", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlideSubshape", "storage");
+        return request;
+    }
+
+    public static getGetSlideSubshapeParagraphRequest(): requests.GetSlideSubshapeParagraphRequest {
+        const request = new requests.GetSlideSubshapeParagraphRequest();
+        request.name = <string>TestInitializer.getValue("getSlideSubshapeParagraph", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getSlideSubshapeParagraph", "slideIndex");
+        request.path = <string>TestInitializer.getValue("getSlideSubshapeParagraph", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("getSlideSubshapeParagraph", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("getSlideSubshapeParagraph", "paragraphIndex");
+        request.password = <string>TestInitializer.getValue("getSlideSubshapeParagraph", "password");
+        request.folder = <string>TestInitializer.getValue("getSlideSubshapeParagraph", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlideSubshapeParagraph", "storage");
+        return request;
+    }
+
+    public static getGetSlideSubshapeParagraphsRequest(): requests.GetSlideSubshapeParagraphsRequest {
+        const request = new requests.GetSlideSubshapeParagraphsRequest();
+        request.name = <string>TestInitializer.getValue("getSlideSubshapeParagraphs", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getSlideSubshapeParagraphs", "slideIndex");
+        request.path = <string>TestInitializer.getValue("getSlideSubshapeParagraphs", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("getSlideSubshapeParagraphs", "shapeIndex");
+        request.password = <string>TestInitializer.getValue("getSlideSubshapeParagraphs", "password");
+        request.folder = <string>TestInitializer.getValue("getSlideSubshapeParagraphs", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlideSubshapeParagraphs", "storage");
+        return request;
+    }
+
+    public static getGetSlideSubshapesRequest(): requests.GetSlideSubshapesRequest {
+        const request = new requests.GetSlideSubshapesRequest();
+        request.name = <string>TestInitializer.getValue("getSlideSubshapes", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getSlideSubshapes", "slideIndex");
+        request.path = <string>TestInitializer.getValue("getSlideSubshapes", "path");
+        request.password = <string>TestInitializer.getValue("getSlideSubshapes", "password");
+        request.folder = <string>TestInitializer.getValue("getSlideSubshapes", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlideSubshapes", "storage");
         return request;
     }
 
@@ -804,6 +916,33 @@ class TestUtils {
         return request;
     }
 
+    public static getGetSubshapeParagraphPortionRequest(): requests.GetSubshapeParagraphPortionRequest {
+        const request = new requests.GetSubshapeParagraphPortionRequest();
+        request.name = <string>TestInitializer.getValue("getSubshapeParagraphPortion", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getSubshapeParagraphPortion", "slideIndex");
+        request.path = <string>TestInitializer.getValue("getSubshapeParagraphPortion", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("getSubshapeParagraphPortion", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("getSubshapeParagraphPortion", "paragraphIndex");
+        request.portionIndex = <number>TestInitializer.getValue("getSubshapeParagraphPortion", "portionIndex");
+        request.password = <string>TestInitializer.getValue("getSubshapeParagraphPortion", "password");
+        request.folder = <string>TestInitializer.getValue("getSubshapeParagraphPortion", "folder");
+        request.storage = <string>TestInitializer.getValue("getSubshapeParagraphPortion", "storage");
+        return request;
+    }
+
+    public static getGetSubshapeParagraphPortionsRequest(): requests.GetSubshapeParagraphPortionsRequest {
+        const request = new requests.GetSubshapeParagraphPortionsRequest();
+        request.name = <string>TestInitializer.getValue("getSubshapeParagraphPortions", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getSubshapeParagraphPortions", "slideIndex");
+        request.path = <string>TestInitializer.getValue("getSubshapeParagraphPortions", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("getSubshapeParagraphPortions", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("getSubshapeParagraphPortions", "paragraphIndex");
+        request.password = <string>TestInitializer.getValue("getSubshapeParagraphPortions", "password");
+        request.folder = <string>TestInitializer.getValue("getSubshapeParagraphPortions", "folder");
+        request.storage = <string>TestInitializer.getValue("getSubshapeParagraphPortions", "storage");
+        return request;
+    }
+
     public static getMoveFileRequest(): requests.MoveFileRequest {
         const request = new requests.MoveFileRequest();
         request.srcPath = <string>TestInitializer.getValue("moveFile", "srcPath");
@@ -835,7 +974,6 @@ class TestUtils {
         const request = new requests.PostAddNewParagraphRequest();
         request.name = <string>TestInitializer.getValue("postAddNewParagraph", "name");
         request.slideIndex = <number>TestInitializer.getValue("postAddNewParagraph", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postAddNewParagraph", "path");
         request.shapeIndex = <number>TestInitializer.getValue("postAddNewParagraph", "shapeIndex");
         request.dto = <model.Paragraph>TestInitializer.getValue("postAddNewParagraph", "dto");
         request.password = <string>TestInitializer.getValue("postAddNewParagraph", "password");
@@ -849,7 +987,6 @@ class TestUtils {
         const request = new requests.PostAddNewPortionRequest();
         request.name = <string>TestInitializer.getValue("postAddNewPortion", "name");
         request.slideIndex = <number>TestInitializer.getValue("postAddNewPortion", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postAddNewPortion", "path");
         request.shapeIndex = <number>TestInitializer.getValue("postAddNewPortion", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("postAddNewPortion", "paragraphIndex");
         request.dto = <model.Portion>TestInitializer.getValue("postAddNewPortion", "dto");
@@ -864,13 +1001,55 @@ class TestUtils {
         const request = new requests.PostAddNewShapeRequest();
         request.name = <string>TestInitializer.getValue("postAddNewShape", "name");
         request.slideIndex = <number>TestInitializer.getValue("postAddNewShape", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postAddNewShape", "path");
         request.dto = <model.ShapeBase>TestInitializer.getValue("postAddNewShape", "dto");
         request.password = <string>TestInitializer.getValue("postAddNewShape", "password");
         request.folder = <string>TestInitializer.getValue("postAddNewShape", "folder");
         request.storage = <string>TestInitializer.getValue("postAddNewShape", "storage");
         request.shapeToClone = <number>TestInitializer.getValue("postAddNewShape", "shapeToClone");
         request.position = <number>TestInitializer.getValue("postAddNewShape", "position");
+        return request;
+    }
+
+    public static getPostAddNewSubshapeRequest(): requests.PostAddNewSubshapeRequest {
+        const request = new requests.PostAddNewSubshapeRequest();
+        request.name = <string>TestInitializer.getValue("postAddNewSubshape", "name");
+        request.slideIndex = <number>TestInitializer.getValue("postAddNewSubshape", "slideIndex");
+        request.path = <string>TestInitializer.getValue("postAddNewSubshape", "path");
+        request.dto = <model.ShapeBase>TestInitializer.getValue("postAddNewSubshape", "dto");
+        request.password = <string>TestInitializer.getValue("postAddNewSubshape", "password");
+        request.folder = <string>TestInitializer.getValue("postAddNewSubshape", "folder");
+        request.storage = <string>TestInitializer.getValue("postAddNewSubshape", "storage");
+        request.shapeToClone = <number>TestInitializer.getValue("postAddNewSubshape", "shapeToClone");
+        request.position = <number>TestInitializer.getValue("postAddNewSubshape", "position");
+        return request;
+    }
+
+    public static getPostAddNewSubshapeParagraphRequest(): requests.PostAddNewSubshapeParagraphRequest {
+        const request = new requests.PostAddNewSubshapeParagraphRequest();
+        request.name = <string>TestInitializer.getValue("postAddNewSubshapeParagraph", "name");
+        request.slideIndex = <number>TestInitializer.getValue("postAddNewSubshapeParagraph", "slideIndex");
+        request.path = <string>TestInitializer.getValue("postAddNewSubshapeParagraph", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("postAddNewSubshapeParagraph", "shapeIndex");
+        request.dto = <model.Paragraph>TestInitializer.getValue("postAddNewSubshapeParagraph", "dto");
+        request.password = <string>TestInitializer.getValue("postAddNewSubshapeParagraph", "password");
+        request.folder = <string>TestInitializer.getValue("postAddNewSubshapeParagraph", "folder");
+        request.storage = <string>TestInitializer.getValue("postAddNewSubshapeParagraph", "storage");
+        request.position = <number>TestInitializer.getValue("postAddNewSubshapeParagraph", "position");
+        return request;
+    }
+
+    public static getPostAddNewSubshapePortionRequest(): requests.PostAddNewSubshapePortionRequest {
+        const request = new requests.PostAddNewSubshapePortionRequest();
+        request.name = <string>TestInitializer.getValue("postAddNewSubshapePortion", "name");
+        request.slideIndex = <number>TestInitializer.getValue("postAddNewSubshapePortion", "slideIndex");
+        request.path = <string>TestInitializer.getValue("postAddNewSubshapePortion", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("postAddNewSubshapePortion", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("postAddNewSubshapePortion", "paragraphIndex");
+        request.dto = <model.Portion>TestInitializer.getValue("postAddNewSubshapePortion", "dto");
+        request.password = <string>TestInitializer.getValue("postAddNewSubshapePortion", "password");
+        request.folder = <string>TestInitializer.getValue("postAddNewSubshapePortion", "folder");
+        request.storage = <string>TestInitializer.getValue("postAddNewSubshapePortion", "storage");
+        request.position = <number>TestInitializer.getValue("postAddNewSubshapePortion", "position");
         return request;
     }
 
@@ -920,6 +1099,14 @@ class TestUtils {
         return request;
     }
 
+    public static getPostGetNotesSlideExistsRequest(): requests.PostGetNotesSlideExistsRequest {
+        const request = new requests.PostGetNotesSlideExistsRequest();
+        request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideExists", "slideIndex");
+        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.password = <string>TestInitializer.getValue("postGetNotesSlideExists", "password");
+        return request;
+    }
+
     public static getPostGetNotesSlideWithFormatRequest(): requests.PostGetNotesSlideWithFormatRequest {
         const request = new requests.PostGetNotesSlideWithFormatRequest();
         request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "slideIndex");
@@ -936,7 +1123,6 @@ class TestUtils {
         const request = new requests.PostNotesSlideAddNewParagraphRequest();
         request.name = <string>TestInitializer.getValue("postNotesSlideAddNewParagraph", "name");
         request.slideIndex = <number>TestInitializer.getValue("postNotesSlideAddNewParagraph", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postNotesSlideAddNewParagraph", "path");
         request.shapeIndex = <number>TestInitializer.getValue("postNotesSlideAddNewParagraph", "shapeIndex");
         request.dto = <model.Paragraph>TestInitializer.getValue("postNotesSlideAddNewParagraph", "dto");
         request.password = <string>TestInitializer.getValue("postNotesSlideAddNewParagraph", "password");
@@ -950,7 +1136,6 @@ class TestUtils {
         const request = new requests.PostNotesSlideAddNewPortionRequest();
         request.name = <string>TestInitializer.getValue("postNotesSlideAddNewPortion", "name");
         request.slideIndex = <number>TestInitializer.getValue("postNotesSlideAddNewPortion", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postNotesSlideAddNewPortion", "path");
         request.shapeIndex = <number>TestInitializer.getValue("postNotesSlideAddNewPortion", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("postNotesSlideAddNewPortion", "paragraphIndex");
         request.dto = <model.Portion>TestInitializer.getValue("postNotesSlideAddNewPortion", "dto");
@@ -965,7 +1150,6 @@ class TestUtils {
         const request = new requests.PostNotesSlideAddNewShapeRequest();
         request.name = <string>TestInitializer.getValue("postNotesSlideAddNewShape", "name");
         request.slideIndex = <number>TestInitializer.getValue("postNotesSlideAddNewShape", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postNotesSlideAddNewShape", "path");
         request.dto = <model.ShapeBase>TestInitializer.getValue("postNotesSlideAddNewShape", "dto");
         request.password = <string>TestInitializer.getValue("postNotesSlideAddNewShape", "password");
         request.folder = <string>TestInitializer.getValue("postNotesSlideAddNewShape", "folder");
@@ -979,7 +1163,6 @@ class TestUtils {
         const request = new requests.PostNotesSlideShapeSaveAsRequest();
         request.name = <string>TestInitializer.getValue("postNotesSlideShapeSaveAs", "name");
         request.slideIndex = <number>TestInitializer.getValue("postNotesSlideShapeSaveAs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postNotesSlideShapeSaveAs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("postNotesSlideShapeSaveAs", "shapeIndex");
         request.format = <string>TestInitializer.getValue("postNotesSlideShapeSaveAs", "format");
         request.options = <model.IShapeExportOptions>TestInitializer.getValue("postNotesSlideShapeSaveAs", "options");
@@ -1007,7 +1190,6 @@ class TestUtils {
         const request = new requests.PostShapeSaveAsRequest();
         request.name = <string>TestInitializer.getValue("postShapeSaveAs", "name");
         request.slideIndex = <number>TestInitializer.getValue("postShapeSaveAs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("postShapeSaveAs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("postShapeSaveAs", "shapeIndex");
         request.format = <string>TestInitializer.getValue("postShapeSaveAs", "format");
         request.options = <model.IShapeExportOptions>TestInitializer.getValue("postShapeSaveAs", "options");
@@ -1244,6 +1426,24 @@ class TestUtils {
         return request;
     }
 
+    public static getPostSubshapeSaveAsRequest(): requests.PostSubshapeSaveAsRequest {
+        const request = new requests.PostSubshapeSaveAsRequest();
+        request.name = <string>TestInitializer.getValue("postSubshapeSaveAs", "name");
+        request.slideIndex = <number>TestInitializer.getValue("postSubshapeSaveAs", "slideIndex");
+        request.path = <string>TestInitializer.getValue("postSubshapeSaveAs", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("postSubshapeSaveAs", "shapeIndex");
+        request.format = <string>TestInitializer.getValue("postSubshapeSaveAs", "format");
+        request.options = <model.IShapeExportOptions>TestInitializer.getValue("postSubshapeSaveAs", "options");
+        request.password = <string>TestInitializer.getValue("postSubshapeSaveAs", "password");
+        request.folder = <string>TestInitializer.getValue("postSubshapeSaveAs", "folder");
+        request.storage = <string>TestInitializer.getValue("postSubshapeSaveAs", "storage");
+        request.scaleX = <number>TestInitializer.getValue("postSubshapeSaveAs", "scaleX");
+        request.scaleY = <number>TestInitializer.getValue("postSubshapeSaveAs", "scaleY");
+        request.bounds = <string>TestInitializer.getValue("postSubshapeSaveAs", "bounds");
+        request.fontsFolder = <string>TestInitializer.getValue("postSubshapeSaveAs", "fontsFolder");
+        return request;
+    }
+
     public static getPutLayoutSlideRequest(): requests.PutLayoutSlideRequest {
         const request = new requests.PutLayoutSlideRequest();
         request.name = <string>TestInitializer.getValue("putLayoutSlide", "name");
@@ -1259,7 +1459,6 @@ class TestUtils {
         const request = new requests.PutNotesSlideShapeSaveAsRequest();
         request.name = <string>TestInitializer.getValue("putNotesSlideShapeSaveAs", "name");
         request.slideIndex = <number>TestInitializer.getValue("putNotesSlideShapeSaveAs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putNotesSlideShapeSaveAs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putNotesSlideShapeSaveAs", "shapeIndex");
         request.format = <string>TestInitializer.getValue("putNotesSlideShapeSaveAs", "format");
         request.outPath = <string>TestInitializer.getValue("putNotesSlideShapeSaveAs", "outPath");
@@ -1288,7 +1487,6 @@ class TestUtils {
         const request = new requests.PutSetParagraphPortionPropertiesRequest();
         request.name = <string>TestInitializer.getValue("putSetParagraphPortionProperties", "name");
         request.slideIndex = <number>TestInitializer.getValue("putSetParagraphPortionProperties", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putSetParagraphPortionProperties", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putSetParagraphPortionProperties", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("putSetParagraphPortionProperties", "paragraphIndex");
         request.portionIndex = <number>TestInitializer.getValue("putSetParagraphPortionProperties", "portionIndex");
@@ -1303,7 +1501,6 @@ class TestUtils {
         const request = new requests.PutSetParagraphPropertiesRequest();
         request.name = <string>TestInitializer.getValue("putSetParagraphProperties", "name");
         request.slideIndex = <number>TestInitializer.getValue("putSetParagraphProperties", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putSetParagraphProperties", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putSetParagraphProperties", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("putSetParagraphProperties", "paragraphIndex");
         request.dto = <model.Paragraph>TestInitializer.getValue("putSetParagraphProperties", "dto");
@@ -1313,11 +1510,39 @@ class TestUtils {
         return request;
     }
 
+    public static getPutSetSubshapeParagraphPortionPropertiesRequest(): requests.PutSetSubshapeParagraphPortionPropertiesRequest {
+        const request = new requests.PutSetSubshapeParagraphPortionPropertiesRequest();
+        request.name = <string>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "name");
+        request.slideIndex = <number>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "slideIndex");
+        request.path = <string>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "paragraphIndex");
+        request.portionIndex = <number>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "portionIndex");
+        request.dto = <model.Portion>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "dto");
+        request.password = <string>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "password");
+        request.folder = <string>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("putSetSubshapeParagraphPortionProperties", "storage");
+        return request;
+    }
+
+    public static getPutSetSubshapeParagraphPropertiesRequest(): requests.PutSetSubshapeParagraphPropertiesRequest {
+        const request = new requests.PutSetSubshapeParagraphPropertiesRequest();
+        request.name = <string>TestInitializer.getValue("putSetSubshapeParagraphProperties", "name");
+        request.slideIndex = <number>TestInitializer.getValue("putSetSubshapeParagraphProperties", "slideIndex");
+        request.path = <string>TestInitializer.getValue("putSetSubshapeParagraphProperties", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("putSetSubshapeParagraphProperties", "shapeIndex");
+        request.paragraphIndex = <number>TestInitializer.getValue("putSetSubshapeParagraphProperties", "paragraphIndex");
+        request.dto = <model.Paragraph>TestInitializer.getValue("putSetSubshapeParagraphProperties", "dto");
+        request.password = <string>TestInitializer.getValue("putSetSubshapeParagraphProperties", "password");
+        request.folder = <string>TestInitializer.getValue("putSetSubshapeParagraphProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("putSetSubshapeParagraphProperties", "storage");
+        return request;
+    }
+
     public static getPutShapeSaveAsRequest(): requests.PutShapeSaveAsRequest {
         const request = new requests.PutShapeSaveAsRequest();
         request.name = <string>TestInitializer.getValue("putShapeSaveAs", "name");
         request.slideIndex = <number>TestInitializer.getValue("putShapeSaveAs", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putShapeSaveAs", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putShapeSaveAs", "shapeIndex");
         request.format = <string>TestInitializer.getValue("putShapeSaveAs", "format");
         request.outPath = <string>TestInitializer.getValue("putShapeSaveAs", "outPath");
@@ -1388,12 +1613,24 @@ class TestUtils {
         const request = new requests.PutSlideShapeInfoRequest();
         request.name = <string>TestInitializer.getValue("putSlideShapeInfo", "name");
         request.slideIndex = <number>TestInitializer.getValue("putSlideShapeInfo", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putSlideShapeInfo", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putSlideShapeInfo", "shapeIndex");
         request.dto = <model.ShapeBase>TestInitializer.getValue("putSlideShapeInfo", "dto");
         request.password = <string>TestInitializer.getValue("putSlideShapeInfo", "password");
         request.folder = <string>TestInitializer.getValue("putSlideShapeInfo", "folder");
         request.storage = <string>TestInitializer.getValue("putSlideShapeInfo", "storage");
+        return request;
+    }
+
+    public static getPutSlideSubshapeInfoRequest(): requests.PutSlideSubshapeInfoRequest {
+        const request = new requests.PutSlideSubshapeInfoRequest();
+        request.name = <string>TestInitializer.getValue("putSlideSubshapeInfo", "name");
+        request.slideIndex = <number>TestInitializer.getValue("putSlideSubshapeInfo", "slideIndex");
+        request.path = <string>TestInitializer.getValue("putSlideSubshapeInfo", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("putSlideSubshapeInfo", "shapeIndex");
+        request.dto = <model.ShapeBase>TestInitializer.getValue("putSlideSubshapeInfo", "dto");
+        request.password = <string>TestInitializer.getValue("putSlideSubshapeInfo", "password");
+        request.folder = <string>TestInitializer.getValue("putSlideSubshapeInfo", "folder");
+        request.storage = <string>TestInitializer.getValue("putSlideSubshapeInfo", "storage");
         return request;
     }
 
@@ -1497,6 +1734,25 @@ class TestUtils {
         return request;
     }
 
+    public static getPutSubshapeSaveAsRequest(): requests.PutSubshapeSaveAsRequest {
+        const request = new requests.PutSubshapeSaveAsRequest();
+        request.name = <string>TestInitializer.getValue("putSubshapeSaveAs", "name");
+        request.slideIndex = <number>TestInitializer.getValue("putSubshapeSaveAs", "slideIndex");
+        request.path = <string>TestInitializer.getValue("putSubshapeSaveAs", "path");
+        request.shapeIndex = <number>TestInitializer.getValue("putSubshapeSaveAs", "shapeIndex");
+        request.format = <string>TestInitializer.getValue("putSubshapeSaveAs", "format");
+        request.outPath = <string>TestInitializer.getValue("putSubshapeSaveAs", "outPath");
+        request.options = <model.IShapeExportOptions>TestInitializer.getValue("putSubshapeSaveAs", "options");
+        request.password = <string>TestInitializer.getValue("putSubshapeSaveAs", "password");
+        request.folder = <string>TestInitializer.getValue("putSubshapeSaveAs", "folder");
+        request.storage = <string>TestInitializer.getValue("putSubshapeSaveAs", "storage");
+        request.scaleX = <number>TestInitializer.getValue("putSubshapeSaveAs", "scaleX");
+        request.scaleY = <number>TestInitializer.getValue("putSubshapeSaveAs", "scaleY");
+        request.bounds = <string>TestInitializer.getValue("putSubshapeSaveAs", "bounds");
+        request.fontsFolder = <string>TestInitializer.getValue("putSubshapeSaveAs", "fontsFolder");
+        return request;
+    }
+
     public static getPutUpdateNotesSlideRequest(): requests.PutUpdateNotesSlideRequest {
         const request = new requests.PutUpdateNotesSlideRequest();
         request.name = <string>TestInitializer.getValue("putUpdateNotesSlide", "name");
@@ -1512,7 +1768,6 @@ class TestUtils {
         const request = new requests.PutUpdateNotesSlideShapeRequest();
         request.name = <string>TestInitializer.getValue("putUpdateNotesSlideShape", "name");
         request.slideIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShape", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putUpdateNotesSlideShape", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShape", "shapeIndex");
         request.dto = <model.ShapeBase>TestInitializer.getValue("putUpdateNotesSlideShape", "dto");
         request.password = <string>TestInitializer.getValue("putUpdateNotesSlideShape", "password");
@@ -1525,7 +1780,6 @@ class TestUtils {
         const request = new requests.PutUpdateNotesSlideShapeParagraphRequest();
         request.name = <string>TestInitializer.getValue("putUpdateNotesSlideShapeParagraph", "name");
         request.slideIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShapeParagraph", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putUpdateNotesSlideShapeParagraph", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShapeParagraph", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShapeParagraph", "paragraphIndex");
         request.dto = <model.Paragraph>TestInitializer.getValue("putUpdateNotesSlideShapeParagraph", "dto");
@@ -1539,7 +1793,6 @@ class TestUtils {
         const request = new requests.PutUpdateNotesSlideShapePortionRequest();
         request.name = <string>TestInitializer.getValue("putUpdateNotesSlideShapePortion", "name");
         request.slideIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShapePortion", "slideIndex");
-        request.path = <string>TestInitializer.getValue("putUpdateNotesSlideShapePortion", "path");
         request.shapeIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShapePortion", "shapeIndex");
         request.paragraphIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShapePortion", "paragraphIndex");
         request.portionIndex = <number>TestInitializer.getValue("putUpdateNotesSlideShapePortion", "portionIndex");
@@ -1905,17 +2158,6 @@ describe("Tests for deleteNotesSlideParagraph", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteNotesSlideParagraphRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideParagraph");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteNotesSlideParagraph", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraph(request), "deleteNotesSlideParagraph", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getDeleteNotesSlideParagraphRequest();
@@ -2004,17 +2246,6 @@ describe("Tests for deleteNotesSlideParagraphs", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteNotesSlideParagraphsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideParagraphs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteNotesSlideParagraphs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideParagraphs(request), "deleteNotesSlideParagraphs", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getDeleteNotesSlideParagraphsRequest();
@@ -2099,17 +2330,6 @@ describe("Tests for deleteNotesSlidePortion", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteNotesSlidePortion", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteNotesSlidePortionRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlidePortion");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteNotesSlidePortion", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortion(request), "deleteNotesSlidePortion", field, request.path);
             });
         });
     });
@@ -2213,17 +2433,6 @@ describe("Tests for deleteNotesSlidePortions", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteNotesSlidePortionsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlidePortions");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteNotesSlidePortions", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlidePortions(request), "deleteNotesSlidePortions", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getDeleteNotesSlidePortionsRequest();
@@ -2323,17 +2532,6 @@ describe("Tests for deleteNotesSlideShape", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteNotesSlideShapeRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteNotesSlideShape", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShape(request), "deleteNotesSlideShape", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getDeleteNotesSlideShapeRequest();
@@ -2411,17 +2609,6 @@ describe("Tests for deleteNotesSlideShapes", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteNotesSlideShapesRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteNotesSlideShapes");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteNotesSlideShapes", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteNotesSlideShapes(request), "deleteNotesSlideShapes", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapes test", () => {
         const field = "shapes";
         const request = TestUtils.getDeleteNotesSlideShapesRequest();
@@ -2495,17 +2682,6 @@ describe("Tests for deleteParagraph", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteParagraph", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteParagraphRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteParagraph");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteParagraph", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraph(request), "deleteParagraph", field, request.path);
             });
         });
     });
@@ -2598,17 +2774,6 @@ describe("Tests for deleteParagraphs", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteParagraphsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteParagraphs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteParagraphs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteParagraphs(request), "deleteParagraphs", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getDeleteParagraphsRequest();
@@ -2693,17 +2858,6 @@ describe("Tests for deletePortion", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortion", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeletePortionRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deletePortion");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deletePortion", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortion(request), "deletePortion", field, request.path);
             });
         });
     });
@@ -2803,17 +2957,6 @@ describe("Tests for deletePortions", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeletePortionsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deletePortions");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deletePortions", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.path);
             });
         });
     });
@@ -3423,17 +3566,6 @@ describe("Tests for deleteSlideShape", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteSlideShapeRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSlideShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteSlideShape", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShape(request), "deleteSlideShape", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getDeleteSlideShapeRequest();
@@ -3511,17 +3643,6 @@ describe("Tests for deleteSlideShapes", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getDeleteSlideShapesRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSlideShapes");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("deleteSlideShapes", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapes test", () => {
         const field = "shapes";
         const request = TestUtils.getDeleteSlideShapesRequest();
@@ -3562,6 +3683,182 @@ describe("Tests for deleteSlideShapes", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideShapes", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideShapes(request), "deleteSlideShapes", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSlideSubshape", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideSubshapeRequest();
+            return TestInitializer.initialize("deleteSlideSubshape", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideSubshape(request), false, "deleteSlideSubshape");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSlideSubshapeRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshape", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshape(request), "deleteSlideSubshape", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getDeleteSlideSubshapeRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshape", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshape(request), "deleteSlideSubshape", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getDeleteSlideSubshapeRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshape", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshape(request), "deleteSlideSubshape", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getDeleteSlideSubshapeRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshape", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshape(request), "deleteSlideSubshape", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSlideSubshapeRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshape", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshape(request), "deleteSlideSubshape", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSlideSubshapeRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshape", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshape(request), "deleteSlideSubshape", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSlideSubshapeRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshape", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshape(request), "deleteSlideSubshape", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSlideSubshapes", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSlideSubshapesRequest();
+            return TestInitializer.initialize("deleteSlideSubshapes", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSlideSubshapes(request), false, "deleteSlideSubshapes");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSlideSubshapesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshapes", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshapes(request), "deleteSlideSubshapes", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getDeleteSlideSubshapesRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshapes", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshapes(request), "deleteSlideSubshapes", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getDeleteSlideSubshapesRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshapes", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshapes(request), "deleteSlideSubshapes", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapes test", () => {
+        const field = "shapes";
+        const request = TestUtils.getDeleteSlideSubshapesRequest();
+        request.shapes = <Array<number>>TestInitializer.invalidizeValue(request.shapes, field, "Array&lt;number&gt;", "deleteSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshapes", field, request.shapes).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshapes(request), "deleteSlideSubshapes", field, request.shapes);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSlideSubshapesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshapes", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshapes(request), "deleteSlideSubshapes", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSlideSubshapesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshapes", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshapes(request), "deleteSlideSubshapes", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSlideSubshapesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlideSubshapes", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideSubshapes(request), "deleteSlideSubshapes", field, request.storage);
             });
         });
     });
@@ -3815,6 +4112,424 @@ describe("Tests for deleteSlidesSlideBackground", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlidesSlideBackground", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlidesSlideBackground(request), "deleteSlidesSlideBackground", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSubshapeParagraph", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSubshapeParagraphRequest();
+            return TestInitializer.initialize("deleteSubshapeParagraph", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), false, "deleteSubshapeParagraph");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSubshapeParagraphRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraph", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraph(request), "deleteSubshapeParagraph", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSubshapeParagraphs", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+            return TestInitializer.initialize("deleteSubshapeParagraphs", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), false, "deleteSubshapeParagraphs");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphs test", () => {
+        const field = "paragraphs";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.paragraphs = <Array<number>>TestInitializer.invalidizeValue(request.paragraphs, field, "Array&lt;number&gt;", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.paragraphs).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.paragraphs);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSubshapeParagraphsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapeParagraphs", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapeParagraphs(request), "deleteSubshapeParagraphs", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSubshapePortion", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSubshapePortionRequest();
+            return TestInitializer.initialize("deleteSubshapePortion", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSubshapePortion(request), false, "deleteSubshapePortion");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid portionIndex test", () => {
+        const field = "portionIndex";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.portionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.portionIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSubshapePortionRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortion", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortion(request), "deleteSubshapePortion", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSubshapePortions", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSubshapePortionsRequest();
+            return TestInitializer.initialize("deleteSubshapePortions", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSubshapePortions(request), false, "deleteSubshapePortions");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid portions test", () => {
+        const field = "portions";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.portions = <Array<number>>TestInitializer.invalidizeValue(request.portions, field, "Array&lt;number&gt;", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.portions).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.portions);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSubshapePortionsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSubshapePortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSubshapePortions", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(request), "deleteSubshapePortions", field, request.storage);
             });
         });
     });
@@ -4260,6 +4975,72 @@ describe("Tests for getNotesSlide", () => {
     });
 });
 
+describe("Tests for getNotesSlideExists", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideExistsRequest();
+            return TestInitializer.initialize("getNotesSlideExists", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideExists(request), false, "getNotesSlideExists");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetNotesSlideExistsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideExists", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideExists(request), "getNotesSlideExists", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetNotesSlideExistsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideExists", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideExists(request), "getNotesSlideExists", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetNotesSlideExistsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideExists", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideExists(request), "getNotesSlideExists", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetNotesSlideExistsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideExists", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideExists(request), "getNotesSlideExists", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetNotesSlideExistsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideExists", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideExists(request), "getNotesSlideExists", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for getNotesSlideShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -4288,17 +5069,6 @@ describe("Tests for getNotesSlideShape", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShape", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetNotesSlideShapeRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getNotesSlideShape", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShape(request), "getNotesSlideShape", field, request.path);
             });
         });
     });
@@ -4376,17 +5146,6 @@ describe("Tests for getNotesSlideShapeParagraph", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetNotesSlideShapeParagraphRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapeParagraph");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getNotesSlideShapeParagraph", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraph(request), "getNotesSlideShapeParagraph", field, request.path);
             });
         });
     });
@@ -4479,17 +5238,6 @@ describe("Tests for getNotesSlideShapeParagraphs", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetNotesSlideShapeParagraphsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapeParagraphs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getNotesSlideShapeParagraphs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapeParagraphs(request), "getNotesSlideShapeParagraphs", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getGetNotesSlideShapeParagraphsRequest();
@@ -4563,17 +5311,6 @@ describe("Tests for getNotesSlideShapePortion", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapePortion", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetNotesSlideShapePortionRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapePortion");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getNotesSlideShapePortion", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortion(request), "getNotesSlideShapePortion", field, request.path);
             });
         });
     });
@@ -4677,17 +5414,6 @@ describe("Tests for getNotesSlideShapePortions", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetNotesSlideShapePortionsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapePortions");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getNotesSlideShapePortions", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapePortions(request), "getNotesSlideShapePortions", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getGetNotesSlideShapePortionsRequest();
@@ -4772,17 +5498,6 @@ describe("Tests for getNotesSlideShapes", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideShapes", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetNotesSlideShapesRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getNotesSlideShapes");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getNotesSlideShapes", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideShapes(request), "getNotesSlideShapes", field, request.path);
             });
         });
     });
@@ -4963,17 +5678,6 @@ describe("Tests for getParagraphPortion", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetParagraphPortionRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getParagraphPortion");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getParagraphPortion", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortion(request), "getParagraphPortion", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getGetParagraphPortionRequest();
@@ -5069,17 +5773,6 @@ describe("Tests for getParagraphPortions", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getParagraphPortions", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetParagraphPortionsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getParagraphPortions");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getParagraphPortions", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphPortions(request), "getParagraphPortions", field, request.path);
             });
         });
     });
@@ -5249,17 +5942,6 @@ describe("Tests for getSlideShape", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetSlideShapeRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getSlideShape", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShape(request), "getSlideShape", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getGetSlideShapeRequest();
@@ -5333,17 +6015,6 @@ describe("Tests for getSlideShapeParagraph", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapeParagraph", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetSlideShapeParagraphRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShapeParagraph");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getSlideShapeParagraph", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraph(request), "getSlideShapeParagraph", field, request.path);
             });
         });
     });
@@ -5436,17 +6107,6 @@ describe("Tests for getSlideShapeParagraphs", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetSlideShapeParagraphsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShapeParagraphs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getSlideShapeParagraphs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapeParagraphs(request), "getSlideShapeParagraphs", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getGetSlideShapeParagraphsRequest();
@@ -5524,17 +6184,6 @@ describe("Tests for getSlideShapes", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getGetSlideShapesRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideShapes");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("getSlideShapes", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.path);
-            });
-        });
-    });
-
     it("invalid password test", () => {
         const field = "password";
         const request = TestUtils.getGetSlideShapesRequest();
@@ -5564,6 +6213,358 @@ describe("Tests for getSlideShapes", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideShapes", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideShapes(request), "getSlideShapes", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSlideSubshape", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideSubshapeRequest();
+            return TestInitializer.initialize("getSlideSubshape", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideSubshape(request), false, "getSlideSubshape");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlideSubshapeRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshape", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshape(request), "getSlideSubshape", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetSlideSubshapeRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshape", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshape(request), "getSlideSubshape", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getGetSlideSubshapeRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshape", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshape(request), "getSlideSubshape", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getGetSlideSubshapeRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshape", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshape(request), "getSlideSubshape", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlideSubshapeRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshape", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshape(request), "getSlideSubshape", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlideSubshapeRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshape", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshape(request), "getSlideSubshape", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlideSubshapeRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshape", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshape(request), "getSlideSubshape", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSlideSubshapeParagraph", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+            return TestInitializer.initialize("getSlideSubshapeParagraph", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), false, "getSlideSubshapeParagraph");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlideSubshapeParagraphRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraph", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraph(request), "getSlideSubshapeParagraph", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSlideSubshapeParagraphs", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), false, "getSlideSubshapeParagraphs");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), "getSlideSubshapeParagraphs", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), "getSlideSubshapeParagraphs", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), "getSlideSubshapeParagraphs", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSlideSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), "getSlideSubshapeParagraphs", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), "getSlideSubshapeParagraphs", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), "getSlideSubshapeParagraphs", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlideSubshapeParagraphsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideSubshapeParagraphs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapeParagraphs", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapeParagraphs(request), "getSlideSubshapeParagraphs", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSlideSubshapes", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideSubshapesRequest();
+            return TestInitializer.initialize("getSlideSubshapes", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideSubshapes(request), false, "getSlideSubshapes");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlideSubshapesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapes", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapes(request), "getSlideSubshapes", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetSlideSubshapesRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapes", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapes(request), "getSlideSubshapes", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getGetSlideSubshapesRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapes", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapes(request), "getSlideSubshapes", field, request.path);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlideSubshapesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapes", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapes(request), "getSlideSubshapes", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlideSubshapesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapes", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapes(request), "getSlideSubshapes", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlideSubshapesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideSubshapes", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideSubshapes(request), "getSlideSubshapes", field, request.storage);
             });
         });
     });
@@ -6878,6 +7879,215 @@ describe("Tests for getSlidesViewProperties", () => {
     });
 });
 
+describe("Tests for getSubshapeParagraphPortion", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+            return TestInitializer.initialize("getSubshapeParagraphPortion", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), false, "getSubshapeParagraphPortion");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid portionIndex test", () => {
+        const field = "portionIndex";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.portionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.portionIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSubshapeParagraphPortionRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSubshapeParagraphPortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortion", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortion(request), "getSubshapeParagraphPortion", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSubshapeParagraphPortions", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+            return TestInitializer.initialize("getSubshapeParagraphPortions", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), false, "getSubshapeParagraphPortions");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSubshapeParagraphPortionsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSubshapeParagraphPortions");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSubshapeParagraphPortions", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSubshapeParagraphPortions(request), "getSubshapeParagraphPortions", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for moveFile", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -7075,17 +8285,6 @@ describe("Tests for postAddNewParagraph", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostAddNewParagraphRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewParagraph");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postAddNewParagraph", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewParagraph(request), "postAddNewParagraph", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getPostAddNewParagraphRequest();
@@ -7181,17 +8380,6 @@ describe("Tests for postAddNewPortion", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewPortion", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostAddNewPortionRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewPortion");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postAddNewPortion", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewPortion(request), "postAddNewPortion", field, request.path);
             });
         });
     });
@@ -7306,17 +8494,6 @@ describe("Tests for postAddNewShape", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostAddNewShapeRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postAddNewShape", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.path);
-            });
-        });
-    });
-
     it("invalid dto test", () => {
         const field = "dto";
         const request = TestUtils.getPostAddNewShapeRequest();
@@ -7379,6 +8556,347 @@ describe("Tests for postAddNewShape", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postAddNewShape", field, request.position).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewShape(request), "postAddNewShape", field, request.position);
+            });
+        });
+    });
+});
+
+describe("Tests for postAddNewSubshape", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostAddNewSubshapeRequest();
+            return TestInitializer.initialize("postAddNewSubshape", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postAddNewSubshape(request), false, "postAddNewSubshape");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.path);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.dto = <model.ShapeBase>TestInitializer.invalidizeValue(request.dto, field, "ShapeBase", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid shapeToClone test", () => {
+        const field = "shapeToClone";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.shapeToClone = <number>TestInitializer.invalidizeValue(request.shapeToClone, field, "number", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.shapeToClone).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.shapeToClone);
+            });
+        });
+    });
+
+    it("invalid position test", () => {
+        const field = "position";
+        const request = TestUtils.getPostAddNewSubshapeRequest();
+        request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postAddNewSubshape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshape", field, request.position).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshape(request), "postAddNewSubshape", field, request.position);
+            });
+        });
+    });
+});
+
+describe("Tests for postAddNewSubshapeParagraph", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), false, "postAddNewSubshapeParagraph");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.dto = <model.Paragraph>TestInitializer.invalidizeValue(request.dto, field, "Paragraph", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid position test", () => {
+        const field = "position";
+        const request = TestUtils.getPostAddNewSubshapeParagraphRequest();
+        request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postAddNewSubshapeParagraph");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapeParagraph", field, request.position).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapeParagraph(request), "postAddNewSubshapeParagraph", field, request.position);
+            });
+        });
+    });
+});
+
+describe("Tests for postAddNewSubshapePortion", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostAddNewSubshapePortionRequest();
+            return TestInitializer.initialize("postAddNewSubshapePortion", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), false, "postAddNewSubshapePortion");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.dto = <model.Portion>TestInitializer.invalidizeValue(request.dto, field, "Portion", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid position test", () => {
+        const field = "position";
+        const request = TestUtils.getPostAddNewSubshapePortionRequest();
+        request.position = <number>TestInitializer.invalidizeValue(request.position, field, "number", "postAddNewSubshapePortion");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postAddNewSubshapePortion", field, request.position).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postAddNewSubshapePortion(request), "postAddNewSubshapePortion", field, request.position);
             });
         });
     });
@@ -7714,6 +9232,50 @@ describe("Tests for postGetNotesSlide", () => {
     });
 });
 
+describe("Tests for postGetNotesSlideExists", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostGetNotesSlideExistsRequest();
+            return TestInitializer.initialize("postGetNotesSlideExists", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postGetNotesSlideExists(request), false, "postGetNotesSlideExists");
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostGetNotesSlideExistsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postGetNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideExists", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideExists(request), "postGetNotesSlideExists", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        const request = TestUtils.getPostGetNotesSlideExistsRequest();
+        request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "postGetNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideExists", field, request.document).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideExists(request), "postGetNotesSlideExists", field, request.document);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostGetNotesSlideExistsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postGetNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideExists", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideExists(request), "postGetNotesSlideExists", field, request.password);
+            });
+        });
+    });
+});
+
 describe("Tests for postGetNotesSlideWithFormat", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -7834,17 +9396,6 @@ describe("Tests for postNotesSlideAddNewParagraph", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostNotesSlideAddNewParagraphRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideAddNewParagraph");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postNotesSlideAddNewParagraph", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewParagraph(request), "postNotesSlideAddNewParagraph", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getPostNotesSlideAddNewParagraphRequest();
@@ -7940,17 +9491,6 @@ describe("Tests for postNotesSlideAddNewPortion", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostNotesSlideAddNewPortionRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideAddNewPortion");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postNotesSlideAddNewPortion", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewPortion(request), "postNotesSlideAddNewPortion", field, request.path);
             });
         });
     });
@@ -8065,17 +9605,6 @@ describe("Tests for postNotesSlideAddNewShape", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostNotesSlideAddNewShapeRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideAddNewShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postNotesSlideAddNewShape", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideAddNewShape(request), "postNotesSlideAddNewShape", field, request.path);
-            });
-        });
-    });
-
     it("invalid dto test", () => {
         const field = "dto";
         const request = TestUtils.getPostNotesSlideAddNewShapeRequest();
@@ -8171,17 +9700,6 @@ describe("Tests for postNotesSlideShapeSaveAs", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostNotesSlideShapeSaveAsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postNotesSlideShapeSaveAs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postNotesSlideShapeSaveAs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postNotesSlideShapeSaveAs(request), "postNotesSlideShapeSaveAs", field, request.path);
             });
         });
     });
@@ -8391,17 +9909,6 @@ describe("Tests for postShapeSaveAs", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postShapeSaveAs", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPostShapeSaveAsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postShapeSaveAs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postShapeSaveAs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postShapeSaveAs(request), "postShapeSaveAs", field, request.path);
             });
         });
     });
@@ -10134,6 +11641,160 @@ describe("Tests for postSlidesSplit", () => {
     });
 });
 
+describe("Tests for postSubshapeSaveAs", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSubshapeSaveAsRequest();
+            return TestInitializer.initialize("postSubshapeSaveAs", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSubshapeSaveAs(request), true, "postSubshapeSaveAs");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid format test", () => {
+        const field = "format";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.format).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.format);
+            });
+        });
+    });
+
+    it("invalid options test", () => {
+        const field = "options";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.options = <model.IShapeExportOptions>TestInitializer.invalidizeValue(request.options, field, "IShapeExportOptions", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.options).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.options);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid scaleX test", () => {
+        const field = "scaleX";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.scaleX = <number>TestInitializer.invalidizeValue(request.scaleX, field, "number", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.scaleX).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.scaleX);
+            });
+        });
+    });
+
+    it("invalid scaleY test", () => {
+        const field = "scaleY";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.scaleY = <number>TestInitializer.invalidizeValue(request.scaleY, field, "number", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.scaleY).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.scaleY);
+            });
+        });
+    });
+
+    it("invalid bounds test", () => {
+        const field = "bounds";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.bounds = <string>TestInitializer.invalidizeValue(request.bounds, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.bounds).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.bounds);
+            });
+        });
+    });
+
+    it("invalid fontsFolder test", () => {
+        const field = "fontsFolder";
+        const request = TestUtils.getPostSubshapeSaveAsRequest();
+        request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "postSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSubshapeSaveAs", field, request.fontsFolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.fontsFolder);
+            });
+        });
+    });
+});
+
 describe("Tests for putLayoutSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -10239,17 +11900,6 @@ describe("Tests for putNotesSlideShapeSaveAs", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutNotesSlideShapeSaveAsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putNotesSlideShapeSaveAs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putNotesSlideShapeSaveAs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideShapeSaveAs(request), "putNotesSlideShapeSaveAs", field, request.path);
             });
         });
     });
@@ -10474,17 +12124,6 @@ describe("Tests for putSetParagraphPortionProperties", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutSetParagraphPortionPropertiesRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSetParagraphPortionProperties");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSetParagraphPortionProperties", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphPortionProperties(request), "putSetParagraphPortionProperties", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getPutSetParagraphPortionPropertiesRequest();
@@ -10595,17 +12234,6 @@ describe("Tests for putSetParagraphProperties", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutSetParagraphPropertiesRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSetParagraphProperties");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSetParagraphProperties", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetParagraphProperties(request), "putSetParagraphProperties", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getPutSetParagraphPropertiesRequest();
@@ -10673,6 +12301,237 @@ describe("Tests for putSetParagraphProperties", () => {
     });
 });
 
+describe("Tests for putSetSubshapeParagraphPortionProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), false, "putSetSubshapeParagraphPortionProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid portionIndex test", () => {
+        const field = "portionIndex";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.portionIndex = <number>TestInitializer.invalidizeValue(request.portionIndex, field, "number", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.portionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.portionIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.dto = <model.Portion>TestInitializer.invalidizeValue(request.dto, field, "Portion", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSetSubshapeParagraphPortionPropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSetSubshapeParagraphPortionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphPortionProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphPortionProperties(request), "putSetSubshapeParagraphPortionProperties", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for putSetSubshapeParagraphProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), false, "putSetSubshapeParagraphProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.paragraphIndex = <number>TestInitializer.invalidizeValue(request.paragraphIndex, field, "number", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.paragraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.paragraphIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.dto = <model.Paragraph>TestInitializer.invalidizeValue(request.dto, field, "Paragraph", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSetSubshapeParagraphPropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSetSubshapeParagraphProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSetSubshapeParagraphProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSetSubshapeParagraphProperties(request), "putSetSubshapeParagraphProperties", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for putShapeSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -10701,17 +12560,6 @@ describe("Tests for putShapeSaveAs", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putShapeSaveAs", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutShapeSaveAsRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putShapeSaveAs");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putShapeSaveAs", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putShapeSaveAs(request), "putShapeSaveAs", field, request.path);
             });
         });
     });
@@ -11266,17 +13114,6 @@ describe("Tests for putSlideShapeInfo", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutSlideShapeInfoRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSlideShapeInfo");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlideShapeInfo", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getPutSlideShapeInfoRequest();
@@ -11328,6 +13165,105 @@ describe("Tests for putSlideShapeInfo", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlideShapeInfo", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideShapeInfo(request), "putSlideShapeInfo", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for putSlideSubshapeInfo", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlideSubshapeInfoRequest();
+            return TestInitializer.initialize("putSlideSubshapeInfo", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), false, "putSlideSubshapeInfo");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.dto = <model.ShapeBase>TestInitializer.invalidizeValue(request.dto, field, "ShapeBase", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSlideSubshapeInfoRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlideSubshapeInfo");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideSubshapeInfo", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideSubshapeInfo(request), "putSlideSubshapeInfo", field, request.storage);
             });
         });
     });
@@ -12037,6 +13973,171 @@ describe("Tests for putSlidesViewProperties", () => {
     });
 });
 
+describe("Tests for putSubshapeSaveAs", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSubshapeSaveAsRequest();
+            return TestInitializer.initialize("putSubshapeSaveAs", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSubshapeSaveAs(request), false, "putSubshapeSaveAs");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.path).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.path);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid format test", () => {
+        const field = "format";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.format).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.format);
+            });
+        });
+    });
+
+    it("invalid outPath test", () => {
+        const field = "outPath";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.outPath = <string>TestInitializer.invalidizeValue(request.outPath, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.outPath).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.outPath);
+            });
+        });
+    });
+
+    it("invalid options test", () => {
+        const field = "options";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.options = <model.IShapeExportOptions>TestInitializer.invalidizeValue(request.options, field, "IShapeExportOptions", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.options).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.options);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid scaleX test", () => {
+        const field = "scaleX";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.scaleX = <number>TestInitializer.invalidizeValue(request.scaleX, field, "number", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.scaleX).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.scaleX);
+            });
+        });
+    });
+
+    it("invalid scaleY test", () => {
+        const field = "scaleY";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.scaleY = <number>TestInitializer.invalidizeValue(request.scaleY, field, "number", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.scaleY).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.scaleY);
+            });
+        });
+    });
+
+    it("invalid bounds test", () => {
+        const field = "bounds";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.bounds = <string>TestInitializer.invalidizeValue(request.bounds, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.bounds).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.bounds);
+            });
+        });
+    });
+
+    it("invalid fontsFolder test", () => {
+        const field = "fontsFolder";
+        const request = TestUtils.getPutSubshapeSaveAsRequest();
+        request.fontsFolder = <string>TestInitializer.invalidizeValue(request.fontsFolder, field, "string", "putSubshapeSaveAs");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSubshapeSaveAs", field, request.fontsFolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSubshapeSaveAs(request), "putSubshapeSaveAs", field, request.fontsFolder);
+            });
+        });
+    });
+});
+
 describe("Tests for putUpdateNotesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -12146,17 +14247,6 @@ describe("Tests for putUpdateNotesSlideShape", () => {
         });
     });
 
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutUpdateNotesSlideShapeRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putUpdateNotesSlideShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putUpdateNotesSlideShape", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShape(request), "putUpdateNotesSlideShape", field, request.path);
-            });
-        });
-    });
-
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
         const request = TestUtils.getPutUpdateNotesSlideShapeRequest();
@@ -12241,17 +14331,6 @@ describe("Tests for putUpdateNotesSlideShapeParagraph", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutUpdateNotesSlideShapeParagraphRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putUpdateNotesSlideShapeParagraph");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putUpdateNotesSlideShapeParagraph", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapeParagraph(request), "putUpdateNotesSlideShapeParagraph", field, request.path);
             });
         });
     });
@@ -12351,17 +14430,6 @@ describe("Tests for putUpdateNotesSlideShapePortion", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.slideIndex).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.slideIndex);
-            });
-        });
-    });
-
-    it("invalid path test", () => {
-        const field = "path";
-        const request = TestUtils.getPutUpdateNotesSlideShapePortionRequest();
-        request.path = <string>TestInitializer.invalidizeValue(request.path, field, "string", "putUpdateNotesSlideShapePortion");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putUpdateNotesSlideShapePortion", field, request.path).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putUpdateNotesSlideShapePortion(request), "putUpdateNotesSlideShapePortion", field, request.path);
             });
         });
     });

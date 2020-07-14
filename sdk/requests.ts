@@ -158,10 +158,6 @@ export class DeleteNotesSlideParagraphRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -195,10 +191,6 @@ export class DeleteNotesSlideParagraphsRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -231,10 +223,6 @@ export class DeleteNotesSlidePortionRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -273,10 +261,6 @@ export class DeleteNotesSlidePortionsRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -314,10 +298,6 @@ export class DeleteNotesSlideShapeRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -347,10 +327,6 @@ export class DeleteNotesSlideShapesRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * The indices of the shapes to be deleted; delete all by default.
      */
     public shapes: Array<number>;
@@ -379,10 +355,6 @@ export class DeleteParagraphRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -417,10 +389,6 @@ export class DeleteParagraphsRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -453,10 +421,6 @@ export class DeletePortionRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -494,10 +458,6 @@ export class DeletePortionsRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -727,10 +687,6 @@ export class DeleteSlideShapeRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -760,7 +716,69 @@ export class DeleteSlideShapesRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
+     * The indices of the shapes to be deleted; delete all by default.
+     */
+    public shapes: Array<number>;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSlideSubshape operation.
+ */
+export class DeleteSlideSubshapeRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSlideSubshapes operation.
+ */
+export class DeleteSlideSubshapesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
      */
     public path: string;
     /**
@@ -863,6 +881,162 @@ export class DeleteSlidesSlideBackgroundRequest {
      * Slide index.
      */
     public slideIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSubshapeParagraph operation.
+ */
+export class DeleteSubshapeParagraphRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSubshapeParagraphs operation.
+ */
+export class DeleteSubshapeParagraphsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * The indices of the shapes to be deleted; delete all by default.
+     */
+    public paragraphs: Array<number>;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSubshapePortion operation.
+ */
+export class DeleteSubshapePortionRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Portion index.
+     */
+    public portionIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSubshapePortions operation.
+ */
+export class DeleteSubshapePortionsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * The indices of the shapes to be deleted; delete all by default.
+     */
+    public portions: Array<number>;
     /**
      * Document password.
      */
@@ -1046,6 +1220,31 @@ export class GetNotesSlideRequest {
     public storage: string;
 }
 /**
+ * Request model for GetNotesSlideExists operation.
+ */
+export class GetNotesSlideExistsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for GetNotesSlideShape operation.
  */
 export class GetNotesSlideShapeRequest {
@@ -1057,10 +1256,6 @@ export class GetNotesSlideShapeRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -1090,10 +1285,6 @@ export class GetNotesSlideShapeParagraphRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -1128,10 +1319,6 @@ export class GetNotesSlideShapeParagraphsRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -1160,10 +1347,6 @@ export class GetNotesSlideShapePortionRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -1202,10 +1385,6 @@ export class GetNotesSlideShapePortionsRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -1238,10 +1417,6 @@ export class GetNotesSlideShapesRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Document password.
      */
@@ -1309,10 +1484,6 @@ export class GetParagraphPortionRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -1349,10 +1520,6 @@ export class GetParagraphPortionsRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -1416,10 +1583,6 @@ export class GetSlideShapeRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -1448,10 +1611,6 @@ export class GetSlideShapeParagraphRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -1486,10 +1645,6 @@ export class GetSlideShapeParagraphsRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -1510,6 +1665,134 @@ export class GetSlideShapeParagraphsRequest {
  * Request model for GetSlideShapes operation.
  */
 export class GetSlideShapesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for GetSlideSubshape operation.
+ */
+export class GetSlideSubshapeRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for GetSlideSubshapeParagraph operation.
+ */
+export class GetSlideSubshapeParagraphRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for GetSlideSubshapeParagraphs operation.
+ */
+export class GetSlideSubshapeParagraphsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for GetSlideSubshapes operation.
+ */
+export class GetSlideSubshapesRequest {
     /**
      * Document name.
      */
@@ -2033,6 +2316,84 @@ export class GetSlidesViewPropertiesRequest {
     public storage: string;
 }
 /**
+ * Request model for GetSubshapeParagraphPortion operation.
+ */
+export class GetSubshapeParagraphPortionRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Portion index.
+     */
+    public portionIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for GetSubshapeParagraphPortions operation.
+ */
+export class GetSubshapeParagraphPortionsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for MoveFile operation.
  */
 export class MoveFileRequest {
@@ -2108,10 +2469,6 @@ export class PostAddNewParagraphRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -2148,10 +2505,6 @@ export class PostAddNewPortionRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -2194,7 +2547,44 @@ export class PostAddNewShapeRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
+     * Shape DTO.
+     */
+    public dto: model.ShapeBase;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Optional index for clone shape instead of adding a new one.
+     */
+    public shapeToClone: number;
+    /**
+     * Position of the new shape in the list. Default is at the end of the list.
+     */
+    public position: number;
+}
+/**
+ * Request model for PostAddNewSubshape operation.
+ */
+export class PostAddNewSubshapeRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
      */
     public path: string;
     /**
@@ -2219,6 +2609,92 @@ export class PostAddNewShapeRequest {
     public shapeToClone: number;
     /**
      * Position of the new shape in the list. Default is at the end of the list.
+     */
+    public position: number;
+}
+/**
+ * Request model for PostAddNewSubshapeParagraph operation.
+ */
+export class PostAddNewSubshapeParagraphRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph DTO.
+     */
+    public dto: model.Paragraph;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Position of the new paragraph in the list. Default is at the end of the list.
+     */
+    public position: number;
+}
+/**
+ * Request model for PostAddNewSubshapePortion operation.
+ */
+export class PostAddNewSubshapePortionRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Portion DTO.
+     */
+    public dto: model.Portion;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Position of the new portion in the list. Default is at the end of the list.
      */
     public position: number;
 }
@@ -2347,6 +2823,23 @@ export class PostGetNotesSlideRequest {
     public password: string;
 }
 /**
+ * Request model for PostGetNotesSlideExists operation.
+ */
+export class PostGetNotesSlideExistsRequest {
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
  * Request model for PostGetNotesSlideWithFormat operation.
  */
 export class PostGetNotesSlideWithFormatRequest {
@@ -2392,10 +2885,6 @@ export class PostNotesSlideAddNewParagraphRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -2432,10 +2921,6 @@ export class PostNotesSlideAddNewPortionRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -2478,10 +2963,6 @@ export class PostNotesSlideAddNewShapeRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape DTO.
      */
     public dto: model.ShapeBase;
@@ -2518,10 +2999,6 @@ export class PostNotesSlideShapeSaveAsRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Index of shape starting from 1
      */
@@ -2600,10 +3077,6 @@ export class PostShapeSaveAsRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Index of shape starting from 1
      */
@@ -3253,6 +3726,63 @@ export class PostSlidesSplitRequest {
     public fontsFolder: string;
 }
 /**
+ * Request model for PostSubshapeSaveAs operation.
+ */
+export class PostSubshapeSaveAsRequest {
+    /**
+     * Presentation name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Index of shape starting from 1
+     */
+    public shapeIndex: number;
+    /**
+     * Export picture format.
+     */
+    public format: string;
+    /**
+     * export options
+     */
+    public options: model.IShapeExportOptions;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
+    /**
+     * X scale ratio.
+     */
+    public scaleX: number;
+    /**
+     * Y scale ratio.
+     */
+    public scaleY: number;
+    /**
+     * Shape thumbnail bounds type.
+     */
+    public bounds: string;
+    /**
+     * Fonts folder.
+     */
+    public fontsFolder: string;
+}
+/**
  * Request model for PutLayoutSlide operation.
  */
 export class PutLayoutSlideRequest {
@@ -3293,10 +3823,6 @@ export class PutNotesSlideShapeSaveAsRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Index of shape starting from 1
      */
@@ -3380,10 +3906,6 @@ export class PutSetParagraphPortionPropertiesRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -3425,7 +3947,89 @@ export class PutSetParagraphPropertiesRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Paragraph DTO.
+     */
+    public dto: model.Paragraph;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutSetSubshapeParagraphPortionProperties operation.
+ */
+export class PutSetSubshapeParagraphPortionPropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
+     */
+    public path: string;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Paragraph index.
+     */
+    public paragraphIndex: number;
+    /**
+     * Portion index.
+     */
+    public portionIndex: number;
+    /**
+     * Portion DTO.
+     */
+    public dto: model.Portion;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutSetSubshapeParagraphProperties operation.
+ */
+export class PutSetSubshapeParagraphPropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
      */
     public path: string;
     /**
@@ -3465,10 +4069,6 @@ export class PutShapeSaveAsRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Index of shape starting from 1
      */
@@ -3675,7 +4275,40 @@ export class PutSlideShapeInfoRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Shape DTO.
+     */
+    public dto: model.ShapeBase;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutSlideSubshapeInfo operation.
+ */
+export class PutSlideSubshapeInfoRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path.
      */
     public path: string;
     /**
@@ -3965,6 +4598,67 @@ export class PutSlidesViewPropertiesRequest {
     public storage: string;
 }
 /**
+ * Request model for PutSubshapeSaveAs operation.
+ */
+export class PutSubshapeSaveAsRequest {
+    /**
+     * Presentation name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape path (for smart art and group shapes).
+     */
+    public path: string;
+    /**
+     * Index of shape starting from 1
+     */
+    public shapeIndex: number;
+    /**
+     * Export picture format.
+     */
+    public format: string;
+    /**
+     * Output path.
+     */
+    public outPath: string;
+    /**
+     * export options
+     */
+    public options: model.IShapeExportOptions;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
+    /**
+     * X scale ratio.
+     */
+    public scaleX: number;
+    /**
+     * Y scale ratio.
+     */
+    public scaleY: number;
+    /**
+     * Shape thumbnail bounds type.
+     */
+    public bounds: string;
+    /**
+     * Fonts folder.
+     */
+    public fontsFolder: string;
+}
+/**
  * Request model for PutUpdateNotesSlide operation.
  */
 export class PutUpdateNotesSlideRequest {
@@ -4006,10 +4700,6 @@ export class PutUpdateNotesSlideShapeRequest {
      */
     public slideIndex: number;
     /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
-    /**
      * Shape index.
      */
     public shapeIndex: number;
@@ -4042,10 +4732,6 @@ export class PutUpdateNotesSlideShapeParagraphRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */
@@ -4083,10 +4769,6 @@ export class PutUpdateNotesSlideShapePortionRequest {
      * Slide index.
      */
     public slideIndex: number;
-    /**
-     * Shape path (for smart art and group shapes).
-     */
-    public path: string;
     /**
      * Shape index.
      */

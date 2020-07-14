@@ -869,6 +869,18 @@ export class EffectFormat {
 }
 
 /**
+ * Information about object existence.
+ */
+export class EntityExists {
+
+    /**
+     * True if the object exists.
+     */
+    exists: boolean;
+
+}
+
+/**
  * The error details
  */
 export class ErrorDetails {
@@ -912,7 +924,8 @@ export enum ExportFormat {
     'Jpeg' = <any> "'Jpeg'",
     'Png' = <any> "'Png'",
     'Gif' = <any> "'Gif'",
-    'Bmp' = <any> "'Bmp'"
+    'Bmp' = <any> "'Bmp'",
+    'Fodp' = <any> "'Fodp'"
 }
 
 /**
@@ -2198,7 +2211,8 @@ export enum SlideExportFormat {
     'Potx' = <any> "'Potx'",
     'Pot' = <any> "'Pot'",
     'Potm' = <any> "'Potm'",
-    'Svg' = <any> "'Svg'"
+    'Svg' = <any> "'Svg'",
+    'Fodp' = <any> "'Fodp'"
 }
 
 /**
@@ -3764,6 +3778,11 @@ export class PdfExportOptions extends ExportOptions {
      */
     applyImageTransparent: boolean;
 
+    /**
+     * Access permissions that should be granted when the document is opened with user access.  Default is AccessPermissions.None.             
+     */
+    accessPermissions: PdfExportOptions.AccessPermissionsEnum;
+
 }
 export namespace PdfExportOptions {
     export enum TextCompressionEnum {
@@ -3772,7 +3791,9 @@ export namespace PdfExportOptions {
     }
     export enum ComplianceEnum {
         Pdf15 = <any> 'Pdf15',
-        PdfA1b = <any> 'PdfA1b'
+        PdfA1b = <any> 'PdfA1b',
+        PdfA1a = <any> 'PdfA1a',
+        PdfUa = <any> 'PdfUa'
     }
     export enum NotesPositionEnum {
         None = <any> 'None',
@@ -3783,6 +3804,17 @@ export namespace PdfExportOptions {
         None = <any> 'None',
         Bottom = <any> 'Bottom',
         Right = <any> 'Right'
+    }
+    export enum AccessPermissionsEnum {
+        None = <any> 'None',
+        PrintDocument = <any> 'PrintDocument',
+        ModifyContent = <any> 'ModifyContent',
+        CopyTextAndGraphics = <any> 'CopyTextAndGraphics',
+        AddOrModifyFields = <any> 'AddOrModifyFields',
+        FillExistingFields = <any> 'FillExistingFields',
+        ExtractTextAndGraphics = <any> 'ExtractTextAndGraphics',
+        AssembleDocument = <any> 'AssembleDocument',
+        HighQualityPrint = <any> 'HighQualityPrint'
     }
 }
 
@@ -4358,7 +4390,8 @@ export namespace Save {
         Jpeg = <any> 'Jpeg',
         Png = <any> 'Png',
         Gif = <any> 'Gif',
-        Bmp = <any> 'Bmp'
+        Bmp = <any> 'Bmp',
+        Fodp = <any> 'Fodp'
     }
 }
 
@@ -4464,7 +4497,8 @@ export namespace SaveSlide {
         Potx = <any> 'Potx',
         Pot = <any> 'Pot',
         Potm = <any> 'Potm',
-        Svg = <any> 'Svg'
+        Svg = <any> 'Svg',
+        Fodp = <any> 'Fodp'
     }
 }
 

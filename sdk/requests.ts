@@ -87,6 +87,39 @@ export class CreateFolderRequest {
     public storageName: string;
 }
 /**
+ * Request model for DeleteChartSeries operation.
+ */
+export class DeleteChartSeriesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index (must be a chart).
+     */
+    public shapeIndex: number;
+    /**
+     * Series index.
+     */
+    public seriesIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for DeleteFile operation.
  */
 export class DeleteFileRequest {
@@ -2728,6 +2761,39 @@ export class PostAddNotesSlideRequest {
     public storage: string;
 }
 /**
+ * Request model for PostChartSeries operation.
+ */
+export class PostChartSeriesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index (must be a chart).
+     */
+    public shapeIndex: number;
+    /**
+     * Series DTO.
+     */
+    public series: model.Series;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for PostCopyLayoutSlideFromSourcePresentation operation.
  */
 export class PostCopyLayoutSlideFromSourcePresentationRequest {
@@ -3781,6 +3847,43 @@ export class PostSubshapeSaveAsRequest {
      * Fonts folder.
      */
     public fontsFolder: string;
+}
+/**
+ * Request model for PutChartSeries operation.
+ */
+export class PutChartSeriesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index (must be a chart).
+     */
+    public shapeIndex: number;
+    /**
+     * Series index.
+     */
+    public seriesIndex: number;
+    /**
+     * Series DTO.
+     */
+    public series: model.Series;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutLayoutSlide operation.

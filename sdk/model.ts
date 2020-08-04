@@ -1936,6 +1936,8 @@ export class Series {
      */
     lineFormat?: LineFormat;
 
+    dataPointType?: Series.DataPointTypeEnum;
+
 }
 export namespace Series {
     export enum TypeEnum {
@@ -2020,6 +2022,11 @@ export namespace Series {
         BoxAndWhisker = <any> 'BoxAndWhisker',
         Waterfall = <any> 'Waterfall',
         Funnel = <any> 'Funnel'
+    }
+    export enum DataPointTypeEnum {
+        OneValue = <any> 'OneValue',
+        Scatter = <any> 'Scatter',
+        Bubble = <any> 'Bubble'
     }
 }
 
@@ -2644,12 +2651,8 @@ export class BubbleChartDataPoint extends ScatterChartDataPoint {
 export class BubbleSeries extends Series {
     constructor() {
         super();
+        this.dataPointType = BubbleSeries.DataPointTypeEnum.Bubble;
     }
-
-    /**
-     * Data point type.
-     */
-    dataPointType: BubbleSeries.DataPointTypeEnum;
 
     /**
      * Gets or sets the values.
@@ -2658,11 +2661,6 @@ export class BubbleSeries extends Series {
 
 }
 export namespace BubbleSeries {
-    export enum DataPointTypeEnum {
-        OneValue = <any> 'OneValue',
-        Scatter = <any> 'Scatter',
-        Bubble = <any> 'Bubble'
-    }
 }
 
 /**
@@ -3311,12 +3309,8 @@ export class NotesSlide extends ResourceBase {
 export class OneValueSeries extends Series {
     constructor() {
         super();
+        this.dataPointType = OneValueSeries.DataPointTypeEnum.OneValue;
     }
-
-    /**
-     * Data point type.
-     */
-    dataPointType: OneValueSeries.DataPointTypeEnum;
 
     /**
      * Gets or sets the values.
@@ -3325,11 +3319,6 @@ export class OneValueSeries extends Series {
 
 }
 export namespace OneValueSeries {
-    export enum DataPointTypeEnum {
-        OneValue = <any> 'OneValue',
-        Scatter = <any> 'Scatter',
-        Bubble = <any> 'Bubble'
-    }
 }
 
 /**
@@ -3438,7 +3427,7 @@ export class Paragraph extends ResourceBase {
     /**
      * List of portion links.
      */
-    portionList?: Array<ResourceUriElement>;
+    portionList?: Array<Portion>;
 
 }
 export namespace Paragraph {
@@ -4175,7 +4164,7 @@ export class Portions extends ResourceBase {
     /**
      * List of portion links.
      */
-    portionLinks?: Array<ResourceUriElement>;
+    items?: Array<Portion>;
 
 }
 
@@ -4508,12 +4497,8 @@ export namespace SaveSlide {
 export class ScatterSeries extends Series {
     constructor() {
         super();
+        this.dataPointType = ScatterSeries.DataPointTypeEnum.Scatter;
     }
-
-    /**
-     * Data point type.
-     */
-    dataPointType: ScatterSeries.DataPointTypeEnum;
 
     /**
      * Gets or sets the values.
@@ -4522,11 +4507,6 @@ export class ScatterSeries extends Series {
 
 }
 export namespace ScatterSeries {
-    export enum DataPointTypeEnum {
-        OneValue = <any> 'OneValue',
-        Scatter = <any> 'Scatter',
-        Bubble = <any> 'Bubble'
-    }
 }
 
 /**
@@ -5520,6 +5500,7 @@ export class XpsExportOptions extends ExportOptions {
 export class BoxAndWhiskerSeries extends OneValueSeries {
     constructor() {
         super();
+        this.dataPointType = BoxAndWhiskerSeries.DataPointTypeEnum.OneValue;
     }
 
     /**
@@ -6392,6 +6373,7 @@ export namespace Table {
 export class WaterfallSeries extends OneValueSeries {
     constructor() {
         super();
+        this.dataPointType = WaterfallSeries.DataPointTypeEnum.OneValue;
     }
 
     /**

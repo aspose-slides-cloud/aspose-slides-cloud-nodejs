@@ -55,6 +55,18 @@ class TestUtils {
         return request;
     }
 
+    public static getDeleteChartSeriesRequest(): requests.DeleteChartSeriesRequest {
+        const request = new requests.DeleteChartSeriesRequest();
+        request.name = <string>TestInitializer.getValue("deleteChartSeries", "name");
+        request.slideIndex = <number>TestInitializer.getValue("deleteChartSeries", "slideIndex");
+        request.shapeIndex = <number>TestInitializer.getValue("deleteChartSeries", "shapeIndex");
+        request.seriesIndex = <number>TestInitializer.getValue("deleteChartSeries", "seriesIndex");
+        request.password = <string>TestInitializer.getValue("deleteChartSeries", "password");
+        request.folder = <string>TestInitializer.getValue("deleteChartSeries", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteChartSeries", "storage");
+        return request;
+    }
+
     public static getDeleteFileRequest(): requests.DeleteFileRequest {
         const request = new requests.DeleteFileRequest();
         request.path = <string>TestInitializer.getValue("deleteFile", "path");
@@ -1064,6 +1076,18 @@ class TestUtils {
         return request;
     }
 
+    public static getPostChartSeriesRequest(): requests.PostChartSeriesRequest {
+        const request = new requests.PostChartSeriesRequest();
+        request.name = <string>TestInitializer.getValue("postChartSeries", "name");
+        request.slideIndex = <number>TestInitializer.getValue("postChartSeries", "slideIndex");
+        request.shapeIndex = <number>TestInitializer.getValue("postChartSeries", "shapeIndex");
+        request.series = <model.Series>TestInitializer.getValue("postChartSeries", "series");
+        request.password = <string>TestInitializer.getValue("postChartSeries", "password");
+        request.folder = <string>TestInitializer.getValue("postChartSeries", "folder");
+        request.storage = <string>TestInitializer.getValue("postChartSeries", "storage");
+        return request;
+    }
+
     public static getPostCopyLayoutSlideFromSourcePresentationRequest(): requests.PostCopyLayoutSlideFromSourcePresentationRequest {
         const request = new requests.PostCopyLayoutSlideFromSourcePresentationRequest();
         request.name = <string>TestInitializer.getValue("postCopyLayoutSlideFromSourcePresentation", "name");
@@ -1441,6 +1465,19 @@ class TestUtils {
         request.scaleY = <number>TestInitializer.getValue("postSubshapeSaveAs", "scaleY");
         request.bounds = <string>TestInitializer.getValue("postSubshapeSaveAs", "bounds");
         request.fontsFolder = <string>TestInitializer.getValue("postSubshapeSaveAs", "fontsFolder");
+        return request;
+    }
+
+    public static getPutChartSeriesRequest(): requests.PutChartSeriesRequest {
+        const request = new requests.PutChartSeriesRequest();
+        request.name = <string>TestInitializer.getValue("putChartSeries", "name");
+        request.slideIndex = <number>TestInitializer.getValue("putChartSeries", "slideIndex");
+        request.shapeIndex = <number>TestInitializer.getValue("putChartSeries", "shapeIndex");
+        request.seriesIndex = <number>TestInitializer.getValue("putChartSeries", "seriesIndex");
+        request.series = <model.Series>TestInitializer.getValue("putChartSeries", "series");
+        request.password = <string>TestInitializer.getValue("putChartSeries", "password");
+        request.folder = <string>TestInitializer.getValue("putChartSeries", "folder");
+        request.storage = <string>TestInitializer.getValue("putChartSeries", "storage");
         return request;
     }
 
@@ -1967,6 +2004,94 @@ describe("Tests for createFolder", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createFolder", field, request.storageName).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().createFolder(request), "createFolder", field, request.storageName);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteChartSeries", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteChartSeriesRequest();
+            return TestInitializer.initialize("deleteChartSeries", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteChartSeries(request), false, "deleteChartSeries");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteChartSeriesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteChartSeries", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteChartSeries(request), "deleteChartSeries", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getDeleteChartSeriesRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "deleteChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteChartSeries", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteChartSeries(request), "deleteChartSeries", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getDeleteChartSeriesRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "deleteChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteChartSeries", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteChartSeries(request), "deleteChartSeries", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid seriesIndex test", () => {
+        const field = "seriesIndex";
+        const request = TestUtils.getDeleteChartSeriesRequest();
+        request.seriesIndex = <number>TestInitializer.invalidizeValue(request.seriesIndex, field, "number", "deleteChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteChartSeries", field, request.seriesIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteChartSeries(request), "deleteChartSeries", field, request.seriesIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteChartSeriesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteChartSeries", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteChartSeries(request), "deleteChartSeries", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteChartSeriesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteChartSeries", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteChartSeries(request), "deleteChartSeries", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteChartSeriesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteChartSeries", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteChartSeries(request), "deleteChartSeries", field, request.storage);
             });
         });
     });
@@ -8979,6 +9104,94 @@ describe("Tests for postAddNotesSlide", () => {
     });
 });
 
+describe("Tests for postChartSeries", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostChartSeriesRequest();
+            return TestInitializer.initialize("postChartSeries", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postChartSeries(request), false, "postChartSeries");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostChartSeriesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postChartSeries", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postChartSeries(request), "postChartSeries", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostChartSeriesRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postChartSeries", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postChartSeries(request), "postChartSeries", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPostChartSeriesRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "postChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postChartSeries", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postChartSeries(request), "postChartSeries", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid series test", () => {
+        const field = "series";
+        const request = TestUtils.getPostChartSeriesRequest();
+        request.series = <model.Series>TestInitializer.invalidizeValue(request.series, field, "Series", "postChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postChartSeries", field, request.series).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postChartSeries(request), "postChartSeries", field, request.series);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostChartSeriesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postChartSeries", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postChartSeries(request), "postChartSeries", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostChartSeriesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postChartSeries", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postChartSeries(request), "postChartSeries", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostChartSeriesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postChartSeries", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postChartSeries(request), "postChartSeries", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for postCopyLayoutSlideFromSourcePresentation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -11790,6 +12003,105 @@ describe("Tests for postSubshapeSaveAs", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSubshapeSaveAs", field, request.fontsFolder).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSubshapeSaveAs(request), "postSubshapeSaveAs", field, request.fontsFolder);
+            });
+        });
+    });
+});
+
+describe("Tests for putChartSeries", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutChartSeriesRequest();
+            return TestInitializer.initialize("putChartSeries", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putChartSeries(request), false, "putChartSeries");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.shapeIndex = <number>TestInitializer.invalidizeValue(request.shapeIndex, field, "number", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.shapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.shapeIndex);
+            });
+        });
+    });
+
+    it("invalid seriesIndex test", () => {
+        const field = "seriesIndex";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.seriesIndex = <number>TestInitializer.invalidizeValue(request.seriesIndex, field, "number", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.seriesIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.seriesIndex);
+            });
+        });
+    });
+
+    it("invalid series test", () => {
+        const field = "series";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.series = <model.Series>TestInitializer.invalidizeValue(request.series, field, "Series", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.series).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.series);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutChartSeriesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putChartSeries");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putChartSeries", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putChartSeries(request), "putChartSeries", field, request.storage);
             });
         });
     });

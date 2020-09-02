@@ -37,7 +37,10 @@ export * from "./requests";
 
 
 export class SlidesApi {
-    private configuration: Configuration;
+    private _configuration: Configuration;
+    public get configuration(): Configuration {
+        return this._configuration;
+    }
 
     /**
      * @param appSid App SID.
@@ -48,7 +51,7 @@ export class SlidesApi {
      * @param timeout Timeout (in seconds) for an operation. Applies to the Slides operation, not to the HTTP request.
      */
     constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
-        this.configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout);
+        this._configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout);
     }
 
     /**
@@ -146,6 +149,75 @@ export class SlidesApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
+    }
+    /**
+     * Delete a category from a chart. 
+     * @param requestObj contains request parameters
+     */
+    public async deleteChartCategory(requestObj: requests.DeleteChartCategoryRequest): Promise<{response: http.ClientResponse, body: model.Chart}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteChartCategory.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories/{categoryIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "categoryIndex", ObjectSerializer.toString(requestObj.categoryIndex));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteChartCategory.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Delete a data point from a chart series. 
+     * @param requestObj contains request parameters
+     */
+    public async deleteChartDataPoint(requestObj: requests.DeleteChartDataPointRequest): Promise<{response: http.ClientResponse, body: model.Chart}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteChartDataPoint.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints/{pointIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "pointIndex", ObjectSerializer.toString(requestObj.pointIndex));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteChartDataPoint.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
+        return Promise.resolve({ body: result, response });
     }
     /**
      * Delete a series from a chart. 
@@ -2147,10 +2219,7 @@ export class SlidesApi {
      * Get API info. 
      * @param requestObj contains request parameters
      */
-    public async getSlidesApiInfo(requestObj: requests.GetSlidesApiInfoRequest): Promise<{response: http.ClientResponse, body: model.ApiInfo}> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling getSlidesApiInfo.');
-        }
+    public async getSlidesApiInfo(): Promise<{response: http.ClientResponse, body: model.ApiInfo}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/info";
         const queryParameters: any = {};
 
@@ -2160,8 +2229,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ApiInfo");
         return Promise.resolve({ body: result, response });
@@ -3219,6 +3286,73 @@ export class SlidesApi {
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Add a new category to a chart. 
+     * @param requestObj contains request parameters
+     */
+    public async postChartCategory(requestObj: requests.PostChartCategoryRequest): Promise<{response: http.ClientResponse, body: model.Chart}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postChartCategory.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postChartCategory.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: requestObj.category
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Add a new data point to a chart series. 
+     * @param requestObj contains request parameters
+     */
+    public async postChartDataPoint(requestObj: requests.PostChartDataPointRequest): Promise<{response: http.ClientResponse, body: model.Chart}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postChartDataPoint.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postChartDataPoint.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: requestObj.dataPoint
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
     }
     /**
@@ -4340,6 +4474,75 @@ export class SlidesApi {
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Update a chart category. 
+     * @param requestObj contains request parameters
+     */
+    public async putChartCategory(requestObj: requests.PutChartCategoryRequest): Promise<{response: http.ClientResponse, body: model.Chart}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putChartCategory.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories/{categoryIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "categoryIndex", ObjectSerializer.toString(requestObj.categoryIndex));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling putChartCategory.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: requestObj.category
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Update a data point in a chart series. 
+     * @param requestObj contains request parameters
+     */
+    public async putChartDataPoint(requestObj: requests.PutChartDataPointRequest): Promise<{response: http.ClientResponse, body: model.Chart}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling putChartDataPoint.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints/{pointIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "pointIndex", ObjectSerializer.toString(requestObj.pointIndex));
+        const queryParameters: any = {};
+            // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling putChartDataPoint.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: requestObj.dataPoint
+        };
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
     }
     /**

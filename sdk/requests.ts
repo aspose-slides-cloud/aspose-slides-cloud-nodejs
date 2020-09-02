@@ -87,6 +87,76 @@ export class CreateFolderRequest {
     public storageName: string;
 }
 /**
+ * Request model for DeleteChartCategory operation.
+ */
+export class DeleteChartCategoryRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Category index.
+     */
+    public categoryIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteChartDataPoint operation.
+ */
+export class DeleteChartDataPointRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Series index.
+     */
+    public seriesIndex: number;
+    /**
+     * Data point index.
+     */
+    public pointIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for DeleteChartSeries operation.
  */
 export class DeleteChartSeriesRequest {
@@ -2761,6 +2831,76 @@ export class PostAddNotesSlideRequest {
     public storage: string;
 }
 /**
+ * Request model for PostChartCategory operation.
+ */
+export class PostChartCategoryRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Category DTO.
+     */
+    public category: model.ChartCategory;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostChartDataPoint operation.
+ */
+export class PostChartDataPointRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Series index.
+     */
+    public seriesIndex: number;
+    /**
+     * Data point DTO.
+     */
+    public dataPoint: model.DataPoint;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for PostChartSeries operation.
  */
 export class PostChartSeriesRequest {
@@ -3847,6 +3987,84 @@ export class PostSubshapeSaveAsRequest {
      * Fonts folder.
      */
     public fontsFolder: string;
+}
+/**
+ * Request model for PutChartCategory operation.
+ */
+export class PutChartCategoryRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Category index.
+     */
+    public categoryIndex: number;
+    /**
+     * Category DTO.
+     */
+    public category: model.ChartCategory;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutChartDataPoint operation.
+ */
+export class PutChartDataPointRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Shape index.
+     */
+    public shapeIndex: number;
+    /**
+     * Series index.
+     */
+    public seriesIndex: number;
+    /**
+     * Data point index.
+     */
+    public pointIndex: number;
+    /**
+     * Data point DTO.
+     */
+    public dataPoint: model.DataPoint;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutChartSeries operation.

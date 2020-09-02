@@ -131,8 +131,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "20.7.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v20.8.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }
@@ -151,22 +150,32 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
             } else {
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     resolve(response);
-                } else if (response.statusCode === 401 && !notApplyAuthToRequest) {
+                } else if (!notApplyAuthToRequest
+                    && (response.statusCode === 401
+                        || (response.statusCode === 400
+                            && response.body
+                            && response.body.error
+                            && response.body.error.message
+                            && response.body.error.message.includes(" Authority")))) {
                     await requestToken(confguration);
                     reject(new NeedRepeatException());
                 } else {
                     try {
-                        let bodyContent = response.body;
-                        if (bodyContent instanceof Buffer) {
-                            bodyContent = JSON.parse(bodyContent.toString("utf8"));
+                        if (response.statusCode == 400 && response.body && response.body.error && typeof response.body.error == "string") {
+                            reject({ message: response.body.error, code: 401 });
+                        } else {
+                            let bodyContent = response.body;
+                            if (bodyContent instanceof Buffer) {
+                                bodyContent = JSON.parse(bodyContent.toString("utf8"));
+                            }
+                            let result = ObjectSerializer.deserialize(bodyContent, "SlidesApiErrorResponse");
+                            try {
+                                result = JSON.parse(result);
+                            } catch {
+                                 //Error means the object is already deserialized
+                            }
+                            reject({ message: result.error.message, code: response.statusCode });
                         }
-                        let result = ObjectSerializer.deserialize(bodyContent, "SlidesApiErrorResponse");
-                        try {
-                            result = JSON.parse(result);
-                        } catch {
-                             //Error means the object is already deserialized
-                        }
-                        reject({ message: result.error.message, code: response.statusCode });
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });
                     }
@@ -183,10 +192,10 @@ async function addAuthHeader(requestOptions: request.Options, configuration: Con
     }
     if (!configuration.accessToken) {
         isRequestTokenPending = true;
-        requestingToken = requestToken(configuration);
-
+        requestingToken = requestToken(configuration).catch((err) => { isRequestTokenPending = false; throw(err); });
         await requestingToken;
     }
+    isRequestTokenPending = false;
     if (requestOptions && requestOptions.headers) {
         requestOptions.headers.Authorization = "Bearer " + configuration.accessToken;
     }

@@ -409,6 +409,11 @@ export class ChartCategory {
      */
     lineFormat?: LineFormat;
 
+    /**
+     * Gets or sets the data points for chart data
+     */
+    dataPoints?: Array<OneValueChartDataPoint>;
+
 }
 
 /**
@@ -494,6 +499,13 @@ export class CustomDashPattern {
      * Pattern items.
      */
     items?: Array<number>;
+
+}
+
+/**
+ * Data point.
+ */
+export class DataPoint {
 
 }
 
@@ -932,6 +944,11 @@ export enum ExportFormat {
  * Represents export options for whole presentation.
  */
 export class ExportOptions {
+
+    /**
+     * Setting user password to protect the PDF document. 
+     */
+    defaultRegularFont?: string;
 
     format?: string;
 
@@ -1445,18 +1462,6 @@ export class ObjectExist {
 }
 
 /**
- * One value chart data point.
- */
-export class OneValueChartDataPoint {
-
-    /**
-     * Value.
-     */
-    value: number;
-
-}
-
-/**
  * Request for presentations merge with optional order of slides
  */
 export class OrderedMergeRequest {
@@ -1827,23 +1832,6 @@ export enum ScaleType {
     'DoNotScale' = <any> "'DoNotScale'",
     'EnsureFit' = <any> "'EnsureFit'",
     'Maximize' = <any> "'Maximize'"
-}
-
-/**
- * Scatter chart (two-dimensional) data point
- */
-export class ScatterChartDataPoint {
-
-    /**
-     * X-value
-     */
-    xValue: number;
-
-    /**
-     * Y-value
-     */
-    yValue: number;
-
 }
 
 /**
@@ -2631,21 +2619,6 @@ export namespace Base64InputFile {
 }
 
 /**
- * Bubble chart data point.
- */
-export class BubbleChartDataPoint extends ScatterChartDataPoint {
-    constructor() {
-        super();
-    }
-
-    /**
-     * Bubble size.
-     */
-    bubbleSize: number;
-
-}
-
-/**
  * A bubble series.
  */
 export class BubbleSeries extends Series {
@@ -3300,6 +3273,21 @@ export class NotesSlide extends ResourceBase {
      * Get or sets the  link to list notes slide shapes.
      */
     shapes?: ResourceUriElement;
+
+}
+
+/**
+ * One value chart data point.
+ */
+export class OneValueChartDataPoint extends DataPoint {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Value.
+     */
+    value: number;
 
 }
 
@@ -4492,6 +4480,26 @@ export namespace SaveSlide {
 }
 
 /**
+ * Scatter chart (two-dimensional) data point
+ */
+export class ScatterChartDataPoint extends DataPoint {
+    constructor() {
+        super();
+    }
+
+    /**
+     * X-value
+     */
+    xValue: number;
+
+    /**
+     * Y-value
+     */
+    yValue: number;
+
+}
+
+/**
  * A scatter series
  */
 export class ScatterSeries extends Series {
@@ -5537,6 +5545,21 @@ export namespace BoxAndWhiskerSeries {
 }
 
 /**
+ * Bubble chart data point.
+ */
+export class BubbleChartDataPoint extends ScatterChartDataPoint {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Bubble size.
+     */
+    bubbleSize: number;
+
+}
+
+/**
  * Represents chart resource
  */
 export class Chart extends ShapeBase {
@@ -6365,6 +6388,21 @@ export namespace Table {
         LightStyle1Accent5 = <any> 'LightStyle1Accent5',
         Custom = <any> 'Custom'
     }
+}
+
+/**
+ * One value chart data point.
+ */
+export class WaterfallChartDataPoint extends OneValueChartDataPoint {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Value.
+     */
+    setAsTotal?: boolean;
+
 }
 
 /**

@@ -23,9 +23,62 @@
 */
 
 var assert = require('assert');
+import * as sdkApi from "../sdk/api";
 import * as model from "../sdk/model";
 import * as requests from "../sdk/requests";
 import { TestInitializer } from "./testInitializer";
+
+describe("Auth tests", () => {
+    it("good auth", () => {
+        return TestInitializer.runTest(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+            return api.getSlidesApiInfo().then((result) => {
+                assert.equal(200, result.response.statusCode);
+            });
+        });
+    });
+
+    it("bad auth", () => {
+        return TestInitializer.runTest(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+            api.configuration.appSid = "invalid";
+            return api.getSlidesApiInfo().then(() => {
+                assert.fail('Must have failed');
+            }).catch((err) => {
+                assert.equal(401, err.code);
+            });
+        });
+    });
+
+    it("good token", () => {
+        return TestInitializer.runTest(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+            return api.getSlidesApiInfo().then(() => {
+                const api2 = new sdkApi.SlidesApi("invalid", config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+                api2.configuration.accessToken = api.configuration.accessToken;
+                return api2.getSlidesApiInfo().then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("bad token", () => {
+        return TestInitializer.runTest(() => {
+            const config = require("../testConfig.json");
+            const api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+            return api.getSlidesApiInfo().then(() => {
+                api.configuration.accessToken = "invalid";
+                return api.getSlidesApiInfo().then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                });
+            });
+        });
+    });
+});
 
 describe("Additional tests", () => {
     it("multiple files upload", () => {
@@ -49,7 +102,7 @@ describe("Additional tests", () => {
         });
     });
 
-    it.only("shape type", () => {
+    it("shape type", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.ppt";

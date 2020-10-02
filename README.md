@@ -53,7 +53,7 @@ Your feedback is very important to us. Please feel free to contact us using our 
 [Website](https://www.aspose.cloud/)  
 [Product Home](https://products.aspose.cloud/slides/family)  
 [API Reference](https://apireference.aspose.cloud/slides/)  
-[Documentation](https://docs.aspose.cloud/display/slidescloud/Home)  
+[Documentation](https://docs.aspose.cloud/slides/)  
 [Blog](https://blog.aspose.cloud/category/slides/)  
  
 ## Other languages

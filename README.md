@@ -10,6 +10,12 @@ This repository contains Aspose.Slides Cloud SDK for NodeJS source code. This SD
 * Full read & write access to Document Object Model, including slides, shapes, paragraphs, portions and many others
 * Support of Aspose.Storage API
 
+### New Features & Recent API Changes
+#### 20.9
+* New getSections, putSections, putSection, postSection, postSectionMove, deleteSection, deleteSections methods to add, update and delete presentation sections.
+* New postSlidesHeaderFooter, postSlideHeaderFooter, getSlideHeaderFooter, postNotesSlideHeaderFooter, getNotesSlideHeaderFooter methods to manage header/footer settings for slides.
+* Replaces categories for parentCategories & level properties in ChartCategory class to properly support Sunburst & Treeview charts.
+
 ## Licensing
 All Aspose.Slides Cloud SDKs are licensed under MIT License.
 

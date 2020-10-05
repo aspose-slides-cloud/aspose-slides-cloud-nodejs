@@ -1,6 +1,6 @@
 {
   "name": "asposeslidescloud",
-  "version": "20.8.0",
+  "version": "20.9.0",
   "description": "Aspose.Slides Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/slides/cloud",
   "author": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@types/mocha": "^5.2.0",
-    "@types/node": "^8.10.9",
+    "@types/node": "8.10.54",
     "asposestoragecloud": "^1.0.4",
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.17.0",

@@ -240,6 +240,28 @@ class TestUtils {
         return request;
     }
 
+    public static getDeleteSectionRequest(): requests.DeleteSectionRequest {
+        const request = new requests.DeleteSectionRequest();
+        request.name = <string>TestInitializer.getValue("deleteSection", "name");
+        request.sectionIndex = <number>TestInitializer.getValue("deleteSection", "sectionIndex");
+        request.withSlides = <boolean>TestInitializer.getValue("deleteSection", "withSlides");
+        request.password = <string>TestInitializer.getValue("deleteSection", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSection", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSection", "storage");
+        return request;
+    }
+
+    public static getDeleteSectionsRequest(): requests.DeleteSectionsRequest {
+        const request = new requests.DeleteSectionsRequest();
+        request.name = <string>TestInitializer.getValue("deleteSections", "name");
+        request.sections = <Array<number>>TestInitializer.getValue("deleteSections", "sections");
+        request.withSlides = <boolean>TestInitializer.getValue("deleteSections", "withSlides");
+        request.password = <string>TestInitializer.getValue("deleteSections", "password");
+        request.folder = <string>TestInitializer.getValue("deleteSections", "folder");
+        request.storage = <string>TestInitializer.getValue("deleteSections", "storage");
+        return request;
+    }
+
     public static getDeleteSlideAnimationRequest(): requests.DeleteSlideAnimationRequest {
         const request = new requests.DeleteSlideAnimationRequest();
         request.name = <string>TestInitializer.getValue("deleteSlideAnimation", "name");
@@ -539,6 +561,16 @@ class TestUtils {
         return request;
     }
 
+    public static getGetNotesSlideHeaderFooterRequest(): requests.GetNotesSlideHeaderFooterRequest {
+        const request = new requests.GetNotesSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.getValue("getNotesSlideHeaderFooter", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getNotesSlideHeaderFooter", "slideIndex");
+        request.password = <string>TestInitializer.getValue("getNotesSlideHeaderFooter", "password");
+        request.storage = <string>TestInitializer.getValue("getNotesSlideHeaderFooter", "storage");
+        request.folder = <string>TestInitializer.getValue("getNotesSlideHeaderFooter", "folder");
+        return request;
+    }
+
     public static getGetNotesSlideShapeRequest(): requests.GetNotesSlideShapeRequest {
         const request = new requests.GetNotesSlideShapeRequest();
         request.name = <string>TestInitializer.getValue("getNotesSlideShape", "name");
@@ -647,6 +679,15 @@ class TestUtils {
         return request;
     }
 
+    public static getGetSectionsRequest(): requests.GetSectionsRequest {
+        const request = new requests.GetSectionsRequest();
+        request.name = <string>TestInitializer.getValue("getSections", "name");
+        request.password = <string>TestInitializer.getValue("getSections", "password");
+        request.folder = <string>TestInitializer.getValue("getSections", "folder");
+        request.storage = <string>TestInitializer.getValue("getSections", "storage");
+        return request;
+    }
+
     public static getGetSlideAnimationRequest(): requests.GetSlideAnimationRequest {
         const request = new requests.GetSlideAnimationRequest();
         request.name = <string>TestInitializer.getValue("getSlideAnimation", "name");
@@ -655,6 +696,16 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("getSlideAnimation", "password");
         request.folder = <string>TestInitializer.getValue("getSlideAnimation", "folder");
         request.storage = <string>TestInitializer.getValue("getSlideAnimation", "storage");
+        return request;
+    }
+
+    public static getGetSlideHeaderFooterRequest(): requests.GetSlideHeaderFooterRequest {
+        const request = new requests.GetSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.getValue("getSlideHeaderFooter", "name");
+        request.slideIndex = <number>TestInitializer.getValue("getSlideHeaderFooter", "slideIndex");
+        request.password = <string>TestInitializer.getValue("getSlideHeaderFooter", "password");
+        request.folder = <string>TestInitializer.getValue("getSlideHeaderFooter", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlideHeaderFooter", "storage");
         return request;
     }
 
@@ -1162,25 +1213,25 @@ class TestUtils {
 
     public static getPostGetNotesSlideRequest(): requests.PostGetNotesSlideRequest {
         const request = new requests.PostGetNotesSlideRequest();
-        request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlide", "slideIndex");
         request.document = <Buffer>TestInitializer.getStreamValue();
+        request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlide", "slideIndex");
         request.password = <string>TestInitializer.getValue("postGetNotesSlide", "password");
         return request;
     }
 
     public static getPostGetNotesSlideExistsRequest(): requests.PostGetNotesSlideExistsRequest {
         const request = new requests.PostGetNotesSlideExistsRequest();
-        request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideExists", "slideIndex");
         request.document = <Buffer>TestInitializer.getStreamValue();
+        request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideExists", "slideIndex");
         request.password = <string>TestInitializer.getValue("postGetNotesSlideExists", "password");
         return request;
     }
 
     public static getPostGetNotesSlideWithFormatRequest(): requests.PostGetNotesSlideWithFormatRequest {
         const request = new requests.PostGetNotesSlideWithFormatRequest();
+        request.document = <Buffer>TestInitializer.getStreamValue();
         request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "slideIndex");
         request.format = <string>TestInitializer.getValue("postGetNotesSlideWithFormat", "format");
-        request.document = <Buffer>TestInitializer.getStreamValue();
         request.width = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "width");
         request.height = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "height");
         request.password = <string>TestInitializer.getValue("postGetNotesSlideWithFormat", "password");
@@ -1252,6 +1303,28 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("postPresentationMerge", "password");
         request.storage = <string>TestInitializer.getValue("postPresentationMerge", "storage");
         request.folder = <string>TestInitializer.getValue("postPresentationMerge", "folder");
+        return request;
+    }
+
+    public static getPostSectionRequest(): requests.PostSectionRequest {
+        const request = new requests.PostSectionRequest();
+        request.name = <string>TestInitializer.getValue("postSection", "name");
+        request.sectionName = <string>TestInitializer.getValue("postSection", "sectionName");
+        request.slideIndex = <number>TestInitializer.getValue("postSection", "slideIndex");
+        request.password = <string>TestInitializer.getValue("postSection", "password");
+        request.folder = <string>TestInitializer.getValue("postSection", "folder");
+        request.storage = <string>TestInitializer.getValue("postSection", "storage");
+        return request;
+    }
+
+    public static getPostSectionMoveRequest(): requests.PostSectionMoveRequest {
+        const request = new requests.PostSectionMoveRequest();
+        request.name = <string>TestInitializer.getValue("postSectionMove", "name");
+        request.sectionIndex = <number>TestInitializer.getValue("postSectionMove", "sectionIndex");
+        request.newPosition = <number>TestInitializer.getValue("postSectionMove", "newPosition");
+        request.password = <string>TestInitializer.getValue("postSectionMove", "password");
+        request.folder = <string>TestInitializer.getValue("postSectionMove", "folder");
+        request.storage = <string>TestInitializer.getValue("postSectionMove", "storage");
         return request;
     }
 
@@ -1334,8 +1407,8 @@ class TestUtils {
 
     public static getPostSlidesConvertRequest(): requests.PostSlidesConvertRequest {
         const request = new requests.PostSlidesConvertRequest();
-        request.format = <string>TestInitializer.getValue("postSlidesConvert", "format");
         request.document = <Buffer>TestInitializer.getStreamValue();
+        request.format = <string>TestInitializer.getValue("postSlidesConvert", "format");
         request.password = <string>TestInitializer.getValue("postSlidesConvert", "password");
         request.fontsFolder = <string>TestInitializer.getValue("postSlidesConvert", "fontsFolder");
         return request;
@@ -1564,6 +1637,17 @@ class TestUtils {
         return request;
     }
 
+    public static getPutNotesSlideHeaderFooterRequest(): requests.PutNotesSlideHeaderFooterRequest {
+        const request = new requests.PutNotesSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.getValue("putNotesSlideHeaderFooter", "name");
+        request.slideIndex = <number>TestInitializer.getValue("putNotesSlideHeaderFooter", "slideIndex");
+        request.dto = <model.NotesSlideHeaderFooter>TestInitializer.getValue("putNotesSlideHeaderFooter", "dto");
+        request.password = <string>TestInitializer.getValue("putNotesSlideHeaderFooter", "password");
+        request.storage = <string>TestInitializer.getValue("putNotesSlideHeaderFooter", "storage");
+        request.folder = <string>TestInitializer.getValue("putNotesSlideHeaderFooter", "folder");
+        return request;
+    }
+
     public static getPutNotesSlideShapeSaveAsRequest(): requests.PutNotesSlideShapeSaveAsRequest {
         const request = new requests.PutNotesSlideShapeSaveAsRequest();
         request.name = <string>TestInitializer.getValue("putNotesSlideShapeSaveAs", "name");
@@ -1589,6 +1673,27 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("putPresentationMerge", "password");
         request.storage = <string>TestInitializer.getValue("putPresentationMerge", "storage");
         request.folder = <string>TestInitializer.getValue("putPresentationMerge", "folder");
+        return request;
+    }
+
+    public static getPutSectionRequest(): requests.PutSectionRequest {
+        const request = new requests.PutSectionRequest();
+        request.name = <string>TestInitializer.getValue("putSection", "name");
+        request.sectionIndex = <number>TestInitializer.getValue("putSection", "sectionIndex");
+        request.sectionName = <string>TestInitializer.getValue("putSection", "sectionName");
+        request.password = <string>TestInitializer.getValue("putSection", "password");
+        request.folder = <string>TestInitializer.getValue("putSection", "folder");
+        request.storage = <string>TestInitializer.getValue("putSection", "storage");
+        return request;
+    }
+
+    public static getPutSectionsRequest(): requests.PutSectionsRequest {
+        const request = new requests.PutSectionsRequest();
+        request.name = <string>TestInitializer.getValue("putSections", "name");
+        request.sections = <model.Sections>TestInitializer.getValue("putSections", "sections");
+        request.password = <string>TestInitializer.getValue("putSections", "password");
+        request.folder = <string>TestInitializer.getValue("putSections", "folder");
+        request.storage = <string>TestInitializer.getValue("putSections", "storage");
         return request;
     }
 
@@ -1702,6 +1807,17 @@ class TestUtils {
         return request;
     }
 
+    public static getPutSlideHeaderFooterRequest(): requests.PutSlideHeaderFooterRequest {
+        const request = new requests.PutSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.getValue("putSlideHeaderFooter", "name");
+        request.slideIndex = <number>TestInitializer.getValue("putSlideHeaderFooter", "slideIndex");
+        request.dto = <model.HeaderFooter>TestInitializer.getValue("putSlideHeaderFooter", "dto");
+        request.password = <string>TestInitializer.getValue("putSlideHeaderFooter", "password");
+        request.folder = <string>TestInitializer.getValue("putSlideHeaderFooter", "folder");
+        request.storage = <string>TestInitializer.getValue("putSlideHeaderFooter", "storage");
+        return request;
+    }
+
     public static getPutSlideSaveAsRequest(): requests.PutSlideSaveAsRequest {
         const request = new requests.PutSlideSaveAsRequest();
         request.name = <string>TestInitializer.getValue("putSlideSaveAs", "name");
@@ -1745,9 +1861,9 @@ class TestUtils {
 
     public static getPutSlidesConvertRequest(): requests.PutSlidesConvertRequest {
         const request = new requests.PutSlidesConvertRequest();
+        request.document = <Buffer>TestInitializer.getStreamValue();
         request.format = <string>TestInitializer.getValue("putSlidesConvert", "format");
         request.outPath = <string>TestInitializer.getValue("putSlidesConvert", "outPath");
-        request.document = <Buffer>TestInitializer.getStreamValue();
         request.password = <string>TestInitializer.getValue("putSlidesConvert", "password");
         request.fontsFolder = <string>TestInitializer.getValue("putSlidesConvert", "fontsFolder");
         return request;
@@ -1760,6 +1876,16 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "password");
         request.storage = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "storage");
         request.folder = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "folder");
+        return request;
+    }
+
+    public static getPutSlidesHeaderFooterRequest(): requests.PutSlidesHeaderFooterRequest {
+        const request = new requests.PutSlidesHeaderFooterRequest();
+        request.name = <string>TestInitializer.getValue("putSlidesHeaderFooter", "name");
+        request.dto = <model.HeaderFooter>TestInitializer.getValue("putSlidesHeaderFooter", "dto");
+        request.password = <string>TestInitializer.getValue("putSlidesHeaderFooter", "password");
+        request.storage = <string>TestInitializer.getValue("putSlidesHeaderFooter", "storage");
+        request.folder = <string>TestInitializer.getValue("putSlidesHeaderFooter", "folder");
         return request;
     }
 
@@ -3407,6 +3533,160 @@ describe("Tests for deletePortions", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deletePortions", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deletePortions(request), "deletePortions", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSection", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSectionRequest();
+            return TestInitializer.initialize("deleteSection", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSection(request), false, "deleteSection");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSectionRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSection", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSection(request), "deleteSection", field, request.name);
+            });
+        });
+    });
+
+    it("invalid sectionIndex test", () => {
+        const field = "sectionIndex";
+        const request = TestUtils.getDeleteSectionRequest();
+        request.sectionIndex = <number>TestInitializer.invalidizeValue(request.sectionIndex, field, "number", "deleteSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSection", field, request.sectionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSection(request), "deleteSection", field, request.sectionIndex);
+            });
+        });
+    });
+
+    it("invalid withSlides test", () => {
+        const field = "withSlides";
+        const request = TestUtils.getDeleteSectionRequest();
+        request.withSlides = <boolean>TestInitializer.invalidizeValue(request.withSlides, field, "boolean", "deleteSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSection", field, request.withSlides).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSection(request), "deleteSection", field, request.withSlides);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSectionRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSection", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSection(request), "deleteSection", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSectionRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSection", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSection(request), "deleteSection", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSectionRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSection", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSection(request), "deleteSection", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteSections", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getDeleteSectionsRequest();
+            return TestInitializer.initialize("deleteSections", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteSections(request), false, "deleteSections");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getDeleteSectionsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "deleteSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSections", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSections(request), "deleteSections", field, request.name);
+            });
+        });
+    });
+
+    it("invalid sections test", () => {
+        const field = "sections";
+        const request = TestUtils.getDeleteSectionsRequest();
+        request.sections = <Array<number>>TestInitializer.invalidizeValue(request.sections, field, "Array&lt;number&gt;", "deleteSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSections", field, request.sections).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSections(request), "deleteSections", field, request.sections);
+            });
+        });
+    });
+
+    it("invalid withSlides test", () => {
+        const field = "withSlides";
+        const request = TestUtils.getDeleteSectionsRequest();
+        request.withSlides = <boolean>TestInitializer.invalidizeValue(request.withSlides, field, "boolean", "deleteSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSections", field, request.withSlides).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSections(request), "deleteSections", field, request.withSlides);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getDeleteSectionsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "deleteSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSections", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSections(request), "deleteSections", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getDeleteSectionsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "deleteSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSections", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSections(request), "deleteSections", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getDeleteSectionsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "deleteSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSections", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSections(request), "deleteSections", field, request.storage);
             });
         });
     });
@@ -5425,6 +5705,72 @@ describe("Tests for getNotesSlideExists", () => {
     });
 });
 
+describe("Tests for getNotesSlideHeaderFooter", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetNotesSlideHeaderFooterRequest();
+            return TestInitializer.initialize("getNotesSlideHeaderFooter", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getNotesSlideHeaderFooter(request), false, "getNotesSlideHeaderFooter");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetNotesSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideHeaderFooter", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideHeaderFooter(request), "getNotesSlideHeaderFooter", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetNotesSlideHeaderFooterRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideHeaderFooter", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideHeaderFooter(request), "getNotesSlideHeaderFooter", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetNotesSlideHeaderFooterRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideHeaderFooter", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideHeaderFooter(request), "getNotesSlideHeaderFooter", field, request.password);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetNotesSlideHeaderFooterRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideHeaderFooter", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideHeaderFooter(request), "getNotesSlideHeaderFooter", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetNotesSlideHeaderFooterRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getNotesSlideHeaderFooter", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideHeaderFooter(request), "getNotesSlideHeaderFooter", field, request.folder);
+            });
+        });
+    });
+});
+
 describe("Tests for getNotesSlideShape", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -6217,6 +6563,61 @@ describe("Tests for getParagraphPortions", () => {
     });
 });
 
+describe("Tests for getSections", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSectionsRequest();
+            return TestInitializer.initialize("getSections", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSections(request), false, "getSections");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSectionsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSections", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSections(request), "getSections", field, request.name);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSectionsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSections", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSections(request), "getSections", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSectionsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSections", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSections(request), "getSections", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSectionsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSections", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSections(request), "getSections", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for getSlideAnimation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -6289,6 +6690,72 @@ describe("Tests for getSlideAnimation", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlideAnimation", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideAnimation(request), "getSlideAnimation", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSlideHeaderFooter", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlideHeaderFooterRequest();
+            return TestInitializer.initialize("getSlideHeaderFooter", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlideHeaderFooter(request), false, "getSlideHeaderFooter");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideHeaderFooter", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideHeaderFooter(request), "getSlideHeaderFooter", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getGetSlideHeaderFooterRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "getSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideHeaderFooter", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideHeaderFooter(request), "getSlideHeaderFooter", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlideHeaderFooterRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideHeaderFooter", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideHeaderFooter(request), "getSlideHeaderFooter", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlideHeaderFooterRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideHeaderFooter", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideHeaderFooter(request), "getSlideHeaderFooter", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlideHeaderFooterRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlideHeaderFooter", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlideHeaderFooter(request), "getSlideHeaderFooter", field, request.storage);
             });
         });
     });
@@ -9856,17 +10323,6 @@ describe("Tests for postGetNotesSlide", () => {
         });
     });
 
-    it("invalid slideIndex test", () => {
-        const field = "slideIndex";
-        const request = TestUtils.getPostGetNotesSlideRequest();
-        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postGetNotesSlide");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postGetNotesSlide", field, request.slideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlide(request), "postGetNotesSlide", field, request.slideIndex);
-            });
-        });
-    });
-
     it("invalid document test", () => {
         const field = "document";
         const request = TestUtils.getPostGetNotesSlideRequest();
@@ -9874,6 +10330,17 @@ describe("Tests for postGetNotesSlide", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postGetNotesSlide", field, request.document).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlide(request), "postGetNotesSlide", field, request.document);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostGetNotesSlideRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postGetNotesSlide");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlide", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlide(request), "postGetNotesSlide", field, request.slideIndex);
             });
         });
     });
@@ -9900,17 +10367,6 @@ describe("Tests for postGetNotesSlideExists", () => {
         });
     });
 
-    it("invalid slideIndex test", () => {
-        const field = "slideIndex";
-        const request = TestUtils.getPostGetNotesSlideExistsRequest();
-        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postGetNotesSlideExists");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postGetNotesSlideExists", field, request.slideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideExists(request), "postGetNotesSlideExists", field, request.slideIndex);
-            });
-        });
-    });
-
     it("invalid document test", () => {
         const field = "document";
         const request = TestUtils.getPostGetNotesSlideExistsRequest();
@@ -9918,6 +10374,17 @@ describe("Tests for postGetNotesSlideExists", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postGetNotesSlideExists", field, request.document).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideExists(request), "postGetNotesSlideExists", field, request.document);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostGetNotesSlideExistsRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postGetNotesSlideExists");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideExists", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideExists(request), "postGetNotesSlideExists", field, request.slideIndex);
             });
         });
     });
@@ -9944,6 +10411,17 @@ describe("Tests for postGetNotesSlideWithFormat", () => {
         });
     });
 
+    it("invalid document test", () => {
+        const field = "document";
+        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
+        request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "postGetNotesSlideWithFormat");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.document).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.document);
+            });
+        });
+    });
+
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
         const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
@@ -9962,17 +10440,6 @@ describe("Tests for postGetNotesSlideWithFormat", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.format).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.format);
-            });
-        });
-    });
-
-    it("invalid document test", () => {
-        const field = "document";
-        const request = TestUtils.getPostGetNotesSlideWithFormatRequest();
-        request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "postGetNotesSlideWithFormat");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postGetNotesSlideWithFormat", field, request.document).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postGetNotesSlideWithFormat(request), "postGetNotesSlideWithFormat", field, request.document);
             });
         });
     });
@@ -10534,6 +11001,160 @@ describe("Tests for postPresentationMerge", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postPresentationMerge", field, request.folder).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postPresentationMerge(request), "postPresentationMerge", field, request.folder);
+            });
+        });
+    });
+});
+
+describe("Tests for postSection", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSectionRequest();
+            return TestInitializer.initialize("postSection", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSection(request), false, "postSection");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSectionRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSection", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSection(request), "postSection", field, request.name);
+            });
+        });
+    });
+
+    it("invalid sectionName test", () => {
+        const field = "sectionName";
+        const request = TestUtils.getPostSectionRequest();
+        request.sectionName = <string>TestInitializer.invalidizeValue(request.sectionName, field, "string", "postSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSection", field, request.sectionName).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSection(request), "postSection", field, request.sectionName);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPostSectionRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "postSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSection", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSection(request), "postSection", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSectionRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSection", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSection(request), "postSection", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSectionRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSection", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSection(request), "postSection", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSectionRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSection", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSection(request), "postSection", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for postSectionMove", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSectionMoveRequest();
+            return TestInitializer.initialize("postSectionMove", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSectionMove(request), false, "postSectionMove");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSectionMoveRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSectionMove");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSectionMove", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSectionMove(request), "postSectionMove", field, request.name);
+            });
+        });
+    });
+
+    it("invalid sectionIndex test", () => {
+        const field = "sectionIndex";
+        const request = TestUtils.getPostSectionMoveRequest();
+        request.sectionIndex = <number>TestInitializer.invalidizeValue(request.sectionIndex, field, "number", "postSectionMove");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSectionMove", field, request.sectionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSectionMove(request), "postSectionMove", field, request.sectionIndex);
+            });
+        });
+    });
+
+    it("invalid newPosition test", () => {
+        const field = "newPosition";
+        const request = TestUtils.getPostSectionMoveRequest();
+        request.newPosition = <number>TestInitializer.invalidizeValue(request.newPosition, field, "number", "postSectionMove");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSectionMove", field, request.newPosition).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSectionMove(request), "postSectionMove", field, request.newPosition);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSectionMoveRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSectionMove");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSectionMove", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSectionMove(request), "postSectionMove", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSectionMoveRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSectionMove");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSectionMove", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSectionMove(request), "postSectionMove", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSectionMoveRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSectionMove");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSectionMove", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSectionMove(request), "postSectionMove", field, request.storage);
             });
         });
     });
@@ -11132,17 +11753,6 @@ describe("Tests for postSlidesConvert", () => {
         });
     });
 
-    it("invalid format test", () => {
-        const field = "format";
-        const request = TestUtils.getPostSlidesConvertRequest();
-        request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postSlidesConvert");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postSlidesConvert", field, request.format).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesConvert(request), "postSlidesConvert", field, request.format);
-            });
-        });
-    });
-
     it("invalid document test", () => {
         const field = "document";
         const request = TestUtils.getPostSlidesConvertRequest();
@@ -11150,6 +11760,17 @@ describe("Tests for postSlidesConvert", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postSlidesConvert", field, request.document).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesConvert(request), "postSlidesConvert", field, request.document);
+            });
+        });
+    });
+
+    it("invalid format test", () => {
+        const field = "format";
+        const request = TestUtils.getPostSlidesConvertRequest();
+        request.format = <string>TestInitializer.invalidizeValue(request.format, field, "string", "postSlidesConvert");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSlidesConvert", field, request.format).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesConvert(request), "postSlidesConvert", field, request.format);
             });
         });
     });
@@ -12838,6 +13459,83 @@ describe("Tests for putLayoutSlide", () => {
     });
 });
 
+describe("Tests for putNotesSlideHeaderFooter", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutNotesSlideHeaderFooterRequest();
+            return TestInitializer.initialize("putNotesSlideHeaderFooter", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putNotesSlideHeaderFooter(request), false, "putNotesSlideHeaderFooter");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutNotesSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putNotesSlideHeaderFooter", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideHeaderFooter(request), "putNotesSlideHeaderFooter", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPutNotesSlideHeaderFooterRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putNotesSlideHeaderFooter", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideHeaderFooter(request), "putNotesSlideHeaderFooter", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutNotesSlideHeaderFooterRequest();
+        request.dto = <model.NotesSlideHeaderFooter>TestInitializer.invalidizeValue(request.dto, field, "NotesSlideHeaderFooter", "putNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putNotesSlideHeaderFooter", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideHeaderFooter(request), "putNotesSlideHeaderFooter", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutNotesSlideHeaderFooterRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putNotesSlideHeaderFooter", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideHeaderFooter(request), "putNotesSlideHeaderFooter", field, request.password);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutNotesSlideHeaderFooterRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putNotesSlideHeaderFooter", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideHeaderFooter(request), "putNotesSlideHeaderFooter", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutNotesSlideHeaderFooterRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putNotesSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putNotesSlideHeaderFooter", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putNotesSlideHeaderFooter(request), "putNotesSlideHeaderFooter", field, request.folder);
+            });
+        });
+    });
+});
+
 describe("Tests for putNotesSlideShapeSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -13053,6 +13751,149 @@ describe("Tests for putPresentationMerge", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putPresentationMerge", field, request.folder).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putPresentationMerge(request), "putPresentationMerge", field, request.folder);
+            });
+        });
+    });
+});
+
+describe("Tests for putSection", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSectionRequest();
+            return TestInitializer.initialize("putSection", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSection(request), false, "putSection");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSectionRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSection", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSection(request), "putSection", field, request.name);
+            });
+        });
+    });
+
+    it("invalid sectionIndex test", () => {
+        const field = "sectionIndex";
+        const request = TestUtils.getPutSectionRequest();
+        request.sectionIndex = <number>TestInitializer.invalidizeValue(request.sectionIndex, field, "number", "putSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSection", field, request.sectionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSection(request), "putSection", field, request.sectionIndex);
+            });
+        });
+    });
+
+    it("invalid sectionName test", () => {
+        const field = "sectionName";
+        const request = TestUtils.getPutSectionRequest();
+        request.sectionName = <string>TestInitializer.invalidizeValue(request.sectionName, field, "string", "putSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSection", field, request.sectionName).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSection(request), "putSection", field, request.sectionName);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSectionRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSection", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSection(request), "putSection", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSectionRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSection", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSection(request), "putSection", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSectionRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSection");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSection", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSection(request), "putSection", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for putSections", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSectionsRequest();
+            return TestInitializer.initialize("putSections", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSections(request), false, "putSections");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSectionsRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSections", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSections(request), "putSections", field, request.name);
+            });
+        });
+    });
+
+    it("invalid sections test", () => {
+        const field = "sections";
+        const request = TestUtils.getPutSectionsRequest();
+        request.sections = <model.Sections>TestInitializer.invalidizeValue(request.sections, field, "Sections", "putSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSections", field, request.sections).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSections(request), "putSections", field, request.sections);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSectionsRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSections", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSections(request), "putSections", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSectionsRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSections", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSections(request), "putSections", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSectionsRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSections");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSections", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSections(request), "putSections", field, request.storage);
             });
         });
     });
@@ -13916,6 +14757,83 @@ describe("Tests for putSlideAnimationInteractiveSequenceEffect", () => {
     });
 });
 
+describe("Tests for putSlideHeaderFooter", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlideHeaderFooterRequest();
+            return TestInitializer.initialize("putSlideHeaderFooter", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlideHeaderFooter(request), false, "putSlideHeaderFooter");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSlideHeaderFooterRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideHeaderFooter", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideHeaderFooter(request), "putSlideHeaderFooter", field, request.name);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        const request = TestUtils.getPutSlideHeaderFooterRequest();
+        request.slideIndex = <number>TestInitializer.invalidizeValue(request.slideIndex, field, "number", "putSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideHeaderFooter", field, request.slideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideHeaderFooter(request), "putSlideHeaderFooter", field, request.slideIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSlideHeaderFooterRequest();
+        request.dto = <model.HeaderFooter>TestInitializer.invalidizeValue(request.dto, field, "HeaderFooter", "putSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideHeaderFooter", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideHeaderFooter(request), "putSlideHeaderFooter", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSlideHeaderFooterRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideHeaderFooter", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideHeaderFooter(request), "putSlideHeaderFooter", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSlideHeaderFooterRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideHeaderFooter", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideHeaderFooter(request), "putSlideHeaderFooter", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSlideHeaderFooterRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlideHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlideHeaderFooter", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlideHeaderFooter(request), "putSlideHeaderFooter", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for putSlideSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -14245,6 +15163,17 @@ describe("Tests for putSlidesConvert", () => {
         });
     });
 
+    it("invalid document test", () => {
+        const field = "document";
+        const request = TestUtils.getPutSlidesConvertRequest();
+        request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "putSlidesConvert");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesConvert", field, request.document).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.document);
+            });
+        });
+    });
+
     it("invalid format test", () => {
         const field = "format";
         const request = TestUtils.getPutSlidesConvertRequest();
@@ -14263,17 +15192,6 @@ describe("Tests for putSlidesConvert", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesConvert", field, request.outPath).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.outPath);
-            });
-        });
-    });
-
-    it("invalid document test", () => {
-        const field = "document";
-        const request = TestUtils.getPutSlidesConvertRequest();
-        request.document = <Buffer>TestInitializer.invalidizeValue(request.document, field, "Buffer", "putSlidesConvert");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesConvert", field, request.document).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesConvert(request), "putSlidesConvert", field, request.document);
             });
         });
     });
@@ -14362,6 +15280,72 @@ describe("Tests for putSlidesDocumentFromHtml", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesDocumentFromHtml", field, request.folder).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(request), "putSlidesDocumentFromHtml", field, request.folder);
+            });
+        });
+    });
+});
+
+describe("Tests for putSlidesHeaderFooter", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesHeaderFooterRequest();
+            return TestInitializer.initialize("putSlidesHeaderFooter", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesHeaderFooter(request), false, "putSlidesHeaderFooter");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSlidesHeaderFooterRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesHeaderFooter", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesHeaderFooter(request), "putSlidesHeaderFooter", field, request.name);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSlidesHeaderFooterRequest();
+        request.dto = <model.HeaderFooter>TestInitializer.invalidizeValue(request.dto, field, "HeaderFooter", "putSlidesHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesHeaderFooter", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesHeaderFooter(request), "putSlidesHeaderFooter", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSlidesHeaderFooterRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesHeaderFooter", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesHeaderFooter(request), "putSlidesHeaderFooter", field, request.password);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSlidesHeaderFooterRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesHeaderFooter", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesHeaderFooter(request), "putSlidesHeaderFooter", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSlidesHeaderFooterRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesHeaderFooter");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesHeaderFooter", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesHeaderFooter(request), "putSlidesHeaderFooter", field, request.folder);
             });
         });
     });

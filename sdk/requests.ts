@@ -587,6 +587,64 @@ export class DeletePortionsRequest {
     public storage: string;
 }
 /**
+ * Request model for DeleteSection operation.
+ */
+export class DeleteSectionRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Section index.
+     */
+    public sectionIndex: number;
+    /**
+     * True to delete the slides related to the deleted section; move them to the remaining sections otherwise.
+     */
+    public withSlides: boolean;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSections operation.
+ */
+export class DeleteSectionsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The indices of the sections to be deleted; delete all by default.
+     */
+    public sections: Array<number>;
+    /**
+     * True to delete the slides related to the deleted sections; move them to the remaining sections otherwise.
+     */
+    public withSlides: boolean;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for DeleteSlideAnimation operation.
  */
 export class DeleteSlideAnimationRequest {
@@ -1348,6 +1406,31 @@ export class GetNotesSlideExistsRequest {
     public storage: string;
 }
 /**
+ * Request model for GetNotesSlideHeaderFooter operation.
+ */
+export class GetNotesSlideHeaderFooterRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+}
+/**
  * Request model for GetNotesSlideShape operation.
  */
 export class GetNotesSlideShapeRequest {
@@ -1645,6 +1728,27 @@ export class GetParagraphPortionsRequest {
     public storage: string;
 }
 /**
+ * Request model for GetSections operation.
+ */
+export class GetSectionsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for GetSlideAnimation operation.
  */
 export class GetSlideAnimationRequest {
@@ -1660,6 +1764,31 @@ export class GetSlideAnimationRequest {
      * Shape index. If specified, only effects related to that shape are returned.
      */
     public shapeIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for GetSlideHeaderFooter operation.
+ */
+export class GetSlideHeaderFooterRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The position of the slide to be reordered.
+     */
+    public slideIndex: number;
     /**
      * Document password.
      */
@@ -3016,13 +3145,13 @@ export class PostCopyMasterSlideFromSourcePresentationRequest {
  */
 export class PostGetNotesSlideRequest {
     /**
-     * Slide index.
-     */
-    public slideIndex: number;
-    /**
      * Document data.
      */
     public document: Buffer;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
     /**
      * Document password.
      */
@@ -3033,13 +3162,13 @@ export class PostGetNotesSlideRequest {
  */
 export class PostGetNotesSlideExistsRequest {
     /**
-     * Slide index.
-     */
-    public slideIndex: number;
-    /**
      * Document data.
      */
     public document: Buffer;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
     /**
      * Document password.
      */
@@ -3050,6 +3179,10 @@ export class PostGetNotesSlideExistsRequest {
  */
 export class PostGetNotesSlideWithFormatRequest {
     /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
      * Slide index.
      */
     public slideIndex: number;
@@ -3057,10 +3190,6 @@ export class PostGetNotesSlideWithFormatRequest {
      * Output file format.
      */
     public format: string;
-    /**
-     * Document data.
-     */
-    public document: Buffer;
     /**
      * Output file width.
      */
@@ -3270,6 +3399,64 @@ export class PostPresentationMergeRequest {
      * Document folder.
      */
     public folder: string;
+}
+/**
+ * Request model for PostSection operation.
+ */
+export class PostSectionRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Section name.
+     */
+    public sectionName: string;
+    /**
+     * Slide index (one-based).
+     */
+    public slideIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostSectionMove operation.
+ */
+export class PostSectionMoveRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The position of the section to be reordered.
+     */
+    public sectionIndex: number;
+    /**
+     * The new position of the reordered section.
+     */
+    public newPosition: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PostShapeSaveAs operation.
@@ -3494,13 +3681,13 @@ export class PostSlidesAddRequest {
  */
 export class PostSlidesConvertRequest {
     /**
-     * Export format.
-     */
-    public format: string;
-    /**
      * Document data.
      */
     public document: Buffer;
+    /**
+     * Export format.
+     */
+    public format: string;
     /**
      * Document password.
      */
@@ -4133,6 +4320,35 @@ export class PutLayoutSlideRequest {
     public storage: string;
 }
 /**
+ * Request model for PutNotesSlideHeaderFooter operation.
+ */
+export class PutNotesSlideHeaderFooterRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Header/footer to set.
+     */
+    public dto: model.NotesSlideHeaderFooter;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+}
+/**
  * Request model for PutNotesSlideShapeSaveAs operation.
  */
 export class PutNotesSlideShapeSaveAsRequest {
@@ -4213,6 +4429,60 @@ export class PutPresentationMergeRequest {
      * Document folder.
      */
     public folder: string;
+}
+/**
+ * Request model for PutSection operation.
+ */
+export class PutSectionRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The position of the section to be updated.
+     */
+    public sectionIndex: number;
+    /**
+     * Section name.
+     */
+    public sectionName: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutSections operation.
+ */
+export class PutSectionsRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Sections DTO.
+     */
+    public sections: model.Sections;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutSetParagraphPortionProperties operation.
@@ -4535,6 +4805,35 @@ export class PutSlideAnimationInteractiveSequenceEffectRequest {
     public storage: string;
 }
 /**
+ * Request model for PutSlideHeaderFooter operation.
+ */
+export class PutSlideHeaderFooterRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The position of the slide to be reordered.
+     */
+    public slideIndex: number;
+    /**
+     * Footer to set.
+     */
+    public dto: model.HeaderFooter;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for PutSlideSaveAs operation.
  */
 export class PutSlideSaveAsRequest {
@@ -4658,6 +4957,10 @@ export class PutSlideSubshapeInfoRequest {
  */
 export class PutSlidesConvertRequest {
     /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
      * Export format.
      */
     public format: string;
@@ -4665,10 +4968,6 @@ export class PutSlidesConvertRequest {
      * Path to save result.
      */
     public outPath: string;
-    /**
-     * Document data.
-     */
-    public document: Buffer;
     /**
      * Document password.
      */
@@ -4690,6 +4989,31 @@ export class PutSlidesDocumentFromHtmlRequest {
      * HTML data.
      */
     public html: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+}
+/**
+ * Request model for PutSlidesHeaderFooter operation.
+ */
+export class PutSlidesHeaderFooterRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * HeaderFooter instance.
+     */
+    public dto: model.HeaderFooter;
     /**
      * Document password.
      */

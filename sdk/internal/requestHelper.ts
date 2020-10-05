@@ -131,7 +131,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v20.8.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v20.9.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }
@@ -150,13 +150,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
             } else {
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     resolve(response);
-                } else if (!notApplyAuthToRequest
-                    && (response.statusCode === 401
-                        || (response.statusCode === 400
-                            && response.body
-                            && response.body.error
-                            && response.body.error.message
-                            && response.body.error.message.includes(" Authority")))) {
+                } else if (!notApplyAuthToRequest && (response.statusCode === 401 || (response.statusCode === 500 && !response.body))) {
                     await requestToken(confguration);
                     reject(new NeedRepeatException());
                 } else {
@@ -165,8 +159,10 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                             reject({ message: response.body.error, code: 401 });
                         } else {
                             let bodyContent = response.body;
+                            let bodyString = bodyContent;
                             if (bodyContent instanceof Buffer) {
-                                bodyContent = JSON.parse(bodyContent.toString("utf8"));
+                                bodyString = bodyContent.toString("utf8");
+                                bodyContent = JSON.parse(bodyString);
                             }
                             let result = ObjectSerializer.deserialize(bodyContent, "SlidesApiErrorResponse");
                             try {
@@ -174,7 +170,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                             } catch {
                                  //Error means the object is already deserialized
                             }
-                            reject({ message: result.error.message, code: response.statusCode });
+                            reject({ message: result.error ? result.error.message : bodyString, code: response.statusCode });
                         }
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });

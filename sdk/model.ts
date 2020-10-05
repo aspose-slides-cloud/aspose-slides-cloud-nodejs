@@ -385,9 +385,14 @@ export class BlurEffect {
 export class ChartCategory {
 
     /**
-     * Gets or sets the categories for chart data
+     * Gets or sets the parent categories. Used with Sunburst &amp; treemap categories; ignored for other chart types.
      */
-    categories?: Array<ChartCategory>;
+    parentCategories?: Array<string>;
+
+    /**
+     * Gets or sets the grouping level for the category. Used with Sunburst &amp; treemap categories; ignored for other chart types.
+     */
+    level?: number;
 
     /**
      * Category value
@@ -1095,11 +1100,6 @@ export class GradientFillStop {
  * Represents export options for whole presentation.
  */
 export class IShapeExportOptions {
-
-    /**
-     * Export format.
-     */
-    format?: string;
 
 }
 
@@ -2927,6 +2927,41 @@ export namespace GradientFill {
 }
 
 /**
+ * Represents header/footer info of slide
+ */
+export class HeaderFooter extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * True if date is displayed in the footer
+     */
+    isDateTimeVisible?: boolean;
+
+    /**
+     * Text to be displayed as date in the footer
+     */
+    dateTimeText?: string;
+
+    /**
+     * True if footer is displayed
+     */
+    isFooterVisible?: boolean;
+
+    /**
+     * Text to be displayed in the footer
+     */
+    footerText?: string;
+
+    /**
+     * True if slide number is displayed in the footer
+     */
+    isSlideNumberVisible?: boolean;
+
+}
+
+/**
  * Provides options that control how a presentation is saved in Html format.
  */
 export class HtmlExportOptions extends ExportOptions {
@@ -3273,6 +3308,51 @@ export class NotesSlide extends ResourceBase {
      * Get or sets the  link to list notes slide shapes.
      */
     shapes?: ResourceUriElement;
+
+}
+
+/**
+ * Represents header/footer info of notes slide
+ */
+export class NotesSlideHeaderFooter extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * True if date is displayed in the footer
+     */
+    isDateTimeVisible?: boolean;
+
+    /**
+     * Text to be displayed as date in the footer
+     */
+    dateTimeText?: string;
+
+    /**
+     * True if footer is displayed
+     */
+    isFooterVisible?: boolean;
+
+    /**
+     * Text to be displayed in the footer
+     */
+    footerText?: string;
+
+    /**
+     * True if header is displayed
+     */
+    isHeaderVisible?: boolean;
+
+    /**
+     * Text to be displayed in the header
+     */
+    headerText?: string;
+
+    /**
+     * True if slide number is displayed in the footer
+     */
+    isSlideNumberVisible?: boolean;
 
 }
 
@@ -4515,6 +4595,46 @@ export class ScatterSeries extends Series {
 
 }
 export namespace ScatterSeries {
+}
+
+/**
+ * Presentation section.
+ */
+export class Section extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Name.
+     */
+    name?: string;
+
+    /**
+     * One-based index of slide with which the section starts.
+     */
+    firstSlideIndex: number;
+
+    /**
+     * Links to the shapes contained in the section.
+     */
+    slideList?: Array<ResourceUriElement>;
+
+}
+
+/**
+ * Section list.
+ */
+export class Sections extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * List of slide links.
+     */
+    sectionList?: Array<Section>;
+
 }
 
 /**

@@ -11,6 +11,10 @@ This repository contains Aspose.Slides Cloud SDK for NodeJS source code. This SD
 * Support of Aspose.Storage API
 
 ### New Features & Recent API Changes
+#### 20.10
+* Removed shapeType property from BaseShape class; replaced geometryShapeType with shapeType property for GeometryShape.
+* Removed redundant ResourceUriElement class. All properties of ResourceUriElement type are changed to ResourceUri type.
+
 #### 20.9
 * New getSections, putSections, putSection, postSection, postSectionMove, deleteSection, deleteSections methods to add, update and delete presentation sections.
 * New postSlidesHeaderFooter, postSlideHeaderFooter, getSlideHeaderFooter, postNotesSlideHeaderFooter, getNotesSlideHeaderFooter methods to manage header/footer settings for slides.

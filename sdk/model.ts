@@ -1811,18 +1811,6 @@ export class ResourceUri {
 }
 
 /**
- * Resource URI element.
- */
-export class ResourceUriElement {
-
-    /**
-     * Resource URI.
-     */
-    uri?: ResourceUri;
-
-}
-
-/**
  * Scale type of slide content.
  */
     /**
@@ -2223,7 +2211,7 @@ export class SmartArtNode {
     /**
      * Gets or sets the link to shapes.
      */
-    shapes?: ResourceUriElement;
+    shapes?: ResourceUri;
 
     /**
      * True for and assistant node.
@@ -2717,32 +2705,32 @@ export class Document extends ResourceBase {
     /**
      * Link to Document properties.
      */
-    documentProperties?: ResourceUriElement;
+    documentProperties?: ResourceUri;
 
     /**
      * Link to Document properties.
      */
-    viewProperties?: ResourceUriElement;
+    viewProperties?: ResourceUri;
 
     /**
      * Link to slides collection.
      */
-    slides?: ResourceUriElement;
+    slides?: ResourceUri;
 
     /**
      * Link to images collection.
      */
-    images?: ResourceUriElement;
+    images?: ResourceUri;
 
     /**
      * Link to layout slides collection.
      */
-    layoutSlides?: ResourceUriElement;
+    layoutSlides?: ResourceUri;
 
     /**
      * Link to master slides collection.
      */
-    masterSlides?: ResourceUriElement;
+    masterSlides?: ResourceUri;
 
 }
 
@@ -3156,12 +3144,12 @@ export class LayoutSlide extends ResourceBase {
     /**
      * Master slide link.
      */
-    masterSlide?: ResourceUriElement;
+    masterSlide?: ResourceUri;
 
     /**
      * List of depending slides.
      */
-    dependingSlides?: Array<ResourceUriElement>;
+    dependingSlides?: Array<ResourceUri>;
 
 }
 export namespace LayoutSlide {
@@ -3216,7 +3204,7 @@ export class LayoutSlides extends ResourceBase {
     /**
      * List of layout slide links.
      */
-    slideList?: Array<ResourceUriElement>;
+    slideList?: Array<ResourceUri>;
 
 }
 
@@ -3236,12 +3224,12 @@ export class MasterSlide extends ResourceBase {
     /**
      * List of layout slide links.
      */
-    layoutSlides?: Array<ResourceUriElement>;
+    layoutSlides?: Array<ResourceUri>;
 
     /**
      * List of depending slide links.
      */
-    dependingSlides?: Array<ResourceUriElement>;
+    dependingSlides?: Array<ResourceUri>;
 
 }
 
@@ -3256,7 +3244,7 @@ export class MasterSlides extends ResourceBase {
     /**
      * List of slide links.
      */
-    slideList?: Array<ResourceUriElement>;
+    slideList?: Array<ResourceUri>;
 
 }
 
@@ -3307,7 +3295,7 @@ export class NotesSlide extends ResourceBase {
     /**
      * Get or sets the  link to list notes slide shapes.
      */
-    shapes?: ResourceUriElement;
+    shapes?: ResourceUri;
 
 }
 
@@ -3600,7 +3588,7 @@ export class Paragraphs extends ResourceBase {
     /**
      * List of paragraph links.
      */
-    paragraphLinks?: Array<ResourceUriElement>;
+    paragraphLinks?: Array<ResourceUri>;
 
 }
 
@@ -3912,7 +3900,7 @@ export class PictureFill extends FillFormat {
     /**
      * Internal image link.
      */
-    image?: ResourceUriElement;
+    image?: ResourceUri;
 
     /**
      * Base 64 image data.
@@ -3968,7 +3956,7 @@ export class Placeholder extends ResourceBase {
     /**
      * Shape link.
      */
-    shape?: ResourceUriElement;
+    shape?: ResourceUri;
 
 }
 export namespace Placeholder {
@@ -4618,7 +4606,7 @@ export class Section extends ResourceBase {
     /**
      * Links to the shapes contained in the section.
      */
-    slideList?: Array<ResourceUriElement>;
+    slideList?: Array<ResourceUri>;
 
 }
 
@@ -4693,7 +4681,7 @@ export class ShapeBase extends ResourceBase {
     /**
      * Gets or sets the link to shapes.
      */
-    shapes?: ResourceUriElement;
+    shapes?: ResourceUri;
 
     /**
      * Gets or sets the fill format.
@@ -4712,8 +4700,6 @@ export class ShapeBase extends ResourceBase {
 
     type?: ShapeBase.TypeEnum;
 
-    shapeType?: ShapeBase.ShapeTypeEnum;
-
 }
 export namespace ShapeBase {
     export enum TypeEnum {
@@ -4730,206 +4716,6 @@ export namespace ShapeBase {
         Connector = <any> 'Connector',
         SmartArtShape = <any> 'SmartArtShape'
     }
-    export enum ShapeTypeEnum {
-        Custom = <any> 'Custom',
-        Line = <any> 'Line',
-        LineInverse = <any> 'LineInverse',
-        Triangle = <any> 'Triangle',
-        RightTriangle = <any> 'RightTriangle',
-        Rectangle = <any> 'Rectangle',
-        Diamond = <any> 'Diamond',
-        Parallelogram = <any> 'Parallelogram',
-        Trapezoid = <any> 'Trapezoid',
-        NonIsoscelesTrapezoid = <any> 'NonIsoscelesTrapezoid',
-        Pentagon = <any> 'Pentagon',
-        Hexagon = <any> 'Hexagon',
-        Heptagon = <any> 'Heptagon',
-        Octagon = <any> 'Octagon',
-        Decagon = <any> 'Decagon',
-        Dodecagon = <any> 'Dodecagon',
-        FourPointedStar = <any> 'FourPointedStar',
-        FivePointedStar = <any> 'FivePointedStar',
-        SixPointedStar = <any> 'SixPointedStar',
-        SevenPointedStar = <any> 'SevenPointedStar',
-        EightPointedStar = <any> 'EightPointedStar',
-        TenPointedStar = <any> 'TenPointedStar',
-        TwelvePointedStar = <any> 'TwelvePointedStar',
-        SixteenPointedStar = <any> 'SixteenPointedStar',
-        TwentyFourPointedStar = <any> 'TwentyFourPointedStar',
-        ThirtyTwoPointedStar = <any> 'ThirtyTwoPointedStar',
-        RoundCornerRectangle = <any> 'RoundCornerRectangle',
-        OneRoundCornerRectangle = <any> 'OneRoundCornerRectangle',
-        TwoSamesideRoundCornerRectangle = <any> 'TwoSamesideRoundCornerRectangle',
-        TwoDiagonalRoundCornerRectangle = <any> 'TwoDiagonalRoundCornerRectangle',
-        OneSnipOneRoundCornerRectangle = <any> 'OneSnipOneRoundCornerRectangle',
-        OneSnipCornerRectangle = <any> 'OneSnipCornerRectangle',
-        TwoSamesideSnipCornerRectangle = <any> 'TwoSamesideSnipCornerRectangle',
-        TwoDiagonalSnipCornerRectangle = <any> 'TwoDiagonalSnipCornerRectangle',
-        Plaque = <any> 'Plaque',
-        Ellipse = <any> 'Ellipse',
-        Teardrop = <any> 'Teardrop',
-        HomePlate = <any> 'HomePlate',
-        Chevron = <any> 'Chevron',
-        PieWedge = <any> 'PieWedge',
-        Pie = <any> 'Pie',
-        BlockArc = <any> 'BlockArc',
-        Donut = <any> 'Donut',
-        NoSmoking = <any> 'NoSmoking',
-        RightArrow = <any> 'RightArrow',
-        LeftArrow = <any> 'LeftArrow',
-        UpArrow = <any> 'UpArrow',
-        DownArrow = <any> 'DownArrow',
-        StripedRightArrow = <any> 'StripedRightArrow',
-        NotchedRightArrow = <any> 'NotchedRightArrow',
-        BentUpArrow = <any> 'BentUpArrow',
-        LeftRightArrow = <any> 'LeftRightArrow',
-        UpDownArrow = <any> 'UpDownArrow',
-        LeftUpArrow = <any> 'LeftUpArrow',
-        LeftRightUpArrow = <any> 'LeftRightUpArrow',
-        QuadArrow = <any> 'QuadArrow',
-        CalloutLeftArrow = <any> 'CalloutLeftArrow',
-        CalloutRightArrow = <any> 'CalloutRightArrow',
-        CalloutUpArrow = <any> 'CalloutUpArrow',
-        CalloutDownArrow = <any> 'CalloutDownArrow',
-        CalloutLeftRightArrow = <any> 'CalloutLeftRightArrow',
-        CalloutUpDownArrow = <any> 'CalloutUpDownArrow',
-        CalloutQuadArrow = <any> 'CalloutQuadArrow',
-        BentArrow = <any> 'BentArrow',
-        UTurnArrow = <any> 'UTurnArrow',
-        CircularArrow = <any> 'CircularArrow',
-        LeftCircularArrow = <any> 'LeftCircularArrow',
-        LeftRightCircularArrow = <any> 'LeftRightCircularArrow',
-        CurvedRightArrow = <any> 'CurvedRightArrow',
-        CurvedLeftArrow = <any> 'CurvedLeftArrow',
-        CurvedUpArrow = <any> 'CurvedUpArrow',
-        CurvedDownArrow = <any> 'CurvedDownArrow',
-        SwooshArrow = <any> 'SwooshArrow',
-        Cube = <any> 'Cube',
-        Can = <any> 'Can',
-        LightningBolt = <any> 'LightningBolt',
-        Heart = <any> 'Heart',
-        Sun = <any> 'Sun',
-        Moon = <any> 'Moon',
-        SmileyFace = <any> 'SmileyFace',
-        IrregularSeal1 = <any> 'IrregularSeal1',
-        IrregularSeal2 = <any> 'IrregularSeal2',
-        FoldedCorner = <any> 'FoldedCorner',
-        Bevel = <any> 'Bevel',
-        Frame = <any> 'Frame',
-        HalfFrame = <any> 'HalfFrame',
-        Corner = <any> 'Corner',
-        DiagonalStripe = <any> 'DiagonalStripe',
-        Chord = <any> 'Chord',
-        CurvedArc = <any> 'CurvedArc',
-        LeftBracket = <any> 'LeftBracket',
-        RightBracket = <any> 'RightBracket',
-        LeftBrace = <any> 'LeftBrace',
-        RightBrace = <any> 'RightBrace',
-        BracketPair = <any> 'BracketPair',
-        BracePair = <any> 'BracePair',
-        StraightConnector1 = <any> 'StraightConnector1',
-        BentConnector2 = <any> 'BentConnector2',
-        BentConnector3 = <any> 'BentConnector3',
-        BentConnector4 = <any> 'BentConnector4',
-        BentConnector5 = <any> 'BentConnector5',
-        CurvedConnector2 = <any> 'CurvedConnector2',
-        CurvedConnector3 = <any> 'CurvedConnector3',
-        CurvedConnector4 = <any> 'CurvedConnector4',
-        CurvedConnector5 = <any> 'CurvedConnector5',
-        Callout1 = <any> 'Callout1',
-        Callout2 = <any> 'Callout2',
-        Callout3 = <any> 'Callout3',
-        Callout1WithAccent = <any> 'Callout1WithAccent',
-        Callout2WithAccent = <any> 'Callout2WithAccent',
-        Callout3WithAccent = <any> 'Callout3WithAccent',
-        Callout1WithBorder = <any> 'Callout1WithBorder',
-        Callout2WithBorder = <any> 'Callout2WithBorder',
-        Callout3WithBorder = <any> 'Callout3WithBorder',
-        Callout1WithBorderAndAccent = <any> 'Callout1WithBorderAndAccent',
-        Callout2WithBorderAndAccent = <any> 'Callout2WithBorderAndAccent',
-        Callout3WithBorderAndAccent = <any> 'Callout3WithBorderAndAccent',
-        CalloutWedgeRectangle = <any> 'CalloutWedgeRectangle',
-        CalloutWedgeRoundRectangle = <any> 'CalloutWedgeRoundRectangle',
-        CalloutWedgeEllipse = <any> 'CalloutWedgeEllipse',
-        CalloutCloud = <any> 'CalloutCloud',
-        Cloud = <any> 'Cloud',
-        Ribbon = <any> 'Ribbon',
-        Ribbon2 = <any> 'Ribbon2',
-        EllipseRibbon = <any> 'EllipseRibbon',
-        EllipseRibbon2 = <any> 'EllipseRibbon2',
-        LeftRightRibbon = <any> 'LeftRightRibbon',
-        VerticalScroll = <any> 'VerticalScroll',
-        HorizontalScroll = <any> 'HorizontalScroll',
-        Wave = <any> 'Wave',
-        DoubleWave = <any> 'DoubleWave',
-        Plus = <any> 'Plus',
-        ProcessFlow = <any> 'ProcessFlow',
-        DecisionFlow = <any> 'DecisionFlow',
-        InputOutputFlow = <any> 'InputOutputFlow',
-        PredefinedProcessFlow = <any> 'PredefinedProcessFlow',
-        InternalStorageFlow = <any> 'InternalStorageFlow',
-        DocumentFlow = <any> 'DocumentFlow',
-        MultiDocumentFlow = <any> 'MultiDocumentFlow',
-        TerminatorFlow = <any> 'TerminatorFlow',
-        PreparationFlow = <any> 'PreparationFlow',
-        ManualInputFlow = <any> 'ManualInputFlow',
-        ManualOperationFlow = <any> 'ManualOperationFlow',
-        ConnectorFlow = <any> 'ConnectorFlow',
-        PunchedCardFlow = <any> 'PunchedCardFlow',
-        PunchedTapeFlow = <any> 'PunchedTapeFlow',
-        SummingJunctionFlow = <any> 'SummingJunctionFlow',
-        OrFlow = <any> 'OrFlow',
-        CollateFlow = <any> 'CollateFlow',
-        SortFlow = <any> 'SortFlow',
-        ExtractFlow = <any> 'ExtractFlow',
-        MergeFlow = <any> 'MergeFlow',
-        OfflineStorageFlow = <any> 'OfflineStorageFlow',
-        OnlineStorageFlow = <any> 'OnlineStorageFlow',
-        MagneticTapeFlow = <any> 'MagneticTapeFlow',
-        MagneticDiskFlow = <any> 'MagneticDiskFlow',
-        MagneticDrumFlow = <any> 'MagneticDrumFlow',
-        DisplayFlow = <any> 'DisplayFlow',
-        DelayFlow = <any> 'DelayFlow',
-        AlternateProcessFlow = <any> 'AlternateProcessFlow',
-        OffPageConnectorFlow = <any> 'OffPageConnectorFlow',
-        BlankButton = <any> 'BlankButton',
-        HomeButton = <any> 'HomeButton',
-        HelpButton = <any> 'HelpButton',
-        InformationButton = <any> 'InformationButton',
-        ForwardOrNextButton = <any> 'ForwardOrNextButton',
-        BackOrPreviousButton = <any> 'BackOrPreviousButton',
-        EndButton = <any> 'EndButton',
-        BeginningButton = <any> 'BeginningButton',
-        ReturnButton = <any> 'ReturnButton',
-        DocumentButton = <any> 'DocumentButton',
-        SoundButton = <any> 'SoundButton',
-        MovieButton = <any> 'MovieButton',
-        Gear6 = <any> 'Gear6',
-        Gear9 = <any> 'Gear9',
-        Funnel = <any> 'Funnel',
-        PlusMath = <any> 'PlusMath',
-        MinusMath = <any> 'MinusMath',
-        MultiplyMath = <any> 'MultiplyMath',
-        DivideMath = <any> 'DivideMath',
-        EqualMath = <any> 'EqualMath',
-        NotEqualMath = <any> 'NotEqualMath',
-        CornerTabs = <any> 'CornerTabs',
-        SquareTabs = <any> 'SquareTabs',
-        PlaqueTabs = <any> 'PlaqueTabs',
-        ChartX = <any> 'ChartX',
-        ChartStar = <any> 'ChartStar',
-        ChartPlus = <any> 'ChartPlus',
-        Chart = <any> 'Chart',
-        Table = <any> 'Table',
-        PictureFrame = <any> 'PictureFrame',
-        VideoFrame = <any> 'VideoFrame',
-        AudioFrame = <any> 'AudioFrame',
-        Diagram = <any> 'Diagram',
-        OleObjectFrame = <any> 'OleObjectFrame',
-        GroupShape = <any> 'GroupShape',
-        GraphicalObject = <any> 'GraphicalObject',
-        NotDefined = <any> 'NotDefined'
-    }
 }
 
 /**
@@ -4943,7 +4729,7 @@ export class Shapes extends ResourceBase {
     /**
      * List of shape links.
      */
-    shapesLinks?: Array<ResourceUriElement>;
+    shapesLinks?: Array<ResourceUri>;
 
 }
 
@@ -4973,42 +4759,42 @@ export class Slide extends ResourceBase {
     /**
      * Gets or sets the  link to the layout slide.
      */
-    layoutSlide?: ResourceUriElement;
+    layoutSlide?: ResourceUri;
 
     /**
      * Gets or sets the  link to list of top-level shapes.
      */
-    shapes?: ResourceUriElement;
+    shapes?: ResourceUri;
 
     /**
      * Gets or sets the link to theme.
      */
-    theme?: ResourceUriElement;
+    theme?: ResourceUri;
 
     /**
      * Gets or sets the  link to placeholders.
      */
-    placeholders?: ResourceUriElement;
+    placeholders?: ResourceUri;
 
     /**
      * Gets or sets the link to images.
      */
-    images?: ResourceUriElement;
+    images?: ResourceUri;
 
     /**
      * Gets or sets the link to comments.
      */
-    comments?: ResourceUriElement;
+    comments?: ResourceUri;
 
     /**
      * Get or sets the link to slide's background
      */
-    background?: ResourceUriElement;
+    background?: ResourceUri;
 
     /**
      * Get or sets the link to notes slide.
      */
-    notesSlide?: ResourceUriElement;
+    notesSlide?: ResourceUri;
 
 }
 
@@ -5093,7 +4879,7 @@ export class Slides extends ResourceBase {
     /**
      * List of slide links.
      */
-    slideList?: Array<ResourceUriElement>;
+    slideList?: Array<ResourceUri>;
 
 }
 
@@ -5355,17 +5141,17 @@ export class Theme extends ResourceBase {
     /**
      * Color scheme.
      */
-    colorScheme?: ResourceUriElement;
+    colorScheme?: ResourceUri;
 
     /**
      * Font scheme.
      */
-    fontScheme?: ResourceUriElement;
+    fontScheme?: ResourceUri;
 
     /**
      * Format scheme.
      */
-    formatScheme?: ResourceUriElement;
+    formatScheme?: ResourceUri;
 
 }
 
@@ -5686,7 +5472,6 @@ export class Chart extends ShapeBase {
     constructor() {
         super();
         this.type = Chart.TypeEnum.Chart;
-        this.shapeType = Chart.ShapeTypeEnum.Chart;
     }
 
     /**
@@ -5855,13 +5640,13 @@ export class GeometryShape extends ShapeBase {
     }
 
     /**
-     * Geometry shape type.
+     * Combined shape type.
      */
-    geometryShapeType: GeometryShape.GeometryShapeTypeEnum;
+    shapeType: GeometryShape.ShapeTypeEnum;
 
 }
 export namespace GeometryShape {
-    export enum GeometryShapeTypeEnum {
+    export enum ShapeTypeEnum {
         Custom = <any> 'Custom',
         Line = <any> 'Line',
         LineInverse = <any> 'LineInverse',
@@ -6061,7 +5846,6 @@ export class GraphicalObject extends ShapeBase {
     constructor() {
         super();
         this.type = GraphicalObject.TypeEnum.GraphicalObject;
-        this.shapeType = GraphicalObject.ShapeTypeEnum.GraphicalObject;
     }
 
 }
@@ -6075,7 +5859,6 @@ export class GroupShape extends ShapeBase {
     constructor() {
         super();
         this.type = GroupShape.TypeEnum.GroupShape;
-        this.shapeType = GroupShape.ShapeTypeEnum.GroupShape;
     }
 
 }
@@ -6089,7 +5872,6 @@ export class OleObjectFrame extends ShapeBase {
     constructor() {
         super();
         this.type = OleObjectFrame.TypeEnum.OleObjectFrame;
-        this.shapeType = OleObjectFrame.ShapeTypeEnum.OleObjectFrame;
     }
 
     /**
@@ -6128,7 +5910,6 @@ export class SmartArt extends ShapeBase {
     constructor() {
         super();
         this.type = SmartArt.TypeEnum.SmartArt;
-        this.shapeType = SmartArt.ShapeTypeEnum.Diagram;
     }
 
     /**
@@ -6355,27 +6136,12 @@ export namespace SmartArt {
 }
 
 /**
- * Represents SmartArt resource.
- */
-export class SmartArtShape extends ShapeBase {
-    constructor() {
-        super();
-        this.type = SmartArtShape.TypeEnum.SmartArtShape;
-        this.shapeType = SmartArtShape.ShapeTypeEnum.Custom;
-    }
-
-}
-export namespace SmartArtShape {
-}
-
-/**
  * Represents Table shape resource.
  */
 export class Table extends ShapeBase {
     constructor() {
         super();
         this.type = Table.TypeEnum.Table;
-        this.shapeType = Table.ShapeTypeEnum.Table;
     }
 
     /**
@@ -6550,7 +6316,6 @@ export class AudioFrame extends GeometryShape {
     constructor() {
         super();
         this.type = AudioFrame.TypeEnum.AudioFrame;
-        this.shapeType = AudioFrame.ShapeTypeEnum.AudioFrame;
     }
 
     /**
@@ -6660,7 +6425,6 @@ export class PictureFrame extends GeometryShape {
     constructor() {
         super();
         this.type = PictureFrame.TypeEnum.PictureFrame;
-        this.shapeType = PictureFrame.ShapeTypeEnum.PictureFrame;
     }
 
     /**
@@ -6689,10 +6453,23 @@ export class Shape extends GeometryShape {
     /**
      * Get or sets list to paragraphs list
      */
-    paragraphs?: ResourceUriElement;
+    paragraphs?: ResourceUri;
 
 }
 export namespace Shape {
+}
+
+/**
+ * Represents SmartArt resource.
+ */
+export class SmartArtShape extends GeometryShape {
+    constructor() {
+        super();
+        this.type = SmartArtShape.TypeEnum.SmartArtShape;
+    }
+
+}
+export namespace SmartArtShape {
 }
 
 /**
@@ -6702,7 +6479,6 @@ export class VideoFrame extends GeometryShape {
     constructor() {
         super();
         this.type = VideoFrame.TypeEnum.VideoFrame;
-        this.shapeType = VideoFrame.ShapeTypeEnum.VideoFrame;
     }
 
     /**

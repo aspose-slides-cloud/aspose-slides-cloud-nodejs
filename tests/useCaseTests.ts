@@ -29,6 +29,120 @@ import * as model from "../sdk/model";
 import * as requests from "../sdk/requests";
 import { TestInitializer } from "./testInitializer";
 
+describe("Convert tests", () => {
+    it("post from request", () => {
+        return TestInitializer.runTest(() => {
+            const api = TestInitializer.getApi();
+            const postRequest = new requests.PostSlidesConvertRequest();
+            postRequest.document = fs.createReadStream("TestData/test.ppt");
+            postRequest.password = "password";
+            postRequest.format = 'pdf';
+            return api.postSlidesConvert(postRequest).then((result) => {
+                assert.equal(200, result.response.statusCode);
+            });
+        });
+    });
+
+    it("put from request", () => {
+        return TestInitializer.runTest(() => {
+            const outPath = "TestData/test.pdf";
+            const api = TestInitializer.getApi();
+            const putRequest = new requests.PutSlidesConvertRequest();
+            putRequest.document = fs.createReadStream("TestData/test.ppt");
+            putRequest.password = "password";
+            putRequest.format = 'pdf';
+            putRequest.outPath = outPath;
+            return api.putSlidesConvert(putRequest).then((putResult) => {
+                assert.equal(200, putResult.response.statusCode);
+                const existsRequest = new requests.ObjectExistsRequest();
+                existsRequest.path = outPath;
+                return api.objectExists(existsRequest).then((existsResult) => {
+                    assert.equal(200, existsResult.response.statusCode);
+                    assert((existsResult.body as model.ObjectExist).exists);
+                });
+            });
+        });
+    });
+
+    it("post from storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.ppt";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostSlidesSaveAsRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.format = 'pdf';
+                return api.postSlidesSaveAs(postRequest).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("put from storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.ppt";
+            const outPath = "TestData/test.pdf";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const putRequest = new requests.PutSlidesSaveAsRequest();
+                putRequest.name = fileName;
+                putRequest.folder = folderName;
+                putRequest.password = "password";
+                putRequest.format = 'pdf';
+                putRequest.outPath = outPath;
+                return api.putSlidesSaveAs(putRequest).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    const existsRequest = new requests.ObjectExistsRequest();
+                    existsRequest.path = outPath;
+                    return api.objectExists(existsRequest).then((existsResult) => {
+                        assert.equal(200, existsResult.response.statusCode);
+                        assert((existsResult.body as model.ObjectExist).exists);
+                    });
+                });
+            });
+        });
+    });
+
+    it("with options", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.ppt";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostSlidesSaveAsRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.format = 'pdf';
+                return api.postSlidesSaveAs(postRequest).then((result1) => {
+                    assert.equal(200, result1.response.statusCode);
+                    const options = new model.PdfExportOptions();
+                    options.textCompression = model.PdfExportOptions.TextCompressionEnum.Flate;
+                    postRequest.options = options;
+                    return api.postSlidesSaveAs(postRequest).then((result2) => {
+                        assert.equal(200, result2.response.statusCode);
+                        assert.notEqual(result1.body.length, result2.body.length);
+                    });
+                });
+            });
+        });
+    });                                             
+});
+
 describe("NotesSlide tests", () => {
     it("get from storage", () => {
         return TestInitializer.runTest(() => {
@@ -950,7 +1064,6 @@ describe("Additional tests", () => {
     it("chart type", () => {
         let chart = new model.Chart();
         assert.equal("Chart", chart.type);
-        assert.equal("Chart", chart.shapeType);
     });
 
     it("nullable fields", () => {

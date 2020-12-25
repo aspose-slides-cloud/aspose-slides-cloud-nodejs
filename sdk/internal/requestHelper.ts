@@ -131,7 +131,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v20.10.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v20.12.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }
@@ -183,17 +183,19 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
 }
 
 async function addAuthHeader(requestOptions: request.Options, configuration: Configuration): Promise<void> {
-    if (isRequestTokenPending) {
-        await requestingToken;
-    }
-    if (!configuration.accessToken) {
-        isRequestTokenPending = true;
-        requestingToken = requestToken(configuration).catch((err) => { isRequestTokenPending = false; throw(err); });
-        await requestingToken;
-    }
-    isRequestTokenPending = false;
-    if (requestOptions && requestOptions.headers) {
-        requestOptions.headers.Authorization = "Bearer " + configuration.accessToken;
+    if (configuration.appSid || configuration.accessToken) {
+        if (isRequestTokenPending) {
+            await requestingToken;
+        }
+        if (!configuration.accessToken) {
+            isRequestTokenPending = true;
+            requestingToken = requestToken(configuration).catch((err) => { isRequestTokenPending = false; throw(err); });
+            await requestingToken;
+        }
+        isRequestTokenPending = false;
+        if (requestOptions && requestOptions.headers) {
+            requestOptions.headers.Authorization = "Bearer " + configuration.accessToken;
+        }
     }
     return Promise.resolve();
 }

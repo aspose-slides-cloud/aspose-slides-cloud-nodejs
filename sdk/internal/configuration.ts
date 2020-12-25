@@ -30,15 +30,14 @@ const defaultBasePath = "https://api.aspose.cloud";
 export class Configuration {
 
     /**
-     * App SID.
+     * Client ID.
      */
     public appSid: string;
 
     /**
-     * App key.
+     * Client Secret.
      */
     public appKey: string;
-
 
     /**
      * access token.

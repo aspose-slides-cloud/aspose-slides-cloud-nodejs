@@ -35,7 +35,7 @@ export class TestInitializer {
     static api : sdkApi.SlidesApi;
 
     public static getStreamValue() {
-        return fs.createReadStream("TestData/" + "test.ppt");
+        return fs.createReadStream("TestData/" + "test.pptx");
     }
 
     public static getValue(functionName: string, name: string) : any {
@@ -64,7 +64,7 @@ export class TestInitializer {
     public static getApi() {
         if (!TestInitializer.api) {
             const config = require("../testConfig.json");
-            TestInitializer.api = new sdkApi.SlidesApi(config.AppSid, config.AppKey, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+            TestInitializer.api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
         }
         return TestInitializer.api;
     }

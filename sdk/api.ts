@@ -43,8 +43,8 @@ export class SlidesApi {
     }
 
     /**
-     * @param appSid App SID.
-     * @param appKey App key.
+     * @param appSid Client Id.
+     * @param appKey Client Secret.
      * @param baseUrl Base api Url.
      * @param authBaseUrl Base authentication Url.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.

@@ -42,7 +42,7 @@ The example code below converts a PowerPoint document to PDF format using aspose
 const api = require("asposeslidescloud");
 const fs = require('fs');
 
-const slidesApi = new api.SlidesApi("MyAppSid", "MyAppKey");
+const slidesApi = new api.SlidesApi("MyClientId", "MyClientSecret");
 const postSlidesConvertRequest = new api.GetSlidesApiInfoRequest();
 postSlidesConvertRequest.format = 'pdf';
 postSlidesConvertRequest.document = fs.createReadStream("MyPresentation.pptx");

@@ -12,6 +12,10 @@ This repository contains Aspose.Slides Cloud SDK for NodeJS source code. This SD
 * Support of Aspose.Storage API
 
 ### New Features & Recent API Changes
+
+#### 20.12
+* New property "HttpRequestTimeout" is added to SDK configuration. It allows to specify a custom timeout (in seconds) for HTTP requests made by the SDK.
+
 #### 20.10
 * Removed shapeType property from BaseShape class; replaced geometryShapeType with shapeType property for GeometryShape.
 * Removed redundant ResourceUriElement class. All properties of ResourceUriElement type are changed to ResourceUri type.

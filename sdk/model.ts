@@ -4248,6 +4248,26 @@ export namespace PptxExportOptions {
 }
 
 /**
+ * Protection properties.
+ */
+export class ProtectionProperties extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * True if document properties are encrypted. Has effect only for password protected presentations.
+     */
+    encryptDocumentProperties?: boolean;
+
+    /**
+     * True if the document should be opened as read-only.
+     */
+    readOnlyRecommended?: boolean;
+
+}
+
+/**
  * Remove shape task.
  */
 export class RemoveShape extends Task {
@@ -4866,6 +4886,76 @@ export class SlideComments extends ResourceBase {
      */
     list?: Array<SlideComment>;
 
+}
+
+/**
+ * Slide properties.
+ */
+export class SlideProperties extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * First slide number.
+     */
+    firstSlideNumber?: number;
+
+    /**
+     * Last used view mode.
+     */
+    orientation?: SlideProperties.OrientationEnum;
+
+    /**
+     * Scale type.
+     */
+    scaleType?: SlideProperties.ScaleTypeEnum;
+
+    /**
+     * Size type.
+     */
+    sizeType?: SlideProperties.SizeTypeEnum;
+
+    /**
+     * Width.
+     */
+    width?: number;
+
+    /**
+     * Height.
+     */
+    height?: number;
+
+}
+export namespace SlideProperties {
+    export enum OrientationEnum {
+        Landscape = <any> 'Landscape',
+        Portrait = <any> 'Portrait'
+    }
+    export enum ScaleTypeEnum {
+        DoNotScale = <any> 'DoNotScale',
+        EnsureFit = <any> 'EnsureFit',
+        Maximize = <any> 'Maximize'
+    }
+    export enum SizeTypeEnum {
+        OnScreen = <any> 'OnScreen',
+        LetterPaper = <any> 'LetterPaper',
+        A4Paper = <any> 'A4Paper',
+        Slide35mm = <any> 'Slide35mm',
+        Overhead = <any> 'Overhead',
+        Banner = <any> 'Banner',
+        Custom = <any> 'Custom',
+        Ledger = <any> 'Ledger',
+        A3Paper = <any> 'A3Paper',
+        B4IsoPaper = <any> 'B4IsoPaper',
+        B5IsoPaper = <any> 'B5IsoPaper',
+        B4JisPaper = <any> 'B4JisPaper',
+        B5JisPaper = <any> 'B5JisPaper',
+        HagakiCard = <any> 'HagakiCard',
+        OnScreen16x9 = <any> 'OnScreen16x9',
+        OnScreen16x10 = <any> 'OnScreen16x10',
+        Widescreen = <any> 'Widescreen'
+    }
 }
 
 /**

@@ -152,6 +152,7 @@
 			"Type": "Shape",
 			"Parameter": "DTO"
 		},
+		{ "Value": { "Type": "Connector" }, "InvalidValue": null, "Type": "Shape", "Parameter": "DTO", "Language": "CPP" },
 		{ "Value": {}, "InvalidValue": null, "Type": "ViewProperties", "Parameter": "DTO", "Method": "PutSlidesViewProperties" },
 		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PostAddNewPortion" },
 		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PostAddNewSubshapePortion" },
@@ -257,12 +258,14 @@
 		{ "Parameter": "Position", "Method": "PostSlidesReorderPosition" },
 		{ "Parameter": "Name", "Method": "PostSlidesDocument" },
 		{ "Parameter": "Name", "Method": "PostSlidesDocumentFromHtml" },
+		{ "Parameter": "Name", "Method": "PostSlidesDocumentFromPdf" },
 		{ "Parameter": "Name", "Method": "PostSlidesDocumentFromSource" },
 		{ "Parameter": "Name", "Method": "PostSlidesDocumentFromTemplate" },
 		{ "Parameter": "Name", "Method": "PutNewPresentation" },
 		{ "Parameter": "Name", "Method": "PutSlidesDocumentFromHtml" },
 		{ "Parameter": "Folder", "Method": "PostSlidesDocument" },
 		{ "Parameter": "Folder", "Method": "PostSlidesDocumentFromHtml" },
+		{ "Parameter": "Folder", "Method": "PostSlidesDocumentFromPdf" },
 		{ "Parameter": "Folder", "Method": "PostSlidesDocumentFromSource" },
 		{ "Parameter": "Folder", "Method": "PostSlidesDocumentFromTemplate" },
 		{ "Parameter": "Folder", "Method": "PutNewPresentation" },
@@ -437,6 +440,9 @@
 		{ "Message": "Layout slide DTO must be not null and contain", "Parameter": "SlideDTO", "Language": "Swift" },
 		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Bounds" },
 		{ "Code": 409, "Message": " is not empty.", "Parameter": "Recursive" },
-		{ "Message": "An error has occurred.", "Code": 500, "Parameter": "Options" }
+		{ "Message": "An error has occurred.", "Code": 500, "Parameter": "Options" },
+		{ "Code": 500, "Message": "Object reference not set", "Method": "PostSlidesDocumentFromPdf", "Parameter": "Name" },
+		{ "Code": 500, "Message": "Object reference not set", "Method": "PostSlidesDocumentFromPdf", "Parameter": "Pdf" },
+		{ "Code": 500, "Message": "Object reference not set", "Method": "PostSlidesDocumentFromPdf", "Parameter": "Folder" }
 	]
 }

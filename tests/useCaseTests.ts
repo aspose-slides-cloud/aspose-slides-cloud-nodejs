@@ -29,6 +29,200 @@ import * as model from "../sdk/model";
 import * as requests from "../sdk/requests";
 import { TestInitializer } from "./testInitializer";
 
+describe("Create tests", () => {
+    it("empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const deleteRequest = new requests.DeleteFileRequest();
+            deleteRequest.path = folderName + "/" + fileName;
+            return api.deleteFile(deleteRequest).then(() => {
+                const postRequest = new requests.PostSlidesDocumentRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                return api.postSlidesDocument(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("from request", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const deleteRequest = new requests.DeleteFileRequest();
+            deleteRequest.path = folderName + "/" + fileName;
+            return api.deleteFile(deleteRequest).then(() => {
+                const postRequest = new requests.PostSlidesDocumentRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.inputPassword = "password";
+                postRequest.data = fs.createReadStream("TestData/test.pptx");
+                return api.postSlidesDocument(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("from storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const newFileName = "test2.pptx";
+            const api = TestInitializer.getApi();
+            const deleteRequest = new requests.DeleteFileRequest();
+            deleteRequest.path = folderName + "/" + newFileName;
+            return api.deleteFile(deleteRequest).then(() => {
+                const copyRequest = new requests.CopyFileRequest();
+                copyRequest.srcPath = "TempTests/" + fileName;
+                copyRequest.destPath = folderName + "/" + fileName;
+                return api.copyFile(copyRequest).then(() => {
+                    const postRequest = new requests.PostSlidesDocumentFromSourceRequest();
+                    postRequest.name = newFileName;
+                    postRequest.folder = folderName;
+                    postRequest.sourcePassword = "password";
+                    postRequest.sourcePath = folderName + "/" + fileName;
+                    return api.postSlidesDocumentFromSource(postRequest).then((result) => {
+                        assert.equal(201, result.response.statusCode);
+                    });
+                });
+            });
+        });
+    });
+
+    it("from template", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const templateFileName = "TemplateCV.pptx";
+            const api = TestInitializer.getApi();
+            const deleteRequest = new requests.DeleteFileRequest();
+            deleteRequest.path = folderName + "/" + fileName;
+            return api.deleteFile(deleteRequest).then(() => {
+                const copyRequest = new requests.CopyFileRequest();
+                copyRequest.srcPath = "TempTests/" + templateFileName;
+                copyRequest.destPath = folderName + "/" + templateFileName;
+                return api.copyFile(copyRequest).then(() => {
+                    const postRequest = new requests.PostSlidesDocumentFromTemplateRequest();
+                    postRequest.name = fileName;
+                    postRequest.folder = folderName;
+                    postRequest.templatePath = folderName + "/" + templateFileName;
+                    postRequest.data = "<staff><person><name>John Doe</name><address><line1>10 Downing Street</line1><line2>London</line2></address><phone>+457 123456</phone><bio>Hi, I'm John and this is my CV</bio><skills><skill><title>C#</title><level>Excellent</level></skill><skill><title>C++</title><level>Good</level></skill><skill><title>Java</title><level>Average</level></skill></skills></person></staff>";
+                    return api.postSlidesDocumentFromTemplate(postRequest).then((result) => {
+                        assert.equal(201, result.response.statusCode);
+                    });
+                });
+            });
+        });
+    });
+
+    it("from HTML", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const deleteRequest = new requests.DeleteFileRequest();
+            deleteRequest.path = folderName + "/" + fileName;
+            return api.deleteFile(deleteRequest).then(() => {
+                const postRequest = new requests.PostSlidesDocumentFromHtmlRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.html = "<html><body>New Content</body></html>";
+                return api.postSlidesDocumentFromHtml(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("append from HTML", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const slidesRequest = new requests.GetSlidesSlidesListRequest();
+                slidesRequest.name = fileName;
+                slidesRequest.folder = folderName;
+                slidesRequest.password = password;
+                return api.getSlidesSlidesList(slidesRequest).then((r1) => {
+                    const slideCount = (r1.body as model.Slides).slideList.length;
+                    const postRequest = new requests.PostSlidesDocumentFromHtmlRequest();
+                    postRequest.name = fileName;
+                    postRequest.folder = folderName;
+                    postRequest.password = password;
+                    postRequest.html = "<html><body>New Content</body></html>";
+                    return api.postSlidesDocumentFromHtml(postRequest).then((result) => {
+                        assert.equal(200, result.response.statusCode);
+                        return api.getSlidesSlidesList(slidesRequest).then((r2) => {
+                            assert.equal(slideCount + 1, (r2.body as model.Slides).slideList.length);
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("from PDF", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const deleteRequest = new requests.DeleteFileRequest();
+            deleteRequest.path = folderName + "/" + fileName;
+            return api.deleteFile(deleteRequest).then(() => {
+                const postRequest = new requests.PostSlidesDocumentFromPdfRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.pdf = fs.createReadStream("TestData/test.pdf");
+                return api.postSlidesDocumentFromPdf(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("append from PDF", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const slidesRequest = new requests.GetSlidesSlidesListRequest();
+                slidesRequest.name = fileName;
+                slidesRequest.folder = folderName;
+                slidesRequest.password = password;
+                return api.getSlidesSlidesList(slidesRequest).then((r1) => {
+                    const slideCount = (r1.body as model.Slides).slideList.length;
+                    const postRequest = new requests.PostSlidesDocumentFromPdfRequest();
+                    postRequest.name = fileName;
+                    postRequest.folder = folderName;
+                    postRequest.password = password;
+                    postRequest.pdf = fs.createReadStream("TestData/test.pdf");
+                    return api.postSlidesDocumentFromPdf(postRequest).then((result) => {
+                        assert.equal(200, result.response.statusCode);
+                        return api.getSlidesSlidesList(slidesRequest).then((r2) => {
+                            assert.equal(slideCount + 4, (r2.body as model.Slides).slideList.length);
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
+
 describe("Convert tests", () => {
     it("post from request", () => {
         return TestInitializer.runTest(() => {
@@ -245,6 +439,541 @@ describe("NotesSlide tests", () => {
             request.format = 'png';
             return api.postGetNotesSlideWithFormat(request).then((result) => {
                 assert.equal(200, result.response.statusCode);
+            });
+        });
+    });
+});
+
+
+describe("ShapeType tests", () => {
+    it("shape add", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.Shape();
+                dto.shapeType = model.GeometryShape.ShapeTypeEnum.Callout1;
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.Shape);
+                });
+            });
+        });
+    });
+
+    it("shape empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.Shape();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("Shape with undefinined type should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("graphicalObject empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.GraphicalObject();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("GraphicalObject should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("pictureFrame add", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.PictureFrame();
+                const fill = new model.PictureFill();
+                fill.base64Data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g+ffp/AAZTAsWGL27gAAAAAElFTkSuQmCC";
+                dto.pictureFillFormat = fill;
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.PictureFrame);
+                });
+            });
+        });
+    });
+
+    it("pictureFrame empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.PictureFrame();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("PictureFrame with undefinined data should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("audioFrame add", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.AudioFrame();
+                dto.base64Data = "bXAzc2FtcGxl";
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.AudioFrame);
+                });
+            });
+        });
+    });
+
+    it("audioFrame empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.AudioFrame();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("AudioFrame with undefinined data should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("videoFrame add", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.VideoFrame();
+                dto.base64Data = "bXAzc2FtcGxl";
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.VideoFrame);
+                });
+            });
+        });
+    });
+
+    it("videoFrame empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.VideoFrame();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("VideoFrame with undefinined data should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("oleObjectFrame empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.OleObjectFrame();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("OleObjectFrame  should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("smartArt add", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.SmartArt();
+                dto.x = 0;
+                dto.y = 0;
+                dto.width = 300;
+                dto.height = 200;
+                dto.layout = model.SmartArt.LayoutEnum.BasicProcess;
+                dto.quickStyle = model.SmartArt.QuickStyleEnum.SimpleFill;
+                dto.colorStyle = model.SmartArt.ColorStyleEnum.ColoredFillAccent1;
+                const node1 = new model.SmartArtNode();
+                node1.text = "First";
+                node1.orgChartLayout = model.SmartArtNode.OrgChartLayoutEnum.Initial;
+                const subNode1 = new model.SmartArtNode();
+                subNode1.text = "SubFirst";
+                subNode1.orgChartLayout = model.SmartArtNode.OrgChartLayoutEnum.Initial;
+                node1.nodes = [ subNode1 ];
+                const node2 = new model.SmartArtNode();
+                node2.text = "Second";
+                node2.orgChartLayout = model.SmartArtNode.OrgChartLayoutEnum.Initial;
+                dto.nodes = [ node1, node2 ];
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.SmartArt);
+                });
+            });
+        });
+    });
+
+    it("smartArt empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.SmartArt();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.SmartArt);
+                });
+            });
+        });
+    });
+
+    it("chart empty", () => { //See Chart tests for non-empty chart examples
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.Chart();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.Chart);
+                });
+            });
+        });
+    });
+
+    it("table add", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.Table();
+                dto.x = 30;
+                dto.y = 20;
+                dto.style = model.Table.StyleEnum.MediumStyle2Accent1;
+                const row1 = new model.TableRow();
+                const cell11 = new model.TableCell();
+                cell11.text = "0.1";
+                const cell12 = new model.TableCell();
+                cell12.text = "0.2";
+                const cell13 = new model.TableCell();
+                cell13.text = "0.3";
+                const cell14 = new model.TableCell();
+                cell14.text = "0.4";
+                row1.cells = [ cell11, cell12, cell13, cell14 ];
+                const row2 = new model.TableRow();
+                const cell21 = new model.TableCell();
+                cell21.text = "1";
+                const cell22 = new model.TableCell();
+                cell22.text = "2-3";
+                cell22.colSpan = 2;
+                cell22.rowSpan = 2;
+                const cell24 = new model.TableCell();
+                cell24.text = "4";
+                row2.cells = [ cell21, cell22, cell24 ];
+                const row3 = new model.TableRow();
+                const cell31 = new model.TableCell();
+                cell31.text = "first";
+                const cell32 = new model.TableCell();
+                cell32.text = "last";
+                row3.cells = [ cell31, cell32 ];
+                const row4 = new model.TableRow();
+                const cell41 = new model.TableCell();
+                cell41.text = "3.1";
+                const cell42 = new model.TableCell();
+                cell42.text = "3.2";
+                const cell43 = new model.TableCell();
+                cell43.text = "3.3";
+                const cell44 = new model.TableCell();
+                cell44.text = "3.4";
+                row4.cells = [ cell41, cell42, cell43, cell44 ];
+                const row5 = new model.TableRow();
+                const cell51 = new model.TableCell();
+                cell51.text = "4.1";
+                const cell52 = new model.TableCell();
+                cell52.text = "4.2";
+                const cell53 = new model.TableCell();
+                cell53.text = "4.3";
+                const cell54 = new model.TableCell();
+                cell54.text = "4.4";
+                row5.cells = [ cell51, cell52, cell53, cell54 ];
+                dto.rows = [ row1, row2, row3, row4, row5 ];
+                const column1 = new model.TableColumn();
+                column1.width = 100;
+                const column2 = new model.TableColumn();
+                column2.width = 100;
+                const column3 = new model.TableColumn();
+                column3.width = 100;
+                const column4 = new model.TableColumn();
+                column4.width = 100;
+                dto.columns = [ column1, column2, column3, column4 ];
+                dto.firstRow = true;
+                dto.horizontalBanding = true;
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.SmartArt);
+                });
+            });
+        });
+    });
+
+    it("table empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.Table();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("Table with undefinined cell data should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("groupShape empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.GroupShape();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest)
+                    .then(() => assert.fail("GroupShape should not have been created"))
+                    .catch((err) => {
+                        assert.equal(400, err.code);
+                    });
+            });
+        });
+    });
+
+    it("connector add", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.Connector();
+                dto.shapeType = model.GeometryShape.ShapeTypeEnum.BentConnector3;
+                const start = new model.ResourceUri();
+                start.href = "https://api.aspose.cloud/v3.0/slides/myPresentation.pptx/slides/1/shapes/1";
+                dto.startShapeConnectedTo = start;
+                const end = new model.ResourceUri();
+                end.href = "https://api.aspose.cloud/v3.0/slides/myPresentation.pptx/slides/1/shapes/2";
+                dto.endShapeConnectedTo = end;
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.SmartArt);
+                });
+            });
+        });
+    });
+
+    it("connector empty", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const postRequest = new requests.PostAddNewShapeRequest();
+                postRequest.name = fileName;
+                postRequest.folder = folderName;
+                postRequest.password = "password";
+                postRequest.slideIndex = 1;
+                const dto = new model.Connector();
+                postRequest.dto = dto;
+                return api.postAddNewShape(postRequest).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert(result.body as model.Connector);
+                });
             });
         });
     });
@@ -796,7 +1525,7 @@ describe("Section tests", () => {
         });
     });
 
-    it("put", () => {
+    it("replace", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "Sections.pptx";
@@ -958,6 +1687,286 @@ describe("Section tests", () => {
                 return api.deleteSection(deleteRequest).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert.equal(2, (deleteResult.body as model.Sections).sectionList.length);
+                });
+            });
+        });
+    });
+});
+
+describe("Property tests", () => {
+    it("builtin", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const propertyName = "Author";
+            const updatedPropertyValue = "New Value";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const getRequest = new requests.GetSlidesDocumentPropertyRequest();
+                getRequest.name = fileName;
+                getRequest.folder = folderName;
+                getRequest.password = password;
+                getRequest.propertyName = propertyName;
+                return api.getSlidesDocumentProperty(getRequest).then((getResult) => {
+                    assert.equal(200, getResult.response.statusCode);
+                    assert.equal(propertyName, (getResult.body as model.DocumentProperty).name);
+                    assert((getResult.body as model.DocumentProperty).builtIn);
+                    const putRequest = new requests.PutSlidesSetDocumentPropertyRequest();
+                    putRequest.name = fileName;
+                    putRequest.folder = folderName;
+                    putRequest.password = password;
+                    putRequest.propertyName = propertyName;
+                    const property = new model.DocumentProperty();
+                    property.value = updatedPropertyValue;
+                    putRequest.property = property;
+                    return api.putSlidesSetDocumentProperty(putRequest).then((putResult) => {
+                        assert.equal(200, putResult.response.statusCode);
+                        assert.equal(propertyName, (putResult.body as model.DocumentProperty).name);
+                        assert.equal(updatedPropertyValue, (putResult.body as model.DocumentProperty).value);
+                        assert((putResult.body as model.DocumentProperty).builtIn);
+                        const deleteRequest = new requests.DeleteSlidesDocumentPropertyRequest();
+                        deleteRequest.name = fileName;
+                        deleteRequest.folder = folderName;
+                        deleteRequest.password = password;
+                        deleteRequest.propertyName = propertyName;
+                        return api.deleteSlidesDocumentProperty(deleteRequest).then((deleteResult) => {
+                            assert.equal(200, deleteResult.response.statusCode);
+                            return api.getSlidesDocumentProperty(getRequest).then((getResult2) => {
+                                //built-in property is not actually deleted
+                                assert.equal(200, getResult2.response.statusCode);
+                                assert.equal(propertyName, (getResult2.body as model.DocumentProperty).name);
+                                assert.notEqual(updatedPropertyValue, (getResult2.body as model.DocumentProperty).value);
+                                assert((getResult2.body as model.DocumentProperty).builtIn);
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("custom", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const propertyName = "CustomProperty2";
+            const updatedPropertyValue = "New Value";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const putRequest = new requests.PutSlidesSetDocumentPropertyRequest();
+                putRequest.name = fileName;
+                putRequest.folder = folderName;
+                putRequest.password = password;
+                putRequest.propertyName = propertyName;
+                const property = new model.DocumentProperty();
+                property.value = updatedPropertyValue;
+                putRequest.property = property;
+                return api.putSlidesSetDocumentProperty(putRequest).then((putResult) => {
+                    assert.equal(201, putResult.response.statusCode);
+                    assert.equal(propertyName, (putResult.body as model.DocumentProperty).name);
+                    assert.equal(updatedPropertyValue, (putResult.body as model.DocumentProperty).value);
+                    assert(!(putResult.body as model.DocumentProperty).builtIn);
+                    const deleteRequest = new requests.DeleteSlidesDocumentPropertyRequest();
+                    deleteRequest.name = fileName;
+                    deleteRequest.folder = folderName;
+                    deleteRequest.password = password;
+                    deleteRequest.propertyName = propertyName;
+                    return api.deleteSlidesDocumentProperty(deleteRequest).then((deleteResult) => {
+                        assert.equal(200, deleteResult.response.statusCode);
+                        const getRequest = new requests.GetSlidesDocumentPropertyRequest();
+                        getRequest.name = fileName;
+                        getRequest.folder = folderName;
+                        getRequest.password = password;
+                        getRequest.propertyName = propertyName;
+                        return api.getSlidesDocumentProperty(getRequest)
+                            .then(() => assert.fail("The property must have been deleted"))
+                            .catch((err) => {
+                                assert.equal(404, err.code);
+                            });
+                    });
+                });
+            });
+        });
+    });
+
+    it("bulkUpdate", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const propertyName = "Author";
+            const customPropertyName = "CustomProperty2";
+            const updatedPropertyValue = "New Value";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const getRequest = new requests.GetSlidesDocumentPropertiesRequest();
+                getRequest.name = fileName;
+                getRequest.folder = folderName;
+                getRequest.password = password;
+                return api.getSlidesDocumentProperties(getRequest).then((getResult) => {
+                    assert.equal(200, getResult.response.statusCode);
+                    const count = (getResult.body as model.DocumentProperties).list.length;
+                    const postRequest = new requests.PostSlidesSetDocumentPropertiesRequest();
+                    postRequest.name = fileName;
+                    postRequest.folder = folderName;
+                    postRequest.password = password;
+                    const property1 = new model.DocumentProperty();
+                    property1.name = propertyName;
+                    property1.value = updatedPropertyValue;
+                    const property2 = new model.DocumentProperty();
+                    property2.name = customPropertyName;
+                    property2.value = updatedPropertyValue;
+                    const properties = new model.DocumentProperties();
+                    properties.list = [ property1, property2 ];
+                    postRequest.properties = properties;
+                    return api.postSlidesSetDocumentProperties(postRequest).then((postResult) => {
+                        assert.equal(200, postResult.response.statusCode);
+                        assert.equal(count + 1, (postResult.body as model.DocumentProperties).list.length);
+                        const deleteRequest = new requests.DeleteSlidesDocumentPropertiesRequest();
+                        deleteRequest.name = fileName;
+                        deleteRequest.folder = folderName;
+                        deleteRequest.password = password;
+                        return api.deleteSlidesDocumentProperties(deleteRequest).then((deleteResult) => {
+                            assert.equal(200, deleteResult.response.statusCode);
+                            assert.equal(count - 1, (deleteResult.body as model.DocumentProperties).list.length);
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("slideProperties", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const getRequest = new requests.GetSlidesSlidePropertiesRequest();
+                getRequest.name = fileName;
+                getRequest.folder = folderName;
+                getRequest.password = password;
+                return api.getSlidesSlideProperties(getRequest).then((getResult) => {
+                    assert.equal(200, getResult.response.statusCode);
+                    const properties = getResult.body as model.SlideProperties;
+                    const putRequest = new requests.PutSlidesSlidePropertiesRequest();
+                    putRequest.name = fileName;
+                    putRequest.folder = folderName;
+                    putRequest.password = password;
+                    const dto = new model.SlideProperties();
+                    dto.firstSlideNumber = properties.firstSlideNumber + 2;
+                    putRequest.dto = dto;
+                    return api.putSlidesSlideProperties(putRequest).then((putResult) => {
+                        assert.equal(200, putResult.response.statusCode);
+                        assert.equal(properties.orientation, (putResult.body as model.SlideProperties).orientation);
+                        assert.notEqual(properties.firstSlideNumber, (putResult.body as model.SlideProperties).firstSlideNumber);
+                    });
+                });
+            });
+        });
+    });
+
+    it("slideSizePreset", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const putRequest = new requests.PutSlidesSlidePropertiesRequest();
+                putRequest.name = fileName;
+                putRequest.folder = folderName;
+                putRequest.password = password;
+                const dto = new model.SlideProperties();
+                dto.sizeType = model.SlideProperties.SizeTypeEnum.B4IsoPaper;
+                putRequest.dto = dto;
+                return api.putSlidesSlideProperties(putRequest).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    assert.equal(model.SlideProperties.SizeTypeEnum.B4IsoPaper, (putResult.body as model.SlideProperties).sizeType);
+                    assert.equal(852, (putResult.body as model.SlideProperties).width);
+                    assert.equal(639, (putResult.body as model.SlideProperties).height);
+                });
+            });
+        });
+    });
+
+    it("slideSizeCustom", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const width = 800;
+            const height = 500;
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const putRequest = new requests.PutSlidesSlidePropertiesRequest();
+                putRequest.name = fileName;
+                putRequest.folder = folderName;
+                putRequest.password = password;
+                const dto = new model.SlideProperties();
+                dto.width = width;
+                dto.height = height;
+                putRequest.dto = dto;
+                return api.putSlidesSlideProperties(putRequest).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    assert.equal(model.SlideProperties.SizeTypeEnum.Custom, (putResult.body as model.SlideProperties).sizeType);
+                    assert.equal(width, (putResult.body as model.SlideProperties).width);
+                    assert.equal(height, (putResult.body as model.SlideProperties).height);
+                });
+            });
+        });
+    });
+
+    it("protectionProperties", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            const copyRequest = new requests.CopyFileRequest();
+            copyRequest.srcPath = "TempTests/" + fileName;
+            copyRequest.destPath = folderName + "/" + fileName;
+            return api.copyFile(copyRequest).then(() => {
+                const getRequest = new requests.GetSlidesProtectionPropertiesRequest();
+                getRequest.name = fileName;
+                getRequest.folder = folderName;
+                getRequest.password = password;
+                return api.getSlidesProtectionProperties(getRequest).then((getResult) => {
+                    assert.equal(200, getResult.response.statusCode);
+                    const properties = getResult.body as model.ProtectionProperties;
+                    const putRequest = new requests.PutSlidesProtectionPropertiesRequest();
+                    putRequest.name = fileName;
+                    putRequest.folder = folderName;
+                    putRequest.password = password;
+                    const dto = new model.ProtectionProperties();
+                    dto.readOnlyRecommended = !properties.readOnlyRecommended;
+                    putRequest.dto = dto;
+                    return api.putSlidesProtectionProperties(putRequest).then((putResult) => {
+                        assert.equal(200, putResult.response.statusCode);
+                        assert.equal(properties.encryptDocumentProperties, (putResult.body as model.ProtectionProperties).encryptDocumentProperties);
+                        assert.notEqual(properties.readOnlyRecommended, (putResult.body as model.ProtectionProperties).readOnlyRecommended);
+                    });
                 });
             });
         });

@@ -34,8 +34,12 @@ export class TestInitializer {
     static expectedFilesVersion = "1";
     static api : sdkApi.SlidesApi;
 
-    public static getStreamValue() {
-        return fs.createReadStream("TestData/" + "test.pptx");
+    public static getStreamValue(functionName: string) {
+        var fileName = "test.pptx";
+        if (functionName.endsWith('FromPdf')) {
+            fileName = "test.pdf";
+        }
+        return fs.createReadStream("TestData/" + fileName);
     }
 
     public static getValue(functionName: string, name: string) : any {

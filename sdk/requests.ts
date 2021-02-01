@@ -2277,6 +2277,27 @@ export class GetSlidesPresentationTextItemsRequest {
     public storage: string;
 }
 /**
+ * Request model for GetSlidesProtectionProperties operation.
+ */
+export class GetSlidesProtectionPropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for GetSlidesSlide operation.
  */
 export class GetSlidesSlideRequest {
@@ -2363,6 +2384,27 @@ export class GetSlidesSlideImagesRequest {
      * Slide index.
      */
     public slideIndex: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for GetSlidesSlideProperties operation.
+ */
+export class GetSlidesSlidePropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
     /**
      * Document password.
      */
@@ -3793,6 +3835,31 @@ export class PostSlidesDocumentFromHtmlRequest {
     public folder: string;
 }
 /**
+ * Request model for PostSlidesDocumentFromPdf operation.
+ */
+export class PostSlidesDocumentFromPdfRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * PDF data.
+     */
+    public pdf: Buffer;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+}
+/**
  * Request model for PostSlidesDocumentFromSource operation.
  */
 export class PostSlidesDocumentFromSourceRequest {
@@ -5028,6 +5095,31 @@ export class PutSlidesHeaderFooterRequest {
     public folder: string;
 }
 /**
+ * Request model for PutSlidesProtectionProperties operation.
+ */
+export class PutSlidesProtectionPropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The view properties data.
+     */
+    public dto: model.ProtectionProperties;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
  * Request model for PutSlidesSaveAs operation.
  */
 export class PutSlidesSaveAsRequest {
@@ -5175,6 +5267,31 @@ export class PutSlidesSlideBackgroundColorRequest {
      * Document password.
      */
     public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutSlidesSlideProperties operation.
+ */
+export class PutSlidesSlidePropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * The view properties data.
+     */
+    public dto: model.SlideProperties;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
     /**
      * Document storage.
      */

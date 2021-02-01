@@ -28,7 +28,7 @@ import request = require("request");
 
 import { Configuration } from "./internal/configuration";
 import { ObjectSerializer } from "./internal/objectSerializer";
-import { addQueryParameterToUrl, addPathParameterToUrl, invokeApiMethod, checkMultipartContent } from "./internal/requestHelper";
+import { addQueryParameterToUrl, addPathParameterToUrl, addHeaderParameter, invokeApiMethod, checkMultipartContent } from "./internal/requestHelper";
 import * as model from "./model";
 import * as requests from "./requests";
 
@@ -177,15 +177,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "categoryIndex", ObjectSerializer.toString(requestObj.categoryIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -227,15 +228,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "pointIndex", ObjectSerializer.toString(requestObj.pointIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -272,15 +274,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -357,15 +360,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -402,15 +406,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -443,15 +448,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -493,15 +499,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -539,15 +546,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -579,15 +587,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -615,15 +624,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -660,15 +670,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -701,15 +712,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -751,15 +763,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -797,15 +810,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -833,15 +847,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "sectionIndex", ObjectSerializer.toString(requestObj.sectionIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withSlides", requestObj.withSlides);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -865,15 +880,16 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sections", requestObj.sections);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withSlides", requestObj.withSlides);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -900,15 +916,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -940,15 +957,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -980,15 +998,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1025,15 +1044,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1060,15 +1080,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1095,15 +1116,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1130,15 +1152,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1170,15 +1193,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1206,15 +1230,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1247,15 +1272,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1284,15 +1310,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", requestObj.shapes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1315,15 +1342,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", requestObj.slides);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1345,15 +1373,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1380,15 +1409,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "propertyName", ObjectSerializer.toString(requestObj.propertyName));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1415,15 +1445,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1461,15 +1492,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1503,15 +1535,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", requestObj.paragraphs);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1554,15 +1587,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1601,15 +1635,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", requestObj.portions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1732,15 +1767,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1762,15 +1798,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/layoutSlides";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1797,15 +1834,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1827,15 +1865,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/masterSlides";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1862,15 +1901,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1897,15 +1937,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1932,15 +1973,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -1972,15 +2014,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2017,15 +2060,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2057,15 +2101,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2107,15 +2152,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2152,15 +2198,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2187,15 +2234,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2229,16 +2277,17 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2280,15 +2329,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2325,15 +2375,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2355,15 +2406,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/sections";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2391,15 +2443,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeIndex", requestObj.shapeIndex);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2426,15 +2479,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2466,15 +2520,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2511,15 +2566,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2551,15 +2607,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2586,15 +2643,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2627,15 +2685,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2673,15 +2732,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2714,15 +2774,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2750,15 +2811,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2797,15 +2859,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2827,15 +2890,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2862,15 +2926,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "propertyName", ObjectSerializer.toString(requestObj.propertyName));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2897,15 +2962,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "index", ObjectSerializer.toString(requestObj.index));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2937,15 +3003,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "index", ObjectSerializer.toString(requestObj.index));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -2967,15 +3034,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3007,15 +3075,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "placeholderIndex", ObjectSerializer.toString(requestObj.placeholderIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3042,15 +3111,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3073,19 +3143,51 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withEmpty", requestObj.withEmpty);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "TextItems");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Read presentation protection properties. 
+     * @param requestObj contains request parameters
+     */
+    public async getSlidesProtectionProperties(requestObj: requests.GetSlidesProtectionPropertiesRequest): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('The required parameter "requestObj" was null or undefined when calling getSlidesProtectionProperties.');
+        }
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('The required parameter "requestObj.name" was null or undefined when calling getSlidesProtectionProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/protectionProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
         return Promise.resolve({ body: result, response });
     }
     /**
@@ -3108,15 +3210,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3143,15 +3246,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3178,15 +3282,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3213,19 +3318,51 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Images");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Read presentation slide properties. 
+     * @param requestObj contains request parameters
+     */
+    public async getSlidesSlideProperties(requestObj: requests.GetSlidesSlidePropertiesRequest): Promise<{response: http.ClientResponse, body: model.SlideProperties}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('The required parameter "requestObj" was null or undefined when calling getSlidesSlideProperties.');
+        }
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('The required parameter "requestObj.name" was null or undefined when calling getSlidesSlideProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slideProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideProperties");
         return Promise.resolve({ body: result, response });
     }
     /**
@@ -3249,15 +3386,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withEmpty", requestObj.withEmpty);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3279,15 +3417,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3314,15 +3453,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3349,15 +3489,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3384,15 +3525,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3419,15 +3561,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3449,15 +3592,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/viewProperties";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3500,15 +3644,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3546,15 +3691,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3684,16 +3830,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3734,16 +3881,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3770,7 +3918,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeToClone", requestObj.shapeToClone);
@@ -3778,9 +3925,11 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3808,7 +3957,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeToClone", requestObj.shapeToClone);
@@ -3816,9 +3964,11 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3855,16 +4005,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3906,16 +4057,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3946,15 +4098,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -3990,15 +4143,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.category
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4039,15 +4193,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dataPoint
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4083,15 +4238,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.series
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4123,17 +4279,18 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFrom", requestObj.cloneFrom);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromPosition", requestObj.cloneFromPosition);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromPassword", requestObj.cloneFromPassword);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromStorage", requestObj.cloneFromStorage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "cloneFromPassword", requestObj.cloneFromPassword);
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4165,18 +4322,19 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFrom", requestObj.cloneFrom);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromPosition", requestObj.cloneFromPosition);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromPassword", requestObj.cloneFromPassword);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromStorage", requestObj.cloneFromStorage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "applyToAll", requestObj.applyToAll);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "cloneFromPassword", requestObj.cloneFromPassword);
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4202,14 +4360,15 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/notesSlide";
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.document,
             json: false
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4235,14 +4394,15 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/notesSlide/exist";
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.document,
             json: false
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4275,15 +4435,16 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.document,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4319,16 +4480,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4369,16 +4531,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4409,7 +4572,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeToClone", requestObj.shapeToClone);
@@ -4417,9 +4579,11 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4456,7 +4620,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
@@ -4466,10 +4629,12 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4495,15 +4660,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/merge";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.request
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4535,15 +4701,16 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sectionName", requestObj.sectionName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slideIndex", requestObj.slideIndex);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4575,15 +4742,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "sectionIndex", ObjectSerializer.toString(requestObj.sectionIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newPosition", requestObj.newPosition);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4620,7 +4788,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
@@ -4630,10 +4797,12 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4664,15 +4833,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.effect
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4703,15 +4873,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.sequence
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4747,15 +4918,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.effect
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4789,17 +4961,18 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4822,16 +4995,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "layoutAlias", requestObj.layoutAlias);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4857,15 +5031,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/convert/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.document,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4894,17 +5069,18 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slideToCopy", requestObj.slideToCopy);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "source", requestObj.source);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sourcePassword", requestObj.sourcePassword);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sourceStorage", requestObj.sourceStorage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "sourcePassword", requestObj.sourcePassword);
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4926,17 +5102,18 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "inputPassword", requestObj.inputPassword);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.data,
             json: false
         };
+        addHeaderParameter(requestOptions.headers, "inputPassword", requestObj.inputPassword);
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4958,20 +5135,53 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromHtml";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.html,
             json: false
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(JSON.parse(response.body), "Document");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Create presentation document from pdf or append pdf to an existing presentation. 
+     * @param requestObj contains request parameters
+     */
+    public async postSlidesDocumentFromPdf(requestObj: requests.PostSlidesDocumentFromPdfRequest): Promise<{response: http.ClientResponse, body: model.Document}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('The required parameter "requestObj" was null or undefined when calling postSlidesDocumentFromPdf.');
+        }
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('The required parameter "requestObj.name" was null or undefined when calling postSlidesDocumentFromPdf.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromPdf";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            body: requestObj.pdf,
+            json: false
+        };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
     }
     /**
@@ -4990,17 +5200,18 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sourcePath", requestObj.sourcePath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sourcePassword", requestObj.sourcePassword);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sourceStorage", requestObj.sourceStorage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "sourcePassword", requestObj.sourcePassword);
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5027,19 +5238,20 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "templatePath", requestObj.templatePath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "templatePassword", requestObj.templatePassword);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "templateStorage", requestObj.templateStorage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "isImageDataEmbedded", requestObj.isImageDataEmbedded);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.data,
             json: false
         };
+        addHeaderParameter(requestOptions.headers, "templatePassword", requestObj.templatePassword);
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5099,15 +5311,16 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldValue", requestObj.oldValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", requestObj.newValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", requestObj.ignoreCase);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5139,15 +5352,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newPosition", requestObj.newPosition);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5171,15 +5385,16 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldPositions", requestObj.oldPositions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newPositions", requestObj.newPositions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5206,17 +5421,18 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5242,15 +5458,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/documentproperties";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.properties
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5288,15 +5505,16 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldValue", requestObj.oldValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", requestObj.newValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", requestObj.ignoreCase);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5324,16 +5542,17 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", requestObj.to);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", requestObj.from);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFolder", requestObj.destFolder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5371,7 +5590,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
@@ -5381,10 +5599,12 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options,
             encoding: null
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5425,15 +5645,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "categoryIndex", ObjectSerializer.toString(requestObj.categoryIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.category
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5479,15 +5700,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "pointIndex", ObjectSerializer.toString(requestObj.pointIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dataPoint
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5528,15 +5750,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "seriesIndex", ObjectSerializer.toString(requestObj.seriesIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.series
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5567,15 +5790,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.slideDto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5606,15 +5830,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5656,7 +5881,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
@@ -5666,9 +5890,11 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5694,15 +5920,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/merge";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.request
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5734,15 +5961,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "sectionIndex", ObjectSerializer.toString(requestObj.sectionIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sectionName", requestObj.sectionName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5768,15 +5996,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/sections";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.sections
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5822,15 +6051,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5871,15 +6101,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5926,15 +6157,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5976,15 +6208,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6026,7 +6259,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
@@ -6036,9 +6268,11 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6069,15 +6303,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.animation
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6113,15 +6348,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.effect
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6162,15 +6398,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "sequenceIndex", ObjectSerializer.toString(requestObj.sequenceIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "effectIndex", ObjectSerializer.toString(requestObj.effectIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.effect
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6201,15 +6438,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6248,16 +6486,17 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6293,15 +6532,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6338,15 +6578,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(requestObj.path));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6377,15 +6618,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.document,
             json: false
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6407,16 +6649,17 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromHtml";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             body: requestObj.html,
             json: false
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6442,19 +6685,55 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/headerFooter";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Update presentation protection properties. 
+     * @param requestObj contains request parameters
+     */
+    public async putSlidesProtectionProperties(requestObj: requests.PutSlidesProtectionPropertiesRequest): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('The required parameter "requestObj" was null or undefined when calling putSlidesProtectionProperties.');
+        }
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('The required parameter "requestObj.name" was null or undefined when calling putSlidesProtectionProperties.');
+        }
+        // verify required parameter 'requestObj.dto' is not null or undefined
+        if (requestObj.dto === null || requestObj.dto === undefined) {
+            throw new Error('The required parameter "requestObj.dto" was null or undefined when calling putSlidesProtectionProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/protectionProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: requestObj.dto
+        };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
         return Promise.resolve({ body: result, response });
     }
     /**
@@ -6482,16 +6761,17 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", requestObj.fontsFolder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6522,15 +6802,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "propertyName", ObjectSerializer.toString(requestObj.propertyName));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.property
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6561,15 +6842,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.slideDto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6601,14 +6883,15 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.background
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6641,18 +6924,54 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", requestObj.color);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
+        return Promise.resolve({ body: result, response });
+    }
+    /**
+     * Update presentation slide properties. 
+     * @param requestObj contains request parameters
+     */
+    public async putSlidesSlideProperties(requestObj: requests.PutSlidesSlidePropertiesRequest): Promise<{response: http.ClientResponse, body: model.SlideProperties}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('The required parameter "requestObj" was null or undefined when calling putSlidesSlideProperties.');
+        }
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('The required parameter "requestObj.name" was null or undefined when calling putSlidesSlideProperties.');
+        }
+        // verify required parameter 'requestObj.dto' is not null or undefined
+        if (requestObj.dto === null || requestObj.dto === undefined) {
+            throw new Error('The required parameter "requestObj.dto" was null or undefined when calling putSlidesSlideProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slideProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: requestObj.dto
+        };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, requestObj, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideProperties");
         return Promise.resolve({ body: result, response });
     }
     /**
@@ -6670,7 +6989,6 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slideSize";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
@@ -6680,9 +6998,11 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: true
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6708,15 +7028,16 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/viewProperties";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6759,7 +7080,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(requestObj.format));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
@@ -6769,9 +7089,11 @@ export class SlidesApi {
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.options
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6802,15 +7124,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(requestObj.name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6846,15 +7169,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(requestObj.slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6895,15 +7219,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(requestObj.shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6949,15 +7274,16 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(requestObj.paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(requestObj.portionIndex));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: {},
             uri: localVarPath,
             json: requestObj.dto
         };
+        addHeaderParameter(requestOptions.headers, "password", requestObj.password);
         let localVarFiles = [];
         checkMultipartContent(requestOptions, requestObj, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);

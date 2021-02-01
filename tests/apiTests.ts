@@ -890,6 +890,15 @@ class TestUtils {
         return request;
     }
 
+    public static getGetSlidesProtectionPropertiesRequest(): requests.GetSlidesProtectionPropertiesRequest {
+        const request = new requests.GetSlidesProtectionPropertiesRequest();
+        request.name = <string>TestInitializer.getValue("getSlidesProtectionProperties", "name");
+        request.password = <string>TestInitializer.getValue("getSlidesProtectionProperties", "password");
+        request.folder = <string>TestInitializer.getValue("getSlidesProtectionProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlidesProtectionProperties", "storage");
+        return request;
+    }
+
     public static getGetSlidesSlideRequest(): requests.GetSlidesSlideRequest {
         const request = new requests.GetSlidesSlideRequest();
         request.name = <string>TestInitializer.getValue("getSlidesSlide", "name");
@@ -927,6 +936,15 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("getSlidesSlideImages", "password");
         request.folder = <string>TestInitializer.getValue("getSlidesSlideImages", "folder");
         request.storage = <string>TestInitializer.getValue("getSlidesSlideImages", "storage");
+        return request;
+    }
+
+    public static getGetSlidesSlidePropertiesRequest(): requests.GetSlidesSlidePropertiesRequest {
+        const request = new requests.GetSlidesSlidePropertiesRequest();
+        request.name = <string>TestInitializer.getValue("getSlidesSlideProperties", "name");
+        request.password = <string>TestInitializer.getValue("getSlidesSlideProperties", "password");
+        request.folder = <string>TestInitializer.getValue("getSlidesSlideProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("getSlidesSlideProperties", "storage");
         return request;
     }
 
@@ -1213,7 +1231,7 @@ class TestUtils {
 
     public static getPostGetNotesSlideRequest(): requests.PostGetNotesSlideRequest {
         const request = new requests.PostGetNotesSlideRequest();
-        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.document = <Buffer>TestInitializer.getStreamValue("postGetNotesSlide");
         request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlide", "slideIndex");
         request.password = <string>TestInitializer.getValue("postGetNotesSlide", "password");
         return request;
@@ -1221,7 +1239,7 @@ class TestUtils {
 
     public static getPostGetNotesSlideExistsRequest(): requests.PostGetNotesSlideExistsRequest {
         const request = new requests.PostGetNotesSlideExistsRequest();
-        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.document = <Buffer>TestInitializer.getStreamValue("postGetNotesSlideExists");
         request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideExists", "slideIndex");
         request.password = <string>TestInitializer.getValue("postGetNotesSlideExists", "password");
         return request;
@@ -1229,7 +1247,7 @@ class TestUtils {
 
     public static getPostGetNotesSlideWithFormatRequest(): requests.PostGetNotesSlideWithFormatRequest {
         const request = new requests.PostGetNotesSlideWithFormatRequest();
-        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.document = <Buffer>TestInitializer.getStreamValue("postGetNotesSlideWithFormat");
         request.slideIndex = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "slideIndex");
         request.format = <string>TestInitializer.getValue("postGetNotesSlideWithFormat", "format");
         request.width = <number>TestInitializer.getValue("postGetNotesSlideWithFormat", "width");
@@ -1407,7 +1425,7 @@ class TestUtils {
 
     public static getPostSlidesConvertRequest(): requests.PostSlidesConvertRequest {
         const request = new requests.PostSlidesConvertRequest();
-        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.document = <Buffer>TestInitializer.getStreamValue("postSlidesConvert");
         request.format = <string>TestInitializer.getValue("postSlidesConvert", "format");
         request.password = <string>TestInitializer.getValue("postSlidesConvert", "password");
         request.fontsFolder = <string>TestInitializer.getValue("postSlidesConvert", "fontsFolder");
@@ -1431,7 +1449,7 @@ class TestUtils {
     public static getPostSlidesDocumentRequest(): requests.PostSlidesDocumentRequest {
         const request = new requests.PostSlidesDocumentRequest();
         request.name = <string>TestInitializer.getValue("postSlidesDocument", "name");
-        request.data = <Buffer>TestInitializer.getStreamValue();
+        request.data = <Buffer>TestInitializer.getStreamValue("postSlidesDocument");
         request.inputPassword = <string>TestInitializer.getValue("postSlidesDocument", "inputPassword");
         request.password = <string>TestInitializer.getValue("postSlidesDocument", "password");
         request.storage = <string>TestInitializer.getValue("postSlidesDocument", "storage");
@@ -1446,6 +1464,16 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("postSlidesDocumentFromHtml", "password");
         request.storage = <string>TestInitializer.getValue("postSlidesDocumentFromHtml", "storage");
         request.folder = <string>TestInitializer.getValue("postSlidesDocumentFromHtml", "folder");
+        return request;
+    }
+
+    public static getPostSlidesDocumentFromPdfRequest(): requests.PostSlidesDocumentFromPdfRequest {
+        const request = new requests.PostSlidesDocumentFromPdfRequest();
+        request.name = <string>TestInitializer.getValue("postSlidesDocumentFromPdf", "name");
+        request.pdf = <Buffer>TestInitializer.getStreamValue("postSlidesDocumentFromPdf");
+        request.password = <string>TestInitializer.getValue("postSlidesDocumentFromPdf", "password");
+        request.storage = <string>TestInitializer.getValue("postSlidesDocumentFromPdf", "storage");
+        request.folder = <string>TestInitializer.getValue("postSlidesDocumentFromPdf", "folder");
         return request;
     }
 
@@ -1478,7 +1506,7 @@ class TestUtils {
     public static getPostSlidesPipelineRequest(): requests.PostSlidesPipelineRequest {
         const request = new requests.PostSlidesPipelineRequest();
         request.pipeline = <model.Pipeline>TestInitializer.getValue("postSlidesPipeline", "pipeline");
-        request.files = <Array<Buffer>>TestInitializer.getStreamValue();
+        request.files = <Array<Buffer>>TestInitializer.getStreamValue("postSlidesPipeline");
         return request;
     }
 
@@ -1861,7 +1889,7 @@ class TestUtils {
 
     public static getPutSlidesConvertRequest(): requests.PutSlidesConvertRequest {
         const request = new requests.PutSlidesConvertRequest();
-        request.document = <Buffer>TestInitializer.getStreamValue();
+        request.document = <Buffer>TestInitializer.getStreamValue("putSlidesConvert");
         request.format = <string>TestInitializer.getValue("putSlidesConvert", "format");
         request.outPath = <string>TestInitializer.getValue("putSlidesConvert", "outPath");
         request.password = <string>TestInitializer.getValue("putSlidesConvert", "password");
@@ -1886,6 +1914,16 @@ class TestUtils {
         request.password = <string>TestInitializer.getValue("putSlidesHeaderFooter", "password");
         request.storage = <string>TestInitializer.getValue("putSlidesHeaderFooter", "storage");
         request.folder = <string>TestInitializer.getValue("putSlidesHeaderFooter", "folder");
+        return request;
+    }
+
+    public static getPutSlidesProtectionPropertiesRequest(): requests.PutSlidesProtectionPropertiesRequest {
+        const request = new requests.PutSlidesProtectionPropertiesRequest();
+        request.name = <string>TestInitializer.getValue("putSlidesProtectionProperties", "name");
+        request.dto = <model.ProtectionProperties>TestInitializer.getValue("putSlidesProtectionProperties", "dto");
+        request.password = <string>TestInitializer.getValue("putSlidesProtectionProperties", "password");
+        request.folder = <string>TestInitializer.getValue("putSlidesProtectionProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("putSlidesProtectionProperties", "storage");
         return request;
     }
 
@@ -1943,6 +1981,16 @@ class TestUtils {
         request.folder = <string>TestInitializer.getValue("putSlidesSlideBackgroundColor", "folder");
         request.password = <string>TestInitializer.getValue("putSlidesSlideBackgroundColor", "password");
         request.storage = <string>TestInitializer.getValue("putSlidesSlideBackgroundColor", "storage");
+        return request;
+    }
+
+    public static getPutSlidesSlidePropertiesRequest(): requests.PutSlidesSlidePropertiesRequest {
+        const request = new requests.PutSlidesSlidePropertiesRequest();
+        request.name = <string>TestInitializer.getValue("putSlidesSlideProperties", "name");
+        request.dto = <model.SlideProperties>TestInitializer.getValue("putSlidesSlideProperties", "dto");
+        request.password = <string>TestInitializer.getValue("putSlidesSlideProperties", "password");
+        request.folder = <string>TestInitializer.getValue("putSlidesSlideProperties", "folder");
+        request.storage = <string>TestInitializer.getValue("putSlidesSlideProperties", "storage");
         return request;
     }
 
@@ -2047,7 +2095,7 @@ class TestUtils {
     public static getUploadFileRequest(): requests.UploadFileRequest {
         const request = new requests.UploadFileRequest();
         request.path = <string>TestInitializer.getValue("uploadFile", "path");
-        request.file = <Buffer>TestInitializer.getStreamValue();
+        request.file = <Buffer>TestInitializer.getStreamValue("uploadFile");
         request.storageName = <string>TestInitializer.getValue("uploadFile", "storageName");
         return request;
     }
@@ -8014,6 +8062,61 @@ describe("Tests for getSlidesPresentationTextItems", () => {
     });
 });
 
+describe("Tests for getSlidesProtectionProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesProtectionPropertiesRequest();
+            return TestInitializer.initialize("getSlidesProtectionProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesProtectionProperties(request), false, "getSlidesProtectionProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlidesProtectionPropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesProtectionProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesProtectionProperties(request), "getSlidesProtectionProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlidesProtectionPropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesProtectionProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesProtectionProperties(request), "getSlidesProtectionProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlidesProtectionPropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesProtectionProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesProtectionProperties(request), "getSlidesProtectionProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlidesProtectionPropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesProtectionProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesProtectionProperties(request), "getSlidesProtectionProperties", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for getSlidesSlide", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -8273,6 +8376,61 @@ describe("Tests for getSlidesSlideImages", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSlidesSlideImages", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideImages(request), "getSlidesSlideImages", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for getSlidesSlideProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getGetSlidesSlidePropertiesRequest();
+            return TestInitializer.initialize("getSlidesSlideProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSlidesSlideProperties(request), false, "getSlidesSlideProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getGetSlidesSlidePropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "getSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesSlideProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideProperties(request), "getSlidesSlideProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getGetSlidesSlidePropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "getSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesSlideProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideProperties(request), "getSlidesSlideProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getGetSlidesSlidePropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "getSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesSlideProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideProperties(request), "getSlidesSlideProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getGetSlidesSlidePropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "getSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSlidesSlideProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSlidesSlideProperties(request), "getSlidesSlideProperties", field, request.storage);
             });
         });
     });
@@ -12051,6 +12209,72 @@ describe("Tests for postSlidesDocumentFromHtml", () => {
     });
 });
 
+describe("Tests for postSlidesDocumentFromPdf", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPostSlidesDocumentFromPdfRequest();
+            return TestInitializer.initialize("postSlidesDocumentFromPdf", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().postSlidesDocumentFromPdf(request), false, "postSlidesDocumentFromPdf");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPostSlidesDocumentFromPdfRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "postSlidesDocumentFromPdf");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSlidesDocumentFromPdf", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromPdf(request), "postSlidesDocumentFromPdf", field, request.name);
+            });
+        });
+    });
+
+    it("invalid pdf test", () => {
+        const field = "pdf";
+        const request = TestUtils.getPostSlidesDocumentFromPdfRequest();
+        request.pdf = <Buffer>TestInitializer.invalidizeValue(request.pdf, field, "Buffer", "postSlidesDocumentFromPdf");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSlidesDocumentFromPdf", field, request.pdf).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromPdf(request), "postSlidesDocumentFromPdf", field, request.pdf);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPostSlidesDocumentFromPdfRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "postSlidesDocumentFromPdf");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSlidesDocumentFromPdf", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromPdf(request), "postSlidesDocumentFromPdf", field, request.password);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPostSlidesDocumentFromPdfRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "postSlidesDocumentFromPdf");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSlidesDocumentFromPdf", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromPdf(request), "postSlidesDocumentFromPdf", field, request.storage);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPostSlidesDocumentFromPdfRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "postSlidesDocumentFromPdf");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postSlidesDocumentFromPdf", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().postSlidesDocumentFromPdf(request), "postSlidesDocumentFromPdf", field, request.folder);
+            });
+        });
+    });
+});
+
 describe("Tests for postSlidesDocumentFromSource", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -15351,6 +15575,72 @@ describe("Tests for putSlidesHeaderFooter", () => {
     });
 });
 
+describe("Tests for putSlidesProtectionProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesProtectionPropertiesRequest();
+            return TestInitializer.initialize("putSlidesProtectionProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesProtectionProperties(request), false, "putSlidesProtectionProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSlidesProtectionPropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesProtectionProperties(request), "putSlidesProtectionProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSlidesProtectionPropertiesRequest();
+        request.dto = <model.ProtectionProperties>TestInitializer.invalidizeValue(request.dto, field, "ProtectionProperties", "putSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionProperties", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesProtectionProperties(request), "putSlidesProtectionProperties", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSlidesProtectionPropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesProtectionProperties(request), "putSlidesProtectionProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSlidesProtectionPropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesProtectionProperties(request), "putSlidesProtectionProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSlidesProtectionPropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesProtectionProperties(request), "putSlidesProtectionProperties", field, request.storage);
+            });
+        });
+    });
+});
+
 describe("Tests for putSlidesSaveAs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -15753,6 +16043,72 @@ describe("Tests for putSlidesSlideBackgroundColor", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideBackgroundColor", field, request.storage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideBackgroundColor(request), "putSlidesSlideBackgroundColor", field, request.storage);
+            });
+        });
+    });
+});
+
+describe("Tests for putSlidesSlideProperties", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            const request = TestUtils.getPutSlidesSlidePropertiesRequest();
+            return TestInitializer.initialize("putSlidesSlideProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSlideProperties(request), false, "putSlidesSlideProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        const request = TestUtils.getPutSlidesSlidePropertiesRequest();
+        request.name = <string>TestInitializer.invalidizeValue(request.name, field, "string", "putSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesSlideProperties", field, request.name).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideProperties(request), "putSlidesSlideProperties", field, request.name);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        const request = TestUtils.getPutSlidesSlidePropertiesRequest();
+        request.dto = <model.SlideProperties>TestInitializer.invalidizeValue(request.dto, field, "SlideProperties", "putSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesSlideProperties", field, request.dto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideProperties(request), "putSlidesSlideProperties", field, request.dto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        const request = TestUtils.getPutSlidesSlidePropertiesRequest();
+        request.password = <string>TestInitializer.invalidizeValue(request.password, field, "string", "putSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesSlideProperties", field, request.password).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideProperties(request), "putSlidesSlideProperties", field, request.password);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        const request = TestUtils.getPutSlidesSlidePropertiesRequest();
+        request.folder = <string>TestInitializer.invalidizeValue(request.folder, field, "string", "putSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesSlideProperties", field, request.folder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideProperties(request), "putSlidesSlideProperties", field, request.folder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        const request = TestUtils.getPutSlidesSlidePropertiesRequest();
+        request.storage = <string>TestInitializer.invalidizeValue(request.storage, field, "string", "putSlidesSlideProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesSlideProperties", field, request.storage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideProperties(request), "putSlidesSlideProperties", field, request.storage);
             });
         });
     });

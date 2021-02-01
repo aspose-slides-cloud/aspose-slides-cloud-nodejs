@@ -24,6 +24,12 @@ This repository contains Aspose.Slides Cloud SDK for Nodejs source code. This SD
 **Web:** HTML
 **Other:** SWF (export whole presentations)
 
+## Enhancements in Version 21.1
+* New **PostSlidesDocumentFromPdf** method allows creating presentations or adding slides to it using a PDF file as a source.
+* New **GetSlidesSlideProperties**, **GetSlidesProtectionProperties**, **PutSlidesSlideProperties**, **PutSlidesProtectionProperties** allow to get/set presentaion properties like slide size, orientaion, read-only etc.
+* **PutSlidesDocumentFromHtml** method is deprecated and will be deleted in 21.4 release. Use **PostSlidesDocumentFromHtml** method instead.
+* **PutSlidesSlideSize** method is deprecated and will be deleted in 21.4 release. Use **PutSlidesProtectionProperties** method instead.
+
 ## Enhancements in Version 20.12
 - Updated the SDK to run with cloud image.
 - **HttpRequestTimeout** property is added to SDK configuration. It allows specifying a custom timeout (in seconds) for **HTTP** requests made by the SDK.

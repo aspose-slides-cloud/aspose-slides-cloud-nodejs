@@ -112,6 +112,18 @@ export function addPathParameterToUrl(url: string, parameterName: string, parame
 }
 
 /**
+ * Add parameter to headers
+ * @param headers headers
+ * @param parameterName parameterName
+ * @param parameterValue parameterValue
+ */
+export function addHeaderParameter(headers: any, parameterName: string, parameterValue: any) {
+    if (parameterValue) {
+        headers[parameterName] = String(parameterValue);
+    }
+}
+
+/**
  * Invoke api method
  * @param requestOptions request parameters
  * @param confguration api configuration
@@ -131,7 +143,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v20.12.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.1.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }
@@ -183,7 +195,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
 }
 
 async function addAuthHeader(requestOptions: request.Options, configuration: Configuration): Promise<void> {
-    if (configuration.appSid || configuration.accessToken) {
+    if (configuration.appSid || configuration.appKey) {
         if (isRequestTokenPending) {
             await requestingToken;
         }

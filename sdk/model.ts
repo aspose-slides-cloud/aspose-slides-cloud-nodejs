@@ -1296,6 +1296,11 @@ export class LineFormat {
     style?: LineFormat.StyleEnum;
 
     /**
+     * Sketch type.
+     */
+    sketchType?: LineFormat.SketchTypeEnum;
+
+    /**
      * Begin arrowhead.
      */
     beginArrowHead?: ArrowHeadProperties;
@@ -1365,6 +1370,13 @@ export namespace LineFormat {
         ThinThick = <any> 'ThinThick',
         ThickThin = <any> 'ThickThin',
         ThickBetweenThin = <any> 'ThickBetweenThin',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum SketchTypeEnum {
+        None = <any> 'None',
+        Curved = <any> 'Curved',
+        Freehand = <any> 'Freehand',
+        Scribble = <any> 'Scribble',
         NotDefined = <any> 'NotDefined'
     }
 }
@@ -1997,7 +2009,8 @@ export namespace Series {
         ParetoLine = <any> 'ParetoLine',
         BoxAndWhisker = <any> 'BoxAndWhisker',
         Waterfall = <any> 'Waterfall',
-        Funnel = <any> 'Funnel'
+        Funnel = <any> 'Funnel',
+        Map = <any> 'Map'
     }
     export enum DataPointTypeEnum {
         OneValue = <any> 'OneValue',
@@ -4902,7 +4915,7 @@ export class SlideProperties extends ResourceBase {
     firstSlideNumber?: number;
 
     /**
-     * Last used view mode.
+     * Slide orientation.
      */
     orientation?: SlideProperties.OrientationEnum;
 
@@ -5702,7 +5715,8 @@ export namespace Chart {
         ParetoLine = <any> 'ParetoLine',
         BoxAndWhisker = <any> 'BoxAndWhisker',
         Waterfall = <any> 'Waterfall',
-        Funnel = <any> 'Funnel'
+        Funnel = <any> 'Funnel',
+        Map = <any> 'Map'
     }
 }
 

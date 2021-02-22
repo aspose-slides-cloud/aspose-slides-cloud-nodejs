@@ -153,6 +153,8 @@
 			"Parameter": "DTO"
 		},
 		{ "Value": { "Type": "Connector" }, "InvalidValue": null, "Type": "Shape", "Parameter": "DTO", "Language": "CPP" },
+		{ "Value": {}, "InvalidValue": null, "Type": "SlideProperties", "Parameter": "DTO", "Method": "PutSlidesSlideProperties" },
+		{ "Value": {}, "InvalidValue": null, "Type": "ProtectionProperties", "Parameter": "DTO", "Method": "PutSlidesProtectionProperties" },
 		{ "Value": {}, "InvalidValue": null, "Type": "ViewProperties", "Parameter": "DTO", "Method": "PutSlidesViewProperties" },
 		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PostAddNewPortion" },
 		{ "Value": { "Text": "testPortion" }, "InvalidValue": null, "Type": "Portion", "Parameter": "DTO", "Method": "PostAddNewSubshapePortion" },
@@ -224,6 +226,7 @@
 		{ "Parameter": "IsImageDataEmbedded" },
 		{ "Parameter": "Stream" },
 		{ "Parameter": "Html" },
+		{ "Parameter": "Pdf" },
 		{ "Parameter": "Options" },
 		{ "Parameter": "ApplyToAll" },
 		{ "Parameter": "SlideToCopy" },
@@ -436,13 +439,11 @@
 		{ "Message": " required parameter", "Parameter": "Sections" },
 		{ "Message": " required parameter", "Parameter": "Document" },
 		{ "Message": " required parameter", "Parameter": "File" },
+		{ "Message": "Pdf expected", "Parameter": "Pdf" },
 		{ "Message": " is out of bounds. Valid index range is between ", "Parameter": "Sections", "Method": "DeleteSections" },
 		{ "Message": "Layout slide DTO must be not null and contain", "Parameter": "SlideDTO", "Language": "Swift" },
 		{ "Message": "Object reference not set to an instance of an object.", "Parameter": "Bounds" },
 		{ "Code": 409, "Message": " is not empty.", "Parameter": "Recursive" },
-		{ "Message": "An error has occurred.", "Code": 500, "Parameter": "Options" },
-		{ "Code": 500, "Message": "Object reference not set", "Method": "PostSlidesDocumentFromPdf", "Parameter": "Name" },
-		{ "Code": 500, "Message": "Object reference not set", "Method": "PostSlidesDocumentFromPdf", "Parameter": "Pdf" },
-		{ "Code": 500, "Message": "Object reference not set", "Method": "PostSlidesDocumentFromPdf", "Parameter": "Folder" }
+		{ "Message": "An error has occurred.", "Code": 500, "Parameter": "Options" }
 	]
 }

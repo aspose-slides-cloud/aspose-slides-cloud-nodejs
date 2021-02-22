@@ -3942,7 +3942,7 @@ export class PostSlidesPipelineRequest {
      */
     public pipeline: model.Pipeline;
     /**
-     * files to upload with the pipeline
+     * Files to upload with the pipeline
      */
     public files: Array<Buffer>;
 }

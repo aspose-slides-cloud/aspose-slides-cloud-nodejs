@@ -1506,7 +1506,7 @@ class TestUtils {
     public static getPostSlidesPipelineRequest(): requests.PostSlidesPipelineRequest {
         const request = new requests.PostSlidesPipelineRequest();
         request.pipeline = <model.Pipeline>TestInitializer.getValue("postSlidesPipeline", "pipeline");
-        request.files = <Array<Buffer>>TestInitializer.getStreamValue("postSlidesPipeline");
+        request.files = <Array<Buffer>>TestInitializer.getValue("postSlidesPipeline", "files");
         return request;
     }
 

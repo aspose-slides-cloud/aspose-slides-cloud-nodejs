@@ -115,8 +115,16 @@ export class ObjectSerializer {
             if (enumsMap[type]) {// is Enum
                 return data;
             }
-
             if (!typeMap[type]) { // dont know the type
+                if (type == "Buffer") {
+                    return data;
+                }
+                if (typeof data == "string") {
+                    return JSON.parse(data);
+                }
+                if (Buffer.isBuffer(data)) {
+                    return JSON.parse(data.toString());
+                }
                 return data;
             }
             const instance = new typeMap[type]();

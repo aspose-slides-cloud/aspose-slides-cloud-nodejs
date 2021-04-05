@@ -1422,13 +1422,13 @@ export class GetNotesSlideHeaderFooterRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for GetNotesSlideShape operation.
@@ -2068,13 +2068,13 @@ export class GetSlidesDocumentRequest {
      */
     public password: string;
     /**
-     * Documentstorage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Documentstorage.
+     */
+    public storage: string;
 }
 /**
  * Request model for GetSlidesDocumentProperties operation.
@@ -2431,7 +2431,7 @@ export class GetSlidesSlideTextItemsRequest {
      */
     public slideIndex: number;
     /**
-     * True to incude empty items.
+     * True to include empty items.
      */
     public withEmpty: boolean;
     /**
@@ -2751,6 +2751,10 @@ export class PostAddNewParagraphRequest {
      */
     public dto: model.Paragraph;
     /**
+     * Position of the new paragraph in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -2762,10 +2766,6 @@ export class PostAddNewParagraphRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Position of the new paragraph in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostAddNewPortion operation.
@@ -2792,6 +2792,10 @@ export class PostAddNewPortionRequest {
      */
     public dto: model.Portion;
     /**
+     * Position of the new portion in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -2803,10 +2807,6 @@ export class PostAddNewPortionRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Position of the new portion in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostAddNewShape operation.
@@ -2825,6 +2825,14 @@ export class PostAddNewShapeRequest {
      */
     public dto: model.ShapeBase;
     /**
+     * Optional index for clone shape instead of adding a new one.
+     */
+    public shapeToClone: number;
+    /**
+     * Position of the new shape in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -2836,14 +2844,6 @@ export class PostAddNewShapeRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Optional index for clone shape instead of adding a new one.
-     */
-    public shapeToClone: number;
-    /**
-     * Position of the new shape in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostAddNewSubshape operation.
@@ -2866,6 +2866,14 @@ export class PostAddNewSubshapeRequest {
      */
     public dto: model.ShapeBase;
     /**
+     * Optional index for clone shape instead of adding a new one.
+     */
+    public shapeToClone: number;
+    /**
+     * Position of the new shape in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -2877,14 +2885,6 @@ export class PostAddNewSubshapeRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Optional index for clone shape instead of adding a new one.
-     */
-    public shapeToClone: number;
-    /**
-     * Position of the new shape in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostAddNewSubshapeParagraph operation.
@@ -2911,6 +2911,10 @@ export class PostAddNewSubshapeParagraphRequest {
      */
     public dto: model.Paragraph;
     /**
+     * Position of the new paragraph in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -2922,10 +2926,6 @@ export class PostAddNewSubshapeParagraphRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Position of the new paragraph in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostAddNewSubshapePortion operation.
@@ -2956,6 +2956,10 @@ export class PostAddNewSubshapePortionRequest {
      */
     public dto: model.Portion;
     /**
+     * Position of the new portion in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -2967,10 +2971,6 @@ export class PostAddNewSubshapePortionRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Position of the new portion in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostAddNotesSlide operation.
@@ -2988,6 +2988,43 @@ export class PostAddNotesSlideRequest {
      * A NotesSlide object with notes slide data.
      */
     public dto: model.NotesSlide;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostAlignShapes operation.
+ */
+export class PostAlignShapesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Alignment type that will be applied to the shapes.
+     */
+    public alignmentType: string;
+    /**
+     * If true, shapes will be aligned relative to the slide edges.
+     */
+    public alignToSlide: boolean;
+    /**
+     * Shapes indexes.
+     */
+    public shapes: Array<number>;
     /**
      * Document password.
      */
@@ -3183,6 +3220,189 @@ export class PostCopyMasterSlideFromSourcePresentationRequest {
     public storage: string;
 }
 /**
+ * Request model for PostExportImageWithDefaultFormat operation.
+ */
+export class PostExportImageWithDefaultFormatRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Image index.
+     */
+    public index: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
+ * Request model for PostExportImageWithFormat operation.
+ */
+export class PostExportImageWithFormatRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Image index.
+     */
+    public index: number;
+    /**
+     * Export format (png, jpg, gif).
+     */
+    public format: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
+ * Request model for PostExportImagesFromRequestWithFormat operation.
+ */
+export class PostExportImagesFromRequestWithFormatRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Export format (png, jpg, gif).
+     */
+    public format: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
+ * Request model for PostExportImagesWithDefaultFormat operation.
+ */
+export class PostExportImagesWithDefaultFormatRequest {
+    /**
+     * Gets or sets name
+     */
+    public name: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostExportImagesWithFormat operation.
+ */
+export class PostExportImagesWithFormatRequest {
+    /**
+     * Gets or sets name
+     */
+    public name: string;
+    /**
+     * Export format (png, jpg, gif).
+     */
+    public format: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostExportShape operation.
+ */
+export class PostExportShapeRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Index of shape starting from 1
+     */
+    public shapeIndex: number;
+    /**
+     * Export picture format.
+     */
+    public format: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * X scale ratio.
+     */
+    public scaleX: number;
+    /**
+     * Y scale ratio.
+     */
+    public scaleY: number;
+    /**
+     * Shape thumbnail bounds type.
+     */
+    public bounds: string;
+    /**
+     * Fonts folder.
+     */
+    public fontsFolder: string;
+}
+/**
+ * Request model for PostExportSlide operation.
+ */
+export class PostExportSlideRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Output file format.
+     */
+    public format: string;
+    /**
+     * Output file width; 0 to not adjust the size. Default is 0.
+     */
+    public width: number;
+    /**
+     * Output file height; 0 to not adjust the size. Default is 0.
+     */
+    public height: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Storage folder containing custom fonts to be used with the document.
+     */
+    public fontsFolder: string;
+}
+/**
  * Request model for PostGetNotesSlide operation.
  */
 export class PostGetNotesSlideRequest {
@@ -3250,6 +3470,19 @@ export class PostGetNotesSlideWithFormatRequest {
     public fontsFolder: string;
 }
 /**
+ * Request model for PostImagesFromRequestWithDefaultFormat operation.
+ */
+export class PostImagesFromRequestWithDefaultFormatRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
  * Request model for PostNotesSlideAddNewParagraph operation.
  */
 export class PostNotesSlideAddNewParagraphRequest {
@@ -3270,6 +3503,10 @@ export class PostNotesSlideAddNewParagraphRequest {
      */
     public dto: model.Paragraph;
     /**
+     * Position of the new paragraph in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -3281,10 +3518,6 @@ export class PostNotesSlideAddNewParagraphRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Position of the new paragraph in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostNotesSlideAddNewPortion operation.
@@ -3311,6 +3544,10 @@ export class PostNotesSlideAddNewPortionRequest {
      */
     public dto: model.Portion;
     /**
+     * Position of the new portion in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -3322,10 +3559,6 @@ export class PostNotesSlideAddNewPortionRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Position of the new portion in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostNotesSlideAddNewShape operation.
@@ -3344,6 +3577,14 @@ export class PostNotesSlideAddNewShapeRequest {
      */
     public dto: model.ShapeBase;
     /**
+     * Optional index for clone shape instead of adding a new one.
+     */
+    public shapeToClone: number;
+    /**
+     * Position of the new shape in the list. Default is at the end of the list.
+     */
+    public position: number;
+    /**
      * Document password.
      */
     public password: string;
@@ -3355,14 +3596,6 @@ export class PostNotesSlideAddNewShapeRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Optional index for clone shape instead of adding a new one.
-     */
-    public shapeToClone: number;
-    /**
-     * Position of the new shape in the list. Default is at the end of the list.
-     */
-    public position: number;
 }
 /**
  * Request model for PostNotesSlideShapeSaveAs operation.
@@ -3389,18 +3622,6 @@ export class PostNotesSlideShapeSaveAsRequest {
      */
     public options: model.IShapeExportOptions;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Presentation folder.
-     */
-    public folder: string;
-    /**
-     * Presentation storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -3412,6 +3633,18 @@ export class PostNotesSlideShapeSaveAsRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */
@@ -3434,13 +3667,79 @@ export class PostPresentationMergeRequest {
      */
     public password: string;
     /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostPresentationReplaceText operation.
+ */
+export class PostPresentationReplaceTextRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Text value to be replaced.
+     */
+    public oldValue: string;
+    /**
+     * Text value to replace with.
+     */
+    public newValue: string;
+    /**
+     * True if character case must be ignored.
+     */
+    public ignoreCase: boolean;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
+ * Request model for PostPresentationSplit operation.
+ */
+export class PostPresentationSplitRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * ExportFormat
+     */
+    public format: string;
+    /**
+     * Slide width.
+     */
+    public width: number;
+    /**
+     * Slide height.
+     */
+    public height: number;
+    /**
+     * The start slide number for splitting, if is not specified splitting starts from the first slide of the presentation.
+     */
+    public from: number;
+    /**
+     * The last slide number for splitting, if is not specified splitting ends at the last slide of the document.
+     */
+    public to: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
      * Document storage.
      */
     public storage: string;
     /**
-     * Document folder.
+     * Custom fonts folder.
      */
-    public folder: string;
+    public fontsFolder: string;
 }
 /**
  * Request model for PostSection operation.
@@ -3525,18 +3824,6 @@ export class PostShapeSaveAsRequest {
      */
     public options: model.IShapeExportOptions;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Presentation folder.
-     */
-    public folder: string;
-    /**
-     * Presentation storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -3548,6 +3835,18 @@ export class PostShapeSaveAsRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */
@@ -3645,6 +3944,35 @@ export class PostSlideAnimationInteractiveSequenceEffectRequest {
     public storage: string;
 }
 /**
+ * Request model for PostSlideReplaceText operation.
+ */
+export class PostSlideReplaceTextRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Index of target slide.
+     */
+    public slideIndex: number;
+    /**
+     * Text value to be replaced.
+     */
+    public oldValue: string;
+    /**
+     * Text value to replace with.
+     */
+    public newValue: string;
+    /**
+     * True if character case must be ignored.
+     */
+    public ignoreCase: boolean;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
  * Request model for PostSlideSaveAs operation.
  */
 export class PostSlideSaveAsRequest {
@@ -3698,6 +4026,10 @@ export class PostSlidesAddRequest {
      */
     public name: string;
     /**
+     * Alias of layout slide for new slide. Alias may be the type of layout, name of layout slide or index
+     */
+    public layoutAlias: string;
+    /**
      * The target position at which to create the slide. Add to the end by default.
      */
     public position: number;
@@ -3713,10 +4045,6 @@ export class PostSlidesAddRequest {
      * Document storage.
      */
     public storage: string;
-    /**
-     * Alias of layout slide for new slide. Alias may be the type of layout, name of layout slide or index
-     */
-    public layoutAlias: string;
 }
 /**
  * Request model for PostSlidesConvert operation.
@@ -3734,6 +4062,10 @@ export class PostSlidesConvertRequest {
      * Document password.
      */
     public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
     /**
      * Custom fonts folder.
      */
@@ -3801,13 +4133,13 @@ export class PostSlidesDocumentRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PostSlidesDocumentFromHtml operation.
@@ -3826,13 +4158,13 @@ export class PostSlidesDocumentFromHtmlRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PostSlidesDocumentFromPdf operation.
@@ -3851,13 +4183,13 @@ export class PostSlidesDocumentFromPdfRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PostSlidesDocumentFromSource operation.
@@ -3884,13 +4216,13 @@ export class PostSlidesDocumentFromSourceRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PostSlidesDocumentFromTemplate operation.
@@ -3925,13 +4257,30 @@ export class PostSlidesDocumentFromTemplateRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostSlidesMerge operation.
+ */
+export class PostSlidesMergeRequest {
+    /**
+     * Files to merge
+     */
+    public files: Array<Buffer>;
+    /**
+     * Merge request.
+     */
+    public request: model.OrderedMergeRequest;
+    /**
+     * Document password.
+     */
+    public password: string;
 }
 /**
  * Request model for PostSlidesPipeline operation.
@@ -4058,13 +4407,13 @@ export class PostSlidesSaveAsRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
     /**
      * Custom fonts folder.
      */
@@ -4157,13 +4506,13 @@ export class PostSlidesSplitRequest {
      */
     public height: number;
     /**
-     * The last slide number for splitting, if is not specified splitting ends at the last slide of the document.
-     */
-    public to: number;
-    /**
      * The start slide number for splitting, if is not specified splitting starts from the first slide of the presentation.
      */
     public from: number;
+    /**
+     * The last slide number for splitting, if is not specified splitting ends at the last slide of the document.
+     */
+    public to: number;
     /**
      * Folder on storage where images are going to be uploaded. If not specified then images are uploaded to same folder as presentation.
      */
@@ -4173,13 +4522,13 @@ export class PostSlidesSplitRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
     /**
      * Custom fonts folder.
      */
@@ -4214,18 +4563,6 @@ export class PostSubshapeSaveAsRequest {
      */
     public options: model.IShapeExportOptions;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Presentation folder.
-     */
-    public folder: string;
-    /**
-     * Presentation storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -4237,6 +4574,18 @@ export class PostSubshapeSaveAsRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */
@@ -4358,6 +4707,96 @@ export class PutChartSeriesRequest {
     public storage: string;
 }
 /**
+ * Request model for PutExportShape operation.
+ */
+export class PutExportShapeRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Index of shape starting from 1
+     */
+    public shapeIndex: number;
+    /**
+     * Export picture format.
+     */
+    public format: string;
+    /**
+     * Path to save result.
+     */
+    public outPath: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * X scale ratio.
+     */
+    public scaleX: number;
+    /**
+     * Y scale ratio.
+     */
+    public scaleY: number;
+    /**
+     * Shape thumbnail bounds type.
+     */
+    public bounds: string;
+    /**
+     * Fonts folder.
+     */
+    public fontsFolder: string;
+}
+/**
+ * Request model for PutExportSlide operation.
+ */
+export class PutExportSlideRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Slide index.
+     */
+    public slideIndex: number;
+    /**
+     * Output file format.
+     */
+    public format: string;
+    /**
+     * Path to save result.
+     */
+    public outPath: string;
+    /**
+     * Output file width; 0 to not adjust the size. Default is 0.
+     */
+    public width: number;
+    /**
+     * Output file height; 0 to not adjust the size. Default is 0.
+     */
+    public height: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
+     * Storage folder containing custom fonts to be used with the document.
+     */
+    public fontsFolder: string;
+}
+/**
  * Request model for PutLayoutSlide operation.
  */
 export class PutLayoutSlideRequest {
@@ -4407,13 +4846,13 @@ export class PutNotesSlideHeaderFooterRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutNotesSlideShapeSaveAs operation.
@@ -4444,18 +4883,6 @@ export class PutNotesSlideShapeSaveAsRequest {
      */
     public options: model.IShapeExportOptions;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Presentation folder.
-     */
-    public folder: string;
-    /**
-     * Presentation storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -4467,6 +4894,18 @@ export class PutNotesSlideShapeSaveAsRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */
@@ -4489,13 +4928,58 @@ export class PutPresentationMergeRequest {
      */
     public password: string;
     /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutPresentationSplit operation.
+ */
+export class PutPresentationSplitRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * ExportFormat
+     */
+    public format: string;
+    /**
+     * Folder on storage where images are going to be uploaded. If not specified then images are uploaded to the root folder.
+     */
+    public destFolder: string;
+    /**
+     * Slide width.
+     */
+    public width: number;
+    /**
+     * Slide height.
+     */
+    public height: number;
+    /**
+     * The start slide number for splitting, if is not specified splitting starts from the first slide of the presentation.
+     */
+    public from: number;
+    /**
+     * The last slide number for splitting, if is not specified splitting ends at the last slide of the document.
+     */
+    public to: number;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
      * Document storage.
      */
     public storage: string;
     /**
-     * Document folder.
+     * Custom fonts folder.
      */
-    public folder: string;
+    public fontsFolder: string;
 }
 /**
  * Request model for PutSection operation.
@@ -4744,18 +5228,6 @@ export class PutShapeSaveAsRequest {
      */
     public options: model.IShapeExportOptions;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Presentation folder.
-     */
-    public folder: string;
-    /**
-     * Presentation storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -4767,6 +5239,18 @@ export class PutShapeSaveAsRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */
@@ -5040,6 +5524,10 @@ export class PutSlidesConvertRequest {
      */
     public password: string;
     /**
+     * Document storage.
+     */
+    public storage: string;
+    /**
      * Custom fonts folder.
      */
     public fontsFolder: string;
@@ -5061,13 +5549,13 @@ export class PutSlidesDocumentFromHtmlRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutSlidesHeaderFooter operation.
@@ -5086,13 +5574,38 @@ export class PutSlidesHeaderFooterRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PutSlidesMerge operation.
+ */
+export class PutSlidesMergeRequest {
+    /**
+     * Path to save result.
+     */
+    public outPath: string;
+    /**
+     * Files to merge
+     */
+    public files: Array<Buffer>;
+    /**
+     * Merge request.
+     */
+    public request: model.OrderedMergeRequest;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutSlidesProtectionProperties operation.
@@ -5128,13 +5641,13 @@ export class PutSlidesSaveAsRequest {
      */
     public name: string;
     /**
-     * Output path.
-     */
-    public outPath: string;
-    /**
      * Export format.
      */
     public format: string;
+    /**
+     * Output path.
+     */
+    public outPath: string;
     /**
      * Export options.
      */
@@ -5144,13 +5657,13 @@ export class PutSlidesSaveAsRequest {
      */
     public password: string;
     /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * Document folder.
      */
     public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
     /**
      * Custom fonts folder.
      */
@@ -5231,13 +5744,13 @@ export class PutSlidesSlideBackgroundRequest {
      */
     public background: model.SlideBackground;
     /**
-     * Document folder.
-     */
-    public folder: string;
-    /**
      * Document password.
      */
     public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
     /**
      * Document storage.
      */
@@ -5260,13 +5773,13 @@ export class PutSlidesSlideBackgroundColorRequest {
      */
     public color: string;
     /**
-     * Document folder.
-     */
-    public folder: string;
-    /**
      * Document password.
      */
     public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
     /**
      * Document storage.
      */
@@ -5306,18 +5819,6 @@ export class PutSlidesSlideSizeRequest {
      */
     public name: string;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
-     * Document folder.
-     */
-    public folder: string;
-    /**
      * Slide width.
      */
     public width: number;
@@ -5333,6 +5834,18 @@ export class PutSlidesSlideSizeRequest {
      * Standard slide scale type.
      */
     public scaleType: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
 }
 /**
  * Request model for PutSlidesViewProperties operation.
@@ -5392,18 +5905,6 @@ export class PutSubshapeSaveAsRequest {
      */
     public options: model.IShapeExportOptions;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Presentation folder.
-     */
-    public folder: string;
-    /**
-     * Presentation storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -5415,6 +5916,18 @@ export class PutSubshapeSaveAsRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Presentation folder.
+     */
+    public folder: string;
+    /**
+     * Presentation storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */

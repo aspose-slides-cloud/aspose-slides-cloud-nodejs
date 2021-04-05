@@ -1617,6 +1617,17 @@ export class PresentationToMerge {
      */
     slides?: Array<number>;
 
+    /**
+     * Merge (request or storage). 
+     */
+    source?: PresentationToMerge.SourceEnum;
+
+}
+export namespace PresentationToMerge {
+    export enum SourceEnum {
+        Storage = <any> 'Storage',
+        Request = <any> 'Request'
+    }
 }
 
 /**
@@ -2126,6 +2137,23 @@ export enum ShapeThumbnailBounds {
     'Slide' = <any> "'Slide'",
     'Shape' = <any> "'Shape'",
     'Appearance' = <any> "'Appearance'"
+}
+
+/**
+ * 
+ */
+    /**
+    * 
+    */
+export enum ShapesAlignmentType {
+    'AlignLeft' = <any> "'AlignLeft'",
+    'AlignRight' = <any> "'AlignRight'",
+    'AlignCenter' = <any> "'AlignCenter'",
+    'AlignTop' = <any> "'AlignTop'",
+    'AlignMiddle' = <any> "'AlignMiddle'",
+    'AlignBottom' = <any> "'AlignBottom'",
+    'DistributeHorizontally' = <any> "'DistributeHorizontally'",
+    'DistributeVertically' = <any> "'DistributeVertically'"
 }
 
 /**

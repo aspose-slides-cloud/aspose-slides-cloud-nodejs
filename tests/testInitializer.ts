@@ -23,7 +23,6 @@
 */
 
 import * as sdkApi from "../sdk/api";
-import * as requests from "../sdk/requests";
 
 var assert = require('assert');
 var fs = require('fs');
@@ -34,12 +33,19 @@ export class TestInitializer {
     static expectedFilesVersion = "1";
     static api : sdkApi.SlidesApi;
 
-    public static getStreamValue(functionName: string) {
+    public static getStreamValue(functionName: string, name: string) {
+        name = name + ""; //just to delude the TS compiler
         var fileName = "test.pptx";
         if (functionName.endsWith('FromPdf')) {
             fileName = "test.pdf";
         }
         return fs.createReadStream("TestData/" + fileName);
+    }
+
+    public static getBinArrayValue(functionName: string, name: string) {
+        functionName = functionName + ""; //just to delude the TS compiler
+        name = name + ""; //just to delude the TS compiler
+        return [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
     }
 
     public static getValue(functionName: string, name: string) : any {
@@ -95,20 +101,13 @@ export class TestInitializer {
             var rule = files[path];
             if (rule.Action == "Put") {
                 promises.push(new Promise((resolve, reject) => {
-                    const request = new requests.CopyFileRequest();
-                    request.srcPath = "TempTests/" + files[path].ActualName;
-                    request.destPath = path;
-                    api
-                        .copyFile(request)
+                    api.copyFile("TempTests/" + files[path].ActualName, path)
                         .then(() => resolve())
                         .catch(() => reject(new Error("Could not upload file " + path)));
                 }));
             } else if (rule.Action == "Delete") {
                 promises.push(new Promise((resolve, reject) => {
-                    const request = new requests.DeleteFileRequest();
-                    request.path = path;
-                    api
-                        .deleteFile(request)
+                    api.deleteFile(path)
                         .then(() => resolve())
                         .catch(() => reject(new Error("Could not delete file " + path)));
                 }));
@@ -121,9 +120,7 @@ export class TestInitializer {
         const api = TestInitializer.getApi();
         const versionFilePath = "TempTests/version.txt";
         let uploaded = false;
-        const request = new requests.DownloadFileRequest();
-        request.path = versionFilePath;
-        await api.downloadFile(request).then((result) => {
+        await api.downloadFile(versionFilePath).then((result) => {
             if (TestInitializer.expectedFilesVersion == result.body.toString()) {
                 uploaded = true;
             }
@@ -137,23 +134,26 @@ export class TestInitializer {
                     console.log(err);
                 }
                 files.forEach(file => {
-                    const uploadRequest = new requests.UploadFileRequest();
-                    uploadRequest.file = fs.createReadStream("TestData/" + file);
-                    uploadRequest.path = "TempTests/" + file;
-                    promises.push(api.uploadFile(uploadRequest).catch((err) => { console.log(err); }));
+                    const fileStream = fs.createReadStream("TestData/" + file);
+                    promises.push(api.uploadFile("TempTests/" + file, fileStream).catch((err) => { console.log(err); }));
                 });
             });
             await Promise.all(promises);
-            const request = new requests.UploadFileRequest();
-            request.file = Buffer.from(TestInitializer.expectedFilesVersion, 'utf8');
-            request.path = versionFilePath;
-            await api.uploadFile(request).catch((err) => { console.log(err); });
+            const fileStream = Buffer.from(TestInitializer.expectedFilesVersion, 'utf8');
+            await api.uploadFile(versionFilePath, fileStream).catch((err) => { console.log(err); });
         }
     }
 
     public static runTest(test: () => Promise<any>) {
         //retry each test on failure to minimize accidental failure chance
-        return test().catch(async () => await test()).catch((err) => assert.fail(err));
+        return test()
+            .catch(async (err) => {
+                if (err instanceof assert.AssertionError) {
+                    throw err;
+                }
+                await test();
+            })
+            .catch((err) => assert.fail(err));
     }
 
     public static assertValidCall(call: Promise<any>, isBinary: boolean, functionName: string) {
@@ -165,7 +165,7 @@ export class TestInitializer {
                 }
             });
             assert.equal(code, result.response.statusCode);
-            if (result.body && isBinary) {
+            if (result.body && isBinary && functionName != "postSlidesPipeline") {
                 assert(result.body.length > 0);
             }
         }).catch((err) => {

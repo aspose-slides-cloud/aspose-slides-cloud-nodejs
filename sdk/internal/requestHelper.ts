@@ -27,16 +27,21 @@ import request = require("request");
 import requestDebug = require("request-debug");
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
-        
-export function checkMultipartContent(options: request.Options, requestObj: any, files: any) {
-    if (requestObj.files && requestObj.files.length) {
+
+export function checkMultipartContent(options: request.Options, requestFiles: any, files: any) {
+    if (requestFiles && requestFiles.length) {
         const data = {
-            pipeline: JSON.stringify(options.json),
+            pipeline: null,
             attachments: []
         };
-        if (requestObj.files && requestObj.files.length) {
-            for (var i = 0; i < requestObj.files.length; i++) {
-                data.attachments.push(requestObj.files[i]);
+        if (options.json) {
+            data.pipeline = JSON.stringify(options.json);
+        } else {
+            delete data.pipeline;
+        }
+        if (requestFiles && requestFiles.length) {
+            for (var i = 0; i < requestFiles.length; i++) {
+                data.attachments.push(requestFiles[i]);
             }
         }        
         options.formData = data;
@@ -143,7 +148,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.2.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.3.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }

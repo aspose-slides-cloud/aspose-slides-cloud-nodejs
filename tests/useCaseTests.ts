@@ -26,7 +26,6 @@ var assert = require('assert');
 var fs = require('fs');
 import * as sdkApi from "../sdk/api";
 import * as model from "../sdk/model";
-import * as requests from "../sdk/requests";
 import { TestInitializer } from "./testInitializer";
 
 describe("Create tests", () => {
@@ -35,13 +34,8 @@ describe("Create tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const deleteRequest = new requests.DeleteFileRequest();
-            deleteRequest.path = folderName + "/" + fileName;
-            return api.deleteFile(deleteRequest).then(() => {
-                const postRequest = new requests.PostSlidesDocumentRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                return api.postSlidesDocument(postRequest).then((result) => {
+            return api.deleteFile(folderName + "/" + fileName).then(() => {
+                return api.createPresentation(fileName, null, null, null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                 });
             });
@@ -53,15 +47,8 @@ describe("Create tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const deleteRequest = new requests.DeleteFileRequest();
-            deleteRequest.path = folderName + "/" + fileName;
-            return api.deleteFile(deleteRequest).then(() => {
-                const postRequest = new requests.PostSlidesDocumentRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.inputPassword = "password";
-                postRequest.data = fs.createReadStream("TestData/test.pptx");
-                return api.postSlidesDocument(postRequest).then((result) => {
+            return api.deleteFile(folderName + "/" + fileName).then(() => {
+                return api.createPresentation(fileName, fs.createReadStream("TestData/test.pptx"), "password", null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                 });
             });
@@ -74,19 +61,10 @@ describe("Create tests", () => {
             const fileName = "test.pptx";
             const newFileName = "test2.pptx";
             const api = TestInitializer.getApi();
-            const deleteRequest = new requests.DeleteFileRequest();
-            deleteRequest.path = folderName + "/" + newFileName;
-            return api.deleteFile(deleteRequest).then(() => {
-                const copyRequest = new requests.CopyFileRequest();
-                copyRequest.srcPath = "TempTests/" + fileName;
-                copyRequest.destPath = folderName + "/" + fileName;
-                return api.copyFile(copyRequest).then(() => {
-                    const postRequest = new requests.PostSlidesDocumentFromSourceRequest();
-                    postRequest.name = newFileName;
-                    postRequest.folder = folderName;
-                    postRequest.sourcePassword = "password";
-                    postRequest.sourcePath = folderName + "/" + fileName;
-                    return api.postSlidesDocumentFromSource(postRequest).then((result) => {
+            return api.deleteFile(folderName + "/" + newFileName).then(() => {
+                return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                    const sourcePath = folderName + "/" + fileName;
+                    return api.createPresentationFromSource(newFileName, sourcePath, "password", null, null, folderName).then((result) => {
                         assert.equal(201, result.response.statusCode);
                     });
                 });
@@ -100,19 +78,11 @@ describe("Create tests", () => {
             const fileName = "test.pptx";
             const templateFileName = "TemplateCV.pptx";
             const api = TestInitializer.getApi();
-            const deleteRequest = new requests.DeleteFileRequest();
-            deleteRequest.path = folderName + "/" + fileName;
-            return api.deleteFile(deleteRequest).then(() => {
-                const copyRequest = new requests.CopyFileRequest();
-                copyRequest.srcPath = "TempTests/" + templateFileName;
-                copyRequest.destPath = folderName + "/" + templateFileName;
-                return api.copyFile(copyRequest).then(() => {
-                    const postRequest = new requests.PostSlidesDocumentFromTemplateRequest();
-                    postRequest.name = fileName;
-                    postRequest.folder = folderName;
-                    postRequest.templatePath = folderName + "/" + templateFileName;
-                    postRequest.data = "<staff><person><name>John Doe</name><address><line1>10 Downing Street</line1><line2>London</line2></address><phone>+457 123456</phone><bio>Hi, I'm John and this is my CV</bio><skills><skill><title>C#</title><level>Excellent</level></skill><skill><title>C++</title><level>Good</level></skill><skill><title>Java</title><level>Average</level></skill></skills></person></staff>";
-                    return api.postSlidesDocumentFromTemplate(postRequest).then((result) => {
+            return api.deleteFile(folderName + "/" + fileName).then(() => {
+                return api.copyFile("TempTests/" + templateFileName, folderName + "/" + templateFileName).then(() => {
+                    const templatePath = folderName + "/" + templateFileName;
+                    const data = "<staff><person><name>John Doe</name><address><line1>10 Downing Street</line1><line2>London</line2></address><phone>+457 123456</phone><bio>Hi, I'm John and this is my CV</bio><skills><skill><title>C#</title><level>Excellent</level></skill><skill><title>C++</title><level>Good</level></skill><skill><title>Java</title><level>Average</level></skill></skills></person></staff>";
+                    return api.createPresentationFromTemplate(fileName, templatePath, data, null, null, null, null, folderName).then((result) => {
                         assert.equal(201, result.response.statusCode);
                     });
                 });
@@ -125,14 +95,8 @@ describe("Create tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const deleteRequest = new requests.DeleteFileRequest();
-            deleteRequest.path = folderName + "/" + fileName;
-            return api.deleteFile(deleteRequest).then(() => {
-                const postRequest = new requests.PostSlidesDocumentFromHtmlRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.html = "<html><body>New Content</body></html>";
-                return api.postSlidesDocumentFromHtml(postRequest).then((result) => {
+            return api.deleteFile(folderName + "/" + fileName).then(() => {
+                return api.importFromHtml(fileName, "<html><body>New Content</body></html>", null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                 });
             });
@@ -145,24 +109,12 @@ describe("Create tests", () => {
             const fileName = "test.pptx";
             const password = "password";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const slidesRequest = new requests.GetSlidesSlidesListRequest();
-                slidesRequest.name = fileName;
-                slidesRequest.folder = folderName;
-                slidesRequest.password = password;
-                return api.getSlidesSlidesList(slidesRequest).then((r1) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getSlides(fileName, password, folderName).then((r1) => {
                     const slideCount = (r1.body as model.Slides).slideList.length;
-                    const postRequest = new requests.PostSlidesDocumentFromHtmlRequest();
-                    postRequest.name = fileName;
-                    postRequest.folder = folderName;
-                    postRequest.password = password;
-                    postRequest.html = "<html><body>New Content</body></html>";
-                    return api.postSlidesDocumentFromHtml(postRequest).then((result) => {
+                    return api.importFromHtml(fileName, "<html><body>New Content</body></html>", password, folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
-                        return api.getSlidesSlidesList(slidesRequest).then((r2) => {
+                        return api.getSlides(fileName, password, folderName).then((r2) => {
                             assert.equal(slideCount + 1, (r2.body as model.Slides).slideList.length);
                         });
                     });
@@ -176,14 +128,8 @@ describe("Create tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const deleteRequest = new requests.DeleteFileRequest();
-            deleteRequest.path = folderName + "/" + fileName;
-            return api.deleteFile(deleteRequest).then(() => {
-                const postRequest = new requests.PostSlidesDocumentFromPdfRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.pdf = fs.createReadStream("TestData/test.pdf");
-                return api.postSlidesDocumentFromPdf(postRequest).then((result) => {
+            return api.deleteFile(folderName + "/" + fileName).then(() => {
+                return api.importFromPdf(fileName, fs.createReadStream("TestData/test.pdf"), null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                 });
             });
@@ -196,24 +142,12 @@ describe("Create tests", () => {
             const fileName = "test.pptx";
             const password = "password";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const slidesRequest = new requests.GetSlidesSlidesListRequest();
-                slidesRequest.name = fileName;
-                slidesRequest.folder = folderName;
-                slidesRequest.password = password;
-                return api.getSlidesSlidesList(slidesRequest).then((r1) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getSlides(fileName, password, folderName).then((r1) => {
                     const slideCount = (r1.body as model.Slides).slideList.length;
-                    const postRequest = new requests.PostSlidesDocumentFromPdfRequest();
-                    postRequest.name = fileName;
-                    postRequest.folder = folderName;
-                    postRequest.password = password;
-                    postRequest.pdf = fs.createReadStream("TestData/test.pdf");
-                    return api.postSlidesDocumentFromPdf(postRequest).then((result) => {
+                    return api.importFromPdf(fileName, fs.createReadStream("TestData/test.pdf"), password, folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
-                        return api.getSlidesSlidesList(slidesRequest).then((r2) => {
+                        return api.getSlides(fileName, password, folderName).then((r2) => {
                             assert.equal(slideCount + 4, (r2.body as model.Slides).slideList.length);
                         });
                     });
@@ -227,11 +161,7 @@ describe("Convert tests", () => {
     it("post from request", () => {
         return TestInitializer.runTest(() => {
             const api = TestInitializer.getApi();
-            const postRequest = new requests.PostSlidesConvertRequest();
-            postRequest.document = fs.createReadStream("TestData/test.pptx");
-            postRequest.password = "password";
-            postRequest.format = 'pdf';
-            return api.postSlidesConvert(postRequest).then((result) => {
+            return api.convert(fs.createReadStream("TestData/test.pptx"), 'pdf', "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
         });
@@ -241,16 +171,9 @@ describe("Convert tests", () => {
         return TestInitializer.runTest(() => {
             const outPath = "TestData/test.pdf";
             const api = TestInitializer.getApi();
-            const putRequest = new requests.PutSlidesConvertRequest();
-            putRequest.document = fs.createReadStream("TestData/test.pptx");
-            putRequest.password = "password";
-            putRequest.format = 'pdf';
-            putRequest.outPath = outPath;
-            return api.putSlidesConvert(putRequest).then((putResult) => {
+            return api.convertAndSave(fs.createReadStream("TestData/test.pptx"), 'pdf', outPath, "password").then((putResult) => {
                 assert.equal(200, putResult.response.statusCode);
-                const existsRequest = new requests.ObjectExistsRequest();
-                existsRequest.path = outPath;
-                return api.objectExists(existsRequest).then((existsResult) => {
+                return api.objectExists(outPath).then((existsResult) => {
                     assert.equal(200, existsResult.response.statusCode);
                     assert((existsResult.body as model.ObjectExist).exists);
                 });
@@ -263,16 +186,8 @@ describe("Convert tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostSlidesSaveAsRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.format = 'pdf';
-                return api.postSlidesSaveAs(postRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadPresentation(fileName, 'pdf', null, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                 });
             });
@@ -285,21 +200,10 @@ describe("Convert tests", () => {
             const fileName = "test.pptx";
             const outPath = "TestData/test.pdf";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSlidesSaveAsRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
-                putRequest.format = 'pdf';
-                putRequest.outPath = outPath;
-                return api.putSlidesSaveAs(putRequest).then((putResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.savePresentation(fileName, 'pdf', outPath, null, "password", folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
-                    const existsRequest = new requests.ObjectExistsRequest();
-                    existsRequest.path = outPath;
-                    return api.objectExists(existsRequest).then((existsResult) => {
+                    return api.objectExists(outPath).then((existsResult) => {
                         assert.equal(200, existsResult.response.statusCode);
                         assert((existsResult.body as model.ObjectExist).exists);
                     });
@@ -313,21 +217,12 @@ describe("Convert tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostSlidesSaveAsRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.format = 'pdf';
-                return api.postSlidesSaveAs(postRequest).then((result1) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadPresentation(fileName, 'pdf', null, "password", folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
                     const options = new model.PdfExportOptions();
                     options.drawSlidesFrame = true;
-                    postRequest.options = options;
-                    return api.postSlidesSaveAs(postRequest).then((result2) => {
+                    return api.downloadPresentation(fileName, 'pdf', options, "password", folderName).then((result2) => {
                         assert.equal(200, result2.response.statusCode);
                         assert.notEqual(result1.body.length, result2.body.length);
                     });
@@ -335,6 +230,135 @@ describe("Convert tests", () => {
             });
         });
     });                                             
+
+    it("slide post from request", () => {
+        return TestInitializer.runTest(() => {
+            const api = TestInitializer.getApi();
+            return api.downloadSlideOnline(fs.createReadStream("TestData/test.pptx"), 1, 'pdf', null, null, "password").then((result) => {
+                assert.equal(200, result.response.statusCode);
+            });
+        });
+    });
+
+    it("slide put from request", () => {
+        return TestInitializer.runTest(() => {
+            const outPath = "TestData/test.pdf";
+            const api = TestInitializer.getApi();
+            const data = fs.createReadStream("TestData/test.pptx");
+            return api.saveSlideOnline(data, 1, 'pdf', outPath, null, null, "password").then((putResult) => {
+                assert.equal(200, putResult.response.statusCode);
+                return api.objectExists(outPath).then((existsResult) => {
+                    assert.equal(200, existsResult.response.statusCode);
+                    assert((existsResult.body as model.ObjectExist).exists);
+                });
+            });
+        });
+    });
+
+    it("slide post from storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadSlide(fileName, 1, 'pdf', null, null, null, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("slide put from storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const outPath = "TestData/test.pdf";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.saveSlide(fileName, 1, 'pdf', outPath, null, null, null, "password", folderName).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    return api.objectExists(outPath).then((existsResult) => {
+                        assert.equal(200, existsResult.response.statusCode);
+                        assert((existsResult.body as model.ObjectExist).exists);
+                    });
+                });
+            });
+        });
+    });
+
+    it("slide with options", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadSlide(fileName, 1, 'pdf', null, null, null, "password", folderName).then((result1) => {
+                    assert.equal(200, result1.response.statusCode);
+                    const options = new model.PdfExportOptions();
+                    options.drawSlidesFrame = true;
+                    return api.downloadSlide(fileName, 1, 'pdf', options, null, null, "password", folderName).then((result2) => {
+                        assert.equal(200, result2.response.statusCode);
+                        assert.notEqual(result1.body.length, result2.body.length);
+                    });
+                });
+            });
+        });
+    });                                             
+
+    it("shape post from request", () => {
+        return TestInitializer.runTest(() => {
+            const api = TestInitializer.getApi();
+            return api.downloadShapeOnline(fs.createReadStream("TestData/test.pptx"), 1, 3, 'png', "password").then((result) => {
+                assert.equal(200, result.response.statusCode);
+            });
+        });
+    });
+
+    it("shape put from request", () => {
+        return TestInitializer.runTest(() => {
+            const outPath = "TestData/test.png";
+            const api = TestInitializer.getApi();
+            const data = fs.createReadStream("TestData/test.pptx");
+            return api.saveShapeOnline(data, 1, 1, 'png', outPath, "password").then((putResult) => {
+                assert.equal(200, putResult.response.statusCode);
+                return api.objectExists(outPath).then((existsResult) => {
+                    assert.equal(200, existsResult.response.statusCode);
+                    assert((existsResult.body as model.ObjectExist).exists);
+                });
+            });
+        });
+    });
+
+    it("shape post from storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadShape(fileName, 1, 1, 'png', null, null, null, null, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                });
+            });
+        });
+    });
+
+    it("shape put from storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const outPath = "TestData/test.pdf";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.saveShape(fileName, 1, 1, 'png', outPath, null, null, null, null, "password", folderName).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    return api.objectExists(outPath).then((existsResult) => {
+                        assert.equal(200, existsResult.response.statusCode);
+                        assert((existsResult.body as model.ObjectExist).exists);
+                    });
+                });
+            });
+        });
+    });
 });
 
 describe("NotesSlide tests", () => {
@@ -343,16 +367,8 @@ describe("NotesSlide tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetNotesSlideRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = "password";
-                getRequest.slideIndex = 1;
-                return api.getNotesSlide(getRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getNotesSlide(fileName, 1, "password", folderName).then((result) => {
                     assert((result.body as model.NotesSlide) != null);
                 });
             });
@@ -364,16 +380,8 @@ describe("NotesSlide tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetNotesSlideExistsRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = "password";
-                getRequest.slideIndex = 1;
-                return api.getNotesSlideExists(getRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.notesSlideExists(fileName, 1, "password", folderName).then((result) => {
                     assert.equal(true, (result.body as model.EntityExists).exists);
                 });
             });
@@ -385,17 +393,8 @@ describe("NotesSlide tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetNotesSlideWithFormatRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = "password";
-                getRequest.slideIndex = 1;
-                getRequest.format = 'png';
-                return api.getNotesSlideWithFormat(getRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadNotesSlide(fileName, 1, 'png', null, null, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                 });
             });
@@ -405,11 +404,7 @@ describe("NotesSlide tests", () => {
     it("get from request", () => {
         return TestInitializer.runTest(() => {
             const api = TestInitializer.getApi();
-            const request = new requests.PostGetNotesSlideRequest();
-            request.document = fs.createReadStream("TestData/test.pptx");
-            request.password = "password";
-            request.slideIndex = 1;
-            return api.postGetNotesSlide(request).then((result) => {
+            return api.getNotesSlideOnline(fs.createReadStream("TestData/test.pptx"), 1, "password").then((result) => {
                 assert((result.body as model.NotesSlide) != null);
             });
         });
@@ -418,13 +413,8 @@ describe("NotesSlide tests", () => {
     it("exists from request", () => {
         return TestInitializer.runTest(() => {
             const api = TestInitializer.getApi();
-            const request = new requests.PostGetNotesSlideExistsRequest();
-            request.document = fs.createReadStream("TestData/test.pptx");
-            request.password = "password";
-            request.slideIndex = 1;
-            return api.postGetNotesSlideExists(request).then((result) => {
-                let res = "" + result.body;
-                assert.equal(true, JSON.parse(res)["exists"]);
+            return api.notesSlideExistsOnline(fs.createReadStream("TestData/test.pptx"), 1, "password").then((result) => {
+                assert((result.body as model.ObjectExist).exists);
             });
         });
     });
@@ -432,38 +422,23 @@ describe("NotesSlide tests", () => {
     it("download from request", () => {
         return TestInitializer.runTest(() => {
             const api = TestInitializer.getApi();
-            const request = new requests.PostGetNotesSlideWithFormatRequest();
-            request.document = fs.createReadStream("TestData/test.pptx");
-            request.password = "password";
-            request.slideIndex = 1;
-            request.format = 'png';
-            return api.postGetNotesSlideWithFormat(request).then((result) => {
+            return api.downloadNotesSlideOnline(fs.createReadStream("TestData/test.pptx"), 1, 'png', null, null, "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
         });
     });
 });
 
-
-describe("ShapeType tests", () => {
+describe("Shape tests", () => {
     it("shape add", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Shape();
                 dto.shapeType = model.GeometryShape.ShapeTypeEnum.Callout1;
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 1, dto, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.Shape);
                 });
@@ -476,18 +451,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.Shape();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.Shape(), null, null, "password", folderName)
                     .then(() => assert.fail("Shape with undefinined type should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -501,18 +466,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.GraphicalObject();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.GraphicalObject(), null, null, "password", folderName)
                     .then(() => assert.fail("GraphicalObject should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -526,21 +481,12 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.PictureFrame();
                 const fill = new model.PictureFill();
                 fill.base64Data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g+ffp/AAZTAsWGL27gAAAAAElFTkSuQmCC";
                 dto.pictureFillFormat = fill;
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 1, dto, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.PictureFrame);
                 });
@@ -553,18 +499,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.PictureFrame();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.PictureFrame(), null, null, "password", folderName)
                     .then(() => assert.fail("PictureFrame with undefinined data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -578,19 +514,10 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.AudioFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 1, dto, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.AudioFrame);
                 });
@@ -603,18 +530,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.AudioFrame();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.AudioFrame(), null, null, "password", folderName)
                     .then(() => assert.fail("AudioFrame with undefinined data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -628,19 +545,10 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.VideoFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 1, dto, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.VideoFrame);
                 });
@@ -653,18 +561,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.VideoFrame();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.VideoFrame(), null, null, "password", folderName)
                     .then(() => assert.fail("VideoFrame with undefinined data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -678,18 +576,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.OleObjectFrame();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.OleObjectFrame(), null, null, "password", folderName)
                     .then(() => assert.fail("OleObjectFrame  should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -703,15 +591,7 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.SmartArt();
                 dto.x = 0;
                 dto.y = 0;
@@ -731,8 +611,7 @@ describe("ShapeType tests", () => {
                 node2.text = "Second";
                 node2.orgChartLayout = model.SmartArtNode.OrgChartLayoutEnum.Initial;
                 dto.nodes = [ node1, node2 ];
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 1, dto, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -745,18 +624,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.SmartArt();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.SmartArt(), null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -769,18 +638,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.Chart();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.Chart(), null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.Chart);
                 });
@@ -793,15 +652,7 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Table();
                 dto.x = 30;
                 dto.y = 20;
@@ -864,8 +715,7 @@ describe("ShapeType tests", () => {
                 dto.columns = [ column1, column2, column3, column4 ];
                 dto.firstRow = true;
                 dto.horizontalBanding = true;
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 1, dto, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -878,18 +728,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.Table();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.Table(), null, null, "password", folderName)
                     .then(() => assert.fail("Table with undefinined cell data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -903,18 +743,8 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.GroupShape();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest)
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.GroupShape(), null, null, "password", folderName)
                     .then(() => assert.fail("GroupShape should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -928,15 +758,7 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Connector();
                 dto.shapeType = model.GeometryShape.ShapeTypeEnum.BentConnector3;
                 const start = new model.ResourceUri();
@@ -945,8 +767,7 @@ describe("ShapeType tests", () => {
                 const end = new model.ResourceUri();
                 end.href = "https://api.aspose.cloud/v3.0/slides/myPresentation.pptx/slides/1/shapes/2";
                 dto.endShapeConnectedTo = end;
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 1, dto, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -959,20 +780,54 @@ describe("ShapeType tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const dto = new model.Connector();
-                postRequest.dto = dto;
-                return api.postAddNewShape(postRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createShape(fileName, 1, new model.Connector(), null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.Connector);
+                });
+            });
+        });
+    });
+    it("align", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const slideIndex = 3;
+            const shape1Index = 1;
+            const shape2Index = 2;
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getShape(fileName, slideIndex, shape1Index, password, folderName).then((getResult11) => {
+                    assert.equal(200, getResult11.response.statusCode);
+                    return api.getShape(fileName, slideIndex, shape2Index, password, folderName).then((getResult12) => {
+                        assert.equal(200, getResult12.response.statusCode);
+                        assert((getResult11.body as model.ShapeBase).x != (getResult12.body as model.ShapeBase).x);
+                        assert((getResult11.body as model.ShapeBase).y != (getResult12.body as model.ShapeBase).y);
+                        return api.alignShapes(fileName, slideIndex, "AlignTop", null, null, password, folderName).then((result1) => {
+                            assert.equal(200, result1.response.statusCode);
+                            return api.getShape(fileName, slideIndex, shape1Index, password, folderName).then((getResult21) => {
+                                assert.equal(200, getResult21.response.statusCode);
+                                return api.getShape(fileName, slideIndex, shape2Index, password, folderName).then((getResult22) => {
+                                    assert.equal(200, getResult22.response.statusCode);
+                                    assert((getResult21.body as model.ShapeBase).x != (getResult22.body as model.ShapeBase).x);
+                                    assert(Math.abs((getResult21.body as model.ShapeBase).y - (getResult22.body as model.ShapeBase).y) < 1);
+                                    return api.alignShapes(fileName, slideIndex, "AlignLeft", true, [1, 2], password, folderName).then((result2) => {
+                                        assert.equal(200, result2.response.statusCode);
+                                        return api.getShape(fileName, slideIndex, shape1Index, password, folderName).then((getResult31) => {
+                                            assert.equal(200, getResult31.response.statusCode);
+                                            return api.getShape(fileName, slideIndex, shape2Index, password, folderName).then((getResult32) => {
+                                                assert.equal(200, getResult32.response.statusCode);
+                                                assert(Math.abs((getResult31.body as model.ShapeBase).x - (getResult32.body as model.ShapeBase).x) < 1);
+                                                assert(Math.abs((getResult31.body as model.ShapeBase).y - (getResult32.body as model.ShapeBase).y) < 1);
+                                                assert(Math.abs((getResult31.body as model.ShapeBase).x) < 1);
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
                 });
             });
         });
@@ -985,17 +840,8 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetSlideShapeRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = "password";
-                getRequest.slideIndex = 3;
-                getRequest.shapeIndex = 1;
-                return api.getSlideShape(getRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getShape(fileName, 3, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1010,15 +856,7 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 3;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
                 chart.width = 400;
@@ -1031,8 +869,7 @@ describe("Chart tests", () => {
                 series2.dataPoints = [{ value: 55 }, { value: 35 }, { value: 90 }];
                 chart.series = [ series1, series2 ];
                 chart.categories = [{ value: "Category1" }, { value: "Category2" }, { value: "Category3" }];
-                postRequest.dto = chart;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -1046,16 +883,7 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSlideShapeInfoRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
-                putRequest.slideIndex = 3;
-                putRequest.shapeIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
                 chart.width = 400;
@@ -1068,8 +896,7 @@ describe("Chart tests", () => {
                 series2.dataPoints = [{ value: 55 }, { value: 35 }, { value: 90 }];
                 chart.series = [ series1, series2 ];
                 chart.categories = [{ value: "Category1" }, { value: "Category2" }, { value: "Category3" }];
-                putRequest.dto = chart;
-                return api.putSlideShapeInfo(putRequest).then((result) => {
+                return api.updateShape(fileName, 3, 1, chart, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -1083,21 +910,11 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostChartSeriesRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 3;
-                postRequest.shapeIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
                 series.dataPoints = [{ value: 40 }, { value: 50 }, { value: 14 }, { value: 70 }];
-                postRequest.series = series;
-                return api.postChartSeries(postRequest).then((result) => {
+                return api.createChartSeries(fileName, 3, 1, series, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(4, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1111,22 +928,11 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutChartSeriesRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
-                putRequest.slideIndex = 3;
-                putRequest.shapeIndex = 1;
-                putRequest.seriesIndex = 2;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
                 series.dataPoints = [{ value: 40 }, { value: 50 }, { value: 14 }, { value: 70 }];
-                putRequest.series = series;
-                return api.putChartSeries(putRequest).then((result) => {
+                return api.updateChartSeries(fileName, 3, 1, 2, series, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1140,18 +946,8 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const deleteRequest = new requests.DeleteChartSeriesRequest();
-                deleteRequest.name = fileName;
-                deleteRequest.folder = folderName;
-                deleteRequest.password = "password";
-                deleteRequest.slideIndex = 3;
-                deleteRequest.shapeIndex = 1;
-                deleteRequest.seriesIndex = 2;
-                return api.deleteChartSeries(deleteRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteChartSeries(fileName, 3, 1, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1165,21 +961,11 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostChartCategoryRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 3;
-                postRequest.shapeIndex = 1;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
                 category.dataPoints = [{ value: 40 }, { value: 50 }, { value: 14 }];
-                postRequest.category = category;
-                return api.postChartCategory(postRequest).then((result) => {
+                return api.createChartCategory(fileName, 3, 1, category, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(5, (result.body as model.Chart).categories.length);
@@ -1196,22 +982,11 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutChartCategoryRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
-                putRequest.slideIndex = 3;
-                putRequest.shapeIndex = 1;
-                putRequest.categoryIndex = 2;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
                 category.dataPoints = [{ value: 40 }, { value: 50 }, { value: 14 }];
-                putRequest.category = category;
-                return api.putChartCategory(putRequest).then((result) => {
+                return api.updateChartCategory(fileName, 3, 1, 2, category, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1228,18 +1003,8 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const deleteRequest = new requests.DeleteChartCategoryRequest();
-                deleteRequest.name = fileName;
-                deleteRequest.folder = folderName;
-                deleteRequest.password = "password";
-                deleteRequest.slideIndex = 3;
-                deleteRequest.shapeIndex = 1;
-                deleteRequest.categoryIndex = 2;
-                return api.deleteChartCategory(deleteRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteChartCategory(fileName, 3, 1, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -1254,25 +1019,13 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostChartDataPointRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 3;
-                postRequest.shapeIndex = 1;
-                postRequest.seriesIndex = 2;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
-                postRequest.dataPoint = dataPoint;
-                return api.postChartDataPoint(postRequest)
-                    .then(() => {
-                        assert.fail('Must have failed');
-                    }).catch((err) => {
+                return api.createChartDataPoint(fileName, 3, 1, 2, dataPoint, "password", folderName)
                         //Must throw ApiException because adding data points only works with Scatter & Bubble charts.
+                    .then(() => assert.fail("Must have failed"))
+                    .catch((err) => {
                         assert.equal(400, err.code);
                     });
             });
@@ -1284,22 +1037,10 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutChartDataPointRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
-                putRequest.slideIndex = 3;
-                putRequest.shapeIndex = 1;
-                putRequest.seriesIndex = 2;
-                putRequest.pointIndex = 2;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
-                putRequest.dataPoint = dataPoint;
-                return api.putChartDataPoint(putRequest).then((result) => {
+                return api.updateChartDataPoint(fileName, 3, 1, 2, 2, dataPoint, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1315,19 +1056,8 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const deleteRequest = new requests.DeleteChartDataPointRequest();
-                deleteRequest.name = fileName;
-                deleteRequest.folder = folderName;
-                deleteRequest.password = "password";
-                deleteRequest.slideIndex = 3;
-                deleteRequest.shapeIndex = 1;
-                deleteRequest.seriesIndex = 2;
-                deleteRequest.pointIndex = 2;
-                return api.deleteChartDataPoint(deleteRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteChartDataPoint(fileName, 3, 1, 2, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1342,15 +1072,7 @@ describe("Chart tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 3;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.Sunburst;
                 chart.width = 400;
@@ -1375,8 +1097,7 @@ describe("Chart tests", () => {
                 category4.value = "Stem2";
                 category4.level = 1;
                 chart.categories = [ category1, category2, category3, category4 ];
-                postRequest.dto = chart;
-                return api.postAddNewShape(postRequest).then((result) => {
+                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(1, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -1391,28 +1112,16 @@ describe("HeaderFooter tests", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
+            const password = "password";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSlidesHeaderFooterRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.HeaderFooter();
                 dto.isFooterVisible = true;
                 dto.footerText = "footer";
                 dto.isDateTimeVisible = false;
-                putRequest.dto = dto;
-                return api.putSlidesHeaderFooter(putRequest).then((putResult) => {
+                return api.setPresentationHeaderFooter(fileName, dto, password, folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
-                    const getRequest = new requests.GetSlideHeaderFooterRequest();
-                    getRequest.name = fileName;
-                    getRequest.folder = folderName;
-                    getRequest.password = "password";
-                    getRequest.slideIndex = 1;
-                    return api.getSlideHeaderFooter(getRequest).then((result) => {
+                    return api.getSlideHeaderFooter(fileName, 1, password, folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
                         assert.equal(true, (result.body as model.HeaderFooter).isFooterVisible);
                         assert.equal(false, (result.body as model.HeaderFooter).isDateTimeVisible);
@@ -1429,30 +1138,16 @@ describe("HeaderFooter tests", () => {
             const password = "password";
             const slideIndex = 1;
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSlideHeaderFooterRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = password;
-                putRequest.slideIndex = slideIndex;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.HeaderFooter();
                 dto.isFooterVisible = true;
                 dto.footerText = "footer";
                 dto.isDateTimeVisible = false;
-                putRequest.dto = dto;
-                return api.putSlideHeaderFooter(putRequest).then((putResult) => {
+                return api.setSlideHeaderFooter(fileName, slideIndex, dto, password, folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(true, (putResult.body as model.HeaderFooter).isFooterVisible);
                     assert.equal(false, (putResult.body as model.HeaderFooter).isDateTimeVisible);
-                    const getRequest = new requests.GetSlideHeaderFooterRequest();
-                    getRequest.name = fileName;
-                    getRequest.folder = folderName;
-                    getRequest.password = password;
-                    getRequest.slideIndex = slideIndex;
-                    return api.getSlideHeaderFooter(getRequest).then((result) => {
+                    return api.getSlideHeaderFooter(fileName, slideIndex, password, folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
                         assert.equal(true, (result.body as model.HeaderFooter).isFooterVisible);
                         assert.equal(false, (result.body as model.HeaderFooter).isDateTimeVisible);
@@ -1469,30 +1164,16 @@ describe("HeaderFooter tests", () => {
             const password = "password";
             const slideIndex = 1;
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutNotesSlideHeaderFooterRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = password;
-                putRequest.slideIndex = slideIndex;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.NotesSlideHeaderFooter();
                 dto.isHeaderVisible = true;
                 dto.footerText = "footer";
                 dto.isDateTimeVisible = false;
-                putRequest.dto = dto;
-                return api.putNotesSlideHeaderFooter(putRequest).then((putResult) => {
+                return api.setNotesSlideHeaderFooter(fileName, slideIndex, dto, password, folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(true, (putResult.body as model.NotesSlideHeaderFooter).isHeaderVisible);
                     assert.equal(false, (putResult.body as model.NotesSlideHeaderFooter).isDateTimeVisible);
-                    const getRequest = new requests.GetNotesSlideHeaderFooterRequest();
-                    getRequest.name = fileName;
-                    getRequest.folder = folderName;
-                    getRequest.password = password;
-                    getRequest.slideIndex = slideIndex;
-                    return api.getNotesSlideHeaderFooter(getRequest).then((result) => {
+                    return api.getNotesSlideHeaderFooter(fileName, slideIndex, password, folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
                         assert.equal(true, (result.body as model.NotesSlideHeaderFooter).isHeaderVisible);
                         assert.equal(false, (result.body as model.NotesSlideHeaderFooter).isDateTimeVisible);
@@ -1507,17 +1188,10 @@ describe("Section tests", () => {
     it("get", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetSectionsRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = "password";
-                return api.getSections(getRequest).then((getResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getSections(fileName, "password", folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
                     assert.equal(3, (getResult.body as model.Sections).sectionList.length);
                 });
@@ -1528,16 +1202,9 @@ describe("Section tests", () => {
     it("replace", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSectionsRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Sections();
                 const section1 = new model.Section();
                 section1.name = "Section1";
@@ -1546,8 +1213,7 @@ describe("Section tests", () => {
                 section2.name = "Section2";
                 section2.firstSlideIndex = 3;
                 dto.sectionList = [ section1, section2 ];
-                putRequest.sections = dto;
-                return api.putSections(putRequest).then((putResult) => {
+                return api.setSections(fileName, dto, "password", folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(dto.sectionList.length, (putResult.body as model.Sections).sectionList.length);
                     assert.equal(
@@ -1560,19 +1226,10 @@ describe("Section tests", () => {
     it("post", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostSectionRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.sectionName = "NewSection";
-                postRequest.slideIndex = 4;
-                return api.postSection(postRequest).then((postResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.createSection(fileName, "NewSection", 5, "password", folderName).then((postResult) => {
                     assert.equal(201, postResult.response.statusCode);
                     assert.equal(4, (postResult.body as model.Sections).sectionList.length);
                 });
@@ -1583,22 +1240,15 @@ describe("Section tests", () => {
     it("put", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSectionRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = "password";
-                putRequest.sectionIndex = 2;
-                putRequest.sectionName = "UpdatedSection";
-                return api.putSection(putRequest).then((putResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const sectionIndex = 2;
+                const sectionName = "UpdatedSection";
+                return api.updateSection(fileName, sectionIndex, sectionName, "password", folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(3, (putResult.body as model.Sections).sectionList.length);
-                    assert.equal(putRequest.sectionName, (putResult.body as model.Sections).sectionList[1].name);
+                    assert.equal(sectionName, (putResult.body as model.Sections).sectionList[sectionIndex - 1].name);
                 });
             });
         });
@@ -1607,19 +1257,10 @@ describe("Section tests", () => {
     it("move", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const postRequest = new requests.PostSectionMoveRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.sectionIndex = 1;
-                postRequest.newPosition = 2;
-                return api.postSectionMove(postRequest).then((postResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.moveSection(fileName, 1, 2, "password", folderName).then((postResult) => {
                     assert.equal(200, postResult.response.statusCode);
                     assert.equal(3, (postResult.body as model.Sections).sectionList.length);
                 });
@@ -1630,17 +1271,10 @@ describe("Section tests", () => {
     it("clear", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const deleteRequest = new requests.DeleteSectionsRequest();
-                deleteRequest.name = fileName;
-                deleteRequest.folder = folderName;
-                deleteRequest.password = "password";
-                return api.deleteSections(deleteRequest).then((deleteResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteSections(fileName, null, null, "password", folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert.equal(0, (deleteResult.body as model.Sections).sectionList.length);
                 });
@@ -1651,18 +1285,10 @@ describe("Section tests", () => {
     it("delete many", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const deleteRequest = new requests.DeleteSectionsRequest();
-                deleteRequest.name = fileName;
-                deleteRequest.folder = folderName;
-                deleteRequest.password = "password";
-                deleteRequest.sections = [ 2, 3 ];
-                return api.deleteSections(deleteRequest).then((deleteResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteSections(fileName, [ 2, 3 ], null, "password", folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert.equal(1, (deleteResult.body as model.Sections).sectionList.length);
                 });
@@ -1673,18 +1299,10 @@ describe("Section tests", () => {
     it("delete", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "Sections.pptx";
+            const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const deleteRequest = new requests.DeleteSectionRequest();
-                deleteRequest.name = fileName;
-                deleteRequest.folder = folderName;
-                deleteRequest.password = "password";
-                deleteRequest.sectionIndex = 2;
-                return api.deleteSection(deleteRequest).then((deleteResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteSection(fileName, 2, null, "password", folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert.equal(2, (deleteResult.body as model.Sections).sectionList.length);
                 });
@@ -1702,40 +1320,21 @@ describe("Property tests", () => {
             const propertyName = "Author";
             const updatedPropertyValue = "New Value";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetSlidesDocumentPropertyRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = password;
-                getRequest.propertyName = propertyName;
-                return api.getSlidesDocumentProperty(getRequest).then((getResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getDocumentProperty(fileName, propertyName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
                     assert.equal(propertyName, (getResult.body as model.DocumentProperty).name);
                     assert((getResult.body as model.DocumentProperty).builtIn);
-                    const putRequest = new requests.PutSlidesSetDocumentPropertyRequest();
-                    putRequest.name = fileName;
-                    putRequest.folder = folderName;
-                    putRequest.password = password;
-                    putRequest.propertyName = propertyName;
                     const property = new model.DocumentProperty();
                     property.value = updatedPropertyValue;
-                    putRequest.property = property;
-                    return api.putSlidesSetDocumentProperty(putRequest).then((putResult) => {
+                    return api.setDocumentProperty(fileName, propertyName, property, password, folderName).then((putResult) => {
                         assert.equal(200, putResult.response.statusCode);
                         assert.equal(propertyName, (putResult.body as model.DocumentProperty).name);
                         assert.equal(updatedPropertyValue, (putResult.body as model.DocumentProperty).value);
                         assert((putResult.body as model.DocumentProperty).builtIn);
-                        const deleteRequest = new requests.DeleteSlidesDocumentPropertyRequest();
-                        deleteRequest.name = fileName;
-                        deleteRequest.folder = folderName;
-                        deleteRequest.password = password;
-                        deleteRequest.propertyName = propertyName;
-                        return api.deleteSlidesDocumentProperty(deleteRequest).then((deleteResult) => {
+                        return api.deleteDocumentProperty(fileName, propertyName, password, folderName).then((deleteResult) => {
                             assert.equal(200, deleteResult.response.statusCode);
-                            return api.getSlidesDocumentProperty(getRequest).then((getResult2) => {
+                            return api.getDocumentProperty(fileName, propertyName, password, folderName).then((getResult2) => {
                                 //built-in property is not actually deleted
                                 assert.equal(200, getResult2.response.statusCode);
                                 assert.equal(propertyName, (getResult2.body as model.DocumentProperty).name);
@@ -1757,36 +1356,17 @@ describe("Property tests", () => {
             const propertyName = "CustomProperty2";
             const updatedPropertyValue = "New Value";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSlidesSetDocumentPropertyRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = password;
-                putRequest.propertyName = propertyName;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const property = new model.DocumentProperty();
                 property.value = updatedPropertyValue;
-                putRequest.property = property;
-                return api.putSlidesSetDocumentProperty(putRequest).then((putResult) => {
+                return api.setDocumentProperty(fileName, propertyName, property, password, folderName).then((putResult) => {
                     assert.equal(201, putResult.response.statusCode);
                     assert.equal(propertyName, (putResult.body as model.DocumentProperty).name);
                     assert.equal(updatedPropertyValue, (putResult.body as model.DocumentProperty).value);
                     assert(!(putResult.body as model.DocumentProperty).builtIn);
-                    const deleteRequest = new requests.DeleteSlidesDocumentPropertyRequest();
-                    deleteRequest.name = fileName;
-                    deleteRequest.folder = folderName;
-                    deleteRequest.password = password;
-                    deleteRequest.propertyName = propertyName;
-                    return api.deleteSlidesDocumentProperty(deleteRequest).then((deleteResult) => {
+                    return api.deleteDocumentProperty(fileName, propertyName, password, folderName).then((deleteResult) => {
                         assert.equal(200, deleteResult.response.statusCode);
-                        const getRequest = new requests.GetSlidesDocumentPropertyRequest();
-                        getRequest.name = fileName;
-                        getRequest.folder = folderName;
-                        getRequest.password = password;
-                        getRequest.propertyName = propertyName;
-                        return api.getSlidesDocumentProperty(getRequest)
+                        return api.getDocumentProperty(fileName, propertyName, password, folderName)
                             .then(() => assert.fail("The property must have been deleted"))
                             .catch((err) => {
                                 assert.equal(404, err.code);
@@ -1806,21 +1386,10 @@ describe("Property tests", () => {
             const customPropertyName = "CustomProperty2";
             const updatedPropertyValue = "New Value";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetSlidesDocumentPropertiesRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = password;
-                return api.getSlidesDocumentProperties(getRequest).then((getResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getDocumentProperties(fileName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
                     const count = (getResult.body as model.DocumentProperties).list.length;
-                    const postRequest = new requests.PostSlidesSetDocumentPropertiesRequest();
-                    postRequest.name = fileName;
-                    postRequest.folder = folderName;
-                    postRequest.password = password;
                     const property1 = new model.DocumentProperty();
                     property1.name = propertyName;
                     property1.value = updatedPropertyValue;
@@ -1829,15 +1398,10 @@ describe("Property tests", () => {
                     property2.value = updatedPropertyValue;
                     const properties = new model.DocumentProperties();
                     properties.list = [ property1, property2 ];
-                    postRequest.properties = properties;
-                    return api.postSlidesSetDocumentProperties(postRequest).then((postResult) => {
+                    return api.setDocumentProperties(fileName, properties, password, folderName).then((postResult) => {
                         assert.equal(200, postResult.response.statusCode);
                         assert.equal(count + 1, (postResult.body as model.DocumentProperties).list.length);
-                        const deleteRequest = new requests.DeleteSlidesDocumentPropertiesRequest();
-                        deleteRequest.name = fileName;
-                        deleteRequest.folder = folderName;
-                        deleteRequest.password = password;
-                        return api.deleteSlidesDocumentProperties(deleteRequest).then((deleteResult) => {
+                        return api.deleteDocumentProperties(fileName, password, folderName).then((deleteResult) => {
                             assert.equal(200, deleteResult.response.statusCode);
                             assert.equal(count - 1, (deleteResult.body as model.DocumentProperties).list.length);
                         });
@@ -1853,25 +1417,13 @@ describe("Property tests", () => {
             const fileName = "test.pptx";
             const password = "password";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetSlidesSlidePropertiesRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = password;
-                return api.getSlidesSlideProperties(getRequest).then((getResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getSlideProperties(fileName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
                     const properties = getResult.body as model.SlideProperties;
-                    const putRequest = new requests.PutSlidesSlidePropertiesRequest();
-                    putRequest.name = fileName;
-                    putRequest.folder = folderName;
-                    putRequest.password = password;
                     const dto = new model.SlideProperties();
                     dto.firstSlideNumber = properties.firstSlideNumber + 2;
-                    putRequest.dto = dto;
-                    return api.putSlidesSlideProperties(putRequest).then((putResult) => {
+                    return api.setSlideProperties(fileName, dto, password, folderName).then((putResult) => {
                         assert.equal(200, putResult.response.statusCode);
                         assert.equal(properties.orientation, (putResult.body as model.SlideProperties).orientation);
                         assert.notEqual(properties.firstSlideNumber, (putResult.body as model.SlideProperties).firstSlideNumber);
@@ -1887,18 +1439,10 @@ describe("Property tests", () => {
             const fileName = "test.pptx";
             const password = "password";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSlidesSlidePropertiesRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = password;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.SlideProperties();
                 dto.sizeType = model.SlideProperties.SizeTypeEnum.B4IsoPaper;
-                putRequest.dto = dto;
-                return api.putSlidesSlideProperties(putRequest).then((putResult) => {
+                return api.setSlideProperties(fileName, dto, password, folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(model.SlideProperties.SizeTypeEnum.B4IsoPaper, (putResult.body as model.SlideProperties).sizeType);
                     assert.equal(852, (putResult.body as model.SlideProperties).width);
@@ -1916,19 +1460,11 @@ describe("Property tests", () => {
             const width = 800;
             const height = 500;
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const putRequest = new requests.PutSlidesSlidePropertiesRequest();
-                putRequest.name = fileName;
-                putRequest.folder = folderName;
-                putRequest.password = password;
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.SlideProperties();
                 dto.width = width;
                 dto.height = height;
-                putRequest.dto = dto;
-                return api.putSlidesSlideProperties(putRequest).then((putResult) => {
+                return api.setSlideProperties(fileName, dto, password, folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(model.SlideProperties.SizeTypeEnum.Custom, (putResult.body as model.SlideProperties).sizeType);
                     assert.equal(width, (putResult.body as model.SlideProperties).width);
@@ -1944,25 +1480,13 @@ describe("Property tests", () => {
             const fileName = "test.pptx";
             const password = "password";
             const api = TestInitializer.getApi();
-            const copyRequest = new requests.CopyFileRequest();
-            copyRequest.srcPath = "TempTests/" + fileName;
-            copyRequest.destPath = folderName + "/" + fileName;
-            return api.copyFile(copyRequest).then(() => {
-                const getRequest = new requests.GetSlidesProtectionPropertiesRequest();
-                getRequest.name = fileName;
-                getRequest.folder = folderName;
-                getRequest.password = password;
-                return api.getSlidesProtectionProperties(getRequest).then((getResult) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getProtectionProperties(fileName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
                     const properties = getResult.body as model.ProtectionProperties;
-                    const putRequest = new requests.PutSlidesProtectionPropertiesRequest();
-                    putRequest.name = fileName;
-                    putRequest.folder = folderName;
-                    putRequest.password = password;
                     const dto = new model.ProtectionProperties();
                     dto.readOnlyRecommended = !properties.readOnlyRecommended;
-                    putRequest.dto = dto;
-                    return api.putSlidesProtectionProperties(putRequest).then((putResult) => {
+                    return api.setProtectionProperties(fileName, dto, password, folderName).then((putResult) => {
                         assert.equal(200, putResult.response.statusCode);
                         assert.equal(properties.encryptDocumentProperties, (putResult.body as model.ProtectionProperties).encryptDocumentProperties);
                         assert.notEqual(properties.readOnlyRecommended, (putResult.body as model.ProtectionProperties).readOnlyRecommended);
@@ -1978,7 +1502,7 @@ describe("Auth tests", () => {
         return TestInitializer.runTest(() => {
             const config = require("../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
-            return api.getSlidesApiInfo().then((result) => {
+            return api.getApiInfo().then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
         });
@@ -1989,7 +1513,7 @@ describe("Auth tests", () => {
             const config = require("../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
             api.configuration.appSid = "invalid";
-            return api.getSlidesApiInfo().then(() => {
+            return api.getApiInfo().then(() => {
                 assert.fail('Must have failed');
             }).catch((err) => {
                 assert.equal(401, err.code);
@@ -2001,10 +1525,10 @@ describe("Auth tests", () => {
         return TestInitializer.runTest(() => {
             const config = require("../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
-            return api.getSlidesApiInfo().then(() => {
+            return api.getApiInfo().then(() => {
                 const api2 = new sdkApi.SlidesApi("invalid", config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
                 api2.configuration.accessToken = api.configuration.accessToken;
-                return api2.getSlidesApiInfo().then((result) => {
+                return api2.getApiInfo().then((result) => {
                     assert.equal(200, result.response.statusCode);
                 });
             });
@@ -2015,10 +1539,369 @@ describe("Auth tests", () => {
         return TestInitializer.runTest(() => {
             const config = require("../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
-            return api.getSlidesApiInfo().then(() => {
+            return api.getApiInfo().then(() => {
                 api.configuration.accessToken = "invalid";
-                return api.getSlidesApiInfo().then((result) => {
+                return api.getApiInfo().then((result) => {
                     assert.equal(200, result.response.statusCode);
+                });
+            });
+        });
+    });
+});
+
+describe("Image tests", () => {
+    it("get", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getPresentationImages(fileName, password, folderName).then((presentationResult) => {
+                    assert.equal(200, presentationResult.response.statusCode);
+                    return api.getSlideImages(fileName, 1, password, folderName).then((slideResult) => {
+                        assert.equal(200, slideResult.response.statusCode);
+                        assert((slideResult.body as model.Images).list.length < (presentationResult.body as model.Images).list.length);
+                    });
+                });
+            });
+        });
+    });
+    it("download all storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadImagesDefaultFormat(fileName, password, folderName).then((defaultResult) => {
+                    assert.equal(200, defaultResult.response.statusCode);
+                    return api.downloadImages(fileName, 'png', password, folderName).then((pngResult) => {
+                        assert.equal(200, pngResult.response.statusCode);
+                        assert(defaultResult.body.length != pngResult.body.length);
+                        var AdmZip = require('adm-zip');
+                        var defaultZip = new AdmZip(defaultResult.body);
+                        var pngZip = new AdmZip(pngResult.body);
+                        assert.equal(defaultZip.getEntries().length, pngZip.getEntries().length);
+                    });
+                });
+            });
+        });
+    });
+    it("download all request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.downloadImagesDefaultFormatOnline(fs.createReadStream("TestData/test.pptx"), password).then((defaultResult) => {
+                assert.equal(200, defaultResult.response.statusCode);
+                return api.downloadImagesOnline(fs.createReadStream("TestData/test.pptx"), 'png', password).then((pngResult) => {
+                    assert.equal(200, pngResult.response.statusCode);
+                    assert(defaultResult.body.length != pngResult.body.length);
+                    var AdmZip = require('adm-zip');
+                    var defaultZip = new AdmZip(defaultResult.body);
+                    var pngZip = new AdmZip(pngResult.body);
+                    assert.equal(defaultZip.getEntries().length, pngZip.getEntries().length);
+                });
+            });
+        });
+    });
+    it("download storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.downloadImageDefaultFormat(fileName, 1, password, folderName).then((defaultResult) => {
+                    assert.equal(200, defaultResult.response.statusCode);
+                    return api.downloadImage(fileName, 1, 'png', password, folderName).then((pngResult) => {
+                        assert.equal(200, pngResult.response.statusCode);
+                        assert(defaultResult.body.length != pngResult.body.length);
+                    });
+                });
+            });
+        });
+    });
+    it("download request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.downloadImageDefaultFormatOnline(fs.createReadStream("TestData/test.pptx"), 1, password).then((defaultResult) => {
+                assert.equal(200, defaultResult.response.statusCode);
+                return api.downloadImageOnline(fs.createReadStream("TestData/test.pptx"), 1, 'png', password).then((pngResult) => {
+                    assert.equal(200, pngResult.response.statusCode);
+                    assert(defaultResult.body.length != pngResult.body.length);
+                });
+            });
+        });
+    });
+});
+
+describe("Merge tests", () => {
+    it("merge storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const fileName2 = "test-unprotected.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
+                    let request = new model.PresentationsMergeRequest();
+                    request.presentationPaths = [ folderName + "/" + fileName2 ];
+                    return api.merge(fileName, request, password, folderName).then((defaultResult) => {
+                        assert.equal(200, defaultResult.response.statusCode);
+                    });
+                });
+            });
+        });
+    });
+    it("merge ordered storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const fileName2 = "test-unprotected.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
+                    let request = new model.OrderedMergeRequest();
+                    let presentation = new model.PresentationToMerge();
+                    presentation.path = folderName + "/" + fileName2;
+                    presentation.slides = [ 2, 1 ];
+                    request.presentations = [ presentation ];
+                    return api.orderedMerge(fileName, request, password, folderName).then((defaultResult) => {
+                        assert.equal(200, defaultResult.response.statusCode);
+                    });
+                });
+            });
+        });
+    });
+    it("merge request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            const files = [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
+            return api.mergeOnline(files, null, password).then((defaultResult) => {
+                assert.equal(200, defaultResult.response.statusCode);
+            });
+        });
+    });
+    it("merge and save request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const outPath = "TestData/out.pptx";
+            const api = TestInitializer.getApi();
+            const files = [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
+            return api.mergeAndSaveOnline(outPath, files, null, password).then((defaultResult) => {
+                assert.equal(200, defaultResult.response.statusCode);
+                return api.objectExists(outPath).then((existsResult) => {
+                    assert.equal(200, existsResult.response.statusCode);
+                    assert((existsResult.body as model.ObjectExist).exists);
+                });
+            });
+        });
+    });
+    it("merge ordered request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            const files = [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
+            let request = new model.OrderedMergeRequest();
+            let presentation = new model.PresentationToMerge();
+            presentation.path = "test-unprotected.pptx";
+            presentation.slides = [ 1, 2 ];
+            request.presentations = [ presentation ];
+            return api.mergeOnline(files, request, password).then((defaultResult) => {
+                assert.equal(200, defaultResult.response.statusCode);
+            });
+        });
+    });
+    it("merge ordered combined", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName2 = "test-unprotected.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
+                const files = [ fs.createReadStream("TestData/test.pptx") ];
+                let request = new model.OrderedMergeRequest();
+                let presentation = new model.PresentationToMerge();
+                presentation.slides = [ 1, 2 ];
+                presentation.source = model.PresentationToMerge.SourceEnum.Storage;
+                presentation.path = folderName + "/" + fileName2;
+                request.presentations = [ presentation ];
+                return api.mergeOnline(files, request, password).then((defaultResult) => {
+                    assert.equal(200, defaultResult.response.statusCode);
+                });
+            });
+        });
+    });
+});
+
+describe("Split tests", () => {
+    it("storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.split(fileName, null, null, null, null, null, null, null, password, folderName).then((result1) => {
+                    assert.equal(200, result1.response.statusCode);
+                    return api.split(fileName, null, null, null, null, 2, 3, null, password, folderName).then((result2) => {
+                        assert.equal(200, result2.response.statusCode);
+                        assert.equal(2, (result2.body as model.SplitDocumentResult).slides.length);
+                        assert((result1.body as model.SplitDocumentResult).slides.length > (result2.body as model.SplitDocumentResult).slides.length);
+                        const url = (result1.body as model.SplitDocumentResult).slides[0].href;
+                        const path = url.substring(url.indexOf("/storage/file/") + "/storage/file/".length);
+                        return api.objectExists(path).then((existsResult) => {
+                            assert.equal(200, existsResult.response.statusCode);
+                            assert((existsResult.body as model.ObjectExist).exists);
+                        });
+                    });
+                });
+            });
+        });
+    });
+    it("request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.splitOnline(fs.createReadStream("TestData/test.pptx"), "png", null, null, null, null, password).then((result1) => {
+                assert.equal(200, result1.response.statusCode);
+                return api.splitOnline(fs.createReadStream("TestData/test.pptx"), "png", null, null, 2, 3, password).then((result2) => {
+                    assert.equal(200, result2.response.statusCode);
+                    var AdmZip = require('adm-zip');
+                    var zip1 = new AdmZip(result1.body);
+                    var zip2 = new AdmZip(result2.body);
+                    assert.equal(2, zip2.getEntries().length);
+                    assert(zip1.getEntries().length > zip2.getEntries().length);
+                });
+            });
+        });
+    });
+    it("request to storage", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.splitAndSaveOnline(fs.createReadStream("TestData/test.pptx"), "png", null, null, null, null, null, password).then((result1) => {
+                assert.equal(200, result1.response.statusCode);
+                return api.splitAndSaveOnline(fs.createReadStream("TestData/test.pptx"), "png", null, null, null, 2, 3, password).then((result2) => {
+                    assert.equal(200, result2.response.statusCode);
+                    assert.equal(2, (result2.body as model.SplitDocumentResult).slides.length);
+                    assert((result1.body as model.SplitDocumentResult).slides.length > (result2.body as model.SplitDocumentResult).slides.length);
+                    const url = (result1.body as model.SplitDocumentResult).slides[0].href;
+                    const path = url.substring(url.indexOf("/storage/file/") + "/storage/file/".length);
+                    return api.objectExists(path).then((existsResult) => {
+                        assert.equal(200, existsResult.response.statusCode);
+                        assert((existsResult.body as model.ObjectExist).exists);
+                    });
+                });
+            });
+        });
+    });
+    it("with options", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const options = new model.PdfExportOptions();
+                options.jpegQuality = 50;
+                return api.split(fileName, options, null, null, null, null, null, null, password, folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    const url = (result.body as model.SplitDocumentResult).slides[0].href;
+                    const path = url.substring(url.indexOf("/storage/file/") + "/storage/file/".length);
+                    return api.objectExists(path).then((existsResult) => {
+                        assert.equal(200, existsResult.response.statusCode);
+                        assert((existsResult.body as model.ObjectExist).exists);
+                    });
+                });
+            });
+        });
+    });
+});
+
+describe("Text tests", () => {
+    it("get", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getPresentationTextItems(fileName, null, password, folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    return api.getPresentationTextItems(fileName, true, password, folderName).then((resultWithEmpty) => {
+                        assert.equal(200, resultWithEmpty.response.statusCode);
+                        return api.getSlideTextItems(fileName, slideIndex, null, password, folderName).then((slideResult) => {
+                            assert.equal(200, slideResult.response.statusCode);
+                            return api.getSlideTextItems(fileName, slideIndex, true, password, folderName).then((slideResultWithEmpty) => {
+                                assert.equal(200, slideResultWithEmpty.response.statusCode);
+                                assert((result.body as model.TextItems).items.length < (resultWithEmpty.body as model.TextItems).items.length);
+                                assert((slideResult.body as model.TextItems).items.length < (result.body as model.TextItems).items.length);
+                                assert((slideResult.body as model.TextItems).items.length < (slideResultWithEmpty.body as model.TextItems).items.length);
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+    it("replace storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+            const password = "password";
+            const oldValue = "text";
+            const newValue = "new_text";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.replacePresentationText(fileName, oldValue, newValue, null, password, folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                        return api.replacePresentationText(fileName, oldValue, newValue, true, password, folderName).then((resultWithEmpty) => {
+                            assert.equal(200, resultWithEmpty.response.statusCode);
+                            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                                return api.replaceSlideText(fileName, slideIndex, oldValue, newValue, null, password, folderName).then((slideResult) => {
+                                    assert.equal(200, slideResult.response.statusCode);
+                                    return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                                        return api.replaceSlideText(fileName, slideIndex, oldValue, newValue, true, password, folderName).then((slideResultWithEmpty) => {
+                                            assert.equal(200, slideResultWithEmpty.response.statusCode);
+                                            assert((result.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
+                                            assert((slideResult.body as model.SlideReplaceResult).matches < (result.body as model.DocumentReplaceResult).matches);
+                                            assert((slideResult.body as model.SlideReplaceResult).matches < (slideResultWithEmpty.body as model.SlideReplaceResult).matches);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+    it("replace request", () => {
+        return TestInitializer.runTest(() => {
+            const slideIndex = 1;
+            const password = "password";
+            const oldValue = "text";
+            const newValue = "new_text";
+            const api = TestInitializer.getApi();
+            return api.replacePresentationTextOnline(fs.createReadStream("TestData/test.pptx"), oldValue, newValue, null, password).then((result) => {
+                assert.equal(200, result.response.statusCode);
+                return api.replacePresentationTextOnline(fs.createReadStream("TestData/test.pptx"), oldValue, newValue, true, password).then((resultWithEmpty) => {
+                    assert.equal(200, resultWithEmpty.response.statusCode);
+                    return api.replaceSlideTextOnline(fs.createReadStream("TestData/test.pptx"), slideIndex, oldValue, newValue, null, password).then((slideResult) => {
+                        assert.equal(200, slideResult.response.statusCode);
+                        return api.replaceSlideTextOnline(fs.createReadStream("TestData/test.pptx"), slideIndex, oldValue, newValue, true, password).then((slideResultWithEmpty) => {
+                            assert.equal(200, slideResultWithEmpty.response.statusCode);
+                        });
+                    });
                 });
             });
         });
@@ -2027,7 +1910,6 @@ describe("Auth tests", () => {
 
 describe("Additional tests", () => {
     it("multiple files upload", () => {
-        const request = new requests.PostSlidesPipelineRequest();
         let file1 = new model.RequestInputFile();
         file1.index = 0;
         let file2 = new model.RequestInputFile();
@@ -2035,14 +1917,13 @@ describe("Additional tests", () => {
         let task = new model.Save();
         task.format = model.Save.FormatEnum.Pptx;
         task.output = new model.ResponseOutputFile();
-        request.pipeline = { input: { templateData: file1, template: file2 }, tasks: [ task ] };
+        const pipeline = { input: { templateData: file1, template: file2 }, tasks: [ task ] };
         const fs = require('fs');
-        request.files = [
+        const files = [
             fs.createReadStream("TestData/TemplatingCVDataWithBase64.xml"),
             fs.createReadStream("TestData/TemplateCV.pptx")
         ];
-        
-        return TestInitializer.getApi().postSlidesPipeline(request).then((result) => {
+        return TestInitializer.getApi().pipeline(pipeline, files).then((result) => {
             assert.equal(200, result.response.statusCode);
         });
     });
@@ -2052,17 +1933,8 @@ describe("Additional tests", () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
-            const request = new requests.CopyFileRequest();
-            request.srcPath = "TempTests/" + fileName;
-            request.destPath = folderName + "/" + fileName;
-            return api.copyFile(request).then(() => {
-                const shapeRequest = new requests.GetSlideShapeRequest();
-                shapeRequest.name = fileName;
-                shapeRequest.folder = folderName;
-                shapeRequest.password = "password";
-                shapeRequest.slideIndex = 1;
-                shapeRequest.shapeIndex = 1;
-                return api.getSlideShape(shapeRequest).then((result) => {
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getShape(fileName, 1, 1, "password", folderName).then((result) => {
                     assert.equal("Shape", (result.body as model.ShapeBase).type);
                     assert.equal("1", (result.body as model.Shape).text);
                 });
@@ -2084,16 +1956,8 @@ describe("Additional tests", () => {
             const max1 = 104.3;
             const max2 = 87;
             const api = TestInitializer.getApi();
-            const request = new requests.CopyFileRequest();
-            request.srcPath = "TempTests/" + fileName;
-            request.destPath = folderName + "/" + fileName;
-            return api.copyFile(request).then(() => {
-                const postRequest = new requests.PostAddNewShapeRequest();
-                postRequest.name = fileName;
-                postRequest.folder = folderName;
-                postRequest.password = "password";
-                postRequest.slideIndex = 1;
-                const chart = new model.Chart();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                let chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.Line;
                 chart.width = 400;
                 chart.height = 300;
@@ -2105,32 +1969,19 @@ describe("Additional tests", () => {
                 series.dataPoints = [{ value: 40}, { value: 50 }];
                 chart.series = [series];
                 chart.axes = { horizontalAxis: { isAutomaticMinValue: false, minValue: min1, isAutomaticMaxValue: false, maxValue: max1 } };
-                postRequest.dto = chart;
-                return api.postAddNewShape(postRequest).then(() => {
-                    const getRequest = new requests.GetSlideShapeRequest();
-                    getRequest.name = fileName;
-                    getRequest.folder = folderName;
-                    getRequest.password = "password";
-                    getRequest.slideIndex = 1;
-                    getRequest.shapeIndex = 4;
-                    return api.getSlideShape(getRequest).then((result) => {
+                return api.createShape(fileName, 1, chart, null, null, "password", folderName).then(() => {
+                    return api.getShape(fileName, 1, 4, "password", folderName).then((result) => {
                         assert.equal(min1, (result.body as model.Chart).axes.horizontalAxis.minValue);
                         assert.equal(max1, (result.body as model.Chart).axes.horizontalAxis.maxValue);
-                        const putRequest = new requests.PutSlideShapeInfoRequest();
-                        putRequest.name = fileName;
-                        putRequest.folder = folderName;
-                        putRequest.password = "password";
-                        putRequest.slideIndex = 1;
-                        putRequest.shapeIndex = 4;
-                        putRequest.dto = new model.Chart();
-                        (putRequest.dto as model.Chart).axes = { horizontalAxis: { minValue: min2 } };
-                        return api.putSlideShapeInfo(putRequest).then(() => {
-                            return api.getSlideShape(getRequest).then((result2) => {
+                        chart = new model.Chart();
+                        chart.axes = { horizontalAxis: { minValue: min2 } };
+                        return api.updateShape(fileName, 1, 4, chart, "password", folderName).then(() => {
+                            return api.getShape(fileName, 1, 4, "password", folderName).then((result2) => {
                                 assert.equal(min2, (result2.body as model.Chart).axes.horizontalAxis.minValue);
                                 assert.equal(max1, (result2.body as model.Chart).axes.horizontalAxis.maxValue);
-                                (putRequest.dto as model.Chart).axes = { horizontalAxis: { maxValue: max2 } };
-                                return api.putSlideShapeInfo(putRequest).then(() => {
-                                    return api.getSlideShape(getRequest).then((result3) => {
+                                chart.axes = { horizontalAxis: { maxValue: max2 } };
+                                return api.updateShape(fileName, 1, 4, chart, "password", folderName).then(() => {
+                                    return api.getShape(fileName, 1, 4, "password", folderName).then((result3) => {
                                         assert.equal(min2, (result3.body as model.Chart).axes.horizontalAxis.minValue);
                                         assert.equal(max2, (result3.body as model.Chart).axes.horizontalAxis.maxValue);
                                     });
@@ -2143,22 +1994,17 @@ describe("Additional tests", () => {
         });
     });
 });
-/*unstable test
+
 describe("Tests for timeout configuration parameter", () => {
     it("convert slide to svg", () => {
+/*unstable test
         return TestInitializer.initialize("postSlideSaveAs", null, null).then(() => {
-            const request = new PostSlideSaveAsRequest();
-            request.format = "svg";
-            request.name = "test.pptx";
-            request.folder = "TempSlidesSDK";
-            request.password = "password";
-            request.slideIndex = 1;
-            return TestInitializer.getApi().postSlideSaveAs(request)
+            return TestInitializer.getApi().downloadSlide("test.pptx", 1, "svg", null, "password", "TempSlidesSDK")
                 .then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.fail("must have failed because of timeout");
                 }).catch((e) => {
                 });
-        }).catch((err) => assert.fail(err));
+        }).catch((err) => assert.fail(err));*/
     });
-});*/
+});

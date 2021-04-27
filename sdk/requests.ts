@@ -1031,6 +1031,40 @@ export class DeleteSlidesDocumentPropertyRequest {
     public storage: string;
 }
 /**
+ * Request model for DeleteSlidesProtectionProperties operation.
+ */
+export class DeleteSlidesProtectionPropertiesRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Presentation password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteSlidesProtectionPropertiesOnline operation.
+ */
+export class DeleteSlidesProtectionPropertiesOnlineRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Presentation password.
+     */
+    public password: string;
+}
+/**
  * Request model for DeleteSlidesSlideBackground operation.
  */
 export class DeleteSlidesSlideBackgroundRequest {
@@ -1198,6 +1232,31 @@ export class DeleteSubshapePortionsRequest {
      * The indices of the shapes to be deleted; delete all by default.
      */
     public portions: Array<number>;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for DeleteWatermark operation.
+ */
+export class DeleteWatermarkRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Name of the watermark shape. If null, default value \"watermark\"is used.
+     */
+    public shapeName: string;
     /**
      * Document password.
      */
@@ -2072,7 +2131,7 @@ export class GetSlidesDocumentRequest {
      */
     public folder: string;
     /**
-     * Documentstorage.
+     * Document storage.
      */
     public storage: string;
 }
@@ -3341,14 +3400,6 @@ export class PostExportShapeRequest {
      */
     public format: string;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -3360,6 +3411,14 @@ export class PostExportShapeRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */
@@ -3468,6 +3527,56 @@ export class PostGetNotesSlideWithFormatRequest {
      * Storage folder containing custom fonts to be used with the document.
      */
     public fontsFolder: string;
+}
+/**
+ * Request model for PostImageWatermark operation.
+ */
+export class PostImageWatermarkRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Image data.
+     */
+    public image: Buffer;
+    /**
+     * PictureFrame DTO
+     */
+    public pictureFrame: model.PictureFrame;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostImageWatermarkOnline operation.
+ */
+export class PostImageWatermarkOnlineRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Image data.
+     */
+    public image: Buffer;
+    /**
+     * PictureFrame DTO.
+     */
+    public pictureFrame: model.PictureFrame;
+    /**
+     * Document password.
+     */
+    public password: string;
 }
 /**
  * Request model for PostImagesFromRequestWithDefaultFormat operation.
@@ -4592,6 +4701,97 @@ export class PostSubshapeSaveAsRequest {
     public fontsFolder: string;
 }
 /**
+ * Request model for PostWatermark operation.
+ */
+export class PostWatermarkRequest {
+    /**
+     * Document name.
+     */
+    public name: string;
+    /**
+     * Shape DTO
+     */
+    public shape: model.Shape;
+    /**
+     * Watermark font height.
+     */
+    public fontHeight: number;
+    /**
+     * Watermark text.
+     */
+    public text: string;
+    /**
+     * Watermark font name.
+     */
+    public fontName: string;
+    /**
+     * Watermark font color.
+     */
+    public fontColor: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document folder.
+     */
+    public folder: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
+}
+/**
+ * Request model for PostWatermarkDeleteOnline operation.
+ */
+export class PostWatermarkDeleteOnlineRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Name of the watermark shape. If null, default value \"watermark\"is used.
+     */
+    public shapeName: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
+ * Request model for PostWatermarkOnline operation.
+ */
+export class PostWatermarkOnlineRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Shape DTO
+     */
+    public shape: model.Shape;
+    /**
+     * Watermark font height.
+     */
+    public fontHeight: number;
+    /**
+     * Watermark text.
+     */
+    public text: string;
+    /**
+     * Watermark font name.
+     */
+    public fontName: string;
+    /**
+     * Watermark font color.
+     */
+    public fontColor: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+}
+/**
  * Request model for PutChartCategory operation.
  */
 export class PutChartCategoryRequest {
@@ -4731,14 +4931,6 @@ export class PutExportShapeRequest {
      */
     public outPath: string;
     /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Document storage.
-     */
-    public storage: string;
-    /**
      * X scale ratio.
      */
     public scaleX: number;
@@ -4750,6 +4942,14 @@ export class PutExportShapeRequest {
      * Shape thumbnail bounds type.
      */
     public bounds: string;
+    /**
+     * Document password.
+     */
+    public password: string;
+    /**
+     * Document storage.
+     */
+    public storage: string;
     /**
      * Fonts folder.
      */
@@ -5533,31 +5733,6 @@ export class PutSlidesConvertRequest {
     public fontsFolder: string;
 }
 /**
- * Request model for PutSlidesDocumentFromHtml operation.
- */
-export class PutSlidesDocumentFromHtmlRequest {
-    /**
-     * Document name.
-     */
-    public name: string;
-    /**
-     * HTML data.
-     */
-    public html: string;
-    /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Document folder.
-     */
-    public folder: string;
-    /**
-     * Document storage.
-     */
-    public storage: string;
-}
-/**
  * Request model for PutSlidesHeaderFooter operation.
  */
 export class PutSlidesHeaderFooterRequest {
@@ -5616,7 +5791,7 @@ export class PutSlidesProtectionPropertiesRequest {
      */
     public name: string;
     /**
-     * The view properties data.
+     * Protection properties.
      */
     public dto: model.ProtectionProperties;
     /**
@@ -5631,6 +5806,23 @@ export class PutSlidesProtectionPropertiesRequest {
      * Document storage.
      */
     public storage: string;
+}
+/**
+ * Request model for PutSlidesProtectionPropertiesOnline operation.
+ */
+export class PutSlidesProtectionPropertiesOnlineRequest {
+    /**
+     * Document data.
+     */
+    public document: Buffer;
+    /**
+     * Protection properties.
+     */
+    public dto: model.ProtectionProperties;
+    /**
+     * Document password.
+     */
+    public password: string;
 }
 /**
  * Request model for PutSlidesSaveAs operation.
@@ -5797,43 +5989,6 @@ export class PutSlidesSlidePropertiesRequest {
      * The view properties data.
      */
     public dto: model.SlideProperties;
-    /**
-     * Document password.
-     */
-    public password: string;
-    /**
-     * Document folder.
-     */
-    public folder: string;
-    /**
-     * Document storage.
-     */
-    public storage: string;
-}
-/**
- * Request model for PutSlidesSlideSize operation.
- */
-export class PutSlidesSlideSizeRequest {
-    /**
-     * Document name.
-     */
-    public name: string;
-    /**
-     * Slide width.
-     */
-    public width: number;
-    /**
-     * Slide height.
-     */
-    public height: number;
-    /**
-     * Standard slide size type.
-     */
-    public sizeType: string;
-    /**
-     * Standard slide scale type.
-     */
-    public scaleType: string;
     /**
      * Document password.
      */

@@ -3956,6 +3956,112 @@ describe("Tests for deleteDocumentProperty", () => {
     });
 });
 
+describe("Tests for deleteProtection", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "name");
+            let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "password");
+            let varfolder = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "folder");
+            let varstorage = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "storage");
+            return TestInitializer.initialize("deleteSlidesProtectionProperties", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteProtection(varname, varpassword, varfolder, varstorage), false, "deleteSlidesProtectionProperties");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "name");
+        let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "storage");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "deleteSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlidesProtectionProperties", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteProtection(varname, varpassword, varfolder, varstorage), "deleteSlidesProtectionProperties", field, varname);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "name");
+        let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "storage");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlidesProtectionProperties", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteProtection(varname, varpassword, varfolder, varstorage), "deleteSlidesProtectionProperties", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "name");
+        let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "storage");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "deleteSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlidesProtectionProperties", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteProtection(varname, varpassword, varfolder, varstorage), "deleteSlidesProtectionProperties", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "name");
+        let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteSlidesProtectionProperties", "storage");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "deleteSlidesProtectionProperties");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlidesProtectionProperties", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteProtection(varname, varpassword, varfolder, varstorage), "deleteSlidesProtectionProperties", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteProtectionOnline", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlidesProtectionPropertiesOnline", "document");
+            let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionPropertiesOnline", "password");
+            return TestInitializer.initialize("deleteSlidesProtectionPropertiesOnline", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteProtectionOnline(vardocument, varpassword), true, "deleteSlidesProtectionPropertiesOnline");
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlidesProtectionPropertiesOnline", "document");
+        let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionPropertiesOnline", "password");
+        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "deleteSlidesProtectionPropertiesOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlidesProtectionPropertiesOnline", field, vardocument).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteProtectionOnline(vardocument, varpassword), "deleteSlidesProtectionPropertiesOnline", field, vardocument);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlidesProtectionPropertiesOnline", "document");
+        let varpassword = <string>TestInitializer.getValue("deleteSlidesProtectionPropertiesOnline", "password");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteSlidesProtectionPropertiesOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteSlidesProtectionPropertiesOnline", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteProtectionOnline(vardocument, varpassword), "deleteSlidesProtectionPropertiesOnline", field, varpassword);
+            });
+        });
+    });
+});
+
 describe("Tests for deleteBackground", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -4745,6 +4851,96 @@ describe("Tests for deleteSubshapePortions", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSubshapePortions", field, varstorage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSubshapePortions(varname, varslideIndex, varpath, varshapeIndex, varparagraphIndex, varportions, varpassword, varfolder, varstorage), "deleteSubshapePortions", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteWatermark", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("deleteWatermark", "name");
+            let varshapeName = <string>TestInitializer.getValue("deleteWatermark", "shapeName");
+            let varpassword = <string>TestInitializer.getValue("deleteWatermark", "password");
+            let varfolder = <string>TestInitializer.getValue("deleteWatermark", "folder");
+            let varstorage = <string>TestInitializer.getValue("deleteWatermark", "storage");
+            return TestInitializer.initialize("deleteWatermark", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteWatermark(varname, varshapeName, varpassword, varfolder, varstorage), false, "deleteWatermark");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("deleteWatermark", "name");
+        let varshapeName = <string>TestInitializer.getValue("deleteWatermark", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("deleteWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteWatermark", "storage");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "deleteWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteWatermark", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermark(varname, varshapeName, varpassword, varfolder, varstorage), "deleteWatermark", field, varname);
+            });
+        });
+    });
+
+    it("invalid shapeName test", () => {
+        const field = "shapeName";
+        let varname = <string>TestInitializer.getValue("deleteWatermark", "name");
+        let varshapeName = <string>TestInitializer.getValue("deleteWatermark", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("deleteWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteWatermark", "storage");
+        varshapeName = <string>TestInitializer.invalidizeValue(varshapeName, field, "string", "deleteWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteWatermark", field, varshapeName).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermark(varname, varshapeName, varpassword, varfolder, varstorage), "deleteWatermark", field, varshapeName);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("deleteWatermark", "name");
+        let varshapeName = <string>TestInitializer.getValue("deleteWatermark", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("deleteWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteWatermark", "storage");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteWatermark", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermark(varname, varshapeName, varpassword, varfolder, varstorage), "deleteWatermark", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("deleteWatermark", "name");
+        let varshapeName = <string>TestInitializer.getValue("deleteWatermark", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("deleteWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteWatermark", "storage");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "deleteWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteWatermark", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermark(varname, varshapeName, varpassword, varfolder, varstorage), "deleteWatermark", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("deleteWatermark", "name");
+        let varshapeName = <string>TestInitializer.getValue("deleteWatermark", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("deleteWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("deleteWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("deleteWatermark", "storage");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "deleteWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteWatermark", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermark(varname, varshapeName, varpassword, varfolder, varstorage), "deleteWatermark", field, varstorage);
             });
         });
     });
@@ -12985,14 +13181,14 @@ describe("Tests for downloadShapeOnline", () => {
             let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
             let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
             let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-            let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-            let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
             let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
             let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
             let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+            let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+            let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
             let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
             return TestInitializer.initialize("postExportShape", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), true, "postExportShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), true, "postExportShape");
             });
         });
     });
@@ -13003,16 +13199,16 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, vardocument).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, vardocument);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, vardocument);
             });
         });
     });
@@ -13023,16 +13219,16 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, varslideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varslideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varslideIndex);
             });
         });
     });
@@ -13043,16 +13239,16 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, varshapeIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varshapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varshapeIndex);
             });
         });
     });
@@ -13063,56 +13259,16 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         varformat = <string>TestInitializer.invalidizeValue(varformat, field, "string", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, varformat).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varformat);
-            });
-        });
-    });
-
-    it("invalid password test", () => {
-        const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("postExportShape", "document");
-        let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
-        let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
-        let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
-        let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
-        let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
-        let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
-        let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
-        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "postExportShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postExportShape", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varpassword);
-            });
-        });
-    });
-
-    it("invalid storage test", () => {
-        const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("postExportShape", "document");
-        let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
-        let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
-        let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
-        let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
-        let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
-        let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
-        let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
-        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "postExportShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("postExportShape", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varformat);
             });
         });
     });
@@ -13123,16 +13279,16 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         varscaleX = <number>TestInitializer.invalidizeValue(varscaleX, field, "number", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, varscaleX).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varscaleX);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varscaleX);
             });
         });
     });
@@ -13143,16 +13299,16 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         varscaleY = <number>TestInitializer.invalidizeValue(varscaleY, field, "number", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, varscaleY).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varscaleY);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varscaleY);
             });
         });
     });
@@ -13163,16 +13319,56 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         varbounds = <string>TestInitializer.invalidizeValue(varbounds, field, "string", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, varbounds).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varbounds);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varbounds);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postExportShape", "document");
+        let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
+        let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
+        let varformat = <string>TestInitializer.getValue("postExportShape", "format");
+        let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
+        let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
+        let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
+        let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "postExportShape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postExportShape", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postExportShape", "document");
+        let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
+        let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
+        let varformat = <string>TestInitializer.getValue("postExportShape", "format");
+        let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
+        let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
+        let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
+        let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "postExportShape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postExportShape", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varstorage);
             });
         });
     });
@@ -13183,16 +13379,16 @@ describe("Tests for downloadShapeOnline", () => {
         let varslideIndex = <number>TestInitializer.getValue("postExportShape", "slideIndex");
         let varshapeIndex = <number>TestInitializer.getValue("postExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("postExportShape", "format");
-        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("postExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("postExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("postExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("postExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("postExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("postExportShape", "fontsFolder");
         varfontsFolder = <string>TestInitializer.invalidizeValue(varfontsFolder, field, "string", "postExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postExportShape", field, varfontsFolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "postExportShape", field, varfontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "postExportShape", field, varfontsFolder);
             });
         });
     });
@@ -13595,6 +13791,188 @@ describe("Tests for downloadNotesSlideOnline", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("postGetNotesSlideWithFormat", field, varfontsFolder).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadNotesSlideOnline(vardocument, varslideIndex, varformat, varwidth, varheight, varpassword, varfontsFolder), "postGetNotesSlideWithFormat", field, varfontsFolder);
+            });
+        });
+    });
+});
+
+describe("Tests for createImageWatermark", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("postImageWatermark", "name");
+            let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermark", "image");
+            let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermark", "pictureFrame");
+            let varpassword = <string>TestInitializer.getValue("postImageWatermark", "password");
+            let varfolder = <string>TestInitializer.getValue("postImageWatermark", "folder");
+            let varstorage = <string>TestInitializer.getValue("postImageWatermark", "storage");
+            return TestInitializer.initialize("postImageWatermark", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), false, "postImageWatermark");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("postImageWatermark", "name");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermark", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermark", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postImageWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postImageWatermark", "storage");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "postImageWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermark", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), "postImageWatermark", field, varname);
+            });
+        });
+    });
+
+    it("invalid image test", () => {
+        const field = "image";
+        let varname = <string>TestInitializer.getValue("postImageWatermark", "name");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermark", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermark", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postImageWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postImageWatermark", "storage");
+        varimage = <Buffer>TestInitializer.invalidizeValue(varimage, field, "Buffer", "postImageWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermark", field, varimage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), "postImageWatermark", field, varimage);
+            });
+        });
+    });
+
+    it("invalid pictureFrame test", () => {
+        const field = "pictureFrame";
+        let varname = <string>TestInitializer.getValue("postImageWatermark", "name");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermark", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermark", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postImageWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postImageWatermark", "storage");
+        varpictureFrame = <model.PictureFrame>TestInitializer.invalidizeValue(varpictureFrame, field, "PictureFrame", "postImageWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermark", field, varpictureFrame).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), "postImageWatermark", field, varpictureFrame);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("postImageWatermark", "name");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermark", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermark", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postImageWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postImageWatermark", "storage");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "postImageWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermark", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), "postImageWatermark", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("postImageWatermark", "name");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermark", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermark", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postImageWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postImageWatermark", "storage");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "postImageWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermark", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), "postImageWatermark", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("postImageWatermark", "name");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermark", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermark", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postImageWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postImageWatermark", "storage");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "postImageWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermark", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), "postImageWatermark", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for createImageWatermarkOnline", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let vardocument = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "document");
+            let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "image");
+            let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermarkOnline", "pictureFrame");
+            let varpassword = <string>TestInitializer.getValue("postImageWatermarkOnline", "password");
+            return TestInitializer.initialize("postImageWatermarkOnline", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().createImageWatermarkOnline(vardocument, varimage, varpictureFrame, varpassword), true, "postImageWatermarkOnline");
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "document");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermarkOnline", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermarkOnline", "password");
+        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "postImageWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermarkOnline", field, vardocument).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermarkOnline(vardocument, varimage, varpictureFrame, varpassword), "postImageWatermarkOnline", field, vardocument);
+            });
+        });
+    });
+
+    it("invalid image test", () => {
+        const field = "image";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "document");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermarkOnline", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermarkOnline", "password");
+        varimage = <Buffer>TestInitializer.invalidizeValue(varimage, field, "Buffer", "postImageWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermarkOnline", field, varimage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermarkOnline(vardocument, varimage, varpictureFrame, varpassword), "postImageWatermarkOnline", field, varimage);
+            });
+        });
+    });
+
+    it("invalid pictureFrame test", () => {
+        const field = "pictureFrame";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "document");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermarkOnline", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermarkOnline", "password");
+        varpictureFrame = <model.PictureFrame>TestInitializer.invalidizeValue(varpictureFrame, field, "PictureFrame", "postImageWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermarkOnline", field, varpictureFrame).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermarkOnline(vardocument, varimage, varpictureFrame, varpassword), "postImageWatermarkOnline", field, varpictureFrame);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "document");
+        let varimage = <Buffer>TestInitializer.getStreamValue("postImageWatermarkOnline", "image");
+        let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("postImageWatermarkOnline", "pictureFrame");
+        let varpassword = <string>TestInitializer.getValue("postImageWatermarkOnline", "password");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "postImageWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postImageWatermarkOnline", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermarkOnline(vardocument, varimage, varpictureFrame, varpassword), "postImageWatermarkOnline", field, varpassword);
             });
         });
     });
@@ -18462,6 +18840,384 @@ describe("Tests for downloadSubshape", () => {
     });
 });
 
+describe("Tests for createWatermark", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("postWatermark", "name");
+            let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+            let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+            let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+            let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+            let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+            let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+            let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+            let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+            return TestInitializer.initialize("postWatermark", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), false, "postWatermark");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varname);
+            });
+        });
+    });
+
+    it("invalid shape test", () => {
+        const field = "shape";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varshape = <model.Shape>TestInitializer.invalidizeValue(varshape, field, "Shape", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varshape).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varshape);
+            });
+        });
+    });
+
+    it("invalid fontHeight test", () => {
+        const field = "fontHeight";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varfontHeight = <number>TestInitializer.invalidizeValue(varfontHeight, field, "number", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varfontHeight).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varfontHeight);
+            });
+        });
+    });
+
+    it("invalid text test", () => {
+        const field = "text";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        vartext = <string>TestInitializer.invalidizeValue(vartext, field, "string", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, vartext).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, vartext);
+            });
+        });
+    });
+
+    it("invalid fontName test", () => {
+        const field = "fontName";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varfontName = <string>TestInitializer.invalidizeValue(varfontName, field, "string", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varfontName).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varfontName);
+            });
+        });
+    });
+
+    it("invalid fontColor test", () => {
+        const field = "fontColor";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varfontColor = <string>TestInitializer.invalidizeValue(varfontColor, field, "string", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varfontColor).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varfontColor);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("postWatermark", "name");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermark", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermark", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermark", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermark", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermark", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermark", "password");
+        let varfolder = <string>TestInitializer.getValue("postWatermark", "folder");
+        let varstorage = <string>TestInitializer.getValue("postWatermark", "storage");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "postWatermark");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermark", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermark(varname, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword, varfolder, varstorage), "postWatermark", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteWatermarkOnline", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkDeleteOnline", "document");
+            let varshapeName = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "shapeName");
+            let varpassword = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "password");
+            return TestInitializer.initialize("postWatermarkDeleteOnline", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteWatermarkOnline(vardocument, varshapeName, varpassword), true, "postWatermarkDeleteOnline");
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkDeleteOnline", "document");
+        let varshapeName = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "password");
+        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "postWatermarkDeleteOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkDeleteOnline", field, vardocument).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermarkOnline(vardocument, varshapeName, varpassword), "postWatermarkDeleteOnline", field, vardocument);
+            });
+        });
+    });
+
+    it("invalid shapeName test", () => {
+        const field = "shapeName";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkDeleteOnline", "document");
+        let varshapeName = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "password");
+        varshapeName = <string>TestInitializer.invalidizeValue(varshapeName, field, "string", "postWatermarkDeleteOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkDeleteOnline", field, varshapeName).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermarkOnline(vardocument, varshapeName, varpassword), "postWatermarkDeleteOnline", field, varshapeName);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkDeleteOnline", "document");
+        let varshapeName = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "shapeName");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkDeleteOnline", "password");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "postWatermarkDeleteOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkDeleteOnline", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermarkOnline(vardocument, varshapeName, varpassword), "postWatermarkDeleteOnline", field, varpassword);
+            });
+        });
+    });
+});
+
+describe("Tests for createWatermarkOnline", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+            let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+            let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+            let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+            let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+            let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+            let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+            return TestInitializer.initialize("postWatermarkOnline", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), true, "postWatermarkOnline");
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "postWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkOnline", field, vardocument).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "postWatermarkOnline", field, vardocument);
+            });
+        });
+    });
+
+    it("invalid shape test", () => {
+        const field = "shape";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+        varshape = <model.Shape>TestInitializer.invalidizeValue(varshape, field, "Shape", "postWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkOnline", field, varshape).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "postWatermarkOnline", field, varshape);
+            });
+        });
+    });
+
+    it("invalid fontHeight test", () => {
+        const field = "fontHeight";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+        varfontHeight = <number>TestInitializer.invalidizeValue(varfontHeight, field, "number", "postWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkOnline", field, varfontHeight).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "postWatermarkOnline", field, varfontHeight);
+            });
+        });
+    });
+
+    it("invalid text test", () => {
+        const field = "text";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+        vartext = <string>TestInitializer.invalidizeValue(vartext, field, "string", "postWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkOnline", field, vartext).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "postWatermarkOnline", field, vartext);
+            });
+        });
+    });
+
+    it("invalid fontName test", () => {
+        const field = "fontName";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+        varfontName = <string>TestInitializer.invalidizeValue(varfontName, field, "string", "postWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkOnline", field, varfontName).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "postWatermarkOnline", field, varfontName);
+            });
+        });
+    });
+
+    it("invalid fontColor test", () => {
+        const field = "fontColor";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+        varfontColor = <string>TestInitializer.invalidizeValue(varfontColor, field, "string", "postWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkOnline", field, varfontColor).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "postWatermarkOnline", field, varfontColor);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("postWatermarkOnline", "document");
+        let varshape = <model.Shape>TestInitializer.getValue("postWatermarkOnline", "shape");
+        let varfontHeight = <number>TestInitializer.getValue("postWatermarkOnline", "fontHeight");
+        let vartext = <string>TestInitializer.getValue("postWatermarkOnline", "text");
+        let varfontName = <string>TestInitializer.getValue("postWatermarkOnline", "fontName");
+        let varfontColor = <string>TestInitializer.getValue("postWatermarkOnline", "fontColor");
+        let varpassword = <string>TestInitializer.getValue("postWatermarkOnline", "password");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "postWatermarkOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("postWatermarkOnline", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "postWatermarkOnline", field, varpassword);
+            });
+        });
+    });
+});
+
 describe("Tests for updateChartCategory", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -18984,14 +19740,14 @@ describe("Tests for saveShapeOnline", () => {
             let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
             let varformat = <string>TestInitializer.getValue("putExportShape", "format");
             let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-            let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-            let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
             let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
             let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
             let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+            let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+            let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
             let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
             return TestInitializer.initialize("putExportShape", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), false, "putExportShape");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), false, "putExportShape");
             });
         });
     });
@@ -19003,16 +19759,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, vardocument).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, vardocument);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, vardocument);
             });
         });
     });
@@ -19024,16 +19780,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varslideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varslideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varslideIndex);
             });
         });
     });
@@ -19045,16 +19801,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varshapeIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varshapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varshapeIndex);
             });
         });
     });
@@ -19066,16 +19822,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varformat = <string>TestInitializer.invalidizeValue(varformat, field, "string", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varformat).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varformat);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varformat);
             });
         });
     });
@@ -19087,58 +19843,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varoutPath = <string>TestInitializer.invalidizeValue(varoutPath, field, "string", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varoutPath).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varoutPath);
-            });
-        });
-    });
-
-    it("invalid password test", () => {
-        const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("putExportShape", "document");
-        let varslideIndex = <number>TestInitializer.getValue("putExportShape", "slideIndex");
-        let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
-        let varformat = <string>TestInitializer.getValue("putExportShape", "format");
-        let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
-        let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
-        let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
-        let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
-        let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
-        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "putExportShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putExportShape", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varpassword);
-            });
-        });
-    });
-
-    it("invalid storage test", () => {
-        const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("putExportShape", "document");
-        let varslideIndex = <number>TestInitializer.getValue("putExportShape", "slideIndex");
-        let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
-        let varformat = <string>TestInitializer.getValue("putExportShape", "format");
-        let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
-        let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
-        let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
-        let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
-        let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
-        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "putExportShape");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putExportShape", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varoutPath);
             });
         });
     });
@@ -19150,16 +19864,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varscaleX = <number>TestInitializer.invalidizeValue(varscaleX, field, "number", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varscaleX).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varscaleX);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varscaleX);
             });
         });
     });
@@ -19171,16 +19885,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varscaleY = <number>TestInitializer.invalidizeValue(varscaleY, field, "number", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varscaleY).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varscaleY);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varscaleY);
             });
         });
     });
@@ -19192,16 +19906,58 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varbounds = <string>TestInitializer.invalidizeValue(varbounds, field, "string", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varbounds).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varbounds);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varbounds);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("putExportShape", "document");
+        let varslideIndex = <number>TestInitializer.getValue("putExportShape", "slideIndex");
+        let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
+        let varformat = <string>TestInitializer.getValue("putExportShape", "format");
+        let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
+        let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
+        let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
+        let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
+        let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "putExportShape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putExportShape", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("putExportShape", "document");
+        let varslideIndex = <number>TestInitializer.getValue("putExportShape", "slideIndex");
+        let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
+        let varformat = <string>TestInitializer.getValue("putExportShape", "format");
+        let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
+        let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
+        let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
+        let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
+        let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "putExportShape");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putExportShape", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varstorage);
             });
         });
     });
@@ -19213,16 +19969,16 @@ describe("Tests for saveShapeOnline", () => {
         let varshapeIndex = <number>TestInitializer.getValue("putExportShape", "shapeIndex");
         let varformat = <string>TestInitializer.getValue("putExportShape", "format");
         let varoutPath = <string>TestInitializer.getValue("putExportShape", "outPath");
-        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
-        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varscaleX = <number>TestInitializer.getValue("putExportShape", "scaleX");
         let varscaleY = <number>TestInitializer.getValue("putExportShape", "scaleY");
         let varbounds = <string>TestInitializer.getValue("putExportShape", "bounds");
+        let varpassword = <string>TestInitializer.getValue("putExportShape", "password");
+        let varstorage = <string>TestInitializer.getValue("putExportShape", "storage");
         let varfontsFolder = <string>TestInitializer.getValue("putExportShape", "fontsFolder");
         varfontsFolder = <string>TestInitializer.invalidizeValue(varfontsFolder, field, "string", "putExportShape");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putExportShape", field, varfontsFolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varpassword, varstorage, varscaleX, varscaleY, varbounds, varfontsFolder), "putExportShape", field, varfontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder), "putExportShape", field, varfontsFolder);
             });
         });
     });
@@ -22744,96 +23500,6 @@ describe("Tests for convertAndSave", () => {
     });
 });
 
-describe("Tests for putSlidesDocumentFromHtml", () => {
-    it("main test", () => {
-        return TestInitializer.runTest(() => {
-            let varname = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "name");
-            let varhtml = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "html");
-            let varpassword = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "password");
-            let varfolder = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "folder");
-            let varstorage = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "storage");
-            return TestInitializer.initialize("putSlidesDocumentFromHtml", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(varname, varhtml, varpassword, varfolder, varstorage), false, "putSlidesDocumentFromHtml");
-            });
-        });
-    });
-
-    it("invalid name test", () => {
-        const field = "name";
-        let varname = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "name");
-        let varhtml = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "html");
-        let varpassword = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "storage");
-        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "putSlidesDocumentFromHtml");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesDocumentFromHtml", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(varname, varhtml, varpassword, varfolder, varstorage), "putSlidesDocumentFromHtml", field, varname);
-            });
-        });
-    });
-
-    it("invalid html test", () => {
-        const field = "html";
-        let varname = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "name");
-        let varhtml = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "html");
-        let varpassword = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "storage");
-        varhtml = <string>TestInitializer.invalidizeValue(varhtml, field, "string", "putSlidesDocumentFromHtml");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesDocumentFromHtml", field, varhtml).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(varname, varhtml, varpassword, varfolder, varstorage), "putSlidesDocumentFromHtml", field, varhtml);
-            });
-        });
-    });
-
-    it("invalid password test", () => {
-        const field = "password";
-        let varname = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "name");
-        let varhtml = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "html");
-        let varpassword = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "storage");
-        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "putSlidesDocumentFromHtml");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesDocumentFromHtml", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(varname, varhtml, varpassword, varfolder, varstorage), "putSlidesDocumentFromHtml", field, varpassword);
-            });
-        });
-    });
-
-    it("invalid folder test", () => {
-        const field = "folder";
-        let varname = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "name");
-        let varhtml = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "html");
-        let varpassword = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "storage");
-        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "putSlidesDocumentFromHtml");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesDocumentFromHtml", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(varname, varhtml, varpassword, varfolder, varstorage), "putSlidesDocumentFromHtml", field, varfolder);
-            });
-        });
-    });
-
-    it("invalid storage test", () => {
-        const field = "storage";
-        let varname = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "name");
-        let varhtml = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "html");
-        let varpassword = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesDocumentFromHtml", "storage");
-        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "putSlidesDocumentFromHtml");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesDocumentFromHtml", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesDocumentFromHtml(varname, varhtml, varpassword, varfolder, varstorage), "putSlidesDocumentFromHtml", field, varstorage);
-            });
-        });
-    });
-});
-
 describe("Tests for setPresentationHeaderFooter", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -23014,7 +23680,7 @@ describe("Tests for mergeAndSaveOnline", () => {
     });
 });
 
-describe("Tests for setProtectionProperties", () => {
+describe("Tests for setProtection", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
             let varname = <string>TestInitializer.getValue("putSlidesProtectionProperties", "name");
@@ -23023,7 +23689,7 @@ describe("Tests for setProtectionProperties", () => {
             let varfolder = <string>TestInitializer.getValue("putSlidesProtectionProperties", "folder");
             let varstorage = <string>TestInitializer.getValue("putSlidesProtectionProperties", "storage");
             return TestInitializer.initialize("putSlidesProtectionProperties", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().setProtectionProperties(varname, vardto, varpassword, varfolder, varstorage), false, "putSlidesProtectionProperties");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().setProtection(varname, vardto, varpassword, varfolder, varstorage), false, "putSlidesProtectionProperties");
             });
         });
     });
@@ -23038,7 +23704,7 @@ describe("Tests for setProtectionProperties", () => {
         varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "putSlidesProtectionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesProtectionProperties", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionProperties(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varname);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtection(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varname);
             });
         });
     });
@@ -23053,7 +23719,7 @@ describe("Tests for setProtectionProperties", () => {
         vardto = <model.ProtectionProperties>TestInitializer.invalidizeValue(vardto, field, "ProtectionProperties", "putSlidesProtectionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesProtectionProperties", field, vardto).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionProperties(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, vardto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtection(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, vardto);
             });
         });
     });
@@ -23068,7 +23734,7 @@ describe("Tests for setProtectionProperties", () => {
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "putSlidesProtectionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesProtectionProperties", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionProperties(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtection(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varpassword);
             });
         });
     });
@@ -23083,7 +23749,7 @@ describe("Tests for setProtectionProperties", () => {
         varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "putSlidesProtectionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesProtectionProperties", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionProperties(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varfolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtection(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varfolder);
             });
         });
     });
@@ -23098,7 +23764,59 @@ describe("Tests for setProtectionProperties", () => {
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "putSlidesProtectionProperties");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesProtectionProperties", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionProperties(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtection(varname, vardto, varpassword, varfolder, varstorage), "putSlidesProtectionProperties", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for setProtectionOnline", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let vardocument = <Buffer>TestInitializer.getStreamValue("putSlidesProtectionPropertiesOnline", "document");
+            let vardto = <model.ProtectionProperties>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "dto");
+            let varpassword = <string>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "password");
+            return TestInitializer.initialize("putSlidesProtectionPropertiesOnline", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().setProtectionOnline(vardocument, vardto, varpassword), true, "putSlidesProtectionPropertiesOnline");
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("putSlidesProtectionPropertiesOnline", "document");
+        let vardto = <model.ProtectionProperties>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "dto");
+        let varpassword = <string>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "password");
+        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "putSlidesProtectionPropertiesOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionPropertiesOnline", field, vardocument).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionOnline(vardocument, vardto, varpassword), "putSlidesProtectionPropertiesOnline", field, vardocument);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("putSlidesProtectionPropertiesOnline", "document");
+        let vardto = <model.ProtectionProperties>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "dto");
+        let varpassword = <string>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "password");
+        vardto = <model.ProtectionProperties>TestInitializer.invalidizeValue(vardto, field, "ProtectionProperties", "putSlidesProtectionPropertiesOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionPropertiesOnline", field, vardto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionOnline(vardocument, vardto, varpassword), "putSlidesProtectionPropertiesOnline", field, vardto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("putSlidesProtectionPropertiesOnline", "document");
+        let vardto = <model.ProtectionProperties>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "dto");
+        let varpassword = <string>TestInitializer.getValue("putSlidesProtectionPropertiesOnline", "password");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "putSlidesProtectionPropertiesOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("putSlidesProtectionPropertiesOnline", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionOnline(vardocument, vardto, varpassword), "putSlidesProtectionPropertiesOnline", field, varpassword);
             });
         });
     });
@@ -23799,168 +24517,6 @@ describe("Tests for setSlideProperties", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("putSlidesSlideProperties", field, varstorage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().setSlideProperties(varname, vardto, varpassword, varfolder, varstorage), "putSlidesSlideProperties", field, varstorage);
-            });
-        });
-    });
-});
-
-describe("Tests for putSlidesSlideSize", () => {
-    it("main test", () => {
-        return TestInitializer.runTest(() => {
-            let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-            let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-            let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-            let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-            let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-            let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-            let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-            let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-            return TestInitializer.initialize("putSlidesSlideSize", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), false, "putSlidesSlideSize");
-            });
-        });
-    });
-
-    it("invalid name test", () => {
-        const field = "name";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varname);
-            });
-        });
-    });
-
-    it("invalid width test", () => {
-        const field = "width";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varwidth = <number>TestInitializer.invalidizeValue(varwidth, field, "number", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varwidth).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varwidth);
-            });
-        });
-    });
-
-    it("invalid height test", () => {
-        const field = "height";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varheight = <number>TestInitializer.invalidizeValue(varheight, field, "number", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varheight).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varheight);
-            });
-        });
-    });
-
-    it("invalid sizeType test", () => {
-        const field = "sizeType";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varsizeType = <string>TestInitializer.invalidizeValue(varsizeType, field, "string", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varsizeType).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varsizeType);
-            });
-        });
-    });
-
-    it("invalid scaleType test", () => {
-        const field = "scaleType";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varscaleType = <string>TestInitializer.invalidizeValue(varscaleType, field, "string", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varscaleType).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varscaleType);
-            });
-        });
-    });
-
-    it("invalid password test", () => {
-        const field = "password";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varpassword);
-            });
-        });
-    });
-
-    it("invalid folder test", () => {
-        const field = "folder";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varfolder);
-            });
-        });
-    });
-
-    it("invalid storage test", () => {
-        const field = "storage";
-        let varname = <string>TestInitializer.getValue("putSlidesSlideSize", "name");
-        let varwidth = <number>TestInitializer.getValue("putSlidesSlideSize", "width");
-        let varheight = <number>TestInitializer.getValue("putSlidesSlideSize", "height");
-        let varsizeType = <string>TestInitializer.getValue("putSlidesSlideSize", "sizeType");
-        let varscaleType = <string>TestInitializer.getValue("putSlidesSlideSize", "scaleType");
-        let varpassword = <string>TestInitializer.getValue("putSlidesSlideSize", "password");
-        let varfolder = <string>TestInitializer.getValue("putSlidesSlideSize", "folder");
-        let varstorage = <string>TestInitializer.getValue("putSlidesSlideSize", "storage");
-        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "putSlidesSlideSize");
-        return TestInitializer.runTest(() => {
-            return TestInitializer.initialize("putSlidesSlideSize", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().putSlidesSlideSize(varname, varwidth, varheight, varsizeType, varscaleType, varpassword, varfolder, varstorage), "putSlidesSlideSize", field, varstorage);
             });
         });
     });

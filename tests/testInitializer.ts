@@ -39,6 +39,9 @@ export class TestInitializer {
         if (functionName.endsWith('FromPdf')) {
             fileName = "test.pdf";
         }
+        if (name == 'image') {
+            fileName = "watermark.png";
+        }
         return fs.createReadStream("TestData/" + fileName);
     }
 

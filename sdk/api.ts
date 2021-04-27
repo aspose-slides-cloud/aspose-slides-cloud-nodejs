@@ -93,8 +93,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -136,8 +135,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -165,8 +163,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -226,8 +223,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -294,8 +290,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -355,8 +350,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -387,8 +381,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -419,8 +412,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -466,8 +458,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slide");
         return Promise.resolve({ body: result, response });
@@ -527,8 +518,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -584,8 +574,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -652,8 +641,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -716,8 +704,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -770,8 +757,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -820,8 +806,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -881,8 +866,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -938,8 +922,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -1006,8 +989,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -1070,8 +1052,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -1120,8 +1101,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -1166,8 +1146,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -1205,8 +1184,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1259,8 +1237,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1313,8 +1290,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1373,8 +1349,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1421,8 +1396,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1469,8 +1443,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1517,8 +1490,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -1571,8 +1543,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -1621,8 +1592,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -1677,8 +1647,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -1729,8 +1698,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -1773,8 +1741,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -1815,8 +1782,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -1863,8 +1829,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -1877,6 +1842,91 @@ export class SlidesApi {
      */
     public async deleteSlidesDocumentProperty(requestObj: requests.DeleteSlidesDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.DocumentProperties}> {
         return await this.deleteDocumentProperty(requestObj.name, requestObj.propertyName, requestObj.password, requestObj.folder, requestObj.storage);
+    }
+
+    /**
+     * Resets all presentation protection settings.  
+     * @param name Document name.
+     * @param password Presentation password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteProtection(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteSlidesProtectionProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/protection";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * @deprecated Use deleteProtection.
+     * Resets all presentation protection settings.  
+     * @param requestObj contains request parameters
+     */
+    public async deleteSlidesProtectionProperties(requestObj: requests.DeleteSlidesProtectionPropertiesRequest): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+        return await this.deleteProtection(requestObj.name, requestObj.password, requestObj.folder, requestObj.storage);
+    }
+
+    /**
+     * Resets all presentation protection settings.  
+     * @param document Document data.
+     * @param password Presentation password.
+     */
+    public async deleteProtectionOnline(document: Buffer, password: string): Promise<{response: http.ClientResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling deleteSlidesProtectionPropertiesOnline.');
+        }
+        // verify required parameter 'password' is not null or undefined
+        if (password === null || password === undefined) {
+            throw new Error('The required parameter "password" was null or undefined when calling deleteSlidesProtectionPropertiesOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/protection/delete";
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * @deprecated Use deleteProtectionOnline.
+     * Resets all presentation protection settings.  
+     * @param requestObj contains request parameters
+     */
+    public async deleteSlidesProtectionPropertiesOnline(requestObj: requests.DeleteSlidesProtectionPropertiesOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+        return await this.deleteProtectionOnline(requestObj.document, requestObj.password);
     }
 
     /**
@@ -1911,8 +1961,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -1984,8 +2033,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -2044,8 +2092,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -2115,8 +2162,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -2182,11 +2228,52 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Removes shapes with name \&quot;watermark\&quot; from the presentation. 
+     * @param name Document name.
+     * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteWatermark(name: any = null, shapeName: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+        if (name instanceof requests.DeleteWatermarkRequest) {
+            const requestObject = name as requests.DeleteWatermarkRequest;
+            name = requestObject.name;
+            shapeName = requestObject.shapeName;
+            password = requestObject.password;
+            folder = requestObject.folder;
+            storage = requestObject.storage;
+        }
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteWatermark.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/watermark/delete";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeName", shapeName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
     }
 
     /**
@@ -2214,8 +2301,7 @@ export class SlidesApi {
             encoding: null
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -2240,8 +2326,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DiscUsage");
         return Promise.resolve({ body: result, response });
@@ -2269,8 +2354,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FileVersions");
         return Promise.resolve({ body: result, response });
@@ -2298,8 +2382,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FilesList");
         return Promise.resolve({ body: result, response });
@@ -2345,8 +2428,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlide");
         return Promise.resolve({ body: result, response });
@@ -2378,8 +2460,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlides");
         return Promise.resolve({ body: result, response });
@@ -2434,8 +2515,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "MasterSlide");
         return Promise.resolve({ body: result, response });
@@ -2467,8 +2547,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "MasterSlides");
         return Promise.resolve({ body: result, response });
@@ -2523,8 +2602,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
         return Promise.resolve({ body: result, response });
@@ -2562,8 +2640,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "EntityExists");
         return Promise.resolve({ body: result, response });
@@ -2618,8 +2695,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlideHeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -2672,8 +2748,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -2723,8 +2798,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -2777,8 +2851,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -2843,8 +2916,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -2903,8 +2975,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -2959,8 +3030,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -3010,8 +3080,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -3076,8 +3145,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -3136,8 +3204,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -3185,8 +3252,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -3226,8 +3292,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -3282,8 +3347,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "HeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -3327,8 +3391,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -3387,8 +3450,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -3441,8 +3503,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -3489,8 +3550,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -3545,8 +3605,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -3607,8 +3666,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -3663,8 +3721,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -3713,8 +3770,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -3760,7 +3816,7 @@ export class SlidesApi {
      * @param name Document name.
      * @param password Document password.
      * @param folder Document folder.
-     * @param storage Documentstorage.
+     * @param storage Document storage.
      */
     public async getPresentation(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
@@ -3781,8 +3837,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -3823,8 +3878,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -3871,8 +3925,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperty");
         return Promise.resolve({ body: result, response });
@@ -3919,8 +3972,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -3973,8 +4025,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -4015,8 +4066,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Images");
         return Promise.resolve({ body: result, response });
@@ -4069,8 +4119,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Placeholder");
         return Promise.resolve({ body: result, response });
@@ -4117,8 +4166,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Placeholders");
         return Promise.resolve({ body: result, response });
@@ -4161,8 +4209,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "TextItems");
         return Promise.resolve({ body: result, response });
@@ -4189,7 +4236,7 @@ export class SlidesApi {
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlidesProtectionProperties.');
         }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/protectionProperties";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/protection";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
@@ -4203,8 +4250,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
         return Promise.resolve({ body: result, response });
@@ -4251,8 +4297,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slide");
         return Promise.resolve({ body: result, response });
@@ -4299,8 +4344,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -4347,8 +4391,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideComments");
         return Promise.resolve({ body: result, response });
@@ -4395,8 +4438,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Images");
         return Promise.resolve({ body: result, response });
@@ -4437,8 +4479,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideProperties");
         return Promise.resolve({ body: result, response });
@@ -4487,8 +4528,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "TextItems");
         return Promise.resolve({ body: result, response });
@@ -4529,8 +4569,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -4577,8 +4616,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Theme");
         return Promise.resolve({ body: result, response });
@@ -4625,8 +4663,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ColorScheme");
         return Promise.resolve({ body: result, response });
@@ -4673,8 +4710,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FontScheme");
         return Promise.resolve({ body: result, response });
@@ -4721,8 +4757,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FormatScheme");
         return Promise.resolve({ body: result, response });
@@ -4763,8 +4798,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ViewProperties");
         return Promise.resolve({ body: result, response });
@@ -4831,8 +4865,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -4893,8 +4926,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -4948,8 +4980,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -4991,8 +5022,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -5023,8 +5053,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ObjectExist");
         return Promise.resolve({ body: result, response });
@@ -5075,8 +5104,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -5142,8 +5170,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -5195,8 +5222,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -5250,8 +5276,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -5313,8 +5338,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -5382,8 +5406,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -5435,8 +5458,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
         return Promise.resolve({ body: result, response });
@@ -5493,8 +5515,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -5552,8 +5573,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -5617,8 +5637,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -5676,8 +5695,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -5734,8 +5752,7 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "cloneFromPassword", cloneFromPassword);
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlide");
         return Promise.resolve({ body: result, response });
@@ -5794,8 +5811,7 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "cloneFromPassword", cloneFromPassword);
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "MasterSlide");
         return Promise.resolve({ body: result, response });
@@ -5837,12 +5853,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5890,12 +5905,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5937,12 +5951,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5983,8 +5996,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6031,8 +6043,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6053,14 +6064,14 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param shapeIndex Index of shape starting from 1
      * @param format Export picture format.
-     * @param password Document password.
-     * @param storage Document storage.
      * @param scaleX X scale ratio.
      * @param scaleY Y scale ratio.
      * @param bounds Shape thumbnail bounds type.
+     * @param password Document password.
+     * @param storage Document storage.
      * @param fontsFolder Fonts folder.
      */
-    public async downloadShapeOnline(document: Buffer, slideIndex: number, shapeIndex: number, format: string, password: string = null, storage: string = null, scaleX: number = null, scaleY: number = null, bounds: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadShapeOnline(document: Buffer, slideIndex: number, shapeIndex: number, format: string, scaleX: number = null, scaleY: number = null, bounds: string = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling postExportShape.');
@@ -6082,10 +6093,10 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", scaleX);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", scaleY);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bounds", bounds);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
         const requestOptions: request.Options = {
             method: "POST",
@@ -6096,12 +6107,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6113,7 +6123,7 @@ export class SlidesApi {
      * @param requestObj contains request parameters
      */
     public async postExportShape(requestObj: requests.PostExportShapeRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        return await this.downloadShapeOnline(requestObj.document, requestObj.slideIndex, requestObj.shapeIndex, requestObj.format, requestObj.password, requestObj.storage, requestObj.scaleX, requestObj.scaleY, requestObj.bounds, requestObj.fontsFolder);
+        return await this.downloadShapeOnline(requestObj.document, requestObj.slideIndex, requestObj.shapeIndex, requestObj.format, requestObj.scaleX, requestObj.scaleY, requestObj.bounds, requestObj.password, requestObj.storage, requestObj.fontsFolder);
     }
 
     /**
@@ -6157,12 +6167,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6204,12 +6213,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
         return Promise.resolve({ body: result, response });
@@ -6251,12 +6259,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "EntityExists");
         return Promise.resolve({ body: result, response });
@@ -6310,12 +6317,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6328,6 +6334,100 @@ export class SlidesApi {
      */
     public async postGetNotesSlideWithFormat(requestObj: requests.PostGetNotesSlideWithFormatRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
         return await this.downloadNotesSlideOnline(requestObj.document, requestObj.slideIndex, requestObj.format, requestObj.width, requestObj.height, requestObj.password, requestObj.fontsFolder);
+    }
+
+    /**
+     * Adds an image watermark to each slide of the presentation.  Image can be provided as a part of the form or withing PictureFrame DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param name Document name.
+     * @param image Image data.
+     * @param pictureFrame PictureFrame DTO
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async createImageWatermark(name: string, image: Buffer = null, pictureFrame: model.PictureFrame = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling postImageWatermark.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/watermark/image";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: pictureFrame
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (image != null) 
+        {
+            localVarFiles.push(image);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
+    }
+
+    /**
+     * @deprecated Use createImageWatermark.
+     * Adds an image watermark to each slide of the presentation.  Image can be provided as a part of the form or withing PictureFrame DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param requestObj contains request parameters
+     */
+    public async postImageWatermark(requestObj: requests.PostImageWatermarkRequest): Promise<{response: http.ClientResponse}> {
+        return await this.createImageWatermark(requestObj.name, requestObj.image, requestObj.pictureFrame, requestObj.password, requestObj.folder, requestObj.storage);
+    }
+
+    /**
+     * Adds an image watermark to each slide of the presentation.  Image can be provided as a part of the form or withing PictureFrame DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param document Document data.
+     * @param image Image data.
+     * @param pictureFrame PictureFrame DTO.
+     * @param password Document password.
+     */
+    public async createImageWatermarkOnline(document: Buffer, image: Buffer = null, pictureFrame: model.PictureFrame = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling postImageWatermarkOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/watermark/image";
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: pictureFrame,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        if (image != null) 
+        {
+            localVarFiles.push(image);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * @deprecated Use createImageWatermarkOnline.
+     * Adds an image watermark to each slide of the presentation.  Image can be provided as a part of the form or withing PictureFrame DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param requestObj contains request parameters
+     */
+    public async postImageWatermarkOnline(requestObj: requests.PostImageWatermarkOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+        return await this.createImageWatermarkOnline(requestObj.document, requestObj.image, requestObj.pictureFrame, requestObj.password);
     }
 
     /**
@@ -6351,12 +6451,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6416,8 +6515,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -6483,8 +6581,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -6540,8 +6637,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -6610,8 +6706,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6657,8 +6752,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -6708,12 +6802,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6767,12 +6860,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -6825,8 +6917,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -6879,8 +6970,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -6949,8 +7039,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -7002,8 +7091,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -7055,8 +7143,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -7114,8 +7201,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -7171,12 +7257,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -7237,8 +7322,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -7283,8 +7367,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -7330,12 +7413,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -7390,8 +7472,7 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "sourcePassword", sourcePassword);
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -7435,12 +7516,11 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "inputPassword", inputPassword);
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (data != null) 
         {
             localVarFiles.push(data);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -7483,8 +7563,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(JSON.parse(response.body), "Document");
         return Promise.resolve({ body: result, response });
@@ -7526,12 +7605,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (pdf != null) 
         {
             localVarFiles.push(pdf);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -7578,8 +7656,7 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "sourcePassword", sourcePassword);
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -7634,8 +7711,7 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "templatePassword", templatePassword);
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(JSON.parse(response.body), "Document");
         return Promise.resolve({ body: result, response });
@@ -7669,9 +7745,10 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        argFiles = files;
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        if (files != null) {
+            localVarFiles = localVarFiles.concat(files);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -7706,9 +7783,10 @@ export class SlidesApi {
             encoding: null
         };
         let localVarFiles = [];
-        let argFiles = [];
-        argFiles = files;
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        if (files != null) {
+            localVarFiles = localVarFiles.concat(files);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -7763,8 +7841,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentReplaceResult");
         return Promise.resolve({ body: result, response });
@@ -7817,8 +7894,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -7863,8 +7939,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -7915,8 +7990,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -7962,8 +8036,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -8024,8 +8097,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideReplaceResult");
         return Promise.resolve({ body: result, response });
@@ -8081,8 +8153,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SplitDocumentResult");
         return Promise.resolve({ body: result, response });
@@ -8153,8 +8224,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -8167,6 +8237,148 @@ export class SlidesApi {
      */
     public async postSubshapeSaveAs(requestObj: requests.PostSubshapeSaveAsRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
         return await this.downloadSubshape(requestObj.name, requestObj.slideIndex, requestObj.path, requestObj.shapeIndex, requestObj.format, requestObj.options, requestObj.scaleX, requestObj.scaleY, requestObj.bounds, requestObj.password, requestObj.folder, requestObj.storage, requestObj.fontsFolder);
+    }
+
+    /**
+     * Adds a text watermark to each slide of the presentation. Text watermark can be setup via method arguments or withing Shape DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param name Document name.
+     * @param shape Shape DTO
+     * @param fontHeight Watermark font height.
+     * @param text Watermark text.
+     * @param fontName Watermark font name.
+     * @param fontColor Watermark font color.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async createWatermark(name: string, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling postWatermark.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/watermark";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontHeight", fontHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "text", text);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontName", fontName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontColor", fontColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: shape
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
+    }
+
+    /**
+     * @deprecated Use createWatermark.
+     * Adds a text watermark to each slide of the presentation. Text watermark can be setup via method arguments or withing Shape DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param requestObj contains request parameters
+     */
+    public async postWatermark(requestObj: requests.PostWatermarkRequest): Promise<{response: http.ClientResponse}> {
+        return await this.createWatermark(requestObj.name, requestObj.shape, requestObj.fontHeight, requestObj.text, requestObj.fontName, requestObj.fontColor, requestObj.password, requestObj.folder, requestObj.storage);
+    }
+
+    /**
+     * Removes shapes with name \&quot;watermark\&quot; from the presentation. 
+     * @param document Document data.
+     * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used.
+     * @param password Document password.
+     */
+    public async deleteWatermarkOnline(document: Buffer, shapeName: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling postWatermarkDeleteOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/watermark/delete";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeName", shapeName);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * @deprecated Use deleteWatermarkOnline.
+     * Removes shapes with name \&quot;watermark\&quot; from the presentation. 
+     * @param requestObj contains request parameters
+     */
+    public async postWatermarkDeleteOnline(requestObj: requests.PostWatermarkDeleteOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+        return await this.deleteWatermarkOnline(requestObj.document, requestObj.shapeName, requestObj.password);
+    }
+
+    /**
+     * Adds a text watermark to each slide of the presentation. Text watermark can be setup via method arguments or withing Shape DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param document Document data.
+     * @param shape Shape DTO
+     * @param fontHeight Watermark font height.
+     * @param text Watermark text.
+     * @param fontName Watermark font name.
+     * @param fontColor Watermark font color.
+     * @param password Document password.
+     */
+    public async createWatermarkOnline(document: Buffer, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling postWatermarkOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/watermark";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontHeight", fontHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "text", text);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontName", fontName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontColor", fontColor);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: shape,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * @deprecated Use createWatermarkOnline.
+     * Adds a text watermark to each slide of the presentation. Text watermark can be setup via method arguments or withing Shape DTO for detailed customization. Both options are applicable simultaneously.  
+     * @param requestObj contains request parameters
+     */
+    public async postWatermarkOnline(requestObj: requests.PostWatermarkOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+        return await this.createWatermarkOnline(requestObj.document, requestObj.shape, requestObj.fontHeight, requestObj.text, requestObj.fontName, requestObj.fontColor, requestObj.password);
     }
 
     /**
@@ -8218,8 +8430,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -8289,8 +8500,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -8354,8 +8564,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -8377,14 +8586,14 @@ export class SlidesApi {
      * @param shapeIndex Index of shape starting from 1
      * @param format Export picture format.
      * @param outPath Path to save result.
-     * @param password Document password.
-     * @param storage Document storage.
      * @param scaleX X scale ratio.
      * @param scaleY Y scale ratio.
      * @param bounds Shape thumbnail bounds type.
+     * @param password Document password.
+     * @param storage Document storage.
      * @param fontsFolder Fonts folder.
      */
-    public async saveShapeOnline(document: Buffer, slideIndex: number, shapeIndex: number, format: string, outPath: string, password: string = null, storage: string = null, scaleX: number = null, scaleY: number = null, bounds: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async saveShapeOnline(document: Buffer, slideIndex: number, shapeIndex: number, format: string, outPath: string, scaleX: number = null, scaleY: number = null, bounds: string = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling putExportShape.');
@@ -8411,10 +8620,10 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", scaleX);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", scaleY);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bounds", bounds);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
         const requestOptions: request.Options = {
             method: "PUT",
@@ -8425,12 +8634,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8442,7 +8650,7 @@ export class SlidesApi {
      * @param requestObj contains request parameters
      */
     public async putExportShape(requestObj: requests.PutExportShapeRequest): Promise<{response: http.ClientResponse}> {
-        return await this.saveShapeOnline(requestObj.document, requestObj.slideIndex, requestObj.shapeIndex, requestObj.format, requestObj.outPath, requestObj.password, requestObj.storage, requestObj.scaleX, requestObj.scaleY, requestObj.bounds, requestObj.fontsFolder);
+        return await this.saveShapeOnline(requestObj.document, requestObj.slideIndex, requestObj.shapeIndex, requestObj.format, requestObj.outPath, requestObj.scaleX, requestObj.scaleY, requestObj.bounds, requestObj.password, requestObj.storage, requestObj.fontsFolder);
     }
 
     /**
@@ -8492,12 +8700,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8549,8 +8756,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlide");
         return Promise.resolve({ body: result, response });
@@ -8602,8 +8808,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlideHeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -8677,8 +8882,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8724,8 +8928,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -8781,12 +8984,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SplitDocumentResult");
         return Promise.resolve({ body: result, response });
@@ -8839,8 +9041,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -8886,8 +9087,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -8957,8 +9157,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -9022,8 +9221,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -9095,8 +9293,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -9162,8 +9359,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -9237,8 +9433,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -9290,8 +9485,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -9349,8 +9543,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -9414,8 +9607,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -9467,8 +9659,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "HeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -9534,8 +9725,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -9593,8 +9783,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -9654,8 +9843,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -9707,12 +9895,11 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
         if (document != null) 
         {
             localVarFiles.push(document);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -9725,50 +9912,6 @@ export class SlidesApi {
      */
     public async putSlidesConvert(requestObj: requests.PutSlidesConvertRequest): Promise<{response: http.ClientResponse}> {
         return await this.convertAndSave(requestObj.document, requestObj.format, requestObj.outPath, requestObj.password, requestObj.storage, requestObj.fontsFolder);
-    }
-
-    /**
-     * @deprecated.
-     * Update presentation document from html. 
-     * @param name Document name.
-     * @param html HTML data.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async putSlidesDocumentFromHtml(name: any = null, html: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
-        if (name instanceof requests.PutSlidesDocumentFromHtmlRequest) {
-            const requestObject = name as requests.PutSlidesDocumentFromHtmlRequest;
-            name = requestObject.name;
-            html = requestObject.html;
-            password = requestObject.password;
-            folder = requestObject.folder;
-            storage = requestObject.storage;
-        }
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling putSlidesDocumentFromHtml.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromHtml";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            body: html,
-            json: false
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(JSON.parse(response.body), "Document");
-        return Promise.resolve({ body: result, response });
     }
 
     /**
@@ -9802,8 +9945,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -9844,9 +9986,10 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        argFiles = files;
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        if (files != null) {
+            localVarFiles = localVarFiles.concat(files);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -9862,14 +10005,14 @@ export class SlidesApi {
     }
 
     /**
-     * Update presentation protection properties. 
+     * Updates presentation protection properties. 
      * @param name Document name.
-     * @param dto The view properties data.
+     * @param dto Protection properties.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setProtectionProperties(name: string, dto: model.ProtectionProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+    public async setProtection(name: string, dto: model.ProtectionProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling putSlidesProtectionProperties.');
@@ -9878,7 +10021,7 @@ export class SlidesApi {
         if (dto === null || dto === undefined) {
             throw new Error('The required parameter "dto" was null or undefined when calling putSlidesProtectionProperties.');
         }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/protectionProperties";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/protection";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
@@ -9892,20 +10035,65 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
         return Promise.resolve({ body: result, response });
     }
 
     /**
-     * @deprecated Use setProtectionProperties.
-     * Update presentation protection properties. 
+     * @deprecated Use setProtection.
+     * Updates presentation protection properties. 
      * @param requestObj contains request parameters
      */
     public async putSlidesProtectionProperties(requestObj: requests.PutSlidesProtectionPropertiesRequest): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
-        return await this.setProtectionProperties(requestObj.name, requestObj.dto, requestObj.password, requestObj.folder, requestObj.storage);
+        return await this.setProtection(requestObj.name, requestObj.dto, requestObj.password, requestObj.folder, requestObj.storage);
+    }
+
+    /**
+     * Sets presentation protection options.  
+     * @param document Document data.
+     * @param dto Protection properties.
+     * @param password Document password.
+     */
+    public async setProtectionOnline(document: Buffer, dto: model.ProtectionProperties, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling putSlidesProtectionPropertiesOnline.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling putSlidesProtectionPropertiesOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/protection";
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: dto,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * @deprecated Use setProtectionOnline.
+     * Sets presentation protection options.  
+     * @param requestObj contains request parameters
+     */
+    public async putSlidesProtectionPropertiesOnline(requestObj: requests.PutSlidesProtectionPropertiesOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+        return await this.setProtectionOnline(requestObj.document, requestObj.dto, requestObj.password);
     }
 
     /**
@@ -9949,8 +10137,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -10002,8 +10189,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperty");
         return Promise.resolve({ body: result, response });
@@ -10055,8 +10241,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slide");
         return Promise.resolve({ body: result, response });
@@ -10108,8 +10293,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -10162,8 +10346,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -10209,8 +10392,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideProperties");
         return Promise.resolve({ body: result, response });
@@ -10223,59 +10405,6 @@ export class SlidesApi {
      */
     public async putSlidesSlideProperties(requestObj: requests.PutSlidesSlidePropertiesRequest): Promise<{response: http.ClientResponse, body: model.SlideProperties}> {
         return await this.setSlideProperties(requestObj.name, requestObj.dto, requestObj.password, requestObj.folder, requestObj.storage);
-    }
-
-    /**
-     * @deprecated.
-     * Set slide size for a presentation. 
-     * @param name Document name.
-     * @param width Slide width.
-     * @param height Slide height.
-     * @param sizeType Standard slide size type.
-     * @param scaleType Standard slide scale type.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async putSlidesSlideSize(name: any = null, width: number = null, height: number = null, sizeType: string = null, scaleType: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
-        if (name instanceof requests.PutSlidesSlideSizeRequest) {
-            const requestObject = name as requests.PutSlidesSlideSizeRequest;
-            name = requestObject.name;
-            width = requestObject.width;
-            height = requestObject.height;
-            sizeType = requestObject.sizeType;
-            scaleType = requestObject.scaleType;
-            password = requestObject.password;
-            folder = requestObject.folder;
-            storage = requestObject.storage;
-        }
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling putSlidesSlideSize.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slideSize";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", width);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", height);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sizeType", sizeType);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleType", scaleType);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Document");
-        return Promise.resolve({ body: result, response });
     }
 
     /**
@@ -10309,8 +10438,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ViewProperties");
         return Promise.resolve({ body: result, response });
@@ -10386,8 +10514,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -10439,8 +10566,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
         return Promise.resolve({ body: result, response });
@@ -10498,8 +10624,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -10563,8 +10688,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -10634,8 +10758,7 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -10673,8 +10796,7 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "StorageExist");
         return Promise.resolve({ body: result, response });
@@ -10708,12 +10830,11 @@ export class SlidesApi {
             json: true
         };
         let localVarFiles = [];
-        let argFiles = [];
         if (file != null) 
         {
             localVarFiles.push(file);
         }
-        checkMultipartContent(requestOptions, argFiles, localVarFiles);
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         return Promise.resolve({ body: result, response });

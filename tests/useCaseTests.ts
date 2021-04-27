@@ -308,7 +308,7 @@ describe("Convert tests", () => {
     it("shape post from request", () => {
         return TestInitializer.runTest(() => {
             const api = TestInitializer.getApi();
-            return api.downloadShapeOnline(fs.createReadStream("TestData/test.pptx"), 1, 3, 'png', "password").then((result) => {
+            return api.downloadShapeOnline(fs.createReadStream("TestData/test.pptx"), 1, 3, 'png', null, null, null, "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
         });
@@ -319,7 +319,7 @@ describe("Convert tests", () => {
             const outPath = "TestData/test.png";
             const api = TestInitializer.getApi();
             const data = fs.createReadStream("TestData/test.pptx");
-            return api.saveShapeOnline(data, 1, 1, 'png', outPath, "password").then((putResult) => {
+            return api.saveShapeOnline(data, 1, 1, 'png', outPath, null, null, null, "password").then((putResult) => {
                 assert.equal(200, putResult.response.statusCode);
                 return api.objectExists(outPath).then((existsResult) => {
                     assert.equal(200, existsResult.response.statusCode);
@@ -1486,12 +1486,53 @@ describe("Property tests", () => {
                     const properties = getResult.body as model.ProtectionProperties;
                     const dto = new model.ProtectionProperties();
                     dto.readOnlyRecommended = !properties.readOnlyRecommended;
-                    return api.setProtectionProperties(fileName, dto, password, folderName).then((putResult) => {
+                    return api.setProtection(fileName, dto, password, folderName).then((putResult) => {
                         assert.equal(200, putResult.response.statusCode);
                         assert.equal(properties.encryptDocumentProperties, (putResult.body as model.ProtectionProperties).encryptDocumentProperties);
                         assert.notEqual(properties.readOnlyRecommended, (putResult.body as model.ProtectionProperties).readOnlyRecommended);
                     });
                 });
+            });
+        });
+    });
+
+    it("deleteProtection", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteProtection(fileName, password, folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert(!(result.body as model.ProtectionProperties).isEncrypted);
+                    assert(!(result.body as model.ProtectionProperties).readOnlyRecommended);
+                    assert(!(result.body as model.ProtectionProperties).readPassword);
+                });
+            });
+        });
+    });
+
+    it("protectOnline", () => {
+        return TestInitializer.runTest(() => {
+            const api = TestInitializer.getApi();
+            const dto = new model.ProtectionProperties();
+            dto.readPassword = "newPassword";
+            const input = fs.createReadStream("TestData/test.pptx");
+            return api.setProtectionOnline(input, dto, "password").then((result) => {
+                assert.equal(200, result.response.statusCode);
+                assert(result.body.length != input.length);
+            });
+        });
+    });
+
+    it("unprotectOnline", () => {
+        return TestInitializer.runTest(() => {
+            const api = TestInitializer.getApi();
+            const input = fs.createReadStream("TestData/test.pptx");
+            return api.deleteProtectionOnline(input, "password").then((result) => {
+                assert.equal(200, result.response.statusCode);
+                assert(result.body.length != input.length);
             });
         });
     });
@@ -1902,6 +1943,227 @@ describe("Text tests", () => {
                             assert.equal(200, slideResultWithEmpty.response.statusCode);
                         });
                     });
+                });
+            });
+        });
+    });
+
+});
+
+describe("Watermark tests", () => {
+    it("text storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+            const password = "password";
+            const watermarkText = "watermarkText";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+                    assert.equal(200, get1Result.response.statusCode);
+                    const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
+                    return api.createWatermark(fileName, null, null, watermarkText, null, null, password, folderName).then((postResult) => {
+                        assert.equal(200, postResult.response.statusCode);
+                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                            assert.equal(200, get2Result.response.statusCode);
+                            assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
+                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                                assert.equal(200, getShape2Result.response.statusCode);
+                                const shape = getShape2Result.body as model.Shape;
+                                assert.equal("watermark", shape.name);
+                                assert.equal(watermarkText, shape.text);
+                                return api.deleteWatermark(fileName, null, password, folderName).then((deleteResult) => {
+                                    assert.equal(200, deleteResult.response.statusCode);
+                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                        assert.equal(200, get3Result.response.statusCode);
+                                        assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("text dto storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+            const password = "password";
+            const watermarkText = "watermarkText";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+                    assert.equal(200, get1Result.response.statusCode);
+                    const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
+                    let watermark = new model.Shape();
+                    watermark.text = watermarkText;
+                    return api.createWatermark(fileName, watermark, null, null, null, null, password, folderName).then((postResult) => {
+                        assert.equal(200, postResult.response.statusCode);
+                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                            assert.equal(200, get2Result.response.statusCode);
+                            assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
+                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                                assert.equal(200, getShape2Result.response.statusCode);
+                                const shape = getShape2Result.body as model.Shape;
+                                assert.equal("watermark", shape.name);
+                                assert.equal(watermarkText, shape.text);
+                                return api.deleteWatermark(fileName, null, password, folderName).then((deleteResult) => {
+                                    assert.equal(200, deleteResult.response.statusCode);
+                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                        assert.equal(200, get3Result.response.statusCode);
+                                        assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("image storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+                    assert.equal(200, get1Result.response.statusCode);
+                    const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
+                    return api.createImageWatermark(fileName, fs.createReadStream("TestData/watermark.png"), null, password, folderName).then((postResult) => {
+                        assert.equal(200, postResult.response.statusCode);
+                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                            assert.equal(200, get2Result.response.statusCode);
+                            assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
+                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                                assert.equal(200, getShape2Result.response.statusCode);
+                                const shape = getShape2Result.body as model.Shape;
+                                assert.equal("watermark", shape.name);
+                                return api.deleteWatermark(fileName, null, password, folderName).then((deleteResult) => {
+                                    assert.equal(200, deleteResult.response.statusCode);
+                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                        assert.equal(200, get3Result.response.statusCode);
+                                        assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("image dto storage", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+            const password = "password";
+            const watermarkName = "myWatermark";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+                    assert.equal(200, get1Result.response.statusCode);
+                    const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
+                    let watermark = new model.PictureFrame();
+                    let fillFormat = new model.PictureFill();
+                    fillFormat.base64Data = fs.readFileSync("TestData/watermark.png").toString("base64");
+                    watermark.fillFormat = fillFormat;
+                    watermark.name = watermarkName;
+                    return api.createImageWatermark(fileName, null, watermark, password, folderName).then((postResult) => {
+                        assert.equal(200, postResult.response.statusCode);
+                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                            assert.equal(200, get2Result.response.statusCode);
+                            assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
+                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                                assert.equal(200, getShape2Result.response.statusCode);
+                                const shape = getShape2Result.body as model.Shape;
+                                assert.equal(watermarkName, shape.name);
+                                return api.deleteWatermark(fileName, watermarkName, password, folderName).then((deleteResult) => {
+                                    assert.equal(200, deleteResult.response.statusCode);
+                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                        assert.equal(200, get3Result.response.statusCode);
+                                        assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("text request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.createWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, null, "watermarkText", null, null, password).then((postResult) => {
+                assert.equal(200, postResult.response.statusCode);
+                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                    assert.equal(200, deleteResult.response.statusCode);
+                    assert(deleteResult.body.length < postResult.body.length);
+                });
+            });
+        });
+    });
+
+    it("text dto request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            let watermark = new model.Shape();
+            watermark.text = "watermarkText";
+            return api.createWatermarkOnline(fs.createReadStream("TestData/test.pptx"), watermark, null, null, null, null, password).then((postResult) => {
+                assert.equal(200, postResult.response.statusCode);
+                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                    assert.equal(200, deleteResult.response.statusCode);
+                    assert(deleteResult.body.length < postResult.body.length);
+                });
+            });
+        });
+    });
+
+    it("image request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.createImageWatermarkOnline(fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/watermark.png"), null, password).then((postResult) => {
+                assert.equal(200, postResult.response.statusCode);
+                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                    assert.equal(200, deleteResult.response.statusCode);
+                    assert(deleteResult.body.length < postResult.body.length);
+                });
+            });
+        });
+    });
+
+    it("image dto request", () => {
+        return TestInitializer.runTest(() => {
+            const password = "password";
+            const api = TestInitializer.getApi();
+            let watermark = new model.PictureFrame();
+            let fillFormat = new model.PictureFill();
+            fillFormat.base64Data = fs.readFileSync("TestData/watermark.png").toString("base64");
+            watermark.fillFormat = fillFormat;
+            return api.createImageWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, watermark, password).then((postResult) => {
+                assert.equal(200, postResult.response.statusCode);
+                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                    assert.equal(200, deleteResult.response.statusCode);
+                    assert(deleteResult.body.length < postResult.body.length);
                 });
             });
         });

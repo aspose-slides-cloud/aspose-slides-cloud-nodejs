@@ -1834,18 +1834,6 @@ export class ResourceUri {
 }
 
 /**
- * Scale type of slide content.
- */
-    /**
-    * Scale type of slide content.
-    */
-export enum ScaleType {
-    'DoNotScale' = <any> "'DoNotScale'",
-    'EnsureFit' = <any> "'EnsureFit'",
-    'Maximize' = <any> "'Maximize'"
-}
-
-/**
  * A chart series.
  */
 export class Series {
@@ -2154,32 +2142,6 @@ export enum ShapesAlignmentType {
     'AlignBottom' = <any> "'AlignBottom'",
     'DistributeHorizontally' = <any> "'DistributeHorizontally'",
     'DistributeVertically' = <any> "'DistributeVertically'"
-}
-
-/**
- * Slide size preset.
- */
-    /**
-    * Slide size preset.
-    */
-export enum SizeType {
-    'OnScreen' = <any> "'OnScreen'",
-    'LetterPaper' = <any> "'LetterPaper'",
-    'A4Paper' = <any> "'A4Paper'",
-    'Slide35mm' = <any> "'Slide35mm'",
-    'Overhead' = <any> "'Overhead'",
-    'Banner' = <any> "'Banner'",
-    'Custom' = <any> "'Custom'",
-    'Ledger' = <any> "'Ledger'",
-    'A3Paper' = <any> "'A3Paper'",
-    'B4IsoPaper' = <any> "'B4IsoPaper'",
-    'B5IsoPaper' = <any> "'B5IsoPaper'",
-    'B4JisPaper' = <any> "'B4JisPaper'",
-    'B5JisPaper' = <any> "'B5JisPaper'",
-    'HagakiCard' = <any> "'HagakiCard'",
-    'OnScreen16x9' = <any> "'OnScreen16x9'",
-    'OnScreen16x10' = <any> "'OnScreen16x10'",
-    'Widescreen' = <any> "'Widescreen'"
 }
 
 /**
@@ -4305,6 +4267,26 @@ export class ProtectionProperties extends ResourceBase {
      * True if the document should be opened as read-only.
      */
     readOnlyRecommended?: boolean;
+
+    /**
+     * Password for read protection.
+     */
+    readPassword?: string;
+
+    /**
+     * Password for write protection.
+     */
+    writePassword?: string;
+
+    /**
+     * Returns true if the presentation protected for editing. 
+     */
+    isWriteProtected: boolean;
+
+    /**
+     * Returns true if the presentation protected for reading. 
+     */
+    isEncrypted: boolean;
 
 }
 

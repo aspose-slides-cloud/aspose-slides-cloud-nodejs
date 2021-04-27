@@ -28,35 +28,21 @@ import requestDebug = require("request-debug");
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
 
-export function checkMultipartContent(options: request.Options, requestFiles: any, files: any) {
-    if (requestFiles && requestFiles.length) {
+export function checkMultipartContent(options: request.Options, files: any) {
+    if (files && files.length) {
         const data = {
             pipeline: null,
             attachments: []
         };
-        if (options.json) {
+        if (options.json !== true && options.json) {
             data.pipeline = JSON.stringify(options.json);
         } else {
             delete data.pipeline;
         }
-        if (requestFiles && requestFiles.length) {
-            for (var i = 0; i < requestFiles.length; i++) {
-                data.attachments.push(requestFiles[i]);
-            }
+        for (var i = 0; i < files.length; i++) {
+            data.attachments.push(files[i]);
         }        
         options.formData = data;
-        options.json = null;
-    } else if (files && files.length) {
-        const data = [];
-        for (var i = 0; i < files.length; i++) {
-            data.push({ 'content-type': null, body: files[i] });
-        }
-        if (data.length == 1 && typeof(data[0]) != 'undefined') {
-            options.encoding = null;
-            options.body = data[0].body;
-        } else {
-            options.multipart = data;
-        }
         options.json = null;
     }
 }
@@ -148,7 +134,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.3.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.4.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }

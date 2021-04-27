@@ -24,6 +24,10 @@ This repository contains Aspose.Slides Cloud SDK for Nodejs source code. This SD
 **Web:** HTML
 **Other:** SWF (export whole presentations)
 
+## Enhancements in Version 21.4
+* New **CreateWatermark**, **CreateWatermarkOnline**, **CreateImageWatermark**, **CreateImageWatermarkOnline**, **DeleteWatermark** and **DeleteWatermarkOnline** methods to add or delete and remove watermark in presentations.
+* New **SetProtection**, **DeleteProtection**, **SetProtectionOnline** and **DeleteProtectionOnline** methods to set or clear presentation protection properties like read/write password, readonly flag.
+
 ## Enhancements in Version 21.3
 * New **MergeOnline** and **MergeAndSaveOnline** methods to merge presentations from multipart request body.
 * New **SplitOnline** and **SplitAndSaveOnline** methods to split presentation from request body.
@@ -66,10 +70,7 @@ const api = require("asposeslidescloud");
 const fs = require('fs');
 
 const slidesApi = new api.SlidesApi("MyClientId", "MyClientSecret");
-const postSlidesConvertRequest = new api.GetSlidesApiInfoRequest();
-postSlidesConvertRequest.format = 'pdf';
-postSlidesConvertRequest.document = fs.createReadStream("MyPresentation.pptx");
-slidesApi.postSlidesConvert(postSlidesConvertRequest).then((response) => {
+slidesApi.convert(fs.createReadStream("MyPresentation.pptx"), 'pdf').then((response) => {
     fs.writeFile("MyPresentation.pdf", response.body, (err) => {
         if (err) throw err;
     });

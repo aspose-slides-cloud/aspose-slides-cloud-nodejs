@@ -134,7 +134,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.4.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.6.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }

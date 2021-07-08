@@ -1720,21 +1720,19 @@ describe("Merge tests", () => {
     });
     it("merge request", () => {
         return TestInitializer.runTest(() => {
-            const password = "password";
             const api = TestInitializer.getApi();
-            const files = [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
-            return api.mergeOnline(files, null, password).then((defaultResult) => {
+            const files = [ fs.createReadStream("TestData/TemplateCV.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
+            return api.mergeOnline(files).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
             });
         });
     });
     it("merge and save request", () => {
         return TestInitializer.runTest(() => {
-            const password = "password";
             const outPath = "TestData/out.pptx";
             const api = TestInitializer.getApi();
-            const files = [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
-            return api.mergeAndSaveOnline(outPath, files, null, password).then((defaultResult) => {
+            const files = [ fs.createReadStream("TestData/TemplateCV.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
+            return api.mergeAndSaveOnline(outPath, files).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
                 return api.objectExists(outPath).then((existsResult) => {
                     assert.equal(200, existsResult.response.statusCode);
@@ -1745,15 +1743,17 @@ describe("Merge tests", () => {
     });
     it("merge ordered request", () => {
         return TestInitializer.runTest(() => {
-            const password = "password";
             const api = TestInitializer.getApi();
             const files = [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
             let request = new model.OrderedMergeRequest();
-            let presentation = new model.PresentationToMerge();
-            presentation.path = "test-unprotected.pptx";
-            presentation.slides = [ 1, 2 ];
-            request.presentations = [ presentation ];
-            return api.mergeOnline(files, request, password).then((defaultResult) => {
+            let presentation1 = new model.PresentationToMerge();
+            presentation1.path = "test.pptx";
+            presentation1.password = "password";
+            let presentation2 = new model.PresentationToMerge();
+            presentation2.path = "test-unprotected.pptx";
+            presentation2.slides = [ 1, 2 ];
+            request.presentations = [ presentation1, presentation2 ];
+            return api.mergeOnline(files, request).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
             });
         });
@@ -1762,17 +1762,19 @@ describe("Merge tests", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName2 = "test-unprotected.pptx";
-            const password = "password";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
                 const files = [ fs.createReadStream("TestData/test.pptx") ];
                 let request = new model.OrderedMergeRequest();
-                let presentation = new model.PresentationToMerge();
-                presentation.slides = [ 1, 2 ];
-                presentation.source = model.PresentationToMerge.SourceEnum.Storage;
-                presentation.path = folderName + "/" + fileName2;
-                request.presentations = [ presentation ];
-                return api.mergeOnline(files, request, password).then((defaultResult) => {
+                let presentation1 = new model.PresentationToMerge();
+                presentation1.path = "test.pptx";
+                presentation1.password = "password";
+                let presentation2 = new model.PresentationToMerge();
+                presentation2.slides = [ 1, 2 ];
+                presentation2.source = model.PresentationToMerge.SourceEnum.Storage;
+                presentation2.path = folderName + "/" + fileName2;
+                request.presentations = [ presentation1, presentation2 ];
+                return api.mergeOnline(files, request).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
                 });
             });
@@ -2212,7 +2214,7 @@ describe("Additional tests", () => {
     it("nullable fields", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "placeholders.pptx";
+            const fileName = "test.pptx";
             const min1  = 44.3;
             const min2 = 12;
             const max1 = 104.3;
@@ -2232,18 +2234,18 @@ describe("Additional tests", () => {
                 chart.series = [series];
                 chart.axes = { horizontalAxis: { isAutomaticMinValue: false, minValue: min1, isAutomaticMaxValue: false, maxValue: max1 } };
                 return api.createShape(fileName, 1, chart, null, null, "password", folderName).then(() => {
-                    return api.getShape(fileName, 1, 4, "password", folderName).then((result) => {
+                    return api.getShape(fileName, 1, 5, "password", folderName).then((result) => {
                         assert.equal(min1, (result.body as model.Chart).axes.horizontalAxis.minValue);
                         assert.equal(max1, (result.body as model.Chart).axes.horizontalAxis.maxValue);
                         chart = new model.Chart();
                         chart.axes = { horizontalAxis: { minValue: min2 } };
-                        return api.updateShape(fileName, 1, 4, chart, "password", folderName).then(() => {
-                            return api.getShape(fileName, 1, 4, "password", folderName).then((result2) => {
+                        return api.updateShape(fileName, 1, 5, chart, "password", folderName).then(() => {
+                            return api.getShape(fileName, 1, 5, "password", folderName).then((result2) => {
                                 assert.equal(min2, (result2.body as model.Chart).axes.horizontalAxis.minValue);
                                 assert.equal(max1, (result2.body as model.Chart).axes.horizontalAxis.maxValue);
                                 chart.axes = { horizontalAxis: { maxValue: max2 } };
-                                return api.updateShape(fileName, 1, 4, chart, "password", folderName).then(() => {
-                                    return api.getShape(fileName, 1, 4, "password", folderName).then((result3) => {
+                                return api.updateShape(fileName, 1, 5, chart, "password", folderName).then(() => {
+                                    return api.getShape(fileName, 1, 5, "password", folderName).then((result3) => {
                                         assert.equal(min2, (result3.body as model.Chart).axes.horizontalAxis.minValue);
                                         assert.equal(max2, (result3.body as model.Chart).axes.horizontalAxis.maxValue);
                                     });

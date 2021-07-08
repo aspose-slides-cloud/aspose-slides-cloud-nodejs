@@ -24,6 +24,9 @@ This repository contains Aspose.Slides Cloud SDK for Nodejs source code. This SD
 **Web:** HTML
 **Other:** SWF (export whole presentations)
 
+## Enhancements in Version 21.6
+* New **CreateComment**, **CreateCommentOnline**, **DeleteComments**, **DeleteCommentsOnline**, **DeleteSlideComments** and **DeleteSlideCommentsOnline** methods to add or delete comments in presentations.
+
 ## Enhancements in Version 21.4
 * New **CreateWatermark**, **CreateWatermarkOnline**, **CreateImageWatermark**, **CreateImageWatermarkOnline**, **DeleteWatermark** and **DeleteWatermarkOnline** methods to add or delete and remove watermark in presentations.
 * New **SetProtection**, **DeleteProtection**, **SetProtectionOnline** and **DeleteProtectionOnline** methods to set or clear presentation protection properties like read/write password, readonly flag.

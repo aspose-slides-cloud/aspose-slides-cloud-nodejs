@@ -23,6 +23,7 @@
 */
 
 import * as sdkApi from "../sdk/api";
+import * as model from "../sdk/model";
 
 var assert = require('assert');
 var fs = require('fs');
@@ -51,11 +52,17 @@ export class TestInitializer {
         return [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
     }
 
-    public static getValue(functionName: string, name: string) : any {
+    public static getValue(functionName: string, name: string, type: string) : any {
         var value = "test" + name;
         TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, function(r) {
             if ("Value" in r) {
-                value = r.Value;
+                if ("Type" in r) {
+                    if (model[r.Type] && model[type] && (new model[r.Type]() instanceof model[type])) {
+                        value = r.Value;
+                    }
+                } else {
+                    value = r.Value;
+                }
             }
         });
         return value;
@@ -68,7 +75,13 @@ export class TestInitializer {
         }
         TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, function(r) {
             if ("InvalidValue" in r) {
-                invalidValue = r.InvalidValue;
+                if ("Type" in r) {
+                    if (model[r.Type] && model[type] && (new model[r.Type]() instanceof model[type])) {
+                        invalidValue = r.InvalidValue;
+                    }
+                } else {
+                    invalidValue = r.InvalidValue;
+                }
             }
         });
         return TestInitializer.untemplatize(invalidValue, value);
@@ -168,7 +181,7 @@ export class TestInitializer {
                 }
             });
             assert.equal(code, result.response.statusCode);
-            if (result.body && isBinary && functionName != "postSlidesPipeline") {
+            if (result.body && isBinary && functionName != "pipeline") {
                 assert(result.body.length > 0);
             }
         }).catch((err) => {

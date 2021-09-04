@@ -4,3 +4,6 @@ testResults.xml
 dist/
 *_original.*
 nbproject/
+testResults/
+build/
+cid

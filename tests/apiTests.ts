@@ -196,8 +196,9 @@ describe("Tests for convert", () => {
             let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
             let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
             let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
+            let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
             return TestInitializer.initialize("convert", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder), true, "convert");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides), true, "convert");
             });
         });
     });
@@ -209,10 +210,11 @@ describe("Tests for convert", () => {
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
         vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "convert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convert", field, vardocument).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder), "convert", field, vardocument);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides), "convert", field, vardocument);
             });
         });
     });
@@ -224,10 +226,11 @@ describe("Tests for convert", () => {
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
         varformat = <string>TestInitializer.invalidizeValue(varformat, field, "string", "convert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convert", field, varformat).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder), "convert", field, varformat);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides), "convert", field, varformat);
             });
         });
     });
@@ -239,10 +242,11 @@ describe("Tests for convert", () => {
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "convert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convert", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder), "convert", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides), "convert", field, varpassword);
             });
         });
     });
@@ -254,10 +258,11 @@ describe("Tests for convert", () => {
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "convert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convert", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder), "convert", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides), "convert", field, varstorage);
             });
         });
     });
@@ -269,10 +274,27 @@ describe("Tests for convert", () => {
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
         varfontsFolder = <string>TestInitializer.invalidizeValue(varfontsFolder, field, "string", "convert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convert", field, varfontsFolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder), "convert", field, varfontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides), "convert", field, varfontsFolder);
+            });
+        });
+    });
+
+    it("invalid slides test", () => {
+        const field = "slides";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let varformat = <string>TestInitializer.getValue("convert", "format", "string");
+        let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
+        let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
+        let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
+        varslides = <Array<number>>TestInitializer.invalidizeValue(varslides, field, "Array&lt;number&gt;", "convert");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("convert", field, varslides).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides), "convert", field, varslides);
             });
         });
     });
@@ -287,8 +309,9 @@ describe("Tests for convertAndSave", () => {
             let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
             let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
             let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+            let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
             return TestInitializer.initialize("convertAndSave", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder), false, "convertAndSave");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), false, "convertAndSave");
             });
         });
     });
@@ -301,10 +324,11 @@ describe("Tests for convertAndSave", () => {
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
         vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "convertAndSave");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convertAndSave", field, vardocument).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder), "convertAndSave", field, vardocument);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), "convertAndSave", field, vardocument);
             });
         });
     });
@@ -317,10 +341,11 @@ describe("Tests for convertAndSave", () => {
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
         varformat = <string>TestInitializer.invalidizeValue(varformat, field, "string", "convertAndSave");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convertAndSave", field, varformat).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder), "convertAndSave", field, varformat);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), "convertAndSave", field, varformat);
             });
         });
     });
@@ -333,10 +358,11 @@ describe("Tests for convertAndSave", () => {
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
         varoutPath = <string>TestInitializer.invalidizeValue(varoutPath, field, "string", "convertAndSave");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convertAndSave", field, varoutPath).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder), "convertAndSave", field, varoutPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), "convertAndSave", field, varoutPath);
             });
         });
     });
@@ -349,10 +375,11 @@ describe("Tests for convertAndSave", () => {
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "convertAndSave");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convertAndSave", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder), "convertAndSave", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), "convertAndSave", field, varpassword);
             });
         });
     });
@@ -365,10 +392,11 @@ describe("Tests for convertAndSave", () => {
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "convertAndSave");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convertAndSave", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder), "convertAndSave", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), "convertAndSave", field, varstorage);
             });
         });
     });
@@ -381,10 +409,28 @@ describe("Tests for convertAndSave", () => {
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
         varfontsFolder = <string>TestInitializer.invalidizeValue(varfontsFolder, field, "string", "convertAndSave");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convertAndSave", field, varfontsFolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder), "convertAndSave", field, varfontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), "convertAndSave", field, varfontsFolder);
+            });
+        });
+    });
+
+    it("invalid slides test", () => {
+        const field = "slides";
+        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let varformat = <string>TestInitializer.getValue("convertAndSave", "format", "string");
+        let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
+        let varstorage = <string>TestInitializer.getValue("convertAndSave", "storage", "string");
+        let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
+        varslides = <Array<number>>TestInitializer.invalidizeValue(varslides, field, "Array&lt;number&gt;", "convertAndSave");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("convertAndSave", field, varslides).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides), "convertAndSave", field, varslides);
             });
         });
     });
@@ -11360,8 +11406,9 @@ describe("Tests for downloadPresentation", () => {
             let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
             let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
             let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+            let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
             return TestInitializer.initialize("downloadPresentation", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), true, "downloadPresentation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), true, "downloadPresentation");
             });
         });
     });
@@ -11375,10 +11422,11 @@ describe("Tests for downloadPresentation", () => {
         let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
         varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "downloadPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadPresentation", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "downloadPresentation", field, varname);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varname);
             });
         });
     });
@@ -11392,10 +11440,11 @@ describe("Tests for downloadPresentation", () => {
         let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
         varformat = <string>TestInitializer.invalidizeValue(varformat, field, "string", "downloadPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadPresentation", field, varformat).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "downloadPresentation", field, varformat);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varformat);
             });
         });
     });
@@ -11409,10 +11458,11 @@ describe("Tests for downloadPresentation", () => {
         let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
         varoptions = <model.ExportOptions>TestInitializer.invalidizeValue(varoptions, field, "ExportOptions", "downloadPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadPresentation", field, varoptions).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "downloadPresentation", field, varoptions);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varoptions);
             });
         });
     });
@@ -11426,10 +11476,11 @@ describe("Tests for downloadPresentation", () => {
         let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "downloadPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadPresentation", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "downloadPresentation", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varpassword);
             });
         });
     });
@@ -11443,10 +11494,11 @@ describe("Tests for downloadPresentation", () => {
         let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
         varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "downloadPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadPresentation", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "downloadPresentation", field, varfolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varfolder);
             });
         });
     });
@@ -11460,10 +11512,11 @@ describe("Tests for downloadPresentation", () => {
         let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "downloadPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadPresentation", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "downloadPresentation", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varstorage);
             });
         });
     });
@@ -11477,10 +11530,29 @@ describe("Tests for downloadPresentation", () => {
         let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
         varfontsFolder = <string>TestInitializer.invalidizeValue(varfontsFolder, field, "string", "downloadPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadPresentation", field, varfontsFolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "downloadPresentation", field, varfontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varfontsFolder);
+            });
+        });
+    });
+
+    it("invalid slides test", () => {
+        const field = "slides";
+        let varname = <string>TestInitializer.getValue("downloadPresentation", "name", "string");
+        let varformat = <string>TestInitializer.getValue("downloadPresentation", "format", "string");
+        let varoptions = <model.ExportOptions>TestInitializer.getValue("downloadPresentation", "options", "ExportOptions");
+        let varpassword = <string>TestInitializer.getValue("downloadPresentation", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPresentation", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPresentation", "storage", "string");
+        let varfontsFolder = <string>TestInitializer.getValue("downloadPresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("downloadPresentation", "slides", "Array&lt;number&gt;");
+        varslides = <Array<number>>TestInitializer.invalidizeValue(varslides, field, "Array&lt;number&gt;", "downloadPresentation");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPresentation", field, varslides).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPresentation(varname, varformat, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "downloadPresentation", field, varslides);
             });
         });
     });
@@ -19763,8 +19835,9 @@ describe("Tests for savePresentation", () => {
             let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
             let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
             let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+            let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
             return TestInitializer.initialize("savePresentation", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), false, "savePresentation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), false, "savePresentation");
             });
         });
     });
@@ -19779,10 +19852,11 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varname);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varname);
             });
         });
     });
@@ -19797,10 +19871,11 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varformat = <string>TestInitializer.invalidizeValue(varformat, field, "string", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varformat).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varformat);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varformat);
             });
         });
     });
@@ -19815,10 +19890,11 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varoutPath = <string>TestInitializer.invalidizeValue(varoutPath, field, "string", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varoutPath).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varoutPath);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varoutPath);
             });
         });
     });
@@ -19833,10 +19909,11 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varoptions = <model.ExportOptions>TestInitializer.invalidizeValue(varoptions, field, "ExportOptions", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varoptions).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varoptions);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varoptions);
             });
         });
     });
@@ -19851,10 +19928,11 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varpassword);
             });
         });
     });
@@ -19869,10 +19947,11 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varfolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varfolder);
             });
         });
     });
@@ -19887,10 +19966,11 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varstorage);
             });
         });
     });
@@ -19905,10 +19985,30 @@ describe("Tests for savePresentation", () => {
         let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
         varfontsFolder = <string>TestInitializer.invalidizeValue(varfontsFolder, field, "string", "savePresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("savePresentation", field, varfontsFolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder), "savePresentation", field, varfontsFolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varfontsFolder);
+            });
+        });
+    });
+
+    it("invalid slides test", () => {
+        const field = "slides";
+        let varname = <string>TestInitializer.getValue("savePresentation", "name", "string");
+        let varformat = <string>TestInitializer.getValue("savePresentation", "format", "string");
+        let varoutPath = <string>TestInitializer.getValue("savePresentation", "outPath", "string");
+        let varoptions = <model.ExportOptions>TestInitializer.getValue("savePresentation", "options", "ExportOptions");
+        let varpassword = <string>TestInitializer.getValue("savePresentation", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePresentation", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePresentation", "storage", "string");
+        let varfontsFolder = <string>TestInitializer.getValue("savePresentation", "fontsFolder", "string");
+        let varslides = <Array<number>>TestInitializer.getValue("savePresentation", "slides", "Array&lt;number&gt;");
+        varslides = <Array<number>>TestInitializer.invalidizeValue(varslides, field, "Array&lt;number&gt;", "savePresentation");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePresentation", field, varslides).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePresentation(varname, varformat, varoutPath, varoptions, varpassword, varfolder, varstorage, varfontsFolder, varslides), "savePresentation", field, varslides);
             });
         });
     });

@@ -168,8 +168,7 @@ export class TestInitializer {
                     throw err;
                 }
                 await test();
-            })
-            .catch((err) => assert.fail(err));
+            });
     }
 
     public static assertValidCall(call: Promise<any>, isBinary: boolean, functionName: string) {

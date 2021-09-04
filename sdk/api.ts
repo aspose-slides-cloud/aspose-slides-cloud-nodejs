@@ -107,8 +107,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
+     * @param slides The indices of the slides to be converted. If not specified, all slides are converted by default.
      */
-    public async convert(document: Buffer, format: string, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async convert(document: Buffer, format: string, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling convert.');
@@ -122,6 +123,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -149,8 +151,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
+     * @param slides The indices of the slides to be converted. If not specified, all slides are converted by default.
      */
-    public async convertAndSave(document: Buffer, format: string, outPath: string, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async convertAndSave(document: Buffer, format: string, outPath: string, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling convertAndSave.');
@@ -169,6 +172,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -4069,8 +4073,9 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
+     * @param slides The indices of the slides to be saved. If not specified, all slides are saved by default.
      */
-    public async downloadPresentation(name: string, format: string, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadPresentation(name: string, format: string, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadPresentation.');
@@ -4086,6 +4091,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -7211,8 +7217,9 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
+     * @param slides The indices of the slides to be saved. If not specified, all slides are saved by default.
      */
-    public async savePresentation(name: string, format: string, outPath: string, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async savePresentation(name: string, format: string, outPath: string, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling savePresentation.');
@@ -7233,6 +7240,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,

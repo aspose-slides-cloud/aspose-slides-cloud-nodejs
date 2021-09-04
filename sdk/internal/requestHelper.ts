@@ -134,7 +134,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.6.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v21.8.0";
     if (confguration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
     }
@@ -153,14 +153,14 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
             } else {
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     resolve(response);
-                } else if (!notApplyAuthToRequest && (response.statusCode === 401 || (response.statusCode === 500 && !response.body))) {
+                } else if (!notApplyAuthToRequest && response.statusCode === 401) {
                     await requestToken(confguration);
                     reject(new NeedRepeatException());
                 } else {
                     try {
                         if (response.statusCode == 400 && response.body && response.body.error && typeof response.body.error == "string") {
                             reject({ message: response.body.error, code: 401 });
-                        } else {
+                        } else if (response.body && (response.body.length === undefined || response.body.length)) {
                             let bodyContent = response.body;
                             let bodyString = bodyContent;
                             if (bodyContent instanceof Buffer) {
@@ -171,9 +171,11 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                             try {
                                 result = JSON.parse(result);
                             } catch {
-                                 //Error means the object is already deserialized
+                                //Error means the object is already deserialized
+                                reject({ message: result.error ? result.error.message : bodyString, code: response.statusCode });
                             }
-                            reject({ message: result.error ? result.error.message : bodyString, code: response.statusCode });
+                        } else {
+                            reject({ message: response.statusMessage, code: response.statusCode });
                         }
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });

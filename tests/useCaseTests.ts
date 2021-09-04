@@ -163,6 +163,10 @@ describe("Convert tests", () => {
             const api = TestInitializer.getApi();
             return api.convert(fs.createReadStream("TestData/test.pptx"), 'pdf', "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
+                return api.convert(fs.createReadStream("TestData/test.pptx"), 'pdf', "password", null, null, [ 2, 4 ]).then((resultSlides) => {
+                    assert.equal(200, resultSlides.response.statusCode);
+                    assert(result.body.length > resultSlides.body.length);
+                });
             });
         });
     });

@@ -921,28 +921,28 @@ export class ErrorDetails {
     * Available export formats
     */
 export enum ExportFormat {
-    'Pdf' = <any> "'Pdf'",
-    'Xps' = <any> "'Xps'",
-    'Tiff' = <any> "'Tiff'",
-    'Pptx' = <any> "'Pptx'",
-    'Odp' = <any> "'Odp'",
-    'Otp' = <any> "'Otp'",
-    'Ppt' = <any> "'Ppt'",
-    'Pps' = <any> "'Pps'",
-    'Ppsx' = <any> "'Ppsx'",
-    'Pptm' = <any> "'Pptm'",
-    'Ppsm' = <any> "'Ppsm'",
-    'Pot' = <any> "'Pot'",
-    'Potx' = <any> "'Potx'",
-    'Potm' = <any> "'Potm'",
-    'Html' = <any> "'Html'",
-    'Swf' = <any> "'Swf'",
-    'Svg' = <any> "'Svg'",
-    'Jpeg' = <any> "'Jpeg'",
-    'Png' = <any> "'Png'",
-    'Gif' = <any> "'Gif'",
-    'Bmp' = <any> "'Bmp'",
-    'Fodp' = <any> "'Fodp'"
+    'Pdf' = <any> 'Pdf',
+    'Xps' = <any> 'Xps',
+    'Tiff' = <any> 'Tiff',
+    'Pptx' = <any> 'Pptx',
+    'Odp' = <any> 'Odp',
+    'Otp' = <any> 'Otp',
+    'Ppt' = <any> 'Ppt',
+    'Pps' = <any> 'Pps',
+    'Ppsx' = <any> 'Ppsx',
+    'Pptm' = <any> 'Pptm',
+    'Ppsm' = <any> 'Ppsm',
+    'Pot' = <any> 'Pot',
+    'Potx' = <any> 'Potx',
+    'Potm' = <any> 'Potm',
+    'Html' = <any> 'Html',
+    'Swf' = <any> 'Swf',
+    'Svg' = <any> 'Svg',
+    'Jpeg' = <any> 'Jpeg',
+    'Png' = <any> 'Png',
+    'Gif' = <any> 'Gif',
+    'Bmp' = <any> 'Bmp',
+    'Fodp' = <any> 'Fodp'
 }
 
 /**
@@ -951,7 +951,7 @@ export enum ExportFormat {
 export class ExportOptions {
 
     /**
-     * Setting user password to protect the PDF document. 
+     * Default regular font for rendering the presentation. 
      */
     defaultRegularFont?: string;
 
@@ -1110,11 +1110,11 @@ export class IShapeExportOptions {
     * Represents a format for image export.
     */
 export enum ImageExportFormat {
-    'Jpeg' = <any> "'Jpeg'",
-    'Png' = <any> "'Png'",
-    'Gif' = <any> "'Gif'",
-    'Bmp' = <any> "'Bmp'",
-    'Tiff' = <any> "'Tiff'"
+    'Jpeg' = <any> 'Jpeg',
+    'Png' = <any> 'Png',
+    'Gif' = <any> 'Gif',
+    'Bmp' = <any> 'Bmp',
+    'Tiff' = <any> 'Tiff'
 }
 
 /**
@@ -1449,11 +1449,11 @@ export class NormalViewRestoredProperties {
     * Represents a format for notes slide export.
     */
 export enum NotesSlideExportFormat {
-    'Jpeg' = <any> "'Jpeg'",
-    'Png' = <any> "'Png'",
-    'Gif' = <any> "'Gif'",
-    'Bmp' = <any> "'Bmp'",
-    'Tiff' = <any> "'Tiff'"
+    'Jpeg' = <any> 'Jpeg',
+    'Png' = <any> 'Png',
+    'Gif' = <any> 'Gif',
+    'Bmp' = <any> 'Bmp',
+    'Tiff' = <any> 'Tiff'
 }
 
 /**
@@ -2073,12 +2073,12 @@ export namespace SeriesMarker {
     * Represents a format for individual shape export.
     */
 export enum ShapeExportFormat {
-    'Jpeg' = <any> "'Jpeg'",
-    'Png' = <any> "'Png'",
-    'Gif' = <any> "'Gif'",
-    'Bmp' = <any> "'Bmp'",
-    'Tiff' = <any> "'Tiff'",
-    'Svg' = <any> "'Svg'"
+    'Jpeg' = <any> 'Jpeg',
+    'Png' = <any> 'Png',
+    'Gif' = <any> 'Gif',
+    'Bmp' = <any> 'Bmp',
+    'Tiff' = <any> 'Tiff',
+    'Svg' = <any> 'Svg'
 }
 
 /**
@@ -2122,9 +2122,9 @@ export namespace ShapeImageExportOptions {
     * Represents thumnail bounds settings.
     */
 export enum ShapeThumbnailBounds {
-    'Slide' = <any> "'Slide'",
-    'Shape' = <any> "'Shape'",
-    'Appearance' = <any> "'Appearance'"
+    'Slide' = <any> 'Slide',
+    'Shape' = <any> 'Shape',
+    'Appearance' = <any> 'Appearance'
 }
 
 /**
@@ -2134,14 +2134,14 @@ export enum ShapeThumbnailBounds {
     * 
     */
 export enum ShapesAlignmentType {
-    'AlignLeft' = <any> "'AlignLeft'",
-    'AlignRight' = <any> "'AlignRight'",
-    'AlignCenter' = <any> "'AlignCenter'",
-    'AlignTop' = <any> "'AlignTop'",
-    'AlignMiddle' = <any> "'AlignMiddle'",
-    'AlignBottom' = <any> "'AlignBottom'",
-    'DistributeHorizontally' = <any> "'DistributeHorizontally'",
-    'DistributeVertically' = <any> "'DistributeVertically'"
+    'AlignLeft' = <any> 'AlignLeft',
+    'AlignRight' = <any> 'AlignRight',
+    'AlignCenter' = <any> 'AlignCenter',
+    'AlignTop' = <any> 'AlignTop',
+    'AlignMiddle' = <any> 'AlignMiddle',
+    'AlignBottom' = <any> 'AlignBottom',
+    'DistributeHorizontally' = <any> 'DistributeHorizontally',
+    'DistributeVertically' = <any> 'DistributeVertically'
 }
 
 /**
@@ -2178,27 +2178,27 @@ export class SlideComment {
     * Slide Export Format
     */
 export enum SlideExportFormat {
-    'Jpeg' = <any> "'Jpeg'",
-    'Png' = <any> "'Png'",
-    'Gif' = <any> "'Gif'",
-    'Bmp' = <any> "'Bmp'",
-    'Tiff' = <any> "'Tiff'",
-    'Html' = <any> "'Html'",
-    'Pdf' = <any> "'Pdf'",
-    'Xps' = <any> "'Xps'",
-    'Pptx' = <any> "'Pptx'",
-    'Odp' = <any> "'Odp'",
-    'Otp' = <any> "'Otp'",
-    'Ppt' = <any> "'Ppt'",
-    'Pps' = <any> "'Pps'",
-    'Ppsx' = <any> "'Ppsx'",
-    'Pptm' = <any> "'Pptm'",
-    'Ppsm' = <any> "'Ppsm'",
-    'Potx' = <any> "'Potx'",
-    'Pot' = <any> "'Pot'",
-    'Potm' = <any> "'Potm'",
-    'Svg' = <any> "'Svg'",
-    'Fodp' = <any> "'Fodp'"
+    'Jpeg' = <any> 'Jpeg',
+    'Png' = <any> 'Png',
+    'Gif' = <any> 'Gif',
+    'Bmp' = <any> 'Bmp',
+    'Tiff' = <any> 'Tiff',
+    'Html' = <any> 'Html',
+    'Pdf' = <any> 'Pdf',
+    'Xps' = <any> 'Xps',
+    'Pptx' = <any> 'Pptx',
+    'Odp' = <any> 'Odp',
+    'Otp' = <any> 'Otp',
+    'Ppt' = <any> 'Ppt',
+    'Pps' = <any> 'Pps',
+    'Ppsx' = <any> 'Ppsx',
+    'Pptm' = <any> 'Pptm',
+    'Ppsm' = <any> 'Ppsm',
+    'Potx' = <any> 'Potx',
+    'Pot' = <any> 'Pot',
+    'Potm' = <any> 'Potm',
+    'Svg' = <any> 'Svg',
+    'Fodp' = <any> 'Fodp'
 }
 
 /**
@@ -2252,6 +2252,18 @@ export class SoftEdgeEffect {
      */
     radius: number;
 
+}
+
+/**
+ * 
+ */
+    /**
+    * 
+    */
+export enum SpecialSlideType {
+    'MasterSlide' = <any> 'MasterSlide',
+    'LayoutSlide' = <any> 'LayoutSlide',
+    'NotesSlide' = <any> 'NotesSlide'
 }
 
 /**

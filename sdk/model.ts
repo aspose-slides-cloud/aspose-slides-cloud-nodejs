@@ -380,6 +380,110 @@ export class BlurEffect {
 }
 
 /**
+ * Camera
+ */
+export class Camera {
+
+    /**
+     * Camera type
+     */
+    cameraType?: Camera.CameraTypeEnum;
+
+    /**
+     * Camera FOV
+     */
+    fieldOfViewAngle?: number;
+
+    /**
+     * Camera zoom
+     */
+    zoom?: number;
+
+    /**
+     * XRotation
+     */
+    xRotation?: number;
+
+    /**
+     * YRotation
+     */
+    yRotation?: number;
+
+    /**
+     * ZRotation
+     */
+    zRotation?: number;
+
+}
+export namespace Camera {
+    export enum CameraTypeEnum {
+        IsometricBottomDown = <any> 'IsometricBottomDown',
+        IsometricBottomUp = <any> 'IsometricBottomUp',
+        IsometricLeftDown = <any> 'IsometricLeftDown',
+        IsometricLeftUp = <any> 'IsometricLeftUp',
+        IsometricOffAxis1Left = <any> 'IsometricOffAxis1Left',
+        IsometricOffAxis1Right = <any> 'IsometricOffAxis1Right',
+        IsometricOffAxis1Top = <any> 'IsometricOffAxis1Top',
+        IsometricOffAxis2Left = <any> 'IsometricOffAxis2Left',
+        IsometricOffAxis2Right = <any> 'IsometricOffAxis2Right',
+        IsometricOffAxis2Top = <any> 'IsometricOffAxis2Top',
+        IsometricOffAxis3Bottom = <any> 'IsometricOffAxis3Bottom',
+        IsometricOffAxis3Left = <any> 'IsometricOffAxis3Left',
+        IsometricOffAxis3Right = <any> 'IsometricOffAxis3Right',
+        IsometricOffAxis4Bottom = <any> 'IsometricOffAxis4Bottom',
+        IsometricOffAxis4Left = <any> 'IsometricOffAxis4Left',
+        IsometricOffAxis4Right = <any> 'IsometricOffAxis4Right',
+        IsometricRightDown = <any> 'IsometricRightDown',
+        IsometricRightUp = <any> 'IsometricRightUp',
+        IsometricTopDown = <any> 'IsometricTopDown',
+        IsometricTopUp = <any> 'IsometricTopUp',
+        LegacyObliqueBottom = <any> 'LegacyObliqueBottom',
+        LegacyObliqueBottomLeft = <any> 'LegacyObliqueBottomLeft',
+        LegacyObliqueBottomRight = <any> 'LegacyObliqueBottomRight',
+        LegacyObliqueFront = <any> 'LegacyObliqueFront',
+        LegacyObliqueLeft = <any> 'LegacyObliqueLeft',
+        LegacyObliqueRight = <any> 'LegacyObliqueRight',
+        LegacyObliqueTop = <any> 'LegacyObliqueTop',
+        LegacyObliqueTopLeft = <any> 'LegacyObliqueTopLeft',
+        LegacyObliqueTopRight = <any> 'LegacyObliqueTopRight',
+        LegacyPerspectiveBottom = <any> 'LegacyPerspectiveBottom',
+        LegacyPerspectiveBottomLeft = <any> 'LegacyPerspectiveBottomLeft',
+        LegacyPerspectiveBottomRight = <any> 'LegacyPerspectiveBottomRight',
+        LegacyPerspectiveFront = <any> 'LegacyPerspectiveFront',
+        LegacyPerspectiveLeft = <any> 'LegacyPerspectiveLeft',
+        LegacyPerspectiveRight = <any> 'LegacyPerspectiveRight',
+        LegacyPerspectiveTop = <any> 'LegacyPerspectiveTop',
+        LegacyPerspectiveTopLeft = <any> 'LegacyPerspectiveTopLeft',
+        LegacyPerspectiveTopRight = <any> 'LegacyPerspectiveTopRight',
+        ObliqueBottom = <any> 'ObliqueBottom',
+        ObliqueBottomLeft = <any> 'ObliqueBottomLeft',
+        ObliqueBottomRight = <any> 'ObliqueBottomRight',
+        ObliqueLeft = <any> 'ObliqueLeft',
+        ObliqueRight = <any> 'ObliqueRight',
+        ObliqueTop = <any> 'ObliqueTop',
+        ObliqueTopLeft = <any> 'ObliqueTopLeft',
+        ObliqueTopRight = <any> 'ObliqueTopRight',
+        OrthographicFront = <any> 'OrthographicFront',
+        PerspectiveAbove = <any> 'PerspectiveAbove',
+        PerspectiveAboveLeftFacing = <any> 'PerspectiveAboveLeftFacing',
+        PerspectiveAboveRightFacing = <any> 'PerspectiveAboveRightFacing',
+        PerspectiveBelow = <any> 'PerspectiveBelow',
+        PerspectiveContrastingLeftFacing = <any> 'PerspectiveContrastingLeftFacing',
+        PerspectiveContrastingRightFacing = <any> 'PerspectiveContrastingRightFacing',
+        PerspectiveFront = <any> 'PerspectiveFront',
+        PerspectiveHeroicExtremeLeftFacing = <any> 'PerspectiveHeroicExtremeLeftFacing',
+        PerspectiveHeroicExtremeRightFacing = <any> 'PerspectiveHeroicExtremeRightFacing',
+        PerspectiveHeroicLeftFacing = <any> 'PerspectiveHeroicLeftFacing',
+        PerspectiveHeroicRightFacing = <any> 'PerspectiveHeroicRightFacing',
+        PerspectiveLeft = <any> 'PerspectiveLeft',
+        PerspectiveRelaxed = <any> 'PerspectiveRelaxed',
+        PerspectiveRelaxedModerately = <any> 'PerspectiveRelaxedModerately',
+        PerspectiveRight = <any> 'PerspectiveRight',
+        NotDefined = <any> 'NotDefined'
+    }
+}
+
+/**
  * Represents chart category resource
  */
 export class ChartCategory {
@@ -555,6 +659,11 @@ export class Effect {
      * Shape index.
      */
     shapeIndex: number;
+
+    /**
+     * Paragraph index.
+     */
+    paragraphIndex?: number;
 
     /**
      * Effect trigger type.
@@ -936,6 +1045,7 @@ export enum ExportFormat {
     'Potx' = <any> 'Potx',
     'Potm' = <any> 'Potm',
     'Html' = <any> 'Html',
+    'Html5' = <any> 'Html5',
     'Swf' = <any> 'Swf',
     'Svg' = <any> 'Svg',
     'Jpeg' = <any> 'Jpeg',
@@ -954,6 +1064,16 @@ export class ExportOptions {
      * Default regular font for rendering the presentation. 
      */
     defaultRegularFont?: string;
+
+    /**
+     * Gets or sets the height of slides in the output format, e.g. image size, pdf page size etc.
+     */
+    height?: number;
+
+    /**
+     * Gets or sets the height of slides in the output format, e.g. image size, pdf page size etc.
+     */
+    width?: number;
 
     format?: string;
 
@@ -1262,6 +1382,81 @@ export namespace Legend {
         Right = <any> 'Right',
         Top = <any> 'Top',
         TopRight = <any> 'TopRight'
+    }
+}
+
+/**
+ * Light rig
+ */
+export class LightRig {
+
+    /**
+     * Light direction
+     */
+    direction?: LightRig.DirectionEnum;
+
+    /**
+     * Light type
+     */
+    lightType?: LightRig.LightTypeEnum;
+
+    /**
+     * XRotation
+     */
+    xRotation?: number;
+
+    /**
+     * YRotation
+     */
+    yRotation?: number;
+
+    /**
+     * ZRotation
+     */
+    zRotation?: number;
+
+}
+export namespace LightRig {
+    export enum DirectionEnum {
+        TopLeft = <any> 'TopLeft',
+        Top = <any> 'Top',
+        TopRight = <any> 'TopRight',
+        Right = <any> 'Right',
+        BottomRight = <any> 'BottomRight',
+        Bottom = <any> 'Bottom',
+        BottomLeft = <any> 'BottomLeft',
+        Left = <any> 'Left',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum LightTypeEnum {
+        Balanced = <any> 'Balanced',
+        BrightRoom = <any> 'BrightRoom',
+        Chilly = <any> 'Chilly',
+        Contrasting = <any> 'Contrasting',
+        Flat = <any> 'Flat',
+        Flood = <any> 'Flood',
+        Freezing = <any> 'Freezing',
+        Glow = <any> 'Glow',
+        Harsh = <any> 'Harsh',
+        LegacyFlat1 = <any> 'LegacyFlat1',
+        LegacyFlat2 = <any> 'LegacyFlat2',
+        LegacyFlat3 = <any> 'LegacyFlat3',
+        LegacyFlat4 = <any> 'LegacyFlat4',
+        LegacyHarsh1 = <any> 'LegacyHarsh1',
+        LegacyHarsh2 = <any> 'LegacyHarsh2',
+        LegacyHarsh3 = <any> 'LegacyHarsh3',
+        LegacyHarsh4 = <any> 'LegacyHarsh4',
+        LegacyNormal1 = <any> 'LegacyNormal1',
+        LegacyNormal2 = <any> 'LegacyNormal2',
+        LegacyNormal3 = <any> 'LegacyNormal3',
+        LegacyNormal4 = <any> 'LegacyNormal4',
+        Morning = <any> 'Morning',
+        Soft = <any> 'Soft',
+        Sunrise = <any> 'Sunrise',
+        Sunset = <any> 'Sunset',
+        ThreePt = <any> 'ThreePt',
+        TwoPt = <any> 'TwoPt',
+        NotDefined = <any> 'NotDefined'
     }
 }
 
@@ -2067,6 +2262,45 @@ export namespace SeriesMarker {
 }
 
 /**
+ * ShapeBevel
+ */
+export class ShapeBevel {
+
+    /**
+     * Bevel type
+     */
+    bevelType?: ShapeBevel.BevelTypeEnum;
+
+    /**
+     * Bevel width
+     */
+    width?: number;
+
+    /**
+     * Bevel height
+     */
+    height?: number;
+
+}
+export namespace ShapeBevel {
+    export enum BevelTypeEnum {
+        Angle = <any> 'Angle',
+        ArtDeco = <any> 'ArtDeco',
+        Circle = <any> 'Circle',
+        Convex = <any> 'Convex',
+        CoolSlant = <any> 'CoolSlant',
+        Cross = <any> 'Cross',
+        Divot = <any> 'Divot',
+        HardEdge = <any> 'HardEdge',
+        RelaxedInset = <any> 'RelaxedInset',
+        Riblet = <any> 'Riblet',
+        Slope = <any> 'Slope',
+        SoftRound = <any> 'SoftRound',
+        NotDefined = <any> 'NotDefined'
+    }
+}
+
+/**
  * Represents a format for individual shape export.
  */
     /**
@@ -2089,17 +2323,17 @@ export class ShapeImageExportOptions {
     /**
      * Get or sets scaling ratio by X axis.
      */
-    scaleX: number;
+    scaleX?: number;
 
     /**
      * Get or sets scaling ratio by Y axis.
      */
-    scaleY: number;
+    scaleY?: number;
 
     /**
      * Get or sets thumbnail bounds
      */
-    thumbnailBounds: ShapeImageExportOptions.ThumbnailBoundsEnum;
+    thumbnailBounds?: ShapeImageExportOptions.ThumbnailBoundsEnum;
 
     /**
      * Gets export format.
@@ -2494,6 +2728,83 @@ export class TextItem {
      */
     text?: string;
 
+}
+
+/**
+ * ThreeDFormat
+ */
+export class ThreeDFormat {
+
+    /**
+     * Type of a bottom 3D bevel.             
+     */
+    bevelBottom?: ShapeBevel;
+
+    /**
+     * Type of a top 3D bevel.             
+     */
+    bevelTop?: ShapeBevel;
+
+    /**
+     * Camera
+     */
+    camera?: Camera;
+
+    /**
+     * Contour color
+     */
+    contourColor?: string;
+
+    /**
+     * Contour width
+     */
+    contourWidth?: number;
+
+    /**
+     * Depth
+     */
+    depth?: number;
+
+    /**
+     * Extrusion color
+     */
+    extrusionColor?: string;
+
+    /**
+     * Extrusion height
+     */
+    extrusionHeight?: number;
+
+    /**
+     * Light rig
+     */
+    lightRig?: LightRig;
+
+    /**
+     * Material
+     */
+    material?: ThreeDFormat.MaterialEnum;
+
+}
+export namespace ThreeDFormat {
+    export enum MaterialEnum {
+        Clear = <any> 'Clear',
+        DkEdge = <any> 'DkEdge',
+        Flat = <any> 'Flat',
+        LegacyMatte = <any> 'LegacyMatte',
+        LegacyMetal = <any> 'LegacyMetal',
+        LegacyPlastic = <any> 'LegacyPlastic',
+        LegacyWireframe = <any> 'LegacyWireframe',
+        Matte = <any> 'Matte',
+        Metal = <any> 'Metal',
+        Plastic = <any> 'Plastic',
+        Powder = <any> 'Powder',
+        SoftEdge = <any> 'SoftEdge',
+        Softmetal = <any> 'Softmetal',
+        TranslucentPowder = <any> 'TranslucentPowder',
+        WarmMatte = <any> 'WarmMatte',
+        NotDefined = <any> 'NotDefined'
+    }
 }
 
 /**
@@ -2976,7 +3287,7 @@ export class HtmlExportOptions extends ExportOptions {
     /**
      * Get or sets flag for save presentation as zip file
      */
-    saveAsZip: boolean;
+    saveAsZip?: boolean;
 
     /**
      * Get or set name of subdirectory in zip-file for store external files
@@ -2986,17 +3297,17 @@ export class HtmlExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides: boolean;
+    showHiddenSlides?: boolean;
 
     /**
      * True to make layout responsive by excluding width and height attributes from svg container.
      */
-    svgResponsiveLayout: boolean;
+    svgResponsiveLayout?: boolean;
 
     /**
      * Returns or sets a value determining the quality of the JPEG images inside PDF document.
      */
-    jpegQuality: number;
+    jpegQuality?: number;
 
     /**
      * Represents the pictures compression level
@@ -3006,22 +3317,22 @@ export class HtmlExportOptions extends ExportOptions {
     /**
      * A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)
      */
-    deletePicturesCroppedAreas: boolean;
+    deletePicturesCroppedAreas?: boolean;
 
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition: HtmlExportOptions.NotesPositionEnum;
+    notesPosition?: HtmlExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition: HtmlExportOptions.CommentsPositionEnum;
+    commentsPosition?: HtmlExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth: number;
+    commentsAreaWidth?: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -3031,7 +3342,7 @@ export class HtmlExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor: boolean;
+    showCommentsByNoAuthor?: boolean;
 
 }
 export namespace HtmlExportOptions {
@@ -3092,17 +3403,17 @@ export class ImageExportOptions extends ExportOptions {
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition: ImageExportOptions.NotesPositionEnum;
+    notesPosition?: ImageExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition: ImageExportOptions.CommentsPositionEnum;
+    commentsPosition?: ImageExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth: number;
+    commentsAreaWidth?: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -3751,42 +4062,42 @@ export class PdfExportOptions extends ExportOptions {
     /**
      * Specifies compression type to be used for all textual content in the document.
      */
-    textCompression: PdfExportOptions.TextCompressionEnum;
+    textCompression?: PdfExportOptions.TextCompressionEnum;
 
     /**
      * Determines if all characters of font should be embedded or only used subset.
      */
-    embedFullFonts: boolean;
+    embedFullFonts?: boolean;
 
     /**
      * Desired conformance level for generated PDF document.
      */
-    compliance: PdfExportOptions.ComplianceEnum;
+    compliance?: PdfExportOptions.ComplianceEnum;
 
     /**
      * Returns or sets a value determining resolution of images inside PDF document.  Property affects on file size, time of export and image quality. The default value is 96.
      */
-    sufficientResolution: number;
+    sufficientResolution?: number;
 
     /**
      * Returns or sets a value determining the quality of the JPEG images inside PDF document.
      */
-    jpegQuality: number;
+    jpegQuality?: number;
 
     /**
      * True to draw black frame around each slide.
      */
-    drawSlidesFrame: boolean;
+    drawSlidesFrame?: boolean;
 
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides: boolean;
+    showHiddenSlides?: boolean;
 
     /**
      * True to convert all metafiles used in a presentation to the PNG images.
      */
-    saveMetafilesAsPng: boolean;
+    saveMetafilesAsPng?: boolean;
 
     /**
      * Setting user password to protect the PDF document. 
@@ -3796,7 +4107,7 @@ export class PdfExportOptions extends ExportOptions {
     /**
      * Determines if Aspose.Slides will embed common fonts for ASCII (33..127 code range) text. Fonts for character codes greater than 127 are always embedded. Common fonts list includes PDF's base 14 fonts and additional user specified fonts.
      */
-    embedTrueTypeFontsForASCII: boolean;
+    embedTrueTypeFontsForASCII?: boolean;
 
     /**
      * Returns or sets an array of user-defined names of font families which Aspose.Slides should consider common.
@@ -3806,17 +4117,17 @@ export class PdfExportOptions extends ExportOptions {
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition: PdfExportOptions.NotesPositionEnum;
+    notesPosition?: PdfExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition: PdfExportOptions.CommentsPositionEnum;
+    commentsPosition?: PdfExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth: number;
+    commentsAreaWidth?: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -3826,7 +4137,7 @@ export class PdfExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor: boolean;
+    showCommentsByNoAuthor?: boolean;
 
     /**
      * Image transparent color.
@@ -3836,12 +4147,12 @@ export class PdfExportOptions extends ExportOptions {
     /**
      * True to apply specified ImageTransparentColor  to an image.
      */
-    applyImageTransparent: boolean;
+    applyImageTransparent?: boolean;
 
     /**
      * Access permissions that should be granted when the document is opened with user access.  Default is AccessPermissions.None.             
      */
-    accessPermissions: PdfExportOptions.AccessPermissionsEnum;
+    accessPermissions?: PdfExportOptions.AccessPermissionsEnum;
 
 }
 export namespace PdfExportOptions {
@@ -4251,7 +4562,7 @@ export class PptxExportOptions extends ExportOptions {
     /**
      * The conformance class to which the PresentationML document conforms. Read/write Conformance.
      */
-    conformance: PptxExportOptions.ConformanceEnum;
+    conformance?: PptxExportOptions.ConformanceEnum;
 
 }
 export namespace PptxExportOptions {
@@ -4485,6 +4796,7 @@ export namespace Save {
         Potx = <any> 'Potx',
         Potm = <any> 'Potm',
         Html = <any> 'Html',
+        Html5 = <any> 'Html5',
         Swf = <any> 'Swf',
         Svg = <any> 'Svg',
         Jpeg = <any> 'Jpeg',
@@ -4747,6 +5059,11 @@ export class ShapeBase extends ResourceBase {
      * Gets or sets the effect format.
      */
     effectFormat?: EffectFormat;
+
+    /**
+     * Gets or sets the 3D format
+     */
+    threeDFormat?: ThreeDFormat;
 
     /**
      * Gets or sets the line format.
@@ -5053,47 +5370,47 @@ export class SvgExportOptions extends ExportOptions {
     /**
      * Determines whether the text on a slide will be saved as graphics.
      */
-    vectorizeText: boolean;
+    vectorizeText?: boolean;
 
     /**
      * Returns or sets the lower resolution limit for metafile rasterization.
      */
-    metafileRasterizationDpi: number;
+    metafileRasterizationDpi?: number;
 
     /**
      * Determines whether the 3D text is disabled in SVG.
      */
-    disable3DText: boolean;
+    disable3DText?: boolean;
 
     /**
      * Disables splitting FromCornerX and FromCenter gradients.
      */
-    disableGradientSplit: boolean;
+    disableGradientSplit?: boolean;
 
     /**
      * SVG 1.1 lacks ability to define insets for markers. Aspose.Slides SVG writing engine has workaround for that problem: it crops end of line with arrow, so, line doesn't overlap markers. This option switches off such behavior.
      */
-    disableLineEndCropping: boolean;
+    disableLineEndCropping?: boolean;
 
     /**
      * Determines JPEG encoding quality.
      */
-    jpegQuality: number;
+    jpegQuality?: number;
 
     /**
      * Represents the pictures compression level
      */
-    picturesCompression: SvgExportOptions.PicturesCompressionEnum;
+    picturesCompression?: SvgExportOptions.PicturesCompressionEnum;
 
     /**
      * A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)
      */
-    deletePicturesCroppedAreas: boolean;
+    deletePicturesCroppedAreas?: boolean;
 
     /**
      * Determines a way of handling externally loaded fonts.
      */
-    externalFontsHandling: SvgExportOptions.ExternalFontsHandlingEnum;
+    externalFontsHandling?: SvgExportOptions.ExternalFontsHandlingEnum;
 
 }
 export namespace SvgExportOptions {
@@ -5124,62 +5441,62 @@ export class SwfExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides: boolean;
+    showHiddenSlides?: boolean;
 
     /**
      * Specifies whether the generated SWF document should be compressed or not. Default is true. 
      */
-    compressed: boolean;
+    compressed?: boolean;
 
     /**
      * Specifies whether the generated SWF document should include the integrated document viewer or not. Default is true. 
      */
-    viewerIncluded: boolean;
+    viewerIncluded?: boolean;
 
     /**
      * Specifies whether border around pages should be shown. Default is true. 
      */
-    showPageBorder: boolean;
+    showPageBorder?: boolean;
 
     /**
      * Show/hide fullscreen button. Can be overridden in flashvars. Default is true. 
      */
-    showFullScreen: boolean;
+    showFullScreen?: boolean;
 
     /**
      * Show/hide page stepper. Can be overridden in flashvars. Default is true. 
      */
-    showPageStepper: boolean;
+    showPageStepper?: boolean;
 
     /**
      * Show/hide search section. Can be overridden in flashvars. Default is true. 
      */
-    showSearch: boolean;
+    showSearch?: boolean;
 
     /**
      * Show/hide whole top pane. Can be overridden in flashvars. Default is true. 
      */
-    showTopPane: boolean;
+    showTopPane?: boolean;
 
     /**
      * Show/hide bottom pane. Can be overridden in flashvars. Default is true. 
      */
-    showBottomPane: boolean;
+    showBottomPane?: boolean;
 
     /**
      * Show/hide left pane. Can be overridden in flashvars. Default is true. 
      */
-    showLeftPane: boolean;
+    showLeftPane?: boolean;
 
     /**
      * Start with opened left pane. Can be overridden in flashvars. Default is false. 
      */
-    startOpenLeftPane: boolean;
+    startOpenLeftPane?: boolean;
 
     /**
      * Enable/disable context menu. Default is true. 
      */
-    enableContextMenu: boolean;
+    enableContextMenu?: boolean;
 
     /**
      * Image that will be displayed as logo in the top right corner of the viewer. The image data is a base 64 string. Image should be 32x64 pixels PNG image, otherwise logo can be displayed improperly. 
@@ -5194,22 +5511,22 @@ export class SwfExportOptions extends ExportOptions {
     /**
      * Specifies the quality of JPEG images. Default is 95.
      */
-    jpegQuality: number;
+    jpegQuality?: number;
 
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition: SwfExportOptions.NotesPositionEnum;
+    notesPosition?: SwfExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition: SwfExportOptions.CommentsPositionEnum;
+    commentsPosition?: SwfExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth: number;
+    commentsAreaWidth?: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -5219,7 +5536,7 @@ export class SwfExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor: boolean;
+    showCommentsByNoAuthor?: boolean;
 
 }
 export namespace SwfExportOptions {
@@ -5292,17 +5609,7 @@ export class TiffExportOptions extends ExportOptions {
     /**
      * Compression type.
      */
-    compression: TiffExportOptions.CompressionEnum;
-
-    /**
-     * Width.
-     */
-    width?: number;
-
-    /**
-     * Height.
-     */
-    height?: number;
+    compression?: TiffExportOptions.CompressionEnum;
 
     /**
      * Horizontal resolution, in dots per inch.
@@ -5317,27 +5624,27 @@ export class TiffExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides: boolean;
+    showHiddenSlides?: boolean;
 
     /**
      * Specifies the pixel format for the generated images. Read/write ImagePixelFormat.
      */
-    pixelFormat: TiffExportOptions.PixelFormatEnum;
+    pixelFormat?: TiffExportOptions.PixelFormatEnum;
 
     /**
      * Gets or sets the position of the notes on the page.
      */
-    notesPosition: TiffExportOptions.NotesPositionEnum;
+    notesPosition?: TiffExportOptions.NotesPositionEnum;
 
     /**
      * Gets or sets the position of the comments on the page.
      */
-    commentsPosition: TiffExportOptions.CommentsPositionEnum;
+    commentsPosition?: TiffExportOptions.CommentsPositionEnum;
 
     /**
      * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
      */
-    commentsAreaWidth: number;
+    commentsAreaWidth?: number;
 
     /**
      * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
@@ -5347,7 +5654,7 @@ export class TiffExportOptions extends ExportOptions {
     /**
      * True if comments that have no author are displayed. (Applies only if comments are displayed).
      */
-    showCommentsByNoAuthor: boolean;
+    showCommentsByNoAuthor?: boolean;
 
 }
 export namespace TiffExportOptions {
@@ -5519,17 +5826,17 @@ export class XpsExportOptions extends ExportOptions {
     /**
      * Specifies whether the generated document should include hidden slides or not. Default is false. 
      */
-    showHiddenSlides: boolean;
+    showHiddenSlides?: boolean;
 
     /**
      * True to convert all metafiles used in a presentation to the PNG images.
      */
-    saveMetafilesAsPng: boolean;
+    saveMetafilesAsPng?: boolean;
 
     /**
      * True to draw black frame around each slide.
      */
-    drawSlidesFrame: boolean;
+    drawSlidesFrame?: boolean;
 
 }
 

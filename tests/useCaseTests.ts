@@ -188,10 +188,10 @@ describe("Convert tests", () => {
     it("post from storage", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
+            const fileName = "test.pdf";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadPresentation(fileName, model.ExportFormat.Pdf, null, "password", folderName).then((result) => {
+                return api.downloadPresentation(fileName, model.ExportFormat.Html5, null, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                 });
             });
@@ -237,13 +237,14 @@ describe("Convert tests", () => {
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadPresentation(fileName, model.ExportFormat.Pdf, null, "password", folderName).then((result1) => {
+                return api.downloadPresentation(fileName, model.ExportFormat.Png, null, "password", folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
-                    const options = new model.PdfExportOptions();
-                    options.drawSlidesFrame = true;
-                    return api.downloadPresentation(fileName, model.ExportFormat.Pdf, options, "password", folderName).then((result2) => {
+                    const options = new model.ImageExportOptions();
+                    options.width = 480;
+                    options.height = 360;
+                    return api.downloadPresentation(fileName, model.ExportFormat.Png, options, "password", folderName).then((result2) => {
                         assert.equal(200, result2.response.statusCode);
-                        assert.notEqual(result1.body.length, result2.body.length);
+                        assert(result1.body.length > result2.body.length);
                     });
                 });
             });
@@ -797,7 +798,7 @@ describe("MasterSlide tests", () => {
             const slideIndex = 1;
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, null, password, folderName).then((result1) => {
+                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, null, null, password, folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
                     assert.equal(1, (result1.body as model.SlideAnimation).mainSequence.length);
                     const dto = new model.SlideAnimation();
@@ -811,13 +812,13 @@ describe("MasterSlide tests", () => {
                     return api.setSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, dto, password, folderName).then((createResult) => {
                         assert.equal(200, createResult.response.statusCode);
                         assert.equal(2, (createResult.body as model.SlideAnimation).mainSequence.length);
-                        return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, 3, password, folderName).then((result2) => {
+                        return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, 3, null, password, folderName).then((result2) => {
                             assert.equal(200, result2.response.statusCode);
                             assert.equal(1, (result2.body as model.SlideAnimation).mainSequence.length);
                             return api.deleteSpecialSlideAnimationEffect(fileName, slideIndex, model.SpecialSlideType.MasterSlide, 2, password, folderName).then((deleteResult) => {
                                 assert.equal(200, deleteResult.response.statusCode);
                                 assert.equal(1, (deleteResult.body as model.SlideAnimation).mainSequence.length);
-                                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, 3, password, folderName).then((result3) => {
+                                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, 3, null, password, folderName).then((result3) => {
                                     assert.equal(200, result3.response.statusCode);
                                     assert.equal(0, (result3.body as model.SlideAnimation).mainSequence.length);
                                     return api.deleteSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.MasterSlide, password, folderName).then((deleteResult) => {
@@ -1021,7 +1022,7 @@ describe("LayoutSlide tests", () => {
             const slideIndex = 1;
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, null, password, folderName).then((result1) => {
+                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, null, null, password, folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
                     assert.equal(0, (result1.body as model.SlideAnimation).mainSequence.length);
                     const dto = new model.SlideAnimation();
@@ -1035,13 +1036,13 @@ describe("LayoutSlide tests", () => {
                     return api.setSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, dto, password, folderName).then((createResult) => {
                         assert.equal(200, createResult.response.statusCode);
                         assert.equal(2, (createResult.body as model.SlideAnimation).mainSequence.length);
-                        return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, 3, password, folderName).then((result2) => {
+                        return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, 3, null, password, folderName).then((result2) => {
                             assert.equal(200, result2.response.statusCode);
                             assert.equal(1, (result2.body as model.SlideAnimation).mainSequence.length);
                             return api.deleteSpecialSlideAnimationEffect(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, 2, password, folderName).then((deleteResult) => {
                                 assert.equal(200, deleteResult.response.statusCode);
                                 assert.equal(1, (deleteResult.body as model.SlideAnimation).mainSequence.length);
-                                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, 3, password, folderName).then((result3) => {
+                                return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, 3, null, password, folderName).then((result3) => {
                                     assert.equal(200, result3.response.statusCode);
                                     assert.equal(0, (result3.body as model.SlideAnimation).mainSequence.length);
                                     return api.deleteSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, password, folderName).then((deleteResult) => {
@@ -1417,6 +1418,7 @@ describe("Shape tests", () => {
             });
         });
     });
+
     it("align", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
@@ -1456,6 +1458,135 @@ describe("Shape tests", () => {
                                 });
                             });
                         });
+                    });
+                });
+            });
+        });
+    });
+});
+
+describe("Shape format tests", () => {
+    it("shape format line", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const slideIndex = 1;
+            const shapeIndex = 1;
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Shape();
+                const lineFormat = new model.LineFormat();
+                lineFormat.style = model.LineFormat.StyleEnum.ThickThin;
+                lineFormat.width = 7;
+                lineFormat.dashStyle = model.LineFormat.DashStyleEnum.Dash;
+                dto.lineFormat = lineFormat;
+                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    assert(putResult.body as model.Shape);
+                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                        assert.equal(200, getResult.response.statusCode);
+                        assert(getResult.body as model.Shape);
+                        assert(dto.lineFormat.width, (getResult.body as model.Shape).width);
+                    });
+                });
+            });
+        });
+    });
+
+    it("shape format fill", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const slideIndex = 1;
+            const shapeIndex = 1;
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Shape();
+                const fillFormat = new model.SolidFill();
+                fillFormat.color = "#FFFFFF00";
+                dto.fillFormat = fillFormat;
+                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    assert(putResult.body as model.Shape);
+                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                        assert.equal(200, getResult.response.statusCode);
+                        assert(getResult.body as model.Shape);
+                        assert((getResult.body as model.Shape).fillFormat as model.SolidFill);
+                        assert((dto.fillFormat as model.SolidFill).color, ((getResult.body as model.Shape).fillFormat as model.SolidFill).color);
+                    });
+                });
+            });
+        });
+    });
+
+    it("shape format effect", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const slideIndex = 1;
+            const shapeIndex = 1;
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Shape();
+                const effectFormat = new model.EffectFormat();
+                const innerShadow = new model.InnerShadowEffect();
+                innerShadow.direction = 35;
+                innerShadow.blurRadius = 30;
+                innerShadow.distance = 40;
+                innerShadow.shadowColor = "#FFFFFF00";
+                effectFormat.innerShadow = innerShadow;
+                dto.effectFormat = effectFormat;
+                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    assert(putResult.body as model.Shape);
+                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                        assert.equal(200, getResult.response.statusCode);
+                        assert(getResult.body as model.Shape);
+                        assert(dto.effectFormat.innerShadow.direction, (getResult.body as model.Shape).effectFormat.innerShadow.direction);
+                    });
+                });
+            });
+        });
+    });
+
+    it("shape format 3D", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const slideIndex = 1;
+            const shapeIndex = 1;
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Shape();
+                const threeDFormat = new model.ThreeDFormat();
+                threeDFormat.depth = 4;
+
+                const bevelTop = new model.ShapeBevel();
+                bevelTop.bevelType = model.ShapeBevel.BevelTypeEnum.Circle;
+                bevelTop.height = 6;
+                bevelTop.width = 6;
+                threeDFormat.bevelTop = bevelTop;
+
+                const camera = new model.Camera();
+                camera.cameraType = model.Camera.CameraTypeEnum.OrthographicFront;
+                threeDFormat.camera = camera;
+
+                const lightRig = new model.LightRig();
+                lightRig.lightType = model.LightRig.LightTypeEnum.ThreePt;
+                lightRig.direction = model.LightRig.DirectionEnum.Top;
+                threeDFormat.lightRig = lightRig;
+                dto.threeDFormat = threeDFormat;
+                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    assert(putResult.body as model.Shape);
+                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                        assert.equal(200, getResult.response.statusCode);
+                        assert(getResult.body as model.Shape);
+                        assert(dto.threeDFormat.depth, (getResult.body as model.Shape).threeDFormat.depth);
                     });
                 });
             });
@@ -2795,6 +2926,246 @@ describe("Watermark tests", () => {
                 return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert(deleteResult.body.length < postResult.body.length);
+                });
+            });
+        });
+    });
+});
+
+
+describe("Animation tests", () => {
+    it("animation get", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+            const password = "password";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.getAnimation(fileName, slideIndex, null, null, password, folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
+                    return api.getAnimation(fileName, slideIndex, 3, null, password, folderName).then((shapeResult) => {
+                        assert.equal(200, shapeResult.response.statusCode);
+                        assert.equal(1, (shapeResult.body as model.SlideAnimation).mainSequence.length);
+                        assert.equal(0, (shapeResult.body as model.SlideAnimation).interactiveSequences.length);
+                        return api.getAnimation(fileName, slideIndex, 3, 1, password, folderName).then((paragraphResult) => {
+                            assert.equal(200, paragraphResult.response.statusCode);
+                            assert.equal(0, (paragraphResult.body as model.SlideAnimation).mainSequence.length);
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("animation set", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.SlideAnimation();
+                const effect1 = new model.Effect();
+                effect1.type = model.Effect.TypeEnum.Blink;
+                effect1.shapeIndex = 2;
+                effect1.paragraphIndex = 1;
+
+                const effect2 = new model.Effect();
+                effect2.type = model.Effect.TypeEnum.Box;
+                effect2.subtype = model.Effect.SubtypeEnum.In;
+                effect2.presetClassType = model.Effect.PresetClassTypeEnum.Entrance;
+                effect2.shapeIndex = 4;
+                dto.mainSequence = [ effect1, effect2 ];
+                dto.interactiveSequences = [];
+                return api.setAnimation(fileName, 1, dto, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(dto.mainSequence.length, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(0, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation create effect", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Effect();
+                dto.type = model.Effect.TypeEnum.Blast;
+                dto.shapeIndex = 3;
+                return api.createAnimationEffect(fileName, 1, dto, "password", folderName).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert.equal(2, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation create interactive sequence", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.InteractiveSequence();
+                const effect = new model.Effect();
+                effect.type = model.Effect.TypeEnum.Blast;
+                effect.shapeIndex = 3;
+                dto.triggerShapeIndex = 2;
+                dto.effects = [ effect ];
+                return api.createAnimationInteractiveSequence(fileName, 1, dto, "password", folderName).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(2, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation create interactive sequence effect", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Effect();
+                dto.type = model.Effect.TypeEnum.Blast;
+                dto.shapeIndex = 3;
+                return api.createAnimationInteractiveSequenceEffect(fileName, 1, 1, dto, "password", folderName).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation update effect", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Effect();
+                dto.type = model.Effect.TypeEnum.Blast;
+                dto.shapeIndex = 3;
+                return api.updateAnimationEffect(fileName, 1, 1, dto, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation update interactive sequence effect", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const dto = new model.Effect();
+                dto.type = model.Effect.TypeEnum.Blast;
+                dto.shapeIndex = 3;
+                return api.updateAnimationInteractiveSequenceEffect(fileName, 1, 1, 1, dto, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation delete", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteAnimation(fileName, 1, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(0, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(0, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation delete main sequence", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteAnimationMainSequence(fileName, 1, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(0, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation delete main sequence effect", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteAnimationEffect(fileName, 1, 1, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(0, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation delete interactive sequences", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteAnimationInteractiveSequences(fileName, 1, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(0, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation delete interactive sequence", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteAnimationInteractiveSequence(fileName, 1, 1, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(0, (result.body as model.SlideAnimation).interactiveSequences.length);
+                });
+            });
+        });
+    });
+
+    it("animation delete interactive sequence effect", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                return api.deleteAnimationInteractiveSequenceEffect(fileName, 1, 1, 1, "password", folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    assert.equal(1, (result.body as model.SlideAnimation).mainSequence.length);
+                    assert.equal(1, (result.body as model.SlideAnimation).interactiveSequences.length);
                 });
             });
         });

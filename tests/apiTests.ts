@@ -16752,11 +16752,12 @@ describe("Tests for getAnimation", () => {
             let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
             let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
             let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+            let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
             let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
             let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
             let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
             return TestInitializer.initialize("getAnimation", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), false, "getAnimation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), false, "getAnimation");
             });
         });
     });
@@ -16766,13 +16767,14 @@ describe("Tests for getAnimation", () => {
         let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
         varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "getAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getAnimation", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getAnimation", field, varname);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getAnimation", field, varname);
             });
         });
     });
@@ -16782,13 +16784,14 @@ describe("Tests for getAnimation", () => {
         let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "getAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getAnimation", field, varslideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getAnimation", field, varslideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getAnimation", field, varslideIndex);
             });
         });
     });
@@ -16798,13 +16801,31 @@ describe("Tests for getAnimation", () => {
         let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
         varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "getAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getAnimation", field, varshapeIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getAnimation", field, varshapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getAnimation", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
+        varparagraphIndex = <number>TestInitializer.invalidizeValue(varparagraphIndex, field, "number", "getAnimation");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getAnimation", field, varparagraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getAnimation", field, varparagraphIndex);
             });
         });
     });
@@ -16814,13 +16835,14 @@ describe("Tests for getAnimation", () => {
         let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "getAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getAnimation", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getAnimation", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getAnimation", field, varpassword);
             });
         });
     });
@@ -16830,13 +16852,14 @@ describe("Tests for getAnimation", () => {
         let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
         varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "getAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getAnimation", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getAnimation", field, varfolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getAnimation", field, varfolder);
             });
         });
     });
@@ -16846,13 +16869,14 @@ describe("Tests for getAnimation", () => {
         let varname = <string>TestInitializer.getValue("getAnimation", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("getAnimation", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("getAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getAnimation", "storage", "string");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "getAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getAnimation", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getAnimation", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getAnimation(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getAnimation", field, varstorage);
             });
         });
     });
@@ -19973,11 +19997,12 @@ describe("Tests for getSpecialSlideAnimation", () => {
             let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
             let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
             let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+            let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
             let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
             let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
             let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
             return TestInitializer.initialize("getSpecialSlideAnimation", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), false, "getSpecialSlideAnimation");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), false, "getSpecialSlideAnimation");
             });
         });
     });
@@ -19988,13 +20013,14 @@ describe("Tests for getSpecialSlideAnimation", () => {
         let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
         let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
         let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
         varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "getSpecialSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSpecialSlideAnimation", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varname);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varname);
             });
         });
     });
@@ -20005,13 +20031,14 @@ describe("Tests for getSpecialSlideAnimation", () => {
         let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
         let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
         let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "getSpecialSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSpecialSlideAnimation", field, varslideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varslideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varslideIndex);
             });
         });
     });
@@ -20022,13 +20049,14 @@ describe("Tests for getSpecialSlideAnimation", () => {
         let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
         let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
         let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
         varslideType = <model.SpecialSlideType>TestInitializer.invalidizeValue(varslideType, field, "string", "getSpecialSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSpecialSlideAnimation", field, varslideType).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varslideType);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varslideType);
             });
         });
     });
@@ -20039,13 +20067,32 @@ describe("Tests for getSpecialSlideAnimation", () => {
         let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
         let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
         let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
         varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "getSpecialSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSpecialSlideAnimation", field, varshapeIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varshapeIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        let varname = <string>TestInitializer.getValue("getSpecialSlideAnimation", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
+        let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
+        let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
+        varparagraphIndex = <number>TestInitializer.invalidizeValue(varparagraphIndex, field, "number", "getSpecialSlideAnimation");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getSpecialSlideAnimation", field, varparagraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varparagraphIndex);
             });
         });
     });
@@ -20056,13 +20103,14 @@ describe("Tests for getSpecialSlideAnimation", () => {
         let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
         let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
         let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "getSpecialSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSpecialSlideAnimation", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varpassword);
             });
         });
     });
@@ -20073,13 +20121,14 @@ describe("Tests for getSpecialSlideAnimation", () => {
         let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
         let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
         let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
         varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "getSpecialSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSpecialSlideAnimation", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varfolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varfolder);
             });
         });
     });
@@ -20090,13 +20139,14 @@ describe("Tests for getSpecialSlideAnimation", () => {
         let varslideIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "slideIndex", "number");
         let varslideType = <model.SpecialSlideType>TestInitializer.getValue("getSpecialSlideAnimation", "slideType", "string");
         let varshapeIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getSpecialSlideAnimation", "paragraphIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getSpecialSlideAnimation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getSpecialSlideAnimation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getSpecialSlideAnimation", "storage", "string");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "getSpecialSlideAnimation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getSpecialSlideAnimation", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getSpecialSlideAnimation(varname, varslideIndex, varslideType, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getSpecialSlideAnimation", field, varstorage);
             });
         });
     });

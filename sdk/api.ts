@@ -76,6 +76,10 @@ export class SlidesApi {
         if (alignmentType === null || alignmentType === undefined) {
             throw new Error('The required parameter "alignmentType" was null or undefined when calling alignShapes.');
         }
+        // verify value of enum parameter 'alignmentType' is valid
+        if (!Object.keys(model.ShapesAlignmentType).filter(i => model.ShapesAlignmentType[i].toLowerCase() == alignmentType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for alignmentType: ' + alignmentType + '. Must be one of the following: ' + Object.keys(model.ShapesAlignmentType).map(key => model.ShapesAlignmentType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/align/{alignmentType}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -93,8 +97,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -125,9 +127,17 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling alignSpecialSlideShapes.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'alignmentType' is not null or undefined
         if (alignmentType === null || alignmentType === undefined) {
             throw new Error('The required parameter "alignmentType" was null or undefined when calling alignSpecialSlideShapes.');
+        }
+        // verify value of enum parameter 'alignmentType' is valid
+        if (!Object.keys(model.ShapesAlignmentType).filter(i => model.ShapesAlignmentType[i].toLowerCase() == alignmentType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for alignmentType: ' + alignmentType + '. Must be one of the following: ' + Object.keys(model.ShapesAlignmentType).map(key => model.ShapesAlignmentType[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/align/{alignmentType}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -147,8 +157,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -172,6 +180,10 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling convert.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/convert/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
@@ -218,6 +230,10 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling convertAndSave.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
         }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
@@ -279,8 +295,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -314,8 +328,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -362,8 +374,6 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "cloneFromPassword", cloneFromPassword);
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlide");
         return Promise.resolve({ body: result, response });
@@ -412,8 +422,6 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "cloneFromPassword", cloneFromPassword);
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "MasterSlide");
         return Promise.resolve({ body: result, response });
@@ -458,8 +466,6 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "sourcePassword", sourcePassword);
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -501,8 +507,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -544,8 +548,6 @@ export class SlidesApi {
             json: sequence
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -593,8 +595,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -642,8 +642,6 @@ export class SlidesApi {
             json: category
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -697,8 +695,6 @@ export class SlidesApi {
             json: dataPoint
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -746,8 +742,6 @@ export class SlidesApi {
             json: series
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -789,8 +783,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideComments");
         return Promise.resolve({ body: result, response });
@@ -855,8 +847,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -974,8 +964,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
         return Promise.resolve({ body: result, response });
@@ -1025,8 +1013,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -1082,8 +1068,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -1092,8 +1076,8 @@ export class SlidesApi {
     /**
      * Create a presentation. 
      * @param name Document name.
-     * @param data Document input data.
-     * @param inputPassword The password for input document.
+     * @param data Source presentation binary data.
+     * @param inputPassword The password for source presentation.
      * @param password The document password.
      * @param folder Document folder.
      * @param storage Document storage.
@@ -1131,9 +1115,9 @@ export class SlidesApi {
     /**
      * Create a presentation from an existing source. 
      * @param name Document name.
-     * @param sourcePath Template file path.
-     * @param sourcePassword Template file password.
-     * @param sourceStorage Template storage name.
+     * @param sourcePath Source file path.
+     * @param sourcePassword Source file password.
+     * @param sourceStorage Source storage name.
      * @param password The document password.
      * @param folder Document folder.
      * @param storage Document storage.
@@ -1159,8 +1143,6 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "sourcePassword", sourcePassword);
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -1205,8 +1187,6 @@ export class SlidesApi {
         };
         addHeaderParameter(requestOptions.headers, "templatePassword", templatePassword);
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(JSON.parse(response.body), "Document");
         return Promise.resolve({ body: result, response });
@@ -1249,8 +1229,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -1292,8 +1270,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -1328,8 +1304,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -1358,6 +1332,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideAnimationEffect.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'effect' is not null or undefined
         if (effect === null || effect === undefined) {
             throw new Error('The required parameter "effect" was null or undefined when calling createSpecialSlideAnimationEffect.');
@@ -1377,8 +1355,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1407,6 +1383,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideAnimationInteractiveSequence.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'sequence' is not null or undefined
         if (sequence === null || sequence === undefined) {
             throw new Error('The required parameter "sequence" was null or undefined when calling createSpecialSlideAnimationInteractiveSequence.');
@@ -1426,8 +1406,6 @@ export class SlidesApi {
             json: sequence
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1457,6 +1435,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideAnimationInteractiveSequenceEffect.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'sequenceIndex' is not null or undefined
         if (sequenceIndex === null || sequenceIndex === undefined) {
             throw new Error('The required parameter "sequenceIndex" was null or undefined when calling createSpecialSlideAnimationInteractiveSequenceEffect.');
@@ -1481,8 +1463,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -1513,6 +1493,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSpecialSlideParagraph.');
@@ -1538,8 +1522,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -1571,6 +1553,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlidePortion.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSpecialSlidePortion.');
@@ -1601,8 +1587,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -1633,6 +1617,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideShape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -1650,8 +1638,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -1683,6 +1669,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideSubshape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -1701,8 +1691,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -1734,6 +1722,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
@@ -1760,8 +1752,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -1794,6 +1784,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideSubshapePortion.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSpecialSlideSubshapePortion.');
@@ -1825,8 +1819,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -1870,8 +1862,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -1923,8 +1913,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -1982,8 +1970,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -2023,8 +2009,6 @@ export class SlidesApi {
             json: shape
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -2102,8 +2086,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -2146,8 +2128,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -2190,8 +2170,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -2240,8 +2218,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -2278,8 +2254,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -2316,8 +2290,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -2354,8 +2326,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -2404,8 +2374,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -2460,8 +2428,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -2510,8 +2476,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -2544,8 +2508,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -2609,8 +2571,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -2647,8 +2607,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -2672,8 +2630,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -2697,8 +2653,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -2735,8 +2689,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slide");
         return Promise.resolve({ body: result, response });
@@ -2785,8 +2737,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -2831,8 +2781,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -2887,8 +2835,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -2939,8 +2885,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -2971,8 +2915,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
         return Promise.resolve({ body: result, response });
@@ -3046,8 +2988,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -3082,8 +3022,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -3126,8 +3064,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -3166,8 +3102,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -3204,8 +3138,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -3244,8 +3176,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideComments");
         return Promise.resolve({ body: result, response });
@@ -3317,8 +3247,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -3346,6 +3274,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideAnimation.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/animation";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -3361,8 +3293,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -3391,6 +3321,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideAnimationEffect.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'effectIndex' is not null or undefined
         if (effectIndex === null || effectIndex === undefined) {
             throw new Error('The required parameter "effectIndex" was null or undefined when calling deleteSpecialSlideAnimationEffect.');
@@ -3411,8 +3345,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -3441,6 +3373,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequence.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'sequenceIndex' is not null or undefined
         if (sequenceIndex === null || sequenceIndex === undefined) {
             throw new Error('The required parameter "sequenceIndex" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequence.');
@@ -3461,8 +3397,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -3492,6 +3426,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequenceEffect.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'sequenceIndex' is not null or undefined
         if (sequenceIndex === null || sequenceIndex === undefined) {
             throw new Error('The required parameter "sequenceIndex" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequenceEffect.');
@@ -3517,8 +3455,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -3546,6 +3482,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequences.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/animation/interactiveSequences";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -3561,8 +3501,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -3590,6 +3528,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideAnimationMainSequence.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/animation/mainSequence";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -3605,8 +3547,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -3636,6 +3576,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideParagraph.');
@@ -3661,8 +3605,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -3692,6 +3634,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideParagraphs.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideParagraphs.');
@@ -3713,8 +3659,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -3744,6 +3688,10 @@ export class SlidesApi {
         // verify required parameter 'slideType' is not null or undefined
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlidePortion.');
+        }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
         }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
@@ -3775,8 +3723,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -3807,6 +3753,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlidePortions.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlidePortions.');
@@ -3833,8 +3783,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -3863,6 +3811,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideShape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideShape.');
@@ -3883,8 +3835,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -3913,6 +3863,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideShapes.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -3929,8 +3883,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -3960,6 +3912,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshape.');
@@ -3981,8 +3937,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -4013,6 +3967,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
@@ -4039,8 +3997,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -4071,6 +4027,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapeParagraphs.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshapeParagraphs.');
@@ -4093,8 +4053,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -4125,6 +4083,10 @@ export class SlidesApi {
         // verify required parameter 'slideType' is not null or undefined
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
+        }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
         }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
@@ -4157,8 +4119,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -4190,6 +4150,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
@@ -4217,8 +4181,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -4248,6 +4210,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapes.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -4265,8 +4231,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -4311,8 +4275,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -4363,8 +4325,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -4411,8 +4371,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -4469,8 +4427,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -4523,8 +4479,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -4565,8 +4519,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -4599,8 +4551,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -4657,8 +4607,6 @@ export class SlidesApi {
             uri: localVarPath,
             encoding: null
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -4686,6 +4634,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadImage.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ImageExportFormat).filter(i => model.ImageExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ImageExportFormat).map(key => model.ImageExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images/{index}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "index", ObjectSerializer.toString(index));
@@ -4701,8 +4653,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -4739,8 +4689,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -4803,6 +4751,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadImageOnline.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ImageExportFormat).filter(i => model.ImageExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ImageExportFormat).map(key => model.ImageExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/images/{index}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "index", ObjectSerializer.toString(index));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
@@ -4843,6 +4795,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadImages.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ImageExportFormat).filter(i => model.ImageExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ImageExportFormat).map(key => model.ImageExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images/download/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
@@ -4857,8 +4813,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -4889,8 +4843,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -4942,6 +4894,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadImagesOnline.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ImageExportFormat).filter(i => model.ImageExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ImageExportFormat).map(key => model.ImageExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/images/download/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
         const queryParameters: any = {};
@@ -4989,6 +4945,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadNotesSlide.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.NotesSlideExportFormat).filter(i => model.NotesSlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.NotesSlideExportFormat).map(key => model.NotesSlideExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/notesSlide/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -5007,8 +4967,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5036,6 +4994,10 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadNotesSlideOnline.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.NotesSlideExportFormat).filter(i => model.NotesSlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.NotesSlideExportFormat).map(key => model.NotesSlideExportFormat[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/notesSlide/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -5083,6 +5045,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadPresentation.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
@@ -5100,8 +5066,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5139,6 +5103,14 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadShape.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -5160,8 +5132,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5197,6 +5167,14 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadShapeOnline.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/shapes/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -5254,6 +5232,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadSlide.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -5273,8 +5255,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5304,6 +5284,10 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadSlideOnline.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -5362,6 +5346,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling downloadSpecialSlideShape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling downloadSpecialSlideShape.');
@@ -5369,6 +5357,14 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadSpecialSlideShape.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -5392,8 +5388,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5429,6 +5423,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling downloadSpecialSlideSubshape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling downloadSpecialSlideSubshape.');
@@ -5436,6 +5434,14 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadSpecialSlideSubshape.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -5460,8 +5466,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5500,6 +5504,14 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling downloadSubshape.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -5522,8 +5534,6 @@ export class SlidesApi {
             encoding: null
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
@@ -5534,11 +5544,12 @@ export class SlidesApi {
      * @param name Document name.
      * @param slideIndex Slide index.
      * @param shapeIndex Shape index. If specified, only effects related to that shape are returned.
+     * @param paragraphIndex Paragraph index.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getAnimation(name: string, slideIndex: number, shapeIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async getAnimation(name: string, slideIndex: number, shapeIndex: number = null, paragraphIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getAnimation.');
@@ -5552,6 +5563,7 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeIndex", shapeIndex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphIndex", paragraphIndex);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         const requestOptions: request.Options = {
@@ -5562,8 +5574,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -5617,8 +5627,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -5655,8 +5663,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ColorScheme");
         return Promise.resolve({ body: result, response });
@@ -5676,8 +5682,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DiscUsage");
         return Promise.resolve({ body: result, response });
@@ -5708,8 +5712,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -5746,8 +5748,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperty");
         return Promise.resolve({ body: result, response });
@@ -5769,8 +5769,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FileVersions");
         return Promise.resolve({ body: result, response });
@@ -5792,8 +5790,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FilesList");
         return Promise.resolve({ body: result, response });
@@ -5830,8 +5826,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FontScheme");
         return Promise.resolve({ body: result, response });
@@ -5868,8 +5862,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FormatScheme");
         return Promise.resolve({ body: result, response });
@@ -5906,8 +5898,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlide");
         return Promise.resolve({ body: result, response });
@@ -5938,8 +5928,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlides");
         return Promise.resolve({ body: result, response });
@@ -5976,8 +5964,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "MasterSlide");
         return Promise.resolve({ body: result, response });
@@ -6008,8 +5994,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "MasterSlides");
         return Promise.resolve({ body: result, response });
@@ -6046,8 +6030,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
         return Promise.resolve({ body: result, response });
@@ -6084,8 +6066,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlideHeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -6171,8 +6151,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -6215,8 +6193,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -6259,8 +6235,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Placeholder");
         return Promise.resolve({ body: result, response });
@@ -6297,8 +6271,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Placeholders");
         return Promise.resolve({ body: result, response });
@@ -6353,8 +6325,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -6403,8 +6373,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -6435,8 +6403,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -6467,8 +6433,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Images");
         return Promise.resolve({ body: result, response });
@@ -6501,8 +6465,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "TextItems");
         return Promise.resolve({ body: result, response });
@@ -6533,8 +6495,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
         return Promise.resolve({ body: result, response });
@@ -6565,8 +6525,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -6609,8 +6567,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -6647,8 +6603,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -6685,8 +6639,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slide");
         return Promise.resolve({ body: result, response });
@@ -6723,8 +6675,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideComments");
         return Promise.resolve({ body: result, response });
@@ -6761,8 +6711,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "HeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -6799,8 +6747,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Images");
         return Promise.resolve({ body: result, response });
@@ -6831,8 +6777,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideProperties");
         return Promise.resolve({ body: result, response });
@@ -6871,8 +6815,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "TextItems");
         return Promise.resolve({ body: result, response });
@@ -6903,8 +6845,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -6916,11 +6856,12 @@ export class SlidesApi {
      * @param slideIndex Parent slide index.
      * @param slideType Slide type (master, layout or notes).
      * @param shapeIndex Shape index. If specified, only effects related to that shape are returned.
+     * @param paragraphIndex Paragraph index. If specified, only effects related to that paragraph are returned.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async getSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number = null, paragraphIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideAnimation.');
@@ -6933,12 +6874,17 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideAnimation.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/animation";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeIndex", shapeIndex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphIndex", paragraphIndex);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         const requestOptions: request.Options = {
@@ -6949,8 +6895,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -6980,6 +6924,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideParagraph.');
@@ -7005,8 +6953,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -7035,6 +6981,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideParagraphs.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideParagraphs.');
@@ -7055,8 +7005,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -7086,6 +7034,10 @@ export class SlidesApi {
         // verify required parameter 'slideType' is not null or undefined
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlidePortion.');
+        }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
         }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
@@ -7117,8 +7069,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -7148,6 +7098,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlidePortions.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlidePortions.');
@@ -7173,8 +7127,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -7203,6 +7155,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideShape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideShape.');
@@ -7223,8 +7179,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -7252,6 +7206,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideShapes.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -7267,8 +7225,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -7298,6 +7254,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshape.');
@@ -7319,8 +7279,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -7351,6 +7309,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
@@ -7377,8 +7339,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -7408,6 +7368,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapeParagraphs.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshapeParagraphs.');
@@ -7429,8 +7393,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -7461,6 +7423,10 @@ export class SlidesApi {
         // verify required parameter 'slideType' is not null or undefined
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapePortion.');
+        }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
         }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
@@ -7493,8 +7459,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -7525,6 +7489,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapePortions.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshapePortions.');
@@ -7551,8 +7519,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -7581,6 +7547,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapes.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -7597,8 +7567,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -7643,8 +7611,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -7695,8 +7661,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -7741,8 +7705,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
         return Promise.resolve({ body: result, response });
@@ -7799,8 +7761,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -7851,8 +7811,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portions");
         return Promise.resolve({ body: result, response });
@@ -7891,8 +7849,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
         return Promise.resolve({ body: result, response });
@@ -7929,8 +7885,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Theme");
         return Promise.resolve({ body: result, response });
@@ -7961,8 +7915,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ViewProperties");
         return Promise.resolve({ body: result, response });
@@ -7995,8 +7947,6 @@ export class SlidesApi {
             json: false
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(JSON.parse(response.body), "Document");
         return Promise.resolve({ body: result, response });
@@ -8069,8 +8019,6 @@ export class SlidesApi {
             json: request
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -8165,8 +8113,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8200,8 +8146,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8244,8 +8188,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -8288,8 +8230,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -8326,8 +8266,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "EntityExists");
         return Promise.resolve({ body: result, response });
@@ -8388,8 +8326,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ObjectExist");
         return Promise.resolve({ body: result, response });
@@ -8425,8 +8361,6 @@ export class SlidesApi {
             json: request
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -8490,8 +8424,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slides");
         return Promise.resolve({ body: result, response });
@@ -8536,8 +8468,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentReplaceResult");
         return Promise.resolve({ body: result, response });
@@ -8633,8 +8563,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideReplaceResult");
         return Promise.resolve({ body: result, response });
@@ -8712,6 +8640,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling savePresentation.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
+        }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling savePresentation.');
@@ -8733,8 +8665,6 @@ export class SlidesApi {
             json: options
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8773,9 +8703,17 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling saveShape.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling saveShape.');
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -8798,8 +8736,6 @@ export class SlidesApi {
             json: options
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8837,9 +8773,17 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling saveShapeOnline.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling saveShapeOnline.');
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/shapes/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
@@ -8898,6 +8842,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling saveSlide.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
+        }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling saveSlide.');
@@ -8921,8 +8869,6 @@ export class SlidesApi {
             json: options
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -8953,6 +8899,10 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling saveSlideOnline.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
         }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
@@ -9016,6 +8966,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling saveSpecialSlideShape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling saveSpecialSlideShape.');
@@ -9024,9 +8978,17 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling saveSpecialSlideShape.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling saveSpecialSlideShape.');
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -9050,8 +9012,6 @@ export class SlidesApi {
             json: options
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -9088,6 +9048,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling saveSpecialSlideSubshape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling saveSpecialSlideSubshape.');
@@ -9096,9 +9060,17 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling saveSpecialSlideSubshape.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling saveSpecialSlideSubshape.');
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -9123,8 +9095,6 @@ export class SlidesApi {
             json: options
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -9164,9 +9134,17 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling saveSubshape.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling saveSubshape.');
+        }
+        // verify value of enum parameter 'bounds' is valid
+        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -9190,8 +9168,6 @@ export class SlidesApi {
             json: options
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         
         return Promise.resolve({ response });
@@ -9233,8 +9209,6 @@ export class SlidesApi {
             json: animation
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -9276,8 +9250,6 @@ export class SlidesApi {
             json: background
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -9320,8 +9292,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
@@ -9357,8 +9327,6 @@ export class SlidesApi {
             json: properties
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperties");
         return Promise.resolve({ body: result, response });
@@ -9400,8 +9368,6 @@ export class SlidesApi {
             json: property
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperty");
         return Promise.resolve({ body: result, response });
@@ -9443,8 +9409,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlideHeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -9480,8 +9444,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Document");
         return Promise.resolve({ body: result, response });
@@ -9517,8 +9479,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ProtectionProperties");
         return Promise.resolve({ body: result, response });
@@ -9591,8 +9551,6 @@ export class SlidesApi {
             json: sections
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -9634,8 +9592,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "HeaderFooter");
         return Promise.resolve({ body: result, response });
@@ -9671,8 +9627,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideProperties");
         return Promise.resolve({ body: result, response });
@@ -9701,6 +9655,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling setSpecialSlideAnimation.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'animation' is not null or undefined
         if (animation === null || animation === undefined) {
             throw new Error('The required parameter "animation" was null or undefined when calling setSpecialSlideAnimation.');
@@ -9720,8 +9678,6 @@ export class SlidesApi {
             json: animation
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -9757,8 +9713,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ViewProperties");
         return Promise.resolve({ body: result, response });
@@ -9784,6 +9738,10 @@ export class SlidesApi {
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling split.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (format != null && format != undefined && !Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/split";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         const queryParameters: any = {};
@@ -9804,8 +9762,6 @@ export class SlidesApi {
             json: options
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SplitDocumentResult");
         return Promise.resolve({ body: result, response });
@@ -9832,6 +9788,10 @@ export class SlidesApi {
         // verify required parameter 'format' is not null or undefined
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling splitAndSaveOnline.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/split/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
@@ -9883,6 +9843,10 @@ export class SlidesApi {
         if (format === null || format === undefined) {
             throw new Error('The required parameter "format" was null or undefined when calling splitOnline.');
         }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/split/{format}";
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
         const queryParameters: any = {};
@@ -9929,8 +9893,6 @@ export class SlidesApi {
             uri: localVarPath,
             json: true
         };
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "StorageExist");
         return Promise.resolve({ body: result, response });
@@ -9978,8 +9940,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -10033,8 +9993,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -10088,8 +10046,6 @@ export class SlidesApi {
             json: category
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -10149,8 +10105,6 @@ export class SlidesApi {
             json: dataPoint
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -10204,8 +10158,6 @@ export class SlidesApi {
             json: series
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Chart");
         return Promise.resolve({ body: result, response });
@@ -10247,8 +10199,6 @@ export class SlidesApi {
             json: slideDto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "LayoutSlide");
         return Promise.resolve({ body: result, response });
@@ -10290,8 +10240,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "NotesSlide");
         return Promise.resolve({ body: result, response });
@@ -10345,8 +10293,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -10406,8 +10352,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -10450,8 +10394,6 @@ export class SlidesApi {
             json: true
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Sections");
         return Promise.resolve({ body: result, response });
@@ -10499,8 +10441,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -10542,8 +10482,6 @@ export class SlidesApi {
             json: slideDto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Slide");
         return Promise.resolve({ body: result, response });
@@ -10573,6 +10511,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideAnimationEffect.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'effectIndex' is not null or undefined
         if (effectIndex === null || effectIndex === undefined) {
             throw new Error('The required parameter "effectIndex" was null or undefined when calling updateSpecialSlideAnimationEffect.');
@@ -10597,8 +10539,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -10629,6 +10569,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideAnimationInteractiveSequenceEffect.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'sequenceIndex' is not null or undefined
         if (sequenceIndex === null || sequenceIndex === undefined) {
             throw new Error('The required parameter "sequenceIndex" was null or undefined when calling updateSpecialSlideAnimationInteractiveSequenceEffect.');
@@ -10658,8 +10602,6 @@ export class SlidesApi {
             json: effect
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideAnimation");
         return Promise.resolve({ body: result, response });
@@ -10690,6 +10632,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSpecialSlideParagraph.');
@@ -10719,8 +10665,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -10751,6 +10695,10 @@ export class SlidesApi {
         // verify required parameter 'slideType' is not null or undefined
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlidePortion.');
+        }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
         }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
@@ -10786,8 +10734,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -10817,6 +10763,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideShape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSpecialSlideShape.');
@@ -10841,8 +10791,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -10873,6 +10821,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideSubshape.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSpecialSlideSubshape.');
@@ -10898,8 +10850,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -10931,6 +10881,10 @@ export class SlidesApi {
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
         }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
             throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
@@ -10961,8 +10915,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -10994,6 +10946,10 @@ export class SlidesApi {
         // verify required parameter 'slideType' is not null or undefined
         if (slideType === null || slideType === undefined) {
             throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideSubshapePortion.');
+        }
+        // verify value of enum parameter 'slideType' is valid
+        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
         }
         // verify required parameter 'shapeIndex' is not null or undefined
         if (shapeIndex === null || shapeIndex === undefined) {
@@ -11030,8 +10986,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
@@ -11081,8 +11035,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
@@ -11138,8 +11090,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Paragraph");
         return Promise.resolve({ body: result, response });
@@ -11201,8 +11151,6 @@ export class SlidesApi {
             json: dto
         };
         addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });

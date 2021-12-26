@@ -23,8 +23,14 @@ You may want to check out Aspose free [[PowerPoint to Word Converter]](https://p
 
 **Fixed Layout:** PDF, PDF/A, XPS
 **Images:** JPEG, PNG, BMP, TIFF, SVG
-**Web:** HTML
+**Web:** HTML/HTML5
 **Other:** SWF (export whole presentations)
+
+## Enhancements in Version 21.12
+* New **ThreeDFormat**, **Camera**, **LightRig** and **ShapeBevel** classes allow to get and set 3D effects for shapes. New **ThreeDFormat** property of **ShapeBase** class allows to access those objects.
+* The declaration of **GetAnimation** and  **GetSpecialSlideAnimation** methods is changed. New **paragraphIndex** parameter allows to get effects for a specific paragraph. New **ParagraphIndex** property of **Effect** class allows to set effects for a specific paragraph.
+* You can now use **Html5** value for **format** parameter in conversion methods and export presentations to HTML5 format.
+* New **Width** and **Height** parameters were added to **ExportOptions** class. You can now set custom size when convertion your documents.
 
 ## Enhancements in Version 21.9
 * New **options** parameter for **Convert**, **ConvertAndSave**, **DownloadSlideOnline**, **SaveSlideOnline**, **DownloadShapeOnline** and **SaveShapeOnline** methods that allows to specify options when converting presentations from request body.

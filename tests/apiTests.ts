@@ -378,6 +378,196 @@ describe("Tests for alignSpecialSlideShapes", () => {
     });
 });
 
+describe("Tests for alignSubshapes", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+            let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+            let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+            let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+            let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+            let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+            return TestInitializer.initialize("alignSubshapes", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), false, "alignSubshapes");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid path test", () => {
+        const field = "path";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varpath = <string>TestInitializer.invalidizeValue(varpath, field, "string", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varpath).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varpath);
+            });
+        });
+    });
+
+    it("invalid alignmentType test", () => {
+        const field = "alignmentType";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varalignmentType = <model.ShapesAlignmentType>TestInitializer.invalidizeValue(varalignmentType, field, "string", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varalignmentType).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varalignmentType);
+            });
+        });
+    });
+
+    it("invalid alignToSlide test", () => {
+        const field = "alignToSlide";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varalignToSlide = <boolean>TestInitializer.invalidizeValue(varalignToSlide, field, "boolean", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varalignToSlide).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varalignToSlide);
+            });
+        });
+    });
+
+    it("invalid shapes test", () => {
+        const field = "shapes";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varshapes = <Array<number>>TestInitializer.invalidizeValue(varshapes, field, "Array&lt;number&gt;", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varshapes).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varshapes);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("alignSubshapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("alignSubshapes", "slideIndex", "number");
+        let varpath = <string>TestInitializer.getValue("alignSubshapes", "path", "string");
+        let varalignmentType = <model.ShapesAlignmentType>TestInitializer.getValue("alignSubshapes", "alignmentType", "string");
+        let varalignToSlide = <boolean>TestInitializer.getValue("alignSubshapes", "alignToSlide", "boolean");
+        let varshapes = <Array<number>>TestInitializer.getValue("alignSubshapes", "shapes", "Array&lt;number&gt;");
+        let varpassword = <string>TestInitializer.getValue("alignSubshapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("alignSubshapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("alignSubshapes", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "alignSubshapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("alignSubshapes", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().alignSubshapes(varname, varslideIndex, varpath, varalignmentType, varalignToSlide, varshapes, varpassword, varfolder, varstorage), "alignSubshapes", field, varstorage);
+            });
+        });
+    });
+});
+
 describe("Tests for convert", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -14632,6 +14822,168 @@ describe("Tests for downloadNotesSlideOnline", () => {
     });
 });
 
+describe("Tests for downloadPortionAsMathMl", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+            let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+            let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+            let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+            return TestInitializer.initialize("downloadPortionAsMathMl", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), true, "downloadPortionAsMathMl");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varparagraphIndex = <number>TestInitializer.invalidizeValue(varparagraphIndex, field, "number", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varparagraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varparagraphIndex);
+            });
+        });
+    });
+
+    it("invalid portionIndex test", () => {
+        const field = "portionIndex";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varportionIndex = <number>TestInitializer.invalidizeValue(varportionIndex, field, "number", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varportionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varportionIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("downloadPortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("downloadPortionAsMathMl", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("downloadPortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("downloadPortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("downloadPortionAsMathMl", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "downloadPortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("downloadPortionAsMathMl", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadPortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "downloadPortionAsMathMl", field, varstorage);
+            });
+        });
+    });
+});
+
 describe("Tests for downloadPresentation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -19283,6 +19635,118 @@ describe("Tests for getShape", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getShape", field, varstorage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShape(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getShape", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for getShapeGeometryPath", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("getShapeGeometryPath", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "shapeIndex", "number");
+            let varpassword = <string>TestInitializer.getValue("getShapeGeometryPath", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("getShapeGeometryPath", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("getShapeGeometryPath", "storage", "string");
+            return TestInitializer.initialize("getShapeGeometryPath", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getShapeGeometryPath(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), false, "getShapeGeometryPath");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("getShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getShapeGeometryPath", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "getShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getShapeGeometryPath", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapeGeometryPath(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getShapeGeometryPath", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("getShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getShapeGeometryPath", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "getShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getShapeGeometryPath", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapeGeometryPath(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getShapeGeometryPath", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("getShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getShapeGeometryPath", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "getShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getShapeGeometryPath", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapeGeometryPath(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getShapeGeometryPath", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("getShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getShapeGeometryPath", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "getShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getShapeGeometryPath", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapeGeometryPath(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getShapeGeometryPath", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("getShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getShapeGeometryPath", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "getShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getShapeGeometryPath", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapeGeometryPath(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getShapeGeometryPath", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("getShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getShapeGeometryPath", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getShapeGeometryPath", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "getShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getShapeGeometryPath", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapeGeometryPath(varname, varslideIndex, varshapeIndex, varpassword, varfolder, varstorage), "getShapeGeometryPath", field, varstorage);
             });
         });
     });
@@ -24876,6 +25340,196 @@ describe("Tests for replaceSlideTextOnline", () => {
     });
 });
 
+describe("Tests for savePortionAsMathMl", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+            let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+            let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+            let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+            let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+            return TestInitializer.initialize("savePortionAsMathMl", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), false, "savePortionAsMathMl");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varparagraphIndex = <number>TestInitializer.invalidizeValue(varparagraphIndex, field, "number", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varparagraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varparagraphIndex);
+            });
+        });
+    });
+
+    it("invalid portionIndex test", () => {
+        const field = "portionIndex";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varportionIndex = <number>TestInitializer.invalidizeValue(varportionIndex, field, "number", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varportionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varportionIndex);
+            });
+        });
+    });
+
+    it("invalid outPath test", () => {
+        const field = "outPath";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varoutPath = <string>TestInitializer.invalidizeValue(varoutPath, field, "string", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varoutPath).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varoutPath);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("savePortionAsMathMl", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("savePortionAsMathMl", "portionIndex", "number");
+        let varoutPath = <string>TestInitializer.getValue("savePortionAsMathMl", "outPath", "string");
+        let varpassword = <string>TestInitializer.getValue("savePortionAsMathMl", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("savePortionAsMathMl", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("savePortionAsMathMl", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "savePortionAsMathMl");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("savePortionAsMathMl", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().savePortionAsMathMl(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varoutPath, varpassword, varfolder, varstorage), "savePortionAsMathMl", field, varstorage);
+            });
+        });
+    });
+});
+
 describe("Tests for savePresentation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -28233,6 +28887,142 @@ describe("Tests for setSections", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("setSections", field, varstorage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().setSections(varname, varsections, varpassword, varfolder, varstorage), "setSections", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for setShapeGeometryPath", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+            let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+            let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+            return TestInitializer.initialize("setShapeGeometryPath", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), false, "setShapeGeometryPath");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+        let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+        let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "setShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("setShapeGeometryPath", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), "setShapeGeometryPath", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+        let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+        let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "setShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("setShapeGeometryPath", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), "setShapeGeometryPath", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+        let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+        let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "setShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("setShapeGeometryPath", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), "setShapeGeometryPath", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid dto test", () => {
+        const field = "dto";
+        let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+        let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+        let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+        vardto = <model.GeometryPaths>TestInitializer.invalidizeValue(vardto, field, "GeometryPaths", "setShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("setShapeGeometryPath", field, vardto).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), "setShapeGeometryPath", field, vardto);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+        let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+        let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "setShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("setShapeGeometryPath", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), "setShapeGeometryPath", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+        let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+        let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "setShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("setShapeGeometryPath", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), "setShapeGeometryPath", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("setShapeGeometryPath", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("setShapeGeometryPath", "shapeIndex", "number");
+        let vardto = <model.GeometryPaths>TestInitializer.getValue("setShapeGeometryPath", "dto", "GeometryPaths");
+        let varpassword = <string>TestInitializer.getValue("setShapeGeometryPath", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("setShapeGeometryPath", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("setShapeGeometryPath", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "setShapeGeometryPath");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("setShapeGeometryPath", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().setShapeGeometryPath(varname, varslideIndex, varshapeIndex, vardto, varpassword, varfolder, varstorage), "setShapeGeometryPath", field, varstorage);
             });
         });
     });

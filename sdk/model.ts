@@ -1052,7 +1052,8 @@ export enum ExportFormat {
     'Png' = <any> 'Png',
     'Gif' = <any> 'Gif',
     'Bmp' = <any> 'Bmp',
-    'Fodp' = <any> 'Fodp'
+    'Fodp' = <any> 'Fodp',
+    'Xaml' = <any> 'Xaml'
 }
 
 /**
@@ -1183,6 +1184,50 @@ export class FontSet {
 }
 
 /**
+ * Represents GeometryPath of the shape
+ */
+export class GeometryPath {
+
+    /**
+     * Path fill mode
+     */
+    fillMode?: GeometryPath.FillModeEnum;
+
+    /**
+     * Stroke
+     */
+    stroke?: boolean;
+
+    /**
+     * List of PathSegmen objects
+     */
+    pathData?: Array<PathSegment>;
+
+}
+export namespace GeometryPath {
+    export enum FillModeEnum {
+        None = <any> 'None',
+        Normal = <any> 'Normal',
+        Lighten = <any> 'Lighten',
+        LightenLess = <any> 'LightenLess',
+        Darken = <any> 'Darken',
+        DarkenLess = <any> 'DarkenLess'
+    }
+}
+
+/**
+ * Represents container for GeometryPath objects
+ */
+export class GeometryPaths {
+
+    /**
+     * List of GeometryPath objects
+     */
+    paths?: Array<GeometryPath>;
+
+}
+
+/**
  * Represents glow effect 
  */
 export class GlowEffect {
@@ -1214,6 +1259,87 @@ export class GradientFillStop {
      */
     position: number;
 
+}
+
+/**
+ * Hyperlink
+ */
+export class Hyperlink {
+
+    /**
+     * If true Hypelink is not applied. 
+     */
+    isDisabled?: boolean;
+
+    /**
+     * Type of HyperLink action             
+     */
+    actionType: Hyperlink.ActionTypeEnum;
+
+    /**
+     * Specifies the external URL
+     */
+    externalUrl?: string;
+
+    /**
+     * Index of the target slide
+     */
+    targetSlideIndex?: number;
+
+    /**
+     * Target frame
+     */
+    targetFrame?: string;
+
+    /**
+     * Hyperlink tooltip
+     */
+    tooltip?: string;
+
+    /**
+     * Makes hyperlink viewed when it is invoked.             
+     */
+    history?: boolean;
+
+    /**
+     * Determines whether the hyperlink should be highlighted on click.
+     */
+    highlightClick?: boolean;
+
+    /**
+     * Determines whether the sound should be stopped on hyperlink click
+     */
+    stopSoundOnClick?: boolean;
+
+    /**
+     * Represents the source of hyperlink color
+     */
+    colorSource?: Hyperlink.ColorSourceEnum;
+
+}
+export namespace Hyperlink {
+    export enum ActionTypeEnum {
+        NoAction = <any> 'NoAction',
+        Hyperlink = <any> 'Hyperlink',
+        JumpFirstSlide = <any> 'JumpFirstSlide',
+        JumpPreviousSlide = <any> 'JumpPreviousSlide',
+        JumpNextSlide = <any> 'JumpNextSlide',
+        JumpLastSlide = <any> 'JumpLastSlide',
+        JumpEndShow = <any> 'JumpEndShow',
+        JumpLastViewedSlide = <any> 'JumpLastViewedSlide',
+        JumpSpecificSlide = <any> 'JumpSpecificSlide',
+        StartCustomSlideShow = <any> 'StartCustomSlideShow',
+        OpenFile = <any> 'OpenFile',
+        OpenPresentation = <any> 'OpenPresentation',
+        StartStopMedia = <any> 'StartStopMedia',
+        StartMacro = <any> 'StartMacro',
+        StartProgram = <any> 'StartProgram',
+        Unknown = <any> 'Unknown'
+    }
+    export enum ColorSourceEnum {
+        Styles = <any> 'Styles',
+        PortionFormat = <any> 'PortionFormat'
+    }
 }
 
 /**
@@ -1577,6 +1703,63 @@ export namespace LineFormat {
 }
 
 /**
+ * Math element.
+ */
+export class MathElement {
+
+    type?: MathElement.TypeEnum;
+
+}
+export namespace MathElement {
+    export enum TypeEnum {
+        Accent = <any> 'Accent',
+        Array = <any> 'Array',
+        Bar = <any> 'Bar',
+        Block = <any> 'Block',
+        BorderBox = <any> 'BorderBox',
+        Box = <any> 'Box',
+        Delimiter = <any> 'Delimiter',
+        Text = <any> 'Text',
+        Fraction = <any> 'Fraction',
+        Function = <any> 'Function',
+        GroupingCharacter = <any> 'GroupingCharacter',
+        LeftSubSuperscriptElement = <any> 'LeftSubSuperscriptElement',
+        Limit = <any> 'Limit',
+        Matrix = <any> 'Matrix',
+        NaryOperator = <any> 'NaryOperator',
+        Radical = <any> 'Radical',
+        RightSubSuperscriptElement = <any> 'RightSubSuperscriptElement',
+        SubscriptElement = <any> 'SubscriptElement',
+        SuperscriptElement = <any> 'SuperscriptElement'
+    }
+}
+
+/**
+ * Mathematical paragraph that is a container for mathematical blocks
+ */
+export class MathParagraph {
+
+    /**
+     * List of math blocks
+     */
+    mathBlockList?: Array<BlockElement>;
+
+    /**
+     * Justification of the math paragraph
+     */
+    justification?: MathParagraph.JustificationEnum;
+
+}
+export namespace MathParagraph {
+    export enum JustificationEnum {
+        LeftJustified = <any> 'LeftJustified',
+        RightJustified = <any> 'RightJustified',
+        Centered = <any> 'Centered',
+        CenteredAsGroup = <any> 'CenteredAsGroup'
+    }
+}
+
+/**
  * Merging source.
  */
 export class MergingSource {
@@ -1719,6 +1902,25 @@ export namespace OutputFile {
     export enum TypeEnum {
         Path = <any> 'Path',
         Response = <any> 'Response'
+    }
+}
+
+/**
+ * Represents segment of geometry path
+ */
+export class PathSegment {
+
+    type?: PathSegment.TypeEnum;
+
+}
+export namespace PathSegment {
+    export enum TypeEnum {
+        Close = <any> 'Close',
+        MoveTo = <any> 'MoveTo',
+        LineTo = <any> 'LineTo',
+        ArcTo = <any> 'ArcTo',
+        QuadBezierTo = <any> 'QuadBezierTo',
+        CubicBezierTo = <any> 'CubicBezierTo'
     }
 }
 
@@ -2432,7 +2634,8 @@ export enum SlideExportFormat {
     'Pot' = <any> 'Pot',
     'Potm' = <any> 'Potm',
     'Svg' = <any> 'Svg',
-    'Fodp' = <any> 'Fodp'
+    'Fodp' = <any> 'Fodp',
+    'Xaml' = <any> 'Xaml'
 }
 
 /**
@@ -2808,6 +3011,29 @@ export namespace ThreeDFormat {
 }
 
 /**
+ * Specifies the accent function, consisting of a base and a combining diacritical mark
+ */
+export class AccentElement extends MathElement {
+    constructor() {
+        super();
+        this.type = AccentElement.TypeEnum.Accent;
+    }
+
+    /**
+     * The argument to which the accent was applied
+     */
+    base?: MathElement;
+
+    /**
+     * Accent Character
+     */
+    character?: string;
+
+}
+export namespace AccentElement {
+}
+
+/**
  * Add layout slide task.
  */
 export class AddLayoutSlide extends Task {
@@ -2915,6 +3141,123 @@ export namespace AddSlide {
 }
 
 /**
+ * Arc segment of the geometry path
+ */
+export class ArcToPathSegment extends PathSegment {
+    constructor() {
+        super();
+        this.type = ArcToPathSegment.TypeEnum.ArcTo;
+    }
+
+    /**
+     * Width of the rectangle
+     */
+    width: number;
+
+    /**
+     * Height of the rectangle
+     */
+    height: number;
+
+    /**
+     * Start angle
+     */
+    startAngle: number;
+
+    /**
+     * Sweep angle
+     */
+    sweepAngle: number;
+
+}
+export namespace ArcToPathSegment {
+}
+
+/**
+ * An array of elements.
+ */
+export class ArrayElement extends MathElement {
+    constructor() {
+        super();
+        this.type = ArrayElement.TypeEnum.Array;
+    }
+
+    /**
+     * Arguments
+     */
+    arguments?: Array<MathElement>;
+
+    /**
+     * Specifies alignment of the array relative to surrounding text
+     */
+    baseJustification?: ArrayElement.BaseJustificationEnum;
+
+    /**
+     * Maximum Distribution
+     */
+    maximumDistribution?: boolean;
+
+    /**
+     * Object Distribution
+     */
+    objectDistribution?: boolean;
+
+    /**
+     * The type of vertical spacing between array elements
+     */
+    rowSpacingRule?: ArrayElement.RowSpacingRuleEnum;
+
+    /**
+     * Spacing between rows of an array
+     */
+    rowSpacing?: number;
+
+}
+export namespace ArrayElement {
+    export enum BaseJustificationEnum {
+        NotDefined = <any> 'NotDefined',
+        Top = <any> 'Top',
+        Center = <any> 'Center',
+        Bottom = <any> 'Bottom'
+    }
+    export enum RowSpacingRuleEnum {
+        SingleLineGap = <any> 'SingleLineGap',
+        OneAndAHalfLineGap = <any> 'OneAndAHalfLineGap',
+        TwoLineGap = <any> 'TwoLineGap',
+        Exactly = <any> 'Exactly',
+        Multiple = <any> 'Multiple'
+    }
+}
+
+/**
+ * Specifies the bar function, consisting of a base argument and an overbar or underbar
+ */
+export class BarElement extends MathElement {
+    constructor() {
+        super();
+        this.type = BarElement.TypeEnum.Bar;
+    }
+
+    /**
+     * Base
+     */
+    base?: MathElement;
+
+    /**
+     * Position of the bar line.             
+     */
+    position?: BarElement.PositionEnum;
+
+}
+export namespace BarElement {
+    export enum PositionEnum {
+        NotDefined = <any> 'NotDefined',
+        Top = <any> 'Top',
+        Bottom = <any> 'Bottom'
+    }
+}
+
+/**
  * Represents base64 inline encoded file.
  */
 export class Base64InputFile extends InputFile {
@@ -2933,6 +3276,125 @@ export namespace Base64InputFile {
 }
 
 /**
+ * Specifies an instance of mathematical text that contained within a MathParagraph and starts on its own line.
+ */
+export class BlockElement extends MathElement {
+    constructor() {
+        super();
+        this.type = BlockElement.TypeEnum.Block;
+    }
+
+    /**
+     * List of math elements.
+     */
+    mathElementList?: Array<MathElement>;
+
+}
+export namespace BlockElement {
+}
+
+/**
+ * Rectangular or some other border around the MathElement. 
+ */
+export class BorderBoxElement extends MathElement {
+    constructor() {
+        super();
+        this.type = BorderBoxElement.TypeEnum.BorderBox;
+    }
+
+    /**
+     * Base
+     */
+    base?: MathElement;
+
+    /**
+     * Hide Top Edge
+     */
+    hideTop?: boolean;
+
+    /**
+     * Hide Bottom Edge
+     */
+    hideBottom?: boolean;
+
+    /**
+     * Hide Left Edge
+     */
+    hideLeft?: boolean;
+
+    /**
+     * Hide Right Edge
+     */
+    hideRight?: boolean;
+
+    /**
+     * Strikethrough Horizontal
+     */
+    strikethroughHorizontal?: boolean;
+
+    /**
+     * Strikethrough Vertical
+     */
+    strikethroughVertical?: boolean;
+
+    /**
+     * Strikethrough Bottom-Left to Top-Right
+     */
+    strikethroughBottomLeftToTopRight?: boolean;
+
+    /**
+     * Strikethrough Top-Left to Bottom-Right.
+     */
+    strikethroughTopLeftToBottomRight?: boolean;
+
+}
+export namespace BorderBoxElement {
+}
+
+/**
+ * Box element.
+ */
+export class BoxElement extends MathElement {
+    constructor() {
+        super();
+        this.type = BoxElement.TypeEnum.Box;
+    }
+
+    /**
+     * Base
+     */
+    base?: MathElement;
+
+    /**
+     * Operator emulator
+     */
+    operatorEmulator?: boolean;
+
+    /**
+     * No break
+     */
+    noBreak?: boolean;
+
+    /**
+     * Differential
+     */
+    differential?: boolean;
+
+    /**
+     * Alignment point
+     */
+    alignmentPoint?: boolean;
+
+    /**
+     * Explicit break
+     */
+    explicitBreak?: number;
+
+}
+export namespace BoxElement {
+}
+
+/**
  * A bubble series.
  */
 export class BubbleSeries extends Series {
@@ -2948,6 +3410,19 @@ export class BubbleSeries extends Series {
 
 }
 export namespace BubbleSeries {
+}
+
+/**
+ * Close path segment of the geometry path
+ */
+export class ClosePathSegment extends PathSegment {
+    constructor() {
+        super();
+        this.type = ClosePathSegment.TypeEnum.Close;
+    }
+
+}
+export namespace ClosePathSegment {
 }
 
 /**
@@ -3018,6 +3493,96 @@ export class ColorScheme extends ResourceBase {
      */
     light2?: string;
 
+}
+
+/**
+ * Cubic Bezier curve segment of the geometry path
+ */
+export class CubicBezierToPathSegment extends PathSegment {
+    constructor() {
+        super();
+        this.type = CubicBezierToPathSegment.TypeEnum.CubicBezierTo;
+    }
+
+    /**
+     * X coordinate of the first direction point
+     */
+    x1: number;
+
+    /**
+     * Y coordinate of the first direction point
+     */
+    y1: number;
+
+    /**
+     * X coordinate of the second direction point
+     */
+    x2: number;
+
+    /**
+     * Y coordinate of the second direction point
+     */
+    y2: number;
+
+    /**
+     * X coordinate of end point
+     */
+    x3: number;
+
+    /**
+     * Y coordinate of end point
+     */
+    y3: number;
+
+}
+export namespace CubicBezierToPathSegment {
+}
+
+/**
+ * Delimiter element
+ */
+export class DelimiterElement extends MathElement {
+    constructor() {
+        super();
+        this.type = DelimiterElement.TypeEnum.Delimiter;
+    }
+
+    /**
+     * Arguments
+     */
+    arguments?: Array<MathElement>;
+
+    /**
+     * Beginning character
+     */
+    beginningCharacter?: string;
+
+    /**
+     * Separator character
+     */
+    separatorCharacter?: string;
+
+    /**
+     * Ending character
+     */
+    endingCharacter?: string;
+
+    /**
+     * Grow to match operand height
+     */
+    growToMatchOperandHeight?: boolean;
+
+    /**
+     * Delimiter shape
+     */
+    delimiterShape?: DelimiterElement.DelimiterShapeEnum;
+
+}
+export namespace DelimiterElement {
+    export enum DelimiterShapeEnum {
+        Centered = <any> 'Centered',
+        Match = <any> 'Match'
+    }
 }
 
 /**
@@ -3176,6 +3741,89 @@ export class FormatScheme extends ResourceBase {
 }
 
 /**
+ * Specifies the fraction object, consisting of a numerator and denominator separated by a fraction bar.
+ */
+export class FractionElement extends MathElement {
+    constructor() {
+        super();
+        this.type = FractionElement.TypeEnum.Fraction;
+    }
+
+    /**
+     * Fraction type
+     */
+    fractionType?: FractionElement.FractionTypeEnum;
+
+    /**
+     * Numerator
+     */
+    numerator?: MathElement;
+
+    /**
+     * Denominator
+     */
+    denominator?: MathElement;
+
+}
+export namespace FractionElement {
+    export enum FractionTypeEnum {
+        Bar = <any> 'Bar',
+        Skewed = <any> 'Skewed',
+        Linear = <any> 'Linear',
+        NoBar = <any> 'NoBar'
+    }
+}
+
+/**
+ * Specifies a function of an argument.
+ */
+export class FunctionElement extends MathElement {
+    constructor() {
+        super();
+        this.type = FunctionElement.TypeEnum.Function;
+    }
+
+    /**
+     * Function
+     */
+    name?: MathElement;
+
+    /**
+     * Function Argument
+     */
+    base?: MathElement;
+
+}
+export namespace FunctionElement {
+}
+
+/**
+ * Provides options that control how a presentation is saved in Gif format.
+ */
+export class GifExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'gif';
+    }
+
+    /**
+     * Determines whether hidden slides will be exported.
+     */
+    exportHiddenSlides?: boolean;
+
+    /**
+     * Gets or sets transition FPS [frames/sec]
+     */
+    transitionFps?: number;
+
+    /**
+     * Gets or sets default delay time [ms].
+     */
+    defaultDelay?: number;
+
+}
+
+/**
  * Represents gradient fill format
  */
 export class GradientFill extends FillFormat {
@@ -3241,6 +3889,49 @@ export namespace GradientFill {
 }
 
 /**
+ * Specifies a grouping symbol above or below an expression, usually to highlight the relationship between elements 
+ */
+export class GroupingCharacterElement extends MathElement {
+    constructor() {
+        super();
+        this.type = GroupingCharacterElement.TypeEnum.GroupingCharacter;
+    }
+
+    /**
+     * Base
+     */
+    base?: MathElement;
+
+    /**
+     * Grouping character
+     */
+    character?: string;
+
+    /**
+     * Position of grouping character.
+     */
+    position?: GroupingCharacterElement.PositionEnum;
+
+    /**
+     * Vertical justification of group character.
+     */
+    verticalJustification?: GroupingCharacterElement.VerticalJustificationEnum;
+
+}
+export namespace GroupingCharacterElement {
+    export enum PositionEnum {
+        NotDefined = <any> 'NotDefined',
+        Top = <any> 'Top',
+        Bottom = <any> 'Bottom'
+    }
+    export enum VerticalJustificationEnum {
+        NotDefined = <any> 'NotDefined',
+        Top = <any> 'Top',
+        Bottom = <any> 'Bottom'
+    }
+}
+
+/**
  * Represents header/footer info of slide
  */
 export class HeaderFooter extends ResourceBase {
@@ -3272,6 +3963,27 @@ export class HeaderFooter extends ResourceBase {
      * True if slide number is displayed in the footer
      */
     isSlideNumberVisible?: boolean;
+
+}
+
+/**
+ * Provides options that control how a presentation is saved in Html5 format.
+ */
+export class Html5ExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'html5';
+    }
+
+    /**
+     * Gets or sets transitions animation option.
+     */
+    animateTransitions?: boolean;
+
+    /**
+     * Gets or sets shapes animation option.
+     */
+    animateShapes?: boolean;
 
 }
 
@@ -3535,6 +4247,85 @@ export class LayoutSlides extends ResourceBase {
 }
 
 /**
+ * Specifies the Sub-Superscript object
+ */
+export class LeftSubSuperscriptElement extends MathElement {
+    constructor() {
+        super();
+        this.type = LeftSubSuperscriptElement.TypeEnum.LeftSubSuperscriptElement;
+    }
+
+    /**
+     * Base argument
+     */
+    base?: MathElement;
+
+    /**
+     * Subscript
+     */
+    subscript?: MathElement;
+
+    /**
+     * Superscript
+     */
+    superscript?: MathElement;
+
+}
+export namespace LeftSubSuperscriptElement {
+}
+
+/**
+ * Specifies the Limit object
+ */
+export class LimitElement extends MathElement {
+    constructor() {
+        super();
+        this.type = LimitElement.TypeEnum.Limit;
+    }
+
+    /**
+     * Base
+     */
+    base?: MathElement;
+
+    /**
+     * Limit
+     */
+    limit?: MathElement;
+
+    /**
+     * Specifies upper or lower limit
+     */
+    upperLimit?: boolean;
+
+}
+export namespace LimitElement {
+}
+
+/**
+ * Line segment of the geometry path
+ */
+export class LineToPathSegment extends PathSegment {
+    constructor() {
+        super();
+        this.type = LineToPathSegment.TypeEnum.LineTo;
+    }
+
+    /**
+     * X coordinate of the end point of the line
+     */
+    x: number;
+
+    /**
+     * Y coordinate of the end point of the line
+     */
+    y: number;
+
+}
+export namespace LineToPathSegment {
+}
+
+/**
  * Master slide.
  */
 export class MasterSlide extends ResourceBase {
@@ -3575,6 +4366,79 @@ export class MasterSlides extends ResourceBase {
 }
 
 /**
+ * Specifies the Matrix object,
+ */
+export class MatrixElement extends MathElement {
+    constructor() {
+        super();
+        this.type = MatrixElement.TypeEnum.Matrix;
+    }
+
+    /**
+     * Hide the placeholders for empty matrix elements
+     */
+    hidePlaceholders?: boolean;
+
+    /**
+     * Specifies the vertical justification respect to surrounding text. 
+     */
+    baseJustification?: MatrixElement.BaseJustificationEnum;
+
+    /**
+     * Minimum column width in twips (1/20th of a point)
+     */
+    minColumnWidth?: number;
+
+    /**
+     * The type of horizontal spacing between columns of a matrix.
+     */
+    columnGapRule?: MatrixElement.ColumnGapRuleEnum;
+
+    /**
+     * The value of horizontal spacing between columns of a matrix
+     */
+    columnGap?: number;
+
+    /**
+     * The type of vertical spacing between rows of a matrix
+     */
+    rowGapRule?: MatrixElement.RowGapRuleEnum;
+
+    /**
+     * The value of vertical spacing between rows of a matrix;             
+     */
+    rowGap?: number;
+
+    /**
+     * Matrix items
+     */
+    items?: Array<Array<MathElement>>;
+
+}
+export namespace MatrixElement {
+    export enum BaseJustificationEnum {
+        NotDefined = <any> 'NotDefined',
+        Top = <any> 'Top',
+        Center = <any> 'Center',
+        Bottom = <any> 'Bottom'
+    }
+    export enum ColumnGapRuleEnum {
+        SingleSpacingGap = <any> 'SingleSpacingGap',
+        OneAndHalfSpacingGap = <any> 'OneAndHalfSpacingGap',
+        DoubleSpacingGap = <any> 'DoubleSpacingGap',
+        Exactly = <any> 'Exactly',
+        Multiple = <any> 'Multiple'
+    }
+    export enum RowGapRuleEnum {
+        SingleSpacingGap = <any> 'SingleSpacingGap',
+        OneAndHalfSpacingGap = <any> 'OneAndHalfSpacingGap',
+        DoubleSpacingGap = <any> 'DoubleSpacingGap',
+        Exactly = <any> 'Exactly',
+        Multiple = <any> 'Multiple'
+    }
+}
+
+/**
  * Merge presentations task.
  */
 export class Merge extends Task {
@@ -3590,6 +4454,87 @@ export class Merge extends Task {
 
 }
 export namespace Merge {
+}
+
+/**
+ * MoveTo segment of the geometry path
+ */
+export class MoveToPathSegment extends PathSegment {
+    constructor() {
+        super();
+        this.type = MoveToPathSegment.TypeEnum.MoveTo;
+    }
+
+    /**
+     * X coordinate of the point.
+     */
+    x: number;
+
+    /**
+     * Y coordinate of the point.
+     */
+    y: number;
+
+}
+export namespace MoveToPathSegment {
+}
+
+/**
+ * Specifies an N-ary mathematical object, such as Summation and Integral.
+ */
+export class NaryOperatorElement extends MathElement {
+    constructor() {
+        super();
+        this.type = NaryOperatorElement.TypeEnum.NaryOperator;
+    }
+
+    /**
+     * Base argument
+     */
+    base?: MathElement;
+
+    /**
+     * Subscript argument
+     */
+    subscript?: MathElement;
+
+    /**
+     * Superscript argument
+     */
+    superscript?: MathElement;
+
+    /**
+     * Nary Operator Character
+     */
+    operator?: string;
+
+    /**
+     * The location of limits (subscript and superscript)
+     */
+    limitLocation?: NaryOperatorElement.LimitLocationEnum;
+
+    /**
+     * Operator Character grows vertically to match its operand height
+     */
+    growToMatchOperandHeight?: boolean;
+
+    /**
+     * Hide Subscript
+     */
+    hideSubscript?: boolean;
+
+    /**
+     * Hide Superscript
+     */
+    hideSuperscript?: boolean;
+
+}
+export namespace NaryOperatorElement {
+    export enum LimitLocationEnum {
+        NotDefined = <any> 'NotDefined',
+        UnderOver = <any> 'UnderOver',
+        SubscriptSuperscript = <any> 'SubscriptSuperscript'
+    }
 }
 
 /**
@@ -4344,6 +5289,11 @@ export class Portion extends ResourceBase {
     text?: string;
 
     /**
+     * Math paragraph.
+     */
+    mathParagraph?: MathParagraph;
+
+    /**
      * True for bold font.
      */
     fontBold?: Portion.FontBoldEnum;
@@ -4462,6 +5412,16 @@ export class Portion extends ResourceBase {
      * Underline line format.
      */
     underlineLineFormat?: LineFormat;
+
+    /**
+     * Hyperlink defined for mouse click.
+     */
+    hyperlinkClick?: Hyperlink;
+
+    /**
+     * Hyperlink defined for mouse over.
+     */
+    hyperlinkMouseOver?: Hyperlink;
 
 }
 export namespace Portion {
@@ -4614,6 +5574,67 @@ export class ProtectionProperties extends ResourceBase {
 }
 
 /**
+ * Quadratic Bezier curve segment of the geometry path
+ */
+export class QuadraticBezierToPathSegment extends PathSegment {
+    constructor() {
+        super();
+        this.type = QuadraticBezierToPathSegment.TypeEnum.QuadBezierTo;
+    }
+
+    /**
+     * X coordinate of direction point
+     */
+    x1: number;
+
+    /**
+     * Y coordinate of direction point
+     */
+    y1: number;
+
+    /**
+     * X coordinate of end point
+     */
+    x2: number;
+
+    /**
+     * Y coordinate of end point
+     */
+    y2: number;
+
+}
+export namespace QuadraticBezierToPathSegment {
+}
+
+/**
+ * Radical function
+ */
+export class RadicalElement extends MathElement {
+    constructor() {
+        super();
+        this.type = RadicalElement.TypeEnum.Radical;
+    }
+
+    /**
+     * Base argument
+     */
+    base?: MathElement;
+
+    /**
+     * Degree argument
+     */
+    degree?: MathElement;
+
+    /**
+     * Hide degree
+     */
+    hideDegree?: boolean;
+
+}
+export namespace RadicalElement {
+}
+
+/**
  * Remove shape task.
  */
 export class RemoveShape extends Task {
@@ -4755,6 +5776,39 @@ export namespace ResponseOutputFile {
 }
 
 /**
+ * Specifies the Sub-Superscript object
+ */
+export class RightSubSuperscriptElement extends MathElement {
+    constructor() {
+        super();
+        this.type = RightSubSuperscriptElement.TypeEnum.RightSubSuperscriptElement;
+    }
+
+    /**
+     * Base argument
+     */
+    base?: MathElement;
+
+    /**
+     * Subscript
+     */
+    subscript?: MathElement;
+
+    /**
+     * Superscript
+     */
+    superscript?: MathElement;
+
+    /**
+     * Alignment of subscript/superscript.
+     */
+    alignScripts?: boolean;
+
+}
+export namespace RightSubSuperscriptElement {
+}
+
+/**
  * Save slide task.
  */
 export class Save extends Task {
@@ -4803,7 +5857,8 @@ export namespace Save {
         Png = <any> 'Png',
         Gif = <any> 'Gif',
         Bmp = <any> 'Bmp',
-        Fodp = <any> 'Fodp'
+        Fodp = <any> 'Fodp',
+        Xaml = <any> 'Xaml'
     }
 }
 
@@ -4910,7 +5965,8 @@ export namespace SaveSlide {
         Pot = <any> 'Pot',
         Potm = <any> 'Potm',
         Svg = <any> 'Svg',
-        Fodp = <any> 'Fodp'
+        Fodp = <any> 'Fodp',
+        Xaml = <any> 'Xaml'
     }
 }
 
@@ -5069,6 +6125,16 @@ export class ShapeBase extends ResourceBase {
      * Gets or sets the line format.
      */
     lineFormat?: LineFormat;
+
+    /**
+     * Hyperlink defined for mouse click.
+     */
+    hyperlinkClick?: Hyperlink;
+
+    /**
+     * Hyperlink defined for mouse over.
+     */
+    hyperlinkMouseOver?: Hyperlink;
 
     type?: ShapeBase.TypeEnum;
 
@@ -5359,6 +6425,52 @@ export class SplitDocumentResult extends ResourceBase {
 }
 
 /**
+ * Subscript object
+ */
+export class SubscriptElement extends MathElement {
+    constructor() {
+        super();
+        this.type = SubscriptElement.TypeEnum.SubscriptElement;
+    }
+
+    /**
+     * Base argument
+     */
+    base?: MathElement;
+
+    /**
+     * Subscript
+     */
+    subscript?: MathElement;
+
+}
+export namespace SubscriptElement {
+}
+
+/**
+ * Subscript object
+ */
+export class SuperscriptElement extends MathElement {
+    constructor() {
+        super();
+        this.type = SuperscriptElement.TypeEnum.SuperscriptElement;
+    }
+
+    /**
+     * Base argument
+     */
+    base?: MathElement;
+
+    /**
+     * Superscript
+     */
+    superscript?: MathElement;
+
+}
+export namespace SuperscriptElement {
+}
+
+/**
  * Provides options that control how a presentation is saved in SVG format.
  */
 export class SvgExportOptions extends ExportOptions {
@@ -5550,6 +6662,24 @@ export namespace SwfExportOptions {
         Bottom = <any> 'Bottom',
         Right = <any> 'Right'
     }
+}
+
+/**
+ * Mathematical text
+ */
+export class TextElement extends MathElement {
+    constructor() {
+        super();
+        this.type = TextElement.TypeEnum.Text;
+    }
+
+    /**
+     * Value
+     */
+    value?: string;
+
+}
+export namespace TextElement {
 }
 
 /**
@@ -5812,6 +6942,22 @@ export namespace ViewProperties {
         True = <any> 'True',
         NotDefined = <any> 'NotDefined'
     }
+}
+
+/**
+ * Provides options that control how a presentation is saved in XAML format.
+ */
+export class XamlExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'xaml';
+    }
+
+    /**
+     * Export hidden slides
+     */
+    exportHiddenSlides?: boolean;
+
 }
 
 /**
@@ -6801,12 +7947,23 @@ export class AudioFrame extends GeometryShape {
      */
     base64Data?: string;
 
+    /**
+     * Determines whether an audio is playing across the slides.
+     */
+    playAcrossSlides?: boolean;
+
+    /**
+     * Determines whether audio is automatically rewound to start after playing.
+     */
+    rewindAudio?: boolean;
+
 }
 export namespace AudioFrame {
     export enum PlayModeEnum {
         Auto = <any> 'Auto',
         OnClick = <any> 'OnClick',
         AllSlides = <any> 'AllSlides',
+        InClickSequence = <any> 'InClickSequence',
         Mixed = <any> 'Mixed'
     }
     export enum VolumeEnum {
@@ -6955,6 +8112,7 @@ export namespace VideoFrame {
         Auto = <any> 'Auto',
         OnClick = <any> 'OnClick',
         AllSlides = <any> 'AllSlides',
+        InClickSequence = <any> 'InClickSequence',
         Mixed = <any> 'Mixed'
     }
     export enum VolumeEnum {

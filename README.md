@@ -3,7 +3,7 @@
 # Nodejs REST API to Process Presentation in Cloud
 This repository contains Aspose.Slides Cloud SDK for Nodejs source code. This SDK allows you to [process & manipulate PPT, PPTX, ODP, OTP](https://products.aspose.cloud/slides/nodejs) using Aspose.slides Cloud REST APIs in your Nodejs applications.
 
-You may want to check out Aspose free [[PPT to PDF]](https://products.aspose.app/slides/conversion), [[PPT to Word]](https://products.aspose.app/slides/conversion/ppt-to-word), and [[PPT to JPG]](https://products.aspose.app/slides/conversion/ppt-to-jpg) converters because they are live implementations of popular conversion processes.
+You may want to check out Aspose free [PPT to PDF](https://products.aspose.app/slides/conversion), [PPT to Word](https://products.aspose.app/slides/conversion/ppt-to-word), and [PPT to JPG](https://products.aspose.app/slides/conversion/ppt-to-jpg) converters because they are live implementations of popular conversion processes.
 
 ## Presentation Processing Features
 
@@ -18,13 +18,24 @@ You may want to check out Aspose free [[PPT to PDF]](https://products.aspose.app
 
 **Microsoft PowerPoint:** PPT, PPTX, PPS, PPSX, PPTM, PPSM, POTX, POTM
 **OpenOffice:** ODP, OTP, FODP
+**Other**: PDF, PDF/A
 
 ## Save Presentation As
 
-**Fixed Layout:** PDF, PDF/A, XPS
-**Images:** JPEG, PNG, BMP, TIFF, SVG
+**Fixed Layout:** XPS
+**Images:** JPEG, PNG, BMP, TIFF, GIF, SVG
 **Web:** HTML/HTML5
-**Other:** SWF (export whole presentations)
+**Other:** MPEG4, SWF (export whole presentations)
+
+## Enhancements in Version 22.2
+* Added **Mpeg4** to the list of allowed values for **ExportFormat** type. You can now convert presentations to video.
+* New **HighlightShapeText** and **HighlightShapeRegex** methods.
+* New **DeleteUnusedLayoutSlides** and **DeleteUnusedLayoutSlides** methods.
+* New **ZoomFrame** and **ZoomObject** classes with a number of subclasses.
+* Added **TextFrameFormat** property to **Shape** class to support WordArt.
+* Added **XYSeries** class as a supercalss for **ScatterSeries** and **BubbleSeries** methods.
+* Added **None** to the list of allowed values for **TimeUnitType** enum type.
+* **Level** property of **Category** class is deprecated and will be removed after v22.4.
 
 ## Enhancements in Version 22.1
 * New **MathParagraph** property of **Portion** class allows to get and set math formulas. A set of **MathElement** subclasses allows to specify complex mathematical expressions.

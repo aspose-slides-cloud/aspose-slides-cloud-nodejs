@@ -22,6 +22,7 @@
 * SOFTWARE.
 */
 
+import { Readable } from 'stream';
 import * as sdkApi from "../sdk/api";
 import * as model from "../sdk/model";
 
@@ -70,7 +71,7 @@ export class TestInitializer {
 
     public static invalidizeValue(value: any, name: string, type: string, functionName: string) : any {
         var invalidValue = null;
-        if (type == "Buffer" || type == "Array&lt;Buffer&gt;") {
+        if (type == "Readable" || type == "Array&lt;Readable&gt;") {
             return null;
         }
         TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, function(r) {
@@ -155,8 +156,10 @@ export class TestInitializer {
                 });
             });
             await Promise.all(promises);
-            const fileStream = Buffer.from(TestInitializer.expectedFilesVersion, 'utf8');
-            await api.uploadFile(versionFilePath, fileStream).catch((err) => { console.log(err); });
+            var version = new Readable();
+            version.push(TestInitializer.expectedFilesVersion);
+            version.push(null);
+            await api.uploadFile(versionFilePath, version).catch((err) => { console.log(err); });
         }
     }
 

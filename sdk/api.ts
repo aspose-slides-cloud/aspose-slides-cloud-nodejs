@@ -26,6 +26,7 @@
 import http = require("http");
 import request = require("request");
 
+import { Readable } from 'stream';
 import { Configuration } from "./internal/configuration";
 import { ObjectSerializer } from "./internal/objectSerializer";
 import { addQueryParameterToUrl, addPathParameterToUrl, addHeaderParameter, invokeApiMethod, checkMultipartContent } from "./internal/requestHelper";
@@ -224,7 +225,7 @@ export class SlidesApi {
      * @param slides The indices of the slides to be converted. If not specified, all slides are converted by default.
      * @param options Export options.
      */
-    public async convert(document: Buffer, format: model.ExportFormat, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async convert(document: Readable, format: model.ExportFormat, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling convert.');
@@ -274,7 +275,7 @@ export class SlidesApi {
      * @param slides The indices of the slides to be converted. If not specified, all slides are converted by default.
      * @param options Export options.
      */
-    public async convertAndSave(document: Buffer, format: model.ExportFormat, outPath: string, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse}> {
+    public async convertAndSave(document: Readable, format: model.ExportFormat, outPath: string, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling convertAndSave.');
@@ -847,7 +848,7 @@ export class SlidesApi {
      * @param dto Comment DTO.
      * @param password Document password.
      */
-    public async createCommentOnline(document: Buffer, slideIndex: number, dto: model.SlideComment, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async createCommentOnline(document: Readable, slideIndex: number, dto: model.SlideComment, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling createCommentOnline.');
@@ -913,7 +914,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createImageWatermark(name: string, image: Buffer = null, pictureFrame: model.PictureFrame = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async createImageWatermark(name: string, image: Readable = null, pictureFrame: model.PictureFrame = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createImageWatermark.');
@@ -949,7 +950,7 @@ export class SlidesApi {
      * @param pictureFrame PictureFrame DTO.
      * @param password Document password.
      */
-    public async createImageWatermarkOnline(document: Buffer, image: Buffer = null, pictureFrame: model.PictureFrame = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async createImageWatermarkOnline(document: Readable, image: Readable = null, pictureFrame: model.PictureFrame = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling createImageWatermarkOnline.');
@@ -1134,7 +1135,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createPresentation(name: string, data: Buffer = null, inputPassword: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async createPresentation(name: string, data: Readable = null, inputPassword: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createPresentation.');
@@ -2076,7 +2077,7 @@ export class SlidesApi {
      * @param fontColor Watermark font color.
      * @param password Document password.
      */
-    public async createWatermarkOnline(document: Buffer, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async createWatermarkOnline(document: Readable, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling createWatermarkOnline.');
@@ -2571,7 +2572,7 @@ export class SlidesApi {
      * @param author Author of comments.
      * @param password Document password.
      */
-    public async deleteCommentsOnline(document: Buffer, author: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteCommentsOnline(document: Readable, author: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteCommentsOnline.');
@@ -2977,7 +2978,7 @@ export class SlidesApi {
      * @param document Document data.
      * @param password Presentation password.
      */
-    public async deleteProtectionOnline(document: Buffer, password: string): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteProtectionOnline(document: Readable, password: string): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteProtectionOnline.');
@@ -3240,7 +3241,7 @@ export class SlidesApi {
      * @param author Author of comments.
      * @param password Document password.
      */
-    public async deleteSlideCommentsOnline(document: Buffer, slideIndex: number, author: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteSlideCommentsOnline(document: Readable, slideIndex: number, author: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteSlideCommentsOnline.');
@@ -4577,6 +4578,67 @@ export class SlidesApi {
     }
 
     /**
+     * Removes unused layout slides. 
+     * @param name Document name.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteUnusedLayoutSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.LayoutSlides}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteUnusedLayoutSlides.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/layoutSlides";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "LayoutSlides");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Removes unused layout slides. 
+     * @param document Document data
+     * @param password Document password.
+     */
+    public async deleteUnusedLayoutSlidesOnline(document: Readable, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling deleteUnusedLayoutSlidesOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/layoutSlides/delete";
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Removes shapes with name \&quot;watermark\&quot; from the presentation. 
      * @param name Document name.
      * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used.
@@ -4614,7 +4676,7 @@ export class SlidesApi {
      * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used.
      * @param password Document password.
      */
-    public async deleteWatermarkOnline(document: Buffer, shapeName: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteWatermarkOnline(document: Readable, shapeName: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteWatermarkOnline.');
@@ -4752,7 +4814,7 @@ export class SlidesApi {
      * @param index Image index.
      * @param password Document password.
      */
-    public async downloadImageDefaultFormatOnline(document: Buffer, index: number, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImageDefaultFormatOnline(document: Readable, index: number, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImageDefaultFormatOnline.');
@@ -4790,7 +4852,7 @@ export class SlidesApi {
      * @param format Export format (png, jpg, gif).
      * @param password Document password.
      */
-    public async downloadImageOnline(document: Buffer, index: number, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImageOnline(document: Readable, index: number, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImageOnline.');
@@ -4905,7 +4967,7 @@ export class SlidesApi {
      * @param document Document data.
      * @param password Document password.
      */
-    public async downloadImagesDefaultFormatOnline(document: Buffer, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImagesDefaultFormatOnline(document: Readable, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImagesDefaultFormatOnline.');
@@ -4937,7 +4999,7 @@ export class SlidesApi {
      * @param format Export format (png, jpg, gif).
      * @param password Document password.
      */
-    public async downloadImagesOnline(document: Buffer, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImagesOnline(document: Readable, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImagesOnline.');
@@ -5034,7 +5096,7 @@ export class SlidesApi {
      * @param password Document password.
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      */
-    public async downloadNotesSlideOnline(document: Buffer, slideIndex: number, format: model.NotesSlideExportFormat, width: number = null, height: number = null, password: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadNotesSlideOnline(document: Readable, slideIndex: number, format: model.NotesSlideExportFormat, width: number = null, height: number = null, password: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadNotesSlideOnline.');
@@ -5257,7 +5319,7 @@ export class SlidesApi {
      * @param fontsFolder Fonts folder.
      * @param options Export options.
      */
-    public async downloadShapeOnline(document: Buffer, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadShapeOnline(document: Readable, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadShapeOnline.');
@@ -5378,7 +5440,7 @@ export class SlidesApi {
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      * @param options Export options.
      */
-    public async downloadSlideOnline(document: Buffer, slideIndex: number, format: model.SlideExportFormat, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadSlideOnline(document: Readable, slideIndex: number, format: model.SlideExportFormat, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadSlideOnline.');
@@ -6183,7 +6245,7 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param password Document password.
      */
-    public async getNotesSlideOnline(document: Buffer, slideIndex: number, password: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlide}> {
+    public async getNotesSlideOnline(document: Readable, slideIndex: number, password: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlide}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling getNotesSlideOnline.');
@@ -8069,6 +8131,122 @@ export class SlidesApi {
     }
 
     /**
+     * Highlight all matches of sample in text frame text using specified color. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param regex Regular expression.
+     * @param color Highlighting color.
+     * @param wholeWordsOnly Match only whole words.
+     * @param ignoreCase True to search ignoring char case.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async highlightShapeRegex(name: string, slideIndex: number, shapeIndex: number, regex: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shape}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling highlightShapeRegex.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling highlightShapeRegex.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling highlightShapeRegex.');
+        }
+        // verify required parameter 'regex' is not null or undefined
+        if (regex === null || regex === undefined) {
+            throw new Error('The required parameter "regex" was null or undefined when calling highlightShapeRegex.');
+        }
+        // verify required parameter 'color' is not null or undefined
+        if (color === null || color === undefined) {
+            throw new Error('The required parameter "color" was null or undefined when calling highlightShapeRegex.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/highlightRegex";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "regex", regex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", color);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "wholeWordsOnly", wholeWordsOnly);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Shape");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Highlight all matches of sample in text frame text using specified color. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param text Text sample to highlight.
+     * @param color Highlighting color.
+     * @param wholeWordsOnly Match only whole words.
+     * @param ignoreCase True to search ignoring char case.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async highlightShapeText(name: string, slideIndex: number, shapeIndex: number, text: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shape}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling highlightShapeText.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling highlightShapeText.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling highlightShapeText.');
+        }
+        // verify required parameter 'text' is not null or undefined
+        if (text === null || text === undefined) {
+            throw new Error('The required parameter "text" was null or undefined when calling highlightShapeText.');
+        }
+        // verify required parameter 'color' is not null or undefined
+        if (color === null || color === undefined) {
+            throw new Error('The required parameter "color" was null or undefined when calling highlightShapeText.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/highlightText";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "text", text);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", color);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "wholeWordsOnly", wholeWordsOnly);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Shape");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Create presentation document from html. 
      * @param name Document name.
      * @param html HTML data.
@@ -8108,7 +8286,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async importFromPdf(name: string, pdf: Buffer = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async importFromPdf(name: string, pdf: Readable = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling importFromPdf.');
@@ -8179,7 +8357,7 @@ export class SlidesApi {
      * @param request Merge request.
      * @param storage Document storage.
      */
-    public async mergeAndSaveOnline(outPath: string, files: Array<Buffer> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async mergeAndSaveOnline(outPath: string, files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling mergeAndSaveOnline.');
@@ -8210,7 +8388,7 @@ export class SlidesApi {
      * @param request Merge request.
      * @param storage Document storage.
      */
-    public async mergeOnline(files: Array<Buffer> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async mergeOnline(files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/merge";
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
@@ -8425,7 +8603,7 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param password Document password.
      */
-    public async notesSlideExistsOnline(document: Buffer, slideIndex: number, password: string = null): Promise<{response: http.ClientResponse, body: model.EntityExists}> {
+    public async notesSlideExistsOnline(document: Readable, slideIndex: number, password: string = null): Promise<{response: http.ClientResponse, body: model.EntityExists}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling notesSlideExistsOnline.');
@@ -8519,7 +8697,7 @@ export class SlidesApi {
      * @param pipeline A Pipeline object.
      * @param files Files to upload with the pipeline
      */
-    public async pipeline(pipeline: model.Pipeline, files: Array<Buffer> = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async pipeline(pipeline: model.Pipeline, files: Array<Readable> = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'pipeline' is not null or undefined
         if (pipeline === null || pipeline === undefined) {
             throw new Error('The required parameter "pipeline" was null or undefined when calling pipeline.');
@@ -8629,7 +8807,7 @@ export class SlidesApi {
      * @param ignoreCase True if character case must be ignored.
      * @param password Document password.
      */
-    public async replacePresentationTextOnline(document: Buffer, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async replacePresentationTextOnline(document: Readable, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling replacePresentationTextOnline.');
@@ -8725,7 +8903,7 @@ export class SlidesApi {
      * @param ignoreCase True if character case must be ignored.
      * @param password Document password.
      */
-    public async replaceSlideTextOnline(document: Buffer, slideIndex: number, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async replaceSlideTextOnline(document: Readable, slideIndex: number, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling replaceSlideTextOnline.');
@@ -8964,7 +9142,7 @@ export class SlidesApi {
      * @param fontsFolder Fonts folder.
      * @param options Export options.
      */
-    public async saveShapeOnline(document: Buffer, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ClientResponse}> {
+    public async saveShapeOnline(document: Readable, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling saveShapeOnline.');
@@ -9095,7 +9273,7 @@ export class SlidesApi {
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      * @param options Export options.
      */
-    public async saveSlideOnline(document: Buffer, slideIndex: number, format: model.SlideExportFormat, outPath: string, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse}> {
+    public async saveSlideOnline(document: Readable, slideIndex: number, format: model.SlideExportFormat, outPath: string, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling saveSlideOnline.');
@@ -9698,7 +9876,7 @@ export class SlidesApi {
      * @param dto Protection properties.
      * @param password Document password.
      */
-    public async setProtectionOnline(document: Buffer, dto: model.ProtectionProperties, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async setProtectionOnline(document: Readable, dto: model.ProtectionProperties, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling setProtectionOnline.');
@@ -10035,7 +10213,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
      */
-    public async splitAndSaveOnline(document: Buffer, format: model.SlideExportFormat, destFolder: string = null, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: model.SplitDocumentResult}> {
+    public async splitAndSaveOnline(document: Readable, format: model.SlideExportFormat, destFolder: string = null, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: model.SplitDocumentResult}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling splitAndSaveOnline.');
@@ -10089,7 +10267,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
      */
-    public async splitOnline(document: Buffer, format: model.SlideExportFormat, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async splitOnline(document: Readable, format: model.SlideExportFormat, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling splitOnline.');
@@ -11417,7 +11595,7 @@ export class SlidesApi {
      * @param file File to upload
      * @param storageName Storage name
      */
-    public async uploadFile(path: string = null, file: Buffer, storageName: string = null): Promise<{response: http.ClientResponse, body: model.FilesUploadResult}> {
+    public async uploadFile(path: string = null, file: Readable, storageName: string = null): Promise<{response: http.ClientResponse, body: model.FilesUploadResult}> {
         // verify required parameter 'file' is not null or undefined
         if (file === null || file === undefined) {
             throw new Error('The required parameter "file" was null or undefined when calling uploadFile.');

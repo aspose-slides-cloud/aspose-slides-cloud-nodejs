@@ -319,11 +319,13 @@ export namespace Axis {
         CustomValue = <any> 'CustomValue'
     }
     export enum BaseUnitScaleEnum {
+        None = <any> 'None',
         Days = <any> 'Days',
         Months = <any> 'Months',
         Years = <any> 'Years'
     }
     export enum MajorUnitScaleEnum {
+        None = <any> 'None',
         Days = <any> 'Days',
         Months = <any> 'Months',
         Years = <any> 'Years'
@@ -335,6 +337,7 @@ export namespace Axis {
         Outside = <any> 'Outside'
     }
     export enum MinorUnitScaleEnum {
+        None = <any> 'None',
         Days = <any> 'Days',
         Months = <any> 'Months',
         Years = <any> 'Years'
@@ -1053,7 +1056,8 @@ export enum ExportFormat {
     'Gif' = <any> 'Gif',
     'Bmp' = <any> 'Bmp',
     'Fodp' = <any> 'Fodp',
-    'Xaml' = <any> 'Xaml'
+    'Xaml' = <any> 'Xaml',
+    'Mpeg4' = <any> 'Mpeg4'
 }
 
 /**
@@ -2271,26 +2275,6 @@ export class Series {
     order?: number;
 
     /**
-     * The number format for the series y values.
-     */
-    numberFormatOfYValues?: string;
-
-    /**
-     * The number format for the series x values.
-     */
-    numberFormatOfXValues?: string;
-
-    /**
-     * The number format for the series values.
-     */
-    numberFormatOfValues?: string;
-
-    /**
-     * The number format for the series bubble sizes.
-     */
-    numberFormatOfBubbleSizes?: string;
-
-    /**
      * True if the series shall invert its colors if the value is negative. Applies to bar, column and bubble series.
      */
     invertIfNegative?: boolean;
@@ -2917,6 +2901,70 @@ export namespace Task {
 }
 
 /**
+ * Contains the TextFrame's formatting properties.
+ */
+export class TextFrameFormat {
+
+    /**
+     * Represents 3d effect properties for a text.
+     */
+    threeDFormat?: ThreeDFormat;
+
+    /**
+     * Gets or sets text wrapping shape.
+     */
+    transform?: TextFrameFormat.TransformEnum;
+
+}
+export namespace TextFrameFormat {
+    export enum TransformEnum {
+        None = <any> 'None',
+        Plain = <any> 'Plain',
+        Stop = <any> 'Stop',
+        Triangle = <any> 'Triangle',
+        TriangleInverted = <any> 'TriangleInverted',
+        Chevron = <any> 'Chevron',
+        ChevronInverted = <any> 'ChevronInverted',
+        RingInside = <any> 'RingInside',
+        RingOutside = <any> 'RingOutside',
+        ArchUp = <any> 'ArchUp',
+        ArchDown = <any> 'ArchDown',
+        Circle = <any> 'Circle',
+        Button = <any> 'Button',
+        ArchUpPour = <any> 'ArchUpPour',
+        ArchDownPour = <any> 'ArchDownPour',
+        CirclePour = <any> 'CirclePour',
+        ButtonPour = <any> 'ButtonPour',
+        CurveUp = <any> 'CurveUp',
+        CurveDown = <any> 'CurveDown',
+        CanUp = <any> 'CanUp',
+        CanDown = <any> 'CanDown',
+        Wave1 = <any> 'Wave1',
+        Wave2 = <any> 'Wave2',
+        DoubleWave1 = <any> 'DoubleWave1',
+        Wave4 = <any> 'Wave4',
+        Inflate = <any> 'Inflate',
+        Deflate = <any> 'Deflate',
+        InflateBottom = <any> 'InflateBottom',
+        DeflateBottom = <any> 'DeflateBottom',
+        InflateTop = <any> 'InflateTop',
+        DeflateTop = <any> 'DeflateTop',
+        DeflateInflate = <any> 'DeflateInflate',
+        DeflateInflateDeflate = <any> 'DeflateInflateDeflate',
+        FadeRight = <any> 'FadeRight',
+        FadeLeft = <any> 'FadeLeft',
+        FadeUp = <any> 'FadeUp',
+        FadeDown = <any> 'FadeDown',
+        SlantUp = <any> 'SlantUp',
+        SlantDown = <any> 'SlantDown',
+        CascadeUp = <any> 'CascadeUp',
+        CascadeDown = <any> 'CascadeDown',
+        Custom = <any> 'Custom',
+        NotDefined = <any> 'NotDefined'
+    }
+}
+
+/**
  * Represents text item, referenced by TextItems
  */
 export class TextItem {
@@ -3392,24 +3440,6 @@ export class BoxElement extends MathElement {
 
 }
 export namespace BoxElement {
-}
-
-/**
- * A bubble series.
- */
-export class BubbleSeries extends Series {
-    constructor() {
-        super();
-        this.dataPointType = BubbleSeries.DataPointTypeEnum.Bubble;
-    }
-
-    /**
-     * Gets or sets the values.
-     */
-    dataPoints?: Array<BubbleChartDataPoint>;
-
-}
-export namespace BubbleSeries {
 }
 
 /**
@@ -4644,6 +4674,11 @@ export class OneValueSeries extends Series {
      */
     dataPoints?: Array<OneValueChartDataPoint>;
 
+    /**
+     * The number format for the series values.
+     */
+    numberFormatOfValues?: string;
+
 }
 export namespace OneValueSeries {
 }
@@ -5858,7 +5893,8 @@ export namespace Save {
         Gif = <any> 'Gif',
         Bmp = <any> 'Bmp',
         Fodp = <any> 'Fodp',
-        Xaml = <any> 'Xaml'
+        Xaml = <any> 'Xaml',
+        Mpeg4 = <any> 'Mpeg4'
     }
 }
 
@@ -5988,24 +6024,6 @@ export class ScatterChartDataPoint extends DataPoint {
      */
     yValue: number;
 
-}
-
-/**
- * A scatter series
- */
-export class ScatterSeries extends Series {
-    constructor() {
-        super();
-        this.dataPointType = ScatterSeries.DataPointTypeEnum.Scatter;
-    }
-
-    /**
-     * Gets or sets the values.
-     */
-    dataPoints?: Array<ScatterChartDataPoint>;
-
-}
-export namespace ScatterSeries {
 }
 
 /**
@@ -6152,7 +6170,11 @@ export namespace ShapeBase {
         GroupShape = <any> 'GroupShape',
         GraphicalObject = <any> 'GraphicalObject',
         Connector = <any> 'Connector',
-        SmartArtShape = <any> 'SmartArtShape'
+        SmartArtShape = <any> 'SmartArtShape',
+        ZoomFrame = <any> 'ZoomFrame',
+        SectionZoomFrame = <any> 'SectionZoomFrame',
+        SummaryZoomFrame = <any> 'SummaryZoomFrame',
+        SummaryZoomSection = <any> 'SummaryZoomSection'
     }
 }
 
@@ -6862,6 +6884,35 @@ export namespace UpdateShape {
 }
 
 /**
+ * Provides options that control how a presentation is saved in an video format.
+ */
+export class VideoExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'mpeg4';
+    }
+
+    /**
+     * Transition duration.
+     */
+    transitionDuration?: number;
+
+    /**
+     * Video resolution type
+     */
+    videoResolutionType?: VideoExportOptions.VideoResolutionTypeEnum;
+
+}
+export namespace VideoExportOptions {
+    export enum VideoResolutionTypeEnum {
+        FullHD = <any> 'FullHD',
+        SD = <any> 'SD',
+        HD = <any> 'HD',
+        QHD = <any> 'QHD'
+    }
+}
+
+/**
  * Slides document properties.
  */
 export class ViewProperties extends ResourceBase {
@@ -6942,6 +6993,28 @@ export namespace ViewProperties {
         True = <any> 'True',
         NotDefined = <any> 'NotDefined'
     }
+}
+
+/**
+ * Common properties for Bubble and Scatter series. 
+ */
+export class XYSeries extends Series {
+    constructor() {
+        super();
+    }
+
+    /**
+     * The number format for the series y values.
+     */
+    numberFormatOfYValues?: string;
+
+    /**
+     * The number format for the series x values.
+     */
+    numberFormatOfXValues?: string;
+
+}
+export namespace XYSeries {
 }
 
 /**
@@ -7041,6 +7114,29 @@ export class BubbleChartDataPoint extends ScatterChartDataPoint {
      */
     bubbleSize: number;
 
+}
+
+/**
+ * A bubble series.
+ */
+export class BubbleSeries extends XYSeries {
+    constructor() {
+        super();
+        this.dataPointType = BubbleSeries.DataPointTypeEnum.Bubble;
+    }
+
+    /**
+     * Gets or sets the values.
+     */
+    dataPoints?: Array<BubbleChartDataPoint>;
+
+    /**
+     * The number format for the series bubble sizes.
+     */
+    numberFormatOfBubbleSizes?: string;
+
+}
+export namespace BubbleSeries {
 }
 
 /**
@@ -7468,6 +7564,24 @@ export namespace OleObjectFrame {
 }
 
 /**
+ * A scatter series
+ */
+export class ScatterSeries extends XYSeries {
+    constructor() {
+        super();
+        this.dataPointType = ScatterSeries.DataPointTypeEnum.Scatter;
+    }
+
+    /**
+     * Gets or sets the values.
+     */
+    dataPoints?: Array<ScatterChartDataPoint>;
+
+}
+export namespace ScatterSeries {
+}
+
+/**
  * Represents slide replace result DTO.
  */
 export class SlideReplaceResult extends Slide {
@@ -7715,6 +7829,33 @@ export namespace SmartArt {
 }
 
 /**
+ * Summary zoom frame.
+ */
+export class SummaryZoomFrame extends ShapeBase {
+    constructor() {
+        super();
+        this.type = SummaryZoomFrame.TypeEnum.SummaryZoomFrame;
+    }
+
+    /**
+     * Zoom layout type
+     */
+    zoomLayout?: SummaryZoomFrame.ZoomLayoutEnum;
+
+    /**
+     * Zoom frame sections
+     */
+    sections?: Array<SummaryZoomSection>;
+
+}
+export namespace SummaryZoomFrame {
+    export enum ZoomLayoutEnum {
+        GridLayout = <any> 'GridLayout',
+        FixedLayout = <any> 'FixedLayout'
+    }
+}
+
+/**
  * Represents Table shape resource.
  */
 export class Table extends ShapeBase {
@@ -7888,6 +8029,44 @@ export class WaterfallSeries extends OneValueSeries {
 export namespace WaterfallSeries {
 }
 
+export class ZoomObject extends ShapeBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Image type of a zoom object. 
+     */
+    imageType?: ZoomObject.ImageTypeEnum;
+
+    /**
+     * Navigation behavior in slideshow. 
+     */
+    returnToParent?: boolean;
+
+    /**
+     * Specifies whether the Zoom will use the background of the destination slide.
+     */
+    showBackground?: boolean;
+
+    /**
+     * Internal image link for zoom object
+     */
+    image?: ResourceUri;
+
+    /**
+     * Duration of the transition between Zoom and slide.
+     */
+    transitionDuration?: number;
+
+}
+export namespace ZoomObject {
+    export enum ImageTypeEnum {
+        Preview = <any> 'Preview',
+        Cover = <any> 'Cover'
+    }
+}
+
 /**
  * Represents AudioFrame resource.
  */
@@ -8027,6 +8206,24 @@ export namespace PictureFrame {
 }
 
 /**
+ * Section zoom frame.             
+ */
+export class SectionZoomFrame extends ZoomObject {
+    constructor() {
+        super();
+        this.type = SectionZoomFrame.TypeEnum.SectionZoomFrame;
+    }
+
+    /**
+     * Index of the target section
+     */
+    targetSectionIndex?: number;
+
+}
+export namespace SectionZoomFrame {
+}
+
+/**
  * Represents AutoShape resource.
  */
 export class Shape extends GeometryShape {
@@ -8044,6 +8241,11 @@ export class Shape extends GeometryShape {
      * Get or sets list to paragraphs list
      */
     paragraphs?: ResourceUri;
+
+    /**
+     * Returns TextFrame's formatting properties.
+     */
+    textFrameFormat?: TextFrameFormat;
 
 }
 export namespace Shape {
@@ -8122,4 +8324,45 @@ export namespace VideoFrame {
         Loud = <any> 'Loud',
         Mixed = <any> 'Mixed'
     }
+}
+
+/**
+ * Zoom frame.
+ */
+export class ZoomFrame extends ZoomObject {
+    constructor() {
+        super();
+        this.type = ZoomFrame.TypeEnum.ZoomFrame;
+    }
+
+    /**
+     * Links to the target slide
+     */
+    targetSlideIndex?: number;
+
+}
+export namespace ZoomFrame {
+}
+
+/**
+ * Represents summary zoom section
+ */
+export class SummaryZoomSection extends SectionZoomFrame {
+    constructor() {
+        super();
+        this.type = SummaryZoomSection.TypeEnum.SummaryZoomSection;
+    }
+
+    /**
+     * Section title
+     */
+    title?: string;
+
+    /**
+     * Description of the Summary Zoom Section object. 
+     */
+    description?: string;
+
+}
+export namespace SummaryZoomSection {
 }

@@ -22,6 +22,8 @@
 * SOFTWARE.
 */
 
+
+import { Readable } from 'stream';
 import "mocha";
 import * as model from "../sdk/model";
 import { TestInitializer } from "./testInitializer";
@@ -571,7 +573,7 @@ describe("Tests for alignSubshapes", () => {
 describe("Tests for convert", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
             let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
             let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
             let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
@@ -586,14 +588,14 @@ describe("Tests for convert", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("convert", "fontsFolder", "string");
         let varslides = <Array<number>>TestInitializer.getValue("convert", "slides", "Array&lt;number&gt;");
         let varoptions = <model.ExportOptions>TestInitializer.getValue("convert", "options", "ExportOptions");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "convert");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "convert");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convert", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().convert(vardocument, varformat, varpassword, varstorage, varfontsFolder, varslides, varoptions), "convert", field, vardocument);
@@ -603,7 +605,7 @@ describe("Tests for convert", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
@@ -620,7 +622,7 @@ describe("Tests for convert", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
@@ -637,7 +639,7 @@ describe("Tests for convert", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
@@ -654,7 +656,7 @@ describe("Tests for convert", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
@@ -671,7 +673,7 @@ describe("Tests for convert", () => {
 
     it("invalid slides test", () => {
         const field = "slides";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
@@ -688,7 +690,7 @@ describe("Tests for convert", () => {
 
     it("invalid options test", () => {
         const field = "options";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convert", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convert", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convert", "format", "string");
         let varpassword = <string>TestInitializer.getValue("convert", "password", "string");
         let varstorage = <string>TestInitializer.getValue("convert", "storage", "string");
@@ -707,7 +709,7 @@ describe("Tests for convert", () => {
 describe("Tests for convertAndSave", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
             let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
             let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
             let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -723,7 +725,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -731,7 +733,7 @@ describe("Tests for convertAndSave", () => {
         let varfontsFolder = <string>TestInitializer.getValue("convertAndSave", "fontsFolder", "string");
         let varslides = <Array<number>>TestInitializer.getValue("convertAndSave", "slides", "Array&lt;number&gt;");
         let varoptions = <model.ExportOptions>TestInitializer.getValue("convertAndSave", "options", "ExportOptions");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "convertAndSave");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "convertAndSave");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("convertAndSave", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().convertAndSave(vardocument, varformat, varoutPath, varpassword, varstorage, varfontsFolder, varslides, varoptions), "convertAndSave", field, vardocument);
@@ -741,7 +743,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -759,7 +761,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid outPath test", () => {
         const field = "outPath";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -777,7 +779,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -795,7 +797,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -813,7 +815,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -831,7 +833,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid slides test", () => {
         const field = "slides";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -849,7 +851,7 @@ describe("Tests for convertAndSave", () => {
 
     it("invalid options test", () => {
         const field = "options";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("convertAndSave", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("convertAndSave", "document");
         let varformat = <model.ExportFormat>TestInitializer.getValue("convertAndSave", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("convertAndSave", "outPath", "string");
         let varpassword = <string>TestInitializer.getValue("convertAndSave", "password", "string");
@@ -2477,7 +2479,7 @@ describe("Tests for createComment", () => {
 describe("Tests for createCommentOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("createCommentOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
             let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
             let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
@@ -2489,11 +2491,11 @@ describe("Tests for createCommentOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createCommentOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
         let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "createCommentOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "createCommentOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createCommentOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varpassword), "createCommentOnline", field, vardocument);
@@ -2503,7 +2505,7 @@ describe("Tests for createCommentOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createCommentOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
         let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
@@ -2517,7 +2519,7 @@ describe("Tests for createCommentOnline", () => {
 
     it("invalid dto test", () => {
         const field = "dto";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createCommentOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
         let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
@@ -2531,7 +2533,7 @@ describe("Tests for createCommentOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createCommentOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
         let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
@@ -2584,7 +2586,7 @@ describe("Tests for createImageWatermark", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
             let varname = <string>TestInitializer.getValue("createImageWatermark", "name", "string");
-            let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermark", "image");
+            let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermark", "image");
             let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermark", "pictureFrame", "PictureFrame");
             let varpassword = <string>TestInitializer.getValue("createImageWatermark", "password", "string");
             let varfolder = <string>TestInitializer.getValue("createImageWatermark", "folder", "string");
@@ -2598,7 +2600,7 @@ describe("Tests for createImageWatermark", () => {
     it("invalid name test", () => {
         const field = "name";
         let varname = <string>TestInitializer.getValue("createImageWatermark", "name", "string");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermark", "image");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermark", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermark", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermark", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createImageWatermark", "folder", "string");
@@ -2614,12 +2616,12 @@ describe("Tests for createImageWatermark", () => {
     it("invalid image test", () => {
         const field = "image";
         let varname = <string>TestInitializer.getValue("createImageWatermark", "name", "string");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermark", "image");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermark", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermark", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermark", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createImageWatermark", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createImageWatermark", "storage", "string");
-        varimage = <Buffer>TestInitializer.invalidizeValue(varimage, field, "Buffer", "createImageWatermark");
+        varimage = <Readable>TestInitializer.invalidizeValue(varimage, field, "Readable", "createImageWatermark");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createImageWatermark", field, varimage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermark(varname, varimage, varpictureFrame, varpassword, varfolder, varstorage), "createImageWatermark", field, varimage);
@@ -2630,7 +2632,7 @@ describe("Tests for createImageWatermark", () => {
     it("invalid pictureFrame test", () => {
         const field = "pictureFrame";
         let varname = <string>TestInitializer.getValue("createImageWatermark", "name", "string");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermark", "image");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermark", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermark", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermark", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createImageWatermark", "folder", "string");
@@ -2646,7 +2648,7 @@ describe("Tests for createImageWatermark", () => {
     it("invalid password test", () => {
         const field = "password";
         let varname = <string>TestInitializer.getValue("createImageWatermark", "name", "string");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermark", "image");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermark", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermark", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermark", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createImageWatermark", "folder", "string");
@@ -2662,7 +2664,7 @@ describe("Tests for createImageWatermark", () => {
     it("invalid folder test", () => {
         const field = "folder";
         let varname = <string>TestInitializer.getValue("createImageWatermark", "name", "string");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermark", "image");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermark", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermark", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermark", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createImageWatermark", "folder", "string");
@@ -2678,7 +2680,7 @@ describe("Tests for createImageWatermark", () => {
     it("invalid storage test", () => {
         const field = "storage";
         let varname = <string>TestInitializer.getValue("createImageWatermark", "name", "string");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermark", "image");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermark", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermark", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermark", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createImageWatermark", "folder", "string");
@@ -2695,8 +2697,8 @@ describe("Tests for createImageWatermark", () => {
 describe("Tests for createImageWatermarkOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
-            let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
+            let vardocument = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
+            let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
             let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermarkOnline", "pictureFrame", "PictureFrame");
             let varpassword = <string>TestInitializer.getValue("createImageWatermarkOnline", "password", "string");
             return TestInitializer.initialize("createImageWatermarkOnline", null, null).then(() => {
@@ -2707,11 +2709,11 @@ describe("Tests for createImageWatermarkOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermarkOnline", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermarkOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "createImageWatermarkOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "createImageWatermarkOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createImageWatermarkOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermarkOnline(vardocument, varimage, varpictureFrame, varpassword), "createImageWatermarkOnline", field, vardocument);
@@ -2721,11 +2723,11 @@ describe("Tests for createImageWatermarkOnline", () => {
 
     it("invalid image test", () => {
         const field = "image";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermarkOnline", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermarkOnline", "password", "string");
-        varimage = <Buffer>TestInitializer.invalidizeValue(varimage, field, "Buffer", "createImageWatermarkOnline");
+        varimage = <Readable>TestInitializer.invalidizeValue(varimage, field, "Readable", "createImageWatermarkOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createImageWatermarkOnline", field, varimage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().createImageWatermarkOnline(vardocument, varimage, varpictureFrame, varpassword), "createImageWatermarkOnline", field, varimage);
@@ -2735,8 +2737,8 @@ describe("Tests for createImageWatermarkOnline", () => {
 
     it("invalid pictureFrame test", () => {
         const field = "pictureFrame";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermarkOnline", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermarkOnline", "password", "string");
         varpictureFrame = <model.PictureFrame>TestInitializer.invalidizeValue(varpictureFrame, field, "PictureFrame", "createImageWatermarkOnline");
@@ -2749,8 +2751,8 @@ describe("Tests for createImageWatermarkOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
-        let varimage = <Buffer>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "document");
+        let varimage = <Readable>TestInitializer.getStreamValue("createImageWatermarkOnline", "image");
         let varpictureFrame = <model.PictureFrame>TestInitializer.getValue("createImageWatermarkOnline", "pictureFrame", "PictureFrame");
         let varpassword = <string>TestInitializer.getValue("createImageWatermarkOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "createImageWatermarkOnline");
@@ -3230,7 +3232,7 @@ describe("Tests for createPresentation", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
             let varname = <string>TestInitializer.getValue("createPresentation", "name", "string");
-            let vardata = <Buffer>TestInitializer.getStreamValue("createPresentation", "data");
+            let vardata = <Readable>TestInitializer.getStreamValue("createPresentation", "data");
             let varinputPassword = <string>TestInitializer.getValue("createPresentation", "inputPassword", "string");
             let varpassword = <string>TestInitializer.getValue("createPresentation", "password", "string");
             let varfolder = <string>TestInitializer.getValue("createPresentation", "folder", "string");
@@ -3244,7 +3246,7 @@ describe("Tests for createPresentation", () => {
     it("invalid name test", () => {
         const field = "name";
         let varname = <string>TestInitializer.getValue("createPresentation", "name", "string");
-        let vardata = <Buffer>TestInitializer.getStreamValue("createPresentation", "data");
+        let vardata = <Readable>TestInitializer.getStreamValue("createPresentation", "data");
         let varinputPassword = <string>TestInitializer.getValue("createPresentation", "inputPassword", "string");
         let varpassword = <string>TestInitializer.getValue("createPresentation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createPresentation", "folder", "string");
@@ -3260,12 +3262,12 @@ describe("Tests for createPresentation", () => {
     it("invalid data test", () => {
         const field = "data";
         let varname = <string>TestInitializer.getValue("createPresentation", "name", "string");
-        let vardata = <Buffer>TestInitializer.getStreamValue("createPresentation", "data");
+        let vardata = <Readable>TestInitializer.getStreamValue("createPresentation", "data");
         let varinputPassword = <string>TestInitializer.getValue("createPresentation", "inputPassword", "string");
         let varpassword = <string>TestInitializer.getValue("createPresentation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createPresentation", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createPresentation", "storage", "string");
-        vardata = <Buffer>TestInitializer.invalidizeValue(vardata, field, "Buffer", "createPresentation");
+        vardata = <Readable>TestInitializer.invalidizeValue(vardata, field, "Readable", "createPresentation");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createPresentation", field, vardata).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().createPresentation(varname, vardata, varinputPassword, varpassword, varfolder, varstorage), "createPresentation", field, vardata);
@@ -3276,7 +3278,7 @@ describe("Tests for createPresentation", () => {
     it("invalid inputPassword test", () => {
         const field = "inputPassword";
         let varname = <string>TestInitializer.getValue("createPresentation", "name", "string");
-        let vardata = <Buffer>TestInitializer.getStreamValue("createPresentation", "data");
+        let vardata = <Readable>TestInitializer.getStreamValue("createPresentation", "data");
         let varinputPassword = <string>TestInitializer.getValue("createPresentation", "inputPassword", "string");
         let varpassword = <string>TestInitializer.getValue("createPresentation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createPresentation", "folder", "string");
@@ -3292,7 +3294,7 @@ describe("Tests for createPresentation", () => {
     it("invalid password test", () => {
         const field = "password";
         let varname = <string>TestInitializer.getValue("createPresentation", "name", "string");
-        let vardata = <Buffer>TestInitializer.getStreamValue("createPresentation", "data");
+        let vardata = <Readable>TestInitializer.getStreamValue("createPresentation", "data");
         let varinputPassword = <string>TestInitializer.getValue("createPresentation", "inputPassword", "string");
         let varpassword = <string>TestInitializer.getValue("createPresentation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createPresentation", "folder", "string");
@@ -3308,7 +3310,7 @@ describe("Tests for createPresentation", () => {
     it("invalid folder test", () => {
         const field = "folder";
         let varname = <string>TestInitializer.getValue("createPresentation", "name", "string");
-        let vardata = <Buffer>TestInitializer.getStreamValue("createPresentation", "data");
+        let vardata = <Readable>TestInitializer.getStreamValue("createPresentation", "data");
         let varinputPassword = <string>TestInitializer.getValue("createPresentation", "inputPassword", "string");
         let varpassword = <string>TestInitializer.getValue("createPresentation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createPresentation", "folder", "string");
@@ -3324,7 +3326,7 @@ describe("Tests for createPresentation", () => {
     it("invalid storage test", () => {
         const field = "storage";
         let varname = <string>TestInitializer.getValue("createPresentation", "name", "string");
-        let vardata = <Buffer>TestInitializer.getStreamValue("createPresentation", "data");
+        let vardata = <Readable>TestInitializer.getStreamValue("createPresentation", "data");
         let varinputPassword = <string>TestInitializer.getValue("createPresentation", "inputPassword", "string");
         let varpassword = <string>TestInitializer.getValue("createPresentation", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createPresentation", "folder", "string");
@@ -6569,7 +6571,7 @@ describe("Tests for createWatermark", () => {
 describe("Tests for createWatermarkOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
             let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
             let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
             let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
@@ -6584,14 +6586,14 @@ describe("Tests for createWatermarkOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
         let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
         let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
         let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
         let varfontName = <string>TestInitializer.getValue("createWatermarkOnline", "fontName", "string");
         let varfontColor = <string>TestInitializer.getValue("createWatermarkOnline", "fontColor", "string");
         let varpassword = <string>TestInitializer.getValue("createWatermarkOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "createWatermarkOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "createWatermarkOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createWatermarkOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().createWatermarkOnline(vardocument, varshape, varfontHeight, vartext, varfontName, varfontColor, varpassword), "createWatermarkOnline", field, vardocument);
@@ -6601,7 +6603,7 @@ describe("Tests for createWatermarkOnline", () => {
 
     it("invalid shape test", () => {
         const field = "shape";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
         let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
         let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
         let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
@@ -6618,7 +6620,7 @@ describe("Tests for createWatermarkOnline", () => {
 
     it("invalid fontHeight test", () => {
         const field = "fontHeight";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
         let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
         let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
         let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
@@ -6635,7 +6637,7 @@ describe("Tests for createWatermarkOnline", () => {
 
     it("invalid text test", () => {
         const field = "text";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
         let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
         let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
         let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
@@ -6652,7 +6654,7 @@ describe("Tests for createWatermarkOnline", () => {
 
     it("invalid fontName test", () => {
         const field = "fontName";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
         let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
         let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
         let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
@@ -6669,7 +6671,7 @@ describe("Tests for createWatermarkOnline", () => {
 
     it("invalid fontColor test", () => {
         const field = "fontColor";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
         let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
         let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
         let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
@@ -6686,7 +6688,7 @@ describe("Tests for createWatermarkOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("createWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("createWatermarkOnline", "document");
         let varshape = <model.Shape>TestInitializer.getValue("createWatermarkOnline", "shape", "Shape");
         let varfontHeight = <number>TestInitializer.getValue("createWatermarkOnline", "fontHeight", "number");
         let vartext = <string>TestInitializer.getValue("createWatermarkOnline", "text", "string");
@@ -7949,7 +7951,7 @@ describe("Tests for deleteComments", () => {
 describe("Tests for deleteCommentsOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
             let varauthor = <string>TestInitializer.getValue("deleteCommentsOnline", "author", "string");
             let varpassword = <string>TestInitializer.getValue("deleteCommentsOnline", "password", "string");
             return TestInitializer.initialize("deleteCommentsOnline", null, null).then(() => {
@@ -7960,10 +7962,10 @@ describe("Tests for deleteCommentsOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
         let varauthor = <string>TestInitializer.getValue("deleteCommentsOnline", "author", "string");
         let varpassword = <string>TestInitializer.getValue("deleteCommentsOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "deleteCommentsOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "deleteCommentsOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteCommentsOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteCommentsOnline(vardocument, varauthor, varpassword), "deleteCommentsOnline", field, vardocument);
@@ -7973,7 +7975,7 @@ describe("Tests for deleteCommentsOnline", () => {
 
     it("invalid author test", () => {
         const field = "author";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
         let varauthor = <string>TestInitializer.getValue("deleteCommentsOnline", "author", "string");
         let varpassword = <string>TestInitializer.getValue("deleteCommentsOnline", "password", "string");
         varauthor = <string>TestInitializer.invalidizeValue(varauthor, field, "string", "deleteCommentsOnline");
@@ -7986,7 +7988,7 @@ describe("Tests for deleteCommentsOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteCommentsOnline", "document");
         let varauthor = <string>TestInitializer.getValue("deleteCommentsOnline", "author", "string");
         let varpassword = <string>TestInitializer.getValue("deleteCommentsOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteCommentsOnline");
@@ -9021,7 +9023,7 @@ describe("Tests for deleteProtection", () => {
 describe("Tests for deleteProtectionOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("deleteProtectionOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("deleteProtectionOnline", "document");
             let varpassword = <string>TestInitializer.getValue("deleteProtectionOnline", "password", "string");
             return TestInitializer.initialize("deleteProtectionOnline", null, null).then(() => {
                 return TestInitializer.assertValidCall(TestInitializer.getApi().deleteProtectionOnline(vardocument, varpassword), true, "deleteProtectionOnline");
@@ -9031,9 +9033,9 @@ describe("Tests for deleteProtectionOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteProtectionOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteProtectionOnline", "document");
         let varpassword = <string>TestInitializer.getValue("deleteProtectionOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "deleteProtectionOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "deleteProtectionOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteProtectionOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteProtectionOnline(vardocument, varpassword), "deleteProtectionOnline", field, vardocument);
@@ -9043,7 +9045,7 @@ describe("Tests for deleteProtectionOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteProtectionOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteProtectionOnline", "document");
         let varpassword = <string>TestInitializer.getValue("deleteProtectionOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteProtectionOnline");
         return TestInitializer.runTest(() => {
@@ -9707,7 +9709,7 @@ describe("Tests for deleteSlideComments", () => {
 describe("Tests for deleteSlideCommentsOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("deleteSlideCommentsOnline", "slideIndex", "number");
             let varauthor = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "author", "string");
             let varpassword = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "password", "string");
@@ -9719,11 +9721,11 @@ describe("Tests for deleteSlideCommentsOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("deleteSlideCommentsOnline", "slideIndex", "number");
         let varauthor = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "author", "string");
         let varpassword = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "deleteSlideCommentsOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "deleteSlideCommentsOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteSlideCommentsOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteSlideCommentsOnline(vardocument, varslideIndex, varauthor, varpassword), "deleteSlideCommentsOnline", field, vardocument);
@@ -9733,7 +9735,7 @@ describe("Tests for deleteSlideCommentsOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("deleteSlideCommentsOnline", "slideIndex", "number");
         let varauthor = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "author", "string");
         let varpassword = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "password", "string");
@@ -9747,7 +9749,7 @@ describe("Tests for deleteSlideCommentsOnline", () => {
 
     it("invalid author test", () => {
         const field = "author";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("deleteSlideCommentsOnline", "slideIndex", "number");
         let varauthor = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "author", "string");
         let varpassword = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "password", "string");
@@ -9761,7 +9763,7 @@ describe("Tests for deleteSlideCommentsOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteSlideCommentsOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("deleteSlideCommentsOnline", "slideIndex", "number");
         let varauthor = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "author", "string");
         let varpassword = <string>TestInitializer.getValue("deleteSlideCommentsOnline", "password", "string");
@@ -13730,6 +13732,112 @@ describe("Tests for deleteSubshapes", () => {
     });
 });
 
+describe("Tests for deleteUnusedLayoutSlides", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "name", "string");
+            let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "storage", "string");
+            return TestInitializer.initialize("deleteUnusedLayoutSlides", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteUnusedLayoutSlides(varname, varpassword, varfolder, varstorage), false, "deleteUnusedLayoutSlides");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "name", "string");
+        let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "deleteUnusedLayoutSlides");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteUnusedLayoutSlides", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteUnusedLayoutSlides(varname, varpassword, varfolder, varstorage), "deleteUnusedLayoutSlides", field, varname);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "name", "string");
+        let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteUnusedLayoutSlides");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteUnusedLayoutSlides", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteUnusedLayoutSlides(varname, varpassword, varfolder, varstorage), "deleteUnusedLayoutSlides", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "name", "string");
+        let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "deleteUnusedLayoutSlides");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteUnusedLayoutSlides", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteUnusedLayoutSlides(varname, varpassword, varfolder, varstorage), "deleteUnusedLayoutSlides", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "name", "string");
+        let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("deleteUnusedLayoutSlides", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "deleteUnusedLayoutSlides");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteUnusedLayoutSlides", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteUnusedLayoutSlides(varname, varpassword, varfolder, varstorage), "deleteUnusedLayoutSlides", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for deleteUnusedLayoutSlidesOnline", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let vardocument = <Readable>TestInitializer.getStreamValue("deleteUnusedLayoutSlidesOnline", "document");
+            let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlidesOnline", "password", "string");
+            return TestInitializer.initialize("deleteUnusedLayoutSlidesOnline", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().deleteUnusedLayoutSlidesOnline(vardocument, varpassword), true, "deleteUnusedLayoutSlidesOnline");
+            });
+        });
+    });
+
+    it("invalid document test", () => {
+        const field = "document";
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteUnusedLayoutSlidesOnline", "document");
+        let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlidesOnline", "password", "string");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "deleteUnusedLayoutSlidesOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteUnusedLayoutSlidesOnline", field, vardocument).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteUnusedLayoutSlidesOnline(vardocument, varpassword), "deleteUnusedLayoutSlidesOnline", field, vardocument);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteUnusedLayoutSlidesOnline", "document");
+        let varpassword = <string>TestInitializer.getValue("deleteUnusedLayoutSlidesOnline", "password", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteUnusedLayoutSlidesOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("deleteUnusedLayoutSlidesOnline", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteUnusedLayoutSlidesOnline(vardocument, varpassword), "deleteUnusedLayoutSlidesOnline", field, varpassword);
+            });
+        });
+    });
+});
+
 describe("Tests for deleteWatermark", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -13823,7 +13931,7 @@ describe("Tests for deleteWatermark", () => {
 describe("Tests for deleteWatermarkOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
             let varshapeName = <string>TestInitializer.getValue("deleteWatermarkOnline", "shapeName", "string");
             let varpassword = <string>TestInitializer.getValue("deleteWatermarkOnline", "password", "string");
             return TestInitializer.initialize("deleteWatermarkOnline", null, null).then(() => {
@@ -13834,10 +13942,10 @@ describe("Tests for deleteWatermarkOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
         let varshapeName = <string>TestInitializer.getValue("deleteWatermarkOnline", "shapeName", "string");
         let varpassword = <string>TestInitializer.getValue("deleteWatermarkOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "deleteWatermarkOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "deleteWatermarkOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("deleteWatermarkOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().deleteWatermarkOnline(vardocument, varshapeName, varpassword), "deleteWatermarkOnline", field, vardocument);
@@ -13847,7 +13955,7 @@ describe("Tests for deleteWatermarkOnline", () => {
 
     it("invalid shapeName test", () => {
         const field = "shapeName";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
         let varshapeName = <string>TestInitializer.getValue("deleteWatermarkOnline", "shapeName", "string");
         let varpassword = <string>TestInitializer.getValue("deleteWatermarkOnline", "password", "string");
         varshapeName = <string>TestInitializer.invalidizeValue(varshapeName, field, "string", "deleteWatermarkOnline");
@@ -13860,7 +13968,7 @@ describe("Tests for deleteWatermarkOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("deleteWatermarkOnline", "document");
         let varshapeName = <string>TestInitializer.getValue("deleteWatermarkOnline", "shapeName", "string");
         let varpassword = <string>TestInitializer.getValue("deleteWatermarkOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "deleteWatermarkOnline");
@@ -14129,7 +14237,7 @@ describe("Tests for downloadImageDefaultFormat", () => {
 describe("Tests for downloadImageDefaultFormatOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
             let varindex = <number>TestInitializer.getValue("downloadImageDefaultFormatOnline", "index", "number");
             let varpassword = <string>TestInitializer.getValue("downloadImageDefaultFormatOnline", "password", "string");
             return TestInitializer.initialize("downloadImageDefaultFormatOnline", null, null).then(() => {
@@ -14140,10 +14248,10 @@ describe("Tests for downloadImageDefaultFormatOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
         let varindex = <number>TestInitializer.getValue("downloadImageDefaultFormatOnline", "index", "number");
         let varpassword = <string>TestInitializer.getValue("downloadImageDefaultFormatOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "downloadImageDefaultFormatOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "downloadImageDefaultFormatOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadImageDefaultFormatOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadImageDefaultFormatOnline(vardocument, varindex, varpassword), "downloadImageDefaultFormatOnline", field, vardocument);
@@ -14153,7 +14261,7 @@ describe("Tests for downloadImageDefaultFormatOnline", () => {
 
     it("invalid index test", () => {
         const field = "index";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
         let varindex = <number>TestInitializer.getValue("downloadImageDefaultFormatOnline", "index", "number");
         let varpassword = <string>TestInitializer.getValue("downloadImageDefaultFormatOnline", "password", "string");
         varindex = <number>TestInitializer.invalidizeValue(varindex, field, "number", "downloadImageDefaultFormatOnline");
@@ -14166,7 +14274,7 @@ describe("Tests for downloadImageDefaultFormatOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageDefaultFormatOnline", "document");
         let varindex = <number>TestInitializer.getValue("downloadImageDefaultFormatOnline", "index", "number");
         let varpassword = <string>TestInitializer.getValue("downloadImageDefaultFormatOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "downloadImageDefaultFormatOnline");
@@ -14181,7 +14289,7 @@ describe("Tests for downloadImageDefaultFormatOnline", () => {
 describe("Tests for downloadImageOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageOnline", "document");
             let varindex = <number>TestInitializer.getValue("downloadImageOnline", "index", "number");
             let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImageOnline", "format", "string");
             let varpassword = <string>TestInitializer.getValue("downloadImageOnline", "password", "string");
@@ -14193,11 +14301,11 @@ describe("Tests for downloadImageOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageOnline", "document");
         let varindex = <number>TestInitializer.getValue("downloadImageOnline", "index", "number");
         let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImageOnline", "format", "string");
         let varpassword = <string>TestInitializer.getValue("downloadImageOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "downloadImageOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "downloadImageOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadImageOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadImageOnline(vardocument, varindex, varformat, varpassword), "downloadImageOnline", field, vardocument);
@@ -14207,7 +14315,7 @@ describe("Tests for downloadImageOnline", () => {
 
     it("invalid index test", () => {
         const field = "index";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageOnline", "document");
         let varindex = <number>TestInitializer.getValue("downloadImageOnline", "index", "number");
         let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImageOnline", "format", "string");
         let varpassword = <string>TestInitializer.getValue("downloadImageOnline", "password", "string");
@@ -14221,7 +14329,7 @@ describe("Tests for downloadImageOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageOnline", "document");
         let varindex = <number>TestInitializer.getValue("downloadImageOnline", "index", "number");
         let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImageOnline", "format", "string");
         let varpassword = <string>TestInitializer.getValue("downloadImageOnline", "password", "string");
@@ -14235,7 +14343,7 @@ describe("Tests for downloadImageOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImageOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImageOnline", "document");
         let varindex = <number>TestInitializer.getValue("downloadImageOnline", "index", "number");
         let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImageOnline", "format", "string");
         let varpassword = <string>TestInitializer.getValue("downloadImageOnline", "password", "string");
@@ -14411,7 +14519,7 @@ describe("Tests for downloadImagesDefaultFormat", () => {
 describe("Tests for downloadImagesDefaultFormatOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImagesDefaultFormatOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("downloadImagesDefaultFormatOnline", "document");
             let varpassword = <string>TestInitializer.getValue("downloadImagesDefaultFormatOnline", "password", "string");
             return TestInitializer.initialize("downloadImagesDefaultFormatOnline", null, null).then(() => {
                 return TestInitializer.assertValidCall(TestInitializer.getApi().downloadImagesDefaultFormatOnline(vardocument, varpassword), true, "downloadImagesDefaultFormatOnline");
@@ -14421,9 +14529,9 @@ describe("Tests for downloadImagesDefaultFormatOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImagesDefaultFormatOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImagesDefaultFormatOnline", "document");
         let varpassword = <string>TestInitializer.getValue("downloadImagesDefaultFormatOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "downloadImagesDefaultFormatOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "downloadImagesDefaultFormatOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadImagesDefaultFormatOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadImagesDefaultFormatOnline(vardocument, varpassword), "downloadImagesDefaultFormatOnline", field, vardocument);
@@ -14433,7 +14541,7 @@ describe("Tests for downloadImagesDefaultFormatOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImagesDefaultFormatOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImagesDefaultFormatOnline", "document");
         let varpassword = <string>TestInitializer.getValue("downloadImagesDefaultFormatOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "downloadImagesDefaultFormatOnline");
         return TestInitializer.runTest(() => {
@@ -14447,7 +14555,7 @@ describe("Tests for downloadImagesDefaultFormatOnline", () => {
 describe("Tests for downloadImagesOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImagesOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("downloadImagesOnline", "document");
             let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImagesOnline", "format", "string");
             let varpassword = <string>TestInitializer.getValue("downloadImagesOnline", "password", "string");
             return TestInitializer.initialize("downloadImagesOnline", null, null).then(() => {
@@ -14458,10 +14566,10 @@ describe("Tests for downloadImagesOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImagesOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImagesOnline", "document");
         let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImagesOnline", "format", "string");
         let varpassword = <string>TestInitializer.getValue("downloadImagesOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "downloadImagesOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "downloadImagesOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadImagesOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadImagesOnline(vardocument, varformat, varpassword), "downloadImagesOnline", field, vardocument);
@@ -14471,7 +14579,7 @@ describe("Tests for downloadImagesOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImagesOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImagesOnline", "document");
         let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImagesOnline", "format", "string");
         let varpassword = <string>TestInitializer.getValue("downloadImagesOnline", "password", "string");
         varformat = <model.ImageExportFormat>TestInitializer.invalidizeValue(varformat, field, "string", "downloadImagesOnline");
@@ -14484,7 +14592,7 @@ describe("Tests for downloadImagesOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadImagesOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadImagesOnline", "document");
         let varformat = <model.ImageExportFormat>TestInitializer.getValue("downloadImagesOnline", "format", "string");
         let varpassword = <string>TestInitializer.getValue("downloadImagesOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "downloadImagesOnline");
@@ -14689,7 +14797,7 @@ describe("Tests for downloadNotesSlide", () => {
 describe("Tests for downloadNotesSlideOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
             let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
             let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
@@ -14704,14 +14812,14 @@ describe("Tests for downloadNotesSlideOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
         let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("downloadNotesSlideOnline", "height", "number");
         let varpassword = <string>TestInitializer.getValue("downloadNotesSlideOnline", "password", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadNotesSlideOnline", "fontsFolder", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "downloadNotesSlideOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "downloadNotesSlideOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadNotesSlideOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadNotesSlideOnline(vardocument, varslideIndex, varformat, varwidth, varheight, varpassword, varfontsFolder), "downloadNotesSlideOnline", field, vardocument);
@@ -14721,7 +14829,7 @@ describe("Tests for downloadNotesSlideOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
         let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
@@ -14738,7 +14846,7 @@ describe("Tests for downloadNotesSlideOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
         let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
@@ -14755,7 +14863,7 @@ describe("Tests for downloadNotesSlideOnline", () => {
 
     it("invalid width test", () => {
         const field = "width";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
         let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
@@ -14772,7 +14880,7 @@ describe("Tests for downloadNotesSlideOnline", () => {
 
     it("invalid height test", () => {
         const field = "height";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
         let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
@@ -14789,7 +14897,7 @@ describe("Tests for downloadNotesSlideOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
         let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
@@ -14806,7 +14914,7 @@ describe("Tests for downloadNotesSlideOnline", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadNotesSlideOnline", "slideIndex", "number");
         let varformat = <model.NotesSlideExportFormat>TestInitializer.getValue("downloadNotesSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadNotesSlideOnline", "width", "number");
@@ -15435,7 +15543,7 @@ describe("Tests for downloadShape", () => {
 describe("Tests for downloadShapeOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
             let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
             let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15454,7 +15562,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15465,7 +15573,7 @@ describe("Tests for downloadShapeOnline", () => {
         let varstorage = <string>TestInitializer.getValue("downloadShapeOnline", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadShapeOnline", "fontsFolder", "string");
         let varoptions = <model.IShapeExportOptions>TestInitializer.getValue("downloadShapeOnline", "options", "IShapeExportOptions");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "downloadShapeOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "downloadShapeOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadShapeOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder, varoptions), "downloadShapeOnline", field, vardocument);
@@ -15475,7 +15583,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15496,7 +15604,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15517,7 +15625,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15538,7 +15646,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid scaleX test", () => {
         const field = "scaleX";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15559,7 +15667,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid scaleY test", () => {
         const field = "scaleY";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15580,7 +15688,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid bounds test", () => {
         const field = "bounds";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15601,7 +15709,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15622,7 +15730,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15643,7 +15751,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15664,7 +15772,7 @@ describe("Tests for downloadShapeOnline", () => {
 
     it("invalid options test", () => {
         const field = "options";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("downloadShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("downloadShapeOnline", "format", "string");
@@ -15907,7 +16015,7 @@ describe("Tests for downloadSlide", () => {
 describe("Tests for downloadSlideOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
             let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
             let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -15924,7 +16032,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -15933,7 +16041,7 @@ describe("Tests for downloadSlideOnline", () => {
         let varstorage = <string>TestInitializer.getValue("downloadSlideOnline", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("downloadSlideOnline", "fontsFolder", "string");
         let varoptions = <model.ExportOptions>TestInitializer.getValue("downloadSlideOnline", "options", "ExportOptions");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "downloadSlideOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "downloadSlideOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("downloadSlideOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().downloadSlideOnline(vardocument, varslideIndex, varformat, varwidth, varheight, varpassword, varstorage, varfontsFolder, varoptions), "downloadSlideOnline", field, vardocument);
@@ -15943,7 +16051,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -15962,7 +16070,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -15981,7 +16089,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid width test", () => {
         const field = "width";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -16000,7 +16108,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid height test", () => {
         const field = "height";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -16019,7 +16127,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -16038,7 +16146,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -16057,7 +16165,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -16076,7 +16184,7 @@ describe("Tests for downloadSlideOnline", () => {
 
     it("invalid options test", () => {
         const field = "options";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("downloadSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("downloadSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("downloadSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("downloadSlideOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("downloadSlideOnline", "width", "number");
@@ -18361,7 +18469,7 @@ describe("Tests for getNotesSlideHeaderFooter", () => {
 describe("Tests for getNotesSlideOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("getNotesSlideOnline", "slideIndex", "number");
             let varpassword = <string>TestInitializer.getValue("getNotesSlideOnline", "password", "string");
             return TestInitializer.initialize("getNotesSlideOnline", null, null).then(() => {
@@ -18372,10 +18480,10 @@ describe("Tests for getNotesSlideOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("getNotesSlideOnline", "slideIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getNotesSlideOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "getNotesSlideOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "getNotesSlideOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getNotesSlideOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getNotesSlideOnline(vardocument, varslideIndex, varpassword), "getNotesSlideOnline", field, vardocument);
@@ -18385,7 +18493,7 @@ describe("Tests for getNotesSlideOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("getNotesSlideOnline", "slideIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getNotesSlideOnline", "password", "string");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "getNotesSlideOnline");
@@ -18398,7 +18506,7 @@ describe("Tests for getNotesSlideOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("getNotesSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("getNotesSlideOnline", "slideIndex", "number");
         let varpassword = <string>TestInitializer.getValue("getNotesSlideOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "getNotesSlideOnline");
@@ -23632,6 +23740,446 @@ describe("Tests for getViewProperties", () => {
     });
 });
 
+describe("Tests for highlightShapeRegex", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+            let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+            let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+            let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+            let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+            let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+            return TestInitializer.initialize("highlightShapeRegex", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), false, "highlightShapeRegex");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid regex test", () => {
+        const field = "regex";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varregex = <string>TestInitializer.invalidizeValue(varregex, field, "string", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varregex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varregex);
+            });
+        });
+    });
+
+    it("invalid color test", () => {
+        const field = "color";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varcolor = <string>TestInitializer.invalidizeValue(varcolor, field, "string", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varcolor).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varcolor);
+            });
+        });
+    });
+
+    it("invalid wholeWordsOnly test", () => {
+        const field = "wholeWordsOnly";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varwholeWordsOnly = <boolean>TestInitializer.invalidizeValue(varwholeWordsOnly, field, "boolean", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varwholeWordsOnly).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varwholeWordsOnly);
+            });
+        });
+    });
+
+    it("invalid ignoreCase test", () => {
+        const field = "ignoreCase";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varignoreCase = <boolean>TestInitializer.invalidizeValue(varignoreCase, field, "boolean", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varignoreCase).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varignoreCase);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("highlightShapeRegex", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeRegex", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeRegex", "shapeIndex", "number");
+        let varregex = <string>TestInitializer.getValue("highlightShapeRegex", "regex", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeRegex", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeRegex", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeRegex", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeRegex", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeRegex", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeRegex", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "highlightShapeRegex");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeRegex", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeRegex(varname, varslideIndex, varshapeIndex, varregex, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeRegex", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for highlightShapeText", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+            let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+            let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+            let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+            let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+            let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+            return TestInitializer.initialize("highlightShapeText", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), false, "highlightShapeText");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid text test", () => {
+        const field = "text";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        vartext = <string>TestInitializer.invalidizeValue(vartext, field, "string", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, vartext).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, vartext);
+            });
+        });
+    });
+
+    it("invalid color test", () => {
+        const field = "color";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varcolor = <string>TestInitializer.invalidizeValue(varcolor, field, "string", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varcolor).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varcolor);
+            });
+        });
+    });
+
+    it("invalid wholeWordsOnly test", () => {
+        const field = "wholeWordsOnly";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varwholeWordsOnly = <boolean>TestInitializer.invalidizeValue(varwholeWordsOnly, field, "boolean", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varwholeWordsOnly).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varwholeWordsOnly);
+            });
+        });
+    });
+
+    it("invalid ignoreCase test", () => {
+        const field = "ignoreCase";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varignoreCase = <boolean>TestInitializer.invalidizeValue(varignoreCase, field, "boolean", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varignoreCase).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varignoreCase);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("highlightShapeText", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("highlightShapeText", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("highlightShapeText", "shapeIndex", "number");
+        let vartext = <string>TestInitializer.getValue("highlightShapeText", "text", "string");
+        let varcolor = <string>TestInitializer.getValue("highlightShapeText", "color", "string");
+        let varwholeWordsOnly = <boolean>TestInitializer.getValue("highlightShapeText", "wholeWordsOnly", "boolean");
+        let varignoreCase = <boolean>TestInitializer.getValue("highlightShapeText", "ignoreCase", "boolean");
+        let varpassword = <string>TestInitializer.getValue("highlightShapeText", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("highlightShapeText", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("highlightShapeText", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "highlightShapeText");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("highlightShapeText", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().highlightShapeText(varname, varslideIndex, varshapeIndex, vartext, varcolor, varwholeWordsOnly, varignoreCase, varpassword, varfolder, varstorage), "highlightShapeText", field, varstorage);
+            });
+        });
+    });
+});
+
 describe("Tests for importFromHtml", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -23726,7 +24274,7 @@ describe("Tests for importFromPdf", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
             let varname = <string>TestInitializer.getValue("importFromPdf", "name", "string");
-            let varpdf = <Buffer>TestInitializer.getStreamValue("importFromPdf", "pdf");
+            let varpdf = <Readable>TestInitializer.getStreamValue("importFromPdf", "pdf");
             let varpassword = <string>TestInitializer.getValue("importFromPdf", "password", "string");
             let varfolder = <string>TestInitializer.getValue("importFromPdf", "folder", "string");
             let varstorage = <string>TestInitializer.getValue("importFromPdf", "storage", "string");
@@ -23739,7 +24287,7 @@ describe("Tests for importFromPdf", () => {
     it("invalid name test", () => {
         const field = "name";
         let varname = <string>TestInitializer.getValue("importFromPdf", "name", "string");
-        let varpdf = <Buffer>TestInitializer.getStreamValue("importFromPdf", "pdf");
+        let varpdf = <Readable>TestInitializer.getStreamValue("importFromPdf", "pdf");
         let varpassword = <string>TestInitializer.getValue("importFromPdf", "password", "string");
         let varfolder = <string>TestInitializer.getValue("importFromPdf", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("importFromPdf", "storage", "string");
@@ -23754,11 +24302,11 @@ describe("Tests for importFromPdf", () => {
     it("invalid pdf test", () => {
         const field = "pdf";
         let varname = <string>TestInitializer.getValue("importFromPdf", "name", "string");
-        let varpdf = <Buffer>TestInitializer.getStreamValue("importFromPdf", "pdf");
+        let varpdf = <Readable>TestInitializer.getStreamValue("importFromPdf", "pdf");
         let varpassword = <string>TestInitializer.getValue("importFromPdf", "password", "string");
         let varfolder = <string>TestInitializer.getValue("importFromPdf", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("importFromPdf", "storage", "string");
-        varpdf = <Buffer>TestInitializer.invalidizeValue(varpdf, field, "Buffer", "importFromPdf");
+        varpdf = <Readable>TestInitializer.invalidizeValue(varpdf, field, "Readable", "importFromPdf");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("importFromPdf", field, varpdf).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().importFromPdf(varname, varpdf, varpassword, varfolder, varstorage), "importFromPdf", field, varpdf);
@@ -23769,7 +24317,7 @@ describe("Tests for importFromPdf", () => {
     it("invalid password test", () => {
         const field = "password";
         let varname = <string>TestInitializer.getValue("importFromPdf", "name", "string");
-        let varpdf = <Buffer>TestInitializer.getStreamValue("importFromPdf", "pdf");
+        let varpdf = <Readable>TestInitializer.getStreamValue("importFromPdf", "pdf");
         let varpassword = <string>TestInitializer.getValue("importFromPdf", "password", "string");
         let varfolder = <string>TestInitializer.getValue("importFromPdf", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("importFromPdf", "storage", "string");
@@ -23784,7 +24332,7 @@ describe("Tests for importFromPdf", () => {
     it("invalid folder test", () => {
         const field = "folder";
         let varname = <string>TestInitializer.getValue("importFromPdf", "name", "string");
-        let varpdf = <Buffer>TestInitializer.getStreamValue("importFromPdf", "pdf");
+        let varpdf = <Readable>TestInitializer.getStreamValue("importFromPdf", "pdf");
         let varpassword = <string>TestInitializer.getValue("importFromPdf", "password", "string");
         let varfolder = <string>TestInitializer.getValue("importFromPdf", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("importFromPdf", "storage", "string");
@@ -23799,7 +24347,7 @@ describe("Tests for importFromPdf", () => {
     it("invalid storage test", () => {
         const field = "storage";
         let varname = <string>TestInitializer.getValue("importFromPdf", "name", "string");
-        let varpdf = <Buffer>TestInitializer.getStreamValue("importFromPdf", "pdf");
+        let varpdf = <Readable>TestInitializer.getStreamValue("importFromPdf", "pdf");
         let varpassword = <string>TestInitializer.getValue("importFromPdf", "password", "string");
         let varfolder = <string>TestInitializer.getValue("importFromPdf", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("importFromPdf", "storage", "string");
@@ -23906,7 +24454,7 @@ describe("Tests for mergeAndSaveOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
             let varoutPath = <string>TestInitializer.getValue("mergeAndSaveOnline", "outPath", "string");
-            let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
+            let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
             let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeAndSaveOnline", "request", "OrderedMergeRequest");
             let varstorage = <string>TestInitializer.getValue("mergeAndSaveOnline", "storage", "string");
             return TestInitializer.initialize("mergeAndSaveOnline", null, null).then(() => {
@@ -23918,7 +24466,7 @@ describe("Tests for mergeAndSaveOnline", () => {
     it("invalid outPath test", () => {
         const field = "outPath";
         let varoutPath = <string>TestInitializer.getValue("mergeAndSaveOnline", "outPath", "string");
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
         let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeAndSaveOnline", "request", "OrderedMergeRequest");
         let varstorage = <string>TestInitializer.getValue("mergeAndSaveOnline", "storage", "string");
         varoutPath = <string>TestInitializer.invalidizeValue(varoutPath, field, "string", "mergeAndSaveOnline");
@@ -23932,10 +24480,10 @@ describe("Tests for mergeAndSaveOnline", () => {
     it("invalid files test", () => {
         const field = "files";
         let varoutPath = <string>TestInitializer.getValue("mergeAndSaveOnline", "outPath", "string");
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
         let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeAndSaveOnline", "request", "OrderedMergeRequest");
         let varstorage = <string>TestInitializer.getValue("mergeAndSaveOnline", "storage", "string");
-        varfiles = <Array<Buffer>>TestInitializer.invalidizeValue(varfiles, field, "Array&lt;Buffer&gt;", "mergeAndSaveOnline");
+        varfiles = <Array<Readable>>TestInitializer.invalidizeValue(varfiles, field, "Array&lt;Readable&gt;", "mergeAndSaveOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("mergeAndSaveOnline", field, varfiles).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().mergeAndSaveOnline(varoutPath, varfiles, varrequest, varstorage), "mergeAndSaveOnline", field, varfiles);
@@ -23946,7 +24494,7 @@ describe("Tests for mergeAndSaveOnline", () => {
     it("invalid request test", () => {
         const field = "request";
         let varoutPath = <string>TestInitializer.getValue("mergeAndSaveOnline", "outPath", "string");
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
         let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeAndSaveOnline", "request", "OrderedMergeRequest");
         let varstorage = <string>TestInitializer.getValue("mergeAndSaveOnline", "storage", "string");
         varrequest = <model.OrderedMergeRequest>TestInitializer.invalidizeValue(varrequest, field, "OrderedMergeRequest", "mergeAndSaveOnline");
@@ -23960,7 +24508,7 @@ describe("Tests for mergeAndSaveOnline", () => {
     it("invalid storage test", () => {
         const field = "storage";
         let varoutPath = <string>TestInitializer.getValue("mergeAndSaveOnline", "outPath", "string");
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeAndSaveOnline", "files");
         let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeAndSaveOnline", "request", "OrderedMergeRequest");
         let varstorage = <string>TestInitializer.getValue("mergeAndSaveOnline", "storage", "string");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "mergeAndSaveOnline");
@@ -23975,7 +24523,7 @@ describe("Tests for mergeAndSaveOnline", () => {
 describe("Tests for mergeOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeOnline", "files");
+            let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeOnline", "files");
             let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeOnline", "request", "OrderedMergeRequest");
             let varstorage = <string>TestInitializer.getValue("mergeOnline", "storage", "string");
             return TestInitializer.initialize("mergeOnline", null, null).then(() => {
@@ -23986,10 +24534,10 @@ describe("Tests for mergeOnline", () => {
 
     it("invalid files test", () => {
         const field = "files";
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeOnline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeOnline", "files");
         let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeOnline", "request", "OrderedMergeRequest");
         let varstorage = <string>TestInitializer.getValue("mergeOnline", "storage", "string");
-        varfiles = <Array<Buffer>>TestInitializer.invalidizeValue(varfiles, field, "Array&lt;Buffer&gt;", "mergeOnline");
+        varfiles = <Array<Readable>>TestInitializer.invalidizeValue(varfiles, field, "Array&lt;Readable&gt;", "mergeOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("mergeOnline", field, varfiles).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().mergeOnline(varfiles, varrequest, varstorage), "mergeOnline", field, varfiles);
@@ -23999,7 +24547,7 @@ describe("Tests for mergeOnline", () => {
 
     it("invalid request test", () => {
         const field = "request";
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeOnline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeOnline", "files");
         let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeOnline", "request", "OrderedMergeRequest");
         let varstorage = <string>TestInitializer.getValue("mergeOnline", "storage", "string");
         varrequest = <model.OrderedMergeRequest>TestInitializer.invalidizeValue(varrequest, field, "OrderedMergeRequest", "mergeOnline");
@@ -24012,7 +24560,7 @@ describe("Tests for mergeOnline", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("mergeOnline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("mergeOnline", "files");
         let varrequest = <model.OrderedMergeRequest>TestInitializer.getValue("mergeOnline", "request", "OrderedMergeRequest");
         let varstorage = <string>TestInitializer.getValue("mergeOnline", "storage", "string");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "mergeOnline");
@@ -24501,7 +25049,7 @@ describe("Tests for notesSlideExists", () => {
 describe("Tests for notesSlideExistsOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("notesSlideExistsOnline", "slideIndex", "number");
             let varpassword = <string>TestInitializer.getValue("notesSlideExistsOnline", "password", "string");
             return TestInitializer.initialize("notesSlideExistsOnline", null, null).then(() => {
@@ -24512,10 +25060,10 @@ describe("Tests for notesSlideExistsOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("notesSlideExistsOnline", "slideIndex", "number");
         let varpassword = <string>TestInitializer.getValue("notesSlideExistsOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "notesSlideExistsOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "notesSlideExistsOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("notesSlideExistsOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().notesSlideExistsOnline(vardocument, varslideIndex, varpassword), "notesSlideExistsOnline", field, vardocument);
@@ -24525,7 +25073,7 @@ describe("Tests for notesSlideExistsOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("notesSlideExistsOnline", "slideIndex", "number");
         let varpassword = <string>TestInitializer.getValue("notesSlideExistsOnline", "password", "string");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "notesSlideExistsOnline");
@@ -24538,7 +25086,7 @@ describe("Tests for notesSlideExistsOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("notesSlideExistsOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("notesSlideExistsOnline", "slideIndex", "number");
         let varpassword = <string>TestInitializer.getValue("notesSlideExistsOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "notesSlideExistsOnline");
@@ -24696,7 +25244,7 @@ describe("Tests for pipeline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
             let varpipeline = <model.Pipeline>TestInitializer.getValue("pipeline", "pipeline", "Pipeline");
-            let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("pipeline", "files");
+            let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("pipeline", "files");
             return TestInitializer.initialize("pipeline", null, null).then(() => {
                 return TestInitializer.assertValidCall(TestInitializer.getApi().pipeline(varpipeline, varfiles), true, "pipeline");
             });
@@ -24706,7 +25254,7 @@ describe("Tests for pipeline", () => {
     it("invalid pipeline test", () => {
         const field = "pipeline";
         let varpipeline = <model.Pipeline>TestInitializer.getValue("pipeline", "pipeline", "Pipeline");
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("pipeline", "files");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("pipeline", "files");
         varpipeline = <model.Pipeline>TestInitializer.invalidizeValue(varpipeline, field, "Pipeline", "pipeline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("pipeline", field, varpipeline).then(() => {
@@ -24718,8 +25266,8 @@ describe("Tests for pipeline", () => {
     it("invalid files test", () => {
         const field = "files";
         let varpipeline = <model.Pipeline>TestInitializer.getValue("pipeline", "pipeline", "Pipeline");
-        let varfiles = <Array<Buffer>>TestInitializer.getBinArrayValue("pipeline", "files");
-        varfiles = <Array<Buffer>>TestInitializer.invalidizeValue(varfiles, field, "Array&lt;Buffer&gt;", "pipeline");
+        let varfiles = <Array<Readable>>TestInitializer.getBinArrayValue("pipeline", "files");
+        varfiles = <Array<Readable>>TestInitializer.invalidizeValue(varfiles, field, "Array&lt;Readable&gt;", "pipeline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("pipeline", field, varfiles).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().pipeline(varpipeline, varfiles), "pipeline", field, varfiles);
@@ -24979,7 +25527,7 @@ describe("Tests for replacePresentationText", () => {
 describe("Tests for replacePresentationTextOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
             let varoldValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "oldValue", "string");
             let varnewValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "newValue", "string");
             let varignoreCase = <boolean>TestInitializer.getValue("replacePresentationTextOnline", "ignoreCase", "boolean");
@@ -24992,12 +25540,12 @@ describe("Tests for replacePresentationTextOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
         let varoldValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "newValue", "string");
         let varignoreCase = <boolean>TestInitializer.getValue("replacePresentationTextOnline", "ignoreCase", "boolean");
         let varpassword = <string>TestInitializer.getValue("replacePresentationTextOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "replacePresentationTextOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "replacePresentationTextOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("replacePresentationTextOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().replacePresentationTextOnline(vardocument, varoldValue, varnewValue, varignoreCase, varpassword), "replacePresentationTextOnline", field, vardocument);
@@ -25007,7 +25555,7 @@ describe("Tests for replacePresentationTextOnline", () => {
 
     it("invalid oldValue test", () => {
         const field = "oldValue";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
         let varoldValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "newValue", "string");
         let varignoreCase = <boolean>TestInitializer.getValue("replacePresentationTextOnline", "ignoreCase", "boolean");
@@ -25022,7 +25570,7 @@ describe("Tests for replacePresentationTextOnline", () => {
 
     it("invalid newValue test", () => {
         const field = "newValue";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
         let varoldValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "newValue", "string");
         let varignoreCase = <boolean>TestInitializer.getValue("replacePresentationTextOnline", "ignoreCase", "boolean");
@@ -25037,7 +25585,7 @@ describe("Tests for replacePresentationTextOnline", () => {
 
     it("invalid ignoreCase test", () => {
         const field = "ignoreCase";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
         let varoldValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "newValue", "string");
         let varignoreCase = <boolean>TestInitializer.getValue("replacePresentationTextOnline", "ignoreCase", "boolean");
@@ -25052,7 +25600,7 @@ describe("Tests for replacePresentationTextOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replacePresentationTextOnline", "document");
         let varoldValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replacePresentationTextOnline", "newValue", "string");
         let varignoreCase = <boolean>TestInitializer.getValue("replacePresentationTextOnline", "ignoreCase", "boolean");
@@ -25231,7 +25779,7 @@ describe("Tests for replaceSlideText", () => {
 describe("Tests for replaceSlideTextOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("replaceSlideTextOnline", "slideIndex", "number");
             let varoldValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "oldValue", "string");
             let varnewValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "newValue", "string");
@@ -25245,13 +25793,13 @@ describe("Tests for replaceSlideTextOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("replaceSlideTextOnline", "slideIndex", "number");
         let varoldValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "newValue", "string");
         let varignoreCase = <boolean>TestInitializer.getValue("replaceSlideTextOnline", "ignoreCase", "boolean");
         let varpassword = <string>TestInitializer.getValue("replaceSlideTextOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "replaceSlideTextOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "replaceSlideTextOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("replaceSlideTextOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().replaceSlideTextOnline(vardocument, varslideIndex, varoldValue, varnewValue, varignoreCase, varpassword), "replaceSlideTextOnline", field, vardocument);
@@ -25261,7 +25809,7 @@ describe("Tests for replaceSlideTextOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("replaceSlideTextOnline", "slideIndex", "number");
         let varoldValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "newValue", "string");
@@ -25277,7 +25825,7 @@ describe("Tests for replaceSlideTextOnline", () => {
 
     it("invalid oldValue test", () => {
         const field = "oldValue";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("replaceSlideTextOnline", "slideIndex", "number");
         let varoldValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "newValue", "string");
@@ -25293,7 +25841,7 @@ describe("Tests for replaceSlideTextOnline", () => {
 
     it("invalid newValue test", () => {
         const field = "newValue";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("replaceSlideTextOnline", "slideIndex", "number");
         let varoldValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "newValue", "string");
@@ -25309,7 +25857,7 @@ describe("Tests for replaceSlideTextOnline", () => {
 
     it("invalid ignoreCase test", () => {
         const field = "ignoreCase";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("replaceSlideTextOnline", "slideIndex", "number");
         let varoldValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "newValue", "string");
@@ -25325,7 +25873,7 @@ describe("Tests for replaceSlideTextOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("replaceSlideTextOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("replaceSlideTextOnline", "slideIndex", "number");
         let varoldValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "oldValue", "string");
         let varnewValue = <string>TestInitializer.getValue("replaceSlideTextOnline", "newValue", "string");
@@ -26045,7 +26593,7 @@ describe("Tests for saveShape", () => {
 describe("Tests for saveShapeOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
             let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
             let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26065,7 +26613,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26077,7 +26625,7 @@ describe("Tests for saveShapeOnline", () => {
         let varstorage = <string>TestInitializer.getValue("saveShapeOnline", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("saveShapeOnline", "fontsFolder", "string");
         let varoptions = <model.IShapeExportOptions>TestInitializer.getValue("saveShapeOnline", "options", "IShapeExportOptions");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "saveShapeOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "saveShapeOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("saveShapeOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveShapeOnline(vardocument, varslideIndex, varshapeIndex, varformat, varoutPath, varscaleX, varscaleY, varbounds, varpassword, varstorage, varfontsFolder, varoptions), "saveShapeOnline", field, vardocument);
@@ -26087,7 +26635,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26109,7 +26657,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid shapeIndex test", () => {
         const field = "shapeIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26131,7 +26679,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26153,7 +26701,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid outPath test", () => {
         const field = "outPath";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26175,7 +26723,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid scaleX test", () => {
         const field = "scaleX";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26197,7 +26745,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid scaleY test", () => {
         const field = "scaleY";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26219,7 +26767,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid bounds test", () => {
         const field = "bounds";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26241,7 +26789,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26263,7 +26811,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26285,7 +26833,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26307,7 +26855,7 @@ describe("Tests for saveShapeOnline", () => {
 
     it("invalid options test", () => {
         const field = "options";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveShapeOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveShapeOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveShapeOnline", "slideIndex", "number");
         let varshapeIndex = <number>TestInitializer.getValue("saveShapeOnline", "shapeIndex", "number");
         let varformat = <model.ShapeExportFormat>TestInitializer.getValue("saveShapeOnline", "format", "string");
@@ -26583,7 +27131,7 @@ describe("Tests for saveSlide", () => {
 describe("Tests for saveSlideOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
             let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
             let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26601,7 +27149,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26611,7 +27159,7 @@ describe("Tests for saveSlideOnline", () => {
         let varstorage = <string>TestInitializer.getValue("saveSlideOnline", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("saveSlideOnline", "fontsFolder", "string");
         let varoptions = <model.ExportOptions>TestInitializer.getValue("saveSlideOnline", "options", "ExportOptions");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "saveSlideOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "saveSlideOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("saveSlideOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().saveSlideOnline(vardocument, varslideIndex, varformat, varoutPath, varwidth, varheight, varpassword, varstorage, varfontsFolder, varoptions), "saveSlideOnline", field, vardocument);
@@ -26621,7 +27169,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid slideIndex test", () => {
         const field = "slideIndex";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26641,7 +27189,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26661,7 +27209,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid outPath test", () => {
         const field = "outPath";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26681,7 +27229,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid width test", () => {
         const field = "width";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26701,7 +27249,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid height test", () => {
         const field = "height";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26721,7 +27269,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26741,7 +27289,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26761,7 +27309,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -26781,7 +27329,7 @@ describe("Tests for saveSlideOnline", () => {
 
     it("invalid options test", () => {
         const field = "options";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("saveSlideOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("saveSlideOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("saveSlideOnline", "slideIndex", "number");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("saveSlideOnline", "format", "string");
         let varoutPath = <string>TestInitializer.getValue("saveSlideOnline", "outPath", "string");
@@ -28753,7 +29301,7 @@ describe("Tests for setProtection", () => {
 describe("Tests for setProtectionOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("setProtectionOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("setProtectionOnline", "document");
             let vardto = <model.ProtectionProperties>TestInitializer.getValue("setProtectionOnline", "dto", "ProtectionProperties");
             let varpassword = <string>TestInitializer.getValue("setProtectionOnline", "password", "string");
             return TestInitializer.initialize("setProtectionOnline", null, null).then(() => {
@@ -28764,10 +29312,10 @@ describe("Tests for setProtectionOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("setProtectionOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("setProtectionOnline", "document");
         let vardto = <model.ProtectionProperties>TestInitializer.getValue("setProtectionOnline", "dto", "ProtectionProperties");
         let varpassword = <string>TestInitializer.getValue("setProtectionOnline", "password", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "setProtectionOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "setProtectionOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("setProtectionOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().setProtectionOnline(vardocument, vardto, varpassword), "setProtectionOnline", field, vardocument);
@@ -28777,7 +29325,7 @@ describe("Tests for setProtectionOnline", () => {
 
     it("invalid dto test", () => {
         const field = "dto";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("setProtectionOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("setProtectionOnline", "document");
         let vardto = <model.ProtectionProperties>TestInitializer.getValue("setProtectionOnline", "dto", "ProtectionProperties");
         let varpassword = <string>TestInitializer.getValue("setProtectionOnline", "password", "string");
         vardto = <model.ProtectionProperties>TestInitializer.invalidizeValue(vardto, field, "ProtectionProperties", "setProtectionOnline");
@@ -28790,7 +29338,7 @@ describe("Tests for setProtectionOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("setProtectionOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("setProtectionOnline", "document");
         let vardto = <model.ProtectionProperties>TestInitializer.getValue("setProtectionOnline", "dto", "ProtectionProperties");
         let varpassword = <string>TestInitializer.getValue("setProtectionOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "setProtectionOnline");
@@ -29745,7 +30293,7 @@ describe("Tests for split", () => {
 describe("Tests for splitAndSaveOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
             let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
             let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
             let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29763,7 +30311,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29773,7 +30321,7 @@ describe("Tests for splitAndSaveOnline", () => {
         let varpassword = <string>TestInitializer.getValue("splitAndSaveOnline", "password", "string");
         let varstorage = <string>TestInitializer.getValue("splitAndSaveOnline", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "fontsFolder", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "splitAndSaveOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "splitAndSaveOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("splitAndSaveOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().splitAndSaveOnline(vardocument, varformat, vardestFolder, varwidth, varheight, varfrom, varto, varpassword, varstorage, varfontsFolder), "splitAndSaveOnline", field, vardocument);
@@ -29783,7 +30331,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29803,7 +30351,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid destFolder test", () => {
         const field = "destFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29823,7 +30371,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid width test", () => {
         const field = "width";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29843,7 +30391,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid height test", () => {
         const field = "height";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29863,7 +30411,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid from test", () => {
         const field = "from";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29883,7 +30431,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid to test", () => {
         const field = "to";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29903,7 +30451,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29923,7 +30471,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29943,7 +30491,7 @@ describe("Tests for splitAndSaveOnline", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitAndSaveOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitAndSaveOnline", "format", "string");
         let vardestFolder = <string>TestInitializer.getValue("splitAndSaveOnline", "destFolder", "string");
         let varwidth = <number>TestInitializer.getValue("splitAndSaveOnline", "width", "number");
@@ -29965,7 +30513,7 @@ describe("Tests for splitAndSaveOnline", () => {
 describe("Tests for splitOnline", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
-            let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+            let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
             let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
             let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
             let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -29982,7 +30530,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid document test", () => {
         const field = "document";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -29991,7 +30539,7 @@ describe("Tests for splitOnline", () => {
         let varpassword = <string>TestInitializer.getValue("splitOnline", "password", "string");
         let varstorage = <string>TestInitializer.getValue("splitOnline", "storage", "string");
         let varfontsFolder = <string>TestInitializer.getValue("splitOnline", "fontsFolder", "string");
-        vardocument = <Buffer>TestInitializer.invalidizeValue(vardocument, field, "Buffer", "splitOnline");
+        vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "splitOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("splitOnline", field, vardocument).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().splitOnline(vardocument, varformat, varwidth, varheight, varfrom, varto, varpassword, varstorage, varfontsFolder), "splitOnline", field, vardocument);
@@ -30001,7 +30549,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid format test", () => {
         const field = "format";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -30020,7 +30568,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid width test", () => {
         const field = "width";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -30039,7 +30587,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid height test", () => {
         const field = "height";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -30058,7 +30606,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid from test", () => {
         const field = "from";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -30077,7 +30625,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid to test", () => {
         const field = "to";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -30096,7 +30644,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid password test", () => {
         const field = "password";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -30115,7 +30663,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid storage test", () => {
         const field = "storage";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -30134,7 +30682,7 @@ describe("Tests for splitOnline", () => {
 
     it("invalid fontsFolder test", () => {
         const field = "fontsFolder";
-        let vardocument = <Buffer>TestInitializer.getStreamValue("splitOnline", "document");
+        let vardocument = <Readable>TestInitializer.getStreamValue("splitOnline", "document");
         let varformat = <model.SlideExportFormat>TestInitializer.getValue("splitOnline", "format", "string");
         let varwidth = <number>TestInitializer.getValue("splitOnline", "width", "number");
         let varheight = <number>TestInitializer.getValue("splitOnline", "height", "number");
@@ -34084,7 +34632,7 @@ describe("Tests for uploadFile", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
             let varpath = <string>TestInitializer.getValue("uploadFile", "path", "string");
-            let varfile = <Buffer>TestInitializer.getStreamValue("uploadFile", "file");
+            let varfile = <Readable>TestInitializer.getStreamValue("uploadFile", "file");
             let varstorageName = <string>TestInitializer.getValue("uploadFile", "storageName", "string");
             return TestInitializer.initialize("uploadFile", null, null).then(() => {
                 return TestInitializer.assertValidCall(TestInitializer.getApi().uploadFile(varpath, varfile, varstorageName), false, "uploadFile");
@@ -34095,7 +34643,7 @@ describe("Tests for uploadFile", () => {
     it("invalid path test", () => {
         const field = "path";
         let varpath = <string>TestInitializer.getValue("uploadFile", "path", "string");
-        let varfile = <Buffer>TestInitializer.getStreamValue("uploadFile", "file");
+        let varfile = <Readable>TestInitializer.getStreamValue("uploadFile", "file");
         let varstorageName = <string>TestInitializer.getValue("uploadFile", "storageName", "string");
         varpath = <string>TestInitializer.invalidizeValue(varpath, field, "string", "uploadFile");
         return TestInitializer.runTest(() => {
@@ -34108,9 +34656,9 @@ describe("Tests for uploadFile", () => {
     it("invalid file test", () => {
         const field = "file";
         let varpath = <string>TestInitializer.getValue("uploadFile", "path", "string");
-        let varfile = <Buffer>TestInitializer.getStreamValue("uploadFile", "file");
+        let varfile = <Readable>TestInitializer.getStreamValue("uploadFile", "file");
         let varstorageName = <string>TestInitializer.getValue("uploadFile", "storageName", "string");
-        varfile = <Buffer>TestInitializer.invalidizeValue(varfile, field, "Buffer", "uploadFile");
+        varfile = <Readable>TestInitializer.invalidizeValue(varfile, field, "Readable", "uploadFile");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("uploadFile", field, varfile).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().uploadFile(varpath, varfile, varstorageName), "uploadFile", field, varfile);
@@ -34121,7 +34669,7 @@ describe("Tests for uploadFile", () => {
     it("invalid storageName test", () => {
         const field = "storageName";
         let varpath = <string>TestInitializer.getValue("uploadFile", "path", "string");
-        let varfile = <Buffer>TestInitializer.getStreamValue("uploadFile", "file");
+        let varfile = <Readable>TestInitializer.getStreamValue("uploadFile", "file");
         let varstorageName = <string>TestInitializer.getValue("uploadFile", "storageName", "string");
         varstorageName = <string>TestInitializer.invalidizeValue(varstorageName, field, "string", "uploadFile");
         return TestInitializer.runTest(() => {

@@ -1,3 +1,5 @@
+**/*.d.ts
+**/*.js
 node_modules/
 package-lock.json
 package.json.publish
@@ -7,4 +9,7 @@ dist/
 nbproject/
 testResults/
 build/
+.vs/
+bin/
+obj/
 cid

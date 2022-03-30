@@ -27,6 +27,16 @@ You may want to check out Aspose free [PPT to PDF](https://products.aspose.app/s
 **Web:** HTML/HTML5
 **Other:** MPEG4, SWF (export whole presentations)
 
+## Enhancements in Version 22.3
+* Added **ModernSlideComment** class to support modern comments. Also added **SlideCommentBase** as base class for comments.
+* Added optional **shapeIndex** parameter to **CreateComment** and **CreateCommentOnline** methods.
+* Added **GetParagraphRectangle**, **GetPortionRectangle** method and new **TextBounds** class to get paragraph or portion bounds.
+* Added optional **shapeType** parameter for **GetShapes** method. You can now get list of shapes of a particular type (e.g. charts or tables).
+* Added **FontFallbackRules** class and **FontFallbackRules** property to **ExportOptions** class.
+* Added **LatinFont**, **EastAsianFont** and **ComplexScriptFont** properties to **Portion** class to enable getting and seting portion font name.
+* Added **ChartLinesFormat** class; added **MajorGridLinesFormat** and **MinorGridLinesFormat** properties to Axis class.
+* Added **HideLegend** boolean property to **Legend** class.
+
 ## Enhancements in Version 22.2
 * Added **Mpeg4** to the list of allowed values for **ExportFormat** type. You can now convert presentations to video.
 * New **HighlightShapeText** and **HighlightShapeRegex** methods.

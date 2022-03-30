@@ -64,7 +64,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async alignShapes(name: string, slideIndex: number, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async alignShapes(name: string, slideIndex: number, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling alignShapes.');
@@ -115,7 +115,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async alignSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async alignSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling alignSpecialSlideShapes.');
@@ -175,7 +175,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async alignSubshapes(name: string, slideIndex: number, path: string = null, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async alignSubshapes(name: string, slideIndex: number, path: string = null, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling alignSubshapes.');
@@ -225,7 +225,7 @@ export class SlidesApi {
      * @param slides The indices of the slides to be converted. If not specified, all slides are converted by default.
      * @param options Export options.
      */
-    public async convert(document: Readable, format: model.ExportFormat, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async convert(document: Readable, format: model.ExportFormat, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling convert.');
@@ -275,7 +275,7 @@ export class SlidesApi {
      * @param slides The indices of the slides to be converted. If not specified, all slides are converted by default.
      * @param options Export options.
      */
-    public async convertAndSave(document: Readable, format: model.ExportFormat, outPath: string, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse}> {
+    public async convertAndSave(document: Readable, format: model.ExportFormat, outPath: string, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling convertAndSave.');
@@ -326,7 +326,7 @@ export class SlidesApi {
      * @param destStorageName Destination storage name
      * @param versionId File version ID to copy
      */
-    public async copyFile(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null, versionId: string = null): Promise<{response: http.ClientResponse}> {
+    public async copyFile(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null, versionId: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'srcPath' is not null or undefined
         if (srcPath === null || srcPath === undefined) {
             throw new Error('The required parameter "srcPath" was null or undefined when calling copyFile.');
@@ -360,7 +360,7 @@ export class SlidesApi {
      * @param srcStorageName Source storage name
      * @param destStorageName Destination storage name
      */
-    public async copyFolder(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null): Promise<{response: http.ClientResponse}> {
+    public async copyFolder(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'srcPath' is not null or undefined
         if (srcPath === null || srcPath === undefined) {
             throw new Error('The required parameter "srcPath" was null or undefined when calling copyFolder.');
@@ -397,7 +397,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async copyLayoutSlide(name: string, cloneFrom: string, cloneFromPosition: number, cloneFromPassword: string = null, cloneFromStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.LayoutSlide}> {
+    public async copyLayoutSlide(name: string, cloneFrom: string, cloneFromPosition: number, cloneFromPassword: string = null, cloneFromStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.LayoutSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling copyLayoutSlide.');
@@ -444,7 +444,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async copyMasterSlide(name: string, cloneFrom: string, cloneFromPosition: number, cloneFromPassword: string = null, cloneFromStorage: string = null, applyToAll: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.MasterSlide}> {
+    public async copyMasterSlide(name: string, cloneFrom: string, cloneFromPosition: number, cloneFromPassword: string = null, cloneFromStorage: string = null, applyToAll: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.MasterSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling copyMasterSlide.');
@@ -492,7 +492,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async copySlide(name: string, slideToCopy: number, position: number = null, source: string = null, sourcePassword: string = null, sourceStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slides}> {
+    public async copySlide(name: string, slideToCopy: number, position: number = null, source: string = null, sourcePassword: string = null, sourceStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling copySlide.');
@@ -533,7 +533,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createAnimationEffect(name: string, slideIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async createAnimationEffect(name: string, slideIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createAnimationEffect.');
@@ -574,7 +574,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createAnimationInteractiveSequence(name: string, slideIndex: number, sequence: model.InteractiveSequence, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async createAnimationInteractiveSequence(name: string, slideIndex: number, sequence: model.InteractiveSequence, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createAnimationInteractiveSequence.');
@@ -616,7 +616,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createAnimationInteractiveSequenceEffect(name: string, slideIndex: number, sequenceIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async createAnimationInteractiveSequenceEffect(name: string, slideIndex: number, sequenceIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createAnimationInteractiveSequenceEffect.');
@@ -663,7 +663,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createChartCategory(name: string, slideIndex: number, shapeIndex: number, category: model.ChartCategory, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async createChartCategory(name: string, slideIndex: number, shapeIndex: number, category: model.ChartCategory, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createChartCategory.');
@@ -711,7 +711,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createChartDataPoint(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, dataPoint: model.DataPoint, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async createChartDataPoint(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, dataPoint: model.DataPoint, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createChartDataPoint.');
@@ -763,7 +763,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createChartSeries(name: string, slideIndex: number, shapeIndex: number, series: model.Series, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async createChartSeries(name: string, slideIndex: number, shapeIndex: number, series: model.Series, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createChartSeries.');
@@ -805,11 +805,12 @@ export class SlidesApi {
      * @param name Document name.
      * @param slideIndex Slide index.
      * @param dto Comment DTO.
+     * @param shapeIndex Shape index.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createComment(name: string, slideIndex: number, dto: model.SlideComment, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideComments}> {
+    public async createComment(name: string, slideIndex: number, dto: model.SlideCommentBase, shapeIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideComments}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createComment.');
@@ -826,6 +827,7 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeIndex", shapeIndex);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         const requestOptions: request.Options = {
@@ -846,9 +848,10 @@ export class SlidesApi {
      * @param document Document data.
      * @param slideIndex Slide index.
      * @param dto Comment DTO.
+     * @param shapeIndex Shape index.
      * @param password Document password.
      */
-    public async createCommentOnline(document: Readable, slideIndex: number, dto: model.SlideComment, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async createCommentOnline(document: Readable, slideIndex: number, dto: model.SlideCommentBase, shapeIndex: number = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling createCommentOnline.');
@@ -864,6 +867,7 @@ export class SlidesApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/slides/{slideIndex}/comments";
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeIndex", shapeIndex);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -889,7 +893,7 @@ export class SlidesApi {
      * @param path Folder path to create e.g. 'folder_1/folder_2/'
      * @param storageName Storage name
      */
-    public async createFolder(path: string = null, storageName: string = null): Promise<{response: http.ClientResponse}> {
+    public async createFolder(path: string = null, storageName: string = null): Promise<{response: http.ServerResponse}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
         const queryParameters: any = {};
@@ -914,7 +918,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createImageWatermark(name: string, image: Readable = null, pictureFrame: model.PictureFrame = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async createImageWatermark(name: string, image: Readable = null, pictureFrame: model.PictureFrame = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createImageWatermark.');
@@ -950,7 +954,7 @@ export class SlidesApi {
      * @param pictureFrame PictureFrame DTO.
      * @param password Document password.
      */
-    public async createImageWatermarkOnline(document: Readable, image: Readable = null, pictureFrame: model.PictureFrame = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async createImageWatermarkOnline(document: Readable, image: Readable = null, pictureFrame: model.PictureFrame = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling createImageWatermarkOnline.');
@@ -990,7 +994,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createNotesSlide(name: string, slideIndex: number, dto: model.NotesSlide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlide}> {
+    public async createNotesSlide(name: string, slideIndex: number, dto: model.NotesSlide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.NotesSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createNotesSlide.');
@@ -1033,7 +1037,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createParagraph(name: string, slideIndex: number, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async createParagraph(name: string, slideIndex: number, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createParagraph.');
@@ -1083,7 +1087,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async createPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createPortion.');
@@ -1135,7 +1139,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createPresentation(name: string, data: Readable = null, inputPassword: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async createPresentation(name: string, data: Readable = null, inputPassword: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createPresentation.');
@@ -1175,7 +1179,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createPresentationFromSource(name: string, sourcePath: string = null, sourcePassword: string = null, sourceStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async createPresentationFromSource(name: string, sourcePath: string = null, sourcePassword: string = null, sourceStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createPresentationFromSource.');
@@ -1213,7 +1217,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createPresentationFromTemplate(name: string, templatePath: string, data: string = null, templatePassword: string = null, templateStorage: string = null, isImageDataEmbedded: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async createPresentationFromTemplate(name: string, templatePath: string, data: string = null, templatePassword: string = null, templateStorage: string = null, isImageDataEmbedded: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createPresentationFromTemplate.');
@@ -1254,7 +1258,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSection(name: string, sectionName: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Sections}> {
+    public async createSection(name: string, sectionName: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Sections}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSection.');
@@ -1298,7 +1302,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createShape(name: string, slideIndex: number, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async createShape(name: string, slideIndex: number, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createShape.');
@@ -1337,7 +1341,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSlide(name: string, layoutAlias: string = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slides}> {
+    public async createSlide(name: string, layoutAlias: string = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSlide.');
@@ -1372,7 +1376,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideAnimationEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async createSpecialSlideAnimationEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideAnimationEffect.');
@@ -1423,7 +1427,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideAnimationInteractiveSequence(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequence: model.InteractiveSequence, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async createSpecialSlideAnimationInteractiveSequence(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequence: model.InteractiveSequence, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideAnimationInteractiveSequence.');
@@ -1475,7 +1479,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideAnimationInteractiveSequenceEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async createSpecialSlideAnimationInteractiveSequenceEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideAnimationInteractiveSequenceEffect.');
@@ -1533,7 +1537,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async createSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideParagraph.');
@@ -1593,7 +1597,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async createSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlidePortion.');
@@ -1657,7 +1661,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideShape.');
@@ -1709,7 +1713,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async createSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideSubshape.');
@@ -1762,7 +1766,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async createSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
@@ -1824,7 +1828,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async createSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideSubshapePortion.');
@@ -1889,7 +1893,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSubshape(name: string, slideIndex: number, path: string = null, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async createSubshape(name: string, slideIndex: number, path: string = null, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSubshape.');
@@ -1932,7 +1936,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async createSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSubshapeParagraph.');
@@ -1984,7 +1988,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async createSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSubshapePortion.');
@@ -2040,7 +2044,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async createWatermark(name: string, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async createWatermark(name: string, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createWatermark.');
@@ -2077,7 +2081,7 @@ export class SlidesApi {
      * @param fontColor Watermark font color.
      * @param password Document password.
      */
-    public async createWatermarkOnline(document: Readable, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async createWatermarkOnline(document: Readable, shape: model.Shape = null, fontHeight: number = null, text: string = null, fontName: string = null, fontColor: string = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling createWatermarkOnline.');
@@ -2116,7 +2120,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteAnimation(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteAnimation(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteAnimation.');
@@ -2153,7 +2157,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteAnimationEffect(name: string, slideIndex: number, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteAnimationEffect(name: string, slideIndex: number, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteAnimationEffect.');
@@ -2195,7 +2199,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteAnimationInteractiveSequence(name: string, slideIndex: number, sequenceIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteAnimationInteractiveSequence(name: string, slideIndex: number, sequenceIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteAnimationInteractiveSequence.');
@@ -2238,7 +2242,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteAnimationInteractiveSequenceEffect(name: string, slideIndex: number, sequenceIndex: number, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteAnimationInteractiveSequenceEffect(name: string, slideIndex: number, sequenceIndex: number, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteAnimationInteractiveSequenceEffect.');
@@ -2284,7 +2288,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteAnimationInteractiveSequences(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteAnimationInteractiveSequences(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteAnimationInteractiveSequences.');
@@ -2320,7 +2324,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteAnimationMainSequence(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteAnimationMainSequence(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteAnimationMainSequence.');
@@ -2356,7 +2360,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteBackground(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideBackground}> {
+    public async deleteBackground(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideBackground}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteBackground.');
@@ -2394,7 +2398,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteChartCategory(name: string, slideIndex: number, shapeIndex: number, categoryIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async deleteChartCategory(name: string, slideIndex: number, shapeIndex: number, categoryIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteChartCategory.');
@@ -2443,7 +2447,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteChartDataPoint(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, pointIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async deleteChartDataPoint(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, pointIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteChartDataPoint.');
@@ -2496,7 +2500,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteChartSeries(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async deleteChartSeries(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteChartSeries.');
@@ -2542,7 +2546,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteComments(name: string, author: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async deleteComments(name: string, author: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteComments.');
@@ -2572,7 +2576,7 @@ export class SlidesApi {
      * @param author Author of comments.
      * @param password Document password.
      */
-    public async deleteCommentsOnline(document: Readable, author: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteCommentsOnline(document: Readable, author: string = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteCommentsOnline.');
@@ -2606,7 +2610,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteDocumentProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.DocumentProperties}> {
+    public async deleteDocumentProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteDocumentProperties.');
@@ -2637,7 +2641,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteDocumentProperty(name: string, propertyName: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.DocumentProperties}> {
+    public async deleteDocumentProperty(name: string, propertyName: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteDocumentProperty.');
@@ -2671,7 +2675,7 @@ export class SlidesApi {
      * @param storageName Storage name
      * @param versionId File version ID to delete
      */
-    public async deleteFile(path: string = null, storageName: string = null, versionId: string = null): Promise<{response: http.ClientResponse}> {
+    public async deleteFile(path: string = null, storageName: string = null, versionId: string = null): Promise<{response: http.ServerResponse}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/file/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
         const queryParameters: any = {};
@@ -2694,7 +2698,7 @@ export class SlidesApi {
      * @param storageName Storage name
      * @param recursive Enable to delete folders, subfolders and files
      */
-    public async deleteFolder(path: string = null, storageName: string = null, recursive: boolean = null): Promise<{response: http.ClientResponse}> {
+    public async deleteFolder(path: string = null, storageName: string = null, recursive: boolean = null): Promise<{response: http.ServerResponse}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
         const queryParameters: any = {};
@@ -2719,7 +2723,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteNotesSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slide}> {
+    public async deleteNotesSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteNotesSlide.');
@@ -2757,7 +2761,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteParagraph.');
@@ -2805,7 +2809,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteParagraphs(name: string, slideIndex: number, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteParagraphs(name: string, slideIndex: number, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteParagraphs.');
@@ -2850,7 +2854,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deletePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deletePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deletePortion.');
@@ -2904,7 +2908,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deletePortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deletePortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deletePortions.');
@@ -2950,7 +2954,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteProtection(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+    public async deleteProtection(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ProtectionProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteProtection.');
@@ -2978,7 +2982,7 @@ export class SlidesApi {
      * @param document Document data.
      * @param password Presentation password.
      */
-    public async deleteProtectionOnline(document: Readable, password: string): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteProtectionOnline(document: Readable, password: string): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteProtectionOnline.');
@@ -3017,7 +3021,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSection(name: string, sectionIndex: number, withSlides: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Sections}> {
+    public async deleteSection(name: string, sectionIndex: number, withSlides: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Sections}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSection.');
@@ -3055,7 +3059,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSections(name: string, sections: Array<number> = null, withSlides: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Sections}> {
+    public async deleteSections(name: string, sections: Array<number> = null, withSlides: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Sections}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSections.');
@@ -3089,7 +3093,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteShape.');
@@ -3131,7 +3135,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteShapes(name: string, slideIndex: number, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteShapes(name: string, slideIndex: number, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteShapes.');
@@ -3168,7 +3172,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slides}> {
+    public async deleteSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSlide.');
@@ -3205,7 +3209,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSlideComments(name: string, slideIndex: number, author: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideComments}> {
+    public async deleteSlideComments(name: string, slideIndex: number, author: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideComments}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSlideComments.');
@@ -3241,7 +3245,7 @@ export class SlidesApi {
      * @param author Author of comments.
      * @param password Document password.
      */
-    public async deleteSlideCommentsOnline(document: Readable, slideIndex: number, author: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteSlideCommentsOnline(document: Readable, slideIndex: number, author: string = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteSlideCommentsOnline.');
@@ -3281,7 +3285,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSlides(name: string, slides: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slides}> {
+    public async deleteSlides(name: string, slides: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSlides.');
@@ -3314,7 +3318,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideAnimation.');
@@ -3361,7 +3365,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideAnimationEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteSpecialSlideAnimationEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideAnimationEffect.');
@@ -3413,7 +3417,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideAnimationInteractiveSequence(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteSpecialSlideAnimationInteractiveSequence(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequence.');
@@ -3466,7 +3470,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideAnimationInteractiveSequenceEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteSpecialSlideAnimationInteractiveSequenceEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, effectIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequenceEffect.');
@@ -3522,7 +3526,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideAnimationInteractiveSequences(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteSpecialSlideAnimationInteractiveSequences(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideAnimationInteractiveSequences.');
@@ -3568,7 +3572,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideAnimationMainSequence(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async deleteSpecialSlideAnimationMainSequence(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideAnimationMainSequence.');
@@ -3616,7 +3620,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideParagraph.');
@@ -3674,7 +3678,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideParagraphs.');
@@ -3729,7 +3733,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deleteSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlidePortion.');
@@ -3793,7 +3797,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deleteSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlidePortions.');
@@ -3851,7 +3855,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideShape.');
@@ -3903,7 +3907,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideShapes.');
@@ -3952,7 +3956,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshape.');
@@ -4007,7 +4011,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
@@ -4067,7 +4071,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideSubshapeParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteSpecialSlideSubshapeParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapeParagraphs.');
@@ -4124,7 +4128,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deleteSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
@@ -4190,7 +4194,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideSubshapePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deleteSpecialSlideSubshapePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
@@ -4250,7 +4254,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSpecialSlideSubshapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteSpecialSlideSubshapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapes.');
@@ -4299,7 +4303,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSubshape.');
@@ -4344,7 +4348,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapeParagraph.');
@@ -4394,7 +4398,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSubshapeParagraphs(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async deleteSubshapeParagraphs(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapeParagraphs.');
@@ -4441,7 +4445,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deleteSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapePortion.');
@@ -4497,7 +4501,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSubshapePortions(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async deleteSubshapePortions(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapePortions.');
@@ -4547,7 +4551,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteSubshapes(name: string, slideIndex: number, path: string = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async deleteSubshapes(name: string, slideIndex: number, path: string = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapes.');
@@ -4584,7 +4588,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteUnusedLayoutSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.LayoutSlides}> {
+    public async deleteUnusedLayoutSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.LayoutSlides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteUnusedLayoutSlides.');
@@ -4612,7 +4616,7 @@ export class SlidesApi {
      * @param document Document data
      * @param password Document password.
      */
-    public async deleteUnusedLayoutSlidesOnline(document: Readable, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteUnusedLayoutSlidesOnline(document: Readable, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteUnusedLayoutSlidesOnline.');
@@ -4646,7 +4650,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async deleteWatermark(name: string, shapeName: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async deleteWatermark(name: string, shapeName: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteWatermark.');
@@ -4676,7 +4680,7 @@ export class SlidesApi {
      * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used.
      * @param password Document password.
      */
-    public async deleteWatermarkOnline(document: Readable, shapeName: string = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async deleteWatermarkOnline(document: Readable, shapeName: string = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteWatermarkOnline.');
@@ -4709,7 +4713,7 @@ export class SlidesApi {
      * @param storageName Storage name
      * @param versionId File version ID to download
      */
-    public async downloadFile(path: string = null, storageName: string = null, versionId: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadFile(path: string = null, storageName: string = null, versionId: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/file/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
         const queryParameters: any = {};
@@ -4735,7 +4739,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async downloadImage(name: string, index: number, format: model.ImageExportFormat, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImage(name: string, index: number, format: model.ImageExportFormat, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadImage.');
@@ -4780,7 +4784,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async downloadImageDefaultFormat(name: string, index: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImageDefaultFormat(name: string, index: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadImageDefaultFormat.');
@@ -4814,7 +4818,7 @@ export class SlidesApi {
      * @param index Image index.
      * @param password Document password.
      */
-    public async downloadImageDefaultFormatOnline(document: Readable, index: number, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImageDefaultFormatOnline(document: Readable, index: number, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImageDefaultFormatOnline.');
@@ -4852,7 +4856,7 @@ export class SlidesApi {
      * @param format Export format (png, jpg, gif).
      * @param password Document password.
      */
-    public async downloadImageOnline(document: Readable, index: number, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImageOnline(document: Readable, index: number, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImageOnline.');
@@ -4900,7 +4904,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async downloadImages(name: string, format: model.ImageExportFormat, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImages(name: string, format: model.ImageExportFormat, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadImages.');
@@ -4939,7 +4943,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async downloadImagesDefaultFormat(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImagesDefaultFormat(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadImagesDefaultFormat.');
@@ -4967,7 +4971,7 @@ export class SlidesApi {
      * @param document Document data.
      * @param password Document password.
      */
-    public async downloadImagesDefaultFormatOnline(document: Readable, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImagesDefaultFormatOnline(document: Readable, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImagesDefaultFormatOnline.');
@@ -4999,7 +5003,7 @@ export class SlidesApi {
      * @param format Export format (png, jpg, gif).
      * @param password Document password.
      */
-    public async downloadImagesOnline(document: Readable, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadImagesOnline(document: Readable, format: model.ImageExportFormat, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadImagesOnline.');
@@ -5046,7 +5050,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      */
-    public async downloadNotesSlide(name: string, slideIndex: number, format: model.NotesSlideExportFormat, width: number = null, height: number = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadNotesSlide(name: string, slideIndex: number, format: model.NotesSlideExportFormat, width: number = null, height: number = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadNotesSlide.');
@@ -5096,7 +5100,7 @@ export class SlidesApi {
      * @param password Document password.
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      */
-    public async downloadNotesSlideOnline(document: Readable, slideIndex: number, format: model.NotesSlideExportFormat, width: number = null, height: number = null, password: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadNotesSlideOnline(document: Readable, slideIndex: number, format: model.NotesSlideExportFormat, width: number = null, height: number = null, password: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadNotesSlideOnline.');
@@ -5150,7 +5154,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async downloadPortionAsMathMl(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadPortionAsMathMl(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadPortionAsMathMl.');
@@ -5204,7 +5208,7 @@ export class SlidesApi {
      * @param fontsFolder Custom fonts folder.
      * @param slides The indices of the slides to be saved. If not specified, all slides are saved by default.
      */
-    public async downloadPresentation(name: string, format: model.ExportFormat, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadPresentation(name: string, format: model.ExportFormat, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadPresentation.');
@@ -5254,7 +5258,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async downloadShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadShape.');
@@ -5319,7 +5323,7 @@ export class SlidesApi {
      * @param fontsFolder Fonts folder.
      * @param options Export options.
      */
-    public async downloadShapeOnline(document: Readable, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadShapeOnline(document: Readable, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadShapeOnline.');
@@ -5387,7 +5391,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      */
-    public async downloadSlide(name: string, slideIndex: number, format: model.SlideExportFormat, options: model.ExportOptions = null, width: number = null, height: number = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadSlide(name: string, slideIndex: number, format: model.SlideExportFormat, options: model.ExportOptions = null, width: number = null, height: number = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadSlide.');
@@ -5440,7 +5444,7 @@ export class SlidesApi {
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      * @param options Export options.
      */
-    public async downloadSlideOnline(document: Readable, slideIndex: number, format: model.SlideExportFormat, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadSlideOnline(document: Readable, slideIndex: number, format: model.SlideExportFormat, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling downloadSlideOnline.');
@@ -5501,7 +5505,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async downloadSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadSpecialSlideShape.');
@@ -5578,7 +5582,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async downloadSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadSpecialSlideSubshape.');
@@ -5655,7 +5659,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async downloadSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async downloadSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadSubshape.');
@@ -5717,7 +5721,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getAnimation(name: string, slideIndex: number, shapeIndex: number = null, paragraphIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async getAnimation(name: string, slideIndex: number, shapeIndex: number = null, paragraphIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getAnimation.');
@@ -5750,7 +5754,7 @@ export class SlidesApi {
     /**
      * Get API info. 
      */
-    public async getApiInfo(): Promise<{response: http.ClientResponse, body: model.ApiInfo}> {
+    public async getApiInfo(): Promise<{response: http.ServerResponse, body: model.ApiInfo}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/info";
         const queryParameters: any = {};
         const requestOptions: request.Options = {
@@ -5772,7 +5776,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getBackground(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideBackground}> {
+    public async getBackground(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideBackground}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getBackground.');
@@ -5808,7 +5812,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getColorScheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ColorScheme}> {
+    public async getColorScheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ColorScheme}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getColorScheme.');
@@ -5840,7 +5844,7 @@ export class SlidesApi {
      * Get disc usage 
      * @param storageName Storage name
      */
-    public async getDiscUsage(storageName: string = null): Promise<{response: http.ClientResponse, body: model.DiscUsage}> {
+    public async getDiscUsage(storageName: string = null): Promise<{response: http.ServerResponse, body: model.DiscUsage}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/disc";
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", storageName);
@@ -5862,7 +5866,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getDocumentProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.DocumentProperties}> {
+    public async getDocumentProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getDocumentProperties.');
@@ -5893,7 +5897,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getDocumentProperty(name: string, propertyName: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.DocumentProperty}> {
+    public async getDocumentProperty(name: string, propertyName: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentProperty}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getDocumentProperty.');
@@ -5926,7 +5930,7 @@ export class SlidesApi {
      * @param path File path e.g. '/file.ext'
      * @param storageName Storage name
      */
-    public async getFileVersions(path: string = null, storageName: string = null): Promise<{response: http.ClientResponse, body: model.FileVersions}> {
+    public async getFileVersions(path: string = null, storageName: string = null): Promise<{response: http.ServerResponse, body: model.FileVersions}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/version/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
         const queryParameters: any = {};
@@ -5947,7 +5951,7 @@ export class SlidesApi {
      * @param path Folder path e.g. '/folder'
      * @param storageName Storage name
      */
-    public async getFilesList(path: string = null, storageName: string = null): Promise<{response: http.ClientResponse, body: model.FilesList}> {
+    public async getFilesList(path: string = null, storageName: string = null): Promise<{response: http.ServerResponse, body: model.FilesList}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/folder/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
         const queryParameters: any = {};
@@ -5971,7 +5975,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getFontScheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.FontScheme}> {
+    public async getFontScheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FontScheme}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getFontScheme.');
@@ -6007,7 +6011,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getFormatScheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.FormatScheme}> {
+    public async getFormatScheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FormatScheme}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getFormatScheme.');
@@ -6043,7 +6047,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getLayoutSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.LayoutSlide}> {
+    public async getLayoutSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.LayoutSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getLayoutSlide.');
@@ -6078,7 +6082,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getLayoutSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.LayoutSlides}> {
+    public async getLayoutSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.LayoutSlides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getLayoutSlides.');
@@ -6109,7 +6113,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getMasterSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.MasterSlide}> {
+    public async getMasterSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.MasterSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getMasterSlide.');
@@ -6144,7 +6148,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getMasterSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.MasterSlides}> {
+    public async getMasterSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.MasterSlides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getMasterSlides.');
@@ -6175,7 +6179,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getNotesSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlide}> {
+    public async getNotesSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.NotesSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getNotesSlide.');
@@ -6211,7 +6215,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getNotesSlideHeaderFooter(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlideHeaderFooter}> {
+    public async getNotesSlideHeaderFooter(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.NotesSlideHeaderFooter}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getNotesSlideHeaderFooter.');
@@ -6245,7 +6249,7 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param password Document password.
      */
-    public async getNotesSlideOnline(document: Readable, slideIndex: number, password: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlide}> {
+    public async getNotesSlideOnline(document: Readable, slideIndex: number, password: string = null): Promise<{response: http.ServerResponse, body: model.NotesSlide}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling getNotesSlideOnline.');
@@ -6286,7 +6290,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async getParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getParagraph.');
@@ -6325,6 +6329,54 @@ export class SlidesApi {
     }
 
     /**
+     * Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param paragraphIndex Paragraph index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getParagraphRectangle(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.TextBounds}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getParagraphRectangle.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getParagraphRectangle.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getParagraphRectangle.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getParagraphRectangle.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/bounds";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "TextBounds");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Read shape paragraphs info. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -6333,7 +6385,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getParagraphs(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async getParagraphs(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getParagraphs.');
@@ -6375,7 +6427,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getPlaceholder(name: string, slideIndex: number, placeholderIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Placeholder}> {
+    public async getPlaceholder(name: string, slideIndex: number, placeholderIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Placeholder}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPlaceholder.');
@@ -6416,7 +6468,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getPlaceholders(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Placeholders}> {
+    public async getPlaceholders(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Placeholders}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPlaceholders.');
@@ -6455,7 +6507,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async getPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPortion.');
@@ -6499,6 +6551,60 @@ export class SlidesApi {
     }
 
     /**
+     * Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param paragraphIndex Paragraph index.
+     * @param portionIndex Portion index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getPortionRectangle(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.TextBounds}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getPortionRectangle.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getPortionRectangle.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getPortionRectangle.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getPortionRectangle.');
+        }
+        // verify required parameter 'portionIndex' is not null or undefined
+        if (portionIndex === null || portionIndex === undefined) {
+            throw new Error('The required parameter "portionIndex" was null or undefined when calling getPortionRectangle.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/bounds";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "TextBounds");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Read paragraph portions info. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -6508,7 +6614,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getPortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async getPortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPortions.');
@@ -6553,7 +6659,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getPresentation(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async getPresentation(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPresentation.');
@@ -6583,7 +6689,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getPresentationImages(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Images}> {
+    public async getPresentationImages(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Images}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPresentationImages.');
@@ -6614,7 +6720,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getPresentationTextItems(name: string, withEmpty: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.TextItems}> {
+    public async getPresentationTextItems(name: string, withEmpty: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.TextItems}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPresentationTextItems.');
@@ -6645,7 +6751,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getProtectionProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+    public async getProtectionProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ProtectionProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getProtectionProperties.');
@@ -6675,7 +6781,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSections(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Sections}> {
+    public async getSections(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Sections}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSections.');
@@ -6707,7 +6813,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async getShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getShape.');
@@ -6749,7 +6855,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getShapeGeometryPath(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.GeometryPaths}> {
+    public async getShapeGeometryPath(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.GeometryPaths}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getShapeGeometryPath.');
@@ -6789,8 +6895,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param shapeType Shape type.
      */
-    public async getShapes(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async getShapes(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null, shapeType: model.ShapeType = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getShapes.');
@@ -6799,12 +6906,17 @@ export class SlidesApi {
         if (slideIndex === null || slideIndex === undefined) {
             throw new Error('The required parameter "slideIndex" was null or undefined when calling getShapes.');
         }
+        // verify value of enum parameter 'shapeType' is valid
+        if (shapeType != null && shapeType != undefined && !Object.keys(model.ShapeType).filter(i => model.ShapeType[i].toLowerCase() == shapeType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for shapeType: ' + shapeType + '. Must be one of the following: ' + Object.keys(model.ShapeType).map(key => model.ShapeType[key]).join());
+        }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeType", shapeType);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -6826,7 +6938,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slide}> {
+    public async getSlide(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlide.');
@@ -6862,7 +6974,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlideComments(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideComments}> {
+    public async getSlideComments(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideComments}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlideComments.');
@@ -6898,7 +7010,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlideHeaderFooter(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.HeaderFooter}> {
+    public async getSlideHeaderFooter(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.HeaderFooter}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlideHeaderFooter.');
@@ -6934,7 +7046,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlideImages(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Images}> {
+    public async getSlideImages(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Images}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlideImages.');
@@ -6969,7 +7081,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlideProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideProperties}> {
+    public async getSlideProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlideProperties.');
@@ -7001,7 +7113,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlideTextItems(name: string, slideIndex: number, withEmpty: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.TextItems}> {
+    public async getSlideTextItems(name: string, slideIndex: number, withEmpty: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.TextItems}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlideTextItems.');
@@ -7037,7 +7149,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slides}> {
+    public async getSlides(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlides.');
@@ -7071,7 +7183,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number = null, paragraphIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async getSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number = null, paragraphIndex: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideAnimation.');
@@ -7121,7 +7233,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async getSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideParagraph.');
@@ -7178,7 +7290,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async getSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideParagraphs.');
@@ -7232,7 +7344,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async getSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlidePortion.');
@@ -7295,7 +7407,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async getSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlidePortions.');
@@ -7352,7 +7464,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async getSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideShape.');
@@ -7403,7 +7515,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async getSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideShapes.');
@@ -7451,7 +7563,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async getSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshape.');
@@ -7506,7 +7618,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async getSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
@@ -7565,7 +7677,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideSubshapeParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async getSpecialSlideSubshapeParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapeParagraphs.');
@@ -7621,7 +7733,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async getSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapePortion.');
@@ -7686,7 +7798,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideSubshapePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async getSpecialSlideSubshapePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapePortions.');
@@ -7744,7 +7856,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSpecialSlideSubshapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async getSpecialSlideSubshapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapes.');
@@ -7792,7 +7904,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async getSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSubshape.');
@@ -7837,7 +7949,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async getSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSubshapeParagraph.');
@@ -7886,7 +7998,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSubshapeParagraphs(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraphs}> {
+    public async getSubshapeParagraphs(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSubshapeParagraphs.');
@@ -7932,7 +8044,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async getSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSubshapePortion.');
@@ -7987,7 +8099,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSubshapePortions(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portions}> {
+    public async getSubshapePortions(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSubshapePortions.');
@@ -8035,7 +8147,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSubshapes(name: string, slideIndex: number, path: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shapes}> {
+    public async getSubshapes(name: string, slideIndex: number, path: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSubshapes.');
@@ -8072,7 +8184,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getTheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Theme}> {
+    public async getTheme(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Theme}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getTheme.');
@@ -8107,7 +8219,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getViewProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ViewProperties}> {
+    public async getViewProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ViewProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getViewProperties.');
@@ -8143,7 +8255,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async highlightShapeRegex(name: string, slideIndex: number, shapeIndex: number, regex: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shape}> {
+    public async highlightShapeRegex(name: string, slideIndex: number, shapeIndex: number, regex: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shape}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling highlightShapeRegex.');
@@ -8176,7 +8288,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             headers: {},
             uri: localVarPath,
@@ -8201,7 +8313,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async highlightShapeText(name: string, slideIndex: number, shapeIndex: number, text: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Shape}> {
+    public async highlightShapeText(name: string, slideIndex: number, shapeIndex: number, text: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shape}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling highlightShapeText.');
@@ -8234,7 +8346,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             headers: {},
             uri: localVarPath,
@@ -8254,7 +8366,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async importFromHtml(name: string, html: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async importFromHtml(name: string, html: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling importFromHtml.');
@@ -8286,10 +8398,14 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async importFromPdf(name: string, pdf: Readable = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async importFromPdf(name: string, pdf: Readable, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling importFromPdf.');
+        }
+        // verify required parameter 'pdf' is not null or undefined
+        if (pdf === null || pdf === undefined) {
+            throw new Error('The required parameter "pdf" was null or undefined when calling importFromPdf.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fromPdf";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -8323,7 +8439,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async merge(name: string, request: model.PresentationsMergeRequest, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async merge(name: string, request: model.PresentationsMergeRequest, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling merge.');
@@ -8357,7 +8473,7 @@ export class SlidesApi {
      * @param request Merge request.
      * @param storage Document storage.
      */
-    public async mergeAndSaveOnline(outPath: string, files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async mergeAndSaveOnline(outPath: string, files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('The required parameter "outPath" was null or undefined when calling mergeAndSaveOnline.');
@@ -8388,7 +8504,7 @@ export class SlidesApi {
      * @param request Merge request.
      * @param storage Document storage.
      */
-    public async mergeOnline(files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async mergeOnline(files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/merge";
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
@@ -8417,7 +8533,7 @@ export class SlidesApi {
      * @param destStorageName Destination storage name
      * @param versionId File version ID to move
      */
-    public async moveFile(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null, versionId: string = null): Promise<{response: http.ClientResponse}> {
+    public async moveFile(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null, versionId: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'srcPath' is not null or undefined
         if (srcPath === null || srcPath === undefined) {
             throw new Error('The required parameter "srcPath" was null or undefined when calling moveFile.');
@@ -8451,7 +8567,7 @@ export class SlidesApi {
      * @param srcStorageName Source storage name
      * @param destStorageName Destination storage name
      */
-    public async moveFolder(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null): Promise<{response: http.ClientResponse}> {
+    public async moveFolder(srcPath: string, destPath: string, srcStorageName: string = null, destStorageName: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'srcPath' is not null or undefined
         if (srcPath === null || srcPath === undefined) {
             throw new Error('The required parameter "srcPath" was null or undefined when calling moveFolder.');
@@ -8486,7 +8602,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async moveSection(name: string, sectionIndex: number, newPosition: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Sections}> {
+    public async moveSection(name: string, sectionIndex: number, newPosition: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Sections}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling moveSection.');
@@ -8528,7 +8644,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async moveSlide(name: string, slideIndex: number, newPosition: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slides}> {
+    public async moveSlide(name: string, slideIndex: number, newPosition: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling moveSlide.');
@@ -8569,7 +8685,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async notesSlideExists(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.EntityExists}> {
+    public async notesSlideExists(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.EntityExists}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling notesSlideExists.');
@@ -8603,7 +8719,7 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param password Document password.
      */
-    public async notesSlideExistsOnline(document: Readable, slideIndex: number, password: string = null): Promise<{response: http.ClientResponse, body: model.EntityExists}> {
+    public async notesSlideExistsOnline(document: Readable, slideIndex: number, password: string = null): Promise<{response: http.ServerResponse, body: model.EntityExists}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling notesSlideExistsOnline.');
@@ -8640,7 +8756,7 @@ export class SlidesApi {
      * @param storageName Storage name
      * @param versionId File version ID
      */
-    public async objectExists(path: string = null, storageName: string = null, versionId: string = null): Promise<{response: http.ClientResponse, body: model.ObjectExist}> {
+    public async objectExists(path: string = null, storageName: string = null, versionId: string = null): Promise<{response: http.ServerResponse, body: model.ObjectExist}> {
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/storage/exist/{path}";
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
         const queryParameters: any = {};
@@ -8665,7 +8781,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async orderedMerge(name: string, request: model.OrderedMergeRequest, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async orderedMerge(name: string, request: model.OrderedMergeRequest, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling orderedMerge.');
@@ -8697,7 +8813,7 @@ export class SlidesApi {
      * @param pipeline A Pipeline object.
      * @param files Files to upload with the pipeline
      */
-    public async pipeline(pipeline: model.Pipeline, files: Array<Readable> = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async pipeline(pipeline: model.Pipeline, files: Array<Readable> = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'pipeline' is not null or undefined
         if (pipeline === null || pipeline === undefined) {
             throw new Error('The required parameter "pipeline" was null or undefined when calling pipeline.');
@@ -8730,7 +8846,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async reorderSlides(name: string, oldPositions: Array<number> = null, newPositions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slides}> {
+    public async reorderSlides(name: string, oldPositions: Array<number> = null, newPositions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slides}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling reorderSlides.');
@@ -8765,7 +8881,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async replacePresentationText(name: string, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.DocumentReplaceResult}> {
+    public async replacePresentationText(name: string, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentReplaceResult}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling replacePresentationText.');
@@ -8807,7 +8923,7 @@ export class SlidesApi {
      * @param ignoreCase True if character case must be ignored.
      * @param password Document password.
      */
-    public async replacePresentationTextOnline(document: Readable, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async replacePresentationTextOnline(document: Readable, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling replacePresentationTextOnline.');
@@ -8855,7 +8971,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async replaceSlideText(name: string, slideIndex: number, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideReplaceResult}> {
+    public async replaceSlideText(name: string, slideIndex: number, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideReplaceResult}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling replaceSlideText.');
@@ -8903,7 +9019,7 @@ export class SlidesApi {
      * @param ignoreCase True if character case must be ignored.
      * @param password Document password.
      */
-    public async replaceSlideTextOnline(document: Readable, slideIndex: number, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async replaceSlideTextOnline(document: Readable, slideIndex: number, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling replaceSlideTextOnline.');
@@ -8957,7 +9073,7 @@ export class SlidesApi {
      * @param folder Presentation folder.
      * @param storage Presentation storage.
      */
-    public async savePortionAsMathMl(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, outPath: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse}> {
+    public async savePortionAsMathMl(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, outPath: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling savePortionAsMathMl.');
@@ -9017,7 +9133,7 @@ export class SlidesApi {
      * @param fontsFolder Custom fonts folder.
      * @param slides The indices of the slides to be saved. If not specified, all slides are saved by default.
      */
-    public async savePresentation(name: string, format: model.ExportFormat, outPath: string, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ClientResponse}> {
+    public async savePresentation(name: string, format: model.ExportFormat, outPath: string, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling savePresentation.');
@@ -9072,7 +9188,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async saveShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async saveShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling saveShape.');
@@ -9142,7 +9258,7 @@ export class SlidesApi {
      * @param fontsFolder Fonts folder.
      * @param options Export options.
      */
-    public async saveShapeOnline(document: Readable, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ClientResponse}> {
+    public async saveShapeOnline(document: Readable, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.IShapeExportOptions = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling saveShapeOnline.');
@@ -9215,7 +9331,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      */
-    public async saveSlide(name: string, slideIndex: number, format: model.SlideExportFormat, outPath: string, options: model.ExportOptions = null, width: number = null, height: number = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async saveSlide(name: string, slideIndex: number, format: model.SlideExportFormat, outPath: string, options: model.ExportOptions = null, width: number = null, height: number = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling saveSlide.');
@@ -9273,7 +9389,7 @@ export class SlidesApi {
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
      * @param options Export options.
      */
-    public async saveSlideOnline(document: Readable, slideIndex: number, format: model.SlideExportFormat, outPath: string, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ClientResponse}> {
+    public async saveSlideOnline(document: Readable, slideIndex: number, format: model.SlideExportFormat, outPath: string, width: number = null, height: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling saveSlideOnline.');
@@ -9339,7 +9455,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async saveSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async saveSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling saveSpecialSlideShape.');
@@ -9421,7 +9537,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async saveSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async saveSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling saveSpecialSlideSubshape.');
@@ -9503,7 +9619,7 @@ export class SlidesApi {
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
      */
-    public async saveSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse}> {
+    public async saveSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling saveSubshape.');
@@ -9568,7 +9684,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setAnimation(name: string, slideIndex: number, animation: model.SlideAnimation, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async setAnimation(name: string, slideIndex: number, animation: model.SlideAnimation, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setAnimation.');
@@ -9609,7 +9725,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setBackground(name: string, slideIndex: number, background: model.SlideBackground, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideBackground}> {
+    public async setBackground(name: string, slideIndex: number, background: model.SlideBackground, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideBackground}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setBackground.');
@@ -9650,7 +9766,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setBackgroundColor(name: string, slideIndex: number, color: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideBackground}> {
+    public async setBackgroundColor(name: string, slideIndex: number, color: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideBackground}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setBackgroundColor.');
@@ -9691,7 +9807,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setDocumentProperties(name: string, properties: model.DocumentProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.DocumentProperties}> {
+    public async setDocumentProperties(name: string, properties: model.DocumentProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setDocumentProperties.');
@@ -9727,7 +9843,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setDocumentProperty(name: string, propertyName: string, property: model.DocumentProperty, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.DocumentProperty}> {
+    public async setDocumentProperty(name: string, propertyName: string, property: model.DocumentProperty, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentProperty}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setDocumentProperty.');
@@ -9768,7 +9884,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setNotesSlideHeaderFooter(name: string, slideIndex: number, dto: model.NotesSlideHeaderFooter, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlideHeaderFooter}> {
+    public async setNotesSlideHeaderFooter(name: string, slideIndex: number, dto: model.NotesSlideHeaderFooter, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.NotesSlideHeaderFooter}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setNotesSlideHeaderFooter.');
@@ -9808,7 +9924,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setPresentationHeaderFooter(name: string, dto: model.HeaderFooter, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Document}> {
+    public async setPresentationHeaderFooter(name: string, dto: model.HeaderFooter, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setPresentationHeaderFooter.');
@@ -9843,7 +9959,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setProtection(name: string, dto: model.ProtectionProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ProtectionProperties}> {
+    public async setProtection(name: string, dto: model.ProtectionProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ProtectionProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setProtection.');
@@ -9876,7 +9992,7 @@ export class SlidesApi {
      * @param dto Protection properties.
      * @param password Document password.
      */
-    public async setProtectionOnline(document: Readable, dto: model.ProtectionProperties, password: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async setProtectionOnline(document: Readable, dto: model.ProtectionProperties, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling setProtectionOnline.');
@@ -9915,7 +10031,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setSections(name: string, sections: model.Sections, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Sections}> {
+    public async setSections(name: string, sections: model.Sections, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Sections}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setSections.');
@@ -9952,7 +10068,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setShapeGeometryPath(name: string, slideIndex: number, shapeIndex: number, dto: model.GeometryPaths, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async setShapeGeometryPath(name: string, slideIndex: number, shapeIndex: number, dto: model.GeometryPaths, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setShapeGeometryPath.');
@@ -9998,7 +10114,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setSlideHeaderFooter(name: string, slideIndex: number, dto: model.HeaderFooter, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.HeaderFooter}> {
+    public async setSlideHeaderFooter(name: string, slideIndex: number, dto: model.HeaderFooter, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.HeaderFooter}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setSlideHeaderFooter.');
@@ -10038,7 +10154,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setSlideProperties(name: string, dto: model.SlideProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideProperties}> {
+    public async setSlideProperties(name: string, dto: model.SlideProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setSlideProperties.');
@@ -10075,7 +10191,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, animation: model.SlideAnimation, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async setSpecialSlideAnimation(name: string, slideIndex: number, slideType: model.SpecialSlideType, animation: model.SlideAnimation, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setSpecialSlideAnimation.');
@@ -10124,7 +10240,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async setViewProperties(name: string, dto: model.ViewProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ViewProperties}> {
+    public async setViewProperties(name: string, dto: model.ViewProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ViewProperties}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling setViewProperties.');
@@ -10166,7 +10282,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
      */
-    public async split(name: string, options: model.ExportOptions = null, format: model.SlideExportFormat = null, width: number = null, height: number = null, from: number = null, to: number = null, destFolder: string = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: model.SplitDocumentResult}> {
+    public async split(name: string, options: model.ExportOptions = null, format: model.SlideExportFormat = null, width: number = null, height: number = null, from: number = null, to: number = null, destFolder: string = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: model.SplitDocumentResult}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling split.');
@@ -10213,7 +10329,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
      */
-    public async splitAndSaveOnline(document: Readable, format: model.SlideExportFormat, destFolder: string = null, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: model.SplitDocumentResult}> {
+    public async splitAndSaveOnline(document: Readable, format: model.SlideExportFormat, destFolder: string = null, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: model.SplitDocumentResult}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling splitAndSaveOnline.');
@@ -10267,7 +10383,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param fontsFolder Custom fonts folder.
      */
-    public async splitOnline(document: Readable, format: model.SlideExportFormat, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async splitOnline(document: Readable, format: model.SlideExportFormat, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling splitOnline.');
@@ -10312,7 +10428,7 @@ export class SlidesApi {
      * Check if storage exists 
      * @param storageName Storage name
      */
-    public async storageExists(storageName: string): Promise<{response: http.ClientResponse, body: model.StorageExist}> {
+    public async storageExists(storageName: string): Promise<{response: http.ServerResponse, body: model.StorageExist}> {
         // verify required parameter 'storageName' is not null or undefined
         if (storageName === null || storageName === undefined) {
             throw new Error('The required parameter "storageName" was null or undefined when calling storageExists.');
@@ -10341,7 +10457,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateAnimationEffect(name: string, slideIndex: number, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async updateAnimationEffect(name: string, slideIndex: number, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateAnimationEffect.');
@@ -10389,7 +10505,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateAnimationInteractiveSequenceEffect(name: string, slideIndex: number, sequenceIndex: number, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async updateAnimationInteractiveSequenceEffect(name: string, slideIndex: number, sequenceIndex: number, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateAnimationInteractiveSequenceEffect.');
@@ -10442,7 +10558,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateChartCategory(name: string, slideIndex: number, shapeIndex: number, categoryIndex: number, category: model.ChartCategory, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async updateChartCategory(name: string, slideIndex: number, shapeIndex: number, categoryIndex: number, category: model.ChartCategory, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateChartCategory.');
@@ -10496,7 +10612,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateChartDataPoint(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, pointIndex: number, dataPoint: model.DataPoint, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async updateChartDataPoint(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, pointIndex: number, dataPoint: model.DataPoint, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateChartDataPoint.');
@@ -10554,7 +10670,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateChartSeries(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, series: model.Series, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Chart}> {
+    public async updateChartSeries(name: string, slideIndex: number, shapeIndex: number, seriesIndex: number, series: model.Series, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateChartSeries.');
@@ -10605,7 +10721,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateLayoutSlide(name: string, slideIndex: number, slideDto: model.LayoutSlide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.LayoutSlide}> {
+    public async updateLayoutSlide(name: string, slideIndex: number, slideDto: model.LayoutSlide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.LayoutSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateLayoutSlide.');
@@ -10646,7 +10762,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateNotesSlide(name: string, slideIndex: number, dto: model.NotesSlide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.NotesSlide}> {
+    public async updateNotesSlide(name: string, slideIndex: number, dto: model.NotesSlide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.NotesSlide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateNotesSlide.');
@@ -10689,7 +10805,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async updateParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateParagraph.');
@@ -10743,7 +10859,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updatePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async updatePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updatePortion.');
@@ -10799,7 +10915,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSection(name: string, sectionIndex: number, sectionName: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Sections}> {
+    public async updateSection(name: string, sectionIndex: number, sectionName: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Sections}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSection.');
@@ -10842,7 +10958,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateShape(name: string, slideIndex: number, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async updateShape(name: string, slideIndex: number, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateShape.');
@@ -10888,7 +11004,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSlide(name: string, slideIndex: number, slideDto: model.Slide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Slide}> {
+    public async updateSlide(name: string, slideIndex: number, slideDto: model.Slide, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Slide}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSlide.');
@@ -10931,7 +11047,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlideAnimationEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async updateSpecialSlideAnimationEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideAnimationEffect.');
@@ -10989,7 +11105,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlideAnimationInteractiveSequenceEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.SlideAnimation}> {
+    public async updateSpecialSlideAnimationInteractiveSequenceEffect(name: string, slideIndex: number, slideType: model.SpecialSlideType, sequenceIndex: number, effectIndex: number, effect: model.Effect, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideAnimation}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideAnimationInteractiveSequenceEffect.');
@@ -11052,7 +11168,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async updateSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideParagraph.');
@@ -11116,7 +11232,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async updateSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlidePortion.');
@@ -11183,7 +11299,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async updateSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideShape.');
@@ -11241,7 +11357,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async updateSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideSubshape.');
@@ -11301,7 +11417,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async updateSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
@@ -11367,7 +11483,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async updateSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideSubshapePortion.');
@@ -11435,7 +11551,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.ShapeBase}> {
+    public async updateSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSubshape.');
@@ -11485,7 +11601,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Paragraph}> {
+    public async updateSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSubshapeParagraph.');
@@ -11541,7 +11657,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ClientResponse, body: model.Portion}> {
+    public async updateSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSubshapePortion.');
@@ -11595,7 +11711,7 @@ export class SlidesApi {
      * @param file File to upload
      * @param storageName Storage name
      */
-    public async uploadFile(path: string = null, file: Readable, storageName: string = null): Promise<{response: http.ClientResponse, body: model.FilesUploadResult}> {
+    public async uploadFile(path: string = null, file: Readable, storageName: string = null): Promise<{response: http.ServerResponse, body: model.FilesUploadResult}> {
         // verify required parameter 'file' is not null or undefined
         if (file === null || file === undefined) {
             throw new Error('The required parameter "file" was null or undefined when calling uploadFile.');

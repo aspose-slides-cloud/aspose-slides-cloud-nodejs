@@ -2369,12 +2369,13 @@ describe("Tests for createComment", () => {
         return TestInitializer.runTest(() => {
             let varname = <string>TestInitializer.getValue("createComment", "name", "string");
             let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
-            let vardto = <model.SlideComment>TestInitializer.getValue("createComment", "dto", "SlideComment");
+            let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+            let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
             let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
             let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
             let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
             return TestInitializer.initialize("createComment", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varpassword, varfolder, varstorage), false, "createComment");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), false, "createComment");
             });
         });
     });
@@ -2383,14 +2384,15 @@ describe("Tests for createComment", () => {
         const field = "name";
         let varname = <string>TestInitializer.getValue("createComment", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createComment", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
         varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "createComment");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createComment", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varpassword, varfolder, varstorage), "createComment", field, varname);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), "createComment", field, varname);
             });
         });
     });
@@ -2399,14 +2401,15 @@ describe("Tests for createComment", () => {
         const field = "slideIndex";
         let varname = <string>TestInitializer.getValue("createComment", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createComment", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "createComment");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createComment", field, varslideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varpassword, varfolder, varstorage), "createComment", field, varslideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), "createComment", field, varslideIndex);
             });
         });
     });
@@ -2415,14 +2418,32 @@ describe("Tests for createComment", () => {
         const field = "dto";
         let varname = <string>TestInitializer.getValue("createComment", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createComment", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
-        vardto = <model.SlideComment>TestInitializer.invalidizeValue(vardto, field, "SlideComment", "createComment");
+        vardto = <model.SlideCommentBase>TestInitializer.invalidizeValue(vardto, field, "SlideCommentBase", "createComment");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createComment", field, vardto).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varpassword, varfolder, varstorage), "createComment", field, vardto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), "createComment", field, vardto);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("createComment", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "createComment");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("createComment", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), "createComment", field, varshapeIndex);
             });
         });
     });
@@ -2431,14 +2452,15 @@ describe("Tests for createComment", () => {
         const field = "password";
         let varname = <string>TestInitializer.getValue("createComment", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createComment", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "createComment");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createComment", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varpassword, varfolder, varstorage), "createComment", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), "createComment", field, varpassword);
             });
         });
     });
@@ -2447,14 +2469,15 @@ describe("Tests for createComment", () => {
         const field = "folder";
         let varname = <string>TestInitializer.getValue("createComment", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createComment", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
         varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "createComment");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createComment", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varpassword, varfolder, varstorage), "createComment", field, varfolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), "createComment", field, varfolder);
             });
         });
     });
@@ -2463,14 +2486,15 @@ describe("Tests for createComment", () => {
         const field = "storage";
         let varname = <string>TestInitializer.getValue("createComment", "name", "string");
         let varslideIndex = <number>TestInitializer.getValue("createComment", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createComment", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createComment", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createComment", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createComment", "password", "string");
         let varfolder = <string>TestInitializer.getValue("createComment", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("createComment", "storage", "string");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "createComment");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createComment", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varpassword, varfolder, varstorage), "createComment", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createComment(varname, varslideIndex, vardto, varshapeIndex, varpassword, varfolder, varstorage), "createComment", field, varstorage);
             });
         });
     });
@@ -2481,10 +2505,11 @@ describe("Tests for createCommentOnline", () => {
         return TestInitializer.runTest(() => {
             let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
             let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
-            let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
+            let vardto = <model.SlideCommentBase>TestInitializer.getValue("createCommentOnline", "dto", "SlideCommentBase");
+            let varshapeIndex = <number>TestInitializer.getValue("createCommentOnline", "shapeIndex", "number");
             let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
             return TestInitializer.initialize("createCommentOnline", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varpassword), true, "createCommentOnline");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varshapeIndex, varpassword), true, "createCommentOnline");
             });
         });
     });
@@ -2493,12 +2518,13 @@ describe("Tests for createCommentOnline", () => {
         const field = "document";
         let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createCommentOnline", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createCommentOnline", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
         vardocument = <Readable>TestInitializer.invalidizeValue(vardocument, field, "Readable", "createCommentOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createCommentOnline", field, vardocument).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varpassword), "createCommentOnline", field, vardocument);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varshapeIndex, varpassword), "createCommentOnline", field, vardocument);
             });
         });
     });
@@ -2507,12 +2533,13 @@ describe("Tests for createCommentOnline", () => {
         const field = "slideIndex";
         let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createCommentOnline", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createCommentOnline", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "createCommentOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createCommentOnline", field, varslideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varpassword), "createCommentOnline", field, varslideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varshapeIndex, varpassword), "createCommentOnline", field, varslideIndex);
             });
         });
     });
@@ -2521,12 +2548,28 @@ describe("Tests for createCommentOnline", () => {
         const field = "dto";
         let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createCommentOnline", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createCommentOnline", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
-        vardto = <model.SlideComment>TestInitializer.invalidizeValue(vardto, field, "SlideComment", "createCommentOnline");
+        vardto = <model.SlideCommentBase>TestInitializer.invalidizeValue(vardto, field, "SlideCommentBase", "createCommentOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createCommentOnline", field, vardto).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varpassword), "createCommentOnline", field, vardto);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varshapeIndex, varpassword), "createCommentOnline", field, vardto);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
+        let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createCommentOnline", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createCommentOnline", "shapeIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "createCommentOnline");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("createCommentOnline", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varshapeIndex, varpassword), "createCommentOnline", field, varshapeIndex);
             });
         });
     });
@@ -2535,12 +2578,13 @@ describe("Tests for createCommentOnline", () => {
         const field = "password";
         let vardocument = <Readable>TestInitializer.getStreamValue("createCommentOnline", "document");
         let varslideIndex = <number>TestInitializer.getValue("createCommentOnline", "slideIndex", "number");
-        let vardto = <model.SlideComment>TestInitializer.getValue("createCommentOnline", "dto", "SlideComment");
+        let vardto = <model.SlideCommentBase>TestInitializer.getValue("createCommentOnline", "dto", "SlideCommentBase");
+        let varshapeIndex = <number>TestInitializer.getValue("createCommentOnline", "shapeIndex", "number");
         let varpassword = <string>TestInitializer.getValue("createCommentOnline", "password", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "createCommentOnline");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("createCommentOnline", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varpassword), "createCommentOnline", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().createCommentOnline(vardocument, varslideIndex, vardto, varshapeIndex, varpassword), "createCommentOnline", field, varpassword);
             });
         });
     });
@@ -18654,6 +18698,142 @@ describe("Tests for getParagraph", () => {
     });
 });
 
+describe("Tests for getParagraphRectangle", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+            let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+            let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+            return TestInitializer.initialize("getParagraphRectangle", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), false, "getParagraphRectangle");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "getParagraphRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getParagraphRectangle", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getParagraphRectangle", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "getParagraphRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getParagraphRectangle", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getParagraphRectangle", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "getParagraphRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getParagraphRectangle", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getParagraphRectangle", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+        varparagraphIndex = <number>TestInitializer.invalidizeValue(varparagraphIndex, field, "number", "getParagraphRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getParagraphRectangle", field, varparagraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getParagraphRectangle", field, varparagraphIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "getParagraphRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getParagraphRectangle", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getParagraphRectangle", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "getParagraphRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getParagraphRectangle", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getParagraphRectangle", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("getParagraphRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getParagraphRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getParagraphRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getParagraphRectangle", "paragraphIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getParagraphRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getParagraphRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getParagraphRectangle", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "getParagraphRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getParagraphRectangle", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getParagraphRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varpassword, varfolder, varstorage), "getParagraphRectangle", field, varstorage);
+            });
+        });
+    });
+});
+
 describe("Tests for getParagraphs", () => {
     it("main test", () => {
         return TestInitializer.runTest(() => {
@@ -19125,6 +19305,168 @@ describe("Tests for getPortion", () => {
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getPortion", field, varstorage).then(() => {
                 return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortion(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortion", field, varstorage);
+            });
+        });
+    });
+});
+
+describe("Tests for getPortionRectangle", () => {
+    it("main test", () => {
+        return TestInitializer.runTest(() => {
+            let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+            let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+            let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+            let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+            let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+            let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+            let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+            let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+            return TestInitializer.initialize("getPortionRectangle", null, null).then(() => {
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), false, "getPortionRectangle");
+            });
+        });
+    });
+
+    it("invalid name test", () => {
+        const field = "name";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varname).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varname);
+            });
+        });
+    });
+
+    it("invalid slideIndex test", () => {
+        const field = "slideIndex";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varslideIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varslideIndex);
+            });
+        });
+    });
+
+    it("invalid shapeIndex test", () => {
+        const field = "shapeIndex";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varshapeIndex = <number>TestInitializer.invalidizeValue(varshapeIndex, field, "number", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varshapeIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varshapeIndex);
+            });
+        });
+    });
+
+    it("invalid paragraphIndex test", () => {
+        const field = "paragraphIndex";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varparagraphIndex = <number>TestInitializer.invalidizeValue(varparagraphIndex, field, "number", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varparagraphIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varparagraphIndex);
+            });
+        });
+    });
+
+    it("invalid portionIndex test", () => {
+        const field = "portionIndex";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varportionIndex = <number>TestInitializer.invalidizeValue(varportionIndex, field, "number", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varportionIndex).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varportionIndex);
+            });
+        });
+    });
+
+    it("invalid password test", () => {
+        const field = "password";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varpassword).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varpassword);
+            });
+        });
+    });
+
+    it("invalid folder test", () => {
+        const field = "folder";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varfolder).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varfolder);
+            });
+        });
+    });
+
+    it("invalid storage test", () => {
+        const field = "storage";
+        let varname = <string>TestInitializer.getValue("getPortionRectangle", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getPortionRectangle", "slideIndex", "number");
+        let varshapeIndex = <number>TestInitializer.getValue("getPortionRectangle", "shapeIndex", "number");
+        let varparagraphIndex = <number>TestInitializer.getValue("getPortionRectangle", "paragraphIndex", "number");
+        let varportionIndex = <number>TestInitializer.getValue("getPortionRectangle", "portionIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getPortionRectangle", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getPortionRectangle", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getPortionRectangle", "storage", "string");
+        varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "getPortionRectangle");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getPortionRectangle", field, varstorage).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getPortionRectangle(varname, varslideIndex, varshapeIndex, varparagraphIndex, varportionIndex, varpassword, varfolder, varstorage), "getPortionRectangle", field, varstorage);
             });
         });
     });
@@ -19868,8 +20210,9 @@ describe("Tests for getShapes", () => {
             let varpassword = <string>TestInitializer.getValue("getShapes", "password", "string");
             let varfolder = <string>TestInitializer.getValue("getShapes", "folder", "string");
             let varstorage = <string>TestInitializer.getValue("getShapes", "storage", "string");
+            let varshapeType = <model.ShapeType>TestInitializer.getValue("getShapes", "shapeType", "string");
             return TestInitializer.initialize("getShapes", null, null).then(() => {
-                return TestInitializer.assertValidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage), false, "getShapes");
+                return TestInitializer.assertValidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage, varshapeType), false, "getShapes");
             });
         });
     });
@@ -19881,10 +20224,11 @@ describe("Tests for getShapes", () => {
         let varpassword = <string>TestInitializer.getValue("getShapes", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getShapes", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getShapes", "storage", "string");
+        let varshapeType = <model.ShapeType>TestInitializer.getValue("getShapes", "shapeType", "string");
         varname = <string>TestInitializer.invalidizeValue(varname, field, "string", "getShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getShapes", field, varname).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage), "getShapes", field, varname);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage, varshapeType), "getShapes", field, varname);
             });
         });
     });
@@ -19896,10 +20240,11 @@ describe("Tests for getShapes", () => {
         let varpassword = <string>TestInitializer.getValue("getShapes", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getShapes", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getShapes", "storage", "string");
+        let varshapeType = <model.ShapeType>TestInitializer.getValue("getShapes", "shapeType", "string");
         varslideIndex = <number>TestInitializer.invalidizeValue(varslideIndex, field, "number", "getShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getShapes", field, varslideIndex).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage), "getShapes", field, varslideIndex);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage, varshapeType), "getShapes", field, varslideIndex);
             });
         });
     });
@@ -19911,10 +20256,11 @@ describe("Tests for getShapes", () => {
         let varpassword = <string>TestInitializer.getValue("getShapes", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getShapes", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getShapes", "storage", "string");
+        let varshapeType = <model.ShapeType>TestInitializer.getValue("getShapes", "shapeType", "string");
         varpassword = <string>TestInitializer.invalidizeValue(varpassword, field, "string", "getShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getShapes", field, varpassword).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage), "getShapes", field, varpassword);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage, varshapeType), "getShapes", field, varpassword);
             });
         });
     });
@@ -19926,10 +20272,11 @@ describe("Tests for getShapes", () => {
         let varpassword = <string>TestInitializer.getValue("getShapes", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getShapes", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getShapes", "storage", "string");
+        let varshapeType = <model.ShapeType>TestInitializer.getValue("getShapes", "shapeType", "string");
         varfolder = <string>TestInitializer.invalidizeValue(varfolder, field, "string", "getShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getShapes", field, varfolder).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage), "getShapes", field, varfolder);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage, varshapeType), "getShapes", field, varfolder);
             });
         });
     });
@@ -19941,10 +20288,27 @@ describe("Tests for getShapes", () => {
         let varpassword = <string>TestInitializer.getValue("getShapes", "password", "string");
         let varfolder = <string>TestInitializer.getValue("getShapes", "folder", "string");
         let varstorage = <string>TestInitializer.getValue("getShapes", "storage", "string");
+        let varshapeType = <model.ShapeType>TestInitializer.getValue("getShapes", "shapeType", "string");
         varstorage = <string>TestInitializer.invalidizeValue(varstorage, field, "string", "getShapes");
         return TestInitializer.runTest(() => {
             return TestInitializer.initialize("getShapes", field, varstorage).then(() => {
-                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage), "getShapes", field, varstorage);
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage, varshapeType), "getShapes", field, varstorage);
+            });
+        });
+    });
+
+    it("invalid shapeType test", () => {
+        const field = "shapeType";
+        let varname = <string>TestInitializer.getValue("getShapes", "name", "string");
+        let varslideIndex = <number>TestInitializer.getValue("getShapes", "slideIndex", "number");
+        let varpassword = <string>TestInitializer.getValue("getShapes", "password", "string");
+        let varfolder = <string>TestInitializer.getValue("getShapes", "folder", "string");
+        let varstorage = <string>TestInitializer.getValue("getShapes", "storage", "string");
+        let varshapeType = <model.ShapeType>TestInitializer.getValue("getShapes", "shapeType", "string");
+        varshapeType = <model.ShapeType>TestInitializer.invalidizeValue(varshapeType, field, "string", "getShapes");
+        return TestInitializer.runTest(() => {
+            return TestInitializer.initialize("getShapes", field, varshapeType).then(() => {
+                return TestInitializer.assertInvalidCall(TestInitializer.getApi().getShapes(varname, varslideIndex, varpassword, varfolder, varstorage, varshapeType), "getShapes", field, varshapeType);
             });
         });
     });

@@ -297,6 +297,16 @@ export class Axis {
      */
     lineFormat?: LineFormat;
 
+    /**
+     * Get or sets the format of major grid lines.
+     */
+    majorGridLinesFormat?: ChartLinesFormat;
+
+    /**
+     * Get or sets the format of major grid lines.
+     */
+    minorGridLinesFormat?: ChartLinesFormat;
+
 }
 export namespace Axis {
     export enum PositionEnum {
@@ -525,6 +535,23 @@ export class ChartCategory {
      * Gets or sets the data points for chart data
      */
     dataPoints?: Array<OneValueChartDataPoint>;
+
+}
+
+/**
+ * Represents the lines format of chart elements. 
+ */
+export class ChartLinesFormat {
+
+    /**
+     * Get or sets the effect format.
+     */
+    effectFormat?: EffectFormat;
+
+    /**
+     * Get or sets the line format.
+     */
+    lineFormat?: LineFormat;
 
 }
 
@@ -1080,6 +1107,11 @@ export class ExportOptions {
      */
     width?: number;
 
+    /**
+     * Gets of sets list of font fallback rules.
+     */
+    fontFallbackRules?: Array<FontFallbackRule>;
+
     format?: string;
 
 }
@@ -1163,6 +1195,28 @@ export namespace FillOverlayEffect {
         Overlay = <any> 'Overlay',
         Screen = <any> 'Screen'
     }
+}
+
+/**
+ * Represents font fallback rule.             
+ */
+export class FontFallbackRule {
+
+    /**
+     * First index of continuous unicode range.
+     */
+    rangeStartIndex: number;
+
+    /**
+     * Last index of continuous unicode range.
+     */
+    rangeEndIndex: number;
+
+    /**
+     * List of fallback font links.
+     */
+    fallbackFontList?: Array<string>;
+
 }
 
 /**
@@ -1503,6 +1557,11 @@ export class Legend {
      * Get or sets the line format.
      */
     lineFormat?: LineFormat;
+
+    /**
+     * Get or sets value determines the visibility of legend
+     */
+    hasLegend?: boolean;
 
 }
 export namespace Legend {
@@ -2548,6 +2607,31 @@ export enum ShapeThumbnailBounds {
 }
 
 /**
+ * Shape type
+ */
+    /**
+    * Shape type
+    */
+export enum ShapeType {
+    'Shape' = <any> 'Shape',
+    'Chart' = <any> 'Chart',
+    'Table' = <any> 'Table',
+    'PictureFrame' = <any> 'PictureFrame',
+    'VideoFrame' = <any> 'VideoFrame',
+    'AudioFrame' = <any> 'AudioFrame',
+    'SmartArt' = <any> 'SmartArt',
+    'OleObjectFrame' = <any> 'OleObjectFrame',
+    'GroupShape' = <any> 'GroupShape',
+    'GraphicalObject' = <any> 'GraphicalObject',
+    'Connector' = <any> 'Connector',
+    'SmartArtShape' = <any> 'SmartArtShape',
+    'ZoomFrame' = <any> 'ZoomFrame',
+    'SectionZoomFrame' = <any> 'SectionZoomFrame',
+    'SummaryZoomFrame' = <any> 'SummaryZoomFrame',
+    'SummaryZoomSection' = <any> 'SummaryZoomSection'
+}
+
+/**
  * 
  */
     /**
@@ -2565,9 +2649,9 @@ export enum ShapesAlignmentType {
 }
 
 /**
- * Represents comment of slide
+ * Represents slide comment
  */
-export class SlideComment {
+export class SlideCommentBase {
 
     /**
      * Author.
@@ -2587,8 +2671,16 @@ export class SlideComment {
     /**
      * Child comments.
      */
-    childComments?: Array<SlideComment>;
+    childComments?: Array<SlideCommentBase>;
 
+    type?: SlideCommentBase.TypeEnum;
+
+}
+export namespace SlideCommentBase {
+    export enum TypeEnum {
+        Regular = <any> 'Regular',
+        Modern = <any> 'Modern'
+    }
 }
 
 /**
@@ -2898,6 +2990,33 @@ export namespace Task {
         UpdateShape = <any> 'UpdateShape',
         ReplaceText = <any> 'ReplaceText'
     }
+}
+
+/**
+ * Represents text bounds within a paragraph or portion.
+ */
+export class TextBounds {
+
+    /**
+     * X coordinate of the text bounds.
+     */
+    x: number;
+
+    /**
+     * X coordinate of the text bounds.             
+     */
+    y: number;
+
+    /**
+     * Width of the text bounds.
+     */
+    width: number;
+
+    /**
+     * Height of the text bounds.
+     */
+    height: number;
+
 }
 
 /**
@@ -5458,6 +5577,21 @@ export class Portion extends ResourceBase {
      */
     hyperlinkMouseOver?: Hyperlink;
 
+    /**
+     * Returns or sets the Latin font info.
+     */
+    latinFont?: string;
+
+    /**
+     * Returns or sets the East Asian font info.
+     */
+    eastAsianFont?: string;
+
+    /**
+     * Returns or sets the complex script font info.
+     */
+    complexScriptFont?: string;
+
 }
 export namespace Portion {
     export enum FontBoldEnum {
@@ -6314,6 +6448,19 @@ export namespace SlideBackground {
 }
 
 /**
+ * Represents comment of slide
+ */
+export class SlideComment extends SlideCommentBase {
+    constructor() {
+        super();
+        this.type = SlideComment.TypeEnum.Regular;
+    }
+
+}
+export namespace SlideComment {
+}
+
+/**
  * Represents comments collection of slide
  */
 export class SlideComments extends ResourceBase {
@@ -6324,8 +6471,42 @@ export class SlideComments extends ResourceBase {
     /**
      * Slide comment list.
      */
-    list?: Array<SlideComment>;
+    list?: Array<SlideCommentBase>;
 
+}
+
+/**
+ * Represents modern comment of slide
+ */
+export class SlideModernComment extends SlideCommentBase {
+    constructor() {
+        super();
+        this.type = SlideModernComment.TypeEnum.Modern;
+    }
+
+    /**
+     * Returns or sets starting position of text selection in text frame if the comment associated with AutoShape. Read/write Int32.
+     */
+    textSelectionStart?: number;
+
+    /**
+     * Returns or sets text selection length in text frame if the comment associated with AutoShape. Read/write Int32.
+     */
+    textSelectionLength?: number;
+
+    /**
+     * Returns or sets the status of the comment. Read/write ModernCommentStatus.
+     */
+    status?: SlideModernComment.StatusEnum;
+
+}
+export namespace SlideModernComment {
+    export enum StatusEnum {
+        NotDefined = <any> 'NotDefined',
+        Active = <any> 'Active',
+        Resolved = <any> 'Resolved',
+        Closed = <any> 'Closed'
+    }
 }
 
 /**
@@ -8029,6 +8210,9 @@ export class WaterfallSeries extends OneValueSeries {
 export namespace WaterfallSeries {
 }
 
+/**
+ * Zoom object.
+ */
 export class ZoomObject extends ShapeBase {
     constructor() {
         super();

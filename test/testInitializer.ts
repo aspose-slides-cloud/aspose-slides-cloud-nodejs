@@ -119,13 +119,13 @@ export class TestInitializer {
             if (rule.Action == "Put") {
                 promises.push(new Promise((resolve, reject) => {
                     api.copyFile("TempTests/" + files[path].ActualName, path)
-                        .then(() => resolve())
+                        .then(() => resolve(null))
                         .catch(() => reject(new Error("Could not upload file " + path)));
                 }));
             } else if (rule.Action == "Delete") {
                 promises.push(new Promise((resolve, reject) => {
                     api.deleteFile(path)
-                        .then(() => resolve())
+                        .then(() => resolve(null))
                         .catch(() => reject(new Error("Could not delete file " + path)));
                 }));
             }

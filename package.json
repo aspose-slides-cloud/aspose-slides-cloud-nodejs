@@ -1,6 +1,6 @@
 {
   "name": "asposeslidescloud",
-  "version": "22.2.0",
+  "version": "22.3.0",
   "description": "Aspose.Slides Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/slides/cloud",
   "author": {
@@ -17,17 +17,20 @@
   ],
   "scripts": {
     "compile": "tsc",
-    "test": "mocha -r ts-node/register tests/**/*.ts --timeout 25000 --reporter mocha-junit-reporter --reporter-options mochaFile=./testResults.xml"
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
   },
   "dependencies": {
-    "@types/mocha": "^5.2.0",
-    "@types/node": "8.10.54",
-    "mocha": "^5.2.0",
-    "mocha-junit-reporter": "^1.17.0",
+    "@types/node": "^14.14.7",
     "request": "^2.85.0",
     "request-debug": "^0.2.0",
     "ts-node": "^5.0.1",
+    "typescript": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.0",
+    "mocha": "^5.2.0",
     "adm-zip": "^0.5.5",
-    "typescript": "^2.7.2"
+    "mocha-junit-reporter": "^1.17.0"
   }
 }

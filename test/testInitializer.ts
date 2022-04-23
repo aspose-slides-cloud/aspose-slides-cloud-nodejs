@@ -35,57 +35,33 @@ export class TestInitializer {
     static expectedFilesVersion = "1";
     static api : sdkApi.SlidesApi;
 
-    public static getStreamValue(functionName: string, name: string) {
-        name = name + ""; //just to delude the TS compiler
-        var fileName = "test.pptx";
-        if (functionName.endsWith('FromPdf')) {
-            fileName = "test.pdf";
-        }
-        if (name == 'image') {
-            fileName = "watermark.png";
-        }
-        return fs.createReadStream("TestData/" + fileName);
-    }
-
-    public static getBinArrayValue(functionName: string, name: string) {
-        functionName = functionName + ""; //just to delude the TS compiler
-        name = name + ""; //just to delude the TS compiler
-        return [ fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx") ];
-    }
-
-    public static getValue(functionName: string, name: string, type: string) : any {
-        var value = "test" + name;
-        TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, function(r) {
+    public static getValue(functionName: string, name: string, type: string): any {
+        type = type;
+        var value = null;
+        TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, type, function(r) {
             if ("Value" in r) {
-                if ("Type" in r) {
-                    if (model[r.Type] && model[type] && (new model[r.Type]() instanceof model[type])) {
-                        value = r.Value;
-                    }
-                } else {
-                    value = r.Value;
-                }
+                value = r.Value;
             }
         });
+        if (value && value.startsWith && value.startsWith("@"))
+        {
+            if (value.startsWith("@(") && value.endsWith(")")) {
+                return value.substring(2, value.length - 1).split(',').map(x => fs.createReadStream("TestData/" + x));
+            }
+            return fs.createReadStream("TestData/" + value.substring(1));
+        }
         return value;
     }
 
-    public static invalidizeValue(value: any, name: string, type: string, functionName: string) : any {
+    public static invalidizeValue(value: any, name: string, type: string, functionName: string): any {
+        type = type;
         var invalidValue = null;
-        if (type == "Readable" || type == "Array&lt;Readable&gt;") {
-            return null;
-        }
-        TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, function(r) {
+        TestInitializer.enumerateRules(TestInitializer.testRules.Values, functionName, name, type, function(r) {
             if ("InvalidValue" in r) {
-                if ("Type" in r) {
-                    if (model[r.Type] && model[type] && (new model[r.Type]() instanceof model[type])) {
-                        invalidValue = r.InvalidValue;
-                    }
-                } else {
-                    invalidValue = r.InvalidValue;
-                }
+                invalidValue = r.InvalidValue;
             }
         });
-        return TestInitializer.untemplatize(invalidValue, value);
+        return TestInitializer.untemplatize(invalidValue, name, value);
     }
 
     public static getApi() {
@@ -96,18 +72,18 @@ export class TestInitializer {
         return TestInitializer.api;
     }
 
-    public static initialize(functionName: string, invalidFieldName: string, invalidFieldValue: any) {
+    public static initialize(functionName: string, invalidFieldName: string, invalidFieldType: string, invalidFieldValue: any) {
         const api = TestInitializer.getApi();
         if (!TestInitializer.isInitialized) {
             TestInitializer.initializeStorage();
             TestInitializer.isInitialized = true;
         }
         const files = [];
-        TestInitializer.enumerateRules(TestInitializer.testRules.Files, functionName, invalidFieldName, function(r) {
-            const actualName = TestInitializer.untemplatize(r.File, invalidFieldValue);
+        TestInitializer.enumerateRules(TestInitializer.testRules.Files, functionName, invalidFieldName, invalidFieldType, function (r) {
+            const actualName = TestInitializer.untemplatize(r.File, invalidFieldType, invalidFieldValue);
             var path = "TempSlidesSDK";
             if ("Folder" in r) {
-                path = TestInitializer.untemplatize(r.Folder, invalidFieldValue)
+                path = TestInitializer.untemplatize(r.Folder, invalidFieldType, invalidFieldValue)
             }
             path = path + "/" + actualName;
             files[path] = r;
@@ -177,7 +153,7 @@ export class TestInitializer {
     public static assertValidCall(call: Promise<any>, isBinary: boolean, functionName: string) {
         return call.then((result) => {
             var code = 0;
-            TestInitializer.enumerateRules(TestInitializer.testRules.Results, functionName, null, function(r) {
+            TestInitializer.enumerateRules(TestInitializer.testRules.Results, functionName, null, null, function(r) {
                 if ("Code" in r) {
                     code = r.Code;
                 }
@@ -187,16 +163,17 @@ export class TestInitializer {
                 assert(result.body.length > 0);
             }
         }).catch((err) => {
+            console.log(err);
             assert.fail(err);
         });
     }
 
-    public static assertInvalidCall(call: Promise<any>, functionName: string, fieldName: string, fieldValue: any) {
+    public static assertInvalidCall(call: Promise<any>, functionName: string, fieldName: string, fieldType: string, fieldValue: any) {
         var failed = false;
         return call
             .then(() => {
                 failed = true;
-                TestInitializer.enumerateRules(TestInitializer.testRules.OKToNotFail, functionName, fieldName, function() { failed = false; });
+                TestInitializer.enumerateRules(TestInitializer.testRules.OKToNotFail, functionName, fieldName, fieldType, function() { failed = false; });
                 if (failed) {
                     assert.fail('Must have failed');
                 }
@@ -206,7 +183,7 @@ export class TestInitializer {
                 } else {
                     var code = 0;
                     var message = "Unexpeceted message";
-                    TestInitializer.enumerateRules(TestInitializer.testRules.Results, functionName, fieldName, function(r) {
+                    TestInitializer.enumerateRules(TestInitializer.testRules.Results, functionName, fieldName, fieldType, function(r) {
                         if ("Code" in r) {
                             code = r.Code;
                         }
@@ -219,27 +196,79 @@ export class TestInitializer {
                     assert.equal(code, err.code);
                 }
                 if (err.message) {
-                    assert(err.message.includes(TestInitializer.untemplatize(message, fieldValue)));
+                    assert(err.message.includes(TestInitializer.untemplatize(message, fieldName, fieldValue)));
                 }
             });
     }
 
-    private static enumerateRules(rules: any, functionName: string, fieldName: string, action: (rule: any) => void) {
+    private static enumerateRules(rules: any, functionName: string, fieldName: string, type: string, action: (rule: any) => void) {
         for (var i in rules) {
-            if (TestInitializer.applies(rules[i], functionName, fieldName)) {
+            if (TestInitializer.applies(rules[i], functionName, fieldName, type)) {
                 action(rules[i]);
             }
         }
     }
 
-    private static applies(rule: any, functionName: string, fieldName: string) : boolean {
-        return (!("Method" in rule) || (functionName && rule.Method.toLowerCase() == functionName.toLowerCase()))
-            && (!("Invalid" in rule) || rule.Invalid == !!fieldName)
-            && (!("Parameter" in rule) || (fieldName && rule.Parameter.toLowerCase() == fieldName.toLowerCase()))
-            && (!("Language" in rule) || rule.Language.toLowerCase() == "nodejs");
+    private static applies(rule: any, functionName: string, fieldName: string, type: string): boolean {
+        if (!TestInitializer.matches(rule.Method, functionName)) {
+            return false;
+        }
+        if (("Invalid" in rule) && rule.Invalid == !fieldName) {
+            return false;
+        }
+        if (!TestInitializer.matches(rule.Parameter, fieldName)) {
+            return false;
+        }
+        if (("Language" in rule) && rule.Language.toLowerCase() != "nodejs") {
+            return false;
+        }
+        if ("Type" in rule) {
+            if (!type) {
+                return false;
+            }
+            if (rule.Type == "number") {
+                return type == "number";
+            }
+            if (rule.Type == "int") {
+                return type == "number";
+            }
+            if (rule.Type == "int[]") {
+                return type == "Array<number>";
+            }
+            if (rule.Type == "bool") {
+                return type == "boolean";
+            }
+            if (rule.Type == "stream") {
+                return type == "Readable";
+            }
+            if (rule.Type == "stream[]") {
+                return type == "Array<Readable>";
+            }
+            if (rule.Type == "model") {
+                return type in model;
+            }
+            if (rule.Type in model) {
+                return (type in model) && (new model[rule.Type]() instanceof model[type]);
+            }
+            return true;
+        }
+        return true;
     }
 
-    private static untemplatize(t: any, value: any) : string {
-        return t && t.replace ? t.replace("%v", value) : t;
+    private static matches(pattern: string, text: string): boolean {
+        if (!pattern) {
+            return true;
+        }
+        if (!text) {
+            return false;
+        }
+        if (pattern.startsWith("/") && pattern.endsWith("/")) {
+            return new RegExp(pattern.substring(1, pattern.length - 1), "i").test(text);
+        }
+        return pattern.toLowerCase() == text.toLowerCase();
+    }
+
+    private static untemplatize(t: any, name: string, value: any): string {
+        return t && t.replace ? t.replace("%n", name ? name : "").replace("%v", value ? value : "") : t;
     }
 }

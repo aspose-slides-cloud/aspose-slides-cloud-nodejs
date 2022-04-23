@@ -4,6 +4,7 @@ node_modules/
 package-lock.json
 package.json.publish
 testResults.xml
+*.njsproj.user
 dist/
 *_original.*
 nbproject/

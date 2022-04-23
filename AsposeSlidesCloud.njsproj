@@ -32,6 +32,7 @@
     <Folder Include="sdk\internal\" />
     <Folder Include="TestData\" />
     <Folder Include="test\" />
+    <Folder Include="test\useCaseTests\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="sdk\api.ts" />
@@ -40,30 +41,48 @@
     <TypeScriptCompile Include="sdk\internal\requestHelper.ts" />
     <TypeScriptCompile Include="sdk\model.ts" />
     <TypeScriptCompile Include="test\testInitializer.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="test\apiTests.ts">
-      <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="test\useCaseTests.ts">
-      <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
-    </TypeScriptCompile>
+    <TypeScriptCompile Include="test\useCaseTests\additionalTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\animationTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\authTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\chartTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\commentTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\configTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\convertTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\createTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\headerFooterTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\hyperlinkTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\imageTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\layoutSlideTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\masterSlideTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\mathTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\mergeTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\notesSlideTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\paragraphTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\portionTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\propertyTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\sectionTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\shapeFormatTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\shapeTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\slideTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\splitTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\textFormatTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\textTests.ts" />
+    <TypeScriptCompile Include="test\useCaseTests\watermarkTests.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="testConfig.json" />
+    <Content Include="TestData\oleObject.xlsx" />
+    <Content Include="testRules.json" />
+    <Content Include="tsconfig.json" />
     <Content Include="TestData\TemplateCV.pptx" />
     <Content Include="TestData\TemplatingCVDataWithBase64.xml" />
     <Content Include="TestData\test-unprotected.pptx" />
     <Content Include="TestData\test.pdf" />
     <Content Include="TestData\test.pptx" />
     <Content Include="TestData\watermark.png" />
-    <Content Include="testRules.json" />
-    <Content Include="tsconfig.json" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>

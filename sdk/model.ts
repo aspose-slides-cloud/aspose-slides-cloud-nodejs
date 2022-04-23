@@ -24,6 +24,53 @@
 
 
 /**
+ * A set of properties specifying which access permissions should be granted when the document is opened with user access.
+ */
+export class AccessPermissions {
+
+    /**
+     * The user may print the document (possibly not at the highest quality level, depending on whether bit HighQualityPrint is also set).
+     */
+    printDocument: boolean;
+
+    /**
+     * The user may modify the contents of the document by operations other than those controlled by bits AddOrModifyFields, FillExistingFields, AssembleDocument.
+     */
+    modifyContent: boolean;
+
+    /**
+     * The user may copy or otherwise extract text and graphics from the document by operations other than that controlled by bit ExtractTextAndGraphics.
+     */
+    copyTextAndGraphics: boolean;
+
+    /**
+     * The user may add or modify text annotations, fill in interactive form fields, and, if bit ModifyContent is also set, create or modify interactive form fields (including signature fields).
+     */
+    addOrModifyFields: boolean;
+
+    /**
+     * The user may fill in existing interactive form fields (including signature fields), even if bit AddOrModifyFields is clear.
+     */
+    fillExistingFields: boolean;
+
+    /**
+     * The user may extract text and graphics in support of accessibility to users with disabilities or for other purposes.
+     */
+    extractTextAndGraphics: boolean;
+
+    /**
+     * The user may assemble the document (insert, rotate, or delete pages and create bookmarks or thumbnail images), even if bit ModifyContent is clear.
+     */
+    assembleDocument: boolean;
+
+    /**
+     * The user may print the document to a representation from which a faithful digital copy of the PDF content could be generated. When this bit is clear (and bit PrintDocument is set), printing is limited to a low-level representation of the appearance, possibly of degraded quality.
+     */
+    highQualityPrint: boolean;
+
+}
+
+/**
  * Represents response for ApiInfo  DTO
  */
 export class ApiInfo {
@@ -1098,16 +1145,6 @@ export class ExportOptions {
     defaultRegularFont?: string;
 
     /**
-     * Gets or sets the height of slides in the output format, e.g. image size, pdf page size etc.
-     */
-    height?: number;
-
-    /**
-     * Gets or sets the height of slides in the output format, e.g. image size, pdf page size etc.
-     */
-    width?: number;
-
-    /**
      * Gets of sets list of font fallback rules.
      */
     fontFallbackRules?: Array<FontFallbackRule>;
@@ -2058,6 +2095,228 @@ export namespace PlotArea {
 }
 
 /**
+ * Represents portion format.
+ */
+export class PortionFormat {
+
+    /**
+     * True for bold font.
+     */
+    fontBold?: PortionFormat.FontBoldEnum;
+
+    /**
+     * True for italic font.
+     */
+    fontItalic?: PortionFormat.FontItalicEnum;
+
+    /**
+     * Text underline type.
+     */
+    fontUnderline?: PortionFormat.FontUnderlineEnum;
+
+    /**
+     * Text strikethrough type.
+     */
+    strikethroughType?: PortionFormat.StrikethroughTypeEnum;
+
+    /**
+     * Text capitalization type.
+     */
+    textCapType?: PortionFormat.TextCapTypeEnum;
+
+    /**
+     * Superscript or subscript of the text.
+     */
+    escapement?: number;
+
+    /**
+     * Intercharacter spacing increment.
+     */
+    spacing?: number;
+
+    /**
+     * Font color.
+     */
+    fontColor?: string;
+
+    /**
+     * Highlight color.
+     */
+    highlightColor?: string;
+
+    /**
+     * Font height.
+     */
+    fontHeight?: number;
+
+    /**
+     * True to normalize the text.
+     */
+    normaliseHeight?: PortionFormat.NormaliseHeightEnum;
+
+    /**
+     * True if the text proof should be disabled.
+     */
+    proofDisabled?: PortionFormat.ProofDisabledEnum;
+
+    /**
+     * True if smart tag should be cleaned.
+     */
+    smartTagClean?: boolean;
+
+    /**
+     * Minimal font size for kerning.
+     */
+    kerningMinimalSize?: number;
+
+    /**
+     * True if numbers should ignore East-Asian specific vertical text layout.
+     */
+    kumimoji?: PortionFormat.KumimojiEnum;
+
+    /**
+     * Proving language ID.
+     */
+    languageId?: string;
+
+    /**
+     * Alternative proving language ID.
+     */
+    alternativeLanguageId?: string;
+
+    /**
+     * True if underline style has own FillFormat properties.
+     */
+    isHardUnderlineFill?: PortionFormat.IsHardUnderlineFillEnum;
+
+    /**
+     * True if underline style has own LineFormat properties.
+     */
+    isHardUnderlineLine?: PortionFormat.IsHardUnderlineLineEnum;
+
+    /**
+     * Fill format.
+     */
+    fillFormat?: FillFormat;
+
+    /**
+     * Effect format.
+     */
+    effectFormat?: EffectFormat;
+
+    /**
+     * Line format.
+     */
+    lineFormat?: LineFormat;
+
+    /**
+     * Underline fill format.
+     */
+    underlineFillFormat?: FillFormat;
+
+    /**
+     * Underline line format.
+     */
+    underlineLineFormat?: LineFormat;
+
+    /**
+     * Hyperlink defined for mouse click.
+     */
+    hyperlinkClick?: Hyperlink;
+
+    /**
+     * Hyperlink defined for mouse over.
+     */
+    hyperlinkMouseOver?: Hyperlink;
+
+    /**
+     * Returns or sets the Latin font info.
+     */
+    latinFont?: string;
+
+    /**
+     * Returns or sets the East Asian font info.
+     */
+    eastAsianFont?: string;
+
+    /**
+     * Returns or sets the complex script font info.
+     */
+    complexScriptFont?: string;
+
+}
+export namespace PortionFormat {
+    export enum FontBoldEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum FontItalicEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum FontUnderlineEnum {
+        None = <any> 'None',
+        Words = <any> 'Words',
+        Single = <any> 'Single',
+        Double = <any> 'Double',
+        Heavy = <any> 'Heavy',
+        Dotted = <any> 'Dotted',
+        HeavyDotted = <any> 'HeavyDotted',
+        Dashed = <any> 'Dashed',
+        HeavyDashed = <any> 'HeavyDashed',
+        LongDashed = <any> 'LongDashed',
+        HeavyLongDashed = <any> 'HeavyLongDashed',
+        DotDash = <any> 'DotDash',
+        HeavyDotDash = <any> 'HeavyDotDash',
+        DotDotDash = <any> 'DotDotDash',
+        HeavyDotDotDash = <any> 'HeavyDotDotDash',
+        Wavy = <any> 'Wavy',
+        HeavyWavy = <any> 'HeavyWavy',
+        DoubleWavy = <any> 'DoubleWavy',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum StrikethroughTypeEnum {
+        None = <any> 'None',
+        Single = <any> 'Single',
+        Double = <any> 'Double',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum TextCapTypeEnum {
+        None = <any> 'None',
+        Small = <any> 'Small',
+        All = <any> 'All',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum NormaliseHeightEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum ProofDisabledEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum KumimojiEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum IsHardUnderlineFillEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum IsHardUnderlineLineEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+}
+
+/**
  * Represents presentation to merge
  */
 export class PresentationToMerge {
@@ -2907,6 +3166,16 @@ export class TableCell {
      * Line properties set for the diagonal down border of the cell.
      */
     borderDiagonalDown?: LineFormat;
+
+    /**
+     * Cell column index
+     */
+    columnIndex?: number;
+
+    /**
+     * Cell row index
+     */
+    rowIndex?: number;
 
 }
 export namespace TableCell {
@@ -3947,32 +4216,6 @@ export namespace FunctionElement {
 }
 
 /**
- * Provides options that control how a presentation is saved in Gif format.
- */
-export class GifExportOptions extends ExportOptions {
-    constructor() {
-        super();
-        this.format = 'gif';
-    }
-
-    /**
-     * Determines whether hidden slides will be exported.
-     */
-    exportHiddenSlides?: boolean;
-
-    /**
-     * Gets or sets transition FPS [frames/sec]
-     */
-    transitionFps?: number;
-
-    /**
-     * Gets or sets default delay time [ms].
-     */
-    defaultDelay?: number;
-
-}
-
-/**
  * Represents gradient fill format
  */
 export class GradientFill extends FillFormat {
@@ -4253,46 +4496,23 @@ export class Image extends ResourceBase {
 }
 
 /**
- * Provides options that control how a presentation is saved in an image format.
+ * The class provides shared options for image formats.
  */
-export class ImageExportOptions extends ExportOptions {
+export class ImageExportOptionsBase extends ExportOptions {
     constructor() {
         super();
-        this.format = 'image';
     }
 
     /**
-     * Gets or sets the position of the notes on the page.
+     * Gets or sets the height of slides in the output image format.
      */
-    notesPosition?: ImageExportOptions.NotesPositionEnum;
+    height?: number;
 
     /**
-     * Gets or sets the position of the comments on the page.
+     * Gets or sets the height of slides in the output the output image format.
      */
-    commentsPosition?: ImageExportOptions.CommentsPositionEnum;
+    width?: number;
 
-    /**
-     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-     */
-    commentsAreaWidth?: number;
-
-    /**
-     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-     */
-    commentsAreaColor?: string;
-
-}
-export namespace ImageExportOptions {
-    export enum NotesPositionEnum {
-        None = <any> 'None',
-        BottomFull = <any> 'BottomFull',
-        BottomTruncated = <any> 'BottomTruncated'
-    }
-    export enum CommentsPositionEnum {
-        None = <any> 'None',
-        Bottom = <any> 'Bottom',
-        Right = <any> 'Right'
-    }
 }
 
 /**
@@ -4910,6 +5130,11 @@ export class Paragraph extends ResourceBase {
      */
     portionList?: Array<Portion>;
 
+    /**
+     * Default portion format.
+     */
+    defaultPortionFormat?: PortionFormat;
+
 }
 export namespace Paragraph {
     export enum AlignmentEnum {
@@ -5251,7 +5476,7 @@ export class PdfExportOptions extends ExportOptions {
     /**
      * Access permissions that should be granted when the document is opened with user access.  Default is AccessPermissions.None.             
      */
-    accessPermissions?: PdfExportOptions.AccessPermissionsEnum;
+    accessPermissions?: AccessPermissions;
 
 }
 export namespace PdfExportOptions {
@@ -5274,17 +5499,6 @@ export namespace PdfExportOptions {
         None = <any> 'None',
         Bottom = <any> 'Bottom',
         Right = <any> 'Right'
-    }
-    export enum AccessPermissionsEnum {
-        None = <any> 'None',
-        PrintDocument = <any> 'PrintDocument',
-        ModifyContent = <any> 'ModifyContent',
-        CopyTextAndGraphics = <any> 'CopyTextAndGraphics',
-        AddOrModifyFields = <any> 'AddOrModifyFields',
-        FillExistingFields = <any> 'FillExistingFields',
-        ExtractTextAndGraphics = <any> 'ExtractTextAndGraphics',
-        AssembleDocument = <any> 'AssembleDocument',
-        HighQualityPrint = <any> 'HighQualityPrint'
     }
 }
 
@@ -6254,11 +6468,6 @@ export class ShapeBase extends ResourceBase {
     zOrderPosition: number;
 
     /**
-     * Gets or sets the link to shapes.
-     */
-    shapes?: ResourceUri;
-
-    /**
      * Gets or sets the fill format.
      */
     fillFormat?: FillFormat;
@@ -6931,94 +7140,6 @@ export class Theme extends ResourceBase {
 }
 
 /**
- * Provides options that control how a presentation is saved in TIFF format.
- */
-export class TiffExportOptions extends ExportOptions {
-    constructor() {
-        super();
-        this.format = 'tiff';
-    }
-
-    /**
-     * Compression type.
-     */
-    compression?: TiffExportOptions.CompressionEnum;
-
-    /**
-     * Horizontal resolution, in dots per inch.
-     */
-    dpiX?: number;
-
-    /**
-     * Vertical resolution, in dots per inch.
-     */
-    dpiY?: number;
-
-    /**
-     * Specifies whether the generated document should include hidden slides or not. Default is false. 
-     */
-    showHiddenSlides?: boolean;
-
-    /**
-     * Specifies the pixel format for the generated images. Read/write ImagePixelFormat.
-     */
-    pixelFormat?: TiffExportOptions.PixelFormatEnum;
-
-    /**
-     * Gets or sets the position of the notes on the page.
-     */
-    notesPosition?: TiffExportOptions.NotesPositionEnum;
-
-    /**
-     * Gets or sets the position of the comments on the page.
-     */
-    commentsPosition?: TiffExportOptions.CommentsPositionEnum;
-
-    /**
-     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-     */
-    commentsAreaWidth?: number;
-
-    /**
-     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-     */
-    commentsAreaColor?: string;
-
-    /**
-     * True if comments that have no author are displayed. (Applies only if comments are displayed).
-     */
-    showCommentsByNoAuthor?: boolean;
-
-}
-export namespace TiffExportOptions {
-    export enum CompressionEnum {
-        Default = <any> 'Default',
-        None = <any> 'None',
-        CCITT3 = <any> 'CCITT3',
-        CCITT4 = <any> 'CCITT4',
-        LZW = <any> 'LZW',
-        RLE = <any> 'RLE'
-    }
-    export enum PixelFormatEnum {
-        Format1bppIndexed = <any> 'Format1bppIndexed',
-        Format4bppIndexed = <any> 'Format4bppIndexed',
-        Format8bppIndexed = <any> 'Format8bppIndexed',
-        Format24bppRgb = <any> 'Format24bppRgb',
-        Format32bppArgb = <any> 'Format32bppArgb'
-    }
-    export enum NotesPositionEnum {
-        None = <any> 'None',
-        BottomFull = <any> 'BottomFull',
-        BottomTruncated = <any> 'BottomTruncated'
-    }
-    export enum CommentsPositionEnum {
-        None = <any> 'None',
-        Bottom = <any> 'Bottom',
-        Right = <any> 'Right'
-    }
-}
-
-/**
  * Update background task.
  */
 export class UpdateBackground extends Task {
@@ -7074,7 +7195,17 @@ export class VideoExportOptions extends ExportOptions {
     }
 
     /**
-     * Transition duration.
+     * Slides transition duration.
+     */
+    slidesTransitionDuration?: number;
+
+    /**
+     * Video transition type
+     */
+    transitionType?: VideoExportOptions.TransitionTypeEnum;
+
+    /**
+     * Duration of transition defined in TransitionType property.
      */
     transitionDuration?: number;
 
@@ -7085,6 +7216,38 @@ export class VideoExportOptions extends ExportOptions {
 
 }
 export namespace VideoExportOptions {
+    export enum TransitionTypeEnum {
+        None = <any> 'None',
+        Fade = <any> 'Fade',
+        Distance = <any> 'Distance',
+        Slidedown = <any> 'Slidedown',
+        Slideright = <any> 'Slideright',
+        Slideleft = <any> 'Slideleft',
+        Slideup = <any> 'Slideup',
+        Smoothleft = <any> 'Smoothleft',
+        Smoothright = <any> 'Smoothright',
+        Smoothup = <any> 'Smoothup',
+        Smoothdown = <any> 'Smoothdown',
+        Rectcrop = <any> 'Rectcrop',
+        Circlecrop = <any> 'Circlecrop',
+        Circleclose = <any> 'Circleclose',
+        Circleopen = <any> 'Circleopen',
+        Horzclose = <any> 'Horzclose',
+        Horzopen = <any> 'Horzopen',
+        Vertclose = <any> 'Vertclose',
+        Vertopen = <any> 'Vertopen',
+        Diagbl = <any> 'Diagbl',
+        Diagbr = <any> 'Diagbr',
+        Diagtl = <any> 'Diagtl',
+        Diagtr = <any> 'Diagtr',
+        Hlslice = <any> 'Hlslice',
+        Hrslice = <any> 'Hrslice',
+        Vuslice = <any> 'Vuslice',
+        Vdslice = <any> 'Vdslice',
+        Dissolve = <any> 'Dissolve',
+        Pixelize = <any> 'Pixelize',
+        Radial = <any> 'Radial'
+    }
     export enum VideoResolutionTypeEnum {
         FullHD = <any> 'FullHD',
         SD = <any> 'SD',
@@ -7696,6 +7859,32 @@ export namespace GeometryShape {
 }
 
 /**
+ * Provides options that control how a presentation is saved in Gif format.
+ */
+export class GifExportOptions extends ImageExportOptionsBase {
+    constructor() {
+        super();
+        this.format = 'gif';
+    }
+
+    /**
+     * Determines whether hidden slides will be exported.
+     */
+    exportHiddenSlides?: boolean;
+
+    /**
+     * Gets or sets transition FPS [frames/sec]
+     */
+    transitionFps?: number;
+
+    /**
+     * Gets or sets default delay time [ms].
+     */
+    defaultDelay?: number;
+
+}
+
+/**
  * Represents AudioFrame resource.
  */
 export class GraphicalObject extends ShapeBase {
@@ -7717,8 +7906,56 @@ export class GroupShape extends ShapeBase {
         this.type = GroupShape.TypeEnum.GroupShape;
     }
 
+    /**
+     * Gets or sets the link to shapes.
+     */
+    shapes?: ResourceUri;
+
 }
 export namespace GroupShape {
+}
+
+/**
+ * Provides options that control how a presentation is saved in an image format.
+ */
+export class ImageExportOptions extends ImageExportOptionsBase {
+    constructor() {
+        super();
+        this.format = 'image';
+    }
+
+    /**
+     * Gets or sets the position of the notes on the page.
+     */
+    notesPosition?: ImageExportOptions.NotesPositionEnum;
+
+    /**
+     * Gets or sets the position of the comments on the page.
+     */
+    commentsPosition?: ImageExportOptions.CommentsPositionEnum;
+
+    /**
+     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
+     */
+    commentsAreaWidth?: number;
+
+    /**
+     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
+     */
+    commentsAreaColor?: string;
+
+}
+export namespace ImageExportOptions {
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
 }
 
 /**
@@ -7739,6 +7976,41 @@ export class OleObjectFrame extends ShapeBase {
      * The title for OleObject icon.             
      */
     substitutePictureTitle?: string;
+
+    /**
+     * OleObject image fill properties.
+     */
+    substitutePictureFormat?: PictureFill;
+
+    /**
+     * Returns or sets the name of an object.
+     */
+    objectName?: string;
+
+    /**
+     * File data of embedded OLE object. 
+     */
+    embeddedFileBase64Data?: string;
+
+    /**
+     * File extension for the current embedded OLE object
+     */
+    embeddedFileExtension?: string;
+
+    /**
+     * ProgID of an object.
+     */
+    objectProgId?: string;
+
+    /**
+     * Full path to a linked file.
+     */
+    linkPath?: string;
+
+    /**
+     * Determines if the linked embedded object is automatically updated when the presentation is opened or printed. Read/write Boolean.
+     */
+    updateAutomatic?: boolean;
 
 }
 export namespace OleObjectFrame {
@@ -8178,6 +8450,94 @@ export namespace Table {
 }
 
 /**
+ * Provides options that control how a presentation is saved in TIFF format.
+ */
+export class TiffExportOptions extends ImageExportOptionsBase {
+    constructor() {
+        super();
+        this.format = 'tiff';
+    }
+
+    /**
+     * Compression type.
+     */
+    compression?: TiffExportOptions.CompressionEnum;
+
+    /**
+     * Horizontal resolution, in dots per inch.
+     */
+    dpiX?: number;
+
+    /**
+     * Vertical resolution, in dots per inch.
+     */
+    dpiY?: number;
+
+    /**
+     * Specifies whether the generated document should include hidden slides or not. Default is false. 
+     */
+    showHiddenSlides?: boolean;
+
+    /**
+     * Specifies the pixel format for the generated images. Read/write ImagePixelFormat.
+     */
+    pixelFormat?: TiffExportOptions.PixelFormatEnum;
+
+    /**
+     * Gets or sets the position of the notes on the page.
+     */
+    notesPosition?: TiffExportOptions.NotesPositionEnum;
+
+    /**
+     * Gets or sets the position of the comments on the page.
+     */
+    commentsPosition?: TiffExportOptions.CommentsPositionEnum;
+
+    /**
+     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
+     */
+    commentsAreaWidth?: number;
+
+    /**
+     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
+     */
+    commentsAreaColor?: string;
+
+    /**
+     * True if comments that have no author are displayed. (Applies only if comments are displayed).
+     */
+    showCommentsByNoAuthor?: boolean;
+
+}
+export namespace TiffExportOptions {
+    export enum CompressionEnum {
+        Default = <any> 'Default',
+        None = <any> 'None',
+        CCITT3 = <any> 'CCITT3',
+        CCITT4 = <any> 'CCITT4',
+        LZW = <any> 'LZW',
+        RLE = <any> 'RLE'
+    }
+    export enum PixelFormatEnum {
+        Format1bppIndexed = <any> 'Format1bppIndexed',
+        Format4bppIndexed = <any> 'Format4bppIndexed',
+        Format8bppIndexed = <any> 'Format8bppIndexed',
+        Format24bppRgb = <any> 'Format24bppRgb',
+        Format32bppArgb = <any> 'Format32bppArgb'
+    }
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
+}
+
+/**
  * One value chart data point.
  */
 export class WaterfallChartDataPoint extends OneValueChartDataPoint {
@@ -8319,6 +8679,11 @@ export class AudioFrame extends GeometryShape {
      * Determines whether audio is automatically rewound to start after playing.
      */
     rewindAudio?: boolean;
+
+    /**
+     * Picture fill format.
+     */
+    pictureFillFormat?: PictureFill;
 
 }
 export namespace AudioFrame {

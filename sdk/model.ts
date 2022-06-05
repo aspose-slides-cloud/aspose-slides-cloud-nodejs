@@ -1459,6 +1459,36 @@ export enum ImageExportFormat {
 }
 
 /**
+ * Image transform effect
+ */
+export class ImageTransformEffect {
+
+    type?: ImageTransformEffect.TypeEnum;
+
+}
+export namespace ImageTransformEffect {
+    export enum TypeEnum {
+        AlphaBiLevel = <any> 'AlphaBiLevel',
+        AlphaCeiling = <any> 'AlphaCeiling',
+        AlphaFloor = <any> 'AlphaFloor',
+        AlphaInverse = <any> 'AlphaInverse',
+        AlphaModulate = <any> 'AlphaModulate',
+        AlphaModulateFixed = <any> 'AlphaModulateFixed',
+        AlphaReplace = <any> 'AlphaReplace',
+        BiLevel = <any> 'BiLevel',
+        Blur = <any> 'Blur',
+        ColorChange = <any> 'ColorChange',
+        ColorReplace = <any> 'ColorReplace',
+        Duotone = <any> 'Duotone',
+        FillOverlay = <any> 'FillOverlay',
+        GrayScale = <any> 'GrayScale',
+        Hsl = <any> 'Hsl',
+        Luminance = <any> 'Luminance',
+        Tint = <any> 'Tint'
+    }
+}
+
+/**
  * Represents inner shadow effect 
  */
 export class InnerShadowEffect {
@@ -2550,6 +2580,16 @@ export class ResourceUri {
      */
     title?: string;
 
+    /**
+     * Resource slide index.
+     */
+    slideIndex?: number;
+
+    /**
+     * Resource shape index.
+     */
+    shapeIndex?: number;
+
 }
 
 /**
@@ -3002,6 +3042,11 @@ export class SmartArtNode {
      * Organization chart layout type associated with current node.
      */
     orgChartLayout: SmartArtNode.OrgChartLayoutEnum;
+
+    /**
+     * Get or sets list to paragraphs list
+     */
+    paragraphs?: ResourceUri;
 
 }
 export namespace SmartArtNode {
@@ -3577,6 +3622,112 @@ export namespace AddSlide {
 }
 
 /**
+ * Represents an Alpha Bi-Level effect.
+ */
+export class AlphaBiLevelEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = AlphaBiLevelEffect.TypeEnum.AlphaBiLevel;
+    }
+
+    /**
+     * Returns effect threshold.
+     */
+    threshold: number;
+
+}
+export namespace AlphaBiLevelEffect {
+}
+
+/**
+ * Represents an Alpha Ceiling effect.
+ */
+export class AlphaCeilingEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = AlphaCeilingEffect.TypeEnum.AlphaCeiling;
+    }
+
+}
+export namespace AlphaCeilingEffect {
+}
+
+/**
+ * /// Represents an Alpha Floor effect.
+ */
+export class AlphaFloorEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = AlphaFloorEffect.TypeEnum.AlphaFloor;
+    }
+
+}
+export namespace AlphaFloorEffect {
+}
+
+/**
+ * Represents an Alpha Inverse effect.
+ */
+export class AlphaInverseEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = AlphaInverseEffect.TypeEnum.AlphaInverse;
+    }
+
+}
+export namespace AlphaInverseEffect {
+}
+
+/**
+ * Represents an Alpha Modulate effect.
+ */
+export class AlphaModulateEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = AlphaModulateEffect.TypeEnum.AlphaModulate;
+    }
+
+}
+export namespace AlphaModulateEffect {
+}
+
+/**
+ * Represents an Alpha Modulate Fixed effect.
+ */
+export class AlphaModulateFixedEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = AlphaModulateFixedEffect.TypeEnum.AlphaModulateFixed;
+    }
+
+    /**
+     * Returns an amount of effect in percents.    
+     */
+    amount: number;
+
+}
+export namespace AlphaModulateFixedEffect {
+}
+
+/**
+ * Represents an Alpha Replace Effect effect.
+ */
+export class AlphaReplaceEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = AlphaReplaceEffect.TypeEnum.AlphaReplace;
+    }
+
+    /**
+     * The new opacity value.
+     */
+    alpha: number;
+
+}
+export namespace AlphaReplaceEffect {
+}
+
+/**
  * Arc segment of the geometry path
  */
 export class ArcToPathSegment extends PathSegment {
@@ -3712,6 +3863,24 @@ export namespace Base64InputFile {
 }
 
 /**
+ * Represents an BiLevel effect.
+ */
+export class BiLevelEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = BiLevelEffect.TypeEnum.BiLevel;
+    }
+
+    /**
+     * Returns effect threshold.
+     */
+    threshold: number;
+
+}
+export namespace BiLevelEffect {
+}
+
+/**
  * Specifies an instance of mathematical text that contained within a MathParagraph and starts on its own line.
  */
 export class BlockElement extends MathElement {
@@ -3727,6 +3896,29 @@ export class BlockElement extends MathElement {
 
 }
 export namespace BlockElement {
+}
+
+/**
+ * Represents a Blur effect that is applied to the entire shape, including its fill. All color channels, including alpha, are affected.
+ */
+export class BlurImageEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = BlurImageEffect.TypeEnum.Blur;
+    }
+
+    /**
+     * Returns or sets blur radius.
+     */
+    radius: number;
+
+    /**
+     * Determines whether the bounds of the object should be grown as a result of the blurring. True indicates the bounds are grown while false indicates that they are not.
+     */
+    grow: boolean;
+
+}
+export namespace BlurImageEffect {
 }
 
 /**
@@ -3841,6 +4033,47 @@ export class ClosePathSegment extends PathSegment {
 
 }
 export namespace ClosePathSegment {
+}
+
+/**
+ * Represents a Color Change effect.
+ */
+export class ColorChangeEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = ColorChangeEffect.TypeEnum.ColorChange;
+    }
+
+    /**
+     * Color which will be replaced.
+     */
+    fromColor?: string;
+
+    /**
+     * Color which will replace.
+     */
+    toColor?: string;
+
+}
+export namespace ColorChangeEffect {
+}
+
+/**
+ * Represents a Color Replacement effect.
+ */
+export class ColorReplaceEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = ColorReplaceEffect.TypeEnum.ColorReplace;
+    }
+
+    /**
+     * Returns color format which will replace color of every pixel.
+     */
+    color?: string;
+
+}
+export namespace ColorReplaceEffect {
 }
 
 /**
@@ -4084,6 +4317,29 @@ export class DocumentProperty extends ResourceBase {
 }
 
 /**
+ * Represents a Duotone effect.
+ */
+export class DuotoneEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = DuotoneEffect.TypeEnum.Duotone;
+    }
+
+    /**
+     * Returns target color format for dark pixels.
+     */
+    color1?: string;
+
+    /**
+     * Returns target color format for light pixels.
+     */
+    color2?: string;
+
+}
+export namespace DuotoneEffect {
+}
+
+/**
  * File Version
  */
 export class FileVersion extends StorageFile {
@@ -4101,6 +4357,36 @@ export class FileVersion extends StorageFile {
      */
     isLatest: boolean;
 
+}
+
+/**
+ * Represents a Fill Overlay effect. A fill overlay may be used to specify an additional fill for an object and blend the two fills together.
+ */
+export class FillOverlayImageEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = FillOverlayImageEffect.TypeEnum.FillOverlay;
+    }
+
+    /**
+     * FillBlendMode.
+     */
+    blend: FillOverlayImageEffect.BlendEnum;
+
+    /**
+     * Fill format.
+     */
+    fillFormat?: FillFormat;
+
+}
+export namespace FillOverlayImageEffect {
+    export enum BlendEnum {
+        Darken = <any> 'Darken',
+        Lighten = <any> 'Lighten',
+        Multiply = <any> 'Multiply',
+        Overlay = <any> 'Overlay',
+        Screen = <any> 'Screen'
+    }
 }
 
 /**
@@ -4281,6 +4567,19 @@ export namespace GradientFill {
 }
 
 /**
+ * Represents an Gray Scale effect.
+ */
+export class GrayScaleEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = GrayScaleEffect.TypeEnum.GrayScale;
+    }
+
+}
+export namespace GrayScaleEffect {
+}
+
+/**
  * Specifies a grouping symbol above or below an expression, usually to highlight the relationship between elements 
  */
 export class GroupingCharacterElement extends MathElement {
@@ -4356,6 +4655,34 @@ export class HeaderFooter extends ResourceBase {
      */
     isSlideNumberVisible?: boolean;
 
+}
+
+/**
+ * Represents a Hue/Saturation/Luminance effect.
+ */
+export class HslEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = HslEffect.TypeEnum.Hsl;
+    }
+
+    /**
+     * Hue
+     */
+    hue: number;
+
+    /**
+     * Saturation
+     */
+    saturation: number;
+
+    /**
+     * Luminance
+     */
+    luminance: number;
+
+}
+export namespace HslEffect {
 }
 
 /**
@@ -4695,6 +5022,29 @@ export namespace LineToPathSegment {
 }
 
 /**
+ * Represents a Luminance effect.
+ */
+export class LuminanceEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = LuminanceEffect.TypeEnum.Luminance;
+    }
+
+    /**
+     * Brightness
+     */
+    brightness: number;
+
+    /**
+     * Contrast
+     */
+    contrast: number;
+
+}
+export namespace LuminanceEffect {
+}
+
+/**
  * Master slide.
  */
 export class MasterSlide extends ResourceBase {
@@ -4997,6 +5347,11 @@ export class OneValueChartDataPoint extends DataPoint {
      */
     value: number;
 
+    /**
+     * SetAsTotal. Applied to Waterfall data points only.
+     */
+    setAsTotal?: boolean;
+
 }
 
 /**
@@ -5018,8 +5373,42 @@ export class OneValueSeries extends Series {
      */
     numberFormatOfValues?: string;
 
+    /**
+     * True if inner points are shown. Applied to Waterfall series only.
+     */
+    showConnectorLines?: boolean;
+
+    /**
+     * Quartile method. Applied to BoxAndWhisker series only.
+     */
+    quartileMethod?: OneValueSeries.QuartileMethodEnum;
+
+    /**
+     * True if inner points are shown. Applied to BoxAndWhisker series only.
+     */
+    showInnerPoints?: boolean;
+
+    /**
+     * True if mean line is shown. Applied to BoxAndWhisker series only.
+     */
+    showMeanLine?: boolean;
+
+    /**
+     * True if mean markers are shown. Applied to BoxAndWhisker series only.
+     */
+    showMeanMarkers?: boolean;
+
+    /**
+     * True if outlier points are shown. Applied to BoxAndWhisker series only.
+     */
+    showOutlierPoints?: boolean;
+
 }
 export namespace OneValueSeries {
+    export enum QuartileMethodEnum {
+        Exclusive = <any> 'Exclusive',
+        Inclusive = <any> 'Inclusive'
+    }
 }
 
 /**
@@ -5555,6 +5944,11 @@ export class PictureFill extends FillFormat {
      * Fill mode.
      */
     pictureFillMode: PictureFill.PictureFillModeEnum;
+
+    /**
+     * Image transform effects.
+     */
+    imageTransformList?: Array<ImageTransformEffect>;
 
 }
 export namespace PictureFill {
@@ -7140,6 +7534,29 @@ export class Theme extends ResourceBase {
 }
 
 /**
+ * Represents a Tint effect.
+ */
+export class TintEffect extends ImageTransformEffect {
+    constructor() {
+        super();
+        this.type = TintEffect.TypeEnum.Tint;
+    }
+
+    /**
+     * Hue
+     */
+    hue: number;
+
+    /**
+     * Amount
+     */
+    amount: number;
+
+}
+export namespace TintEffect {
+}
+
+/**
  * Update background task.
  */
 export class UpdateBackground extends Task {
@@ -7401,48 +7818,6 @@ export class XpsExportOptions extends ExportOptions {
      */
     drawSlidesFrame?: boolean;
 
-}
-
-/**
- * One value series.
- */
-export class BoxAndWhiskerSeries extends OneValueSeries {
-    constructor() {
-        super();
-        this.dataPointType = BoxAndWhiskerSeries.DataPointTypeEnum.OneValue;
-    }
-
-    /**
-     * Quartile method.
-     */
-    quartileMethod?: BoxAndWhiskerSeries.QuartileMethodEnum;
-
-    /**
-     * True if inner points are shown.
-     */
-    showInnerPoints?: boolean;
-
-    /**
-     * True if mean line is shown.
-     */
-    showMeanLine?: boolean;
-
-    /**
-     * True if mean markers are shown.
-     */
-    showMeanMarkers?: boolean;
-
-    /**
-     * True if outlier points are shown.
-     */
-    showOutlierPoints?: boolean;
-
-}
-export namespace BoxAndWhiskerSeries {
-    export enum QuartileMethodEnum {
-        Exclusive = <any> 'Exclusive',
-        Inclusive = <any> 'Inclusive'
-    }
 }
 
 /**
@@ -8538,39 +8913,6 @@ export namespace TiffExportOptions {
 }
 
 /**
- * One value chart data point.
- */
-export class WaterfallChartDataPoint extends OneValueChartDataPoint {
-    constructor() {
-        super();
-    }
-
-    /**
-     * Value.
-     */
-    setAsTotal?: boolean;
-
-}
-
-/**
- * One value series.
- */
-export class WaterfallSeries extends OneValueSeries {
-    constructor() {
-        super();
-        this.dataPointType = WaterfallSeries.DataPointTypeEnum.OneValue;
-    }
-
-    /**
-     * True if inner points are shown.
-     */
-    showConnectorLines?: boolean;
-
-}
-export namespace WaterfallSeries {
-}
-
-/**
  * Zoom object.
  */
 export class ZoomObject extends ShapeBase {
@@ -8856,6 +9198,11 @@ export class VideoFrame extends GeometryShape {
      * Video data encoded in base64.
      */
     base64Data?: string;
+
+    /**
+     * Picture fill format.
+     */
+    pictureFillFormat?: PictureFill;
 
 }
 export namespace VideoFrame {

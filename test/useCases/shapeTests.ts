@@ -23,7 +23,7 @@
 */
 
 import * as model from "../../sdk/model";
-import {GeometryShape} from "../../sdk/model";
+import {GeometryShape, Portion, SolidFill} from "../../sdk/model";
 import {TestInitializer} from "../testInitializer";
 
 var fs = require('fs');
@@ -281,6 +281,36 @@ describe("Shape tests", () => {
                 });
             });
         });
+    });
+
+    it ("smartArt text formatting", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName)
+            const portion = new Portion();
+            portion.text = "New text";
+            portion.fontHeight = 24;
+            portion.fontBold = Portion.FontBoldEnum.True;
+            portion.spacing = 3;
+            const fillFormat = new SolidFill();
+            fillFormat.color = "#FFFFFF00";
+            portion.fillFormat = fillFormat;
+
+            const targetNodePath = "1/nodes/1/nodes";
+            const slideIndex = 7;
+
+            const response = await api.updateSubshapePortion(fileName, slideIndex, targetNodePath, 2,
+                1, 1, portion, "password", folderName);
+
+            assert.notEqual(null, response);
+            assert.equal(portion.text, response.body.text)
+            assert.equal(portion.fontHeight, response.body.fontHeight)
+            assert.equal(portion.fontBold, response.body.fontBold)
+            assert.equal(portion.spacing, response.body.spacing)
+            assert.equal((portion.fillFormat as SolidFill).color, (response.body.fillFormat as SolidFill).color)
+        })
     });
 
     it("smartArt empty", () => {

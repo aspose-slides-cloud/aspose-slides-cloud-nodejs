@@ -27,6 +27,13 @@ You may want to check out Aspose free [PPT to PDF](https://products.aspose.app/s
 **Web:** HTML/HTML5
 **Other:** MPEG4, SWF (export whole presentations)
 
+## Enhancements in Version 22.5
+* Added **Paragraphs** property to **SmartArtNode** class to enable getting and setting text for SmartArt nodes.
+* Added **ImageTransformList** property to **PictureFill** class to enable setting image transform effects. Added **ImageTransformEffect** class and subclasses for different kind of of effects.
+* Added **PictureFillFormat** property to **VideoFrame** class to enable setting poster image for video frames.
+* Added **SlideIndex** and **ShapeIndex** properties to **ResourceUri** class to simplify retrieveing slide & shape indexes for resources.
+* Removed redundant **BoxAndWhiskersSeries**, **WaterfallSeries** and **WaterfallChartDataPoint** classes.
+
 ## Enhancements in Version 22.4
 * Added **TransitionType** and **SlidesTransitionDuration** properties to **VideoExportOptions** class to enable creation videos with transitions.
 * Added **DefaultPortionFormat** property to **Paragraph** class. Added new **PortionFormat** class.

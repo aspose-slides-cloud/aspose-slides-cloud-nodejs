@@ -37,7 +37,7 @@ describe("Slide tests", () => {
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getSlides(fileName, "password", folderName);
-            assert.equal((result.body as model.Slides).slideList.length, 6)
+            assert.equal((result.body as model.Slides).slideList.length, 7)
         });
     });
 
@@ -65,11 +65,11 @@ describe("Slide tests", () => {
             let result = await api.createSlide(fileName, layoutSlidePath, 1, "password", folderName);
 
             assert.equal(result.response.statusCode, 201);
-            assert.equal((result.body as model.Slides).slideList.length, 7);
+            assert.equal((result.body as model.Slides).slideList.length, 8);
 
             result = await api.createSlide(fileName, null, null, "password", folderName);
             assert.equal(result.response.statusCode, 201);
-            assert.equal((result.body as model.Slides).slideList.length, 8);
+            assert.equal((result.body as model.Slides).slideList.length, 9);
         });
     });
 
@@ -82,7 +82,7 @@ describe("Slide tests", () => {
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.copySlide(fileName, slideIndex, null, null, null, null, "password", folderName);
-            assert.equal((result.body as model.Slides).slideList.length, 7);
+            assert.equal((result.body as model.Slides).slideList.length, 8);
         });
     });
 
@@ -98,7 +98,7 @@ describe("Slide tests", () => {
             await api.copyFile("TempTests/" + sourceFileName, folderName + "/" + sourceFileName);
 
             const result = await api.copySlide(fileName, slideIndex, 1, folderName + "/" + sourceFileName, null, null, "password", folderName);
-            assert.equal((result.body as model.Slides).slideList.length, 7);
+            assert.equal((result.body as model.Slides).slideList.length, 8);
         });
     });
 
@@ -111,7 +111,7 @@ describe("Slide tests", () => {
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.moveSlide(fileName, slideIndex, 2, "password", folderName);
-            assert.equal((result.body as model.Slides).slideList.length, 6);
+            assert.equal((result.body as model.Slides).slideList.length, 7);
         });
     });
 
@@ -125,7 +125,7 @@ describe("Slide tests", () => {
             const newPositions = [6, 5, 4, 3, 2, 1];
 
             const result = await api.reorderSlides(fileName, oldPositions, newPositions, "password", folderName);
-            assert.equal((result.body as model.Slides).slideList.length, 6);
+            assert.equal((result.body as model.Slides).slideList.length, 7);
         });
     });
 
@@ -168,7 +168,7 @@ describe("Slide tests", () => {
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteSlides(fileName, [1, 3, 5], "password", folderName);
-            assert.equal((result.body as model.Slides).slideList.length, 3);
+            assert.equal((result.body as model.Slides).slideList.length, 4);
         });
     });
 
@@ -181,7 +181,7 @@ describe("Slide tests", () => {
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteSlide(fileName, slideIndex, "password", folderName);
-            assert.equal((result.body as model.Slides).slideList.length, 5);
+            assert.equal((result.body as model.Slides).slideList.length, 6);
         });
     });
 

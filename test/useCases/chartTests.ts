@@ -426,4 +426,27 @@ describe("Chart tests", () => {
             assert.equal("NoFill", chart.axes.verticalAxis.minorGridLinesFormat.lineFormat.fillFormat.type);
         });
     });
+
+    it("chartSeriesGroups", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            let result = await api.getShape(fileName, 3, 1, "password", folderName)
+            assert.equal(200, result.response.statusCode);
+
+            let chart = result.body as model.Chart;
+            assert.equal(1, chart.seriesGroups.length);
+            let seriesGroup = chart.seriesGroups[0];
+            seriesGroup.overlap = 10;
+       
+            let newResult = await api.updateChartSeriesGroup(fileName, 3, 1, 1, seriesGroup,
+                "password", folderName);
+            chart = newResult.body as model.Chart;
+            assert.equal(10, chart.seriesGroups[0].overlap);
+        });
+    });
 });

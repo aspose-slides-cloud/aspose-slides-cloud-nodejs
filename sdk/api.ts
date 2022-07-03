@@ -5384,8 +5384,8 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param format Output file format.
      * @param options Export options.
-     * @param width Output file width; 0 to not adjust the size. Default is 0.
-     * @param height Output file height; 0 to not adjust the size. Default is 0.
+     * @param width The width of the slide representation in the output format; 0 to not adjust the size. Default is 0.
+     * @param height The height of the slide representation in the output format; 0 to not adjust the size. Default is 0.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
@@ -5437,8 +5437,8 @@ export class SlidesApi {
      * @param document Document data.
      * @param slideIndex Slide index.
      * @param format Output file format.
-     * @param width Output file width; 0 to not adjust the size. Default is 0.
-     * @param height Output file height; 0 to not adjust the size. Default is 0.
+     * @param width The width of the slide representation in the output format; 0 to not adjust the size. Default is 0.
+     * @param height The height of the slide representation in the output format; 0 to not adjust the size. Default is 0.
      * @param password Document password.
      * @param storage Document storage.
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
@@ -6329,6 +6329,54 @@ export class SlidesApi {
     }
 
     /**
+     * Read effective paragraph info. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param paragraphIndex Paragraph index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getParagraphEffective(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getParagraphEffective.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getParagraphEffective.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getParagraphEffective.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getParagraphEffective.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/effective";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -6529,6 +6577,60 @@ export class SlidesApi {
             throw new Error('The required parameter "portionIndex" was null or undefined when calling getPortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Portion");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Read effective portion info. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param paragraphIndex Paragraph index.
+     * @param portionIndex Portion index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getPortionEffective(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getPortionEffective.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getPortionEffective.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getPortionEffective.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getPortionEffective.');
+        }
+        // verify required parameter 'portionIndex' is not null or undefined
+        if (portionIndex === null || portionIndex === undefined) {
+            throw new Error('The required parameter "portionIndex" was null or undefined when calling getPortionEffective.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/effective";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
@@ -7989,6 +8091,56 @@ export class SlidesApi {
     }
 
     /**
+     * Read effective paragraph info (for smart art and group shapes). 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param path Shape path.
+     * @param shapeIndex Shape index.
+     * @param paragraphIndex Paragraph index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getSubshapeParagraphEffective(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getSubshapeParagraphEffective.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapeParagraphEffective.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapeParagraphEffective.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSubshapeParagraphEffective.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/effective";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Read shape paragraphs info (for smart art and group shapes). 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -8066,6 +8218,62 @@ export class SlidesApi {
             throw new Error('The required parameter "portionIndex" was null or undefined when calling getSubshapePortion.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Portion");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Read effective portion info (for smart art and group shapes). 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param path Shape path.
+     * @param shapeIndex Shape index.
+     * @param paragraphIndex Paragraph index.
+     * @param portionIndex Portion index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getSubshapePortionEffective(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getSubshapePortionEffective.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapePortionEffective.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapePortionEffective.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSubshapePortionEffective.');
+        }
+        // verify required parameter 'portionIndex' is not null or undefined
+        if (portionIndex === null || portionIndex === undefined) {
+            throw new Error('The required parameter "portionIndex" was null or undefined when calling getSubshapePortionEffective.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/effective";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
@@ -9324,8 +9532,8 @@ export class SlidesApi {
      * @param format Output file format.
      * @param outPath Path to upload the output file to.
      * @param options Export options.
-     * @param width Output file width; 0 to not adjust the size. Default is 0.
-     * @param height Output file height; 0 to not adjust the size. Default is 0.
+     * @param width The width of the slide representation in the output format; 0 to not adjust the size. Default is 0.
+     * @param height The height of the slide representation in the output format; 0 to not adjust the size. Default is 0.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
@@ -9382,8 +9590,8 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param format Output file format.
      * @param outPath Path to save result.
-     * @param width Output file width; 0 to not adjust the size. Default is 0.
-     * @param height Output file height; 0 to not adjust the size. Default is 0.
+     * @param width The width of the slide representation in the output format; 0 to not adjust the size. Default is 0.
+     * @param height The height of the slide representation in the output format; 0 to not adjust the size. Default is 0.
      * @param password Document password.
      * @param storage Document storage.
      * @param fontsFolder Storage folder containing custom fonts to be used with the document.
@@ -10705,6 +10913,59 @@ export class SlidesApi {
             headers: {},
             uri: localVarPath,
             json: series
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Update a series group in a chart. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must be a chart).
+     * @param seriesGroupIndex Series group index.
+     * @param seriesGroup Series group DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async updateChartSeriesGroup(name: string, slideIndex: number, shapeIndex: number, seriesGroupIndex: number, seriesGroup: model.ChartSeriesGroup, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling updateChartSeriesGroup.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateChartSeriesGroup.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateChartSeriesGroup.');
+        }
+        // verify required parameter 'seriesGroupIndex' is not null or undefined
+        if (seriesGroupIndex === null || seriesGroupIndex === undefined) {
+            throw new Error('The required parameter "seriesGroupIndex" was null or undefined when calling updateChartSeriesGroup.');
+        }
+        // verify required parameter 'seriesGroup' is not null or undefined
+        if (seriesGroup === null || seriesGroup === undefined) {
+            throw new Error('The required parameter "seriesGroup" was null or undefined when calling updateChartSeriesGroup.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/seriesGroup/{seriesGroupIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "seriesGroupIndex", ObjectSerializer.toString(seriesGroupIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: seriesGroup
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);

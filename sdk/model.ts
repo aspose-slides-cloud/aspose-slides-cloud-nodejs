@@ -603,6 +603,159 @@ export class ChartLinesFormat {
 }
 
 /**
+ * Chart series group. Defines common properties for a group of series.
+ */
+export class ChartSeriesGroup {
+
+    /**
+     * Returns a type of this series group.
+     */
+    type?: ChartSeriesGroup.TypeEnum;
+
+    /**
+     * Specifies the space between bar or column clusters, as a percentage of the bar or column width.
+     */
+    gapWidth?: number;
+
+    /**
+     * Returns or sets the distance, as a percentage of the marker width, between the data series in a 3D chart.
+     */
+    gapDepth?: number;
+
+    /**
+     * Gets or sets the angle of the first pie or doughnut chart slice,  in degrees (clockwise from up, from 0 to 360 degrees).
+     */
+    firstSliceAngle?: number;
+
+    /**
+     * Specifies that each data marker in the series has a different color.
+     */
+    isColorVaried?: boolean;
+
+    /**
+     * True if chart has series lines. Applied to stacked bar and OfPie charts.
+     */
+    hasSeriesLines?: boolean;
+
+    /**
+     * Specifies how much bars and columns shall overlap on 2-D charts (from -100 to 100).
+     */
+    overlap?: number;
+
+    /**
+     * Specifies the size of the second pie or bar of a pie-of-pie chart or  a bar-of-pie chart, as a percentage of the size of the first pie (can  be between 5 and 200 percents).
+     */
+    secondPieSize?: number;
+
+    /**
+     * Specifies a value that shall be used to determine which data points  are in the second pie or bar on a pie-of-pie or bar-of-pie chart.  Is used together with PieSplitBy property.
+     */
+    pieSplitPosition?: number;
+
+    /**
+     * Specifies how to determine which data points are in the second pie or bar  on a pie-of-pie or bar-of-pie chart.
+     */
+    pieSplitBy?: ChartSeriesGroup.PieSplitByEnum;
+
+    /**
+     * Specifies the size of the hole in a doughnut chart (can be between 10 and 90 percents  of the size of the plot area.).
+     */
+    doughnutHoleSize?: number;
+
+    /**
+     * Specifies the scale factor for the bubble chart (can be  between 0 and 300 percents of the default size). Read/write Int32.
+     */
+    bubbleSizeScale?: number;
+
+    /**
+     * Specifies HiLowLines format.  HiLowLines applied with HiLowClose, OpenHiLowClose, VolumeHiLowClose and VolumeOpenHiLowClose chart types.
+     */
+    hiLowLinesFormat?: ChartLinesFormat;
+
+    /**
+     * Specifies how the bubble size values are represented on the bubble chart. Read/write BubbleSizeRepresentationType.
+     */
+    bubbleSizeRepresentation?: ChartSeriesGroup.BubbleSizeRepresentationEnum;
+
+}
+export namespace ChartSeriesGroup {
+    export enum TypeEnum {
+        BarOfPieChart = <any> 'BarOfPieChart',
+        PieOfPieChart = <any> 'PieOfPieChart',
+        DoughnutChart = <any> 'DoughnutChart',
+        PieChart = <any> 'PieChart',
+        AreaChartArea = <any> 'AreaChartArea',
+        AreaChartPercentsStackedArea = <any> 'AreaChartPercentsStackedArea',
+        AreaChartStackedArea = <any> 'AreaChartStackedArea',
+        BarChartHorizClustered = <any> 'BarChartHorizClustered',
+        BarChartHorizStacked = <any> 'BarChartHorizStacked',
+        BarChartHorizPercentsStacked = <any> 'BarChartHorizPercentsStacked',
+        BarChartVertClustered = <any> 'BarChartVertClustered',
+        BarChartVertStacked = <any> 'BarChartVertStacked',
+        BarChartVertPercentsStacked = <any> 'BarChartVertPercentsStacked',
+        LineChartLine = <any> 'LineChartLine',
+        LineChartStackedLine = <any> 'LineChartStackedLine',
+        LineChartPercentsStackedLine = <any> 'LineChartPercentsStackedLine',
+        RadarChart = <any> 'RadarChart',
+        FilledRadarChart = <any> 'FilledRadarChart',
+        StockHighLowClose = <any> 'StockHighLowClose',
+        StockOpenHighLowClose = <any> 'StockOpenHighLowClose',
+        StockVolumeHighLowClose = <any> 'StockVolumeHighLowClose',
+        StockVolumeOpenHighLowClose = <any> 'StockVolumeOpenHighLowClose',
+        ScatterStraightMarker = <any> 'ScatterStraightMarker',
+        ScatterSmoothMarker = <any> 'ScatterSmoothMarker',
+        AreaChartArea3D = <any> 'AreaChartArea3D',
+        AreaChartStackedArea3D = <any> 'AreaChartStackedArea3D',
+        AreaChartPercentsStackedArea3D = <any> 'AreaChartPercentsStackedArea3D',
+        Line3DChart = <any> 'Line3DChart',
+        Pie3DChart = <any> 'Pie3DChart',
+        Bar3DChartVert = <any> 'Bar3DChartVert',
+        Bar3DChartVertClustered = <any> 'Bar3DChartVertClustered',
+        Bar3DChartVertPercentsStackedColumn3D = <any> 'Bar3DChartVertPercentsStackedColumn3D',
+        Bar3DChartVertPercentsStackedCone = <any> 'Bar3DChartVertPercentsStackedCone',
+        Bar3DChartVertPercentsStackedCylinder = <any> 'Bar3DChartVertPercentsStackedCylinder',
+        Bar3DChartVertPercentsStackedPyramid = <any> 'Bar3DChartVertPercentsStackedPyramid',
+        Bar3DChartVertStackedColumn3D = <any> 'Bar3DChartVertStackedColumn3D',
+        Bar3DChartVertStackedCone = <any> 'Bar3DChartVertStackedCone',
+        Bar3DChartVertStackedCylinder = <any> 'Bar3DChartVertStackedCylinder',
+        Bar3DChartVertStackedPyramid = <any> 'Bar3DChartVertStackedPyramid',
+        Bar3DChartHorizClustered = <any> 'Bar3DChartHorizClustered',
+        Bar3DChartHorizStackedBar3D = <any> 'Bar3DChartHorizStackedBar3D',
+        Bar3DChartHorizStackedCone = <any> 'Bar3DChartHorizStackedCone',
+        Bar3DChartHorizStackedCylinder = <any> 'Bar3DChartHorizStackedCylinder',
+        Bar3DChartHorizStackedPyramid = <any> 'Bar3DChartHorizStackedPyramid',
+        Bar3DChartHorizPercentsStackedBar3D = <any> 'Bar3DChartHorizPercentsStackedBar3D',
+        Bar3DChartHorizPercentsStackedCone = <any> 'Bar3DChartHorizPercentsStackedCone',
+        Bar3DChartHorizPercentsStackedCylinder = <any> 'Bar3DChartHorizPercentsStackedCylinder',
+        Bar3DChartHorizPercentsStackedPyramid = <any> 'Bar3DChartHorizPercentsStackedPyramid',
+        SurfaceChartContour = <any> 'SurfaceChartContour',
+        SurfaceChartWireframeContour = <any> 'SurfaceChartWireframeContour',
+        SurfaceChartSurface3D = <any> 'SurfaceChartSurface3D',
+        SurfaceChartWireframeSurface3D = <any> 'SurfaceChartWireframeSurface3D',
+        BubbleChart = <any> 'BubbleChart',
+        HistogramChart = <any> 'HistogramChart',
+        ParetoLineChart = <any> 'ParetoLineChart',
+        BoxAndWhiskerChart = <any> 'BoxAndWhiskerChart',
+        WaterfallChart = <any> 'WaterfallChart',
+        FunnelChart = <any> 'FunnelChart',
+        TreemapChart = <any> 'TreemapChart',
+        MapChart = <any> 'MapChart',
+        SunburstChart = <any> 'SunburstChart'
+    }
+    export enum PieSplitByEnum {
+        Default = <any> 'Default',
+        Custom = <any> 'Custom',
+        ByPercentage = <any> 'ByPercentage',
+        ByPos = <any> 'ByPos',
+        ByValue = <any> 'ByValue'
+    }
+    export enum BubbleSizeRepresentationEnum {
+        Area = <any> 'Area',
+        Width = <any> 'Width'
+    }
+}
+
+/**
  * Represents chart title
  */
 export class ChartTitle {
@@ -4423,24 +4576,24 @@ export class FormatScheme extends ResourceBase {
     }
 
     /**
-     * Background style links.
+     * Background styles.
      */
-    backgroundStyles?: Array<ResourceUri>;
+    backgroundStyles?: Array<FillFormat>;
 
     /**
-     * Effect style links.
+     * Effect styles.
      */
-    effectStyles?: Array<ResourceUri>;
+    effectStyles?: Array<EffectFormat>;
 
     /**
-     * Fill style links.
+     * Fill styles.
      */
-    fillStyles?: Array<ResourceUri>;
+    fillStyles?: Array<FillFormat>;
 
     /**
-     * Line style links.
+     * Line style.
      */
-    lineStyles?: Array<ResourceUri>;
+    lineStyles?: Array<LineFormat>;
 
 }
 
@@ -5351,6 +5504,11 @@ export class OneValueChartDataPoint extends DataPoint {
      * SetAsTotal. Applied to Waterfall data points only.
      */
     setAsTotal?: boolean;
+
+    /**
+     * True if the data point shall invert its colors if the value is negative. Applies to bar, column and bubble series.
+     */
+    invertIfNegative?: boolean;
 
 }
 
@@ -6304,9 +6462,9 @@ export class PptxExportOptions extends ExportOptions {
 }
 export namespace PptxExportOptions {
     export enum ConformanceEnum {
-        Ecma3762006 = <any> 'Ecma376_2006',
-        Iso295002008Transitional = <any> 'Iso29500_2008_Transitional',
-        Iso295002008Strict = <any> 'Iso29500_2008_Strict'
+        Ecma376 = <any> 'Ecma376',
+        Iso29500Transitional = <any> 'Iso29500Transitional',
+        Iso29500Strict = <any> 'Iso29500Strict'
     }
 }
 
@@ -7921,6 +8079,16 @@ export class Chart extends ShapeBase {
      * Gets or sets the plot area.
      */
     plotArea?: PlotArea;
+
+    /**
+     * Specifies the chart area shall have rounded corners.
+     */
+    hasRoundedCorners?: boolean;
+
+    /**
+     * Gets groups of series. 
+     */
+    seriesGroups?: Array<ChartSeriesGroup>;
 
 }
 export namespace Chart {

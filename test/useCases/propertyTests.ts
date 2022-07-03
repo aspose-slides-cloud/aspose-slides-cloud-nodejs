@@ -286,4 +286,23 @@ describe("Property tests", () => {
             assert.equal((response.body as model.ViewProperties).slideViewProperties.scale, 50);
         });
     });
+
+    it("protection check", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const password = "password";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            let result = await api.getProtectionProperties(fileName, null, folderName)
+            assert.equal(200, result.response.statusCode);
+            assert.equal(result.body.isEncrypted, true);
+            assert.equal(result.body.readPassword, null);
+
+            result = await api.getProtectionProperties(fileName, password, folderName)
+            assert.equal(200, result.response.statusCode);
+            assert.equal(result.body.isEncrypted, true);
+            assert.notEqual(result.body.readPassword, null);
+        });
+    });
 });

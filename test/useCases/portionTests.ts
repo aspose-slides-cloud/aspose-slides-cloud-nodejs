@@ -347,4 +347,39 @@ describe("Portion tests", () => {
             assert((result.body as model.TextBounds).height > 0);
         });
     });
+
+    it("get portion effective", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 6;
+            const shapeIndex = 2;
+            const paragraphIndex = 1;
+            const portionIndex = 1;
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const result = await api.getPortionEffective(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, "password", folderName);
+            assert.equal(result.response.statusCode, 200);
+            assert.equal(result.body.fontHeight, 18);
+        });
+    });
+
+    it("get sub-shape portion effective", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 6;
+            const shapeIndex = 1;
+            const paragraphIndex = 1;
+            const portionIndex = 1;
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const result = await api.getSubshapePortionEffective(fileName, slideIndex, "3/shapes", shapeIndex,
+                paragraphIndex, portionIndex, "password", folderName);
+            assert.equal(result.response.statusCode, 200);
+            assert.equal(result.body.fontHeight, 18);
+        });
+    });
 });

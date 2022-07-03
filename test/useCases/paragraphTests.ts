@@ -340,4 +340,37 @@ describe("Paragraph tests", () => {
         assert.equal(result.body.defaultPortionFormat.latinFont, paragraphDto.defaultPortionFormat.latinFont);
         assert.equal(result.body.defaultPortionFormat.fontHeight, paragraphDto.defaultPortionFormat.fontHeight);
     });
+
+    it("get paragraph effective", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 6;
+            const shapeIndex = 2;
+            const paragraphIndex = 1;
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const result = await api.getParagraphEffective(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
+            assert.equal(result.response.statusCode, 200);
+            assert.equal(result.body.defaultTabSize, 72);
+        });
+    });
+
+    it("get sub-shape paragraph effective", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 6;
+            const shapeIndex = 1;
+            const paragraphIndex = 1;
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const result = await api.getSubshapeParagraphEffective(fileName, slideIndex, "3/shapes", shapeIndex,
+                paragraphIndex, "password", folderName);
+            assert.equal(result.response.statusCode, 200);
+            assert.equal(result.body.defaultTabSize, 72);
+        });
+    });
 });

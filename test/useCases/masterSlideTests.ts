@@ -22,9 +22,12 @@
 * SOFTWARE.
 */
 
+import { MasterSlides} from "../../sdk/model";
+
 var assert = require('assert');
 import * as model from "../../sdk/model";
 import {TestInitializer} from "../testInitializer";
+var fs = require('fs');
 
 describe("MasterSlide tests", () => {
     it("master slides", () => {
@@ -246,6 +249,29 @@ describe("MasterSlide tests", () => {
                     });
                 });
             });
+        });
+    });
+
+    it("delete unused", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const response = await api.deleteUnusedMasterSlides(fileName, true, "password", folderName);
+            assert.equal(response.response.statusCode, 200);
+            assert.equal((response.body as MasterSlides).slideList.length, 1);
+        });
+    });
+
+    it("delete unused online", () => {
+        return TestInitializer.runTest(async () => {
+            const api = TestInitializer.getApi();
+            const response = await api.deleteUnusedMasterSlidesOnline(fs.createReadStream("TestData/test.pptx"), 
+            true, "password");
+            assert.equal(response.response.statusCode, 200);
+            assert(response.body.length > 0);
         });
     });
 });

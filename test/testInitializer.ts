@@ -50,7 +50,7 @@ export class TestInitializer {
             }
             return fs.createReadStream("TestData/" + value.substring(1));
         }
-        return value;
+        return TestInitializer.untemplatize(value, name, value);
     }
 
     public static invalidizeValue(value: any, name: string, type: string, functionName: string): any {
@@ -163,7 +163,6 @@ export class TestInitializer {
                 assert(result.body.length > 0);
             }
         }).catch((err) => {
-            console.log(err);
             assert.fail(err);
         });
     }
@@ -268,7 +267,7 @@ export class TestInitializer {
         return pattern.toLowerCase() == text.toLowerCase();
     }
 
-    private static untemplatize(t: any, name: string, value: any): string {
+    private static untemplatize(t: any, name: string, value: any): any {
         return t && t.replace ? t.replace("%n", name ? name : "").replace("%v", value ? value : "") : t;
     }
 }

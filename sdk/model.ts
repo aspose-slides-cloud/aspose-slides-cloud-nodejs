@@ -423,6 +423,19 @@ export namespace Axis {
 }
 
 /**
+ * Defines axis type.
+ */
+    /**
+    * Defines axis type.
+    */
+export enum AxisType {
+    'HorizontalAxis' = <any> 'HorizontalAxis',
+    'VerticalAxis' = <any> 'VerticalAxis',
+    'SecondaryHorizontalAxis' = <any> 'SecondaryHorizontalAxis',
+    'SecondaryVerticalAxis' = <any> 'SecondaryVerticalAxis'
+}
+
+/**
  * Represents blur effect 
  */
 export class BlurEffect {
@@ -810,6 +823,18 @@ export namespace ChartWall {
         Stretch = <any> 'Stretch',
         NotDefined = <any> 'NotDefined'
     }
+}
+
+/**
+ * 3D chart wall type
+ */
+    /**
+    * 3D chart wall type
+    */
+export enum ChartWallType {
+    'Floor' = <any> 'Floor',
+    'SideWall' = <any> 'SideWall',
+    'BackWall' = <any> 'BackWall'
 }
 
 /**
@@ -2114,7 +2139,25 @@ export enum NotesSlideExportFormat {
     'Png' = <any> 'Png',
     'Gif' = <any> 'Gif',
     'Bmp' = <any> 'Bmp',
-    'Tiff' = <any> 'Tiff'
+    'Tiff' = <any> 'Tiff',
+    'Html' = <any> 'Html',
+    'Pdf' = <any> 'Pdf',
+    'Xps' = <any> 'Xps',
+    'Pptx' = <any> 'Pptx',
+    'Odp' = <any> 'Odp',
+    'Otp' = <any> 'Otp',
+    'Ppt' = <any> 'Ppt',
+    'Pps' = <any> 'Pps',
+    'Ppsx' = <any> 'Ppsx',
+    'Pptm' = <any> 'Pptm',
+    'Ppsm' = <any> 'Ppsm',
+    'Potx' = <any> 'Potx',
+    'Pot' = <any> 'Pot',
+    'Potm' = <any> 'Potm',
+    'Svg' = <any> 'Svg',
+    'Fodp' = <any> 'Fodp',
+    'Xaml' = <any> 'Xaml',
+    'Html5' = <any> 'Html5'
 }
 
 /**
@@ -2528,7 +2571,8 @@ export class PresentationToMerge {
 export namespace PresentationToMerge {
     export enum SourceEnum {
         Storage = <any> 'Storage',
-        Request = <any> 'Request'
+        Request = <any> 'Request',
+        Url = <any> 'Url'
     }
 }
 
@@ -3163,7 +3207,8 @@ export enum SlideExportFormat {
     'Potm' = <any> 'Potm',
     'Svg' = <any> 'Svg',
     'Fodp' = <any> 'Fodp',
-    'Xaml' = <any> 'Xaml'
+    'Xaml' = <any> 'Xaml',
+    'Html5' = <any> 'Html5'
 }
 
 /**
@@ -6902,7 +6947,8 @@ export namespace SaveSlide {
         Potm = <any> 'Potm',
         Svg = <any> 'Svg',
         Fodp = <any> 'Fodp',
-        Xaml = <any> 'Xaml'
+        Xaml = <any> 'Xaml',
+        Html5 = <any> 'Html5'
     }
 }
 

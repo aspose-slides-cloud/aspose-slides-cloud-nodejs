@@ -263,9 +263,9 @@ describe("LayoutSlide tests", () => {
             assert.equal(responseBeforeDelete.response.statusCode, 200);
             assert.equal((responseBeforeDelete.body as LayoutSlides).slideList.length, 11);
 
-            const resposeAfterDelete = await api.deleteUnusedLayoutSlides(fileName, "password", folderName);
-            assert.equal(resposeAfterDelete.response.statusCode, 200);
-            assert.equal((resposeAfterDelete.body as LayoutSlides).slideList.length, 2);
+            const responseAfterDelete = await api.deleteUnusedLayoutSlides(fileName, "password", folderName);
+            assert.equal(responseAfterDelete.response.statusCode, 200);
+            assert.equal((responseAfterDelete.body as LayoutSlides).slideList.length, 2);
         });
     });
 

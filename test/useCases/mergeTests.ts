@@ -22,10 +22,13 @@
 * SOFTWARE.
 */
 
+import * as model from "../../sdk/model";
+import {PresentationToMerge} from "../../sdk/model";
+import {TestInitializer} from "../testInitializer";
+
 var assert = require('assert');
 var fs = require('fs');
-import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import SourceEnum = PresentationToMerge.SourceEnum;
 
 describe("Merge tests", () => {
     it("merge storage", () => {
@@ -130,6 +133,29 @@ describe("Merge tests", () => {
                     assert.equal(200, defaultResult.response.statusCode);
                 });
             });
+        });
+    });
+    it("merge ordered url", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            let request = new model.OrderedMergeRequest();
+            let presentation1 = new model.PresentationToMerge();
+            presentation1.path = folderName + "/" + "test.pptx";
+            presentation1.password = "password";
+            presentation1.source = SourceEnum.Storage;
+            presentation1.slides = [1, 2];
+            
+            let presentation2 = new model.PresentationToMerge();
+            presentation2.slides = [1];
+            presentation2.source =  model.PresentationToMerge.SourceEnum.Url;
+            presentation2.path = "https://drive.google.com/uc?export=download&id=1ycMzd7e--Ro9H8eH2GL5fPP7-2HjX4My";
+            request.presentations = [presentation1, presentation2];
+            const response = await api.mergeOnline(null, request);
+            assert.equal(200, response.response.statusCode);
         });
     });
 });

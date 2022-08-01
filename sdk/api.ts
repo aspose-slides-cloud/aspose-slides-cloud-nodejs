@@ -4643,6 +4643,71 @@ export class SlidesApi {
     }
 
     /**
+     * Removes unused master slides. 
+     * @param name Document name.
+     * @param ignorePreserveField Determines, whether this method should remove unused master even if its             preserve property is set to true.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteUnusedMasterSlides(name: string, ignorePreserveField: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.MasterSlides}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteUnusedMasterSlides.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/masterSlides";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignorePreserveField", ignorePreserveField);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "MasterSlides");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Removes unused master slides. 
+     * @param document Document data
+     * @param ignorePreserveField Determines, whether this method should remove unused master even if its             preserve property is set to true.
+     * @param password Document password.
+     */
+    public async deleteUnusedMasterSlidesOnline(document: Readable, ignorePreserveField: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling deleteUnusedMasterSlidesOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/masterSlides/delete";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignorePreserveField", ignorePreserveField);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Removes shapes with name \&quot;watermark\&quot; from the presentation. 
      * @param name Document name.
      * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used.
@@ -10008,6 +10073,220 @@ export class SlidesApi {
     }
 
     /**
+     * Set chart axis. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param axisType Axis type. Horizontal, Vertical, SecondaryHorizontal or SecondaryVertical.
+     * @param axis Axis DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async setChartAxis(name: string, slideIndex: number, shapeIndex: number, axisType: model.AxisType, axis: model.Axis, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Axis}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling setChartAxis.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling setChartAxis.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling setChartAxis.');
+        }
+        // verify required parameter 'axisType' is not null or undefined
+        if (axisType === null || axisType === undefined) {
+            throw new Error('The required parameter "axisType" was null or undefined when calling setChartAxis.');
+        }
+        // verify value of enum parameter 'axisType' is valid
+        if (!Object.keys(model.AxisType).filter(i => model.AxisType[i].toLowerCase() == axisType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for axisType: ' + axisType + '. Must be one of the following: ' + Object.keys(model.AxisType).map(key => model.AxisType[key]).join());
+        }
+        // verify required parameter 'axis' is not null or undefined
+        if (axis === null || axis === undefined) {
+            throw new Error('The required parameter "axis" was null or undefined when calling setChartAxis.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{axisType}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "axisType", ObjectSerializer.toString(axisType));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: axis
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Axis");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Set chart axis. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param legend Chart legend DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async setChartLegend(name: string, slideIndex: number, shapeIndex: number, legend: model.Legend, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Legend}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling setChartLegend.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling setChartLegend.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling setChartLegend.');
+        }
+        // verify required parameter 'legend' is not null or undefined
+        if (legend === null || legend === undefined) {
+            throw new Error('The required parameter "legend" was null or undefined when calling setChartLegend.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/legend";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: legend
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Legend");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Set a series group in a chart. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must be a chart).
+     * @param seriesGroupIndex Series group index.
+     * @param seriesGroup Series group DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async setChartSeriesGroup(name: string, slideIndex: number, shapeIndex: number, seriesGroupIndex: number, seriesGroup: model.ChartSeriesGroup, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling setChartSeriesGroup.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling setChartSeriesGroup.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling setChartSeriesGroup.');
+        }
+        // verify required parameter 'seriesGroupIndex' is not null or undefined
+        if (seriesGroupIndex === null || seriesGroupIndex === undefined) {
+            throw new Error('The required parameter "seriesGroupIndex" was null or undefined when calling setChartSeriesGroup.');
+        }
+        // verify required parameter 'seriesGroup' is not null or undefined
+        if (seriesGroup === null || seriesGroup === undefined) {
+            throw new Error('The required parameter "seriesGroup" was null or undefined when calling setChartSeriesGroup.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/seriesGroup/{seriesGroupIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "seriesGroupIndex", ObjectSerializer.toString(seriesGroupIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: seriesGroup
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Chart");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Set 3D chart wall. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param chartWallType Chart wall type: floor, sideWall or backWall.
+     * @param chartWall Chart wall DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async setChartWall(name: string, slideIndex: number, shapeIndex: number, chartWallType: model.ChartWallType, chartWall: model.ChartWall, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ChartWall}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling setChartWall.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling setChartWall.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling setChartWall.');
+        }
+        // verify required parameter 'chartWallType' is not null or undefined
+        if (chartWallType === null || chartWallType === undefined) {
+            throw new Error('The required parameter "chartWallType" was null or undefined when calling setChartWall.');
+        }
+        // verify value of enum parameter 'chartWallType' is valid
+        if (!Object.keys(model.ChartWallType).filter(i => model.ChartWallType[i].toLowerCase() == chartWallType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for chartWallType: ' + chartWallType + '. Must be one of the following: ' + Object.keys(model.ChartWallType).map(key => model.ChartWallType[key]).join());
+        }
+        // verify required parameter 'chartWall' is not null or undefined
+        if (chartWall === null || chartWall === undefined) {
+            throw new Error('The required parameter "chartWall" was null or undefined when calling setChartWall.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{chartWallType}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "chartWallType", ObjectSerializer.toString(chartWallType));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: chartWall
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "ChartWall");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Set document properties. 
      * @param name Document name.
      * @param properties New properties.
@@ -10913,59 +11192,6 @@ export class SlidesApi {
             headers: {},
             uri: localVarPath,
             json: series
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Chart");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Update a series group in a chart. 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index (must be a chart).
-     * @param seriesGroupIndex Series group index.
-     * @param seriesGroup Series group DTO.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async updateChartSeriesGroup(name: string, slideIndex: number, shapeIndex: number, seriesGroupIndex: number, seriesGroup: model.ChartSeriesGroup, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Chart}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling updateChartSeriesGroup.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateChartSeriesGroup.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateChartSeriesGroup.');
-        }
-        // verify required parameter 'seriesGroupIndex' is not null or undefined
-        if (seriesGroupIndex === null || seriesGroupIndex === undefined) {
-            throw new Error('The required parameter "seriesGroupIndex" was null or undefined when calling updateChartSeriesGroup.');
-        }
-        // verify required parameter 'seriesGroup' is not null or undefined
-        if (seriesGroup === null || seriesGroup === undefined) {
-            throw new Error('The required parameter "seriesGroup" was null or undefined when calling updateChartSeriesGroup.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/seriesGroup/{seriesGroupIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "seriesGroupIndex", ObjectSerializer.toString(seriesGroupIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: seriesGroup
         };
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);

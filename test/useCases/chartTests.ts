@@ -22,9 +22,11 @@
 * SOFTWARE.
 */
 
-var assert = require('assert');
 import * as model from "../../sdk/model";
+import {Axis, AxisType, ChartWall, ChartWallType, Legend, SolidFill} from "../../sdk/model";
 import {TestInitializer} from "../testInitializer";
+
+var assert = require('assert');
 
 describe("Chart tests", () => {
     it("get", async () => {
@@ -443,10 +445,63 @@ describe("Chart tests", () => {
             let seriesGroup = chart.seriesGroups[0];
             seriesGroup.overlap = 10;
        
-            let newResult = await api.updateChartSeriesGroup(fileName, 3, 1, 1, seriesGroup,
+            let newResult = await api.setChartSeriesGroup(fileName, 3, 1, 1, seriesGroup,
                 "password", folderName);
             chart = newResult.body as model.Chart;
             assert.equal(10, chart.seriesGroups[0].overlap);
+        });
+    });
+
+    it("set chart legend", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const fillFormat = new SolidFill();
+            fillFormat.color = "#77CEF9";
+            const legend = new Legend();
+            legend.overlay = true;
+            legend.fillFormat = fillFormat;
+            let result = await api.setChartLegend(fileName, 3, 1, legend, "password", folderName);
+            assert.equal("Solid" ,result.body.fillFormat.type);
+        });
+    });
+
+    it("set chart axis", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const axis = new Axis();
+            axis.hasTitle = true;
+            axis.isAutomaticMaxValue = false;
+            axis.maxValue = 10;
+            
+            let result = await api.setChartAxis(fileName, 3, 1, AxisType.VerticalAxis, axis, "password", folderName);
+            assert.equal(true ,result.body.hasTitle);
+            assert.equal(false ,result.body.isAutomaticMaxValue);
+            assert.equal(10 ,result.body.maxValue);
+        });
+    });
+
+    it("set chart wall", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            
+            const fillFormat = new SolidFill();
+            fillFormat.color = "#77CEF9";
+            const wall = new ChartWall();
+            wall.fillFormat = fillFormat;
+
+            let result = await api.setChartWall(fileName, 8, 2, ChartWallType.BackWall, wall, "password", folderName);
+            assert.equal("Solid" ,result.body.fillFormat.type);
         });
     });
 });

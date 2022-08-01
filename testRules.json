@@ -24,10 +24,12 @@
 		{ "Value": "test%n", "InvalidValue": "%vinvalid" },
 		{ "Value": 1, "InvalidValue": 593, "Type": "number" },
 		{ "Value": 3, "Parameter": "SlideIndex", "Method": "/Chart/" },
+		{ "Value": 8, "Parameter": "SlideIndex", "Method": "/ChartWall/" },
 		{ "Value": 5, "Parameter": "SlideIndex", "Method": "CreateSection" },
 		{ "Value": 4, "Parameter": "SlideIndex", "Method": "/ShapeGeometryPath/" },
 		{ "Value": 2, "Parameter": "SlideIndex", "Method": "/AsMathMl/" },
 		{ "Value": 2, "Parameter": "ShapeIndex", "Method": "/ChartDataPoint/" },
+		{ "Value": 2, "Parameter": "ShapeIndex", "Method": "/ChartWall/" },
 		{ "Value": 2, "Parameter": "ShapeIndex", "Method": "/ShapeGeometryPath/" },
 		{ "Value": 3, "Parameter": "ShapeIndex", "Method": "/AsMathMl/" },
 		{ "Value": 2, "Parameter": "SectionIndex" },
@@ -94,6 +96,8 @@
 		{ "InvalidValue": "LayoutSlide", "Parameter": "SlideType", "Language": "NET" },
 		{ "Value": "Chart", "InvalidValue": "Table", "Parameter": "ShapeType" },
 		{ "Value": "AlignTop", "InvalidValue": "AlignBottom", "Parameter": "AlignmentType" },
+		{ "Value": "HorizontalAxis", "InvalidValue": "VerticalAxis", "Parameter": "AxisType" },
+		{ "Value": "BackWall", "InvalidValue": "Floor", "Parameter": "ChartWallType" },
 		{ "Value": null, "InvalidValue": "Shape", "Parameter": "Bounds" }
 	],
 	"OKToReturnNull": [
@@ -144,6 +148,8 @@
 		{ "Parameter": "SlideType" },
 		{ "Parameter": "ShapeType" },
 		{ "Parameter": "AlignmentType" },
+		{ "Parameter": "AxisType" },
+		{ "Parameter": "ChartWallType" },
 		{ "Parameter": "Bounds" }
 	],
 	"Results": [
@@ -178,6 +184,7 @@
 		{ "Message": "Error processing presentation ", "Parameter": "Files" },
 		{ "Message": "Image data is not found", "Parameter": "Image" },
 		{ "Message": "Presentation file is not found", "Parameter": "Image", "Method": "CreateImageWatermarkOnline", "Language": "NET" },
+		{ "Message": "Presentation file is not found", "Parameter": "Image", "Method": "CreateImageWatermarkOnline", "Language": "PHP" },
 		{ "Message": " required parameter", "Type": "model" },
 		{ "Message": "Failed to load the presentation", "Parameter": "Request", "Method": "/Merge.*Online/" },
 		{ "Message": "Invalid Request", "Parameter": "VersionId" },

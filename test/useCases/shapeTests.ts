@@ -922,4 +922,20 @@ describe("Shape tests", () => {
         shapes = await api.getSubshapes(fileName, slideIndex, "1/shapes", "password", folderName);
         assert.equal(3, shapes.body.shapesLinks.length);
     });
+
+    it("import shapes from SVG", () => {
+        return TestInitializer.runTest(async () => {
+            const fileName = "test.pptx";
+            const svgFileName = "shapes.svg";
+            const folderName = "TempSlidesSDK";
+            const slideIndex = 5;
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const stream = fs.createReadStream("TestData/" + svgFileName)
+            const response = await api.importShapesFromSvg(fileName, slideIndex, stream, 50, 50, 300, 300,
+                [1, 3, 5], "password", folderName);
+            assert.equal(3, response.body.shapesLinks.length)
+        });
+    });
 });

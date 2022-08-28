@@ -2670,6 +2670,79 @@ export class SlidesApi {
     }
 
     /**
+     * Removes specified embedded font and returns presentation fonts info. 
+     * @param name Document name.
+     * @param fontName Font name.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteEmbeddedFont(name: string, fontName: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FontsData}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteEmbeddedFont.');
+        }
+        // verify required parameter 'fontName' is not null or undefined
+        if (fontName === null || fontName === undefined) {
+            throw new Error('The required parameter "fontName" was null or undefined when calling deleteEmbeddedFont.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fonts/embedded/{fontName}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "fontName", ObjectSerializer.toString(fontName));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "FontsData");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Removes specified embedded font and returns presentation. 
+     * @param document Document data.
+     * @param fontName Document name.
+     * @param password Document password.
+     */
+    public async deleteEmbeddedFontOnline(document: Readable, fontName: string, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling deleteEmbeddedFontOnline.');
+        }
+        // verify required parameter 'fontName' is not null or undefined
+        if (fontName === null || fontName === undefined) {
+            throw new Error('The required parameter "fontName" was null or undefined when calling deleteEmbeddedFontOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/fonts/embedded/{fontName}/delete";
+        localVarPath = addPathParameterToUrl(localVarPath, "fontName", ObjectSerializer.toString(fontName));
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Delete file 
      * @param path File path e.g. '/folder/file.ext'
      * @param storageName Storage name
@@ -6069,6 +6142,67 @@ export class SlidesApi {
     }
 
     /**
+     * Returns presentation fonts info. 
+     * @param name Document name.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getFonts(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FontsData}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getFonts.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fonts";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "FontsData");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Returns presentation fonts info. 
+     * @param document Document data.
+     * @param password Document password.
+     */
+    public async getFontsOnline(document: Readable, password: string = null): Promise<{response: http.ServerResponse, body: model.FontsData}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling getFontsOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/fonts";
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "FontsData");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Read slide theme format scheme info. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -8705,6 +8839,59 @@ export class SlidesApi {
     }
 
     /**
+     * Imports shapes from SVG file. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param image SVG image data.
+     * @param x The X coordinate of the imported group of shapes (0 is default if not specified).
+     * @param y The Y coordinate of the imported group of shapes (0 is default if not specified).
+     * @param width The width of the imported group of shapes (default is SVG image width).
+     * @param height The height of the imported group of shapes (default is SVG image width).
+     * @param shapes Indexes of shapes to import. All shapes are imported if not specified.
+     * @param password Document password.
+     * @param folder Presentation folder.
+     * @param storage Presentation storage.
+     */
+    public async importShapesFromSvg(name: string, slideIndex: number, image: Readable = null, x: number = null, y: number = null, width: number = null, height: number = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling importShapesFromSvg.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling importShapesFromSvg.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/fromSvg";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", x);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", y);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", width);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", height);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (image != null) 
+        {
+            localVarFiles.push(image);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Shapes");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Merge the presentation with other presentations specified in the request parameter. 
      * @param name Document name.
      * @param request PresentationsMergeRequest with a list of presentations to merge.
@@ -10359,6 +10546,83 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "DocumentProperty");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Embeds specified font and returns presentation fonts info. 
+     * @param name Document name.
+     * @param fontName Document name.
+     * @param onlyUsed Only used characters will be embedded.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async setEmbeddedFont(name: string, fontName: string, onlyUsed: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FontsData}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling setEmbeddedFont.');
+        }
+        // verify required parameter 'fontName' is not null or undefined
+        if (fontName === null || fontName === undefined) {
+            throw new Error('The required parameter "fontName" was null or undefined when calling setEmbeddedFont.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fonts/embedded/{fontName}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "fontName", ObjectSerializer.toString(fontName));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "onlyUsed", onlyUsed);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "FontsData");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Embeds specified font and returns presentation. 
+     * @param document Document data.
+     * @param fontName Font name.
+     * @param onlyUsed Only used characters will be embedded.
+     * @param password Document password.
+     */
+    public async setEmbeddedFontOnline(document: Readable, fontName: string, onlyUsed: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling setEmbeddedFontOnline.');
+        }
+        // verify required parameter 'fontName' is not null or undefined
+        if (fontName === null || fontName === undefined) {
+            throw new Error('The required parameter "fontName" was null or undefined when calling setEmbeddedFontOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/fonts/embedded/{fontName}";
+        localVarPath = addPathParameterToUrl(localVarPath, "fontName", ObjectSerializer.toString(fontName));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "onlyUsed", onlyUsed);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
     }
 

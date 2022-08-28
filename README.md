@@ -27,6 +27,12 @@ You may want to check out Aspose free [PPT to PDF](https://products.aspose.app/s
 **Web:** HTML/HTML5
 **Other:** MPEG4, SWF (export whole presentations)
 
+## Enhancements in Version 22.8
+
+* With new **GetFonts** and **GetFontsOnline** methods you can get a list for fonts used in the presentation.
+* Added new **SetEmbeddedFont**, **SetEmbeddedFontOnline**, **DeleteEmbeddedFont** and **DeleteEmbeddedFontOnline** methods to embed/unembed presentation fonts.
+* Added new **ImportImagesFromSvg** method to import SVG images as individual geometry shapes.
+
 ## Enhancements in Version 22.7
 
 * Added **Html**, **Pdf**, **Xps**, **Pptx**, **Odp**, **Otp**, **Ppt**, **Pps**, **Ppsx**, **Pptm**, **Ppsm**, **Potx**, **Pot**, **Potm**, **Svg**, **Fodp**, **Xaml**, **Html5** to the list of allowed values for **SlideExportFormat** enum. You can now export slide notes to those formats.

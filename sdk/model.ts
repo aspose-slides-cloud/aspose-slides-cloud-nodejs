@@ -1413,6 +1413,23 @@ export namespace FillOverlayEffect {
 }
 
 /**
+ * Represents font info.
+ */
+export class FontData {
+
+    /**
+     * Font name
+     */
+    fontName?: string;
+
+    /**
+     * Returns true if font is embedded.
+     */
+    isEmbedded?: boolean;
+
+}
+
+/**
  * Represents font fallback rule.             
  */
 export class FontFallbackRule {
@@ -1453,6 +1470,18 @@ export class FontSet {
      * Latin font.
      */
     latin?: string;
+
+}
+
+/**
+ * List of fonts data
+ */
+export class FontsData {
+
+    /**
+     * Fonts data list.
+     */
+    list?: Array<FontData>;
 
 }
 

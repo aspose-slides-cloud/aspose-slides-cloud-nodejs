@@ -84,6 +84,7 @@
     <Content Include="test\useCases\configTests.ts" />
     <Content Include="test\useCases\convertTests.ts" />
     <Content Include="test\useCases\createTests.ts" />
+    <Content Include="test\useCases\fontTests.ts" />
     <Content Include="test\useCases\headerFooterTests.ts" />
     <Content Include="test\useCases\hyperlinkTests.ts" />
     <Content Include="test\useCases\imageTests.ts" />

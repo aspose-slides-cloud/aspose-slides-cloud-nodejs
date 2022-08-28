@@ -72,10 +72,10 @@ export class TestInitializer {
         return TestInitializer.api;
     }
 
-    public static initialize(functionName: string, invalidFieldName: string, invalidFieldType: string, invalidFieldValue: any) {
+    public static async initialize(functionName: string, invalidFieldName: string, invalidFieldType: string, invalidFieldValue: any) {
         const api = TestInitializer.getApi();
         if (!TestInitializer.isInitialized) {
-            TestInitializer.initializeStorage();
+            await TestInitializer.initializeStorage();
             TestInitializer.isInitialized = true;
         }
         const files = [];
@@ -89,52 +89,29 @@ export class TestInitializer {
             files[path] = r;
             files[path].ActualName = actualName;
         });
-        const promises = [];
         for (var path in files) {
             var rule = files[path];
             if (rule.Action == "Put") {
-                promises.push(new Promise((resolve, reject) => {
-                    api.copyFile("TempTests/" + files[path].ActualName, path)
-                        .then(() => resolve(null))
-                        .catch(() => reject(new Error("Could not upload file " + path)));
-                }));
+                await api
+                    .copyFile("TempTests/" + files[path].ActualName, path)
+                    .catch(() => { throw new Error("Could not upload file " + path) });
             } else if (rule.Action == "Delete") {
-                promises.push(new Promise((resolve, reject) => {
-                    api.deleteFile(path)
-                        .then(() => resolve(null))
-                        .catch(() => reject(new Error("Could not delete file " + path)));
-                }));
+                await api.deleteFile(path).catch(() => { throw new Error("Could not delete file " + path) });
             }
         }
-        return Promise.all(promises);
     }
 
     public static async initializeStorage() {
         const api = TestInitializer.getApi();
         const versionFilePath = "TempTests/version.txt";
-        let uploaded = false;
-        await api.downloadFile(versionFilePath).then((result) => {
-            if (TestInitializer.expectedFilesVersion == result.body.toString()) {
-                uploaded = true;
+        const versionResult = await api.downloadFile(versionFilePath).catch((err) => { console.log(err); }) as { body: Buffer };
+        if (TestInitializer.expectedFilesVersion != versionResult.body.toString()) {
+            const files = await fs.promises.readdir("TestData");
+            for (const file of files) {
+                const fileStream = fs.createReadStream("TestData/" + file);
+                await api.uploadFile("TempTests/" + file, fileStream).catch((err) => { console.log(err); });
             }
-        }).catch((err) => {
-            console.log(err);
-        });
-        if (!uploaded) {
-            const promises = [];
-            fs.readdir("TestData", (err, files) => {
-                if (err) {
-                    console.log(err);
-                }
-                files.forEach(file => {
-                    const fileStream = fs.createReadStream("TestData/" + file);
-                    promises.push(api.uploadFile("TempTests/" + file, fileStream).catch((err) => { console.log(err); }));
-                });
-            });
-            await Promise.all(promises);
-            var version = new Readable();
-            version.push(TestInitializer.expectedFilesVersion);
-            version.push(null);
+            var version = Readable.from([TestInitializer.expectedFilesVersion]);
             await api.uploadFile(versionFilePath, version).catch((err) => { console.log(err); });
         }
     }

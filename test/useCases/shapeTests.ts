@@ -934,8 +934,95 @@ describe("Shape tests", () => {
 
             const stream = fs.createReadStream("TestData/" + svgFileName)
             const response = await api.importShapesFromSvg(fileName, slideIndex, stream, 50, 50, 300, 300,
-                [1, 3, 5], "password", folderName);
+                [1, 3, 5], false, "password", folderName);
             assert.equal(3, response.body.shapesLinks.length)
+        });
+    });
+
+    it("create smart art node", () => {
+        return TestInitializer.runTest(async () => {
+            const fileName = "test.pptx";
+            const folderName = "TempSlidesSDK";
+            const slideIndex = 7;
+            const smartArtIndex = 1;
+            const newNodeText = "New root node";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            
+            const response = await api.createSmartArtNode(fileName, slideIndex, smartArtIndex, null, newNodeText,
+                null, "password", folderName);
+            assert.equal(2, response.body.nodes.length)
+            assert.equal(newNodeText, response.body.nodes[1].text)
+        });
+    });
+
+    it("create smart art sub-node", () => {
+        return TestInitializer.runTest(async () => {
+            const fileName = "test.pptx";
+            const folderName = "TempSlidesSDK";
+            const slideIndex = 7;
+            const smartArtIndex = 1;
+            const subNodePath = "1";
+            const newSubNodeText = "New sub-node";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const response = await api.createSmartArtNode(fileName, slideIndex, smartArtIndex, subNodePath, newSubNodeText,
+                1, "password", folderName);
+            assert.equal(5, response.body.nodes[0].nodes.length)
+            assert.equal(newSubNodeText, response.body.nodes[0].nodes[0].text)
+        });
+    });
+
+    it("create smart art sub-sub-node", () => {
+        return TestInitializer.runTest(async () => {
+            const fileName = "test.pptx";
+            const folderName = "TempSlidesSDK";
+            const slideIndex = 7;
+            const smartArtIndex = 1;
+            const subSubNodePath = "1/nodes/1";
+            const newSubNodeText = "New sub-sub-node";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const response = await api.createSmartArtNode(fileName, slideIndex, smartArtIndex, subSubNodePath, newSubNodeText,
+                null, "password", folderName);
+            assert.equal(1, response.body.nodes[0].nodes[0].nodes.length)
+            assert.equal(newSubNodeText, response.body.nodes[0].nodes[0].nodes[0].text)
+        });
+    });
+
+    it("delete smart art node", () => {
+        return TestInitializer.runTest(async () => {
+            const fileName = "test.pptx";
+            const folderName = "TempSlidesSDK";
+            const slideIndex = 7;
+            const smartArtIndex = 2;
+            const nodeIndex = 1;
+
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const response = await api.deleteSmartArtNode(fileName, slideIndex, smartArtIndex, nodeIndex, null,
+                "password", folderName);
+            assert.equal(2, response.body.nodes.length)
+        });
+    });
+
+    it("delete smart art sub node", () => {
+        return TestInitializer.runTest(async () => {
+            const fileName = "test.pptx";
+            const folderName = "TempSlidesSDK";
+            const slideIndex = 7;
+            const smartArtIndex = 1;
+            const nodeIndex = 1;
+            const subNodePath = "2";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const response = await api.deleteSmartArtNode(fileName, slideIndex, smartArtIndex, nodeIndex, subNodePath,
+                "password", folderName);
+            assert.equal(3, response.body.nodes[0].nodes.length)
         });
     });
 });

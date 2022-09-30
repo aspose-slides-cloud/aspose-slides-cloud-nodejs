@@ -871,6 +871,26 @@ export class CustomDashPattern {
  */
 export class DataPoint {
 
+    /**
+     * Gets or sets the fill format.
+     */
+    fillFormat?: FillFormat;
+
+    /**
+     * Gets or sets the effect format.
+     */
+    effectFormat?: EffectFormat;
+
+    /**
+     * Gets or sets the 3D format
+     */
+    threeDFormat?: ThreeDFormat;
+
+    /**
+     * Gets or sets the line format.
+     */
+    lineFormat?: LineFormat;
+
 }
 
 /**
@@ -1327,6 +1347,11 @@ export class ExportOptions {
      */
     fontFallbackRules?: Array<FontFallbackRule>;
 
+    /**
+     * Gets of sets list of font substitution rules.
+     */
+    fontSubstRules?: Array<FontSubstRule>;
+
     format?: string;
 
 }
@@ -1470,6 +1495,28 @@ export class FontSet {
      * Latin font.
      */
     latin?: string;
+
+}
+
+/**
+ * Represents font substitution rule.
+ */
+export class FontSubstRule {
+
+    /**
+     * Font to substitute.
+     */
+    sourceFont?: string;
+
+    /**
+     * Substitution font.
+     */
+    targetFont?: string;
+
+    /**
+     * Substitute when font is not found. Default: true.
+     */
+    notFoundOnly?: boolean;
 
 }
 

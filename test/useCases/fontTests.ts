@@ -23,6 +23,7 @@
 */
 
 import {TestInitializer} from "../testInitializer";
+import {ExportFormat, FontSubstRule, ImageExportOptions} from "../../sdk/model";
 
 var assert = require('assert');
 var fs = require('fs');
@@ -77,11 +78,43 @@ describe("Font tests", () => {
         });
     });
 
+    it("set embedded font from request", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const fontFileName = "calibri.ttf";
+            const fontName = "Calibri";
+            
+            const stream = fs.createReadStream("TestData/" + fontFileName)
+            
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            const result = await api.setEmbeddedFontFromRequest(stream, fileName, false, "password", folderName);
+            assert.equal(3, result.body.list.length);
+            assert.equal(true, result.body.list[2].isEmbedded);
+            assert.equal(fontName, result.body.list[2].fontName);
+        });
+    });
+
+    it("set embedded font from request online", () => {
+        return TestInitializer.runTest(async () => {
+            const fileName = "test.pptx";
+            const fontFileName = "calibri.ttf";
+
+            const fileStream = fs.createReadStream("TestData/" + fileName)
+            const fontStream = fs.createReadStream("TestData/" + fontFileName)
+            
+            const api = TestInitializer.getApi();
+            const result = await api.setEmbeddedFontFromRequestOnline(fileStream, fontStream, false, "password");
+            assert.equal(200, result.response.statusCode);
+        });
+    });
+
     it("delete embedded font", () => {
         return TestInitializer.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const fontName = "Arial";
+            const fontName = "Calibri Light";
             const api = TestInitializer.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
@@ -93,11 +126,68 @@ describe("Font tests", () => {
     it("delete embedded font online", () => {
         return TestInitializer.runTest(async () => {
             const fileName = "test.pptx";
-            const fontName = "Arial";
+            const fontName = "Calibri Light";
             const api = TestInitializer.getApi();
             const stream = fs.createReadStream("TestData/" + fileName)
 
             const result = await api.deleteEmbeddedFontOnline(stream, fontName, "password");
+            assert.equal(200, result.response.statusCode);
+        });
+    });
+
+    it("replace font", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const sourceFontName = "Calibri";
+            const targetFontName = "Times New Roman";
+            
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const result = await api.replaceFont(fileName, sourceFontName, targetFontName, true, "password", folderName);
+            assert.equal(true, result.body.list[2].isEmbedded);
+            assert.equal(targetFontName, result.body.list[2].fontName);
+        });
+    });
+
+    it("replace font online", () => {
+        return TestInitializer.runTest(async () => {
+            const sourceFontName = "Calibri";
+            const targetFontName = "Times New Roman";
+            const fileName = "test.pptx";
+            
+            const api = TestInitializer.getApi();
+            const stream = fs.createReadStream("TestData/" + fileName)
+
+            const result = await api.replaceFontOnline(stream, sourceFontName, targetFontName, true, "password");
+            assert.equal(200, result.response.statusCode);
+        });
+    });
+
+    it("font substitution", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const targetFontName = "Times New Roman";
+
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            
+            const fontRule1 = new FontSubstRule();
+            fontRule1.sourceFont = "Arial";
+            fontRule1.targetFont = targetFontName;
+            fontRule1.notFoundOnly = false;
+
+            const fontRule2 = new FontSubstRule();
+            fontRule2.sourceFont = "Arial";
+            fontRule2.targetFont = targetFontName;
+            fontRule2.notFoundOnly = false;
+            
+            const exportOptions = new ImageExportOptions();
+            exportOptions.fontSubstRules = [fontRule1, fontRule2];
+
+            const result = await api.downloadPresentation(fileName, ExportFormat.Png, exportOptions, "password", folderName);
             assert.equal(200, result.response.statusCode);
         });
     });

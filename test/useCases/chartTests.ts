@@ -23,7 +23,17 @@
 */
 
 import * as model from "../../sdk/model";
-import {Axis, AxisType, ChartWall, ChartWallType, Legend, SolidFill} from "../../sdk/model";
+import {
+    Axis,
+    AxisType,
+    BlurEffect,
+    ChartWall,
+    ChartWallType,
+    EffectFormat,
+    Legend,
+    LineFormat, OneValueChartDataPoint, OneValueSeries,
+    SolidFill
+} from "../../sdk/model";
 import {TestInitializer} from "../testInitializer";
 
 var assert = require('assert');
@@ -502,6 +512,45 @@ describe("Chart tests", () => {
 
             let result = await api.setChartWall(fileName, 8, 2, ChartWallType.BackWall, wall, "password", folderName);
             assert.equal("Solid" ,result.body.fillFormat.type);
+        });
+    });
+
+    it("update data potin format", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const fillFormat = new SolidFill();
+            fillFormat.color = "#77CEF9";
+            const lineFormat = new LineFormat();
+            const lineFillFormat = new SolidFill();
+            fillFormat.color = "#77CEF9";
+            lineFormat.fillFormat = new SolidFill();
+            lineFormat.fillFormat = lineFillFormat
+            const effectFormat = new EffectFormat();
+            effectFormat.blur = new BlurEffect();
+            effectFormat.blur.grow = true;
+            effectFormat.blur.radius = 5;
+            
+            const dto = new OneValueChartDataPoint();
+            dto.value = 40;
+            dto.fillFormat = fillFormat;
+            dto.lineFormat = lineFormat;
+            dto.effectFormat = effectFormat;
+            
+            const slideIndex = 8;
+            const shapeIndex = 2;
+            const seriesIndex = 2;
+            const dataPointIndex = 2;
+
+            let result = await api.updateChartDataPoint(fileName, slideIndex, shapeIndex, seriesIndex, dataPointIndex, dto, "password", folderName);
+            var series = Object.assign(new OneValueSeries(), result.body.series[seriesIndex - 1]);
+            const dataPoint =  series.dataPoints[dataPointIndex -1];
+            assert.equal("Solid" ,dataPoint.fillFormat.type);
+            assert.equal("Solid" ,dataPoint.lineFormat.fillFormat.type);
+            assert.notEqual(null, dataPoint.effectFormat.blur);
         });
     });
 });

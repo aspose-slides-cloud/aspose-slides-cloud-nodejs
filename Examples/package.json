@@ -1,0 +1,16 @@
+{
+  "name": "asposeslidescloud-examples",
+  "version": "19.1.0",
+  "description": "asposeslidescloud package Usage Examples",
+  "homepage": "https://products.aspose.cloud/slides/cloud",
+  "author": {
+    "name": "Victor Putrov"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4.8"
+  },
+  "dependencies": {
+    "asposeslidescloud": "^19.1.0"
+  }
+}

@@ -169,7 +169,7 @@ export class TestInitializer {
                     });
                 }
                 if (err.code) {
-                    assert.equal(code, err.code);
+                    assert.equal(err.code, code);
                 }
                 if (err.message) {
                     assert(err.message.includes(TestInitializer.untemplatize(message, fieldName, fieldValue)));

@@ -63,8 +63,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async alignShapes(name: string, slideIndex: number, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async alignShapes(name: string, slideIndex: number, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling alignShapes.');
@@ -90,6 +91,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -114,8 +116,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async alignSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async alignSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling alignSpecialSlideShapes.');
@@ -150,58 +153,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Shapes");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other (for group shapes only). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path (for smart art and group shapes).
-     * @param alignmentType Alignment type that will be applied to the shapes.
-     * @param alignToSlide If true, shapes will be aligned relative to the slide edges.
-     * @param shapes Shapes indexes.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async alignSubshapes(name: string, slideIndex: number, path: string = null, alignmentType: model.ShapesAlignmentType, alignToSlide: boolean = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling alignSubshapes.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling alignSubshapes.');
-        }
-        // verify required parameter 'alignmentType' is not null or undefined
-        if (alignmentType === null || alignmentType === undefined) {
-            throw new Error('The required parameter "alignmentType" was null or undefined when calling alignSubshapes.');
-        }
-        // verify value of enum parameter 'alignmentType' is valid
-        if (!Object.keys(model.ShapesAlignmentType).filter(i => model.ShapesAlignmentType[i].toLowerCase() == alignmentType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for alignmentType: ' + alignmentType + '. Must be one of the following: ' + Object.keys(model.ShapesAlignmentType).map(key => model.ShapesAlignmentType[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/align/{alignmentType}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "alignmentType", ObjectSerializer.toString(alignmentType));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "alignToSlide", alignToSlide);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -1036,8 +988,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createParagraph(name: string, slideIndex: number, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+    public async createParagraph(name: string, slideIndex: number, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createParagraph.');
@@ -1062,6 +1015,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -1086,8 +1040,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+    public async createPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createPortion.');
@@ -1117,6 +1072,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -1301,8 +1257,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createShape(name: string, slideIndex: number, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async createShape(name: string, slideIndex: number, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createShape.');
@@ -1319,6 +1276,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -1391,7 +1349,7 @@ export class SlidesApi {
         if (smartArtIndex === null || smartArtIndex === undefined) {
             throw new Error('The required parameter "smartArtIndex" was null or undefined when calling createSmartArtNode.');
         }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/smartArts/{smartArtIndex}/nodes";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "smartArtIndex", ObjectSerializer.toString(smartArtIndex));
@@ -1584,8 +1542,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+    public async createSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideParagraph.');
@@ -1619,6 +1578,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -1644,8 +1604,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+    public async createSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlidePortion.');
@@ -1684,6 +1645,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -1708,8 +1670,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideShape.');
@@ -1735,6 +1698,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -1745,338 +1709,6 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Create new shape (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param dto Shape DTO.
-     * @param shapeToClone Optional index for clone shape instead of adding a new one.
-     * @param position Position of the new shape in the list. Default is at the end of the list.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async createSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling createSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeToClone", shapeToClone);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Creates new paragraph (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param dto Paragraph DTO.
-     * @param position Position of the new paragraph in the list. Default is at the end of the list.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async createSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling createSpecialSlideSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Creates new portion (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param dto Portion DTO.
-     * @param position Position of the new portion in the list. Default is at the end of the list.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async createSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling createSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling createSpecialSlideSubshapePortion.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling createSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling createSpecialSlideSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portion");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Create new shape (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param dto Shape DTO.
-     * @param shapeToClone Optional index for clone shape instead of adding a new one.
-     * @param position Position of the new shape in the list. Default is at the end of the list.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async createSubshape(name: string, slideIndex: number, path: string = null, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling createSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling createSubshape.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeToClone", shapeToClone);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Creates new paragraph (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param dto Paragraph DTO.
-     * @param position Position of the new paragraph in the list. Default is at the end of the list.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async createSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, dto: model.Paragraph, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling createSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling createSubshapeParagraph.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSubshapeParagraph.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling createSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Creates new portion (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param dto Portion DTO.
-     * @param position Position of the new portion in the list. Default is at the end of the list.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async createSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Portion, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling createSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling createSubshapePortion.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling createSubshapePortion.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling createSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
     }
 
@@ -2881,8 +2513,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+    public async deleteParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteParagraph.');
@@ -2907,6 +2540,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -2929,8 +2563,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteParagraphs(name: string, slideIndex: number, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+    public async deleteParagraphs(name: string, slideIndex: number, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteParagraphs.');
@@ -2951,6 +2586,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", paragraphs);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -2974,8 +2610,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deletePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+    public async deletePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deletePortion.');
@@ -3005,6 +2642,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -3028,8 +2666,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deletePortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+    public async deletePortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deletePortions.');
@@ -3055,6 +2694,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", portions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -3213,8 +2853,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async deleteShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteShape.');
@@ -3234,6 +2875,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -3255,8 +2897,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteShapes(name: string, slideIndex: number, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async deleteShapes(name: string, slideIndex: number, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteShapes.');
@@ -3272,6 +2915,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -3458,7 +3102,7 @@ export class SlidesApi {
         if (nodeIndex === null || nodeIndex === undefined) {
             throw new Error('The required parameter "nodeIndex" was null or undefined when calling deleteSmartArtNode.');
         }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes/{nodeIndex}";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/smartArts/{smartArtIndex}/nodes/{nodeIndex}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "smartArtIndex", ObjectSerializer.toString(smartArtIndex));
@@ -3790,8 +3434,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+    public async deleteSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideParagraph.');
@@ -3825,6 +3470,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -3848,8 +3494,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+    public async deleteSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideParagraphs.');
@@ -3879,6 +3526,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", paragraphs);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -3903,8 +3551,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+    public async deleteSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlidePortion.');
@@ -3943,6 +3592,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -3967,8 +3617,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+    public async deleteSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlidePortions.');
@@ -4003,6 +3654,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", portions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -4025,8 +3677,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async deleteSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideShape.');
@@ -4055,6 +3708,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -4077,8 +3731,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async deleteSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async deleteSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideShapes.');
@@ -4103,642 +3758,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Shapes");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a shape (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshape.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Shapes");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a paragraph (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteSpecialSlideSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a range of paragraphs (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphs The indices of the shapes to be deleted; delete all by default.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSpecialSlideSubshapeParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapeParagraphs.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSpecialSlideSubshapeParagraphs.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapeParagraphs.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshapeParagraphs.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", paragraphs);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a portion (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling deleteSpecialSlideSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portions");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a range of portions (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portions The indices of the shapes to be deleted; delete all by default.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSpecialSlideSubshapePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteSpecialSlideSubshapePortions.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", portions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portions");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a range of shapes (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapes The indices of the shapes to be deleted; delete all by default.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSpecialSlideSubshapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSpecialSlideSubshapes.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSpecialSlideSubshapes.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling deleteSpecialSlideSubshapes.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Shapes");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a shape (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSubshape.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSubshape.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Shapes");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a paragraph (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSubshapeParagraph.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSubshapeParagraph.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a range of paragraphs (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphs The indices of the paragraphs to be deleted; delete all by default.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSubshapeParagraphs(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphs: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapeParagraphs.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSubshapeParagraphs.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSubshapeParagraphs.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paragraphs", paragraphs);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a portion (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSubshapePortion.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteSubshapePortion.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling deleteSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portions");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a range of portions (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portions The indices of the portions to be deleted; delete all by default.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSubshapePortions(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portions: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapePortions.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSubshapePortions.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteSubshapePortions.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteSubshapePortions.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "portions", portions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portions");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Remove a range of shapes (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapes The indices of the shapes to be deleted; delete all by default.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async deleteSubshapes(name: string, slideIndex: number, path: string = null, shapes: Array<number> = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteSubshapes.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteSubshapes.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapes", shapes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
@@ -5493,8 +4513,9 @@ export class SlidesApi {
      * @param folder Presentation folder.
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async downloadShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+    public async downloadShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadShape.');
@@ -5531,6 +4552,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -5740,8 +4762,9 @@ export class SlidesApi {
      * @param folder Presentation folder.
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async downloadSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+    public async downloadSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling downloadSpecialSlideShape.');
@@ -5787,152 +4810,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: options,
-            encoding: null
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Render shape to specified picture format (for smart art and group shapes). 
-     * @param name Presentation name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Index of shape starting from 1
-     * @param format Export picture format.
-     * @param options export options
-     * @param scaleX X scale ratio.
-     * @param scaleY Y scale ratio.
-     * @param bounds Shape thumbnail bounds type.
-     * @param password Document password.
-     * @param folder Presentation folder.
-     * @param storage Presentation storage.
-     * @param fontsFolder Fonts folder.
-     */
-    public async downloadSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling downloadSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling downloadSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling downloadSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling downloadSpecialSlideSubshape.');
-        }
-        // verify required parameter 'format' is not null or undefined
-        if (format === null || format === undefined) {
-            throw new Error('The required parameter "format" was null or undefined when calling downloadSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'format' is valid
-        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
-        }
-        // verify value of enum parameter 'bounds' is valid
-        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", scaleX);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", scaleY);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bounds", bounds);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: options,
-            encoding: null
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Render shape to specified picture format (for smart art and group shapes). 
-     * @param name Presentation name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Index of shape starting from 1
-     * @param format Export picture format.
-     * @param options export options
-     * @param scaleX X scale ratio.
-     * @param scaleY Y scale ratio.
-     * @param bounds Shape thumbnail bounds type.
-     * @param password Document password.
-     * @param folder Presentation folder.
-     * @param storage Presentation storage.
-     * @param fontsFolder Fonts folder.
-     */
-    public async downloadSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling downloadSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling downloadSubshape.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling downloadSubshape.');
-        }
-        // verify required parameter 'format' is not null or undefined
-        if (format === null || format === undefined) {
-            throw new Error('The required parameter "format" was null or undefined when calling downloadSubshape.');
-        }
-        // verify value of enum parameter 'format' is valid
-        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
-        }
-        // verify value of enum parameter 'bounds' is valid
-        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", scaleX);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", scaleY);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bounds", bounds);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -6586,8 +5464,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+    public async getParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getParagraph.');
@@ -6612,6 +5491,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -6634,8 +5514,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getParagraphEffective(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+    public async getParagraphEffective(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getParagraphEffective.');
@@ -6660,6 +5541,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -6729,8 +5611,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getParagraphs(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+    public async getParagraphs(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getParagraphs.');
@@ -6750,6 +5633,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -6851,8 +5735,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+    public async getPortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPortion.');
@@ -6882,6 +5767,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -6905,8 +5791,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getPortionEffective(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+    public async getPortionEffective(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPortionEffective.');
@@ -6936,6 +5823,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7012,8 +5900,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getPortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+    public async getPortions(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getPortions.');
@@ -7038,6 +5927,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7211,8 +6101,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async getShape(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getShape.');
@@ -7232,6 +6123,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7295,8 +6187,9 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      * @param shapeType Shape type.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getShapes(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null, shapeType: model.ShapeType = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async getShapes(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null, shapeType: model.ShapeType = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getShapes.');
@@ -7316,6 +6209,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeType", shapeType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7504,6 +6398,36 @@ export class SlidesApi {
     }
 
     /**
+     * Read presentation slide show properties. 
+     * @param name Document name.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getSlideShowProperties(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideShowProperties}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getSlideShowProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slideShowProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideShowProperties");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Extract slide text items. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -7631,8 +6555,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+    public async getSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideParagraph.');
@@ -7666,6 +6591,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7688,8 +6614,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+    public async getSpecialSlideParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideParagraphs.');
@@ -7718,6 +6645,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7742,8 +6670,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+    public async getSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlidePortion.');
@@ -7782,6 +6711,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7805,8 +6735,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+    public async getSpecialSlidePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlidePortions.');
@@ -7840,6 +6771,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7862,8 +6794,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async getSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideShape.');
@@ -7892,6 +6825,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -7913,8 +6847,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async getSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
+    public async getSpecialSlideShapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideShapes.');
@@ -7938,736 +6873,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Shapes");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read special slide shape info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshape.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read shape paragraph info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSpecialSlideSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read shape paragraphs info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSpecialSlideSubshapeParagraphs(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapeParagraphs.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSpecialSlideSubshapeParagraphs.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapeParagraphs.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshapeParagraphs.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read paragraph portion info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapePortion.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling getSpecialSlideSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portion");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read paragraph portions info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSpecialSlideSubshapePortions(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapePortions.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSpecialSlideSubshapePortions.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapePortions.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSpecialSlideSubshapePortions.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSpecialSlideSubshapePortions.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portions");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read special slide shapes info. 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path (for smart art and group shapes).
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSpecialSlideSubshapes(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSpecialSlideSubshapes.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSpecialSlideSubshapes.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling getSpecialSlideSubshapes.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Shapes");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read slide shape info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshape.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshape.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read shape paragraph info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapeParagraph.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapeParagraph.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read effective paragraph info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshapeParagraphEffective(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshapeParagraphEffective.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapeParagraphEffective.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapeParagraphEffective.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSubshapeParagraphEffective.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/effective";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read shape paragraphs info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshapeParagraphs(name: string, slideIndex: number, path: string = null, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshapeParagraphs.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapeParagraphs.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapeParagraphs.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read paragraph portion info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapePortion.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSubshapePortion.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling getSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portion");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read effective portion info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshapePortionEffective(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshapePortionEffective.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapePortionEffective.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapePortionEffective.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSubshapePortionEffective.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling getSubshapePortionEffective.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/effective";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portion");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read paragraph portions info (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshapePortions(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshapePortions.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapePortions.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getSubshapePortions.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getSubshapePortions.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: true
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portions");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Read slide shapes info. 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path (for smart art and group shapes).
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async getSubshapes(name: string, slideIndex: number, path: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getSubshapes.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getSubshapes.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -9840,8 +8046,9 @@ export class SlidesApi {
      * @param folder Presentation folder.
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async saveShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
+    public async saveShape(name: string, slideIndex: number, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, subShape: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling saveShape.');
@@ -9883,6 +8090,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -10107,8 +8315,9 @@ export class SlidesApi {
      * @param folder Presentation folder.
      * @param storage Presentation storage.
      * @param fontsFolder Fonts folder.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async saveSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
+    public async saveSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, subShape: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling saveSpecialSlideShape.');
@@ -10159,162 +8368,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: options
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        
-        return Promise.resolve({ response });
-    }
-
-    /**
-     * Render shape to specified picture format. 
-     * @param name Presentation name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path (for smart art and group shapes).
-     * @param shapeIndex Index of shape starting from 1
-     * @param format Export picture format.
-     * @param outPath Output path.
-     * @param options export options
-     * @param scaleX X scale ratio.
-     * @param scaleY Y scale ratio.
-     * @param bounds Shape thumbnail bounds type.
-     * @param password Document password.
-     * @param folder Presentation folder.
-     * @param storage Presentation storage.
-     * @param fontsFolder Fonts folder.
-     */
-    public async saveSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling saveSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling saveSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling saveSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling saveSpecialSlideSubshape.');
-        }
-        // verify required parameter 'format' is not null or undefined
-        if (format === null || format === undefined) {
-            throw new Error('The required parameter "format" was null or undefined when calling saveSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'format' is valid
-        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
-        }
-        // verify required parameter 'outPath' is not null or undefined
-        if (outPath === null || outPath === undefined) {
-            throw new Error('The required parameter "outPath" was null or undefined when calling saveSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'bounds' is valid
-        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", scaleX);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", scaleY);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bounds", bounds);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: options
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        
-        return Promise.resolve({ response });
-    }
-
-    /**
-     * Render shape to specified picture format. 
-     * @param name Presentation name.
-     * @param slideIndex Slide index.
-     * @param path Shape path (for smart art and group shapes).
-     * @param shapeIndex Index of shape starting from 1
-     * @param format Export picture format.
-     * @param outPath Output path.
-     * @param options export options
-     * @param scaleX X scale ratio.
-     * @param scaleY Y scale ratio.
-     * @param bounds Shape thumbnail bounds type.
-     * @param password Document password.
-     * @param folder Presentation folder.
-     * @param storage Presentation storage.
-     * @param fontsFolder Fonts folder.
-     */
-    public async saveSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, format: model.ShapeExportFormat, outPath: string, options: model.IShapeExportOptions = null, scaleX: number = null, scaleY: number = null, bounds: model.ShapeThumbnailBounds = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling saveSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling saveSubshape.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling saveSubshape.');
-        }
-        // verify required parameter 'format' is not null or undefined
-        if (format === null || format === undefined) {
-            throw new Error('The required parameter "format" was null or undefined when calling saveSubshape.');
-        }
-        // verify value of enum parameter 'format' is valid
-        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
-        }
-        // verify required parameter 'outPath' is not null or undefined
-        if (outPath === null || outPath === undefined) {
-            throw new Error('The required parameter "outPath" was null or undefined when calling saveSubshape.');
-        }
-        // verify value of enum parameter 'bounds' is valid
-        if (bounds != null && bounds != undefined && !Object.keys(model.ShapeThumbnailBounds).filter(i => model.ShapeThumbnailBounds[i].toLowerCase() == bounds.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for bounds: ' + bounds + '. Must be one of the following: ' + Object.keys(model.ShapeThumbnailBounds).map(key => model.ShapeThumbnailBounds[key]).join());
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", scaleX);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", scaleY);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bounds", bounds);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -11215,6 +9269,41 @@ export class SlidesApi {
     }
 
     /**
+     * Update presentation slide show properties. 
+     * @param name Document name.
+     * @param dto The slide show properties data.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async setSlideShowProperties(name: string, dto: model.SlideShowProperties, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.SlideShowProperties}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling setSlideShowProperties.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling setSlideShowProperties.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slideShowProperties";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: dto
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "SlideShowProperties");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Set special slide (master, layout, notes) animation. 
      * @param name Document name.
      * @param slideIndex Parent slide index.
@@ -11837,8 +9926,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async updateParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+    public async updateParagraph(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateParagraph.');
@@ -11867,6 +9957,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -11891,8 +9982,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async updatePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+    public async updatePortion(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updatePortion.');
@@ -11926,6 +10018,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -11990,8 +10083,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async updateShape(name: string, slideIndex: number, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async updateShape(name: string, slideIndex: number, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateShape.');
@@ -12015,6 +10109,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -12200,8 +10295,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async updateSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+    public async updateSpecialSlideParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideParagraph.');
@@ -12239,6 +10335,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -12264,8 +10361,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async updateSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+    public async updateSpecialSlidePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlidePortion.');
@@ -12308,6 +10406,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -12331,8 +10430,9 @@ export class SlidesApi {
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async updateSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async updateSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideShape.');
@@ -12365,6 +10465,7 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "subShape", subShape);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -12375,366 +10476,6 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Update shape properties (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param dto Shape DTO.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async updateSpecialSlideSubshape(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateSpecialSlideSubshape.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideSubshape.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSpecialSlideSubshape.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling updateSpecialSlideSubshape.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Update paragraph properties (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param dto Paragraph DTO.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async updateSpecialSlideSubshapeParagraph(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling updateSpecialSlideSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Update portion properties (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Parent slide index.
-     * @param slideType Slide type (master, layout or notes).
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param dto Portion DTO.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async updateSpecialSlideSubshapePortion(name: string, slideIndex: number, slideType: model.SpecialSlideType, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling updateSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'slideType' is not null or undefined
-        if (slideType === null || slideType === undefined) {
-            throw new Error('The required parameter "slideType" was null or undefined when calling updateSpecialSlideSubshapePortion.');
-        }
-        // verify value of enum parameter 'slideType' is valid
-        if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
-            throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling updateSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling updateSpecialSlideSubshapePortion.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling updateSpecialSlideSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portion");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Update shape properties (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param dto Shape DTO.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async updateSubshape(name: string, slideIndex: number, path: string = null, shapeIndex: number, dto: model.ShapeBase, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling updateSubshape.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateSubshape.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSubshape.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling updateSubshape.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Update paragraph properties (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param dto Paragraph DTO.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async updateSubshapeParagraph(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling updateSubshapeParagraph.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateSubshapeParagraph.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSubshapeParagraph.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling updateSubshapeParagraph.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling updateSubshapeParagraph.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Update portion properties (for smart art and group shapes). 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param path Shape path.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param dto Portion DTO.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async updateSubshapePortion(name: string, slideIndex: number, path: string = null, shapeIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling updateSubshapePortion.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateSubshapePortion.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateSubshapePortion.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling updateSubshapePortion.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling updateSubshapePortion.');
-        }
-        // verify required parameter 'dto' is not null or undefined
-        if (dto === null || dto === undefined) {
-            throw new Error('The required parameter "dto" was null or undefined when calling updateSubshapePortion.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            headers: {},
-            uri: localVarPath,
-            json: dto
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Portion");
         return Promise.resolve({ body: result, response });
     }
 

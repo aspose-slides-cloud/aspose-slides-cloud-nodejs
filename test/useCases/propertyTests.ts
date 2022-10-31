@@ -305,4 +305,39 @@ describe("Property tests", () => {
             assert.notEqual(result.body.readPassword, null);
         });
     });
+
+    it("get slideshow properties", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const response = await api.getSlideShowProperties(fileName, "password", folderName);
+            assert.equal((response.body as model.SlideShowProperties).showAnimation, true);
+            assert.equal((response.body as model.SlideShowProperties).showNarration, true);
+        });
+    });
+
+    it("set slideshow properties", () => {
+        return TestInitializer.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+
+            const api = TestInitializer.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const dto = new model.SlideShowProperties();
+            dto.loop = true;
+            dto.useTimings = true;
+            dto.slideShowType = model.SlideShowProperties.SlideShowTypeEnum.PresentedBySpeaker;
+            
+
+            const response = await api.setSlideShowProperties(fileName, dto, "password", folderName);
+            assert.equal((response.body as model.SlideShowProperties).loop, dto.loop);
+            assert.equal((response.body as model.SlideShowProperties).useTimings, dto.useTimings);
+            assert.equal((response.body as model.SlideShowProperties).slideShowType, dto.slideShowType);
+        });
+    });
 });

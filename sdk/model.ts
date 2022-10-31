@@ -990,6 +990,16 @@ export class Effect {
      */
     triggerDelayTime?: number;
 
+    /**
+     * Specifies if the effect will repeat until the end of slide.
+     */
+    repeatUntilEndSlide?: boolean;
+
+    /**
+     * Specifies if the effect will repeat until the next click.
+     */
+    repeatUntilNextClick?: boolean;
+
 }
 export namespace Effect {
     export enum TypeEnum {
@@ -7459,6 +7469,68 @@ export namespace SlideProperties {
         OnScreen16x9 = <any> 'OnScreen16x9',
         OnScreen16x10 = <any> 'OnScreen16x10',
         Widescreen = <any> 'Widescreen'
+    }
+}
+
+/**
+ * Slide show properties.
+ */
+export class SlideShowProperties extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Loop slide show.
+     */
+    loop?: boolean;
+
+    /**
+     * Start slide in the slide show.
+     */
+    startSlide?: number;
+
+    /**
+     * End slides in the slide show.
+     */
+    endSlide?: number;
+
+    /**
+     * Pen color.
+     */
+    penColor?: string;
+
+    /**
+     * Show animation.
+     */
+    showAnimation?: boolean;
+
+    /**
+     * Show narrration.
+     */
+    showNarration?: boolean;
+
+    /**
+     * Use timings.
+     */
+    useTimings?: boolean;
+
+    /**
+     * Slide show type.
+     */
+    slideShowType?: SlideShowProperties.SlideShowTypeEnum;
+
+    /**
+     * Show scroll bar. Applied with BrowsedByIndividual slide show type.
+     */
+    showScrollbar?: boolean;
+
+}
+export namespace SlideShowProperties {
+    export enum SlideShowTypeEnum {
+        BrowsedAtKiosk = <any> 'BrowsedAtKiosk',
+        BrowsedByIndividual = <any> 'BrowsedByIndividual',
+        PresentedBySpeaker = <any> 'PresentedBySpeaker'
     }
 }
 

@@ -63,7 +63,8 @@ describe("Shape tests", () => {
             const api = TestInitializer.getApi();
             const slideIndex = 1;
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.getSubshapes(fileName, slideIndex, "4/shapes", "password", folderName);
+            const result = await api.getShapes(fileName, slideIndex, "password", folderName,  
+            null, null, "4");
             assert.equal((result.body as model.Shapes).shapesLinks.length, 2);
         });
     });
@@ -87,9 +88,10 @@ describe("Shape tests", () => {
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
             const slideIndex = 1;
-            const shapeIndex = 1;
+            const shapeIndex = 4;
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.getSubshape(fileName, slideIndex, "4/shapes", shapeIndex, "password", folderName);
+            const result = await api.getShape(fileName, slideIndex, shapeIndex, "password", folderName, 
+            null, "1");
             assert.equal((result.body as model.ShapeBase).type, "Shape");
         });
     });
@@ -227,7 +229,7 @@ describe("Shape tests", () => {
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.createShape(fileName, 1, new model.VideoFrame(), null, null, "password", folderName)
-                    .then(() => assert.fail("VideoFrame with undefinined data should not have been created"))
+                    .then(() => assert.fail("VideoFrame with undefined data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
                     });
@@ -298,11 +300,11 @@ describe("Shape tests", () => {
             fillFormat.color = "#FFFFFF00";
             portion.fillFormat = fillFormat;
 
-            const targetNodePath = "1/nodes/1/nodes";
+            const targetNodePath = "1/nodes/2";
             const slideIndex = 7;
 
-            const response = await api.updateSubshapePortion(fileName, slideIndex, targetNodePath, 2,
-                1, 1, portion, "password", folderName);
+            const response = await api.updatePortion(fileName, slideIndex, 1,
+                1, 1, portion, "password", folderName, null, targetNodePath);
 
             assert.notEqual(null, response);
             assert.equal(portion.text, response.body.text)
@@ -497,7 +499,8 @@ describe("Shape tests", () => {
             dto.height = 50;
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.createSubshape(fileName, slideIndex, "4/shapes", dto, null, null, "password", folderName);
+            const result = await api.createShape(fileName, slideIndex,  dto, null, null, 
+            "password", folderName, null, "4");
 
             assert.equal((result.body as model.ShapeBase).type, "Shape");
         });
@@ -534,7 +537,7 @@ describe("Shape tests", () => {
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
             const slideIndex = 1;
-            const shapeIndex = 1;
+            const shapeIndex = 4;
 
             const gradientStop1 = new model.GradientFillStop();
             gradientStop1.color = "#FFF5FF8A";
@@ -555,7 +558,8 @@ describe("Shape tests", () => {
             dto.fillFormat = fillFormatDto;
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.updateSubshape(fileName, slideIndex, "4/shapes", shapeIndex, dto, "password", folderName);
+            const result = await api.updateShape(fileName, slideIndex, shapeIndex, dto, "password", folderName, 
+            null, "1");
 
             assert.equal((result.body as model.ShapeBase).type, "Shape");
             assert.equal((result.body as model.ShapeBase).width, dto.width);
@@ -600,7 +604,8 @@ describe("Shape tests", () => {
             const slideIndex = 1;
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.deleteSubshapes(fileName, slideIndex, "4/shapes", null, "password", folderName);
+            const result = await api.deleteShapes(fileName, slideIndex, null, "password", folderName,
+                null, "4");
 
             assert.equal((result.body as model.Shapes).shapesLinks.length, 0);
         });
@@ -614,7 +619,7 @@ describe("Shape tests", () => {
             const slideIndex = 1;
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.deleteSubshapes(fileName, slideIndex, "4/shapes", [2], "password", folderName);
+            const result = await api.deleteShapes(fileName, slideIndex, [2], "password", folderName, null, "4");
 
             assert.equal((result.body as model.Shapes).shapesLinks.length, 1);
         });
@@ -641,10 +646,10 @@ describe("Shape tests", () => {
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
             const slideIndex = 1;
-            const shapeIndex = 1;
+            const shapeIndex = 4;
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.deleteSubshape(fileName, slideIndex, "4/shapes", shapeIndex, "password", folderName);
+            const result = await api.deleteShape(fileName, slideIndex, shapeIndex, "password", folderName, null, "1");
 
             assert.equal((result.body as model.Shapes).shapesLinks.length, 1);
         });
@@ -701,30 +706,30 @@ describe("Shape tests", () => {
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
-            const path = "4/shapes";
-            const shape1Index = 1;
-            const shape2Index = 2;
+            const shapeIndex = 4;
+            const subShape1Path = "1";
+            const subShape2Path = "2";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getSubshape(fileName, slideIndex, path, shape1Index, password, folderName).then((getResult11) => {
+                return api.getShape(fileName, slideIndex, shapeIndex, password, folderName, null, subShape1Path).then((getResult11) => {
                     assert.equal(200, getResult11.response.statusCode);
-                    return api.getSubshape(fileName, slideIndex, path, shape2Index, password, folderName).then((getResult12) => {
+                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName, null, subShape2Path).then((getResult12) => {
                         assert.equal(200, getResult12.response.statusCode);
                         assert((getResult11.body as model.ShapeBase).x != (getResult12.body as model.ShapeBase).x);
                         assert((getResult11.body as model.ShapeBase).y != (getResult12.body as model.ShapeBase).y);
-                        return api.alignSubshapes(fileName, slideIndex, path, model.ShapesAlignmentType.AlignTop, null, null, password, folderName).then((result1) => {
+                        return api.alignShapes(fileName, slideIndex, model.ShapesAlignmentType.AlignTop, null, null, password, folderName, null, "4").then((result1) => {
                             assert.equal(200, result1.response.statusCode);
-                            return api.getSubshape(fileName, slideIndex, path, shape1Index, password, folderName).then((getResult21) => {
+                            return api.getShape(fileName, slideIndex, shapeIndex, password, folderName, null, subShape1Path).then((getResult21) => {
                                 assert.equal(200, getResult21.response.statusCode);
-                                return api.getSubshape(fileName, slideIndex, path, shape2Index, password, folderName).then((getResult22) => {
+                                return api.getShape(fileName, slideIndex, shapeIndex, password, folderName, null, subShape2Path).then((getResult22) => {
                                     assert.equal(200, getResult22.response.statusCode);
                                     assert((getResult21.body as model.ShapeBase).x != (getResult22.body as model.ShapeBase).x);
                                     assert(Math.abs((getResult21.body as model.ShapeBase).y - (getResult22.body as model.ShapeBase).y) < 1);
-                                    return api.alignSubshapes(fileName, slideIndex, path, model.ShapesAlignmentType.AlignLeft, true, [1, 2], password, folderName).then((result2) => {
+                                    return api.alignShapes(fileName, slideIndex, model.ShapesAlignmentType.AlignLeft, true, [1, 2], password, folderName, null, "4").then((result2) => {
                                         assert.equal(200, result2.response.statusCode);
-                                        return api.getSubshape(fileName, slideIndex, path, shape1Index, password, folderName).then((getResult31) => {
+                                        return api.getShape(fileName, slideIndex, shapeIndex, password, folderName, null, subShape1Path).then((getResult31) => {
                                             assert.equal(200, getResult31.response.statusCode);
-                                            return api.getSubshape(fileName, slideIndex, path, shape2Index, password, folderName).then((getResult32) => {
+                                            return api.getShape(fileName, slideIndex, shapeIndex, password, folderName, null, subShape2Path).then((getResult32) => {
                                                 assert.equal(200, getResult32.response.statusCode);
                                                 assert(Math.abs((getResult31.body as model.ShapeBase).x - (getResult32.body as model.ShapeBase).x) < 1);
                                                 assert(Math.abs((getResult31.body as model.ShapeBase).y - (getResult32.body as model.ShapeBase).y) < 1);
@@ -911,15 +916,17 @@ describe("Shape tests", () => {
         shape3.y = 400;
         shape3.width = 50;
         shape3.height = 50;
+        
+        const shapePath = "1";
 
-        await api.createSubshape(fileName, slideIndex, "1/shapes", shape1, null, null, "password", folderName);
-        await api.createSubshape(fileName, slideIndex, "1/shapes", shape2, null, null, "password", folderName);
-        await api.createSubshape(fileName, slideIndex, "1/shapes", shape2, null, null, "password", folderName);
+        await api.createShape(fileName, slideIndex, shape1, null, null, "password", folderName, null, shapePath);
+        await api.createShape(fileName, slideIndex, shape2, null, null, "password", folderName, null, shapePath);
+        await api.createShape(fileName, slideIndex, shape2, null, null, "password", folderName, null, shapePath);
 
         shapes = await api.getShapes(fileName, slideIndex, "password", folderName);
         assert.equal(1, shapes.body.shapesLinks.length);
 
-        shapes = await api.getSubshapes(fileName, slideIndex, "1/shapes", "password", folderName);
+        shapes = await api.getShapes(fileName, slideIndex, "password", folderName, null, null, shapePath);
         assert.equal(3, shapes.body.shapesLinks.length);
     });
 

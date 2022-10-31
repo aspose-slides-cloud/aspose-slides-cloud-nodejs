@@ -253,8 +253,9 @@ describe("Convert tests", () => {
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadSubshape(fileName, 1, "4/shapes", 1, model.ShapeExportFormat.Png, null, null, null, null, "password", folderName).then((result) => {
-                    assert.equal(200, result.response.statusCode);
+                return api.downloadShape(fileName, 1,  4, model.ShapeExportFormat.Png, null,
+                 null, null, null, "password", folderName, null, null, 
+                 "1").then((result) => {assert.equal(200, result.response.statusCode);
                 });
             });
         });
@@ -267,7 +268,8 @@ describe("Convert tests", () => {
             const outPath = "TestData/test.png";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.saveShape(fileName, 1, 1, model.ShapeExportFormat.Png, outPath, null, null, null, null, "password", folderName).then((putResult) => {
+                return api.saveShape(fileName, 1, 1, model.ShapeExportFormat.Png, outPath, 
+                null, null, null, null, "password", folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     return api.objectExists(outPath).then((existsResult) => {
                         assert.equal(200, existsResult.response.statusCode);
@@ -285,7 +287,9 @@ describe("Convert tests", () => {
             const outPath = "TestData/test.png";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.saveSubshape(fileName, 1, "4/shapes", 1, model.ShapeExportFormat.Png, outPath, null, null, null, null, "password", folderName).then((putResult) => {
+                return api.saveShape(fileName, 1, 4, model.ShapeExportFormat.Png, outPath, 
+                null, null, null, null, "password", folderName, null, 
+                null, "1").then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     return api.objectExists(outPath).then((existsResult) => {
                         assert.equal(200, existsResult.response.statusCode);

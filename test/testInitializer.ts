@@ -68,6 +68,7 @@ export class TestInitializer {
         if (!TestInitializer.api) {
             const config = require("../testConfig.json");
             TestInitializer.api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
+            TestInitializer.api.configuration.allowInsecureRequests = config.AllowInsecureRequests;
         }
         return TestInitializer.api;
     }
@@ -97,6 +98,7 @@ export class TestInitializer {
                     .catch(() => { throw new Error("Could not upload file " + path) });
             } else if (rule.Action == "Delete") {
                 await api.deleteFile(path).catch(() => { throw new Error("Could not delete file " + path) });
+                await api.deleteFolder(path).catch(() => { throw new Error("Could not delete folder " + path) });
             }
         }
     }

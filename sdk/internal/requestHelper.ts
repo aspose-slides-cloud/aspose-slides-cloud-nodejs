@@ -117,10 +117,10 @@ export function addHeaderParameter(headers: any, parameterName: string, paramete
 /**
  * Invoke api method
  * @param requestOptions request parameters
- * @param confguration api configuration
+ * @param configuration api configuration
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
-async function invokeApiMethodInternal(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
+async function invokeApiMethodInternal(requestOptions: request.Options, configuration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
     requestDebug(request, (type, data, r) => {
         if (r.writeDebugToConsole) {
             const toLog = {};
@@ -130,20 +130,24 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         }
     });
 
+    if (configuration.allowInsecureRequests) {
+        requestOptions.rejectUnauthorized = false;
+    }
+
     if (!requestOptions.headers) {
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v22.10.0";
-    if (confguration.timeout) {
-        requestOptions.headers["x-aspose-timeout"] = confguration.timeout;
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v22.11.0";
+    if (configuration.timeout) {
+        requestOptions.headers["x-aspose-timeout"] = configuration.timeout;
     }
-    for (var key in confguration.customHeaders) {
-        requestOptions.headers[key] = confguration.customHeaders[key];
+    for (var key in configuration.customHeaders) {
+        requestOptions.headers[key] = configuration.customHeaders[key];
     }
 
     if (!notApplyAuthToRequest) {
-        await addAuthHeader(requestOptions, confguration);
+        await addAuthHeader(requestOptions, configuration);
     }
 
     return new Promise<request.RequestResponse>((resolve, reject) => {
@@ -154,7 +158,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     resolve(response);
                 } else if (!notApplyAuthToRequest && response.statusCode === 401) {
-                    await requestToken(confguration);
+                    await requestToken(configuration);
                     reject(new NeedRepeatException());
                 } else {
                     try {
@@ -183,7 +187,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                 }
             }
         });
-        (r as any).writeDebugToConsole = confguration.debugMode;
+        (r as any).writeDebugToConsole = configuration.debugMode;
     });
 }
 

@@ -329,16 +329,17 @@ describe("Shape tests", () => {
         });
     });
 
-    it("chart empty", () => { //See Chart tests for non-empty chart examples
+    it("chart empty", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const api = TestInitializer.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.createShape(fileName, 1, new model.Chart(), null, null, "password", folderName).then((result) => {
-                    assert.equal(201, result.response.statusCode);
-                    assert(result.body as model.Chart);
-                });
+                return api.createShape(fileName, 1, new model.Chart(), null, null, "password", folderName)
+                    .then(() => assert.fail("Empty Chart should not have been created"))
+                    .catch((err) => {
+                        assert.equal(500, err.code);
+                    });
             });
         });
     });

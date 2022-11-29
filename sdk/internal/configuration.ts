@@ -60,7 +60,7 @@ export class Configuration {
     public timeout: number;
 
     /**
-     *  Gets or sets a value indicating whether debug mode. In debug mode all requests and responses are logged to console.
+     *  Gets or sets a value indicating whether debug mode is enabled. In debug mode all requests and responses are logged to console.
      */
     public debugMode: boolean;
 
@@ -68,6 +68,11 @@ export class Configuration {
      *  Gets or sets collection of custom headers to be added to HTTP requests.
      */
     public customHeaders: { [key: string]: string } ;
+
+    /**
+     *  Gets or sets a value indicating whether insecure requests are allowed.
+     */
+    public allowInsecureRequests: boolean;
 
     constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
         if (baseUrl) {
@@ -83,6 +88,7 @@ export class Configuration {
         this.debugMode = debugMode;
         this.timeout = timeout;
         this.customHeaders = {};
+        this.allowInsecureRequests = false;
     }
 
     /**

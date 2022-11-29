@@ -97,6 +97,12 @@ You may want to check out Aspose free [Powerpoint to PDF](https://products.aspos
 * Added **None** to the list of allowed values for **TimeUnitType** enum type.
 * **Level** property of **Category** class is deprecated and will be removed after v22.4.
 
+## Enhancements in Version 22.11
+
+* You can now specify data sources for chart elements. This is done with new **DataSource** type which is use with propertries **Chart.DataSourceForCategories**, **Series.DataSourceForName**, **OneValueSeries.DataSourceForValues**, **XYSeries.DataSourceForXValues**, **XYSeries.DataSourceForYValues**, **BubbleSeries.DataSourceForBubbleSizeValues**.
+* You can now specify formulas for data points using new properties **OneValueChartDataPoint.ValueFormula**, **ScatterChartDataPoint.XValueFormula**, **ScatterChartDataPoint.YValueFormula**, **BubbleChartDataPoint.BubbleSizeFormula**.
+* Added boolean **UseFrameSize** and **UseFrameRotation** properties to **SvgExportOptions** class.
+
 ## Enhancements in Version 22.10
 
 * Added new **GetSlideShowProperties** and  **SetSlideShowProperties** methods to get & set slideshow properties.

@@ -55,7 +55,7 @@ describe("Chart tests", () => {
         });
     });
 
-    it("create", () => {
+    it("create chart auto data source", () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
@@ -72,6 +72,99 @@ describe("Chart tests", () => {
                 series2.name = "Series2";
                 series2.dataPoints = [{value: 55}, {value: 35}, {value: 90}];
                 chart.series = [series1, series2];
+                chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
+                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert.equal(2, (result.body as model.Chart).series.length);
+                    assert.equal(3, (result.body as model.Chart).categories.length);
+                });
+            });
+        });
+    });
+
+    it("create chart workbook", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const chart = new model.Chart();
+                chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
+                chart.width = 400;
+                chart.height = 300;
+
+                const dataSourceForCategories = new model.Workbook();
+                dataSourceForCategories.worksheetIndex = 0;
+                dataSourceForCategories.columnIndex = 0;
+                dataSourceForCategories.rowIndex = 1;
+                chart.dataSourceForCategories = dataSourceForCategories;
+                
+                const series1 = new model.OneValueSeries();
+                const dataSourceForSeriesName1 = new model.Workbook();
+                dataSourceForSeriesName1.worksheetIndex = 0;
+                dataSourceForSeriesName1.columnIndex = 1;
+                dataSourceForSeriesName1.rowIndex = 0;
+                series1.dataSourceForSeriesName = dataSourceForSeriesName1;
+                series1.name = "Series1";
+                
+                const dataSourceForValues1 = new model.Workbook();
+                dataSourceForValues1.worksheetIndex = 0;
+                dataSourceForValues1.columnIndex = 1;
+                dataSourceForValues1.rowIndex = 1;
+                series1.dataSourceForValues = dataSourceForValues1;
+                series1.dataPoints = [{value: 40}, {value: 50}, {value: 70}];
+                
+                const series2 = new model.OneValueSeries();
+                const dataSourceForSeriesName2 = new model.Workbook();
+                dataSourceForSeriesName2.worksheetIndex = 0;
+                dataSourceForSeriesName2.columnIndex = 2;
+                dataSourceForSeriesName2.rowIndex = 0;
+                series2.dataSourceForSeriesName = dataSourceForSeriesName2;
+                series2.name = "Series2";
+
+                const dataSourceForValues2 = new model.Workbook();
+                dataSourceForValues2.worksheetIndex = 0;
+                dataSourceForValues2.columnIndex = 2;
+                dataSourceForValues2.rowIndex = 1;
+                series2.dataSourceForValues = dataSourceForValues2;
+                series2.dataPoints = [{value: 55}, {value: 35}, {value: 90}];
+                
+                chart.series = [series1, series2];
+                chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
+                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    assert.equal(2, (result.body as model.Chart).series.length);
+                    assert.equal(3, (result.body as model.Chart).categories.length);
+                });
+            });
+        });
+    });
+
+    it("create chart literals", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const chart = new model.Chart();
+                chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
+                chart.width = 400;
+                chart.height = 300;
+                
+                const series1 = new model.OneValueSeries();
+                series1.dataSourceForSeriesName = new model.Literals();
+                series1.name = "Series1";
+                series1.dataSourceForValues = new model.Literals();
+                series1.dataPoints = [{value: 40}, {value: 50}, {value: 70}];
+
+                const series2 = new model.OneValueSeries();
+                series2.dataSourceForSeriesName = new model.Literals();
+                series2.name = "Series2";
+                series2.dataSourceForValues = new model.Literals();
+                series2.dataPoints = [{value: 55}, {value: 35}, {value: 90}];
+
+                chart.series = [series1, series2];
+                chart.dataSourceForCategories = new model.Literals();
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
                 return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -551,6 +644,50 @@ describe("Chart tests", () => {
             assert.equal("Solid" ,dataPoint.fillFormat.type);
             assert.equal("Solid" ,dataPoint.lineFormat.fillFormat.type);
             assert.notEqual(null, dataPoint.effectFormat.blur);
+        });
+    });
+
+    it("chart workbook formulas", () => {
+        return TestInitializer.runTest(() => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestInitializer.getApi();
+            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+                const chart = new model.Chart();
+                chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
+                chart.width = 400;
+                chart.height = 300;
+
+                const dataSourceForCategories = new model.Workbook();
+                dataSourceForCategories.worksheetIndex = 0;
+                dataSourceForCategories.columnIndex = 0;
+                dataSourceForCategories.rowIndex = 1;
+                chart.dataSourceForCategories = dataSourceForCategories;
+                chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
+                
+                const series1 = new model.OneValueSeries();
+                const dataSourceForSeriesName1 = new model.Workbook();
+                dataSourceForSeriesName1.worksheetIndex = 0;
+                dataSourceForSeriesName1.columnIndex = 1;
+                dataSourceForSeriesName1.rowIndex = 0;
+                series1.dataSourceForSeriesName = dataSourceForSeriesName1;
+                series1.name = "Series1";
+
+                const dataSourceForValues1 = new model.Workbook();
+                dataSourceForValues1.worksheetIndex = 0;
+                dataSourceForValues1.columnIndex = 1;
+                dataSourceForValues1.rowIndex = 1;
+                series1.dataSourceForValues = dataSourceForValues1;
+                series1.dataPoints = [{value: 40}, {value: 50}, {value: 0, valueFormula: "SUM(B2:B3)" }];
+
+                chart.series = [series1];
+                
+                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                    assert.equal(201, result.response.statusCode);
+                    const series = ((result.body as model.Chart).series[0] as model.OneValueSeries);
+                    assert.equal(90, series.dataPoints[2].value);
+                });
+            });
         });
     });
 });

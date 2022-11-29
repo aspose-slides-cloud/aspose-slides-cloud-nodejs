@@ -6924,7 +6924,7 @@ export class SlidesApi {
     }
 
     /**
-     * Read presentation document properties. 
+     * Read presentation view properties. 
      * @param name Document name.
      * @param password Document password.
      * @param folder Document folder.
@@ -9355,7 +9355,7 @@ export class SlidesApi {
     }
 
     /**
-     * Update presentation document properties. 
+     * Update presentation view properties. 
      * @param name Document name.
      * @param dto The view properties data.
      * @param password Document password.

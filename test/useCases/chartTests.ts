@@ -38,7 +38,7 @@ import {TestInitializer} from "../testInitializer";
 
 var assert = require('assert');
 
-describe("Chart tests", () => {
+describe.only("Chart tests", () => {
     it("get", async () => {
         return TestInitializer.runTest(() => {
             const folderName = "TempSlidesSDK";
@@ -94,38 +94,38 @@ describe("Chart tests", () => {
                 chart.height = 300;
 
                 const dataSourceForCategories = new model.Workbook();
-                dataSourceForCategories.worksheetIndex = 0;
-                dataSourceForCategories.columnIndex = 0;
-                dataSourceForCategories.rowIndex = 1;
+                dataSourceForCategories.worksheetIndex = 1;
+                dataSourceForCategories.columnIndex = 1;
+                dataSourceForCategories.rowIndex = 2;
                 chart.dataSourceForCategories = dataSourceForCategories;
                 
                 const series1 = new model.OneValueSeries();
                 const dataSourceForSeriesName1 = new model.Workbook();
-                dataSourceForSeriesName1.worksheetIndex = 0;
-                dataSourceForSeriesName1.columnIndex = 1;
-                dataSourceForSeriesName1.rowIndex = 0;
+                dataSourceForSeriesName1.worksheetIndex = 1;
+                dataSourceForSeriesName1.columnIndex = 2;
+                dataSourceForSeriesName1.rowIndex = 1;
                 series1.dataSourceForSeriesName = dataSourceForSeriesName1;
                 series1.name = "Series1";
                 
                 const dataSourceForValues1 = new model.Workbook();
-                dataSourceForValues1.worksheetIndex = 0;
-                dataSourceForValues1.columnIndex = 1;
-                dataSourceForValues1.rowIndex = 1;
+                dataSourceForValues1.worksheetIndex = 1;
+                dataSourceForValues1.columnIndex = 2;
+                dataSourceForValues1.rowIndex = 2;
                 series1.dataSourceForValues = dataSourceForValues1;
                 series1.dataPoints = [{value: 40}, {value: 50}, {value: 70}];
                 
                 const series2 = new model.OneValueSeries();
                 const dataSourceForSeriesName2 = new model.Workbook();
-                dataSourceForSeriesName2.worksheetIndex = 0;
-                dataSourceForSeriesName2.columnIndex = 2;
-                dataSourceForSeriesName2.rowIndex = 0;
+                dataSourceForSeriesName2.worksheetIndex = 1;
+                dataSourceForSeriesName2.columnIndex = 3;
+                dataSourceForSeriesName2.rowIndex = 1;
                 series2.dataSourceForSeriesName = dataSourceForSeriesName2;
                 series2.name = "Series2";
 
                 const dataSourceForValues2 = new model.Workbook();
-                dataSourceForValues2.worksheetIndex = 0;
-                dataSourceForValues2.columnIndex = 2;
-                dataSourceForValues2.rowIndex = 1;
+                dataSourceForValues2.worksheetIndex = 1;
+                dataSourceForValues2.columnIndex = 3;
+                dataSourceForValues2.rowIndex = 2;
                 series2.dataSourceForValues = dataSourceForValues2;
                 series2.dataPoints = [{value: 55}, {value: 35}, {value: 90}];
                 
@@ -659,26 +659,26 @@ describe("Chart tests", () => {
                 chart.height = 300;
 
                 const dataSourceForCategories = new model.Workbook();
-                dataSourceForCategories.worksheetIndex = 0;
-                dataSourceForCategories.columnIndex = 0;
-                dataSourceForCategories.rowIndex = 1;
+                dataSourceForCategories.worksheetIndex = 1;
+                dataSourceForCategories.columnIndex = 1;
+                dataSourceForCategories.rowIndex = 2;
                 chart.dataSourceForCategories = dataSourceForCategories;
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
                 
                 const series1 = new model.OneValueSeries();
                 const dataSourceForSeriesName1 = new model.Workbook();
-                dataSourceForSeriesName1.worksheetIndex = 0;
-                dataSourceForSeriesName1.columnIndex = 1;
-                dataSourceForSeriesName1.rowIndex = 0;
+                dataSourceForSeriesName1.worksheetIndex = 1;
+                dataSourceForSeriesName1.columnIndex = 2;
+                dataSourceForSeriesName1.rowIndex = 1;
                 series1.dataSourceForSeriesName = dataSourceForSeriesName1;
                 series1.name = "Series1";
 
                 const dataSourceForValues1 = new model.Workbook();
-                dataSourceForValues1.worksheetIndex = 0;
-                dataSourceForValues1.columnIndex = 1;
-                dataSourceForValues1.rowIndex = 1;
+                dataSourceForValues1.worksheetIndex = 1;
+                dataSourceForValues1.columnIndex = 2;
+                dataSourceForValues1.rowIndex = 2;
                 series1.dataSourceForValues = dataSourceForValues1;
-                series1.dataPoints = [{value: 40}, {value: 50}, {value: 0, valueFormula: "SUM(B2:B3)" }];
+                series1.dataPoints = [{ value: 40 }, { value: 50 }, { type: model.DataPoint.TypeEnum.OneValue, valueFormula: "SUM(B2:B3)" }];
 
                 chart.series = [series1];
                 

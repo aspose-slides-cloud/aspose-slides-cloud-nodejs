@@ -46,7 +46,7 @@
 		{ "Value": {}, "InvalidValue": null, "Type": "model" },
 		{ "Value": { "MasterSlide": { "Href": "masterSlides/2" } }, "Type": "LayoutSlide" },
 		{ "Value": { "DataPointType": "OneValue" }, "Type": "OneValueSeries" },
-		{ "Value": { "XValue": 32.5, "YValue": 42.9 }, "Type": "ScatterChartDataPoint" },
+		{ "Value": { "Type": "Scatter", "XValue": 32.5, "YValue": 42.9 }, "Type": "ScatterChartDataPoint" },
 		{ "Value": { "TriggerShapeIndex": 1 }, "Type": "InteractiveSequence" },
 		{ "Value": { "ShapeIndex": 1, "Type": "Appear" }, "Type": "Effect" },
 		{ "Value": { "Type": "Regular", "Author": "Caesar", "Text": "Veni vidi vici" }, "Type": "SlideComment", "Method": "/CreateComment/" },

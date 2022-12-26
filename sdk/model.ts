@@ -1562,6 +1562,15 @@ export class DataPoint {
      */
     lineFormat?: LineFormat;
 
+    type?: DataPoint.TypeEnum;
+
+}
+export namespace DataPoint {
+    export enum TypeEnum {
+        OneValue = <any> 'OneValue',
+        Scatter = <any> 'Scatter',
+        Bubble = <any> 'Bubble'
+    }
 }
 
 /**
@@ -1570,17 +1579,18 @@ export class DataPoint {
 export class ScatterChartDataPoint extends DataPoint {
     constructor() {
         super();
+        this.type = ScatterChartDataPoint.TypeEnum.Scatter;
     }
 
     /**
      * X-value
      */
-    xValue: number;
+    xValue?: number;
 
     /**
      * Y-value
      */
-    yValue: number;
+    yValue?: number;
 
     /**
      * Spreadsheet formula in A1-style.
@@ -1593,6 +1603,8 @@ export class ScatterChartDataPoint extends DataPoint {
     yValueFormula?: string;
 
 }
+export namespace ScatterChartDataPoint {
+}
 
 /**
  * Bubble chart data point.
@@ -1600,18 +1612,21 @@ export class ScatterChartDataPoint extends DataPoint {
 export class BubbleChartDataPoint extends ScatterChartDataPoint {
     constructor() {
         super();
+        this.type = BubbleChartDataPoint.TypeEnum.Bubble;
     }
 
     /**
      * Bubble size.
      */
-    bubbleSize: number;
+    bubbleSize?: number;
 
     /**
      * Spreadsheet formula in A1-style.
      */
     bubbleSizeFormula?: string;
 
+}
+export namespace BubbleChartDataPoint {
 }
 
 /**
@@ -5296,12 +5311,13 @@ export namespace OleObjectFrame {
 export class OneValueChartDataPoint extends DataPoint {
     constructor() {
         super();
+        this.type = OneValueChartDataPoint.TypeEnum.OneValue;
     }
 
     /**
      * Value.
      */
-    value: number;
+    value?: number;
 
     /**
      * Spreadsheet formula in A1-style.
@@ -5318,6 +5334,8 @@ export class OneValueChartDataPoint extends DataPoint {
      */
     invertIfNegative?: boolean;
 
+}
+export namespace OneValueChartDataPoint {
 }
 
 /**

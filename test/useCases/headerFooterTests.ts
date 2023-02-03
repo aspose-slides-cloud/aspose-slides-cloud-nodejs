@@ -24,15 +24,15 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("HeaderFooter tests", () => {
     it("all slides", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.HeaderFooter();
                 dto.isFooterVisible = true;
@@ -51,12 +51,12 @@ describe("HeaderFooter tests", () => {
     });
 
     it("slide", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.HeaderFooter();
                 dto.isFooterVisible = true;
@@ -77,12 +77,12 @@ describe("HeaderFooter tests", () => {
     });
 
     it("notes slide", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.NotesSlideHeaderFooter();
                 dto.isHeaderVisible = true;

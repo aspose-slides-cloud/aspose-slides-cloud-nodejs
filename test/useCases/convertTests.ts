@@ -25,12 +25,12 @@
 var assert = require('assert');
 var fs = require('fs');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Convert tests", () => {
     it("post from request", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             return api.convert(fs.createReadStream("TestData/test.pptx"), model.ExportFormat.Pdf, "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
                 return api.convert(fs.createReadStream("TestData/test.pptx"), model.ExportFormat.Pdf, "password", null, null, [2, 4]).then((resultSlides) => {
@@ -42,9 +42,9 @@ describe("Convert tests", () => {
     });
 
     it("put from request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const outPath = "TestData/test.pdf";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.convertAndSave(fs.createReadStream("TestData/test.pptx"), model.ExportFormat.Pdf, outPath, "password").then((putResult) => {
                 assert.equal(200, putResult.response.statusCode);
                 return api.objectExists(outPath).then((existsResult) => {
@@ -56,10 +56,10 @@ describe("Convert tests", () => {
     });
 
     it("post from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pdf";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadPresentation(fileName, model.ExportFormat.Html5, null, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -69,11 +69,11 @@ describe("Convert tests", () => {
     });
 
     it("put from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const outPath = "TestData/test.pdf";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.savePresentation(fileName, model.ExportFormat.Pdf, outPath, null, "password", folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
@@ -87,8 +87,8 @@ describe("Convert tests", () => {
     });
 
     it("with options from request", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             return api.convert(fs.createReadStream("TestData/test.pptx"), model.ExportFormat.Pdf, "password").then((result1) => {
                 assert.equal(200, result1.response.statusCode);
                 const options = new model.PdfExportOptions();
@@ -102,10 +102,10 @@ describe("Convert tests", () => {
     });
 
     it("with options from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadPresentation(fileName, model.ExportFormat.Png, null, "password", folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -122,8 +122,8 @@ describe("Convert tests", () => {
     });
 
     it("slide post from request", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             return api.downloadSlideOnline(fs.createReadStream("TestData/test.pptx"), 1, model.SlideExportFormat.Pdf, null, null, "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
@@ -131,9 +131,9 @@ describe("Convert tests", () => {
     });
 
     it("slide put from request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const outPath = "TestData/test.pdf";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const data = fs.createReadStream("TestData/test.pptx");
             return api.saveSlideOnline(data, 1, model.SlideExportFormat.Pdf, outPath, null, null, "password").then((putResult) => {
                 assert.equal(200, putResult.response.statusCode);
@@ -146,10 +146,10 @@ describe("Convert tests", () => {
     });
 
     it("slide post from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadSlide(fileName, 1, model.SlideExportFormat.Pdf, null, null, null, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -159,11 +159,11 @@ describe("Convert tests", () => {
     });
 
     it("slide put from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const outPath = "TestData/test.pdf";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.saveSlide(fileName, 1, model.SlideExportFormat.Pdf, outPath, null, null, null, "password", folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
@@ -177,8 +177,8 @@ describe("Convert tests", () => {
     });
 
     it("slide with options from request", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             return api.downloadSlideOnline(fs.createReadStream("TestData/test.pptx"), 1, model.SlideExportFormat.Pdf, null, null, "password").then((result1) => {
                 assert.equal(200, result1.response.statusCode);
                 const options = new model.PdfExportOptions();
@@ -192,10 +192,10 @@ describe("Convert tests", () => {
     });
 
     it("slide with options from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadSlide(fileName, 1, model.SlideExportFormat.Pdf, null, null, null, "password", folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -211,8 +211,8 @@ describe("Convert tests", () => {
     });
 
     it("shape post from request", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             return api.downloadShapeOnline(fs.createReadStream("TestData/test.pptx"), 1, 3, model.ShapeExportFormat.Png, null, null, null, "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
@@ -220,9 +220,9 @@ describe("Convert tests", () => {
     });
 
     it("shape put from request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const outPath = "TestData/test.png";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const data = fs.createReadStream("TestData/test.pptx");
             return api.saveShapeOnline(data, 1, 1, model.ShapeExportFormat.Png, outPath, null, null, null, "password").then((putResult) => {
                 assert.equal(200, putResult.response.statusCode);
@@ -235,10 +235,10 @@ describe("Convert tests", () => {
     });
 
     it("shape post from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadShape(fileName, 1, 1, model.ShapeExportFormat.Png, null, null, null, null, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -248,10 +248,10 @@ describe("Convert tests", () => {
     });
 
     it("sub-shape post from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadShape(fileName, 1,  4, model.ShapeExportFormat.Png, null,
                  null, null, null, "password", folderName, null, null, 
@@ -262,11 +262,11 @@ describe("Convert tests", () => {
     });
 
     it("shape put from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const outPath = "TestData/test.png";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.saveShape(fileName, 1, 1, model.ShapeExportFormat.Png, outPath, 
                 null, null, null, null, "password", folderName).then((putResult) => {
@@ -281,11 +281,11 @@ describe("Convert tests", () => {
     });
 
     it("sub-shape put from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const outPath = "TestData/test.png";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.saveShape(fileName, 1, 4, model.ShapeExportFormat.Png, outPath, 
                 null, null, null, null, "password", folderName, null, 
@@ -301,7 +301,7 @@ describe("Convert tests", () => {
     });
 
     it("convert with font fallback rules", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const startUnicodeIndex = 0x0B80;
@@ -320,7 +320,7 @@ describe("Convert tests", () => {
             const imageOptions = new model.ImageExportOptions();
             imageOptions.fontFallbackRules = [rule1, rule2];
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const response = await api.downloadPresentation(fileName, model.ExportFormat.Pdf, imageOptions, "password", folderName);
             assert.equal(200, response.response.statusCode);

@@ -24,16 +24,16 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("text format tests", () => {
     it("textFormat3D", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const bevelBottomDto = new model.ShapeBevel();

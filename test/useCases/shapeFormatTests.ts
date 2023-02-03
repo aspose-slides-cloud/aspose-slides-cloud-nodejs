@@ -24,17 +24,17 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Shape format tests", () => {
     it("shape format line", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Shape();
                 const lineFormat = new model.LineFormat();
@@ -56,13 +56,13 @@ describe("Shape format tests", () => {
     });
 
     it("shape format fill", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Shape();
                 const fillFormat = new model.SolidFill();
@@ -83,13 +83,13 @@ describe("Shape format tests", () => {
     });
 
     it("shape format effect", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Shape();
                 const effectFormat = new model.EffectFormat();
@@ -114,13 +114,13 @@ describe("Shape format tests", () => {
     });
 
     it("shape format 3D", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Shape();
                 const threeDFormat = new model.ThreeDFormat();

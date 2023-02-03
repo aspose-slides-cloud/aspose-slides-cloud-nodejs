@@ -25,14 +25,14 @@
 var assert = require('assert');
 var fs = require('fs');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Create tests", () => {
     it("empty", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.deleteFile(folderName + "/" + fileName).then(() => {
                 return api.createPresentation(fileName, null, null, null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -42,10 +42,10 @@ describe("Create tests", () => {
     });
 
     it("from request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.deleteFile(folderName + "/" + fileName).then(() => {
                 return api.createPresentation(fileName, fs.createReadStream("TestData/test.pptx"), "password", null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -55,11 +55,11 @@ describe("Create tests", () => {
     });
 
     it("from storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const newFileName = "test2.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.deleteFile(folderName + "/" + newFileName).then(() => {
                 return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                     const sourcePath = folderName + "/" + fileName;
@@ -72,11 +72,11 @@ describe("Create tests", () => {
     });
 
     it("from template", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const templateFileName = "TemplateCV.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.deleteFile(folderName + "/" + fileName).then(() => {
                 return api.copyFile("TempTests/" + templateFileName, folderName + "/" + templateFileName).then(() => {
                     const templatePath = folderName + "/" + templateFileName;
@@ -90,10 +90,10 @@ describe("Create tests", () => {
     });
 
     it("from HTML", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.deleteFile(folderName + "/" + fileName).then(() => {
                 return api.importFromHtml(fileName, "<html><body>New Content</body></html>", null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -103,11 +103,11 @@ describe("Create tests", () => {
     });
 
     it("append from HTML", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSlides(fileName, password, folderName).then((r1) => {
                     const slideCount = (r1.body as model.Slides).slideList.length;
@@ -123,10 +123,10 @@ describe("Create tests", () => {
     });
 
     it("from PDF", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.deleteFile(folderName + "/" + fileName).then(() => {
                 return api.importFromPdf(fileName, fs.createReadStream("TestData/test.pdf"), null, folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -136,11 +136,11 @@ describe("Create tests", () => {
     });
 
     it("append from PDF", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSlides(fileName, password, folderName).then((r1) => {
                     const slideCount = (r1.body as model.Slides).slideList.length;

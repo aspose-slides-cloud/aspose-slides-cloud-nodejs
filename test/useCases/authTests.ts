@@ -24,11 +24,11 @@
 
 var assert = require('assert');
 import * as sdkApi from "../../sdk/api";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Auth tests", () => {
     it("good auth", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const config = require("../../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
             return api.getApiInfo().then((result) => {
@@ -38,7 +38,7 @@ describe("Auth tests", () => {
     });
 
     it("bad auth", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const config = require("../../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
             api.configuration.appSid = "invalid";
@@ -51,7 +51,7 @@ describe("Auth tests", () => {
     });
 
     it("good token", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const config = require("../../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
             return api.getApiInfo().then(() => {
@@ -65,7 +65,7 @@ describe("Auth tests", () => {
     });
 
     it("bad token", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const config = require("../../testConfig.json");
             const api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
             return api.getApiInfo().then(() => {

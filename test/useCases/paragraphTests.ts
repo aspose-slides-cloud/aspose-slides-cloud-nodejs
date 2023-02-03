@@ -24,17 +24,17 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Paragraph tests", () => {
     it("get paragraph", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
@@ -44,12 +44,12 @@ describe("Paragraph tests", () => {
     });
 
     it("get paragraphs", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getParagraphs(fileName, slideIndex, shapeIndex, "password", folderName);
@@ -59,13 +59,13 @@ describe("Paragraph tests", () => {
     });
 
     it("get sub-shape paragraph", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, "password",
@@ -76,12 +76,12 @@ describe("Paragraph tests", () => {
     });
 
     it("get sub-shape paragraphs", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getParagraphs(fileName, slideIndex, shapeIndex, "password", folderName, null, "1");
@@ -91,12 +91,12 @@ describe("Paragraph tests", () => {
     });
 
     it("create paragraph", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const dto = new model.Paragraph();
@@ -113,12 +113,12 @@ describe("Paragraph tests", () => {
     });
 
     it("create paragraph with portions", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const portion1Dto = new model.Portion();
@@ -136,12 +136,12 @@ describe("Paragraph tests", () => {
     });
 
     it("create sub-shape paragraph", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const dto = new model.Paragraph();
@@ -159,13 +159,13 @@ describe("Paragraph tests", () => {
     });
 
     it("update paragraph", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const dto = new model.Paragraph();
@@ -182,13 +182,13 @@ describe("Paragraph tests", () => {
     });
 
     it("update subshape paragraph", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const dto = new model.Paragraph();
@@ -206,12 +206,12 @@ describe("Paragraph tests", () => {
     });
 
     it("delete paragraphs", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteParagraphs(fileName, slideIndex, shapeIndex, null, "password", folderName);
@@ -221,12 +221,12 @@ describe("Paragraph tests", () => {
     });
 
     it("delete paragraphs by indexes", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteParagraphs(fileName, slideIndex, shapeIndex, [2], "password", folderName);
@@ -236,12 +236,12 @@ describe("Paragraph tests", () => {
     });
 
     it("delete sub-shape paragraphs", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteParagraphs(fileName, slideIndex, shapeIndex, null, "password", 
@@ -252,12 +252,12 @@ describe("Paragraph tests", () => {
     });
 
     it("delete sub-shape paragraphs by indexes", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteParagraphs(fileName, slideIndex, shapeIndex, [2], 
@@ -274,7 +274,7 @@ describe("Paragraph tests", () => {
         const shapeIndex = 2;
         const paragraphIndex = 1;
 
-        const api = TestInitializer.getApi();
+        const api = TestUtils.getApi();
         await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
         const result = await api.deleteParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
@@ -289,7 +289,7 @@ describe("Paragraph tests", () => {
         const shapeIndex = 3;
         const paragraphIndex = 1;
 
-        const api = TestInitializer.getApi();
+        const api = TestUtils.getApi();
         await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
         const result = await api.deleteParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, 
@@ -305,7 +305,7 @@ describe("Paragraph tests", () => {
         const shapeIndex = 2;
         const paragraphIndex = 1;
 
-        const api = TestInitializer.getApi();
+        const api = TestUtils.getApi();
         await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
         const result = await api.getParagraphRectangle(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
@@ -322,7 +322,7 @@ describe("Paragraph tests", () => {
         const slideIndex = 6;
         const shapeIndex = 2;
     
-        const api = TestInitializer.getApi();
+        const api = TestUtils.getApi();
         await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName)
         
         const paragraphDto = new model.Paragraph();
@@ -348,13 +348,13 @@ describe("Paragraph tests", () => {
     });
 
     it("get paragraph effective", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getParagraphEffective(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
@@ -364,13 +364,13 @@ describe("Paragraph tests", () => {
     });
 
     it("get sub-shape paragraph effective", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getParagraphEffective(fileName, slideIndex, shapeIndex,

@@ -25,15 +25,15 @@
 var assert = require('assert');
 var fs = require('fs');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Split tests", () => {
     it("storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.split(fileName, null, null, null, null, null, null, null, password, folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -53,9 +53,9 @@ describe("Split tests", () => {
         });
     });
     it("request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.splitOnline(fs.createReadStream("TestData/test.pptx"), model.SlideExportFormat.Png, null, null, null, null, password).then((result1) => {
                 assert.equal(200, result1.response.statusCode);
                 return api.splitOnline(fs.createReadStream("TestData/test.pptx"), model.SlideExportFormat.Png, null, null, 2, 3, password).then((result2) => {
@@ -70,9 +70,9 @@ describe("Split tests", () => {
         });
     });
     it("request to storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.splitAndSaveOnline(fs.createReadStream("TestData/test.pptx"), model.SlideExportFormat.Png, null, null, null, null, null, password).then((result1) => {
                 assert.equal(200, result1.response.statusCode);
                 return api.splitAndSaveOnline(fs.createReadStream("TestData/test.pptx"), model.SlideExportFormat.Png, null, null, null, 2, 3, password).then((result2) => {
@@ -90,11 +90,11 @@ describe("Split tests", () => {
         });
     });
     it("with options", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const options = new model.PdfExportOptions();
                 options.jpegQuality = 50;

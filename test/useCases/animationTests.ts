@@ -24,17 +24,16 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
-
+import {TestUtils} from "../testUtils";
 
 describe("Animation tests", () => {
     it("animation get", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getAnimation(fileName, slideIndex, null, null, password, folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -55,10 +54,10 @@ describe("Animation tests", () => {
     });
 
     it("animation set", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.SlideAnimation();
                 const effect1 = new model.Effect();
@@ -83,10 +82,10 @@ describe("Animation tests", () => {
     });
 
     it("animation create effect", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -101,10 +100,10 @@ describe("Animation tests", () => {
     });
 
     it("animation create interactive sequence", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.InteractiveSequence();
                 const effect = new model.Effect();
@@ -122,10 +121,10 @@ describe("Animation tests", () => {
     });
 
     it("animation create interactive sequence effect", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -140,10 +139,10 @@ describe("Animation tests", () => {
     });
 
     it("animation update effect", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -158,10 +157,10 @@ describe("Animation tests", () => {
     });
 
     it("animation update interactive sequence effect", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -176,10 +175,10 @@ describe("Animation tests", () => {
     });
 
     it("animation delete", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteAnimation(fileName, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -191,10 +190,10 @@ describe("Animation tests", () => {
     });
 
     it("animation delete main sequence", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteAnimationMainSequence(fileName, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -206,10 +205,10 @@ describe("Animation tests", () => {
     });
 
     it("animation delete main sequence effect", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteAnimationEffect(fileName, 1, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -221,10 +220,10 @@ describe("Animation tests", () => {
     });
 
     it("animation delete interactive sequences", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteAnimationInteractiveSequences(fileName, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -236,10 +235,10 @@ describe("Animation tests", () => {
     });
 
     it("animation delete interactive sequence", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteAnimationInteractiveSequence(fileName, 1, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -251,10 +250,10 @@ describe("Animation tests", () => {
     });
 
     it("animation delete interactive sequence effect", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteAnimationInteractiveSequenceEffect(fileName, 1, 1, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);

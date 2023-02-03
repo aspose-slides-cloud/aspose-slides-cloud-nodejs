@@ -24,14 +24,14 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Math tests", () => {
     it("get", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getPortion(fileName, 2, 3, 1, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -47,10 +47,10 @@ describe("Math tests", () => {
     });
 
     it("get null", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getPortion(fileName, 2, 1, 1, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -61,10 +61,10 @@ describe("Math tests", () => {
     });
 
     it("create", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Portion();
                 const mathParagraph = new model.MathParagraph();
@@ -113,10 +113,10 @@ describe("Math tests", () => {
     });
 
     it("update", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Portion();
                 const mathParagraph = new model.MathParagraph();
@@ -165,10 +165,10 @@ describe("Math tests", () => {
     });
 
     it("download", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadPortionAsMathMl(fileName, 2, 3, 1, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -179,10 +179,10 @@ describe("Math tests", () => {
     });
 
     it("download null", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadPortionAsMathMl(fileName, 2, 1, 1, 1, "password", folderName)
                     .then(() => assert.fail("Must have failed"))
@@ -194,11 +194,11 @@ describe("Math tests", () => {
     });
 
     it("save", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const outPath = folderName + "/mathml.xml";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.savePortionAsMathMl(fileName, 2, 3, 1, 1, outPath, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);

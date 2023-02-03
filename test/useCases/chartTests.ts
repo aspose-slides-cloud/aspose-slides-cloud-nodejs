@@ -34,16 +34,16 @@ import {
     LineFormat, OneValueChartDataPoint, OneValueSeries,
     SolidFill
 } from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 var assert = require('assert');
 
-describe.only("Chart tests", () => {
+describe("Chart tests", () => {
     it("get", async () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getShape(fileName, 3, 1, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -56,10 +56,10 @@ describe.only("Chart tests", () => {
     });
 
     it("create chart auto data source", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -83,10 +83,10 @@ describe.only("Chart tests", () => {
     });
 
     it("create chart workbook", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -141,10 +141,10 @@ describe.only("Chart tests", () => {
     });
 
     it("create chart literals", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -176,10 +176,10 @@ describe.only("Chart tests", () => {
     });
 
     it("update", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -203,10 +203,10 @@ describe.only("Chart tests", () => {
     });
 
     it("series create", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
@@ -221,10 +221,10 @@ describe.only("Chart tests", () => {
     });
 
     it("series update", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
@@ -239,10 +239,10 @@ describe.only("Chart tests", () => {
     });
 
     it("series delete", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteChartSeries(fileName, 3, 1, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -254,10 +254,10 @@ describe.only("Chart tests", () => {
     });
 
     it("category create", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
@@ -275,10 +275,10 @@ describe.only("Chart tests", () => {
     });
 
     it("category update", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
@@ -296,10 +296,10 @@ describe.only("Chart tests", () => {
     });
 
     it("category delete", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteChartCategory(fileName, 3, 1, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -312,10 +312,10 @@ describe.only("Chart tests", () => {
     });
 
     it("data point create", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
@@ -330,10 +330,10 @@ describe.only("Chart tests", () => {
     });
 
     it("data point update", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
@@ -349,10 +349,10 @@ describe.only("Chart tests", () => {
     });
 
     it("data point delete", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteChartDataPoint(fileName, 3, 1, 2, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -365,10 +365,10 @@ describe.only("Chart tests", () => {
     });
 
     it("sunburst", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.Sunburst;
@@ -400,10 +400,10 @@ describe.only("Chart tests", () => {
     });
 
     it("multiLevelCategoryAxis", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.x = 100;
@@ -459,10 +459,10 @@ describe.only("Chart tests", () => {
     });
 
     it("hideChartLegend", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
@@ -480,10 +480,10 @@ describe.only("Chart tests", () => {
     });
 
     it("chartGridLinesFormat", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
@@ -533,10 +533,10 @@ describe.only("Chart tests", () => {
     });
 
     it("chartSeriesGroups", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
 
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
@@ -556,10 +556,10 @@ describe.only("Chart tests", () => {
     });
 
     it("set chart legend", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const fillFormat = new SolidFill();
@@ -573,10 +573,10 @@ describe.only("Chart tests", () => {
     });
 
     it("set chart axis", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const axis = new Axis();
@@ -592,10 +592,10 @@ describe.only("Chart tests", () => {
     });
 
     it("set chart wall", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             
             const fillFormat = new SolidFill();
@@ -609,10 +609,10 @@ describe.only("Chart tests", () => {
     });
 
     it("update data potin format", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const fillFormat = new SolidFill();
@@ -648,10 +648,10 @@ describe.only("Chart tests", () => {
     });
 
     it("chart workbook formulas", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;

@@ -24,16 +24,16 @@
 
 import * as model from "../../sdk/model";
 import {SolidFill} from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 var assert = require('assert');
 
 describe("Slide tests", () => {
     it("getSlides", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getSlides(fileName, "password", folderName);
@@ -42,11 +42,11 @@ describe("Slide tests", () => {
     });
 
     it("getSlide", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 3;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getSlide(fileName, slideIndex, "password", folderName);
@@ -55,11 +55,11 @@ describe("Slide tests", () => {
     });
 
     it("createSlide", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const layoutSlidePath = "layoutSlides/3";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             let result = await api.createSlide(fileName, layoutSlidePath, 1, "password", folderName);
@@ -74,11 +74,11 @@ describe("Slide tests", () => {
     });
 
     it("copySlide", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 3;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.copySlide(fileName, slideIndex, null, null, null, null, "password", folderName);
@@ -87,13 +87,13 @@ describe("Slide tests", () => {
     });
 
     it("copySlideFromSource", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const sourceFileName = "TemplateCV.pptx";
             const slideIndex = 1;
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             await api.copyFile("TempTests/" + sourceFileName, folderName + "/" + sourceFileName);
 
@@ -103,11 +103,11 @@ describe("Slide tests", () => {
     });
 
     it("moveSlide", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.moveSlide(fileName, slideIndex, 2, "password", folderName);
@@ -116,10 +116,10 @@ describe("Slide tests", () => {
     });
 
     it("reorderSlides", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const oldPositions = [1, 2, 3, 4, 5, 6];
             const newPositions = [6, 5, 4, 3, 2, 1];
@@ -130,12 +130,12 @@ describe("Slide tests", () => {
     });
 
     it("updateSlide", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
             const layoutSlideHref = "layoutSlides/3";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const dtoLayoutSlide = new model.ResourceUri();
@@ -149,10 +149,10 @@ describe("Slide tests", () => {
     });
 
     it("deleteSlides", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteSlides(fileName, null, "password", folderName);
@@ -161,10 +161,10 @@ describe("Slide tests", () => {
     });
 
     it("deleteSlidesByIndex", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteSlides(fileName, [1, 3, 5], "password", folderName);
@@ -173,11 +173,11 @@ describe("Slide tests", () => {
     });
 
     it("deleteSlide", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteSlide(fileName, slideIndex, "password", folderName);
@@ -186,11 +186,11 @@ describe("Slide tests", () => {
     });
 
     it("getBackground", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 5;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getBackground(fileName, slideIndex, "password", folderName);
@@ -199,12 +199,12 @@ describe("Slide tests", () => {
     });
 
     it("setBackground", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
             const fillColor = "#FFF5FF8A";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const fillDto = new model.SolidFill()
@@ -220,12 +220,12 @@ describe("Slide tests", () => {
     });
 
     it("setBackgroundColor", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
             const fillColor = "#FFF5FF8A";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.setBackgroundColor(fileName, slideIndex, fillColor, "password", folderName);
@@ -235,11 +235,11 @@ describe("Slide tests", () => {
     });
 
     it("deleteBackground", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 5;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.deleteBackground(fileName, slideIndex, "password", folderName);

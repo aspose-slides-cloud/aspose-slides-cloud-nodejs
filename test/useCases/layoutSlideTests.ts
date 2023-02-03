@@ -24,20 +24,20 @@
 
 import * as model from "../../sdk/model";
 import {LayoutSlides} from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 var assert = require('assert');
 var fs = require('fs');
 
 describe("LayoutSlide tests", () => {
     it("layout slides", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const sourceFile = "TemplateCV.pptx";
             const sourcePath = folderName + "/" + sourceFile;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.copyFile("TempTests/" + sourceFile, folderName + "/" + sourceFile).then(() => {
                     return api.getLayoutSlides(fileName, password, folderName).then((result) => {
@@ -62,13 +62,13 @@ describe("LayoutSlide tests", () => {
     });
 
     it("shapes", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
             const shapeCount = 6;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSpecialSlideShapes(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, password, folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -110,14 +110,14 @@ describe("LayoutSlide tests", () => {
     });
 
     it("paragraphs", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
             const shapeIndex = 2;
             const paragraphCount = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSpecialSlideParagraphs(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, shapeIndex, password, folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -158,7 +158,7 @@ describe("LayoutSlide tests", () => {
     });
 
     it("portions", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
@@ -166,7 +166,7 @@ describe("LayoutSlide tests", () => {
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionCount = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSpecialSlidePortions(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, shapeIndex, paragraphIndex, password, folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -209,12 +209,12 @@ describe("LayoutSlide tests", () => {
     });
 
     it("animation", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const slideIndex = 1;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSpecialSlideAnimation(fileName, slideIndex, model.SpecialSlideType.LayoutSlide, null, null, password, folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -253,10 +253,10 @@ describe("LayoutSlide tests", () => {
     });
 
     it("delete unused", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const responseBeforeDelete = await api.getLayoutSlides(fileName, "password", folderName);
@@ -270,8 +270,8 @@ describe("LayoutSlide tests", () => {
     });
 
     it("delete unused online", () => {
-        return TestInitializer.runTest(async () => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getApi();
             const response = await api.deleteUnusedLayoutSlidesOnline(fs.createReadStream("TestData/test.pptx"), "password");
             assert.equal(response.response.statusCode, 200);
             assert(response.body.length > 0);

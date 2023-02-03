@@ -24,14 +24,14 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Hyperlink tests", () => {
     it("get shape", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getShape(fileName, 2, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -44,10 +44,10 @@ describe("Hyperlink tests", () => {
     });
 
     it("get portion", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getPortion(fileName, 2, 1, 1, 2, "password", folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -60,10 +60,10 @@ describe("Hyperlink tests", () => {
     });
 
     it("create shape", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const shape = new model.Shape();
                 const hyperlink = new model.Hyperlink();
@@ -80,10 +80,10 @@ describe("Hyperlink tests", () => {
     });
 
     it("create portion", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Portion();
                 dto.text = "Link text";
@@ -100,10 +100,10 @@ describe("Hyperlink tests", () => {
     });
 
     it("delete", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const shape = new model.PictureFrame();
                 const hyperlink = new model.Hyperlink();

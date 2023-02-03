@@ -24,7 +24,7 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Additional tests", () => {
     it("multiple files upload", () => {
@@ -41,16 +41,16 @@ describe("Additional tests", () => {
             fs.createReadStream("TestData/TemplatingCVDataWithBase64.xml"),
             fs.createReadStream("TestData/TemplateCV.pptx")
         ];
-        return TestInitializer.getApi().pipeline(pipeline, files).then((result) => {
+        return TestUtils.getApi().pipeline(pipeline, files).then((result) => {
             assert.equal(200, result.response.statusCode);
         });
     });
 
     it("shape type", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getShape(fileName, 1, 1, "password", folderName).then((result) => {
                     assert.equal("Shape", (result.body as model.ShapeBase).type);
@@ -66,14 +66,14 @@ describe("Additional tests", () => {
     });
 
     it("nullable fields", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const min1 = 44.3;
             const min2 = 12;
             const max1 = 104.3;
             const max2 = 87;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 let chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.Line;

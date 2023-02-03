@@ -24,14 +24,14 @@
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Section tests", () => {
     it("get", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSections(fileName, "password", folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -42,10 +42,10 @@ describe("Section tests", () => {
     });
 
     it("replace", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.Sections();
                 const section1 = new model.Section();
@@ -66,10 +66,10 @@ describe("Section tests", () => {
     });
 
     it("post", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.createSection(fileName, "NewSection", 5, "password", folderName).then((postResult) => {
                     assert.equal(201, postResult.response.statusCode);
@@ -80,10 +80,10 @@ describe("Section tests", () => {
     });
 
     it("put", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const sectionIndex = 2;
                 const sectionName = "UpdatedSection";
@@ -97,10 +97,10 @@ describe("Section tests", () => {
     });
 
     it("move", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.moveSection(fileName, 1, 2, "password", folderName).then((postResult) => {
                     assert.equal(200, postResult.response.statusCode);
@@ -111,10 +111,10 @@ describe("Section tests", () => {
     });
 
     it("clear", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteSections(fileName, null, null, "password", folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
@@ -125,10 +125,10 @@ describe("Section tests", () => {
     });
 
     it("delete many", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteSections(fileName, [2, 3], null, "password", folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
@@ -139,10 +139,10 @@ describe("Section tests", () => {
     });
 
     it("delete", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteSection(fileName, 2, null, "password", folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);

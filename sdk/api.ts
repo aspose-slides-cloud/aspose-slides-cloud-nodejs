@@ -168,6 +168,67 @@ export class SlidesApi {
     }
 
     /**
+     * Compresses embedded fonts by removing unused characters. 
+     * @param name Document name.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async compressEmbeddedFonts(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling compressEmbeddedFonts.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fonts/embedded/compress";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            json: true
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
+    }
+
+    /**
+     * Compresses embedded fonts by removing unused characters. 
+     * @param document Document data.
+     * @param password Document password.
+     */
+    public async compressEmbeddedFontsOnline(document: Readable, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling compressEmbeddedFontsOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/fonts/embedded/compress";
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: {},
+            uri: localVarPath,
+            encoding: null
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Convert presentation from request content to format specified. 
      * @param document Document data.
      * @param format Export format.

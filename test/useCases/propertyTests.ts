@@ -25,17 +25,17 @@
 var assert = require('assert');
 var fs = require('fs');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Property tests", () => {
     it("builtin", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const propertyName = "Author";
             const updatedPropertyValue = "New Value";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getDocumentProperty(fileName, propertyName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -65,13 +65,13 @@ describe("Property tests", () => {
     });
 
     it("custom", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const propertyName = "CustomProperty2";
             const updatedPropertyValue = "New Value";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const property = new model.DocumentProperty();
                 property.value = updatedPropertyValue;
@@ -94,14 +94,14 @@ describe("Property tests", () => {
     });
 
     it("bulkUpdate", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const propertyName = "Author";
             const customPropertyName = "CustomProperty2";
             const updatedPropertyValue = "New Value";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getDocumentProperties(fileName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -128,11 +128,11 @@ describe("Property tests", () => {
     });
 
     it("slideProperties", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getSlideProperties(fileName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -150,11 +150,11 @@ describe("Property tests", () => {
     });
 
     it("slideSizePreset", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.SlideProperties();
                 dto.sizeType = model.SlideProperties.SizeTypeEnum.B4IsoPaper;
@@ -169,13 +169,13 @@ describe("Property tests", () => {
     });
 
     it("slideSizeCustom", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
             const width = 800;
             const height = 500;
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 const dto = new model.SlideProperties();
                 dto.width = width;
@@ -191,11 +191,11 @@ describe("Property tests", () => {
     });
 
     it("protectionProperties", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getProtectionProperties(fileName, password, folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -213,11 +213,11 @@ describe("Property tests", () => {
     });
 
     it("deleteProtection", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.deleteProtection(fileName, password, folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -230,8 +230,8 @@ describe("Property tests", () => {
     });
 
     it("protectOnline", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             const dto = new model.ProtectionProperties();
             dto.readPassword = "newPassword";
             const input = fs.createReadStream("TestData/test.pptx");
@@ -243,8 +243,8 @@ describe("Property tests", () => {
     });
 
     it("unprotectOnline", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             const input = fs.createReadStream("TestData/test.pptx");
             return api.deleteProtectionOnline(input, "password").then((result) => {
                 assert.equal(200, result.response.statusCode);
@@ -254,11 +254,11 @@ describe("Property tests", () => {
     });
 
     it("getViewProperties", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const response = await api.getViewProperties(fileName, "password", folderName);
@@ -267,11 +267,11 @@ describe("Property tests", () => {
     });
 
     it("setViewProperties", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const slideViewPropDto = new model.CommonSlideViewProperties();
@@ -288,11 +288,11 @@ describe("Property tests", () => {
     });
 
     it("protection check", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             let result = await api.getProtectionProperties(fileName, null, folderName)
             assert.equal(200, result.response.statusCode);
@@ -307,11 +307,11 @@ describe("Property tests", () => {
     });
 
     it("get slideshow properties", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const response = await api.getSlideShowProperties(fileName, "password", folderName);
@@ -321,11 +321,11 @@ describe("Property tests", () => {
     });
 
     it("set slideshow properties", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const dto = new model.SlideShowProperties();

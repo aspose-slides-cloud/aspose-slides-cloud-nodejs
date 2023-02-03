@@ -24,7 +24,7 @@
 
 import * as model from "../../sdk/model";
 import {PresentationToMerge} from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 var assert = require('assert');
 var fs = require('fs');
@@ -32,13 +32,13 @@ import SourceEnum = PresentationToMerge.SourceEnum;
 
 describe("Merge tests", () => {
     it("merge storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const fileName2 = "test-unprotected.pptx";
             const fileNamePdf = "test.pdf";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
                     return api.copyFile("TempTests/" + fileNamePdf, folderName + "/" + fileNamePdf).then(() => {
@@ -53,12 +53,12 @@ describe("Merge tests", () => {
         });
     });
     it("merge ordered storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const fileName2 = "test-unprotected.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
                     let request = new model.OrderedMergeRequest();
@@ -74,8 +74,8 @@ describe("Merge tests", () => {
         });
     });
     it("merge request", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             const files = [fs.createReadStream("TestData/TemplateCV.pptx"), fs.createReadStream("TestData/test-unprotected.pptx")];
             return api.mergeOnline(files).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
@@ -83,9 +83,9 @@ describe("Merge tests", () => {
         });
     });
     it("merge and save request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const outPath = "TestData/out.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const files = [fs.createReadStream("TestData/TemplateCV.pptx"), fs.createReadStream("TestData/test-unprotected.pptx")];
             return api.mergeAndSaveOnline(outPath, files).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
@@ -97,8 +97,8 @@ describe("Merge tests", () => {
         });
     });
     it("merge ordered request", () => {
-        return TestInitializer.runTest(() => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getApi();
             const files = [fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx")];
             let request = new model.OrderedMergeRequest();
             let presentation1 = new model.PresentationToMerge();
@@ -114,10 +114,10 @@ describe("Merge tests", () => {
         });
     });
     it("merge ordered combined", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName2 = "test-unprotected.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
                 const files = [fs.createReadStream("TestData/test.pptx")];
                 let request = new model.OrderedMergeRequest();
@@ -136,10 +136,10 @@ describe("Merge tests", () => {
         });
     });
     it("merge ordered url", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             let request = new model.OrderedMergeRequest();

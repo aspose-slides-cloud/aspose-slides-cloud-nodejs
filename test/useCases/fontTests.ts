@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 import {ExportFormat, FontSubstRule, ImageExportOptions} from "../../sdk/model";
 
 var assert = require('assert');
@@ -30,10 +30,10 @@ var fs = require('fs');
 
 describe("Font tests", () => {
     it("get fonts", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.getFonts(fileName, "password", folderName);
@@ -42,9 +42,9 @@ describe("Font tests", () => {
     });
 
     it("get fonts online", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const stream = fs.createReadStream("TestData/" + fileName)
             const result = await api.getFontsOnline(stream, "password");
             assert.equal(3, result.body.list.length);
@@ -52,11 +52,11 @@ describe("Font tests", () => {
     });
 
     it("set embedded font", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const fontName = "Calibri";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.setEmbeddedFont(fileName, fontName, false, "password", folderName);
@@ -67,10 +67,10 @@ describe("Font tests", () => {
     });
 
     it("set embedded font online", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const fileName = "test.pptx";
             const fontName = "Calibri";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const stream = fs.createReadStream("TestData/" + fileName)
 
             const result = await api.setEmbeddedFontOnline(stream, fontName, false, "password");
@@ -79,7 +79,7 @@ describe("Font tests", () => {
     });
 
     it("set embedded font from request", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const fontFileName = "calibri.ttf";
@@ -87,7 +87,7 @@ describe("Font tests", () => {
             
             const stream = fs.createReadStream("TestData/" + fontFileName)
             
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const result = await api.setEmbeddedFontFromRequest(stream, fileName, false, "password", folderName);
             assert.equal(3, result.body.list.length);
@@ -97,37 +97,60 @@ describe("Font tests", () => {
     });
 
     it("set embedded font from request online", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const fileName = "test.pptx";
             const fontFileName = "calibri.ttf";
 
             const fileStream = fs.createReadStream("TestData/" + fileName)
             const fontStream = fs.createReadStream("TestData/" + fontFileName)
             
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const result = await api.setEmbeddedFontFromRequestOnline(fileStream, fontStream, false, "password");
             assert.equal(200, result.response.statusCode);
         });
     });
 
+    it("compress embedded fonts", () => {
+        return TestUtils.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const api = TestUtils.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const result = await api.compressEmbeddedFonts(fileName, "password", folderName);
+            assert.equal(200, result.response.statusCode);
+        });
+    });
+
+    it("compress embedded fonts online", () => {
+        return TestUtils.runTest(async () => {
+            const fileName = "test.pptx";
+            const api = TestUtils.getApi();
+            const stream = fs.createReadStream("TestData/" + fileName)
+
+            const result = await api.compressEmbeddedFontsOnline(stream, "password");
+            assert.equal(200, result.response.statusCode);
+        });
+    });
+
     it("delete embedded font", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const fontName = "Calibri Light";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
-            const result = await api.deleteEmbeddedFont(fileName, fontName,  "password", folderName);
+            const result = await api.deleteEmbeddedFont(fileName, fontName, "password", folderName);
             assert.equal(200, result.response.statusCode);
         });
     });
 
     it("delete embedded font online", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const fileName = "test.pptx";
             const fontName = "Calibri Light";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const stream = fs.createReadStream("TestData/" + fileName)
 
             const result = await api.deleteEmbeddedFontOnline(stream, fontName, "password");
@@ -136,13 +159,13 @@ describe("Font tests", () => {
     });
 
     it("replace font", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const sourceFontName = "Calibri";
             const targetFontName = "Times New Roman";
             
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const result = await api.replaceFont(fileName, sourceFontName, targetFontName, true, "password", folderName);
@@ -152,12 +175,12 @@ describe("Font tests", () => {
     });
 
     it("replace font online", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const sourceFontName = "Calibri";
             const targetFontName = "Times New Roman";
             const fileName = "test.pptx";
             
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const stream = fs.createReadStream("TestData/" + fileName)
 
             const result = await api.replaceFontOnline(stream, sourceFontName, targetFontName, true, "password");
@@ -166,12 +189,12 @@ describe("Font tests", () => {
     });
 
     it("font substitution", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const targetFontName = "Times New Roman";
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             
             const fontRule1 = new FontSubstRule();

@@ -25,15 +25,15 @@
 var assert = require('assert');
 var fs = require('fs');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Image tests", () => {
     it("get", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getPresentationImages(fileName, password, folderName).then((presentationResult) => {
                     assert.equal(200, presentationResult.response.statusCode);
@@ -46,11 +46,11 @@ describe("Image tests", () => {
         });
     });
     it("download all storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadImagesDefaultFormat(fileName, password, folderName).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
@@ -67,9 +67,9 @@ describe("Image tests", () => {
         });
     });
     it("download all request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.downloadImagesDefaultFormatOnline(fs.createReadStream("TestData/test.pptx"), password).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
                 return api.downloadImagesOnline(fs.createReadStream("TestData/test.pptx"), model.ImageExportFormat.Png, password).then((pngResult) => {
@@ -84,11 +84,11 @@ describe("Image tests", () => {
         });
     });
     it("download storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.downloadImageDefaultFormat(fileName, 1, password, folderName).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
@@ -101,9 +101,9 @@ describe("Image tests", () => {
         });
     });
     it("download request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.downloadImageDefaultFormatOnline(fs.createReadStream("TestData/test.pptx"), 1, password).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
                 return api.downloadImageOnline(fs.createReadStream("TestData/test.pptx"), 1, model.ImageExportFormat.Png, password).then((pngResult) => {

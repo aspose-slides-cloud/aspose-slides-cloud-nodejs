@@ -25,16 +25,16 @@
 var assert = require('assert');
 var fs = require('fs');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Text tests", () => {
     it("get", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
             const password = "password";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.getPresentationTextItems(fileName, null, password, folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -55,14 +55,14 @@ describe("Text tests", () => {
         });
     });
     it("replace storage", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 1;
             const password = "password";
             const oldValue = "text";
             const newValue = "new_text";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
                 return api.replacePresentationText(fileName, oldValue, newValue, null, password, folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -89,12 +89,12 @@ describe("Text tests", () => {
         });
     });
     it("replace request", () => {
-        return TestInitializer.runTest(() => {
+        return TestUtils.runTest(() => {
             const slideIndex = 1;
             const password = "password";
             const oldValue = "text";
             const newValue = "new_text";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             return api.replacePresentationTextOnline(fs.createReadStream("TestData/test.pptx"), oldValue, newValue, null, password).then((result) => {
                 assert.equal(200, result.response.statusCode);
                 return api.replacePresentationTextOnline(fs.createReadStream("TestData/test.pptx"), oldValue, newValue, true, password).then((resultWithEmpty) => {
@@ -111,7 +111,7 @@ describe("Text tests", () => {
     });
 
     it("highlight shape text", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
@@ -120,7 +120,7 @@ describe("Text tests", () => {
             const textToHighlight = "highlight";
             const highlightColor = "#FFF5FF8A";
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const result = await api.highlightShapeText(fileName, slideIndex, shapeIndex, textToHighlight,
                 highlightColor, null, false, "password", folderName);
@@ -133,7 +133,7 @@ describe("Text tests", () => {
     });
 
     it("highlight shape text regex", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
             const slideIndex = 6;
@@ -143,7 +143,7 @@ describe("Text tests", () => {
             const highlightRegex = "h.ghl[abci]ght";
             const highlightColor = "#FFF5FF8A";
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const result = await api.highlightShapeRegex(fileName, slideIndex, shapeIndex, highlightRegex,
                 highlightColor, null, false, "password", folderName);

@@ -26,14 +26,14 @@ var fs = require('fs');
 
 var assert = require('assert');
 import * as model from "../../sdk/model";
-import {TestInitializer} from "../testInitializer";
+import {TestUtils} from "../testUtils";
 
 describe("Comment tests", () => {
     it("createComment", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const author = "Test author";
@@ -63,7 +63,7 @@ describe("Comment tests", () => {
     });
 
     it("createCommentOnline", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const author = "Test author";
             const text = "Comment text";
             const childText = "Child comment text";
@@ -77,7 +77,7 @@ describe("Comment tests", () => {
             comment.text = text;
             comment.childComments = [childComment];
 
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             const response = await api.createCommentOnline(fs.createReadStream("TestData/test.pptx"), 3, comment, null, "password");
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
@@ -85,10 +85,10 @@ describe("Comment tests", () => {
     });
 
     it("getSlideComments", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const response = await api.getSlideComments(fileName, 1, "password", folderName);
 
@@ -99,10 +99,10 @@ describe("Comment tests", () => {
     });
 
     it("deleteComments", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const response = await api.deleteComments(fileName, null, "password", folderName);
             assert.equal(200, response.response.statusCode);
@@ -114,8 +114,8 @@ describe("Comment tests", () => {
     });
 
     it("deleteCommentsOnline", () => {
-        return TestInitializer.runTest(async () => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getApi();
             const response = await api.deleteCommentsOnline(fs.createReadStream("TestData/test.pptx"), null, "password");
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
@@ -123,10 +123,10 @@ describe("Comment tests", () => {
     });
 
     it("deleteSlideComments", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
             const response = await api.deleteSlideComments(fileName, 1, null, "password", folderName);
             assert.equal(200, response.response.statusCode);
@@ -138,8 +138,8 @@ describe("Comment tests", () => {
     });
 
     it("deleteSlideCommentsOnline", () => {
-        return TestInitializer.runTest(async () => {
-            const api = TestInitializer.getApi();
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getApi();
             const response = await api.deleteSlideCommentsOnline(fs.createReadStream("TestData/test.pptx"), 1, null, "password");
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
@@ -147,10 +147,10 @@ describe("Comment tests", () => {
     });
 
     it("createModernComment", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const author = "Test author";
@@ -178,10 +178,10 @@ describe("Comment tests", () => {
     });
 
     it("createShapeModernComment", () => {
-        return TestInitializer.runTest(async () => {
+        return TestUtils.runTest(async () => {
             const folderName = "TempSlidesSDK";
             const fileName = "test.pptx";
-            const api = TestInitializer.getApi();
+            const api = TestUtils.getApi();
             await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
 
             const author = "Test author";

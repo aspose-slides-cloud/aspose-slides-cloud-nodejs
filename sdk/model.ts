@@ -2927,6 +2927,11 @@ export class Effect {
      */
     repeatUntilNextClick?: boolean;
 
+    /**
+     * This attribute specifies if the animation effect stops the previous sound.
+     */
+    stopPreviousSound?: boolean;
+
 }
 export namespace Effect {
     export enum TypeEnum {
@@ -4168,6 +4173,11 @@ export class Hyperlink {
      * Represents the source of hyperlink color
      */
     colorSource?: Hyperlink.ColorSourceEnum;
+
+    /**
+     * Audio data encoded in base64. Represents the playing sound of the hyperlink. 
+     */
+    soundBase64?: string;
 
 }
 export namespace Hyperlink {
@@ -5513,31 +5523,6 @@ export class Paragraph extends ResourceBase {
     depth?: number;
 
     /**
-     * Bullet char.
-     */
-    bulletChar?: string;
-
-    /**
-     * Bullet height.
-     */
-    bulletHeight?: number;
-
-    /**
-     * Bullet type.
-     */
-    bulletType?: Paragraph.BulletTypeEnum;
-
-    /**
-     * Starting number for a numbered bullet.
-     */
-    numberedBulletStartWith?: number;
-
-    /**
-     * Numbered bullet style.
-     */
-    numberedBulletStyle?: Paragraph.NumberedBulletStyleEnum;
-
-    /**
      * True if hanging punctuation is used with the paragraph.
      */
     hangingPunctuation?: Paragraph.HangingPunctuationEnum;
@@ -5567,6 +5552,36 @@ export class Paragraph extends ResourceBase {
      */
     defaultPortionFormat?: PortionFormat;
 
+    /**
+     * Bullet char.
+     */
+    bulletChar?: string;
+
+    /**
+     * Bullet height.
+     */
+    bulletHeight?: number;
+
+    /**
+     * Bullet type.
+     */
+    bulletType?: Paragraph.BulletTypeEnum;
+
+    /**
+     * Starting number for a numbered bullet.
+     */
+    numberedBulletStartWith?: number;
+
+    /**
+     * Numbered bullet style.
+     */
+    numberedBulletStyle?: Paragraph.NumberedBulletStyleEnum;
+
+    /**
+     * Bullet fill format.
+     */
+    bulletFillFormat?: FillFormat;
+
 }
 export namespace Paragraph {
     export enum AlignmentEnum {
@@ -5585,6 +5600,26 @@ export namespace Paragraph {
         Bottom = <any> 'Bottom',
         Baseline = <any> 'Baseline',
         Default = <any> 'Default'
+    }
+    export enum HangingPunctuationEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum EastAsianLineBreakEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum LatinLineBreakEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum RightToLeftEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
     }
     export enum BulletTypeEnum {
         None = <any> 'None',
@@ -5637,7 +5672,138 @@ export namespace Paragraph {
         BulletHindiAlpha1Period = <any> 'BulletHindiAlpha1Period',
         NotDefined = <any> 'NotDefined'
     }
-    export enum HangingPunctuationEnum {
+}
+
+/**
+ * Paragraph formatting properties.
+ */
+export class ParagraphFormat {
+
+    /**
+     * Depth.
+     */
+    depth?: number;
+
+    /**
+     * Text alignment.
+     */
+    alignment?: ParagraphFormat.AlignmentEnum;
+
+    /**
+     * Left margin.
+     */
+    marginLeft?: number;
+
+    /**
+     * Right margin.
+     */
+    marginRight?: number;
+
+    /**
+     * Left spacing.
+     */
+    spaceBefore?: number;
+
+    /**
+     * Right spacing.
+     */
+    spaceAfter?: number;
+
+    /**
+     * Spacing between lines.
+     */
+    spaceWithin?: number;
+
+    /**
+     * Font alignment.
+     */
+    fontAlignment?: ParagraphFormat.FontAlignmentEnum;
+
+    /**
+     * First line indent.
+     */
+    indent?: number;
+
+    /**
+     * Determines whether the Right to Left writing is used in a paragraph. No inheritance applied.
+     */
+    rightToLeft?: ParagraphFormat.RightToLeftEnum;
+
+    /**
+     * Determines whether the East Asian line break is used in a paragraph. No inheritance applied.
+     */
+    eastAsianLineBreak?: ParagraphFormat.EastAsianLineBreakEnum;
+
+    /**
+     * Determines whether the Latin line break is used in a paragraph. No inheritance applied.
+     */
+    latinLineBreak?: ParagraphFormat.LatinLineBreakEnum;
+
+    /**
+     * Determines whether the hanging punctuation is used in a paragraph. No inheritance applied.
+     */
+    hangingPunctuation?: ParagraphFormat.HangingPunctuationEnum;
+
+    /**
+     * Returns or sets default tabulation size with no inheritance.
+     */
+    defaultTabSize?: number;
+
+    /**
+     * Default portion format.
+     */
+    defaultPortionFormat?: PortionFormat;
+
+    /**
+     * Bullet char.
+     */
+    bulletChar?: string;
+
+    /**
+     * Bullet height.
+     */
+    bulletHeight?: number;
+
+    /**
+     * Bullet type.
+     */
+    bulletType?: ParagraphFormat.BulletTypeEnum;
+
+    /**
+     * Starting number for a numbered bullet.
+     */
+    numberedBulletStartWith?: number;
+
+    /**
+     * Numbered bullet style.
+     */
+    numberedBulletStyle?: ParagraphFormat.NumberedBulletStyleEnum;
+
+    /**
+     * Bullet fill format.
+     */
+    bulletFillFormat?: FillFormat;
+
+}
+export namespace ParagraphFormat {
+    export enum AlignmentEnum {
+        Left = <any> 'Left',
+        Center = <any> 'Center',
+        Right = <any> 'Right',
+        Justify = <any> 'Justify',
+        JustifyLow = <any> 'JustifyLow',
+        Distributed = <any> 'Distributed',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum FontAlignmentEnum {
+        Automatic = <any> 'Automatic',
+        Top = <any> 'Top',
+        Center = <any> 'Center',
+        Bottom = <any> 'Bottom',
+        Baseline = <any> 'Baseline',
+        Default = <any> 'Default'
+    }
+    export enum RightToLeftEnum {
         False = <any> 'False',
         True = <any> 'True',
         NotDefined = <any> 'NotDefined'
@@ -5652,9 +5818,60 @@ export namespace Paragraph {
         True = <any> 'True',
         NotDefined = <any> 'NotDefined'
     }
-    export enum RightToLeftEnum {
+    export enum HangingPunctuationEnum {
         False = <any> 'False',
         True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum BulletTypeEnum {
+        None = <any> 'None',
+        Symbol = <any> 'Symbol',
+        Numbered = <any> 'Numbered',
+        Picture = <any> 'Picture',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum NumberedBulletStyleEnum {
+        BulletAlphaLCPeriod = <any> 'BulletAlphaLCPeriod',
+        BulletAlphaUCPeriod = <any> 'BulletAlphaUCPeriod',
+        BulletArabicParenRight = <any> 'BulletArabicParenRight',
+        BulletArabicPeriod = <any> 'BulletArabicPeriod',
+        BulletRomanLCParenBoth = <any> 'BulletRomanLCParenBoth',
+        BulletRomanLCParenRight = <any> 'BulletRomanLCParenRight',
+        BulletRomanLCPeriod = <any> 'BulletRomanLCPeriod',
+        BulletRomanUCPeriod = <any> 'BulletRomanUCPeriod',
+        BulletAlphaLCParenBoth = <any> 'BulletAlphaLCParenBoth',
+        BulletAlphaLCParenRight = <any> 'BulletAlphaLCParenRight',
+        BulletAlphaUCParenBoth = <any> 'BulletAlphaUCParenBoth',
+        BulletAlphaUCParenRight = <any> 'BulletAlphaUCParenRight',
+        BulletArabicParenBoth = <any> 'BulletArabicParenBoth',
+        BulletArabicPlain = <any> 'BulletArabicPlain',
+        BulletRomanUCParenBoth = <any> 'BulletRomanUCParenBoth',
+        BulletRomanUCParenRight = <any> 'BulletRomanUCParenRight',
+        BulletSimpChinPlain = <any> 'BulletSimpChinPlain',
+        BulletSimpChinPeriod = <any> 'BulletSimpChinPeriod',
+        BulletCircleNumDBPlain = <any> 'BulletCircleNumDBPlain',
+        BulletCircleNumWDWhitePlain = <any> 'BulletCircleNumWDWhitePlain',
+        BulletCircleNumWDBlackPlain = <any> 'BulletCircleNumWDBlackPlain',
+        BulletTradChinPlain = <any> 'BulletTradChinPlain',
+        BulletTradChinPeriod = <any> 'BulletTradChinPeriod',
+        BulletArabicAlphaDash = <any> 'BulletArabicAlphaDash',
+        BulletArabicAbjadDash = <any> 'BulletArabicAbjadDash',
+        BulletHebrewAlphaDash = <any> 'BulletHebrewAlphaDash',
+        BulletKanjiKoreanPlain = <any> 'BulletKanjiKoreanPlain',
+        BulletKanjiKoreanPeriod = <any> 'BulletKanjiKoreanPeriod',
+        BulletArabicDBPlain = <any> 'BulletArabicDBPlain',
+        BulletArabicDBPeriod = <any> 'BulletArabicDBPeriod',
+        BulletThaiAlphaPeriod = <any> 'BulletThaiAlphaPeriod',
+        BulletThaiAlphaParenRight = <any> 'BulletThaiAlphaParenRight',
+        BulletThaiAlphaParenBoth = <any> 'BulletThaiAlphaParenBoth',
+        BulletThaiNumPeriod = <any> 'BulletThaiNumPeriod',
+        BulletThaiNumParenRight = <any> 'BulletThaiNumParenRight',
+        BulletThaiNumParenBoth = <any> 'BulletThaiNumParenBoth',
+        BulletHindiAlphaPeriod = <any> 'BulletHindiAlphaPeriod',
+        BulletHindiNumPeriod = <any> 'BulletHindiNumPeriod',
+        BulletKanjiSimpChinDBPeriod = <any> 'BulletKanjiSimpChinDBPeriod',
+        BulletHindiNumParenRight = <any> 'BulletHindiNumParenRight',
+        BulletHindiAlpha1Period = <any> 'BulletHindiAlpha1Period',
         NotDefined = <any> 'NotDefined'
     }
 }
@@ -5918,9 +6135,16 @@ export namespace PdfExportOptions {
     }
     export enum ComplianceEnum {
         Pdf15 = <any> 'Pdf15',
+        Pdf16 = <any> 'Pdf16',
+        Pdf17 = <any> 'Pdf17',
         PdfA1b = <any> 'PdfA1b',
         PdfA1a = <any> 'PdfA1a',
-        PdfUa = <any> 'PdfUa'
+        PdfA2b = <any> 'PdfA2b',
+        PdfA2a = <any> 'PdfA2a',
+        PdfA3b = <any> 'PdfA3b',
+        PdfA3a = <any> 'PdfA3a',
+        PdfUa = <any> 'PdfUa',
+        PdfA2u = <any> 'PdfA2u'
     }
     export enum NotesPositionEnum {
         None = <any> 'None',
@@ -9105,6 +9329,76 @@ export class TextFrameFormat {
      */
     transform?: TextFrameFormat.TransformEnum;
 
+    /**
+     * Left margin. Left margin.
+     */
+    marginLeft?: number;
+
+    /**
+     * Right margin.
+     */
+    marginRight?: number;
+
+    /**
+     * Top margin.
+     */
+    marginTop?: number;
+
+    /**
+     * Bottom margin.
+     */
+    marginBottom?: number;
+
+    /**
+     * True if text is wrapped at TextFrame's margins.
+     */
+    wrapText?: TextFrameFormat.WrapTextEnum;
+
+    /**
+     * Returns or sets vertical anchor text in a TextFrame.
+     */
+    anchoringType?: TextFrameFormat.AnchoringTypeEnum;
+
+    /**
+     * If True then text should be centered in box horizontally.
+     */
+    centerText?: TextFrameFormat.CenterTextEnum;
+
+    /**
+     * Determines text orientation. The resulted value of visual text rotation summarized from this property and custom angle in property RotationAngle.
+     */
+    textVerticalType?: TextFrameFormat.TextVerticalTypeEnum;
+
+    /**
+     * Returns or sets text's auto-fit mode.
+     */
+    autofitType?: TextFrameFormat.AutofitTypeEnum;
+
+    /**
+     * Returns or sets number of columns in the text area. This value must be a positive number. Otherwise, the value will be set to zero.  Value 0 means undefined value.
+     */
+    columnCount?: number;
+
+    /**
+     * Returns or sets the space between text columns in the text area (in points). This should only apply  when there is more than 1 column present. This value must be a positive number. Otherwise, the value will be set to zero. 
+     */
+    columnSpacing?: number;
+
+    /**
+     * Returns or set keeping text out of 3D scene entirely.
+     */
+    keepTextFlat?: boolean;
+
+    /**
+     * Specifies the custom rotation that is being applied to the text within the bounding box.
+     */
+    rotationAngle?: number;
+
+    /**
+     * Default portion format.
+     */
+    defaultParagraphFormat?: ParagraphFormat;
+
 }
 export namespace TextFrameFormat {
     export enum TransformEnum {
@@ -9150,6 +9444,40 @@ export namespace TextFrameFormat {
         CascadeUp = <any> 'CascadeUp',
         CascadeDown = <any> 'CascadeDown',
         Custom = <any> 'Custom',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum WrapTextEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum AnchoringTypeEnum {
+        Top = <any> 'Top',
+        Center = <any> 'Center',
+        Bottom = <any> 'Bottom',
+        Justified = <any> 'Justified',
+        Distributed = <any> 'Distributed',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum CenterTextEnum {
+        False = <any> 'False',
+        True = <any> 'True',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum TextVerticalTypeEnum {
+        Horizontal = <any> 'Horizontal',
+        Vertical = <any> 'Vertical',
+        Vertical270 = <any> 'Vertical270',
+        WordArtVertical = <any> 'WordArtVertical',
+        EastAsianVertical = <any> 'EastAsianVertical',
+        MongolianVertical = <any> 'MongolianVertical',
+        WordArtVerticalRightToLeft = <any> 'WordArtVerticalRightToLeft',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum AutofitTypeEnum {
+        None = <any> 'None',
+        Normal = <any> 'Normal',
+        Shape = <any> 'Shape',
         NotDefined = <any> 'NotDefined'
     }
 }

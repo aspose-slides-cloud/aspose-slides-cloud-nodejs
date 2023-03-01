@@ -23,7 +23,7 @@
 */
 
 import * as model from "../../sdk/model";
-import {GeometryShape, Portion, SolidFill} from "../../sdk/model";
+import {GeometryShape, Portion, ShapeExportFormat, SolidFill} from "../../sdk/model";
 import {TestUtils} from "../testUtils";
 
 var fs = require('fs');
@@ -1031,6 +1031,20 @@ describe("Shape tests", () => {
             const response = await api.deleteSmartArtNode(fileName, slideIndex, smartArtIndex, nodeIndex, subNodePath,
                 "password", folderName);
             assert.equal(3, response.body.nodes[0].nodes.length)
+        });
+    });
+
+    it("download shape from DTO", () => {
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getApi();
+            const dto = new model.Shape();
+            dto.shapeType = ShapeTypeEnum.Rectangle;
+            dto.width = 400;
+            dto.height = 200;
+            dto.text = "Shape text";
+            
+            const result = await api.downloadShapeFromDto(ShapeExportFormat.Png, dto);
+            assert.equal(200, result.response.statusCode);
         });
     });
 });

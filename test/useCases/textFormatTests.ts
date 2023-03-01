@@ -22,9 +22,12 @@
 * SOFTWARE.
 */
 
-var assert = require('assert');
 import * as model from "../../sdk/model";
+import {TextFrameFormat} from "../../sdk/model";
 import {TestUtils} from "../testUtils";
+
+var assert = require('assert');
+import CenterTextEnum = TextFrameFormat.CenterTextEnum;
 
 describe("text format tests", () => {
     it("textFormat3D", () => {
@@ -81,6 +84,42 @@ describe("text format tests", () => {
             shapeDto.text = "Sample text";
 
             shapeDto.textFrameFormat = textFrameFormatDto;
+
+            const result = await api.createShape(fileName, slideIndex, shapeDto, null, null, "password", folderName);
+            assert.equal((result.body as model.Shape).type, "Shape");
+
+        });
+    });
+
+    it("text frame format", () => {
+        return TestUtils.runTest(async () => {
+            const folderName = "TempSlidesSDK";
+            const fileName = "test.pptx";
+            const slideIndex = 1;
+
+            const api = TestUtils.getApi();
+            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+
+            const shapeDto = new model.Shape();
+            shapeDto.shapeType = model.GeometryShape.ShapeTypeEnum.Rectangle;
+            shapeDto.x = 100;
+            shapeDto.y = 100;
+            shapeDto.height = 100;
+            shapeDto.width = 200;
+            shapeDto.text = "Sample text";
+            
+            const textFrameFormat = new model.TextFrameFormat();
+            textFrameFormat.marginBottom = 2;
+            textFrameFormat.marginTop = 2;
+            textFrameFormat.marginLeft = 2;
+            textFrameFormat.marginRight = 2;
+            textFrameFormat.centerText = CenterTextEnum.True;
+            textFrameFormat.defaultParagraphFormat = new model.ParagraphFormat();
+            const solidFill = new model.SolidFill();
+            solidFill.color = "#FF0000";
+            textFrameFormat.defaultParagraphFormat.bulletFillFormat = solidFill;
+
+            shapeDto.textFrameFormat = textFrameFormat;
 
             const result = await api.createShape(fileName, slideIndex, shapeDto, null, null, "password", folderName);
             assert.equal((result.body as model.Shape).type, "Shape");

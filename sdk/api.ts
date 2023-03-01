@@ -4629,6 +4629,39 @@ export class SlidesApi {
     }
 
     /**
+     * Creates the shape from the DTO and returns the result in the specified format. 
+     * @param format Export format
+     * @param dto Shape DTO.
+     */
+    public async downloadShapeFromDto(format: model.ShapeExportFormat, dto: model.ShapeBase): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'format' is not null or undefined
+        if (format === null || format === undefined) {
+            throw new Error('The required parameter "format" was null or undefined when calling downloadShapeFromDto.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ShapeExportFormat).filter(i => model.ShapeExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ShapeExportFormat).map(key => model.ShapeExportFormat[key]).join());
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling downloadShapeFromDto.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/shape/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
+        const queryParameters: any = {};
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: dto,
+            encoding: null
+        };
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Render shape to specified picture format. 
      * @param document Document data.
      * @param slideIndex Slide index.

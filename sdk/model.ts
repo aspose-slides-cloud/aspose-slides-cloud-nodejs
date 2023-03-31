@@ -4280,6 +4280,11 @@ export class ImageExportOptions extends ImageExportOptionsBase {
      */
     commentsAreaColor?: string;
 
+    /**
+     * Show hidden slides. If true, hidden are exported.
+     */
+    showHiddenSlides?: boolean;
+
 }
 export namespace ImageExportOptions {
     export enum NotesPositionEnum {

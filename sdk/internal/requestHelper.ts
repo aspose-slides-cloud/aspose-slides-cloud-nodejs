@@ -23,27 +23,46 @@
 */
 
 
-import request = require("request");
-import requestDebug = require("request-debug");
+import axios from "axios";
+
+axios.interceptors.request.use(request => {
+    if ((request as any).debug) {
+        console.log('>> Request');
+        console.log(request);
+    }
+    return request;
+});
+
+axios.interceptors.response.use(response => {
+    if ((response.config as any).debug) {
+        console.log('<< Response');
+        console.log(response);
+    }
+    return response;
+});
+
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
 
-export function checkMultipartContent(options: request.Options, files: any) {
+export function checkMultipartContent(options: any, files: any) {
     if (files && files.length) {
         const data = {
             pipeline: null,
             attachments: []
         };
-        if (options.json !== true && options.json) {
-            data.pipeline = JSON.stringify(options.json);
+        if (options.data) {
+            data.pipeline = JSON.stringify(options.data);
         } else {
             delete data.pipeline;
         }
         for (var i = 0; i < files.length; i++) {
             data.attachments.push(files[i]);
         }        
-        options.formData = data;
-        options.json = null;
+        options.data = data;
+        if (!options.headers) {
+            options.headers = {};
+        }
+        options.headers["Content-type"] = "multipart/form-data";
     }
 }
 
@@ -53,7 +72,7 @@ export function checkMultipartContent(options: request.Options, files: any) {
  * @param confguration api configuration
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
-export async function invokeApiMethod(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
+export async function invokeApiMethod(requestOptions: any, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<any> {
     try {
         return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
     } catch (e) {
@@ -120,15 +139,7 @@ export function addHeaderParameter(headers: any, parameterName: string, paramete
  * @param configuration api configuration
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
-async function invokeApiMethodInternal(requestOptions: request.Options, configuration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
-    requestDebug(request, (type, data, r) => {
-        if (r.writeDebugToConsole) {
-            const toLog = {};
-            toLog[type] = data;
-            // tslint:disable-next-line:no-console
-            console.log(JSON.stringify(toLog, undefined, 2));
-        }
-    });
+async function invokeApiMethodInternal(requestOptions: any, configuration: Configuration, notApplyAuthToRequest?: boolean): Promise<any> {
 
     if (configuration.allowInsecureRequests) {
         requestOptions.rejectUnauthorized = false;
@@ -138,7 +149,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, configur
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v23.2.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v23.3.0";
     if (configuration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = configuration.timeout;
     }
@@ -148,50 +159,36 @@ async function invokeApiMethodInternal(requestOptions: request.Options, configur
 
     if (!notApplyAuthToRequest) {
         await addAuthHeader(requestOptions, configuration);
+    } else {
+        requestOptions.headers["Content-type"] = "application/x-www-form-urlencoded";
     }
+    requestOptions.debug = configuration.debugMode;
 
-    return new Promise<request.RequestResponse>((resolve, reject) => {
-        const r = request(requestOptions, async (error, response) => {
-            if (error) {
-                reject(error);
-            } else {
+    return new Promise<any>((resolve, reject) => {
+        const r = axios(requestOptions)
+            .then(async (response: any) => {
+                //compatibility with request library responses
+                response.body = response.data;
+                response.statusCode = response.status;
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     resolve(response);
-                } else if (!notApplyAuthToRequest && response.statusCode === 401) {
-                    await requestToken(configuration);
-                    reject(new NeedRepeatException());
                 } else {
-                    try {
-                        if (response.statusCode == 400 && response.body && response.body.error && typeof response.body.error == "string") {
-                            reject({ message: response.body.error, code: 401 });
-                        } else if (response.body && (response.body.length === undefined || response.body.length)) {
-                            let bodyContent = response.body;
-                            let bodyString = bodyContent;
-                            if (bodyContent instanceof Buffer) {
-                                bodyString = bodyContent.toString("utf8");
-                                bodyContent = JSON.parse(bodyString);
-                            }
-                            let result = ObjectSerializer.deserialize(bodyContent, "SlidesApiErrorResponse");
-                            try {
-                                result = JSON.parse(result);
-                            } catch {
-                                //Error means the object is already deserialized
-                                reject({ message: result.error ? result.error.message : bodyString, code: response.statusCode });
-                            }
-                        } else {
-                            reject({ message: response.statusMessage, code: response.statusCode });
-                        }
-                    } catch (error) {
-                        reject({ message: "Error while parse server error: " + error });
-                    }
+                    await rejectResponse(reject, response, configuration, notApplyAuthToRequest);
                 }
-            }
-        });
+            })
+            .catch(async (error: any) => {
+                if (error.response) {
+                    error.response.body = error.response.data;
+                    error.response.statusCode = error.response.status;
+                    await rejectResponse(reject, error.response, configuration, notApplyAuthToRequest);
+                }
+                reject(error);
+            });
         (r as any).writeDebugToConsole = configuration.debugMode;
     });
 }
 
-async function addAuthHeader(requestOptions: request.Options, configuration: Configuration): Promise<void> {
+async function addAuthHeader(requestOptions: any, configuration: Configuration): Promise<void> {
     if (configuration.appSid || configuration.appKey) {
         if (isRequestTokenPending) {
             await requestingToken;
@@ -210,19 +207,49 @@ async function addAuthHeader(requestOptions: request.Options, configuration: Con
 }
 
 async function requestToken(configuration: Configuration): Promise<void> {
-    const requestOptions: request.Options = {
+    const requestOptions = {
         method: "POST",
-        json: true,
-        uri: configuration.authBaseUrl + "/connect/token",
-        form: {
+        url: configuration.authBaseUrl + "/connect/token",
+        data: {
             grant_type: "client_credentials",
             client_id: configuration.appSid,
             client_secret: configuration.appKey,
-        },
+        }
     };
     const response = await invokeApiMethod(requestOptions, configuration, true);
     configuration.accessToken = response.body.access_token;
     return Promise.resolve();
+}
+
+async function rejectResponse(reject, response, configuration, notApplyAuthToRequest) {
+    if (!notApplyAuthToRequest && response.statusCode === 401) {
+        await requestToken(configuration);
+        reject(new NeedRepeatException());
+    } else {
+        try {
+            if (response.statusCode == 400 && response.body && response.body.error && typeof response.body.error == "string") {
+                reject({ message: response.body.error, code: 401 });
+            } else if (response.body && (response.body.length === undefined || response.body.length)) {
+                let bodyContent = response.body;
+                let bodyString = bodyContent;
+                if (bodyContent instanceof Buffer) {
+                    bodyString = bodyContent.toString("utf8");
+                    bodyContent = JSON.parse(bodyString);
+                }
+                let result = ObjectSerializer.deserialize(bodyContent, "SlidesApiErrorResponse");
+                try {
+                    result = JSON.parse(result);
+                } catch {
+                    //Error means the object is already deserialized
+                    reject({ message: result.error ? result.error.message : bodyString, code: response.statusCode });
+                }
+            } else {
+                reject({ message: response.statusMessage, code: response.statusCode });
+            }
+        } catch (error) {
+            reject({ message: "Error while parse server error: " + error });
+        }
+   }
 }
 
 var requestingToken : Promise<void> = null;

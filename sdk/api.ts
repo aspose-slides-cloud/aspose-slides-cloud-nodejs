@@ -1759,6 +1759,179 @@ export class SlidesApi {
     }
 
     /**
+     * Creates table cell paragraph. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param dto Paragraph DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async createTableCellParagraph(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling createTableCellParagraph.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling createTableCellParagraph.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createTableCellParagraph.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling createTableCellParagraph.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling createTableCellParagraph.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling createTableCellParagraph.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: dto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Creates table cell portion. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param dto Portion DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async createTableCellPortion(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling createTableCellPortion.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling createTableCellPortion.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createTableCellPortion.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling createTableCellPortion.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling createTableCellPortion.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling createTableCellPortion.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling createTableCellPortion.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: dto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Portion");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Inserts the table row in the specified position. If position is not specified, the row add to the end of the table. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param dto Table row data.
+     * @param position Position.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async createTableRow(name: string, slideIndex: number, shapeIndex: number, dto: model.TableRow, position: number = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.TableRow}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling createTableRow.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling createTableRow.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createTableRow.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling createTableRow.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: dto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "TableRow");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Adds a text watermark to each slide of the presentation. Text watermark can be setup via method arguments or withing Shape DTO for detailed customization. Both options are applicable simultaneously.  
      * @param name Document name.
      * @param shape Shape DTO
@@ -3773,6 +3946,179 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Delete cell paragraph. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteTableCellParagraph(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteTableCellParagraph.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteTableCellParagraph.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteTableCellParagraph.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling deleteTableCellParagraph.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling deleteTableCellParagraph.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteTableCellParagraph.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "DELETE",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Delete table ell portion. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param portionIndex Portion index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteTableCellPortion(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteTableCellPortion.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteTableCellPortion.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteTableCellPortion.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling deleteTableCellPortion.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling deleteTableCellPortion.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling deleteTableCellPortion.');
+        }
+        // verify required parameter 'portionIndex' is not null or undefined
+        if (portionIndex === null || portionIndex === undefined) {
+            throw new Error('The required parameter "portionIndex" was null or undefined when calling deleteTableCellPortion.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "DELETE",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Portions");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Deletes the table row. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param withAttachedRows Also delete all attached rows.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteTableRow(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, withAttachedRows: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Table}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteTableRow.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteTableRow.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteTableRow.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling deleteTableRow.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withAttachedRows", withAttachedRows);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "DELETE",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Table");
         return Promise.resolve({ body: result, response });
     }
 
@@ -6869,6 +7215,242 @@ export class SlidesApi {
     }
 
     /**
+     * Returns paragraph info. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getTableCellParagraph(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getTableCellParagraph.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getTableCellParagraph.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getTableCellParagraph.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling getTableCellParagraph.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling getTableCellParagraph.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getTableCellParagraph.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Returns table cell paragraphs. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getTableCellParagraphs(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraphs}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getTableCellParagraphs.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getTableCellParagraphs.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getTableCellParagraphs.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling getTableCellParagraphs.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling getTableCellParagraphs.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Paragraphs");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Returns table cell portion. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param portionIndex Portion index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getTableCellPortion(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getTableCellPortion.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getTableCellPortion.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getTableCellPortion.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling getTableCellPortion.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling getTableCellPortion.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getTableCellPortion.');
+        }
+        // verify required parameter 'portionIndex' is not null or undefined
+        if (portionIndex === null || portionIndex === undefined) {
+            throw new Error('The required parameter "portionIndex" was null or undefined when calling getTableCellPortion.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Portion");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Returns table cell portions. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getTableCellPortions(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portions}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getTableCellPortions.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getTableCellPortions.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getTableCellPortions.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling getTableCellPortions.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling getTableCellPortions.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling getTableCellPortions.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Portions");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Read slide theme info. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -7263,6 +7845,53 @@ export class SlidesApi {
         checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Merge table cells. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param tableCellMergeOptions Merge settings.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async mergeTableCells(name: string, slideIndex: number, shapeIndex: number, tableCellMergeOptions: model.TableCellMergeOptions, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Table}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling mergeTableCells.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling mergeTableCells.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling mergeTableCells.');
+        }
+        // verify required parameter 'tableCellMergeOptions' is not null or undefined
+        if (tableCellMergeOptions === null || tableCellMergeOptions === undefined) {
+            throw new Error('The required parameter "tableCellMergeOptions" was null or undefined when calling mergeTableCells.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/mergeCells";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: tableCellMergeOptions,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Table");
         return Promise.resolve({ body: result, response });
     }
 
@@ -9510,6 +10139,75 @@ export class SlidesApi {
     }
 
     /**
+     * Split table cell. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param splitType Table cell split type (SplitByWidth, SplitByHeight,SplitByColSpan or SplitByRowSpan).
+     * @param value Split value. In case of splitting by column or row span, the value must be an integer number.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async splitTableCell(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, splitType: model.TableCellSplitType, value: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Table}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling splitTableCell.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling splitTableCell.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling splitTableCell.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling splitTableCell.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling splitTableCell.');
+        }
+        // verify required parameter 'splitType' is not null or undefined
+        if (splitType === null || splitType === undefined) {
+            throw new Error('The required parameter "splitType" was null or undefined when calling splitTableCell.');
+        }
+        // verify value of enum parameter 'splitType' is valid
+        if (!Object.keys(model.TableCellSplitType).filter(i => model.TableCellSplitType[i].toLowerCase() == splitType.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for splitType: ' + splitType + '. Must be one of the following: ' + Object.keys(model.TableCellSplitType).map(key => model.TableCellSplitType[key]).join());
+        }
+        // verify required parameter 'value' is not null or undefined
+        if (value === null || value === undefined) {
+            throw new Error('The required parameter "value" was null or undefined when calling splitTableCell.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/{splitType}/{value}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "splitType", ObjectSerializer.toString(splitType));
+        localVarPath = addPathParameterToUrl(localVarPath, "value", ObjectSerializer.toString(value));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Table");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Check if storage exists 
      * @param storageName Storage name
      */
@@ -10437,6 +11135,254 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Update the table cell. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param dto Table cell data.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async updateTableCell(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, dto: model.TableCell, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.TableCell}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling updateTableCell.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateTableCell.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateTableCell.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling updateTableCell.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling updateTableCell.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling updateTableCell.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "PUT",
+            headers: {},
+            url: localVarPath,
+            data: dto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "TableCell");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Updates table cell paragraph. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param dto Paragraph DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async updateTableCellParagraph(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, dto: model.Paragraph, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Paragraph}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling updateTableCellParagraph.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateTableCellParagraph.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateTableCellParagraph.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling updateTableCellParagraph.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling updateTableCellParagraph.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling updateTableCellParagraph.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling updateTableCellParagraph.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "PUT",
+            headers: {},
+            url: localVarPath,
+            data: dto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Paragraph");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Updates table cell portion. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param cellIndex Table cell index.
+     * @param paragraphIndex Paragraph index.
+     * @param portionIndex Portion index.
+     * @param dto Portion DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async updateTableCellPortion(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, cellIndex: number, paragraphIndex: number, portionIndex: number, dto: model.Portion, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Portion}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling updateTableCellPortion.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateTableCellPortion.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateTableCellPortion.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling updateTableCellPortion.');
+        }
+        // verify required parameter 'cellIndex' is not null or undefined
+        if (cellIndex === null || cellIndex === undefined) {
+            throw new Error('The required parameter "cellIndex" was null or undefined when calling updateTableCellPortion.');
+        }
+        // verify required parameter 'paragraphIndex' is not null or undefined
+        if (paragraphIndex === null || paragraphIndex === undefined) {
+            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling updateTableCellPortion.');
+        }
+        // verify required parameter 'portionIndex' is not null or undefined
+        if (portionIndex === null || portionIndex === undefined) {
+            throw new Error('The required parameter "portionIndex" was null or undefined when calling updateTableCellPortion.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling updateTableCellPortion.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}/cells/{cellIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "cellIndex", ObjectSerializer.toString(cellIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "PUT",
+            headers: {},
+            url: localVarPath,
+            data: dto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Portion");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Update the table row. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param rowIndex Row index.
+     * @param dto Table cell data.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async updateTableRow(name: string, slideIndex: number, shapeIndex: number, rowIndex: number, dto: model.TableRow, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.TableRow}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling updateTableRow.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling updateTableRow.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling updateTableRow.');
+        }
+        // verify required parameter 'rowIndex' is not null or undefined
+        if (rowIndex === null || rowIndex === undefined) {
+            throw new Error('The required parameter "rowIndex" was null or undefined when calling updateTableRow.');
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling updateTableRow.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/rows/{rowIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "rowIndex", ObjectSerializer.toString(rowIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "PUT",
+            headers: {},
+            url: localVarPath,
+            data: dto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "TableRow");
         return Promise.resolve({ body: result, response });
     }
 

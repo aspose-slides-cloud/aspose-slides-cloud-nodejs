@@ -9218,6 +9218,16 @@ export class TableCell {
      */
     rowIndex?: number;
 
+    /**
+     * Returns TextFrame's formatting properties.
+     */
+    textFrameFormat?: TextFrameFormat;
+
+    /**
+     * Get or sets list to paragraphs list
+     */
+    paragraphs?: ResourceUri;
+
 }
 export namespace TableCell {
     export enum TextAnchorTypeEnum {
@@ -9238,6 +9248,51 @@ export namespace TableCell {
         WordArtVerticalRightToLeft = <any> 'WordArtVerticalRightToLeft',
         NotDefined = <any> 'NotDefined'
     }
+}
+
+/**
+ * Table cells merge options
+ */
+export class TableCellMergeOptions {
+
+    /**
+     * Row index of the first cell
+     */
+    firstRowIndex: number;
+
+    /**
+     * First cell index in the row
+     */
+    firstCellIndex: number;
+
+    /**
+     * Row index of the last cell
+     */
+    lastRowIndex: number;
+
+    /**
+     * Last cell index in the row
+     */
+    lastCellIndex: number;
+
+    /**
+     * Allow splitting
+     */
+    allowSplitting: boolean;
+
+}
+
+/**
+ * Table cell split type
+ */
+    /**
+    * Table cell split type
+    */
+export enum TableCellSplitType {
+    'SplitByWidth' = <any> 'SplitByWidth',
+    'SplitByHeight' = <any> 'SplitByHeight',
+    'SplitByColSpan' = <any> 'SplitByColSpan',
+    'SplitByRowSpan' = <any> 'SplitByRowSpan'
 }
 
 /**

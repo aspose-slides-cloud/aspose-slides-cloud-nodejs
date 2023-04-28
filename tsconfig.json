@@ -12,10 +12,10 @@
         "noLib": false,
         "declaration": true,
         "lib": ["es5", "es6", "scripthost"],
-        "outDir": "dist" //reove this setting to build & ruin tests from Visual Studio
+        "outDir": "dist" //remove this setting to build & run tests from Visual Studio
     },
     "include": [
         "sdk/**/*",
         "test/**/*"
-    ]    
+    ]
 }

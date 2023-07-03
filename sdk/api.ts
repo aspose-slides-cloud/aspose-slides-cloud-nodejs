@@ -1932,6 +1932,41 @@ export class SlidesApi {
     }
 
     /**
+     * Append module to VBA project              
+     * @param name Document name.
+     * @param moduleDto VBA module DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async createVbaModule(name: string, moduleDto: model.VbaModule, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.VbaModule}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling createVbaModule.');
+        }
+        // verify required parameter 'moduleDto' is not null or undefined
+        if (moduleDto === null || moduleDto === undefined) {
+            throw new Error('The required parameter "moduleDto" was null or undefined when calling createVbaModule.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/vbaProject/modules";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: moduleDto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "VbaModule");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Adds a text watermark to each slide of the presentation. Text watermark can be setup via method arguments or withing Shape DTO for detailed customization. Both options are applicable simultaneously.  
      * @param name Document name.
      * @param shape Shape DTO
@@ -4243,6 +4278,41 @@ export class SlidesApi {
         checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Delete module from VBA project. 
+     * @param name Document name.
+     * @param moduleIndex The index of the macros module to remove.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async deleteVbaModule(name: string, moduleIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.VbaProject}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteVbaModule.');
+        }
+        // verify required parameter 'moduleIndex' is not null or undefined
+        if (moduleIndex === null || moduleIndex === undefined) {
+            throw new Error('The required parameter "moduleIndex" was null or undefined when calling deleteVbaModule.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/vbaProject/modules/{moduleIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "moduleIndex", ObjectSerializer.toString(moduleIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "DELETE",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "VbaProject");
         return Promise.resolve({ body: result, response });
     }
 
@@ -7482,6 +7552,70 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Theme");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Get VBA module info. 
+     * @param name Document name.
+     * @param moduleIndex The index of the macros module to remove.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getVbaModule(name: string, moduleIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.VbaModule}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getVbaModule.');
+        }
+        // verify required parameter 'moduleIndex' is not null or undefined
+        if (moduleIndex === null || moduleIndex === undefined) {
+            throw new Error('The required parameter "moduleIndex" was null or undefined when calling getVbaModule.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/vbaProject/modules/{moduleIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "moduleIndex", ObjectSerializer.toString(moduleIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "VbaModule");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Get VBA project info. 
+     * @param name Document name.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async getVbaProject(name: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.VbaProject}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getVbaProject.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/vbaProject";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "VbaProject");
         return Promise.resolve({ body: result, response });
     }
 
@@ -11383,6 +11517,43 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "TableRow");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Update VBA module. 
+     * @param name Document name.
+     * @param moduleIndex The index of the macros module to remove.
+     * @param moduleDto VBA module DTO.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async updateVbaModule(name: string, moduleIndex: number, moduleDto: model.VbaModule = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.VbaModule}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling updateVbaModule.');
+        }
+        // verify required parameter 'moduleIndex' is not null or undefined
+        if (moduleIndex === null || moduleIndex === undefined) {
+            throw new Error('The required parameter "moduleIndex" was null or undefined when calling updateVbaModule.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/vbaProject/modules/{moduleIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "moduleIndex", ObjectSerializer.toString(moduleIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "PUT",
+            headers: {},
+            url: localVarPath,
+            data: moduleDto,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "VbaModule");
         return Promise.resolve({ body: result, response });
     }
 

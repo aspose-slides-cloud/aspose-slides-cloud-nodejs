@@ -29,12 +29,10 @@ import * as model from "../../sdk/model";
 import {TestUtils} from "../testUtils";
 
 describe("Comment tests", () => {
-    it("createComment", () => {
+    it("create comment", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const author = "Test author";
             const text = "Comment text";
@@ -49,7 +47,7 @@ describe("Comment tests", () => {
             comment.text = text;
             comment.childComments = [childComment];
 
-            const response = await api.createComment(fileName, 3, comment, null, "password", folderName)
+            const response = await api.createComment(TestUtils.fileName, 3, comment, null, TestUtils.password, TestUtils.folderName)
             assert.equal(200, response.response.statusCode);
             const comments = response.body as model.SlideComments;
 
@@ -62,7 +60,7 @@ describe("Comment tests", () => {
         });
     });
 
-    it("createCommentOnline", () => {
+    it("create comment online", () => {
         return TestUtils.runTest(async () => {
             const author = "Test author";
             const text = "Comment text";
@@ -78,19 +76,17 @@ describe("Comment tests", () => {
             comment.childComments = [childComment];
 
             const api = TestUtils.getApi();
-            const response = await api.createCommentOnline(fs.createReadStream("TestData/test.pptx"), 3, comment, null, "password");
+            const response = await api.createCommentOnline(fs.createReadStream(TestUtils.localFilePath), 3, comment, null, TestUtils.password);
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
         });
     });
 
-    it("getSlideComments", () => {
+    it("get slide comments", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const response = await api.getSlideComments(fileName, 1, "password", folderName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const response = await api.getSlideComments(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName);
 
             const comments = response.body as model.SlideComments;
             assert.equal(2, comments.list.length);
@@ -98,60 +94,54 @@ describe("Comment tests", () => {
         });
     });
 
-    it("deleteComments", () => {
+    it("delete comments", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const response = await api.deleteComments(fileName, null, "password", folderName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const response = await api.deleteComments(TestUtils.fileName, null, TestUtils.password, TestUtils.folderName);
             assert.equal(200, response.response.statusCode);
 
-            const result = await api.getSlideComments(fileName, 1, "password", folderName);
+            const result = await api.getSlideComments(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName);
             const comments = result.body as model.SlideComments;
             assert.equal(0, comments.list.length);
         });
     });
 
-    it("deleteCommentsOnline", () => {
+    it("delete comments online", () => {
         return TestUtils.runTest(async () => {
             const api = TestUtils.getApi();
-            const response = await api.deleteCommentsOnline(fs.createReadStream("TestData/test.pptx"), null, "password");
+            const response = await api.deleteCommentsOnline(fs.createReadStream(TestUtils.localFilePath), null, TestUtils.password);
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
         });
     });
 
-    it("deleteSlideComments", () => {
+    it("delete slide comments", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const response = await api.deleteSlideComments(fileName, 1, null, "password", folderName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const response = await api.deleteSlideComments(TestUtils.fileName, 1, null, TestUtils.password, TestUtils.folderName);
             assert.equal(200, response.response.statusCode);
 
-            const result = await api.getSlideComments(fileName, 1, "password", folderName);
+            const result = await api.getSlideComments(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName);
             const comments = result.body as model.SlideComments;
             assert.equal(0, comments.list.length);
         });
     });
 
-    it("deleteSlideCommentsOnline", () => {
+    it("delete slide comments online", () => {
         return TestUtils.runTest(async () => {
             const api = TestUtils.getApi();
-            const response = await api.deleteSlideCommentsOnline(fs.createReadStream("TestData/test.pptx"), 1, null, "password");
+            const response = await api.deleteSlideCommentsOnline(fs.createReadStream(TestUtils.localFilePath), 1, null, TestUtils.password);
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
         });
     });
 
-    it("createModernComment", () => {
+    it("create modern comment", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const author = "Test author";
             const text = "Comment text";
@@ -168,7 +158,7 @@ describe("Comment tests", () => {
             comment.childComments = [childComment];
             comment.status = model.SlideModernComment.StatusEnum.Active;
 
-            const response = await api.createComment(fileName, 3, comment, null, "password", folderName)
+            const response = await api.createComment(TestUtils.fileName, 3, comment, null, TestUtils.password, TestUtils.folderName)
             assert.equal(200, response.response.statusCode);
             const comments = response.body as model.SlideComments;
 
@@ -177,12 +167,10 @@ describe("Comment tests", () => {
         });
     });
 
-    it("createShapeModernComment", () => {
+    it("create modern comment shape", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const author = "Test author";
             const text = "Comment text";
@@ -201,7 +189,7 @@ describe("Comment tests", () => {
             comment.textSelectionStart = 1;
             comment.textSelectionLength = 4;
 
-            const response = await api.createComment(fileName, 3, comment, 1, "password", folderName)
+            const response = await api.createComment(TestUtils.fileName, 3, comment, 1, TestUtils.password, TestUtils.folderName)
             assert.equal(200, response.response.statusCode);
             const comments = response.body as model.SlideComments;
 

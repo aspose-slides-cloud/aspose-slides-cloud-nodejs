@@ -9839,6 +9839,68 @@ export namespace UpdateShape {
 }
 
 /**
+ * Represents VBA module.
+ */
+export class VbaModule extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * VBA module name. 
+     */
+    name?: string;
+
+    /**
+     * VBA module source code.
+     */
+    sourceCode?: string;
+
+    /**
+     * List of references. 
+     */
+    references?: Array<VbaReference>;
+
+}
+
+/**
+ * VBA project
+ */
+export class VbaProject extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * VBA modules
+     */
+    modules?: Array<ResourceUri>;
+
+    /**
+     * VBA references
+     */
+    references?: Array<VbaReference>;
+
+}
+
+/**
+ * VBA reference
+ */
+export class VbaReference {
+
+    /**
+     * Name
+     */
+    name?: string;
+
+    /**
+     * Library ID
+     */
+    libId?: string;
+
+}
+
+/**
  * Provides options that control how a presentation is saved in an video format.
  */
 export class VideoExportOptions extends ExportOptions {

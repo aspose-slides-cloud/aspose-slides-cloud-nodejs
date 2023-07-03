@@ -30,29 +30,26 @@ import {TestUtils} from "../testUtils";
 describe("Watermark tests", () => {
     it("text storage", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
-            const password = "password";
             const watermarkText = "watermarkText";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
                     const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
-                    return api.createWatermark(fileName, null, null, watermarkText, null, null, password, folderName).then((postResult) => {
+                    return api.createWatermark(TestUtils.fileName, null, null, watermarkText, null, null, TestUtils.password, TestUtils.folderName).then((postResult) => {
                         assert.equal(200, postResult.response.statusCode);
-                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                        return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get2Result) => {
                             assert.equal(200, get2Result.response.statusCode);
                             assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
-                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                            return api.getShape(TestUtils.fileName, slideIndex, shapeCount, TestUtils.password, TestUtils.folderName).then((getShape2Result) => {
                                 assert.equal(200, getShape2Result.response.statusCode);
                                 const shape = getShape2Result.body as model.Shape;
                                 assert.equal("watermark", shape.name);
                                 assert.equal(watermarkText, shape.text);
-                                return api.deleteWatermark(fileName, null, password, folderName).then((deleteResult) => {
+                                return api.deleteWatermark(TestUtils.fileName, null, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                                     assert.equal(200, deleteResult.response.statusCode);
-                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                    return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get3Result) => {
                                         assert.equal(200, get3Result.response.statusCode);
                                         assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
                                     });
@@ -67,31 +64,28 @@ describe("Watermark tests", () => {
 
     it("text dto storage", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
-            const password = "password";
             const watermarkText = "watermarkText";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
                     const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
                     let watermark = new model.Shape();
                     watermark.text = watermarkText;
-                    return api.createWatermark(fileName, watermark, null, null, null, null, password, folderName).then((postResult) => {
+                    return api.createWatermark(TestUtils.fileName, watermark, null, null, null, null, TestUtils.password, TestUtils.folderName).then((postResult) => {
                         assert.equal(200, postResult.response.statusCode);
-                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                        return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get2Result) => {
                             assert.equal(200, get2Result.response.statusCode);
                             assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
-                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                            return api.getShape(TestUtils.fileName, slideIndex, shapeCount, TestUtils.password, TestUtils.folderName).then((getShape2Result) => {
                                 assert.equal(200, getShape2Result.response.statusCode);
                                 const shape = getShape2Result.body as model.Shape;
                                 assert.equal("watermark", shape.name);
                                 assert.equal(watermarkText, shape.text);
-                                return api.deleteWatermark(fileName, null, password, folderName).then((deleteResult) => {
+                                return api.deleteWatermark(TestUtils.fileName, null, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                                     assert.equal(200, deleteResult.response.statusCode);
-                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                    return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get3Result) => {
                                         assert.equal(200, get3Result.response.statusCode);
                                         assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
                                     });
@@ -106,27 +100,24 @@ describe("Watermark tests", () => {
 
     it("image storage", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
                     const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
-                    return api.createImageWatermark(fileName, fs.createReadStream("TestData/watermark.png"), null, password, folderName).then((postResult) => {
+                    return api.createImageWatermark(TestUtils.fileName, fs.createReadStream("TestData/watermark.png"), null, TestUtils.password, TestUtils.folderName).then((postResult) => {
                         assert.equal(200, postResult.response.statusCode);
-                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                        return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get2Result) => {
                             assert.equal(200, get2Result.response.statusCode);
                             assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
-                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                            return api.getShape(TestUtils.fileName, slideIndex, shapeCount, TestUtils.password, TestUtils.folderName).then((getShape2Result) => {
                                 assert.equal(200, getShape2Result.response.statusCode);
                                 const shape = getShape2Result.body as model.Shape;
                                 assert.equal("watermark", shape.name);
-                                return api.deleteWatermark(fileName, null, password, folderName).then((deleteResult) => {
+                                return api.deleteWatermark(TestUtils.fileName, null, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                                     assert.equal(200, deleteResult.response.statusCode);
-                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                    return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get3Result) => {
                                         assert.equal(200, get3Result.response.statusCode);
                                         assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
                                     });
@@ -141,14 +132,11 @@ describe("Watermark tests", () => {
 
     it("image dto storage", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
-            const password = "password";
             const watermarkName = "myWatermark";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getShapes(fileName, slideIndex, password, folderName).then((get1Result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
                     const shapeCount = (get1Result.body as model.Shapes).shapesLinks.length + 1;
                     let watermark = new model.PictureFrame();
@@ -156,18 +144,18 @@ describe("Watermark tests", () => {
                     fillFormat.base64Data = fs.readFileSync("TestData/watermark.png").toString("base64");
                     watermark.fillFormat = fillFormat;
                     watermark.name = watermarkName;
-                    return api.createImageWatermark(fileName, null, watermark, password, folderName).then((postResult) => {
+                    return api.createImageWatermark(TestUtils.fileName, null, watermark, TestUtils.password, TestUtils.folderName).then((postResult) => {
                         assert.equal(200, postResult.response.statusCode);
-                        return api.getShapes(fileName, slideIndex, password, folderName).then((get2Result) => {
+                        return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get2Result) => {
                             assert.equal(200, get2Result.response.statusCode);
                             assert.equal(shapeCount, (get2Result.body as model.Shapes).shapesLinks.length);
-                            return api.getShape(fileName, slideIndex, shapeCount, password, folderName).then((getShape2Result) => {
+                            return api.getShape(TestUtils.fileName, slideIndex, shapeCount, TestUtils.password, TestUtils.folderName).then((getShape2Result) => {
                                 assert.equal(200, getShape2Result.response.statusCode);
                                 const shape = getShape2Result.body as model.Shape;
                                 assert.equal(watermarkName, shape.name);
-                                return api.deleteWatermark(fileName, watermarkName, password, folderName).then((deleteResult) => {
+                                return api.deleteWatermark(TestUtils.fileName, watermarkName, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                                     assert.equal(200, deleteResult.response.statusCode);
-                                    return api.getShapes(fileName, slideIndex, password, folderName).then((get3Result) => {
+                                    return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get3Result) => {
                                         assert.equal(200, get3Result.response.statusCode);
                                         assert.equal(shapeCount - 1, (get3Result.body as model.Shapes).shapesLinks.length);
                                     });
@@ -182,12 +170,11 @@ describe("Watermark tests", () => {
 
     it("text request", () => {
         return TestUtils.runTest(() => {
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.createWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, null, "watermarkText", null, null, password).then((postResult) => {
+            return api.createWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), null, null, "watermarkText", null, null, TestUtils.password).then((postResult) => {
                 assert.equal(200, postResult.response.statusCode);
-                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
-                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                assert(fs.createReadStream(TestUtils.localFilePath).length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), null, TestUtils.password).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert(deleteResult.body.length < postResult.body.length);
                 });
@@ -197,14 +184,13 @@ describe("Watermark tests", () => {
 
     it("text dto request", () => {
         return TestUtils.runTest(() => {
-            const password = "password";
             const api = TestUtils.getApi();
             let watermark = new model.Shape();
             watermark.text = "watermarkText";
-            return api.createWatermarkOnline(fs.createReadStream("TestData/test.pptx"), watermark, null, null, null, null, password).then((postResult) => {
+            return api.createWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), watermark, null, null, null, null, TestUtils.password).then((postResult) => {
                 assert.equal(200, postResult.response.statusCode);
-                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
-                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                assert(fs.createReadStream(TestUtils.localFilePath).length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), null, TestUtils.password).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert(deleteResult.body.length < postResult.body.length);
                 });
@@ -214,12 +200,11 @@ describe("Watermark tests", () => {
 
     it("image request", () => {
         return TestUtils.runTest(() => {
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.createImageWatermarkOnline(fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/watermark.png"), null, password).then((postResult) => {
+            return api.createImageWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), fs.createReadStream("TestData/watermark.png"), null, TestUtils.password).then((postResult) => {
                 assert.equal(200, postResult.response.statusCode);
-                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
-                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                assert(fs.createReadStream(TestUtils.localFilePath).length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), null, TestUtils.password).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert(deleteResult.body.length < postResult.body.length);
                 });
@@ -229,16 +214,15 @@ describe("Watermark tests", () => {
 
     it("image dto request", () => {
         return TestUtils.runTest(() => {
-            const password = "password";
             const api = TestUtils.getApi();
             let watermark = new model.PictureFrame();
             let fillFormat = new model.PictureFill();
             fillFormat.base64Data = fs.readFileSync("TestData/watermark.png").toString("base64");
             watermark.fillFormat = fillFormat;
-            return api.createImageWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, watermark, password).then((postResult) => {
+            return api.createImageWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), null, watermark, TestUtils.password).then((postResult) => {
                 assert.equal(200, postResult.response.statusCode);
-                assert(fs.createReadStream("TestData/test.pptx").length != postResult.body.length);
-                return api.deleteWatermarkOnline(fs.createReadStream("TestData/test.pptx"), null, password).then((deleteResult) => {
+                assert(fs.createReadStream(TestUtils.localFilePath).length != postResult.body.length);
+                return api.deleteWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), null, TestUtils.password).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
                     assert(deleteResult.body.length < postResult.body.length);
                 });

@@ -29,11 +29,9 @@ import {TestUtils} from "../testUtils";
 describe("Math tests", () => {
     it("get", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getPortion(fileName, 2, 3, 1, 1, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getPortion(TestUtils.fileName, 2, 3, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert((result.body as model.Portion).mathParagraph);
                     assert((result.body as model.Portion).mathParagraph.mathBlockList);
@@ -48,11 +46,9 @@ describe("Math tests", () => {
 
     it("get null", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getPortion(fileName, 2, 1, 1, 1, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getPortion(TestUtils.fileName, 2, 1, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert(!(result.body as model.Portion).mathParagraph);
                 });
@@ -62,10 +58,8 @@ describe("Math tests", () => {
 
     it("create", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Portion();
                 const mathParagraph = new model.MathParagraph();
                 const blockElement = new model.BlockElement();
@@ -99,7 +93,7 @@ describe("Math tests", () => {
                 blockElement.mathElementList = [functionElement];
                 mathParagraph.mathBlockList = [blockElement];
                 dto.mathParagraph = mathParagraph;
-                return api.createPortion(fileName, 1, 1, 1, dto, null, "password", folderName).then((result) => {
+                return api.createPortion(TestUtils.fileName, 1, 1, 1, dto, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert((result.body as model.Portion).mathParagraph);
                     assert((result.body as model.Portion).mathParagraph.mathBlockList);
@@ -114,10 +108,8 @@ describe("Math tests", () => {
 
     it("update", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Portion();
                 const mathParagraph = new model.MathParagraph();
                 const blockElement = new model.BlockElement();
@@ -151,7 +143,7 @@ describe("Math tests", () => {
                 blockElement.mathElementList = [functionElement];
                 mathParagraph.mathBlockList = [blockElement];
                 dto.mathParagraph = mathParagraph;
-                return api.updatePortion(fileName, 2, 3, 1, 1, dto, "password", folderName).then((result) => {
+                return api.updatePortion(TestUtils.fileName, 2, 3, 1, 1, dto, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert((result.body as model.Portion).mathParagraph);
                     assert((result.body as model.Portion).mathParagraph.mathBlockList);
@@ -166,11 +158,9 @@ describe("Math tests", () => {
 
     it("download", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadPortionAsMathMl(fileName, 2, 3, 1, 1, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.downloadPortionAsMathMl(TestUtils.fileName, 2, 3, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert(result.body.length);
                 });
@@ -180,11 +170,9 @@ describe("Math tests", () => {
 
     it("download null", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadPortionAsMathMl(fileName, 2, 1, 1, 1, "password", folderName)
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.downloadPortionAsMathMl(TestUtils.fileName, 2, 1, 1, 1, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Must have failed"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -195,12 +183,10 @@ describe("Math tests", () => {
 
     it("save", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const outPath = folderName + "/mathml.xml";
+            const outPath = TestUtils.folderName + "/mathml.xml";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.savePortionAsMathMl(fileName, 2, 3, 1, 1, outPath, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.savePortionAsMathMl(TestUtils.fileName, 2, 3, 1, 1, outPath, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     return api.objectExists(outPath).then((existsResult) => {
                         assert.equal(200, existsResult.response.statusCode);

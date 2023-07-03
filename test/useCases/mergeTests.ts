@@ -31,20 +31,19 @@ var fs = require('fs');
 import SourceEnum = PresentationToMerge.SourceEnum;
 
 describe("Merge tests", () => {
-    it("merge storage", () => {
+    it("merge", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const fileName2 = "test-unprotected.pptx";
+            const filePath2 = TestUtils.folderName + "/" + fileName2;
             const fileNamePdf = "test.pdf";
-            const password = "password";
+            const filePathPdf = TestUtils.folderName + "/" + fileNamePdf;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
-                    return api.copyFile("TempTests/" + fileNamePdf, folderName + "/" + fileNamePdf).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.copyFile(TestUtils.tempFolderName + "/" + fileName2, filePath2).then(() => {
+                    return api.copyFile(TestUtils.tempFolderName + "/" + fileNamePdf, filePathPdf).then(() => {
                         let request = new model.PresentationsMergeRequest();
-                        request.presentationPaths = [folderName + "/" + fileName2, folderName + "/" + fileNamePdf];
-                        return api.merge(fileName, request, password, folderName).then((defaultResult) => {
+                        request.presentationPaths = [filePath2, filePathPdf];
+                        return api.merge(TestUtils.fileName, request, TestUtils.password, TestUtils.folderName).then((defaultResult) => {
                             assert.equal(200, defaultResult.response.statusCode);
                         });
                     });
@@ -52,28 +51,26 @@ describe("Merge tests", () => {
             });
         });
     });
-    it("merge ordered storage", () => {
+    it("ordered merge", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const fileName2 = "test-unprotected.pptx";
-            const password = "password";
+            const filePath2 = TestUtils.folderName + "/" + fileName2;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.copyFile(TestUtils.tempFolderName + "/" + fileName2, filePath2).then(() => {
                     let request = new model.OrderedMergeRequest();
                     let presentation = new model.PresentationToMerge();
-                    presentation.path = folderName + "/" + fileName2;
+                    presentation.path = filePath2;
                     presentation.slides = [2, 1];
                     request.presentations = [presentation];
-                    return api.orderedMerge(fileName, request, password, folderName).then((defaultResult) => {
+                    return api.orderedMerge(TestUtils.fileName, request, TestUtils.password, TestUtils.folderName).then((defaultResult) => {
                         assert.equal(200, defaultResult.response.statusCode);
                     });
                 });
             });
         });
     });
-    it("merge request", () => {
+    it("merge online", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getApi();
             const files = [fs.createReadStream("TestData/TemplateCV.pptx"), fs.createReadStream("TestData/test-unprotected.pptx")];
@@ -82,7 +79,7 @@ describe("Merge tests", () => {
             });
         });
     });
-    it("merge and save request", () => {
+    it("merge and save online", () => {
         return TestUtils.runTest(() => {
             const outPath = "TestData/out.pptx";
             const api = TestUtils.getApi();
@@ -96,14 +93,14 @@ describe("Merge tests", () => {
             });
         });
     });
-    it("merge ordered request", () => {
+    it("merge online with request", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getApi();
-            const files = [fs.createReadStream("TestData/test.pptx"), fs.createReadStream("TestData/test-unprotected.pptx")];
+            const files = [fs.createReadStream(TestUtils.localFilePath), fs.createReadStream("TestData/test-unprotected.pptx")];
             let request = new model.OrderedMergeRequest();
             let presentation1 = new model.PresentationToMerge();
-            presentation1.path = "test.pptx";
-            presentation1.password = "password";
+            presentation1.path = TestUtils.fileName;
+            presentation1.password = TestUtils.password;
             let presentation2 = new model.PresentationToMerge();
             presentation2.path = "test-unprotected.pptx";
             presentation2.slides = [1, 2];
@@ -113,21 +110,21 @@ describe("Merge tests", () => {
             });
         });
     });
-    it("merge ordered combined", () => {
+    it("merge online combined", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
             const fileName2 = "test-unprotected.pptx";
+            const filePath2 = TestUtils.folderName + "/" + fileName2;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName2, folderName + "/" + fileName2).then(() => {
-                const files = [fs.createReadStream("TestData/test.pptx")];
+            return api.copyFile(TestUtils.tempFolderName + "/" + fileName2, filePath2).then(() => {
+                const files = [fs.createReadStream(TestUtils.localFilePath)];
                 let request = new model.OrderedMergeRequest();
                 let presentation1 = new model.PresentationToMerge();
-                presentation1.path = "test.pptx";
-                presentation1.password = "password";
+                presentation1.path = TestUtils.fileName;
+                presentation1.password = TestUtils.password;
                 let presentation2 = new model.PresentationToMerge();
                 presentation2.slides = [1, 2];
                 presentation2.source = model.PresentationToMerge.SourceEnum.Storage;
-                presentation2.path = folderName + "/" + fileName2;
+                presentation2.path = filePath2;
                 request.presentations = [presentation1, presentation2];
                 return api.mergeOnline(files, request).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
@@ -135,17 +132,15 @@ describe("Merge tests", () => {
             });
         });
     });
-    it("merge ordered url", () => {
+    it("merge online url", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let request = new model.OrderedMergeRequest();
             let presentation1 = new model.PresentationToMerge();
-            presentation1.path = folderName + "/" + "test.pptx";
-            presentation1.password = "password";
+            presentation1.path = TestUtils.filePath;
+            presentation1.password = TestUtils.password;
             presentation1.source = SourceEnum.Storage;
             presentation1.slides = [1, 2];
             

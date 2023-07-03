@@ -28,16 +28,13 @@ import * as model from "../../sdk/model";
 import {TestUtils} from "../testUtils";
 
 describe("Image tests", () => {
-    it("get", () => {
+    it("images get", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getPresentationImages(fileName, password, folderName).then((presentationResult) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getPresentationImages(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((presentationResult) => {
                     assert.equal(200, presentationResult.response.statusCode);
-                    return api.getSlideImages(fileName, 1, password, folderName).then((slideResult) => {
+                    return api.getSlideImages(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((slideResult) => {
                         assert.equal(200, slideResult.response.statusCode);
                         assert((slideResult.body as model.Images).list.length < (presentationResult.body as model.Images).list.length);
                     });
@@ -45,16 +42,13 @@ describe("Image tests", () => {
             });
         });
     });
-    it("download all storage", () => {
+    it("images download storage", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadImagesDefaultFormat(fileName, password, folderName).then((defaultResult) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.downloadImagesDefaultFormat(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
-                    return api.downloadImages(fileName, model.ImageExportFormat.Png, password, folderName).then((pngResult) => {
+                    return api.downloadImages(TestUtils.fileName, model.ImageExportFormat.Png, TestUtils.password, TestUtils.folderName).then((pngResult) => {
                         assert.equal(200, pngResult.response.statusCode);
                         assert(defaultResult.body.length != pngResult.body.length);
                         var AdmZip = require('adm-zip');
@@ -66,13 +60,12 @@ describe("Image tests", () => {
             });
         });
     });
-    it("download all request", () => {
+    it("images download request", () => {
         return TestUtils.runTest(() => {
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.downloadImagesDefaultFormatOnline(fs.createReadStream("TestData/test.pptx"), password).then((defaultResult) => {
+            return api.downloadImagesDefaultFormatOnline(fs.createReadStream(TestUtils.localFilePath), TestUtils.password).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
-                return api.downloadImagesOnline(fs.createReadStream("TestData/test.pptx"), model.ImageExportFormat.Png, password).then((pngResult) => {
+                return api.downloadImagesOnline(fs.createReadStream(TestUtils.localFilePath), model.ImageExportFormat.Png, TestUtils.password).then((pngResult) => {
                     assert.equal(200, pngResult.response.statusCode);
                     assert(defaultResult.body.length != pngResult.body.length);
                     var AdmZip = require('adm-zip');
@@ -85,14 +78,11 @@ describe("Image tests", () => {
     });
     it("download storage", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadImageDefaultFormat(fileName, 1, password, folderName).then((defaultResult) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.downloadImageDefaultFormat(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
-                    return api.downloadImage(fileName, 1, model.ImageExportFormat.Png, password, folderName).then((pngResult) => {
+                    return api.downloadImage(TestUtils.fileName, 1, model.ImageExportFormat.Png, TestUtils.password, TestUtils.folderName).then((pngResult) => {
                         assert.equal(200, pngResult.response.statusCode);
                         assert(defaultResult.body.length != pngResult.body.length);
                     });
@@ -102,11 +92,10 @@ describe("Image tests", () => {
     });
     it("download request", () => {
         return TestUtils.runTest(() => {
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.downloadImageDefaultFormatOnline(fs.createReadStream("TestData/test.pptx"), 1, password).then((defaultResult) => {
+            return api.downloadImageDefaultFormatOnline(fs.createReadStream(TestUtils.localFilePath), 1, TestUtils.password).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
-                return api.downloadImageOnline(fs.createReadStream("TestData/test.pptx"), 1, model.ImageExportFormat.Png, password).then((pngResult) => {
+                return api.downloadImageOnline(fs.createReadStream(TestUtils.localFilePath), 1, model.ImageExportFormat.Png, TestUtils.password).then((pngResult) => {
                     assert.equal(200, pngResult.response.statusCode);
                     assert(defaultResult.body.length != pngResult.body.length);
                 });

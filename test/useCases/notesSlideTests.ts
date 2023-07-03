@@ -30,67 +30,61 @@ var assert = require('assert');
 var fs = require('fs');
 
 describe("NotesSlide tests", () => {
-    it("get from storage", () => {
+    it("get notes slide", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getNotesSlide(fileName, 1, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getNotesSlide(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert((result.body as model.NotesSlide) != null);
                 });
             });
         });
     });
 
-    it("exists from storage", () => {
+    it("notes slide exists", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.notesSlideExists(fileName, 1, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.notesSlideExists(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(true, (result.body as model.EntityExists).exists);
                 });
             });
         });
     });
 
-    it("download from storage", () => {
+    it("download notes slide", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.downloadNotesSlide(fileName, 1, model.NotesSlideExportFormat.Png, null, null, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.downloadNotesSlide(TestUtils.fileName, 1, model.NotesSlideExportFormat.Png, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                 });
             });
         });
     });
 
-    it("get from request", () => {
+    it("get notes slide online", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getApi();
-            return api.getNotesSlideOnline(fs.createReadStream("TestData/test.pptx"), 1, "password").then((result) => {
+            return api.getNotesSlideOnline(fs.createReadStream(TestUtils.localFilePath), 1, TestUtils.password).then((result) => {
                 assert((result.body as model.NotesSlide) != null);
             });
         });
     });
 
-    it("exists from request", () => {
+    it("notes slide exists online", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getApi();
-            return api.notesSlideExistsOnline(fs.createReadStream("TestData/test.pptx"), 1, "password").then((result) => {
+            return api.notesSlideExistsOnline(fs.createReadStream(TestUtils.localFilePath), 1, TestUtils.password).then((result) => {
                 assert((result.body as model.ObjectExist).exists);
             });
         });
     });
 
-    it("download from request", () => {
+    it("download notes slide online", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getApi();
-            return api.downloadNotesSlideOnline(fs.createReadStream("TestData/test.pptx"), 1, model.NotesSlideExportFormat.Png, null, null, "password").then((result) => {
+            return api.downloadNotesSlideOnline(fs.createReadStream(TestUtils.localFilePath), 1, model.NotesSlideExportFormat.Png, null, null, TestUtils.password).then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
         });
@@ -98,14 +92,11 @@ describe("NotesSlide tests", () => {
 
     it("shapes", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const shapeCount = 3;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getSpecialSlideShapes(fileName, slideIndex, model.SpecialSlideType.NotesSlide, password, folderName).then((result1) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getSpecialSlideShapes(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
                     assert.equal(shapeCount, (result1.body as model.Shapes).shapesLinks.length);
                     const dto = new model.Shape();
@@ -115,22 +106,22 @@ describe("NotesSlide tests", () => {
                     dto.height = 200;
                     dto.shapeType = model.GeometryShape.ShapeTypeEnum.Rectangle;
                     dto.text = "New shape";
-                    return api.createSpecialSlideShape(fileName, slideIndex, model.SpecialSlideType.NotesSlide, dto, null, null, password, folderName).then((createResult) => {
+                    return api.createSpecialSlideShape(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, dto, null, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
                         assert.equal(201, createResult.response.statusCode);
                         assert.equal(dto.text, (createResult.body as model.Shape).text);
-                        return api.getSpecialSlideShapes(fileName, slideIndex, model.SpecialSlideType.NotesSlide, password, folderName).then((result2) => {
+                        return api.getSpecialSlideShapes(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, TestUtils.password, TestUtils.folderName).then((result2) => {
                             assert.equal(200, result2.response.statusCode);
                             assert.equal(shapeCount + 1, (result2.body as model.Shapes).shapesLinks.length);
                             dto.text = "Updated shape";
-                            return api.updateSpecialSlideShape(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeCount + 1, dto, password, folderName).then((updateResult) => {
+                            return api.updateSpecialSlideShape(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeCount + 1, dto, TestUtils.password, TestUtils.folderName).then((updateResult) => {
                                 assert.equal(200, updateResult.response.statusCode);
                                 assert.equal(dto.text, (updateResult.body as model.Shape).text);
-                                return api.getSpecialSlideShapes(fileName, slideIndex, model.SpecialSlideType.NotesSlide, password, folderName).then((result3) => {
+                                return api.getSpecialSlideShapes(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, TestUtils.password, TestUtils.folderName).then((result3) => {
                                     assert.equal(200, result3.response.statusCode);
                                     assert.equal(shapeCount + 1, (result3.body as model.Shapes).shapesLinks.length);
-                                    return api.deleteSpecialSlideShape(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeCount + 1, password, folderName).then((deleteResult) => {
+                                    return api.deleteSpecialSlideShape(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeCount + 1, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                                         assert.equal(200, deleteResult.response.statusCode);
-                                        return api.getSpecialSlideShapes(fileName, slideIndex, model.SpecialSlideType.NotesSlide, password, folderName).then((result4) => {
+                                        return api.getSpecialSlideShapes(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, TestUtils.password, TestUtils.folderName).then((result4) => {
                                             assert.equal(200, result4.response.statusCode);
                                             assert.equal(shapeCount, (result4.body as model.Shapes).shapesLinks.length);
                                         });
@@ -146,15 +137,12 @@ describe("NotesSlide tests", () => {
 
     it("paragraphs", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const shapeIndex = 2;
             const paragraphCount = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getSpecialSlideParagraphs(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, password, folderName).then((result1) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getSpecialSlideParagraphs(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
                     assert.equal(paragraphCount, (result1.body as model.Paragraphs).paragraphLinks.length);
                     var dto = new model.Paragraph();
@@ -162,23 +150,23 @@ describe("NotesSlide tests", () => {
                     const portion = new model.Portion();
                     portion.text = "New paragraph";
                     dto.portionList = [portion];
-                    return api.createSpecialSlideParagraph(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, dto, null, password, folderName).then((createResult) => {
+                    return api.createSpecialSlideParagraph(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, dto, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
                         assert.equal(201, createResult.response.statusCode);
                         assert.equal(dto.alignment, (createResult.body as model.Paragraph).alignment);
-                        return api.getSpecialSlideParagraphs(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, password, folderName).then((result2) => {
+                        return api.getSpecialSlideParagraphs(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, TestUtils.password, TestUtils.folderName).then((result2) => {
                             assert.equal(200, result2.response.statusCode);
                             assert.equal(paragraphCount + 1, (result2.body as model.Paragraphs).paragraphLinks.length);
                             dto = new model.Paragraph();
                             dto.alignment = model.Paragraph.AlignmentEnum.Center;
-                            return api.updateSpecialSlideParagraph(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphCount + 1, dto, password, folderName).then((updateResult) => {
+                            return api.updateSpecialSlideParagraph(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphCount + 1, dto, TestUtils.password, TestUtils.folderName).then((updateResult) => {
                                 assert.equal(200, updateResult.response.statusCode);
                                 assert.equal(dto.alignment, (updateResult.body as model.Paragraph).alignment);
-                                return api.getSpecialSlideParagraphs(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, password, folderName).then((result3) => {
+                                return api.getSpecialSlideParagraphs(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, TestUtils.password, TestUtils.folderName).then((result3) => {
                                     assert.equal(200, result3.response.statusCode);
                                     assert.equal(paragraphCount + 1, (result3.body as model.Paragraphs).paragraphLinks.length);
-                                    return api.deleteSpecialSlideParagraph(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphCount + 1, password, folderName).then((deleteResult) => {
+                                    return api.deleteSpecialSlideParagraph(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphCount + 1, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                                         assert.equal(200, deleteResult.response.statusCode);
-                                        return api.getSpecialSlideParagraphs(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, password, folderName).then((result4) => {
+                                        return api.getSpecialSlideParagraphs(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, TestUtils.password, TestUtils.folderName).then((result4) => {
                                             assert.equal(200, result4.response.statusCode);
                                             assert.equal(paragraphCount, (result4.body as model.Paragraphs).paragraphLinks.length);
                                         });
@@ -194,42 +182,39 @@ describe("NotesSlide tests", () => {
 
     it("portions", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionCount = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getSpecialSlidePortions(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, password, folderName).then((result1) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getSpecialSlidePortions(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
                     assert.equal(portionCount, (result1.body as model.Portions).items.length);
                     const dto = new model.Portion();
                     dto.fontBold = model.Portion.FontBoldEnum.True;
                     dto.text = "New portion";
-                    return api.createSpecialSlidePortion(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, dto, null, password, folderName).then((createResult) => {
+                    return api.createSpecialSlidePortion(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, dto, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
                         assert.equal(201, createResult.response.statusCode);
                         assert.equal(dto.fontBold, (createResult.body as model.Portion).fontBold);
                         assert.equal(dto.text, (createResult.body as model.Portion).text);
-                        return api.getSpecialSlidePortions(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, password, folderName).then((result2) => {
+                        return api.getSpecialSlidePortions(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName).then((result2) => {
                             assert.equal(200, result2.response.statusCode);
                             assert.equal(portionCount + 1, (result2.body as model.Portions).items.length);
                             const dto2 = new model.Portion();
                             dto2.fontHeight = 22;
                             dto2.text = "Updated portion";
-                            return api.updateSpecialSlidePortion(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, portionCount + 1, dto2, password, folderName).then((updateResult) => {
+                            return api.updateSpecialSlidePortion(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, portionCount + 1, dto2, TestUtils.password, TestUtils.folderName).then((updateResult) => {
                                 assert.equal(200, updateResult.response.statusCode);
                                 assert.equal(dto.fontBold, (updateResult.body as model.Portion).fontBold);
                                 assert.equal(dto2.fontHeight, (updateResult.body as model.Portion).fontHeight);
                                 assert.equal(dto2.text, (updateResult.body as model.Portion).text);
-                                return api.getSpecialSlidePortions(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, password, folderName).then((result3) => {
+                                return api.getSpecialSlidePortions(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName).then((result3) => {
                                     assert.equal(200, result3.response.statusCode);
                                     assert.equal(portionCount + 1, (result2.body as model.Portions).items.length);
-                                    return api.deleteSpecialSlidePortion(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, portionCount + 1, password, folderName).then((deleteResult) => {
+                                    return api.deleteSpecialSlidePortion(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, portionCount + 1, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                                         assert.equal(200, deleteResult.response.statusCode);
-                                        return api.getSpecialSlidePortions(fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, password, folderName).then((result4) => {
+                                        return api.getSpecialSlidePortions(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName).then((result4) => {
                                             assert.equal(200, result4.response.statusCode);
                                             assert.equal(portionCount, (result4.body as model.Portions).items.length);
                                         });
@@ -243,49 +228,42 @@ describe("NotesSlide tests", () => {
         });
     });
 
-    it("create note slide", () => {
+    it("create notes slide", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const noteSlideText = "Note slide text";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName)
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
 
             const dto = new model.NotesSlide();
             dto.text = noteSlideText;
 
-            const response = await api.createNotesSlide(fileName, 1, dto, "password", folderName)
+            const response = await api.createNotesSlide(TestUtils.fileName, 1, dto, TestUtils.password, TestUtils.folderName)
             assert.equal(response.response.statusCode, 201);
             assert.equal((response.body as NotesSlide).text, noteSlideText);
         });
     });
 
-    it("update note slide", () => {
+    it("update notes slide", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const noteSlideText = "Note slide text";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName)
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
 
             const dto = new model.NotesSlide();
             dto.text = noteSlideText;
 
-            const response = await api.updateNotesSlide(fileName, 1, dto, "password", folderName)
+            const response = await api.updateNotesSlide(TestUtils.fileName, 1, dto, TestUtils.password, TestUtils.folderName)
             assert.equal(response.response.statusCode, 200);
             assert.equal((response.body as NotesSlide).text, noteSlideText);
         });
     });
 
-    it("delete note slide", () => {
+    it("delete notes slide", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName)
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
 
-            const response = await api.deleteNotesSlide(fileName, 1, "password", folderName)
+            const response = await api.deleteNotesSlide(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName)
             assert.equal(response.response.statusCode, 200);
         });
     });

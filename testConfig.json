@@ -1,7 +1,7 @@
 {
     "ClientId": "@your_client_id@",
     "ClientSecret": "@your_client_secret@",
-    "BaseUrl" : "https://api-qa.aspose.cloud",
-    "AuthBaseUrl" : "https://api-qa.aspose.cloud",
+    "BaseUrl" : "@base_url@",
+    "AuthBaseUrl" : "@base_auth_url@",
     "Debug" : false
 }

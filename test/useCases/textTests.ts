@@ -30,19 +30,16 @@ import {TestUtils} from "../testUtils";
 describe("Text tests", () => {
     it("get", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getPresentationTextItems(fileName, null, password, folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getPresentationTextItems(TestUtils.fileName, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
-                    return api.getPresentationTextItems(fileName, true, password, folderName).then((resultWithEmpty) => {
+                    return api.getPresentationTextItems(TestUtils.fileName, true, TestUtils.password, TestUtils.folderName).then((resultWithEmpty) => {
                         assert.equal(200, resultWithEmpty.response.statusCode);
-                        return api.getSlideTextItems(fileName, slideIndex, null, password, folderName).then((slideResult) => {
+                        return api.getSlideTextItems(TestUtils.fileName, slideIndex, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
                             assert.equal(200, slideResult.response.statusCode);
-                            return api.getSlideTextItems(fileName, slideIndex, true, password, folderName).then((slideResultWithEmpty) => {
+                            return api.getSlideTextItems(TestUtils.fileName, slideIndex, true, TestUtils.password, TestUtils.folderName).then((slideResultWithEmpty) => {
                                 assert.equal(200, slideResultWithEmpty.response.statusCode);
                                 assert((result.body as model.TextItems).items.length < (resultWithEmpty.body as model.TextItems).items.length);
                                 assert((slideResult.body as model.TextItems).items.length < (result.body as model.TextItems).items.length);
@@ -56,24 +53,21 @@ describe("Text tests", () => {
     });
     it("replace storage", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
-            const password = "password";
             const oldValue = "text";
             const newValue = "new_text";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.replacePresentationText(fileName, oldValue, newValue, null, password, folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
-                    return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                        return api.replacePresentationText(fileName, oldValue, newValue, true, password, folderName).then((resultWithEmpty) => {
+                    return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                        return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, TestUtils.password, TestUtils.folderName).then((resultWithEmpty) => {
                             assert.equal(200, resultWithEmpty.response.statusCode);
-                            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                                return api.replaceSlideText(fileName, slideIndex, oldValue, newValue, null, password, folderName).then((slideResult) => {
+                            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                                return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
                                     assert.equal(200, slideResult.response.statusCode);
-                                    return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                                        return api.replaceSlideText(fileName, slideIndex, oldValue, newValue, true, password, folderName).then((slideResultWithEmpty) => {
+                                    return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                                        return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, true, TestUtils.password, TestUtils.folderName).then((slideResultWithEmpty) => {
                                             assert.equal(200, slideResultWithEmpty.response.statusCode);
                                             assert((result.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
                                             assert((slideResult.body as model.SlideReplaceResult).matches < (result.body as model.DocumentReplaceResult).matches);
@@ -91,17 +85,16 @@ describe("Text tests", () => {
     it("replace request", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
-            const password = "password";
             const oldValue = "text";
             const newValue = "new_text";
             const api = TestUtils.getApi();
-            return api.replacePresentationTextOnline(fs.createReadStream("TestData/test.pptx"), oldValue, newValue, null, password).then((result) => {
+            return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, null, TestUtils.password).then((result) => {
                 assert.equal(200, result.response.statusCode);
-                return api.replacePresentationTextOnline(fs.createReadStream("TestData/test.pptx"), oldValue, newValue, true, password).then((resultWithEmpty) => {
+                return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, true, TestUtils.password).then((resultWithEmpty) => {
                     assert.equal(200, resultWithEmpty.response.statusCode);
-                    return api.replaceSlideTextOnline(fs.createReadStream("TestData/test.pptx"), slideIndex, oldValue, newValue, null, password).then((slideResult) => {
+                    return api.replaceSlideTextOnline(fs.createReadStream(TestUtils.localFilePath), slideIndex, oldValue, newValue, null, TestUtils.password).then((slideResult) => {
                         assert.equal(200, slideResult.response.statusCode);
-                        return api.replaceSlideTextOnline(fs.createReadStream("TestData/test.pptx"), slideIndex, oldValue, newValue, true, password).then((slideResultWithEmpty) => {
+                        return api.replaceSlideTextOnline(fs.createReadStream(TestUtils.localFilePath), slideIndex, oldValue, newValue, true, TestUtils.password).then((slideResultWithEmpty) => {
                             assert.equal(200, slideResultWithEmpty.response.statusCode);
                         });
                     });
@@ -112,8 +105,6 @@ describe("Text tests", () => {
 
     it("highlight shape text", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 1;
             const paragraphIndex = 1;
@@ -121,21 +112,19 @@ describe("Text tests", () => {
             const highlightColor = "#FFF5FF8A";
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.highlightShapeText(fileName, slideIndex, shapeIndex, textToHighlight,
-                highlightColor, null, false, "password", folderName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const result = await api.highlightShapeText(TestUtils.fileName, slideIndex, shapeIndex, textToHighlight,
+                highlightColor, null, false, TestUtils.password, TestUtils.folderName);
 
             assert.equal(result.response.statusCode, 200)
-            const paragraph = await api.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
+            const paragraph = await api.getParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(paragraph.body.portionList[1].text, textToHighlight);
             assert.equal(paragraph.body.portionList[1].highlightColor, highlightColor);
         });
     });
 
-    it("highlight shape text regex", () => {
+    it("highlight shape regex", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 1;
             const paragraphIndex = 1;
@@ -144,12 +133,12 @@ describe("Text tests", () => {
             const highlightColor = "#FFF5FF8A";
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
-            const result = await api.highlightShapeRegex(fileName, slideIndex, shapeIndex, highlightRegex,
-                highlightColor, null, false, "password", folderName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const result = await api.highlightShapeRegex(TestUtils.fileName, slideIndex, shapeIndex, highlightRegex,
+                highlightColor, null, false, TestUtils.password, TestUtils.folderName);
 
             assert.equal(result.response.statusCode, 200)
-            const paragraph = await api.getParagraph(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
+            const paragraph = await api.getParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(paragraph.body.portionList[1].text, textToHighlight);
             assert.equal(paragraph.body.portionList[1].highlightColor, highlightColor);
         });

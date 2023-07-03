@@ -39,13 +39,11 @@ import {TestUtils} from "../testUtils";
 var assert = require('assert');
 
 describe("Chart tests", () => {
-    it("get", async () => {
+    it("get chart", async () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getShape(fileName, 3, 1, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getShape(TestUtils.fileName, 3, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -57,10 +55,8 @@ describe("Chart tests", () => {
 
     it("create chart auto data source", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
                 chart.width = 400;
@@ -73,7 +69,7 @@ describe("Chart tests", () => {
                 series2.dataPoints = [{value: 55}, {value: 35}, {value: 90}];
                 chart.series = [series1, series2];
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
-                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -84,10 +80,8 @@ describe("Chart tests", () => {
 
     it("create chart workbook", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
                 chart.width = 400;
@@ -131,7 +125,7 @@ describe("Chart tests", () => {
                 
                 chart.series = [series1, series2];
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
-                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -142,10 +136,8 @@ describe("Chart tests", () => {
 
     it("create chart literals", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
                 chart.width = 400;
@@ -166,7 +158,7 @@ describe("Chart tests", () => {
                 chart.series = [series1, series2];
                 chart.dataSourceForCategories = new model.Literals();
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
-                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -175,12 +167,10 @@ describe("Chart tests", () => {
         });
     });
 
-    it("update", () => {
+    it("update chart", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
                 chart.width = 400;
@@ -193,7 +183,7 @@ describe("Chart tests", () => {
                 series2.dataPoints = [{value: 55}, {value: 35}, {value: 90}];
                 chart.series = [series1, series2];
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
-                return api.updateShape(fileName, 3, 1, chart, "password", folderName).then((result) => {
+                return api.updateShape(TestUtils.fileName, 3, 1, chart, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -202,16 +192,14 @@ describe("Chart tests", () => {
         });
     });
 
-    it("series create", () => {
+    it("create series", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
                 series.dataPoints = [{value: 40}, {value: 50}, {value: 14}, {value: 70}];
-                return api.createChartSeries(fileName, 3, 1, series, "password", folderName).then((result) => {
+                return api.createChartSeries(TestUtils.fileName, 3, 1, series, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(4, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -220,16 +208,14 @@ describe("Chart tests", () => {
         });
     });
 
-    it("series update", () => {
+    it("update series", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
                 series.dataPoints = [{value: 40}, {value: 50}, {value: 14}, {value: 70}];
-                return api.updateChartSeries(fileName, 3, 1, 2, series, "password", folderName).then((result) => {
+                return api.updateChartSeries(TestUtils.fileName, 3, 1, 2, series, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -238,13 +224,11 @@ describe("Chart tests", () => {
         });
     });
 
-    it("series delete", () => {
+    it("delete series", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.deleteChartSeries(fileName, 3, 1, 2, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.deleteChartSeries(TestUtils.fileName, 3, 1, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -253,16 +237,14 @@ describe("Chart tests", () => {
         });
     });
 
-    it("category create", () => {
+    it("create category", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
                 category.dataPoints = [{value: 40}, {value: 50}, {value: 14}];
-                return api.createChartCategory(fileName, 3, 1, category, "password", folderName).then((result) => {
+                return api.createChartCategory(TestUtils.fileName, 3, 1, category, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(5, (result.body as model.Chart).categories.length);
@@ -274,16 +256,14 @@ describe("Chart tests", () => {
         });
     });
 
-    it("category update", () => {
+    it("update category", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
                 category.dataPoints = [{value: 40}, {value: 50}, {value: 14}];
-                return api.updateChartCategory(fileName, 3, 1, 2, category, "password", folderName).then((result) => {
+                return api.updateChartCategory(TestUtils.fileName, 3, 1, 2, category, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -295,13 +275,11 @@ describe("Chart tests", () => {
         });
     });
 
-    it("category delete", () => {
+    it("delete category", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.deleteChartCategory(fileName, 3, 1, 2, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.deleteChartCategory(TestUtils.fileName, 3, 1, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -311,15 +289,13 @@ describe("Chart tests", () => {
         });
     });
 
-    it("data point create", () => {
+    it("create data point", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
-                return api.createChartDataPoint(fileName, 3, 1, 2, dataPoint, "password", folderName)
+                return api.createChartDataPoint(TestUtils.fileName, 3, 1, 2, dataPoint, TestUtils.password, TestUtils.folderName)
                     //Must throw ApiException because adding data points only works with Scatter & Bubble charts.
                     .then(() => assert.fail("Must have failed"))
                     .catch((err) => {
@@ -329,15 +305,13 @@ describe("Chart tests", () => {
         });
     });
 
-    it("data point update", () => {
+    it("update data point", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
-                return api.updateChartDataPoint(fileName, 3, 1, 2, 2, dataPoint, "password", folderName).then((result) => {
+                return api.updateChartDataPoint(TestUtils.fileName, 3, 1, 2, 2, dataPoint, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -348,13 +322,11 @@ describe("Chart tests", () => {
         });
     });
 
-    it("data point delete", () => {
+    it("delete data point", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.deleteChartDataPoint(fileName, 3, 1, 2, 2, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.deleteChartDataPoint(TestUtils.fileName, 3, 1, 2, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert.equal(3, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -364,12 +336,10 @@ describe("Chart tests", () => {
         });
     });
 
-    it("sunburst", () => {
+    it("sunburst chart", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.Sunburst;
                 chart.width = 400;
@@ -390,7 +360,7 @@ describe("Chart tests", () => {
                 const category4 = new model.ChartCategory();
                 category4.value = "Stem2";
                 chart.categories = [category1, category2, category3, category4];
-                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(1, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -399,12 +369,10 @@ describe("Chart tests", () => {
         });
     });
 
-    it("multiLevelCategoryAxis", () => {
+    it("multilevel chart category", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.x = 100;
                 chart.y = 100;
@@ -448,7 +416,7 @@ describe("Chart tests", () => {
 
                 chart.categories = [category1, category2, category3, category4, category5, category6, category7, category8];
 
-                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(1, (result.body as model.Chart).series.length);
                     assert.equal(8, (result.body as model.Chart).categories.length);
@@ -458,34 +426,30 @@ describe("Chart tests", () => {
         });
     });
 
-    it("hideChartLegend", () => {
+    it("hide chart legend", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
 
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            let result = await api.getShape(fileName, 3, 1, "password", folderName)
+            let result = await api.getShape(TestUtils.fileName, 3, 1, TestUtils.password, TestUtils.folderName)
             assert.equal(200, result.response.statusCode);
 
             let chart = result.body as model.Chart;
             chart.legend.hasLegend = false;
 
-            result = await api.updateShape(fileName, 3, 1, chart, "password", folderName)
+            result = await api.updateShape(TestUtils.fileName, 3, 1, chart, TestUtils.password, TestUtils.folderName)
             assert.equal(200, result.response.statusCode);
             chart = result.body as model.Chart;
             assert.equal(chart.legend.hasLegend, false);
         });
     });
 
-    it("chartGridLinesFormat", () => {
+    it("chart axis grid lines format", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
 
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const axes = new model.Axes();
             axes.horizontalAxis = new model.Axis();
@@ -516,13 +480,13 @@ describe("Chart tests", () => {
             axes.verticalAxis.minorGridLinesFormat.lineFormat = new model.LineFormat();
             axes.verticalAxis.minorGridLinesFormat.lineFormat.fillFormat = new model.NoFill();
 
-            let result = await api.getShape(fileName, 3, 1, "password", folderName)
+            let result = await api.getShape(TestUtils.fileName, 3, 1, TestUtils.password, TestUtils.folderName)
             assert.equal(200, result.response.statusCode);
 
             let chart = result.body as model.Chart;
             chart.axes = axes;
 
-            result = await api.updateShape(fileName, 3, 1, chart, "password", folderName)
+            result = await api.updateShape(TestUtils.fileName, 3, 1, chart, TestUtils.password, TestUtils.folderName)
             assert.equal(200, result.response.statusCode);
             chart = result.body as model.Chart;
             assert.equal("NoFill", chart.axes.horizontalAxis.majorGridLinesFormat.lineFormat.fillFormat.type);
@@ -532,15 +496,13 @@ describe("Chart tests", () => {
         });
     });
 
-    it("chartSeriesGroups", () => {
+    it("chart series groups", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
 
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            let result = await api.getShape(fileName, 3, 1, "password", folderName)
+            let result = await api.getShape(TestUtils.fileName, 3, 1, TestUtils.password, TestUtils.folderName)
             assert.equal(200, result.response.statusCode);
 
             let chart = result.body as model.Chart;
@@ -548,8 +510,8 @@ describe("Chart tests", () => {
             let seriesGroup = chart.seriesGroups[0];
             seriesGroup.overlap = 10;
        
-            let newResult = await api.setChartSeriesGroup(fileName, 3, 1, 1, seriesGroup,
-                "password", folderName);
+            let newResult = await api.setChartSeriesGroup(TestUtils.fileName, 3, 1, 1, seriesGroup,
+                TestUtils.password, TestUtils.folderName);
             chart = newResult.body as model.Chart;
             assert.equal(10, chart.seriesGroups[0].overlap);
         });
@@ -557,34 +519,30 @@ describe("Chart tests", () => {
 
     it("set chart legend", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const fillFormat = new SolidFill();
             fillFormat.color = "#77CEF9";
             const legend = new Legend();
             legend.overlay = true;
             legend.fillFormat = fillFormat;
-            let result = await api.setChartLegend(fileName, 3, 1, legend, "password", folderName);
+            let result = await api.setChartLegend(TestUtils.fileName, 3, 1, legend, TestUtils.password, TestUtils.folderName);
             assert.equal("Solid" ,result.body.fillFormat.type);
         });
     });
 
     it("set chart axis", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const axis = new Axis();
             axis.hasTitle = true;
             axis.isAutomaticMaxValue = false;
             axis.maxValue = 10;
             
-            let result = await api.setChartAxis(fileName, 3, 1, AxisType.VerticalAxis, axis, "password", folderName);
+            let result = await api.setChartAxis(TestUtils.fileName, 3, 1, AxisType.VerticalAxis, axis, TestUtils.password, TestUtils.folderName);
             assert.equal(true ,result.body.hasTitle);
             assert.equal(false ,result.body.isAutomaticMaxValue);
             assert.equal(10 ,result.body.maxValue);
@@ -593,27 +551,23 @@ describe("Chart tests", () => {
 
     it("set chart wall", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             
             const fillFormat = new SolidFill();
             fillFormat.color = "#77CEF9";
             const wall = new ChartWall();
             wall.fillFormat = fillFormat;
 
-            let result = await api.setChartWall(fileName, 8, 2, ChartWallType.BackWall, wall, "password", folderName);
+            let result = await api.setChartWall(TestUtils.fileName, 8, 2, ChartWallType.BackWall, wall, TestUtils.password, TestUtils.folderName);
             assert.equal("Solid" ,result.body.fillFormat.type);
         });
     });
 
-    it("update data potin format", () => {
+    it("update chart data point format", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const fillFormat = new SolidFill();
             fillFormat.color = "#77CEF9";
@@ -638,7 +592,7 @@ describe("Chart tests", () => {
             const seriesIndex = 2;
             const dataPointIndex = 2;
 
-            let result = await api.updateChartDataPoint(fileName, slideIndex, shapeIndex, seriesIndex, dataPointIndex, dto, "password", folderName);
+            let result = await api.updateChartDataPoint(TestUtils.fileName, slideIndex, shapeIndex, seriesIndex, dataPointIndex, dto, TestUtils.password, TestUtils.folderName);
             var series = Object.assign(new OneValueSeries(), result.body.series[seriesIndex - 1]);
             const dataPoint =  series.dataPoints[dataPointIndex -1];
             assert.equal("Solid" ,dataPoint.fillFormat.type);
@@ -649,10 +603,8 @@ describe("Chart tests", () => {
 
     it("chart workbook formulas", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
                 chart.width = 400;
@@ -682,7 +634,7 @@ describe("Chart tests", () => {
 
                 chart.series = [series1];
                 
-                return api.createShape(fileName, 3, chart, null, null, "password", folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     const series = ((result.body as model.Chart).series[0] as model.OneValueSeries);
                     assert.equal(90, series.dataPoints[2].value);

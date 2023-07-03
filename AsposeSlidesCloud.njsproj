@@ -103,6 +103,7 @@
     <Content Include="test\useCases\splitTests.ts" />
     <Content Include="test\useCases\textFormatTests.ts" />
     <Content Include="test\useCases\textTests.ts" />
+    <Content Include="test\useCases\vbaTests.ts" />
     <Content Include="test\useCases\watermarkTests.ts" />
     <Content Include="tsconfig.json" />
     <Content Include="TestData\TemplateCV.pptx" />

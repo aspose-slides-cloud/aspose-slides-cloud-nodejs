@@ -29,15 +29,13 @@ import {TestUtils} from "../testUtils";
 describe("Portion tests", () => {
     it("get portions", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.getPortions(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName);
+            const result = await api.getPortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items.length, 2)
         });
@@ -45,15 +43,13 @@ describe("Portion tests", () => {
 
     it("get sub-shape portions", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.getPortions(fileName, slideIndex, shapeIndex, paragraphIndex, "password", folderName, null, "1");
+            const result = await api.getPortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName, null, "1");
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items.length, 2)
         });
@@ -61,17 +57,15 @@ describe("Portion tests", () => {
 
     it("get portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionIndex = 1;
             const portionText = "portion 1";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.getPortion(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, "password", folderName);
+            const result = await api.getPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert((result.body as model.Portion).text.includes(portionText));
         });
@@ -79,18 +73,16 @@ describe("Portion tests", () => {
 
     it("get sub-shape portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
             const portionIndex = 1;
             const portionText = "portion 1";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.getPortion(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, 
-            "password", folderName,null, "1");
+            const result = await api.getPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, 
+                TestUtils.password, TestUtils.folderName, null, "1");
             assert.equal(result.response.statusCode, 200);
             assert((result.body as model.Portion).text.includes(portionText));
         });
@@ -98,15 +90,13 @@ describe("Portion tests", () => {
 
     it("create portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 1;
             const paragraphIndex = 1;
             const portionText = "portion 1";
             const fontName = "Arial";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
             dto.text = portionText;
@@ -118,7 +108,7 @@ describe("Portion tests", () => {
             fillFormat.color = "#FFF5FF8A";
             dto.fillFormat = fillFormat;
 
-            const result = await api.createPortion(fileName, slideIndex, shapeIndex, paragraphIndex, dto, null, "password", folderName);
+            const result = await api.createPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, dto, null, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 201);
             assert.equal((result.body as model.Portion).text, dto.text);
             assert.equal((result.body as model.Portion).fontBold, dto.fontBold);
@@ -130,15 +120,13 @@ describe("Portion tests", () => {
 
     it("create sub-shape portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
             const portionText = "portion 1";
             const fontName = "Arial";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
             dto.text = portionText;
@@ -150,8 +138,8 @@ describe("Portion tests", () => {
             fillFormat.color = "#FFF5FF8A";
             dto.fillFormat = fillFormat;
 
-            const result = await api.createPortion(fileName, slideIndex, shapeIndex, paragraphIndex, dto, null,
-             "password", folderName,  null, "1");
+            const result = await api.createPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, dto, null,
+                TestUtils.password, TestUtils.folderName,  null, "1");
             assert.equal(result.response.statusCode, 201);
             assert.equal((result.body as model.Portion).text, dto.text);
             assert.equal((result.body as model.Portion).fontBold, dto.fontBold);
@@ -163,8 +151,6 @@ describe("Portion tests", () => {
 
     it("update portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 1;
             const paragraphIndex = 1;
@@ -172,7 +158,7 @@ describe("Portion tests", () => {
             const portionText = "portion 1";
             const fontName = "Arial";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
             dto.text = portionText;
@@ -184,7 +170,7 @@ describe("Portion tests", () => {
             fillFormat.color = "#FFF5FF8A";
             dto.fillFormat = fillFormat;
 
-            const result = await api.updatePortion(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, dto, "password", folderName);
+            const result = await api.updatePortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, dto, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portion).text, dto.text);
             assert.equal((result.body as model.Portion).fontBold, dto.fontBold);
@@ -196,8 +182,6 @@ describe("Portion tests", () => {
 
     it("update sub-shape portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
@@ -205,7 +189,7 @@ describe("Portion tests", () => {
             const portionText = "portion 1";
             const fontName = "Arial";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
             dto.text = portionText;
@@ -217,8 +201,8 @@ describe("Portion tests", () => {
             fillFormat.color = "#FFF5FF8A";
             dto.fillFormat = fillFormat;
 
-            const result = await api.updatePortion(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, dto, 
-            "password", folderName,  null, "1");
+            const result = await api.updatePortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, dto,
+                TestUtils.password, TestUtils.folderName,  null, "1");
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portion).text, dto.text);
             assert.equal((result.body as model.Portion).fontBold, dto.fontBold);
@@ -230,16 +214,14 @@ describe("Portion tests", () => {
 
     it("delete portions", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 1;
             const paragraphIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.deletePortions(fileName, slideIndex, shapeIndex, paragraphIndex, null, "password", folderName);
+            const result = await api.deletePortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, null, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items, 0);
         });
@@ -247,16 +229,14 @@ describe("Portion tests", () => {
 
     it("delete portions by indexes", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.deletePortions(fileName, slideIndex, shapeIndex, paragraphIndex, [1], "password", folderName);
+            const result = await api.deletePortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, [1], TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items.length, 1);
         });
@@ -264,16 +244,14 @@ describe("Portion tests", () => {
 
     it("delete sub-shape portions", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const paragraphIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.deletePortions(fileName, slideIndex, 3, paragraphIndex, null, 
-            "password", folderName, null, "1");
+            const result = await api.deletePortions(TestUtils.fileName, slideIndex, 3, paragraphIndex, null,
+                TestUtils.password, TestUtils.folderName, null, "1");
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items, 0);
         });
@@ -281,16 +259,14 @@ describe("Portion tests", () => {
 
     it("delete sub-shapes portions by indexes", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const paragraphIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.deletePortions(fileName, slideIndex, 3, paragraphIndex, [1], 
-            "password", folderName, null, "1");
+            const result = await api.deletePortions(TestUtils.fileName, slideIndex, 3, paragraphIndex, [1], 
+                TestUtils.password, TestUtils.folderName, null, "1");
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items.length, 1);
         });
@@ -298,17 +274,15 @@ describe("Portion tests", () => {
 
     it("delete portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.deletePortion(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, "password", folderName);
+            const result = await api.deletePortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items.length, 1);
         });
@@ -316,18 +290,16 @@ describe("Portion tests", () => {
 
     it("delete sub-shape portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
             const portionIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.deletePortion(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, 
-            "password", folderName, null, "1");
+            const result = await api.deletePortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex,
+                TestUtils.password, TestUtils.folderName, null, "1");
             assert.equal(result.response.statusCode, 200);
             assert.equal((result.body as model.Portions).items.length, 1);
         });
@@ -335,17 +307,15 @@ describe("Portion tests", () => {
 
     it("get portion rectangle", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.getPortionRectangle(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, "password", folderName);
+            const result = await api.getPortionRectangle(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert((result.body as model.TextBounds).x > 0);
             assert((result.body as model.TextBounds).y > 0);
@@ -356,16 +326,14 @@ describe("Portion tests", () => {
 
     it("get portion effective", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionIndex = 1;
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.getPortionEffective(fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, "password", folderName);
+            const result = await api.getPortionEffective(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(result.response.statusCode, 200);
             assert.equal(result.body.fontHeight, 18);
         });
@@ -373,17 +341,15 @@ describe("Portion tests", () => {
 
     it("get sub-shape portion effective", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
             const portionIndex = 1;
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
-            const result = await api.getPortionEffective(fileName, slideIndex, shapeIndex,
-                paragraphIndex, portionIndex, "password", folderName,  null, "1");
+            const result = await api.getPortionEffective(TestUtils.fileName, slideIndex, shapeIndex,
+                paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName,  null, "1");
             assert.equal(result.response.statusCode, 200);
             assert.equal(result.body.fontHeight, 18);
         });

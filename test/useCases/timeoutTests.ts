@@ -1,5 +1,5 @@
-﻿describe("Tests for timeout configuration parameter", () => {
-    it("convert slide to svg", () => {
+﻿describe("Timeout tests", () => {
+    it("timeout", () => {
         /*unstable test
                 return TestUtils.initialize("postSlideSaveAs", null, null).then(() => {
                     return TestUtils.getApi().downloadSlide("test.pptx", 1, "svg", null, "password", "TempSlidesSDK")

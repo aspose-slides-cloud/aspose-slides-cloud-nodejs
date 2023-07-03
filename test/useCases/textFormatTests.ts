@@ -30,14 +30,12 @@ var assert = require('assert');
 import CenterTextEnum = TextFrameFormat.CenterTextEnum;
 
 describe("text format tests", () => {
-    it("textFormat3D", () => {
+    it("text format 3D", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const bevelBottomDto = new model.ShapeBevel();
             bevelBottomDto.bevelType = model.ShapeBevel.BevelTypeEnum.Circle;
@@ -85,20 +83,18 @@ describe("text format tests", () => {
 
             shapeDto.textFrameFormat = textFrameFormatDto;
 
-            const result = await api.createShape(fileName, slideIndex, shapeDto, null, null, "password", folderName);
+            const result = await api.createShape(TestUtils.fileName, slideIndex, shapeDto, null, null, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Shape).type, "Shape");
 
         });
     });
 
-    it("text frame format", () => {
+    it("text frame format general", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const slideIndex = 1;
 
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const shapeDto = new model.Shape();
             shapeDto.shapeType = model.GeometryShape.ShapeTypeEnum.Rectangle;
@@ -121,7 +117,7 @@ describe("text format tests", () => {
 
             shapeDto.textFrameFormat = textFrameFormat;
 
-            const result = await api.createShape(fileName, slideIndex, shapeDto, null, null, "password", folderName);
+            const result = await api.createShape(TestUtils.fileName, slideIndex, shapeDto, null, null, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Shape).type, "Shape");
 
         });

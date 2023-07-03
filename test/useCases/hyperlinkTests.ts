@@ -29,11 +29,9 @@ import {TestUtils} from "../testUtils";
 describe("Hyperlink tests", () => {
     it("get shape", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getShape(fileName, 2, 2, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getShape(TestUtils.fileName, 2, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert((result.body as model.ShapeBase).hyperlinkClick);
                     assert.equal(model.Hyperlink.ActionTypeEnum.Hyperlink, (result.body as model.ShapeBase).hyperlinkClick.actionType);
@@ -45,11 +43,9 @@ describe("Hyperlink tests", () => {
 
     it("get portion", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
-                return api.getPortion(fileName, 2, 1, 1, 2, "password", folderName).then((result) => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getPortion(TestUtils.fileName, 2, 1, 1, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert(!(result.body as model.ShapeBase).hyperlinkClick);
                     assert((result.body as model.ShapeBase).hyperlinkMouseOver);
@@ -61,16 +57,14 @@ describe("Hyperlink tests", () => {
 
     it("create shape", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const shape = new model.Shape();
                 const hyperlink = new model.Hyperlink();
                 hyperlink.actionType = model.Hyperlink.ActionTypeEnum.Hyperlink;
                 hyperlink.externalUrl = "https://docs.aspose.cloud/slides";
                 shape.hyperlinkClick = hyperlink;
-                return api.updateShape(fileName, 1, 1, shape, "password", folderName).then((result) => {
+                return api.updateShape(TestUtils.fileName, 1, 1, shape, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert((result.body as model.ShapeBase).hyperlinkClick);
                     assert.equal(hyperlink.externalUrl, (result.body as model.ShapeBase).hyperlinkClick.externalUrl);
@@ -81,16 +75,14 @@ describe("Hyperlink tests", () => {
 
     it("create portion", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Portion();
                 dto.text = "Link text";
                 const hyperlink = new model.Hyperlink();
                 hyperlink.actionType = model.Hyperlink.ActionTypeEnum.JumpLastSlide;
                 dto.hyperlinkMouseOver = hyperlink;
-                return api.createPortion(fileName, 1, 1, 1, dto, null, "password", folderName).then((result) => {
+                return api.createPortion(TestUtils.fileName, 1, 1, 1, dto, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert((result.body as model.Portion).hyperlinkMouseOver);
                     assert.equal(dto.hyperlinkMouseOver.actionType, (result.body as model.Portion).hyperlinkMouseOver.actionType);
@@ -101,15 +93,13 @@ describe("Hyperlink tests", () => {
 
     it("delete", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const shape = new model.PictureFrame();
                 const hyperlink = new model.Hyperlink();
                 hyperlink.isDisabled = true;
                 shape.hyperlinkClick = hyperlink;
-                return api.updateShape(fileName, 2, 2, shape, "password", folderName).then((result) => {
+                return api.updateShape(TestUtils.fileName, 2, 2, shape, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert(!(result.body as model.ShapeBase).hyperlinkClick);
                 });

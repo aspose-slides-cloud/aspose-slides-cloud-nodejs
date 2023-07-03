@@ -27,6 +27,14 @@ import * as sdkApi from "../sdk/api";
 var assert = require('assert');
 
 export class TestUtils {
+    static tempFolderName = "TempTests";
+    static folderName = "TempSlidesSDK";
+    static testDataPath = "TestData";
+    static fileName = "test.pptx";
+    static tempFilePath = TestUtils.tempFolderName + "/" + TestUtils.fileName;
+    static filePath = TestUtils.folderName + "/" + TestUtils.fileName;
+    static localFilePath = TestUtils.testDataPath + "/" + TestUtils.fileName;
+    static password = "password";
     static api : sdkApi.SlidesApi;
 
     public static getApi() {

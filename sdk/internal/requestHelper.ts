@@ -149,7 +149,7 @@ async function invokeApiMethodInternal(requestOptions: any, configuration: Confi
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v23.4.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v23.6.0";
     if (configuration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = configuration.timeout;
     }
@@ -181,6 +181,8 @@ async function invokeApiMethodInternal(requestOptions: any, configuration: Confi
                     error.response.body = error.response.data;
                     error.response.statusCode = error.response.status;
                     await rejectResponse(reject, error.response, configuration, notApplyAuthToRequest);
+                } else if (error.request && error.request.res) {
+                    await rejectResponse(reject, error.request.res, configuration, notApplyAuthToRequest);
                 }
                 reject(error);
             });

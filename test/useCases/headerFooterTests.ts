@@ -27,20 +27,17 @@ import * as model from "../../sdk/model";
 import {TestUtils} from "../testUtils";
 
 describe("HeaderFooter tests", () => {
-    it("all slides", () => {
+    it("slides", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.HeaderFooter();
                 dto.isFooterVisible = true;
                 dto.footerText = "footer";
                 dto.isDateTimeVisible = false;
-                return api.setPresentationHeaderFooter(fileName, dto, password, folderName).then((putResult) => {
+                return api.setPresentationHeaderFooter(TestUtils.fileName, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
-                    return api.getSlideHeaderFooter(fileName, 1, password, folderName).then((result) => {
+                    return api.getSlideHeaderFooter(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
                         assert.equal(true, (result.body as model.HeaderFooter).isFooterVisible);
                         assert.equal(false, (result.body as model.HeaderFooter).isDateTimeVisible);
@@ -52,21 +49,18 @@ describe("HeaderFooter tests", () => {
 
     it("slide", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.HeaderFooter();
                 dto.isFooterVisible = true;
                 dto.footerText = "footer";
                 dto.isDateTimeVisible = false;
-                return api.setSlideHeaderFooter(fileName, slideIndex, dto, password, folderName).then((putResult) => {
+                return api.setSlideHeaderFooter(TestUtils.fileName, slideIndex, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(true, (putResult.body as model.HeaderFooter).isFooterVisible);
                     assert.equal(false, (putResult.body as model.HeaderFooter).isDateTimeVisible);
-                    return api.getSlideHeaderFooter(fileName, slideIndex, password, folderName).then((result) => {
+                    return api.getSlideHeaderFooter(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
                         assert.equal(true, (result.body as model.HeaderFooter).isFooterVisible);
                         assert.equal(false, (result.body as model.HeaderFooter).isDateTimeVisible);
@@ -78,21 +72,18 @@ describe("HeaderFooter tests", () => {
 
     it("notes slide", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.NotesSlideHeaderFooter();
                 dto.isHeaderVisible = true;
                 dto.footerText = "footer";
                 dto.isDateTimeVisible = false;
-                return api.setNotesSlideHeaderFooter(fileName, slideIndex, dto, password, folderName).then((putResult) => {
+                return api.setNotesSlideHeaderFooter(TestUtils.fileName, slideIndex, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert.equal(true, (putResult.body as model.NotesSlideHeaderFooter).isHeaderVisible);
                     assert.equal(false, (putResult.body as model.NotesSlideHeaderFooter).isDateTimeVisible);
-                    return api.getNotesSlideHeaderFooter(fileName, slideIndex, password, folderName).then((result) => {
+                    return api.getNotesSlideHeaderFooter(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
                         assert.equal(true, (result.body as model.NotesSlideHeaderFooter).isHeaderVisible);
                         assert.equal(false, (result.body as model.NotesSlideHeaderFooter).isDateTimeVisible);

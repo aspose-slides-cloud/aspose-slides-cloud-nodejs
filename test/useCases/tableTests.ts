@@ -29,12 +29,10 @@ import {TestUtils} from "../testUtils";
 var assert = require('assert');
 
 describe("Table tests", () => {
-    it("updateTableCell", () => {
+    it("update table cell", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -43,17 +41,15 @@ describe("Table tests", () => {
             let dto = new TableCell();
             dto.text = "Test text";
 
-            const result = await api.updateTableCell(fileName, slideIndex, shapeIndex, rowIndex, cellIndex, dto, "password", folderName);
+            const result = await api.updateTableCell(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex, dto, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.TableCell).text, dto.text);
         });
     });
 
-    it("createTableRow", () => {
+    it("create table row", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -71,36 +67,32 @@ describe("Table tests", () => {
             dto.minimalHeight = 30;
             dto.cells = [cell0, cell1, cell2, cell3];
 
-            const result = await api.createTableRow(fileName, slideIndex, shapeIndex, dto, null,"password", folderName);
+            const result = await api.createTableRow(TestUtils.fileName, slideIndex, shapeIndex, dto, null, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.TableRow).cells.length, dto.cells.length);
             assert.equal((result.body as model.TableRow).minimalHeight, dto.minimalHeight);
         });
     });
 
-    it("deleteTableRow", () => {
+    it("delete table row", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
             let rowIndex = 2;
             let withAttachedRows = true;
 
-            const result = await api.deleteTableRow(fileName, slideIndex, shapeIndex, rowIndex, withAttachedRows,
-             "password", folderName);
+            const result = await api.deleteTableRow(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, withAttachedRows,
+                TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Table).rows.length, 2);
         });
     });
 
-    it("updateTableRow", () => {
+    it("update table row", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -109,17 +101,15 @@ describe("Table tests", () => {
             let dto = new TableRow();
             dto.minimalHeight = 30;
 
-            const result = await api.updateTableRow(fileName, slideIndex, shapeIndex, rowIndex, dto,"password", folderName);
+            const result = await api.updateTableRow(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, dto, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.TableRow).minimalHeight, dto.minimalHeight);
         });
     });
 
-    it("mergeTableCells", () => {
+    it("merge table cells", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -130,18 +120,16 @@ describe("Table tests", () => {
             dto.lastCellIndex = 2;
             dto.allowSplitting = true;
 
-            const result = await api.mergeTableCells(fileName, slideIndex, shapeIndex, dto,"password", folderName);
+            const result = await api.mergeTableCells(TestUtils.fileName, slideIndex, shapeIndex, dto, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Table).rows[0].cells[0].colSpan, 2);
             assert.equal((result.body as model.Table).rows[0].cells[0].rowSpan, 2);
         });
     });
 
-    it("splitTableCellsByWidth", () => {
+    it("split table cells by width", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -149,18 +137,16 @@ describe("Table tests", () => {
             let cellIndex = 1;
             let cellWidth = 10;
 
-            const result = await api.splitTableCell(fileName, 
-                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByWidth, cellWidth, "password", folderName);
+            const result = await api.splitTableCell(TestUtils.fileName,
+                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByWidth, cellWidth, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Table).rows[0].cells.length, 5);
         });
     });
 
-    it("splitTableCellsByHeight", () => {
+    it("split table cells by height", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -168,18 +154,16 @@ describe("Table tests", () => {
             let cellIndex = 1;
             let cellHeight = 10;
 
-            const result = await api.splitTableCell(fileName,
-                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByHeight, cellHeight, "password", folderName);
+            const result = await api.splitTableCell(TestUtils.fileName,
+                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByHeight, cellHeight, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Table).rows.length, 5);
         });
     });
 
-    it("splitTableCellsByColSpan", () => {
+    it("split table cells by col span", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -187,18 +171,16 @@ describe("Table tests", () => {
             let cellIndex = 1;
             let colSpan = 1;
 
-            const result = await api.splitTableCell(fileName,
-                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByColSpan, colSpan, "password", folderName);
+            const result = await api.splitTableCell(TestUtils.fileName,
+                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByColSpan, colSpan, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Table).rows[2].cells[0].colSpan, null);
         });
     });
 
-    it("splitTableCellsByRowSpan", () => {
+    it("split table cells by row span", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -206,36 +188,32 @@ describe("Table tests", () => {
             let cellIndex = 3;
             let colSpan = 1;
 
-            const result = await api.splitTableCell(fileName,
-                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByRowSpan, colSpan, "password", folderName);
+            const result = await api.splitTableCell(TestUtils.fileName,
+                slideIndex, shapeIndex, rowIndex, cellIndex, TableCellSplitType.SplitByRowSpan, colSpan, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Table).rows[1].cells[2].rowSpan, null);
         });
     });
 
-    it("getTableCellParagraphs", () => {
+    it("get table cell paragraphs", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
             let rowIndex = 1;
             let cellIndex = 1;
 
-            const result = await api.getTableCellParagraphs(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-             "password", folderName);
+            const result = await api.getTableCellParagraphs(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Paragraphs).paragraphLinks.length, 1);
         });
     });
 
-    it("getTableCellParagraph", () => {
+    it("get table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -243,18 +221,16 @@ describe("Table tests", () => {
             let cellIndex = 1;
             let paragraphIndex = 1;
 
-            const result = await api.getTableCellParagraph(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, "password", folderName);
+            const result = await api.getTableCellParagraph(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Paragraph).portionList.length, 2);
         });
     });
 
-    it("createTableCellParagraph", () => {
+    it("create table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -269,18 +245,16 @@ describe("Table tests", () => {
             let dto = new Paragraph();
             dto.portionList = [portion0, portion1];
 
-            const result = await api.createTableCellParagraph(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                dto, "password", folderName);
+            const result = await api.createTableCellParagraph(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                dto, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Paragraph).portionList.length, 2);
         });
     });
 
-    it("updateTableCellParagraph", () => {
+    it("update table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -296,18 +270,16 @@ describe("Table tests", () => {
             let dto = new Paragraph();
             dto.portionList = [portion0, portion1];
 
-            const result = await api.updateTableCellParagraph(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, dto, "password", folderName);
+            const result = await api.updateTableCellParagraph(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, dto, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Paragraph).portionList.length, 2);
         });
     });
 
-    it("deleteTableCellParagraph", () => {
+    it("delete table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -315,18 +287,16 @@ describe("Table tests", () => {
             let cellIndex = 1;
             let paragraphIndex = 1;
 
-            const result = await api.deleteTableCellParagraph(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, "password", folderName);
+            const result = await api.deleteTableCellParagraph(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Paragraphs).paragraphLinks.length, 0);
         });
     });
 
-    it("getTableCellPortions", () => {
+    it("get table cell portions", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -334,18 +304,16 @@ describe("Table tests", () => {
             let cellIndex = 1;
             let paragraphIndex = 1;
 
-            const result = await api.getTableCellPortions(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, "password", folderName);
+            const result = await api.getTableCellPortions(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Portions).items.length, 2);
         });
     });
 
-    it("getTableCellPortion", () => {
+    it("get table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -354,18 +322,16 @@ describe("Table tests", () => {
             let paragraphIndex = 1;
             let portionIndex = 1;
 
-            const result = await api.getTableCellPortion(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, portionIndex, "password", folderName);
+            const result = await api.getTableCellPortion(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Portion).text, "Header");
         });
     });
 
-    it("creatTableCellPortion", () => {
+    it("create table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -374,18 +340,16 @@ describe("Table tests", () => {
             let paragraphIndex = 1;
             let dto = new Portion();
             dto.text = "Portion 1";
-            const result = await api.createTableCellPortion(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, dto, "password", folderName);
+            const result = await api.createTableCellPortion(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, dto, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Portion).text, dto.text);
         });
     });
 
-    it("updateTableCellPortion", () => {
+    it("update table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -395,18 +359,16 @@ describe("Table tests", () => {
             let portionIndex = 1;
             let dto = new Portion();
             dto.text = "Portion 1";
-            const result = await api.updateTableCellPortion(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, portionIndex, dto, "password", folderName);
+            const result = await api.updateTableCellPortion(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, portionIndex, dto, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Portion).text, dto.text);
         });
     });
 
-    it("deleteTableCellPortion", () => {
+    it("delete table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
             const api = TestUtils.getApi();
-            await api.copyFile("TempTests/" + fileName, folderName + "/" + fileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
             let shapeIndex = 1;
@@ -415,8 +377,8 @@ describe("Table tests", () => {
             let paragraphIndex = 1;
             let portionIndex = 1;
 
-            const result = await api.deleteTableCellPortion(fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
-                paragraphIndex, portionIndex, "password", folderName);
+            const result = await api.deleteTableCellPortion(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
+                paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Portions).items.length, 1);
         });
     });

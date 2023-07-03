@@ -29,23 +29,20 @@ import {TestUtils} from "../testUtils";
 describe("Shape format tests", () => {
     it("shape format line", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Shape();
                 const lineFormat = new model.LineFormat();
                 lineFormat.style = model.LineFormat.StyleEnum.ThickThin;
                 lineFormat.width = 7;
                 lineFormat.dashStyle = model.LineFormat.DashStyleEnum.Dash;
                 dto.lineFormat = lineFormat;
-                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                return api.updateShape(TestUtils.fileName, slideIndex, shapeIndex, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert(putResult.body as model.Shape);
-                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                    return api.getShape(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName).then((getResult) => {
                         assert.equal(200, getResult.response.statusCode);
                         assert(getResult.body as model.Shape);
                         assert(dto.lineFormat.width, (getResult.body as model.Shape).width);
@@ -57,21 +54,18 @@ describe("Shape format tests", () => {
 
     it("shape format fill", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Shape();
                 const fillFormat = new model.SolidFill();
                 fillFormat.color = "#FFFFFF00";
                 dto.fillFormat = fillFormat;
-                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                return api.updateShape(TestUtils.fileName, slideIndex, shapeIndex, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert(putResult.body as model.Shape);
-                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                    return api.getShape(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName).then((getResult) => {
                         assert.equal(200, getResult.response.statusCode);
                         assert(getResult.body as model.Shape);
                         assert((getResult.body as model.Shape).fillFormat as model.SolidFill);
@@ -84,13 +78,10 @@ describe("Shape format tests", () => {
 
     it("shape format effect", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Shape();
                 const effectFormat = new model.EffectFormat();
                 const innerShadow = new model.InnerShadowEffect();
@@ -100,10 +91,10 @@ describe("Shape format tests", () => {
                 innerShadow.shadowColor = "#FFFFFF00";
                 effectFormat.innerShadow = innerShadow;
                 dto.effectFormat = effectFormat;
-                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                return api.updateShape(TestUtils.fileName, slideIndex, shapeIndex, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert(putResult.body as model.Shape);
-                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                    return api.getShape(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName).then((getResult) => {
                         assert.equal(200, getResult.response.statusCode);
                         assert(getResult.body as model.Shape);
                         assert(dto.effectFormat.innerShadow.direction, (getResult.body as model.Shape).effectFormat.innerShadow.direction);
@@ -115,13 +106,10 @@ describe("Shape format tests", () => {
 
     it("shape format 3D", () => {
         return TestUtils.runTest(() => {
-            const folderName = "TempSlidesSDK";
-            const fileName = "test.pptx";
-            const password = "password";
             const slideIndex = 1;
             const shapeIndex = 1;
             const api = TestUtils.getApi();
-            return api.copyFile("TempTests/" + fileName, folderName + "/" + fileName).then(() => {
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Shape();
                 const threeDFormat = new model.ThreeDFormat();
                 threeDFormat.depth = 4;
@@ -141,10 +129,10 @@ describe("Shape format tests", () => {
                 lightRig.direction = model.LightRig.DirectionEnum.Top;
                 threeDFormat.lightRig = lightRig;
                 dto.threeDFormat = threeDFormat;
-                return api.updateShape(fileName, slideIndex, shapeIndex, dto, password, folderName).then((putResult) => {
+                return api.updateShape(TestUtils.fileName, slideIndex, shapeIndex, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
                     assert.equal(200, putResult.response.statusCode);
                     assert(putResult.body as model.Shape);
-                    return api.getShape(fileName, slideIndex, shapeIndex, password, folderName).then((getResult) => {
+                    return api.getShape(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName).then((getResult) => {
                         assert.equal(200, getResult.response.statusCode);
                         assert(getResult.body as model.Shape);
                         assert(dto.threeDFormat.depth, (getResult.body as model.Shape).threeDFormat.depth);

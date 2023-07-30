@@ -2932,6 +2932,21 @@ export class Effect {
      */
     stopPreviousSound?: boolean;
 
+    /**
+     * This attribute specifies if the effect will rewind when done playing.
+     */
+    rewind?: boolean;
+
+    /**
+     * Defined an after animation color for effect.
+     */
+    afterAnimationType?: Effect.AfterAnimationTypeEnum;
+
+    /**
+     * Defined an after animation color for effect. Applied when the AfterAnimationType property is set to Color.
+     */
+    afterAnimationColor?: string;
+
 }
 export namespace Effect {
     export enum TypeEnum {
@@ -3161,6 +3176,12 @@ export namespace Effect {
         WhenNotActive = <any> 'WhenNotActive',
         Never = <any> 'Never',
         NotDefined = <any> 'NotDefined'
+    }
+    export enum AfterAnimationTypeEnum {
+        DoNotDim = <any> 'DoNotDim',
+        Color = <any> 'Color',
+        HideAfterAnimation = <any> 'HideAfterAnimation',
+        HideOnNextMouseClick = <any> 'HideOnNextMouseClick'
     }
 }
 
@@ -10019,6 +10040,16 @@ export class VideoFrame extends GeometryShape {
      * Picture fill format.
      */
     pictureFillFormat?: PictureFill;
+
+    /**
+     * Trim start [ms]
+     */
+    trimFromStart?: number;
+
+    /**
+     * Trim end [ms]
+     */
+    trimFromEnd?: number;
 
 }
 export namespace VideoFrame {

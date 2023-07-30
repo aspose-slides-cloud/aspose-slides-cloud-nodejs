@@ -8648,6 +8648,98 @@ export class SlidesApi {
     }
 
     /**
+     * Finds and replaces text in presentation with given format. 
+     * @param name Document name.
+     * @param oldValue Text value to be replaced.
+     * @param newValue Text value to replace with.
+     * @param portionFormat Portion format.
+     * @param withMasters Text replacement includes master slides.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async replaceTextFormatting(name: string, oldValue: string, newValue: string, portionFormat: model.PortionFormat = null, withMasters: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling replaceTextFormatting.');
+        }
+        // verify required parameter 'oldValue' is not null or undefined
+        if (oldValue === null || oldValue === undefined) {
+            throw new Error('The required parameter "oldValue" was null or undefined when calling replaceTextFormatting.');
+        }
+        // verify required parameter 'newValue' is not null or undefined
+        if (newValue === null || newValue === undefined) {
+            throw new Error('The required parameter "newValue" was null or undefined when calling replaceTextFormatting.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/replaceTextFormatting";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldValue", oldValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", newValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withMasters", withMasters);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: portionFormat,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Document");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Finds and replaces text in presentation with given format. 
+     * @param document Document data.
+     * @param oldValue Text value to be replaced.
+     * @param newValue Text value to replace with.
+     * @param portionFormat Portion format.
+     * @param withMasters Text replacement includes master slides.
+     * @param password Document password.
+     */
+    public async replaceTextFormattingOnline(document: Readable, oldValue: string, newValue: string, portionFormat: model.PortionFormat = null, withMasters: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling replaceTextFormattingOnline.');
+        }
+        // verify required parameter 'oldValue' is not null or undefined
+        if (oldValue === null || oldValue === undefined) {
+            throw new Error('The required parameter "oldValue" was null or undefined when calling replaceTextFormattingOnline.');
+        }
+        // verify required parameter 'newValue' is not null or undefined
+        if (newValue === null || newValue === undefined) {
+            throw new Error('The required parameter "newValue" was null or undefined when calling replaceTextFormattingOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/replaceTextFormatting";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldValue", oldValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", newValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withMasters", withMasters);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: portionFormat,
+            responseType: 'arraybuffer',
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Convert Mathematical Text to MathML Format and saves result to the storage 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -11529,7 +11621,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async updateVbaModule(name: string, moduleIndex: number, moduleDto: model.VbaModule = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.VbaModule}> {
+    public async updateVbaModule(name: string, moduleIndex: number, moduleDto: model.VbaModule, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.VbaModule}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling updateVbaModule.');
@@ -11537,6 +11629,10 @@ export class SlidesApi {
         // verify required parameter 'moduleIndex' is not null or undefined
         if (moduleIndex === null || moduleIndex === undefined) {
             throw new Error('The required parameter "moduleIndex" was null or undefined when calling updateVbaModule.');
+        }
+        // verify required parameter 'moduleDto' is not null or undefined
+        if (moduleDto === null || moduleDto === undefined) {
+            throw new Error('The required parameter "moduleDto" was null or undefined when calling updateVbaModule.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/vbaProject/modules/{moduleIndex}";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));

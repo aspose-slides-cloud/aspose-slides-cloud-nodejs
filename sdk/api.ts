@@ -1718,7 +1718,7 @@ export class SlidesApi {
      * @param storage Document storage.
      * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideShape.');
@@ -1734,6 +1734,10 @@ export class SlidesApi {
         // verify value of enum parameter 'slideType' is valid
         if (!Object.keys(model.SpecialSlideType).filter(i => model.SpecialSlideType[i].toLowerCase() == slideType.toString().toLowerCase()).length) {
             throw new Error('Invalid value for slideType: ' + slideType + '. Must be one of the following: ' + Object.keys(model.SpecialSlideType).map(key => model.SpecialSlideType[key]).join());
+        }
+        // verify required parameter 'dto' is not null or undefined
+        if (dto === null || dto === undefined) {
+            throw new Error('The required parameter "dto" was null or undefined when calling createSpecialSlideShape.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/{slideType}/shapes";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -2975,14 +2979,10 @@ export class SlidesApi {
      * @param document Document data.
      * @param password Presentation password.
      */
-    public async deleteProtectionOnline(document: Readable, password: string): Promise<{response: http.ServerResponse, body: Buffer}> {
+    public async deleteProtectionOnline(document: Readable, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling deleteProtectionOnline.');
-        }
-        // verify required parameter 'password' is not null or undefined
-        if (password === null || password === undefined) {
-            throw new Error('The required parameter "password" was null or undefined when calling deleteProtectionOnline.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/protection/delete";
         const queryParameters: any = {};
@@ -8452,6 +8452,90 @@ export class SlidesApi {
         if (document != null) 
         {
             localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Replaces image by the specified index. 
+     * @param name Document name.
+     * @param imageIndex Image index.
+     * @param image Image data.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async replaceImage(name: string, imageIndex: number, image: Readable = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling replaceImage.');
+        }
+        // verify required parameter 'imageIndex' is not null or undefined
+        if (imageIndex === null || imageIndex === undefined) {
+            throw new Error('The required parameter "imageIndex" was null or undefined when calling replaceImage.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images/{imageIndex}/replace";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "imageIndex", ObjectSerializer.toString(imageIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "PUT",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (image != null) 
+        {
+            localVarFiles.push(image);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
+    }
+
+    /**
+     * Replaces image by the specified index and returns updated document.  
+     * @param document Document data.
+     * @param imageIndex Image index.
+     * @param image Image data.
+     * @param password Password.
+     */
+    public async replaceImageOnline(document: Readable, imageIndex: number, image: Readable = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling replaceImageOnline.');
+        }
+        // verify required parameter 'imageIndex' is not null or undefined
+        if (imageIndex === null || imageIndex === undefined) {
+            throw new Error('The required parameter "imageIndex" was null or undefined when calling replaceImageOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/images/{imageIndex}/replace";
+        localVarPath = addPathParameterToUrl(localVarPath, "imageIndex", ObjectSerializer.toString(imageIndex));
+        const queryParameters: any = {};
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            responseType: 'arraybuffer',
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        if (image != null) 
+        {
+            localVarFiles.push(image);
         }
         checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);

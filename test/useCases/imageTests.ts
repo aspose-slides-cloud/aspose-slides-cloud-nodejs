@@ -102,4 +102,24 @@ describe("Image tests", () => {
             });
         });
     });
+    it("replace image",()=>{
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
+            var image = fs.createReadStream("TestData/watermark.png");
+            var response = await  api.replaceImage(TestUtils.fileName, 1, image, TestUtils.password, TestUtils.folderName);
+            assert.equal(200, response.response.statusCode);
+        })
+    });
+    it("replace image request",()=>{
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getApi();
+            var file = fs.createReadStream(TestUtils.localFilePath);
+            var image = fs.createReadStream("TestData/watermark.png");
+            var response = await api.replaceImageOnline(file, 1, image, TestUtils.password);
+            assert.equal(200, response.response.statusCode);
+            assert(response.body.length !== 0);
+            return null;
+        })
+    });
 });

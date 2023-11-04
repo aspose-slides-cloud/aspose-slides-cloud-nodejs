@@ -29,7 +29,7 @@ import {TestUtils} from "../testUtils";
 describe("Hyperlink tests", () => {
     it("get shape", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShape(TestUtils.fileName, 2, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -43,7 +43,7 @@ describe("Hyperlink tests", () => {
 
     it("get portion", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getPortion(TestUtils.fileName, 2, 1, 1, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -57,7 +57,7 @@ describe("Hyperlink tests", () => {
 
     it("create shape", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const shape = new model.Shape();
                 const hyperlink = new model.Hyperlink();
@@ -75,7 +75,7 @@ describe("Hyperlink tests", () => {
 
     it("create portion", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Portion();
                 dto.text = "Link text";
@@ -93,7 +93,7 @@ describe("Hyperlink tests", () => {
 
     it("delete", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const shape = new model.PictureFrame();
                 const hyperlink = new model.Hyperlink();

@@ -30,7 +30,7 @@ import {TestUtils} from "../testUtils";
 describe("Split tests", () => {
     it("split", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.split(TestUtils.fileName, null, null, null, null, null, null, null, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -51,7 +51,7 @@ describe("Split tests", () => {
     });
     it("split online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.splitOnline(fs.createReadStream(TestUtils.localFilePath), model.SlideExportFormat.Png, null, null, null, null, TestUtils.password).then((result1) => {
                 assert.equal(200, result1.response.statusCode);
                 return api.splitOnline(fs.createReadStream(TestUtils.localFilePath), model.SlideExportFormat.Png, null, null, 2, 3, TestUtils.password).then((result2) => {
@@ -67,7 +67,7 @@ describe("Split tests", () => {
     });
     it("split and save online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.splitAndSaveOnline(fs.createReadStream(TestUtils.localFilePath), model.SlideExportFormat.Png, null, null, null, null, null, TestUtils.password).then((result1) => {
                 assert.equal(200, result1.response.statusCode);
                 return api.splitAndSaveOnline(fs.createReadStream(TestUtils.localFilePath), model.SlideExportFormat.Png, null, null, null, 2, 3, TestUtils.password).then((result2) => {
@@ -86,7 +86,7 @@ describe("Split tests", () => {
     });
     it("split with options", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const options = new model.PdfExportOptions();
                 options.jpegQuality = 50;

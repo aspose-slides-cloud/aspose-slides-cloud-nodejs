@@ -36,14 +36,24 @@ export class TestUtils {
     static localFilePath = TestUtils.testDataPath + "/" + TestUtils.fileName;
     static password = "password";
     static api : sdkApi.SlidesApi;
+    static asyncApi : sdkApi.SlidesAsyncApi;
 
-    public static getApi() {
+    public static getSlidesApi() {
         if (!TestUtils.api) {
             const config = require("../testConfig.json");
             TestUtils.api = new sdkApi.SlidesApi(config.ClientId, config.ClientSecret, config.BaseUrl, config.AuthBaseUrl, config.Debug);
             TestUtils.api.configuration.allowInsecureRequests = config.AllowInsecureRequests;
         }
         return TestUtils.api;
+    }
+
+    public static getSlidesAsyncApi() {
+        if (!TestUtils.asyncApi) {
+            const config = require("../testConfig.json");
+            TestUtils.asyncApi = new sdkApi.SlidesAsyncApi(config.ClientId, config.ClientSecret, config.AsyncBaseUrl, config.AuthBaseUrl, config.Debug);
+            TestUtils.asyncApi.configuration.allowInsecureRequests = config.AllowInsecureRequests;
+        }
+        return TestUtils.asyncApi;
     }
 
     public static runTest(test: () => Promise<any>) {
@@ -55,5 +65,9 @@ export class TestUtils {
                 }
                 await test();
             });
+    }
+
+    public static sleep(interval: number) {
+        return new Promise(resolve => setTimeout(resolve, interval * 1000))
     }
 }

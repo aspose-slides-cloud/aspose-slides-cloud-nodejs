@@ -32,7 +32,7 @@ describe("Property tests", () => {
         return TestUtils.runTest(() => {
             const propertyName = "Author";
             const updatedPropertyValue = "New Value";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getDocumentProperty(TestUtils.fileName, propertyName, TestUtils.password, TestUtils.folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -65,7 +65,7 @@ describe("Property tests", () => {
         return TestUtils.runTest(() => {
             const propertyName = "CustomProperty2";
             const updatedPropertyValue = "New Value";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const property = new model.DocumentProperty();
                 property.value = updatedPropertyValue;
@@ -92,7 +92,7 @@ describe("Property tests", () => {
             const propertyName = "Author";
             const customPropertyName = "CustomProperty2";
             const updatedPropertyValue = "New Value";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getDocumentProperties(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -120,7 +120,7 @@ describe("Property tests", () => {
 
     it("slide properties", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSlideProperties(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -139,7 +139,7 @@ describe("Property tests", () => {
 
     it("slide size preset", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.SlideProperties();
                 dto.sizeType = model.SlideProperties.SizeTypeEnum.B4IsoPaper;
@@ -157,7 +157,7 @@ describe("Property tests", () => {
         return TestUtils.runTest(() => {
             const width = 800;
             const height = 500;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.SlideProperties();
                 dto.width = width;
@@ -174,7 +174,7 @@ describe("Property tests", () => {
 
     it("protection", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getProtectionProperties(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -193,7 +193,7 @@ describe("Property tests", () => {
 
     it("delete protection", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteProtection(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -207,7 +207,7 @@ describe("Property tests", () => {
 
     it("protect online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const dto = new model.ProtectionProperties();
             dto.readPassword = "newPassword";
             const input = fs.createReadStream(TestUtils.localFilePath);
@@ -220,7 +220,7 @@ describe("Property tests", () => {
 
     it("unprotect online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const input = fs.createReadStream(TestUtils.localFilePath);
             return api.deleteProtectionOnline(input, TestUtils.password).then((result) => {
                 assert.equal(200, result.response.statusCode);
@@ -231,7 +231,7 @@ describe("Property tests", () => {
 
     it("get view properties", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const response = await api.getViewProperties(TestUtils.fileName, TestUtils.password, TestUtils.folderName);
@@ -241,7 +241,7 @@ describe("Property tests", () => {
 
     it("set view properties", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const slideViewPropDto = new model.CommonSlideViewProperties();
@@ -259,7 +259,7 @@ describe("Property tests", () => {
 
     it("protection check", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             let result = await api.getProtectionProperties(TestUtils.fileName, null, TestUtils.folderName)
             assert.equal(200, result.response.statusCode);
@@ -275,7 +275,7 @@ describe("Property tests", () => {
 
     it("get slideshow properties", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const response = await api.getSlideShowProperties(TestUtils.fileName, TestUtils.password, TestUtils.folderName);
@@ -286,7 +286,7 @@ describe("Property tests", () => {
 
     it("set slideshow properties", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.SlideShowProperties();

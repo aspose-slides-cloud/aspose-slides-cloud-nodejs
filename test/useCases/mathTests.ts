@@ -29,7 +29,7 @@ import {TestUtils} from "../testUtils";
 describe("Math tests", () => {
     it("get", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getPortion(TestUtils.fileName, 2, 3, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -46,7 +46,7 @@ describe("Math tests", () => {
 
     it("get null", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getPortion(TestUtils.fileName, 2, 1, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -58,7 +58,7 @@ describe("Math tests", () => {
 
     it("create", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Portion();
                 const mathParagraph = new model.MathParagraph();
@@ -108,7 +108,7 @@ describe("Math tests", () => {
 
     it("update", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Portion();
                 const mathParagraph = new model.MathParagraph();
@@ -158,7 +158,7 @@ describe("Math tests", () => {
 
     it("download", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.downloadPortionAsMathMl(TestUtils.fileName, 2, 3, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -170,7 +170,7 @@ describe("Math tests", () => {
 
     it("download null", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.downloadPortionAsMathMl(TestUtils.fileName, 2, 1, 1, 1, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Must have failed"))
@@ -184,7 +184,7 @@ describe("Math tests", () => {
     it("save", () => {
         return TestUtils.runTest(() => {
             const outPath = TestUtils.folderName + "/mathml.xml";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.savePortionAsMathMl(TestUtils.fileName, 2, 3, 1, 1, outPath, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);

@@ -32,7 +32,7 @@ var fs = require('fs');
 describe("NotesSlide tests", () => {
     it("get notes slide", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getNotesSlide(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert((result.body as model.NotesSlide) != null);
@@ -43,7 +43,7 @@ describe("NotesSlide tests", () => {
 
     it("notes slide exists", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.notesSlideExists(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(true, (result.body as model.EntityExists).exists);
@@ -54,7 +54,7 @@ describe("NotesSlide tests", () => {
 
     it("download notes slide", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.downloadNotesSlide(TestUtils.fileName, 1, model.NotesSlideExportFormat.Png, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -65,7 +65,7 @@ describe("NotesSlide tests", () => {
 
     it("get notes slide online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.getNotesSlideOnline(fs.createReadStream(TestUtils.localFilePath), 1, TestUtils.password).then((result) => {
                 assert((result.body as model.NotesSlide) != null);
             });
@@ -74,7 +74,7 @@ describe("NotesSlide tests", () => {
 
     it("notes slide exists online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.notesSlideExistsOnline(fs.createReadStream(TestUtils.localFilePath), 1, TestUtils.password).then((result) => {
                 assert((result.body as model.ObjectExist).exists);
             });
@@ -83,7 +83,7 @@ describe("NotesSlide tests", () => {
 
     it("download notes slide online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.downloadNotesSlideOnline(fs.createReadStream(TestUtils.localFilePath), 1, model.NotesSlideExportFormat.Png, null, null, TestUtils.password).then((result) => {
                 assert.equal(200, result.response.statusCode);
             });
@@ -94,7 +94,7 @@ describe("NotesSlide tests", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
             const shapeCount = 3;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSpecialSlideShapes(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -140,7 +140,7 @@ describe("NotesSlide tests", () => {
             const slideIndex = 1;
             const shapeIndex = 2;
             const paragraphCount = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSpecialSlideParagraphs(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -186,7 +186,7 @@ describe("NotesSlide tests", () => {
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionCount = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSpecialSlidePortions(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -231,7 +231,7 @@ describe("NotesSlide tests", () => {
     it("create notes slide", () => {
         return TestUtils.runTest(async () => {
             const noteSlideText = "Note slide text";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
 
             const dto = new model.NotesSlide();
@@ -246,7 +246,7 @@ describe("NotesSlide tests", () => {
     it("update notes slide", () => {
         return TestUtils.runTest(async () => {
             const noteSlideText = "Note slide text";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
 
             const dto = new model.NotesSlide();
@@ -260,7 +260,7 @@ describe("NotesSlide tests", () => {
 
     it("delete notes slide", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
 
             const response = await api.deleteNotesSlide(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName)

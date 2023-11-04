@@ -5436,6 +5436,44 @@ export namespace OneValueSeries {
     }
 }
 
+export class Operation {
+
+    id: string;
+
+    method: Operation.MethodEnum;
+
+    status: Operation.StatusEnum;
+
+    created?: Date;
+
+    enqueued?: Date;
+
+    started?: Date;
+
+    failed?: Date;
+
+    canceled?: Date;
+
+    finished?: Date;
+
+    error?: string;
+
+}
+export namespace Operation {
+    export enum MethodEnum {
+        Convert = <any> 'Convert',
+        DownloadPresentation = <any> 'DownloadPresentation'
+    }
+    export enum StatusEnum {
+        Created = <any> 'Created',
+        Enqueued = <any> 'Enqueued',
+        Started = <any> 'Started',
+        Failed = <any> 'Failed',
+        Canceled = <any> 'Canceled',
+        Finished = <any> 'Finished'
+    }
+}
+
 /**
  * Request for presentations merge with optional order of slides
  */

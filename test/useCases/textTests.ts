@@ -31,7 +31,7 @@ describe("Text tests", () => {
     it("get", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getPresentationTextItems(TestUtils.fileName, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -56,7 +56,7 @@ describe("Text tests", () => {
             const slideIndex = 1;
             const oldValue = "text";
             const newValue = "new_text";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -87,7 +87,7 @@ describe("Text tests", () => {
             const slideIndex = 1;
             const oldValue = "text";
             const newValue = "new_text";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, null, TestUtils.password).then((result) => {
                 assert.equal(200, result.response.statusCode);
                 return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, true, TestUtils.password).then((resultWithEmpty) => {
@@ -111,7 +111,7 @@ describe("Text tests", () => {
             const textToHighlight = "highlight";
             const highlightColor = "#FFF5FF8A";
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.highlightShapeText(TestUtils.fileName, slideIndex, shapeIndex, textToHighlight,
                 highlightColor, null, false, TestUtils.password, TestUtils.folderName);
@@ -132,7 +132,7 @@ describe("Text tests", () => {
             const highlightRegex = "h.ghl[abci]ght";
             const highlightColor = "#FFF5FF8A";
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.highlightShapeRegex(TestUtils.fileName, slideIndex, shapeIndex, highlightRegex,
                 highlightColor, null, false, TestUtils.password, TestUtils.folderName);

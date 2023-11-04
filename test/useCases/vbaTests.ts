@@ -29,7 +29,7 @@ import {TestUtils} from "../testUtils";
 describe("VBA tests", () => {
     it("create VBA module", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.VbaModule();
                 dto.name = "Module2";
@@ -55,7 +55,7 @@ describe("VBA tests", () => {
 
     it("delete VBA module", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFolderName + "/macros.pptm", TestUtils.folderName + "/macros.pptm").then(() => {
                 const moduleIndex = 1;
                 return api.deleteVbaModule("macros.pptm", moduleIndex, null, TestUtils.folderName).then((response) => {
@@ -68,7 +68,7 @@ describe("VBA tests", () => {
 
     it("get VBA module", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFolderName + "/macros.pptm", TestUtils.folderName + "/macros.pptm").then(() => {
                 const moduleIndex = 1;
                 return api.getVbaModule("macros.pptm", moduleIndex, null, TestUtils.folderName).then((response) => {
@@ -81,7 +81,7 @@ describe("VBA tests", () => {
 
     it("get VBA project", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFolderName + "/macros.pptm", TestUtils.folderName + "/macros.pptm").then(() => {
                 return api.getVbaProject("macros.pptm", null, TestUtils.folderName).then((response) => {
                     const vbaProject = (response.body as model.VbaProject);
@@ -93,7 +93,7 @@ describe("VBA tests", () => {
 
     it("update VBA module", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFolderName + "/macros.pptm", TestUtils.folderName + "/macros.pptm").then(() => {
                 const dto = new model.VbaModule();
                 dto.sourceCode = "Sub Test() MsgBox \"Test\" End Sub";

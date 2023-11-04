@@ -41,7 +41,7 @@ describe("Pipeline tests", () => {
             fs.createReadStream("TestData/TemplatingCVDataWithBase64.xml"),
             fs.createReadStream("TestData/TemplateCV.pptx")
         ];
-        return TestUtils.getApi().pipeline(pipeline, files).then((result) => {
+        return TestUtils.getSlidesApi().pipeline(pipeline, files).then((result) => {
             assert.equal(200, result.response.statusCode);
         });
     });

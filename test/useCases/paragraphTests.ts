@@ -32,7 +32,7 @@ describe("Paragraph tests", () => {
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
@@ -45,7 +45,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getParagraphs(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName);
@@ -59,7 +59,7 @@ describe("Paragraph tests", () => {
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password,
@@ -73,7 +73,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getParagraphs(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName, null, "1");
@@ -86,7 +86,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Paragraph();
@@ -106,7 +106,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const portion1Dto = new model.Portion();
@@ -127,7 +127,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Paragraph();
@@ -149,7 +149,7 @@ describe("Paragraph tests", () => {
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Paragraph();
@@ -170,7 +170,7 @@ describe("Paragraph tests", () => {
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Paragraph();
@@ -191,7 +191,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deleteParagraphs(TestUtils.fileName, slideIndex, shapeIndex, null, TestUtils.password, TestUtils.folderName);
@@ -204,7 +204,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deleteParagraphs(TestUtils.fileName, slideIndex, shapeIndex, [2], TestUtils.password, TestUtils.folderName);
@@ -217,7 +217,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deleteParagraphs(TestUtils.fileName, slideIndex, shapeIndex, null, TestUtils.password,
@@ -231,7 +231,7 @@ describe("Paragraph tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;
             const shapeIndex = 3;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deleteParagraphs(TestUtils.fileName, slideIndex, shapeIndex, [2],
@@ -246,7 +246,7 @@ describe("Paragraph tests", () => {
         const shapeIndex = 2;
         const paragraphIndex = 1;
 
-        const api = TestUtils.getApi();
+        const api = TestUtils.getSlidesApi();
         await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
         const result = await api.deleteParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
@@ -259,7 +259,7 @@ describe("Paragraph tests", () => {
         const shapeIndex = 3;
         const paragraphIndex = 1;
 
-        const api = TestUtils.getApi();
+        const api = TestUtils.getSlidesApi();
         await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
         const result = await api.deleteParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex,
@@ -273,7 +273,7 @@ describe("Paragraph tests", () => {
         const shapeIndex = 2;
         const paragraphIndex = 1;
 
-        const api = TestUtils.getApi();
+        const api = TestUtils.getSlidesApi();
         await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
         const result = await api.getParagraphRectangle(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
@@ -288,7 +288,7 @@ describe("Paragraph tests", () => {
         const slideIndex = 6;
         const shapeIndex = 2;
     
-        const api = TestUtils.getApi();
+        const api = TestUtils.getSlidesApi();
         await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
         
         const paragraphDto = new model.Paragraph();
@@ -318,7 +318,7 @@ describe("Paragraph tests", () => {
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getParagraphEffective(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
@@ -332,7 +332,7 @@ describe("Paragraph tests", () => {
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getParagraphEffective(TestUtils.fileName, slideIndex, shapeIndex,

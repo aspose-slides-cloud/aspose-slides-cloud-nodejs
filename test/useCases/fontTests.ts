@@ -31,7 +31,7 @@ var fs = require('fs');
 describe("Font tests", () => {
     it("get fonts", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getFonts(TestUtils.fileName, TestUtils.password, TestUtils.folderName);
@@ -41,7 +41,7 @@ describe("Font tests", () => {
 
     it("get fonts online", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const stream = fs.createReadStream(TestUtils.localFilePath);
             const result = await api.getFontsOnline(stream, TestUtils.password);
             assert.equal(3, result.body.list.length);
@@ -51,7 +51,7 @@ describe("Font tests", () => {
     it("set embedded font", () => {
         return TestUtils.runTest(async () => {
             const fontName = "Calibri";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.setEmbeddedFont(TestUtils.fileName, fontName, false, TestUtils.password, TestUtils.folderName);
@@ -64,7 +64,7 @@ describe("Font tests", () => {
     it("set embedded font online", () => {
         return TestUtils.runTest(async () => {
             const fontName = "Calibri";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const stream = fs.createReadStream(TestUtils.localFilePath);
 
             const result = await api.setEmbeddedFontOnline(stream, fontName, false, TestUtils.password);
@@ -79,7 +79,7 @@ describe("Font tests", () => {
             
             const stream = fs.createReadStream("TestData/" + fontFileName);
             
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.setEmbeddedFontFromRequest(stream, TestUtils.fileName, false, TestUtils.password, TestUtils.folderName);
             assert.equal(3, result.body.list.length);
@@ -95,7 +95,7 @@ describe("Font tests", () => {
             const fileStream = fs.createReadStream(TestUtils.localFilePath);
             const fontStream = fs.createReadStream("TestData/" + fontFileName);
             
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const result = await api.setEmbeddedFontFromRequestOnline(fileStream, fontStream, false, TestUtils.password);
             assert.equal(200, result.response.statusCode);
         });
@@ -103,7 +103,7 @@ describe("Font tests", () => {
 
     it("compress embedded fonts", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.compressEmbeddedFonts(TestUtils.fileName, TestUtils.password, TestUtils.folderName);
@@ -113,7 +113,7 @@ describe("Font tests", () => {
 
     it("compress embedded fonts online", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const stream = fs.createReadStream(TestUtils.localFilePath);
 
             const result = await api.compressEmbeddedFontsOnline(stream, TestUtils.password);
@@ -124,7 +124,7 @@ describe("Font tests", () => {
     it("delete embedded font", () => {
         return TestUtils.runTest(async () => {
             const fontName = "Calibri Light";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deleteEmbeddedFont(TestUtils.fileName, fontName, TestUtils.password, TestUtils.folderName);
@@ -135,7 +135,7 @@ describe("Font tests", () => {
     it("delete embedded font online", () => {
         return TestUtils.runTest(async () => {
             const fontName = "Calibri Light";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const stream = fs.createReadStream(TestUtils.localFilePath);
 
             const result = await api.deleteEmbeddedFontOnline(stream, fontName, TestUtils.password);
@@ -148,7 +148,7 @@ describe("Font tests", () => {
             const sourceFontName = "Calibri";
             const targetFontName = "Times New Roman";
             
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.replaceFont(TestUtils.fileName, sourceFontName, targetFontName, true, TestUtils.password, TestUtils.folderName);
@@ -162,7 +162,7 @@ describe("Font tests", () => {
             const sourceFontName = "Calibri";
             const targetFontName = "Times New Roman";
             
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const stream = fs.createReadStream(TestUtils.localFilePath);
 
             const result = await api.replaceFontOnline(stream, sourceFontName, targetFontName, true, TestUtils.password);
@@ -174,7 +174,7 @@ describe("Font tests", () => {
         return TestUtils.runTest(async () => {
             const targetFontName = "Times New Roman";
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             
             const fontRule1 = new FontSubstRule();

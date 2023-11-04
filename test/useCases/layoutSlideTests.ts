@@ -34,7 +34,7 @@ describe("LayoutSlide tests", () => {
         return TestUtils.runTest(() => {
             const sourceFileName = "TemplateCV.pptx";
             const sourceFilePath = TestUtils.folderName + "/" + sourceFileName;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.copyFile(TestUtils.tempFolderName + "/" + sourceFileName, sourceFilePath).then(() => {
                     return api.getLayoutSlides(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((result) => {
@@ -62,7 +62,7 @@ describe("LayoutSlide tests", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
             const shapeCount = 6;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSpecialSlideShapes(TestUtils.fileName, slideIndex, model.SpecialSlideType.LayoutSlide, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -108,7 +108,7 @@ describe("LayoutSlide tests", () => {
             const slideIndex = 1;
             const shapeIndex = 2;
             const paragraphCount = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSpecialSlideParagraphs(TestUtils.fileName, slideIndex, model.SpecialSlideType.LayoutSlide, shapeIndex, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -154,7 +154,7 @@ describe("LayoutSlide tests", () => {
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionCount = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSpecialSlidePortions(TestUtils.fileName, slideIndex, model.SpecialSlideType.LayoutSlide, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -199,7 +199,7 @@ describe("LayoutSlide tests", () => {
     it("animation", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSpecialSlideAnimation(TestUtils.fileName, slideIndex, model.SpecialSlideType.LayoutSlide, null, null, TestUtils.password, TestUtils.folderName).then((result1) => {
                     assert.equal(200, result1.response.statusCode);
@@ -239,7 +239,7 @@ describe("LayoutSlide tests", () => {
 
     it("delete unused", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const responseBeforeDelete = await api.getLayoutSlides(TestUtils.fileName, TestUtils.password, TestUtils.folderName);
@@ -254,7 +254,7 @@ describe("LayoutSlide tests", () => {
 
     it("delete unused online", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const response = await api.deleteUnusedLayoutSlidesOnline(fs.createReadStream(TestUtils.localFilePath), TestUtils.password);
             assert.equal(response.response.statusCode, 200);
             assert(response.body.length > 0);

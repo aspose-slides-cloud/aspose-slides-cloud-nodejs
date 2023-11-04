@@ -41,7 +41,7 @@ var assert = require('assert');
 describe("Chart tests", () => {
     it("get chart", async () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShape(TestUtils.fileName, 3, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -55,7 +55,7 @@ describe("Chart tests", () => {
 
     it("create chart auto data source", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -80,7 +80,7 @@ describe("Chart tests", () => {
 
     it("create chart workbook", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -136,7 +136,7 @@ describe("Chart tests", () => {
 
     it("create chart literals", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -169,7 +169,7 @@ describe("Chart tests", () => {
 
     it("update chart", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;
@@ -194,7 +194,7 @@ describe("Chart tests", () => {
 
     it("create series", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
@@ -210,7 +210,7 @@ describe("Chart tests", () => {
 
     it("update series", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const series = new model.OneValueSeries();
                 series.name = "Series3";
@@ -226,7 +226,7 @@ describe("Chart tests", () => {
 
     it("delete series", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteChartSeries(TestUtils.fileName, 3, 1, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -239,7 +239,7 @@ describe("Chart tests", () => {
 
     it("create category", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
@@ -258,7 +258,7 @@ describe("Chart tests", () => {
 
     it("update category", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const category = new model.ChartCategory();
                 category.value = "NewCategory";
@@ -277,7 +277,7 @@ describe("Chart tests", () => {
 
     it("delete category", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteChartCategory(TestUtils.fileName, 3, 1, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -291,7 +291,7 @@ describe("Chart tests", () => {
 
     it("create data point", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
@@ -307,7 +307,7 @@ describe("Chart tests", () => {
 
     it("update data point", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dataPoint = new model.OneValueChartDataPoint();
                 dataPoint.value = 40;
@@ -324,7 +324,7 @@ describe("Chart tests", () => {
 
     it("delete data point", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteChartDataPoint(TestUtils.fileName, 3, 1, 2, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -338,7 +338,7 @@ describe("Chart tests", () => {
 
     it("sunburst chart", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.Sunburst;
@@ -371,7 +371,7 @@ describe("Chart tests", () => {
 
     it("multilevel chart category", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.x = 100;
@@ -428,7 +428,7 @@ describe("Chart tests", () => {
 
     it("hide chart legend", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
@@ -447,7 +447,7 @@ describe("Chart tests", () => {
 
     it("chart axis grid lines format", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
@@ -498,7 +498,7 @@ describe("Chart tests", () => {
 
     it("chart series groups", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
@@ -519,7 +519,7 @@ describe("Chart tests", () => {
 
     it("set chart legend", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const fillFormat = new SolidFill();
@@ -534,7 +534,7 @@ describe("Chart tests", () => {
 
     it("set chart axis", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const axis = new Axis();
@@ -551,7 +551,7 @@ describe("Chart tests", () => {
 
     it("set chart wall", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             
             const fillFormat = new SolidFill();
@@ -566,7 +566,7 @@ describe("Chart tests", () => {
 
     it("update chart data point format", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const fillFormat = new SolidFill();
@@ -603,7 +603,7 @@ describe("Chart tests", () => {
 
     it("chart workbook formulas", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const chart = new model.Chart();
                 chart.chartType = model.Chart.ChartTypeEnum.ClusteredColumn;

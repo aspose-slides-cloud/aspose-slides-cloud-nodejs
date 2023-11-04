@@ -29,7 +29,7 @@ import {TestUtils} from "../testUtils";
 describe("Abstract class tests", () => {
     it("shape type", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShape(TestUtils.fileName, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal("Shape", (result.body as model.ShapeBase).type);

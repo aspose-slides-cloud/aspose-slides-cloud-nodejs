@@ -34,7 +34,7 @@ import ShapeTypeEnum = GeometryShape.ShapeTypeEnum;
 describe("Shape tests", () => {
     it("get shapes", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 3;
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName);
@@ -44,7 +44,7 @@ describe("Shape tests", () => {
 
     it("get shapes by type", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 3;
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName, null, model.ShapeType.Chart);
@@ -54,7 +54,7 @@ describe("Shape tests", () => {
 
     it("get sub-shapes", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName, null, null, "4");
@@ -64,7 +64,7 @@ describe("Shape tests", () => {
 
     it("get shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 3;
             const shapeIndex = 1;
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
@@ -75,7 +75,7 @@ describe("Shape tests", () => {
 
     it("get sub-shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
             const shapeIndex = 4;
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
@@ -86,7 +86,7 @@ describe("Shape tests", () => {
 
     it("shape add", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Shape();
                 dto.shapeType = model.GeometryShape.ShapeTypeEnum.Callout1;
@@ -100,7 +100,7 @@ describe("Shape tests", () => {
 
     it("shape empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.Shape(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Shape with undefinined type should not have been created"))
@@ -113,7 +113,7 @@ describe("Shape tests", () => {
 
     it("graphicalObject empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.GraphicalObject(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("GraphicalObject should not have been created"))
@@ -126,7 +126,7 @@ describe("Shape tests", () => {
 
     it("pictureFrame add", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.PictureFrame();
                 const fill = new model.PictureFill();
@@ -142,7 +142,7 @@ describe("Shape tests", () => {
 
     it("pictureFrame empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.PictureFrame(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("PictureFrame with undefinined data should not have been created"))
@@ -155,7 +155,7 @@ describe("Shape tests", () => {
 
     it("audioFrame add", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.AudioFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
@@ -169,7 +169,7 @@ describe("Shape tests", () => {
 
     it("audioFrame empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.AudioFrame(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("AudioFrame with undefinined data should not have been created"))
@@ -182,7 +182,7 @@ describe("Shape tests", () => {
 
     it("videoFrame add", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.VideoFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
@@ -196,7 +196,7 @@ describe("Shape tests", () => {
 
     it("videoFrame empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.VideoFrame(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("VideoFrame with undefined data should not have been created"))
@@ -209,7 +209,7 @@ describe("Shape tests", () => {
 
     it("oleObjectFrame empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.OleObjectFrame(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("OleObjectFrame  should not have been created"))
@@ -222,7 +222,7 @@ describe("Shape tests", () => {
 
     it("smartArt add", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.SmartArt();
                 dto.x = 0;
@@ -253,7 +253,7 @@ describe("Shape tests", () => {
 
     it ("smartArt text formatting", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
             const portion = new Portion();
             portion.text = "New text";
@@ -280,7 +280,7 @@ describe("Shape tests", () => {
 
     it("smartArt empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.SmartArt(), null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -292,7 +292,7 @@ describe("Shape tests", () => {
 
     it("chart empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.Chart(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Empty Chart should not have been created"))
@@ -305,7 +305,7 @@ describe("Shape tests", () => {
 
     it("table add", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Table();
                 dto.x = 30;
@@ -379,7 +379,7 @@ describe("Shape tests", () => {
 
     it("table empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.Table(), null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Table with undefinined cell data should not have been created"))
@@ -392,7 +392,7 @@ describe("Shape tests", () => {
 
     it("groupShape empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.GroupShape(), null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -404,7 +404,7 @@ describe("Shape tests", () => {
 
     it("connector add", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Connector();
                 dto.shapeType = model.GeometryShape.ShapeTypeEnum.BentConnector3;
@@ -424,7 +424,7 @@ describe("Shape tests", () => {
 
     it("connector empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createShape(TestUtils.fileName, 1, new model.Connector(), null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -436,7 +436,7 @@ describe("Shape tests", () => {
 
     it("create sub-shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
 
             const dto = new model.Shape();
@@ -455,7 +455,7 @@ describe("Shape tests", () => {
 
     it("update shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
             const shapeIndex = 3;
 
@@ -478,7 +478,7 @@ describe("Shape tests", () => {
 
     it("update sub-shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
             const shapeIndex = 4;
 
@@ -512,7 +512,7 @@ describe("Shape tests", () => {
 
     it("delete shapes", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 3;
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
@@ -524,7 +524,7 @@ describe("Shape tests", () => {
 
     it("delete shapes by indexes", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 3;
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
@@ -536,7 +536,7 @@ describe("Shape tests", () => {
 
     it("delete sub-shapes", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
@@ -548,7 +548,7 @@ describe("Shape tests", () => {
 
     it("delete sub-shapes by indexes", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
@@ -560,7 +560,7 @@ describe("Shape tests", () => {
 
     it("delete shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
             const shapeIndex = 4;
 
@@ -573,7 +573,7 @@ describe("Shape tests", () => {
 
     it("delete sub-shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 1;
             const shapeIndex = 4;
 
@@ -589,7 +589,7 @@ describe("Shape tests", () => {
             const slideIndex = 3;
             const shape1Index = 1;
             const shape2Index = 2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShape(TestUtils.fileName, slideIndex, shape1Index, TestUtils.password, TestUtils.folderName).then((getResult11) => {
                     assert.equal(200, getResult11.response.statusCode);
@@ -632,7 +632,7 @@ describe("Shape tests", () => {
             const shapeIndex = 4;
             const subShape1Path = "1";
             const subShape2Path = "2";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShape(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName, null, subShape1Path).then((getResult11) => {
                     assert.equal(200, getResult11.response.statusCode);
@@ -671,7 +671,7 @@ describe("Shape tests", () => {
 
     it("geometry get", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShapeGeometryPath(TestUtils.fileName, 4, 2, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -684,7 +684,7 @@ describe("Shape tests", () => {
 
     it("geometry set", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.GeometryPaths();
                 const path = new model.GeometryPath();
@@ -716,7 +716,7 @@ describe("Shape tests", () => {
 
     it("add zoom frame", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 3;
 
             const dto = new model.ZoomFrame();
@@ -735,7 +735,7 @@ describe("Shape tests", () => {
 
     it("add section zoom frame", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const slideIndex = 3;
 
             const dto = new model.SectionZoomFrame();
@@ -756,7 +756,7 @@ describe("Shape tests", () => {
         const oleObjectFileName = "oleObject.xlsx";
         const slideIndex = 3;
         
-        const api = TestUtils.getApi();
+        const api = TestUtils.getSlidesApi();
         await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
         
         const dto = new model.OleObjectFrame();
@@ -776,7 +776,7 @@ describe("Shape tests", () => {
         const oleObjectFileName = "TestData/oleObject.xlsx";
         const slideIndex = 3;
         
-        const api = TestUtils.getApi();
+        const api = TestUtils.getSlidesApi();
         await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
         
         const dto = new model.OleObjectFrame();
@@ -796,7 +796,7 @@ describe("Shape tests", () => {
     it("group shape add", async () => {
         const slideIndex = 5;
 
-        const api = TestUtils.getApi();
+        const api = TestUtils.getSlidesApi();
         await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
         
         let shapes = await api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName);
@@ -843,7 +843,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(async () => {
             const svgFileName = "shapes.svg";
             const slideIndex = 5;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const stream = fs.createReadStream(TestUtils.testDataPath + "/" + svgFileName)
@@ -858,7 +858,7 @@ describe("Shape tests", () => {
             const slideIndex = 7;
             const smartArtIndex = 1;
             const newNodeText = "New root node";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             
             const response = await api.createSmartArtNode(TestUtils.fileName, slideIndex, smartArtIndex, null, newNodeText,
@@ -874,7 +874,7 @@ describe("Shape tests", () => {
             const smartArtIndex = 1;
             const subNodePath = "1";
             const newSubNodeText = "New sub-node";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const response = await api.createSmartArtNode(TestUtils.fileName, slideIndex, smartArtIndex, subNodePath, newSubNodeText,
@@ -890,7 +890,7 @@ describe("Shape tests", () => {
             const smartArtIndex = 1;
             const subSubNodePath = "1/nodes/1";
             const newSubNodeText = "New sub-sub-node";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const response = await api.createSmartArtNode(TestUtils.fileName, slideIndex, smartArtIndex, subSubNodePath, newSubNodeText,
@@ -906,7 +906,7 @@ describe("Shape tests", () => {
             const smartArtIndex = 2;
             const nodeIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const response = await api.deleteSmartArtNode(TestUtils.fileName, slideIndex, smartArtIndex, nodeIndex, null,
@@ -921,7 +921,7 @@ describe("Shape tests", () => {
             const smartArtIndex = 1;
             const nodeIndex = 1;
             const subNodePath = "2";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const response = await api.deleteSmartArtNode(TestUtils.fileName, slideIndex, smartArtIndex, nodeIndex, subNodePath,
@@ -932,7 +932,7 @@ describe("Shape tests", () => {
 
     it("download shape from DTO", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const dto = new model.Shape();
             dto.shapeType = ShapeTypeEnum.Rectangle;
             dto.width = 400;

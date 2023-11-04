@@ -34,7 +34,7 @@ describe("text format tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const bevelBottomDto = new model.ShapeBevel();
@@ -93,7 +93,7 @@ describe("text format tests", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const shapeDto = new model.Shape();

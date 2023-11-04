@@ -32,7 +32,7 @@ describe("Watermark tests", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
             const watermarkText = "watermarkText";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
@@ -66,7 +66,7 @@ describe("Watermark tests", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
             const watermarkText = "watermarkText";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
@@ -101,7 +101,7 @@ describe("Watermark tests", () => {
     it("image storage", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
@@ -134,7 +134,7 @@ describe("Watermark tests", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
             const watermarkName = "myWatermark";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName).then((get1Result) => {
                     assert.equal(200, get1Result.response.statusCode);
@@ -170,7 +170,7 @@ describe("Watermark tests", () => {
 
     it("text request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.createWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), null, null, "watermarkText", null, null, TestUtils.password).then((postResult) => {
                 assert.equal(200, postResult.response.statusCode);
                 assert(fs.createReadStream(TestUtils.localFilePath).length != postResult.body.length);
@@ -184,7 +184,7 @@ describe("Watermark tests", () => {
 
     it("text dto request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             let watermark = new model.Shape();
             watermark.text = "watermarkText";
             return api.createWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), watermark, null, null, null, null, TestUtils.password).then((postResult) => {
@@ -200,7 +200,7 @@ describe("Watermark tests", () => {
 
     it("image request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.createImageWatermarkOnline(fs.createReadStream(TestUtils.localFilePath), fs.createReadStream("TestData/watermark.png"), null, TestUtils.password).then((postResult) => {
                 assert.equal(200, postResult.response.statusCode);
                 assert(fs.createReadStream(TestUtils.localFilePath).length != postResult.body.length);
@@ -214,7 +214,7 @@ describe("Watermark tests", () => {
 
     it("image dto request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             let watermark = new model.PictureFrame();
             let fillFormat = new model.PictureFill();
             fillFormat.base64Data = fs.readFileSync("TestData/watermark.png").toString("base64");

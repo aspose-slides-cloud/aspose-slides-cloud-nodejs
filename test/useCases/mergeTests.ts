@@ -37,7 +37,7 @@ describe("Merge tests", () => {
             const filePath2 = TestUtils.folderName + "/" + fileName2;
             const fileNamePdf = "test.pdf";
             const filePathPdf = TestUtils.folderName + "/" + fileNamePdf;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.copyFile(TestUtils.tempFolderName + "/" + fileName2, filePath2).then(() => {
                     return api.copyFile(TestUtils.tempFolderName + "/" + fileNamePdf, filePathPdf).then(() => {
@@ -55,7 +55,7 @@ describe("Merge tests", () => {
         return TestUtils.runTest(() => {
             const fileName2 = "test-unprotected.pptx";
             const filePath2 = TestUtils.folderName + "/" + fileName2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.copyFile(TestUtils.tempFolderName + "/" + fileName2, filePath2).then(() => {
                     let request = new model.OrderedMergeRequest();
@@ -72,7 +72,7 @@ describe("Merge tests", () => {
     });
     it("merge online", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const files = [fs.createReadStream("TestData/TemplateCV.pptx"), fs.createReadStream("TestData/test-unprotected.pptx")];
             return api.mergeOnline(files).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
@@ -82,7 +82,7 @@ describe("Merge tests", () => {
     it("merge and save online", () => {
         return TestUtils.runTest(() => {
             const outPath = "TestData/out.pptx";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const files = [fs.createReadStream("TestData/TemplateCV.pptx"), fs.createReadStream("TestData/test-unprotected.pptx")];
             return api.mergeAndSaveOnline(outPath, files).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
@@ -95,7 +95,7 @@ describe("Merge tests", () => {
     });
     it("merge online with request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const files = [fs.createReadStream(TestUtils.localFilePath), fs.createReadStream("TestData/test-unprotected.pptx")];
             let request = new model.OrderedMergeRequest();
             let presentation1 = new model.PresentationToMerge();
@@ -114,7 +114,7 @@ describe("Merge tests", () => {
         return TestUtils.runTest(() => {
             const fileName2 = "test-unprotected.pptx";
             const filePath2 = TestUtils.folderName + "/" + fileName2;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFolderName + "/" + fileName2, filePath2).then(() => {
                 const files = [fs.createReadStream(TestUtils.localFilePath)];
                 let request = new model.OrderedMergeRequest();
@@ -134,7 +134,7 @@ describe("Merge tests", () => {
     });
     it("merge online url", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let request = new model.OrderedMergeRequest();

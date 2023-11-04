@@ -11768,3 +11768,160 @@ export class SlidesApi {
         return Promise.resolve({ body: result, response });
     }
 }
+
+export class SlidesAsyncApi {
+    private _configuration: Configuration;
+    public get configuration(): Configuration {
+        return this._configuration;
+    }
+
+    /**
+     * @param appSid Client Id.
+     * @param appKey Client Secret.
+     * @param baseUrl Base api Url.
+     * @param authBaseUrl Base authentication Url.
+     * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
+     * @param timeout Timeout (in seconds) for an operation. Applies to the Slides operation, not to the HTTP request.
+     */
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
+        this._configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout);
+    }
+
+    /**
+     *  
+     * @param id 
+     */
+    public async getOperationResult(id: string): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('The required parameter "id" was null or undefined when calling getOperationResult.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/{id}/result";
+        localVarPath = addPathParameterToUrl(localVarPath, "id", ObjectSerializer.toString(id));
+        const queryParameters: any = {};
+        const requestOptions = {
+            method: "GET",
+            url: localVarPath,
+            responseType: 'arraybuffer',
+            params: queryParameters
+        };
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param id 
+     */
+    public async getOperationStatus(id: string): Promise<{response: http.ServerResponse, body: model.Operation}> {
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('The required parameter "id" was null or undefined when calling getOperationStatus.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/{id}";
+        localVarPath = addPathParameterToUrl(localVarPath, "id", ObjectSerializer.toString(id));
+        const queryParameters: any = {};
+        const requestOptions = {
+            method: "GET",
+            url: localVarPath,
+            params: queryParameters
+        };
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Operation");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param document Document data.
+     * @param format 
+     * @param password 
+     * @param storage 
+     * @param fontsFolder 
+     * @param slides 
+     * @param options 
+     */
+    public async startConvert(document: Readable, format: model.ExportFormat, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ServerResponse, body: string}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling startConvert.');
+        }
+        // verify required parameter 'format' is not null or undefined
+        if (format === null || format === undefined) {
+            throw new Error('The required parameter "format" was null or undefined when calling startConvert.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/convert/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: options,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param name 
+     * @param format 
+     * @param options 
+     * @param password 
+     * @param folder 
+     * @param storage 
+     * @param fontsFolder 
+     * @param slides 
+     */
+    public async startDownloadPresentation(name: string, format: model.ExportFormat, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ServerResponse, body: string}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling startDownloadPresentation.');
+        }
+        // verify required parameter 'format' is not null or undefined
+        if (format === null || format === undefined) {
+            throw new Error('The required parameter "format" was null or undefined when calling startDownloadPresentation.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/{name}/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: options,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+}

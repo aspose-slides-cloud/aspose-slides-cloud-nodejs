@@ -31,7 +31,7 @@ import {TestUtils} from "../testUtils";
 describe("Comment tests", () => {
     it("create comment", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const author = "Test author";
@@ -75,7 +75,7 @@ describe("Comment tests", () => {
             comment.text = text;
             comment.childComments = [childComment];
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const response = await api.createCommentOnline(fs.createReadStream(TestUtils.localFilePath), 3, comment, null, TestUtils.password);
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
@@ -84,7 +84,7 @@ describe("Comment tests", () => {
 
     it("get slide comments", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const response = await api.getSlideComments(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName);
 
@@ -96,7 +96,7 @@ describe("Comment tests", () => {
 
     it("delete comments", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const response = await api.deleteComments(TestUtils.fileName, null, TestUtils.password, TestUtils.folderName);
             assert.equal(200, response.response.statusCode);
@@ -109,7 +109,7 @@ describe("Comment tests", () => {
 
     it("delete comments online", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const response = await api.deleteCommentsOnline(fs.createReadStream(TestUtils.localFilePath), null, TestUtils.password);
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
@@ -118,7 +118,7 @@ describe("Comment tests", () => {
 
     it("delete slide comments", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const response = await api.deleteSlideComments(TestUtils.fileName, 1, null, TestUtils.password, TestUtils.folderName);
             assert.equal(200, response.response.statusCode);
@@ -131,7 +131,7 @@ describe("Comment tests", () => {
 
     it("delete slide comments online", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             const response = await api.deleteSlideCommentsOnline(fs.createReadStream(TestUtils.localFilePath), 1, null, TestUtils.password);
             assert.equal(200, response.response.statusCode);
             assert(response.body.length > 0);
@@ -140,7 +140,7 @@ describe("Comment tests", () => {
 
     it("create modern comment", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const author = "Test author";
@@ -169,7 +169,7 @@ describe("Comment tests", () => {
 
     it("create modern comment shape", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const author = "Test author";

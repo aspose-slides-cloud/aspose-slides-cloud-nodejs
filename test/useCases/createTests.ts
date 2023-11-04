@@ -30,7 +30,7 @@ import {TestUtils} from "../testUtils";
 describe("Create tests", () => {
     it("empty", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.deleteFile(TestUtils.filePath).then(() => {
                 return api.createPresentation(TestUtils.fileName, null, null, null, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -41,7 +41,7 @@ describe("Create tests", () => {
 
     it("from request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.deleteFile(TestUtils.filePath).then(() => {
                 return api.createPresentation(TestUtils.fileName, fs.createReadStream(TestUtils.localFilePath), TestUtils.password, null, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -53,7 +53,7 @@ describe("Create tests", () => {
     it("from storage", () => {
         return TestUtils.runTest(() => {
             const newFileName = "test2.pptx";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.deleteFile(TestUtils.folderName + "/" + newFileName).then(() => {
                 return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                     return api.createPresentationFromSource(newFileName, TestUtils.filePath, TestUtils.password, null, null, TestUtils.folderName).then((result) => {
@@ -67,7 +67,7 @@ describe("Create tests", () => {
     it("from template", () => {
         return TestUtils.runTest(() => {
             const templateFileName = "TemplateCV.pptx";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.deleteFile(TestUtils.filePath).then(() => {
                 return api.copyFile(TestUtils.tempFolderName + "/" + templateFileName, TestUtils.folderName + "/" + templateFileName).then(() => {
                     const templatePath = TestUtils.folderName + "/" + templateFileName;
@@ -82,7 +82,7 @@ describe("Create tests", () => {
 
     it("from HTML", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.deleteFile(TestUtils.filePath).then(() => {
                 return api.importFromHtml(TestUtils.fileName, "<html><body>New Content</body></html>", null, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -93,7 +93,7 @@ describe("Create tests", () => {
 
     it("append from HTML", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSlides(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((r1) => {
                     const slideCount = (r1.body as model.Slides).slideList.length;
@@ -110,7 +110,7 @@ describe("Create tests", () => {
 
     it("from PDF", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.deleteFile(TestUtils.filePath).then(() => {
                 return api.importFromPdf(TestUtils.fileName, fs.createReadStream("TestData/test.pdf"), null, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
@@ -121,7 +121,7 @@ describe("Create tests", () => {
 
     it("append from PDF", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSlides(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((r1) => {
                     const slideCount = (r1.body as model.Slides).slideList.length;

@@ -30,7 +30,7 @@ describe("Animation tests", () => {
     it("get animation", () => {
         return TestUtils.runTest(() => {
             const slideIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getAnimation(TestUtils.fileName, slideIndex, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -52,7 +52,7 @@ describe("Animation tests", () => {
 
     it("set animation", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.SlideAnimation();
                 const effect1 = new model.Effect();
@@ -78,7 +78,7 @@ describe("Animation tests", () => {
 
     it("create animation effect", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -94,7 +94,7 @@ describe("Animation tests", () => {
 
     it("create animation interactive sequence", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.InteractiveSequence();
                 const effect = new model.Effect();
@@ -113,7 +113,7 @@ describe("Animation tests", () => {
 
     it("create animation interactive sequence effect", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -129,7 +129,7 @@ describe("Animation tests", () => {
 
     it("update animation effect", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -145,7 +145,7 @@ describe("Animation tests", () => {
 
     it("update animation interactive sequence effect", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Effect();
                 dto.type = model.Effect.TypeEnum.Blast;
@@ -161,7 +161,7 @@ describe("Animation tests", () => {
 
     it("delete animation", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteAnimation(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -174,7 +174,7 @@ describe("Animation tests", () => {
 
     it("delete animation main sequence", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteAnimationMainSequence(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -187,7 +187,7 @@ describe("Animation tests", () => {
 
     it("delete animation effect", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteAnimationEffect(TestUtils.fileName, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -200,7 +200,7 @@ describe("Animation tests", () => {
 
     it("delete animation interactive sequences", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteAnimationInteractiveSequences(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -213,7 +213,7 @@ describe("Animation tests", () => {
 
     it("delete animation interactive sequence", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteAnimationInteractiveSequence(TestUtils.fileName, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
@@ -226,7 +226,7 @@ describe("Animation tests", () => {
 
     it("delete animation interactive sequence effect", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteAnimationInteractiveSequenceEffect(TestUtils.fileName, 1, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);

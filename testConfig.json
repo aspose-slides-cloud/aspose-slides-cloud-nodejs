@@ -2,6 +2,7 @@
     "ClientId": "@your_client_id@",
     "ClientSecret": "@your_client_secret@",
     "BaseUrl" : "@base_url@",
+    "AsyncBaseUrl" : "@async_base_url@",
     "AuthBaseUrl" : "@base_auth_url@",
     "Debug" : false
 }

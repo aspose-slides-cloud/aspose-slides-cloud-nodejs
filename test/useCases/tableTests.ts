@@ -31,7 +31,7 @@ var assert = require('assert');
 describe("Table tests", () => {
     it("update table cell", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -48,7 +48,7 @@ describe("Table tests", () => {
 
     it("create table row", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -75,7 +75,7 @@ describe("Table tests", () => {
 
     it("delete table row", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -91,7 +91,7 @@ describe("Table tests", () => {
 
     it("update table row", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -108,7 +108,7 @@ describe("Table tests", () => {
 
     it("merge table cells", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -128,7 +128,7 @@ describe("Table tests", () => {
 
     it("split table cells by width", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -145,7 +145,7 @@ describe("Table tests", () => {
 
     it("split table cells by height", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -162,7 +162,7 @@ describe("Table tests", () => {
 
     it("split table cells by col span", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -179,7 +179,7 @@ describe("Table tests", () => {
 
     it("split table cells by row span", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -196,7 +196,7 @@ describe("Table tests", () => {
 
     it("get table cell paragraphs", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -212,7 +212,7 @@ describe("Table tests", () => {
 
     it("get table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -229,7 +229,7 @@ describe("Table tests", () => {
 
     it("create table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -253,7 +253,7 @@ describe("Table tests", () => {
 
     it("update table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -278,7 +278,7 @@ describe("Table tests", () => {
 
     it("delete table cell paragraph", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -295,7 +295,7 @@ describe("Table tests", () => {
 
     it("get table cell portions", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -312,7 +312,7 @@ describe("Table tests", () => {
 
     it("get table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -330,7 +330,7 @@ describe("Table tests", () => {
 
     it("create table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -348,7 +348,7 @@ describe("Table tests", () => {
 
     it("update table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;
@@ -367,7 +367,7 @@ describe("Table tests", () => {
 
     it("delete table cell portion", () => {
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             let slideIndex = 9;

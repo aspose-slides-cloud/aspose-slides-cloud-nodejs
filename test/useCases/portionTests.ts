@@ -32,7 +32,7 @@ describe("Portion tests", () => {
             const slideIndex = 6;
             const shapeIndex = 2;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getPortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
@@ -46,7 +46,7 @@ describe("Portion tests", () => {
             const slideIndex = 6;
             const shapeIndex = 3;
             const paragraphIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getPortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName, null, "1");
@@ -62,7 +62,7 @@ describe("Portion tests", () => {
             const paragraphIndex = 1;
             const portionIndex = 1;
             const portionText = "portion 1";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
@@ -78,7 +78,7 @@ describe("Portion tests", () => {
             const paragraphIndex = 1;
             const portionIndex = 1;
             const portionText = "portion 1";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, 
@@ -95,7 +95,7 @@ describe("Portion tests", () => {
             const paragraphIndex = 1;
             const portionText = "portion 1";
             const fontName = "Arial";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
@@ -125,7 +125,7 @@ describe("Portion tests", () => {
             const paragraphIndex = 1;
             const portionText = "portion 1";
             const fontName = "Arial";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
@@ -157,7 +157,7 @@ describe("Portion tests", () => {
             const portionIndex = 1;
             const portionText = "portion 1";
             const fontName = "Arial";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
@@ -188,7 +188,7 @@ describe("Portion tests", () => {
             const portionIndex = 1;
             const portionText = "portion 1";
             const fontName = "Arial";
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const dto = new model.Portion();
@@ -218,7 +218,7 @@ describe("Portion tests", () => {
             const shapeIndex = 1;
             const paragraphIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deletePortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, null, TestUtils.password, TestUtils.folderName);
@@ -233,7 +233,7 @@ describe("Portion tests", () => {
             const shapeIndex = 2;
             const paragraphIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deletePortions(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, [1], TestUtils.password, TestUtils.folderName);
@@ -247,7 +247,7 @@ describe("Portion tests", () => {
             const slideIndex = 6;
             const paragraphIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deletePortions(TestUtils.fileName, slideIndex, 3, paragraphIndex, null,
@@ -262,7 +262,7 @@ describe("Portion tests", () => {
             const slideIndex = 6;
             const paragraphIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deletePortions(TestUtils.fileName, slideIndex, 3, paragraphIndex, [1], 
@@ -279,7 +279,7 @@ describe("Portion tests", () => {
             const paragraphIndex = 1;
             const portionIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deletePortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
@@ -295,7 +295,7 @@ describe("Portion tests", () => {
             const paragraphIndex = 1;
             const portionIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.deletePortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex,
@@ -312,7 +312,7 @@ describe("Portion tests", () => {
             const paragraphIndex = 1;
             const portionIndex = 1;
 
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getPortionRectangle(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
@@ -330,7 +330,7 @@ describe("Portion tests", () => {
             const shapeIndex = 2;
             const paragraphIndex = 1;
             const portionIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getPortionEffective(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
@@ -345,7 +345,7 @@ describe("Portion tests", () => {
             const shapeIndex = 3;
             const paragraphIndex = 1;
             const portionIndex = 1;
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getPortionEffective(TestUtils.fileName, slideIndex, shapeIndex,

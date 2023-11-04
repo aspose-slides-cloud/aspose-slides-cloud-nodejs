@@ -29,7 +29,7 @@ import {TestUtils} from "../testUtils";
 describe("Section tests", () => {
     it("get sections", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSections(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((getResult) => {
                     assert.equal(200, getResult.response.statusCode);
@@ -41,7 +41,7 @@ describe("Section tests", () => {
 
     it("set sections", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Sections();
                 const section1 = new model.Section();
@@ -63,7 +63,7 @@ describe("Section tests", () => {
 
     it("create section", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.createSection(TestUtils.fileName, "NewSection", 5, TestUtils.password, TestUtils.folderName).then((postResult) => {
                     assert.equal(201, postResult.response.statusCode);
@@ -75,7 +75,7 @@ describe("Section tests", () => {
 
     it("update section", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const sectionIndex = 2;
                 const sectionName = "UpdatedSection";
@@ -90,7 +90,7 @@ describe("Section tests", () => {
 
     it("move section", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.moveSection(TestUtils.fileName, 1, 2, TestUtils.password, TestUtils.folderName).then((postResult) => {
                     assert.equal(200, postResult.response.statusCode);
@@ -102,7 +102,7 @@ describe("Section tests", () => {
 
     it("clear sections", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteSections(TestUtils.fileName, null, null, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
@@ -114,7 +114,7 @@ describe("Section tests", () => {
 
     it("delete sections", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteSections(TestUtils.fileName, [2, 3], null, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);
@@ -126,7 +126,7 @@ describe("Section tests", () => {
 
     it("delete section", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.deleteSection(TestUtils.fileName, 2, null, TestUtils.password, TestUtils.folderName).then((deleteResult) => {
                     assert.equal(200, deleteResult.response.statusCode);

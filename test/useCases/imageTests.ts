@@ -30,7 +30,7 @@ import {TestUtils} from "../testUtils";
 describe("Image tests", () => {
     it("images get", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getPresentationImages(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((presentationResult) => {
                     assert.equal(200, presentationResult.response.statusCode);
@@ -44,7 +44,7 @@ describe("Image tests", () => {
     });
     it("images download storage", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.downloadImagesDefaultFormat(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
@@ -62,7 +62,7 @@ describe("Image tests", () => {
     });
     it("images download request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.downloadImagesDefaultFormatOnline(fs.createReadStream(TestUtils.localFilePath), TestUtils.password).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
                 return api.downloadImagesOnline(fs.createReadStream(TestUtils.localFilePath), model.ImageExportFormat.Png, TestUtils.password).then((pngResult) => {
@@ -78,7 +78,7 @@ describe("Image tests", () => {
     });
     it("download storage", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.downloadImageDefaultFormat(TestUtils.fileName, 1, TestUtils.password, TestUtils.folderName).then((defaultResult) => {
                     assert.equal(200, defaultResult.response.statusCode);
@@ -92,7 +92,7 @@ describe("Image tests", () => {
     });
     it("download request", () => {
         return TestUtils.runTest(() => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             return api.downloadImageDefaultFormatOnline(fs.createReadStream(TestUtils.localFilePath), 1, TestUtils.password).then((defaultResult) => {
                 assert.equal(200, defaultResult.response.statusCode);
                 return api.downloadImageOnline(fs.createReadStream(TestUtils.localFilePath), 1, model.ImageExportFormat.Png, TestUtils.password).then((pngResult) => {
@@ -104,7 +104,7 @@ describe("Image tests", () => {
     });
     it("replace image",()=>{
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
             var image = fs.createReadStream("TestData/watermark.png");
             var response = await  api.replaceImage(TestUtils.fileName, 1, image, TestUtils.password, TestUtils.folderName);
@@ -113,7 +113,7 @@ describe("Image tests", () => {
     });
     it("replace image request",()=>{
         return TestUtils.runTest(async () => {
-            const api = TestUtils.getApi();
+            const api = TestUtils.getSlidesApi();
             var file = fs.createReadStream(TestUtils.localFilePath);
             var image = fs.createReadStream("TestData/watermark.png");
             var response = await api.replaceImageOnline(file, 1, image, TestUtils.password);

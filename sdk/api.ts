@@ -8468,7 +8468,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async replaceImage(name: string, imageIndex: number, image: Readable = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
+    public async replaceImage(name: string, imageIndex: number, image: Readable, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling replaceImage.');
@@ -8476,6 +8476,10 @@ export class SlidesApi {
         // verify required parameter 'imageIndex' is not null or undefined
         if (imageIndex === null || imageIndex === undefined) {
             throw new Error('The required parameter "imageIndex" was null or undefined when calling replaceImage.');
+        }
+        // verify required parameter 'image' is not null or undefined
+        if (image === null || image === undefined) {
+            throw new Error('The required parameter "image" was null or undefined when calling replaceImage.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/images/{imageIndex}/replace";
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
@@ -8508,7 +8512,7 @@ export class SlidesApi {
      * @param image Image data.
      * @param password Password.
      */
-    public async replaceImageOnline(document: Readable, imageIndex: number, image: Readable = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+    public async replaceImageOnline(document: Readable, imageIndex: number, image: Readable, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling replaceImageOnline.');
@@ -8516,6 +8520,10 @@ export class SlidesApi {
         // verify required parameter 'imageIndex' is not null or undefined
         if (imageIndex === null || imageIndex === undefined) {
             throw new Error('The required parameter "imageIndex" was null or undefined when calling replaceImageOnline.');
+        }
+        // verify required parameter 'image' is not null or undefined
+        if (image === null || image === undefined) {
+            throw new Error('The required parameter "image" was null or undefined when calling replaceImageOnline.');
         }
         let localVarPath = this.configuration.getApiBaseUrl() + "/slides/images/{imageIndex}/replace";
         localVarPath = addPathParameterToUrl(localVarPath, "imageIndex", ObjectSerializer.toString(imageIndex));
@@ -11882,6 +11890,60 @@ export class SlidesAsyncApi {
 
     /**
      *  
+     * @param document Document data.
+     * @param format 
+     * @param outPath 
+     * @param password 
+     * @param storage 
+     * @param fontsFolder 
+     * @param slides 
+     * @param options 
+     */
+    public async startConvertAndSave(document: Readable, format: model.ExportFormat, outPath: string, password: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null, options: model.ExportOptions = null): Promise<{response: http.ServerResponse, body: string}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling startConvertAndSave.');
+        }
+        // verify required parameter 'format' is not null or undefined
+        if (format === null || format === undefined) {
+            throw new Error('The required parameter "format" was null or undefined when calling startConvertAndSave.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
+        }
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('The required parameter "outPath" was null or undefined when calling startConvertAndSave.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/convert/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
+        const requestOptions = {
+            method: "PUT",
+            headers: {},
+            url: localVarPath,
+            data: options,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
      * @param name 
      * @param format 
      * @param options 
@@ -11914,6 +11976,115 @@ export class SlidesAsyncApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
         const requestOptions = {
             method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: options,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param files Files to merge
+     * @param request 
+     * @param storage 
+     */
+    public async startMerge(files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ServerResponse, body: string}> {
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/merge";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            url: localVarPath,
+            data: request,
+            params: queryParameters
+        };
+        let localVarFiles = [];
+        if (files != null) {
+            localVarFiles = localVarFiles.concat(files);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param outPath 
+     * @param files Files to merge
+     * @param request 
+     * @param storage 
+     */
+    public async startMergeAndSave(outPath: string, files: Array<Readable> = null, request: model.OrderedMergeRequest = null, storage: string = null): Promise<{response: http.ServerResponse, body: string}> {
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('The required parameter "outPath" was null or undefined when calling startMergeAndSave.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/merge";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "PUT",
+            url: localVarPath,
+            data: request,
+            params: queryParameters
+        };
+        let localVarFiles = [];
+        if (files != null) {
+            localVarFiles = localVarFiles.concat(files);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param name 
+     * @param format 
+     * @param outPath 
+     * @param options 
+     * @param password 
+     * @param folder 
+     * @param storage 
+     * @param fontsFolder 
+     * @param slides 
+     */
+    public async startSavePresentation(name: string, format: model.ExportFormat, outPath: string, options: model.ExportOptions = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null, slides: Array<number> = null): Promise<{response: http.ServerResponse, body: string}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling startSavePresentation.');
+        }
+        // verify required parameter 'format' is not null or undefined
+        if (format === null || format === undefined) {
+            throw new Error('The required parameter "format" was null or undefined when calling startSavePresentation.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.ExportFormat).filter(i => model.ExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.ExportFormat).map(key => model.ExportFormat[key]).join());
+        }
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('The required parameter "outPath" was null or undefined when calling startSavePresentation.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/{name}/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "slides", slides);
+        const requestOptions = {
+            method: "PUT",
             headers: {},
             url: localVarPath,
             data: options,

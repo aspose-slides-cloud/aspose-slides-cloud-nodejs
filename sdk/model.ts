@@ -5444,6 +5444,8 @@ export class Operation {
 
     status: Operation.StatusEnum;
 
+    progress?: OperationProgress;
+
     created?: Date;
 
     enqueued?: Date;
@@ -5462,7 +5464,11 @@ export class Operation {
 export namespace Operation {
     export enum MethodEnum {
         Convert = <any> 'Convert',
-        DownloadPresentation = <any> 'DownloadPresentation'
+        DownloadPresentation = <any> 'DownloadPresentation',
+        ConvertAndSave = <any> 'ConvertAndSave',
+        SavePresentation = <any> 'SavePresentation',
+        Merge = <any> 'Merge',
+        MergeAndSave = <any> 'MergeAndSave'
     }
     export enum StatusEnum {
         Created = <any> 'Created',
@@ -5472,6 +5478,28 @@ export namespace Operation {
         Canceled = <any> 'Canceled',
         Finished = <any> 'Finished'
     }
+}
+
+/**
+ * Operation progress.
+ */
+export class OperationProgress {
+
+    /**
+     * Description.
+     */
+    description?: string;
+
+    /**
+     * Current Step Index.
+     */
+    stepIndex: number;
+
+    /**
+     * Current Step Index.
+     */
+    stepCount: number;
+
 }
 
 /**
@@ -7994,6 +8022,11 @@ export class Slide extends ResourceBase {
     showMasterShapes: boolean;
 
     /**
+     * Specifies if shapes of the master slide should be shown on the slide. True by default.
+     */
+    slideShowTransition?: SlideShowTransition;
+
+    /**
      * Gets or sets the  link to the layout slide.
      */
     layoutSlide?: ResourceUri;
@@ -8363,6 +8396,262 @@ export namespace SlideShowProperties {
         BrowsedAtKiosk = <any> 'BrowsedAtKiosk',
         BrowsedByIndividual = <any> 'BrowsedByIndividual',
         PresentedBySpeaker = <any> 'PresentedBySpeaker'
+    }
+}
+
+/**
+ * Slide Show Transition.
+ */
+export class SlideShowTransition {
+
+    /**
+     * Transition Type
+     */
+    type?: SlideShowTransition.TypeEnum;
+
+    /**
+     * Advance After
+     */
+    advanceAfter?: boolean;
+
+    /**
+     * Advance After Time
+     */
+    advanceAfterTime?: number;
+
+    /**
+     * Advance On Click
+     */
+    advanceOnClick?: boolean;
+
+    /**
+     * Sound Is Built In
+     */
+    soundIsBuiltIn?: boolean;
+
+    /**
+     * Sound Loop
+     */
+    soundLoop?: boolean;
+
+    /**
+     * Sound Mode
+     */
+    soundMode?: SlideShowTransition.SoundModeEnum;
+
+    /**
+     * Sound Name
+     */
+    soundName?: string;
+
+    /**
+     * Speed
+     */
+    speed?: SlideShowTransition.SpeedEnum;
+
+    /**
+     * Corner Direction.
+     */
+    cornerDirection?: SlideShowTransition.CornerDirectionEnum;
+
+    /**
+     * Eight Direction.
+     */
+    eightDirection?: SlideShowTransition.EightDirectionEnum;
+
+    /**
+     * In/Out Direction.
+     */
+    inOutDirection?: SlideShowTransition.InOutDirectionEnum;
+
+    /**
+     * Has Bounce.
+     */
+    hasBounce?: boolean;
+
+    /**
+     * Side Direction.
+     */
+    sideDirection?: SlideShowTransition.SideDirectionEnum;
+
+    /**
+     * Pattern.
+     */
+    pattern?: SlideShowTransition.PatternEnum;
+
+    /**
+     * Left/Right Direction.
+     */
+    leftRightDirection?: SlideShowTransition.LeftRightDirectionEnum;
+
+    /**
+     * Morph Type.
+     */
+    morphType?: SlideShowTransition.MorphTypeEnum;
+
+    /**
+     * From Black.
+     */
+    fromBlack?: boolean;
+
+    /**
+     * Orientation Direction.
+     */
+    orientationDirection?: SlideShowTransition.OrientationDirectionEnum;
+
+    /**
+     * Through Black.
+     */
+    throughBlack?: boolean;
+
+    /**
+     * Orientation.
+     */
+    cornerAndCenterDirection?: SlideShowTransition.CornerAndCenterDirectionEnum;
+
+    /**
+     * Shred Pattern.
+     */
+    shredPattern?: SlideShowTransition.ShredPatternEnum;
+
+    /**
+     * Orientation.
+     */
+    orientation?: SlideShowTransition.OrientationEnum;
+
+    /**
+     * Spokes.
+     */
+    spokes?: number;
+
+}
+export namespace SlideShowTransition {
+    export enum TypeEnum {
+        None = <any> 'None',
+        Blinds = <any> 'Blinds',
+        Checker = <any> 'Checker',
+        Circle = <any> 'Circle',
+        Comb = <any> 'Comb',
+        Cover = <any> 'Cover',
+        Cut = <any> 'Cut',
+        Diamond = <any> 'Diamond',
+        Dissolve = <any> 'Dissolve',
+        Fade = <any> 'Fade',
+        Newsflash = <any> 'Newsflash',
+        Plus = <any> 'Plus',
+        Pull = <any> 'Pull',
+        Push = <any> 'Push',
+        Random = <any> 'Random',
+        RandomBar = <any> 'RandomBar',
+        Split = <any> 'Split',
+        Strips = <any> 'Strips',
+        Wedge = <any> 'Wedge',
+        Wheel = <any> 'Wheel',
+        Wipe = <any> 'Wipe',
+        Zoom = <any> 'Zoom',
+        Vortex = <any> 'Vortex',
+        Switch = <any> 'Switch',
+        Flip = <any> 'Flip',
+        Ripple = <any> 'Ripple',
+        Honeycomb = <any> 'Honeycomb',
+        Cube = <any> 'Cube',
+        Box = <any> 'Box',
+        Rotate = <any> 'Rotate',
+        Orbit = <any> 'Orbit',
+        Doors = <any> 'Doors',
+        Window = <any> 'Window',
+        Ferris = <any> 'Ferris',
+        Gallery = <any> 'Gallery',
+        Conveyor = <any> 'Conveyor',
+        Pan = <any> 'Pan',
+        Glitter = <any> 'Glitter',
+        Warp = <any> 'Warp',
+        Flythrough = <any> 'Flythrough',
+        Flash = <any> 'Flash',
+        Shred = <any> 'Shred',
+        Reveal = <any> 'Reveal',
+        WheelReverse = <any> 'WheelReverse',
+        FallOver = <any> 'FallOver',
+        Drape = <any> 'Drape',
+        Curtains = <any> 'Curtains',
+        Wind = <any> 'Wind',
+        Prestige = <any> 'Prestige',
+        Fracture = <any> 'Fracture',
+        Crush = <any> 'Crush',
+        PeelOff = <any> 'PeelOff',
+        PageCurlDouble = <any> 'PageCurlDouble',
+        PageCurlSingle = <any> 'PageCurlSingle',
+        Airplane = <any> 'Airplane',
+        Origami = <any> 'Origami',
+        Morph = <any> 'Morph'
+    }
+    export enum SoundModeEnum {
+        StartSound = <any> 'StartSound',
+        StopPrevoiusSound = <any> 'StopPrevoiusSound',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum SpeedEnum {
+        Fast = <any> 'Fast',
+        Medium = <any> 'Medium',
+        Slow = <any> 'Slow'
+    }
+    export enum CornerDirectionEnum {
+        LeftDown = <any> 'LeftDown',
+        LeftUp = <any> 'LeftUp',
+        RightDown = <any> 'RightDown',
+        RightUp = <any> 'RightUp'
+    }
+    export enum EightDirectionEnum {
+        LeftDown = <any> 'LeftDown',
+        LeftUp = <any> 'LeftUp',
+        RightDown = <any> 'RightDown',
+        RightUp = <any> 'RightUp',
+        Left = <any> 'Left',
+        Up = <any> 'Up',
+        Down = <any> 'Down',
+        Right = <any> 'Right'
+    }
+    export enum InOutDirectionEnum {
+        In = <any> 'In',
+        Out = <any> 'Out'
+    }
+    export enum SideDirectionEnum {
+        Left = <any> 'Left',
+        Up = <any> 'Up',
+        Down = <any> 'Down',
+        Right = <any> 'Right'
+    }
+    export enum PatternEnum {
+        Diamond = <any> 'Diamond',
+        Hexagon = <any> 'Hexagon'
+    }
+    export enum LeftRightDirectionEnum {
+        Left = <any> 'Left',
+        Right = <any> 'Right'
+    }
+    export enum MorphTypeEnum {
+        ByObject = <any> 'ByObject',
+        ByWord = <any> 'ByWord',
+        ByChar = <any> 'ByChar'
+    }
+    export enum OrientationDirectionEnum {
+        Horizontal = <any> 'Horizontal',
+        Vertical = <any> 'Vertical'
+    }
+    export enum CornerAndCenterDirectionEnum {
+        LeftDown = <any> 'LeftDown',
+        LeftUp = <any> 'LeftUp',
+        RightDown = <any> 'RightDown',
+        RightUp = <any> 'RightUp',
+        Center = <any> 'Center'
+    }
+    export enum ShredPatternEnum {
+        Strip = <any> 'Strip',
+        Rectangle = <any> 'Rectangle'
+    }
+    export enum OrientationEnum {
+        Horizontal = <any> 'Horizontal',
+        Vertical = <any> 'Vertical'
     }
 }
 

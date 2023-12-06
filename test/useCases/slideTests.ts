@@ -133,6 +133,23 @@ describe("Slide tests", () => {
         });
     });
 
+    it("set slide transition", () => {
+        return TestUtils.runTest(async () => {
+            const slideIndex = 1;
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+
+            const transition = new model.SlideShowTransition();
+            transition.type = model.SlideShowTransition.TypeEnum.Circle;
+            transition.speed = model.SlideShowTransition.SpeedEnum.Medium;
+            const dto = new model.Slide();
+            dto.slideShowTransition = transition;
+
+            const result = await api.updateSlide(TestUtils.fileName, slideIndex, dto, TestUtils.password, TestUtils.folderName);
+            assert.equal(transition.type, (result.body as model.Slide).slideShowTransition.type);
+        });
+    });
+
     it("delete slides", () => {
         return TestUtils.runTest(async () => {
             const api = TestUtils.getSlidesApi();

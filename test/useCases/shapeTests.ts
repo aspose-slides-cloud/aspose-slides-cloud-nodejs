@@ -81,7 +81,7 @@ describe("Shape tests", () => {
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.getShape(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName, null, "1");
             assert.equal((result.body as model.ShapeBase).type, "Shape");
-        });
+	        });
     });
 
     it("shape add", () => {
@@ -93,6 +93,22 @@ describe("Shape tests", () => {
                 return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.Shape);
+                });
+            });
+        });
+    });
+
+    it("shape load save", () => {
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getSlidesApi();
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.getShape(TestUtils.fileName, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
+                    assert.equal(200, result.response.statusCode);
+                    const dto = result.body as model.ShapeBase;
+                    return api.updateShape(TestUtils.fileName, 1, 1, dto, TestUtils.password, TestUtils.folderName).then((result) => {
+                        assert.equal(200, result.response.statusCode);
+                        assert(result.body as model.Chart);
+                    });
                 });
             });
         });

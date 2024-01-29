@@ -5331,6 +5331,26 @@ export class SlidesApi {
     }
 
     /**
+     * Returns presentation fonts info. 
+     * @param fontsFolder Storage folder for custom fonts.
+     * @param storage Storage for custom fonts.
+     */
+    public async getAvailableFonts(fontsFolder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FontsData}> {
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/fonts/available";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            url: localVarPath,
+            params: queryParameters
+        };
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "FontsData");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Read slide background info. 
      * @param name Document name.
      * @param slideIndex Slide index.

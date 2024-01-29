@@ -29,6 +29,15 @@ var assert = require('assert');
 var fs = require('fs');
 
 describe("Font tests", () => {
+    it("get available fonts", () => {
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getSlidesApi();
+            const result = await api.getAvailableFonts();
+            assert(result.body.list.length > 1);
+            assert(!result.body.list[0].isCustom);
+        });
+    });
+
     it("get fonts", () => {
         return TestUtils.runTest(async () => {
             const api = TestUtils.getSlidesApi();

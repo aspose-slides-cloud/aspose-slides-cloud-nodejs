@@ -3497,6 +3497,11 @@ export class FontData {
      */
     isEmbedded?: boolean;
 
+    /**
+     * Returns true for a custom font (contained in fontsFolder directory).
+     */
+    isCustom?: boolean;
+
 }
 
 /**

@@ -103,6 +103,49 @@ describe("Text tests", () => {
         });
     });
 
+    it("replace text formatting", () => {
+        return TestUtils.runTest(() => {
+            const slideIndex = 1;
+            const oldText = "banana";
+            const newText = "orange";
+            const color = "#FFFFA500";
+            const shapeIndex = 1;
+            const paragraphIndex = 1;
+            const portionIndex = 1;
+            const api = TestUtils.getSlidesApi();
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                const portion = new model.Portion();
+                portion.text = oldText;
+                const portionFormat = new model.PortionFormat();
+                portionFormat.fontColor = color;
+
+                return api.createPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portion, portionIndex, TestUtils.password, TestUtils.folderName).then((createResult) => {
+                    assert.equal(201, createResult.response.statusCode);
+                    return api.replaceTextFormatting(TestUtils.fileName, oldText, newText, portionFormat, false, TestUtils.password, TestUtils.folderName).then((result) => {
+                        assert.equal(200, result.response.statusCode);
+                        return api.getPortion(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName).then((getResult) => {
+                            assert.equal(200, getResult.response.statusCode);
+                            assert.equal(newText, (getResult.body as model.Portion).text);
+                            assert.equal(color, (getResult.body as model.Portion).fontColor);
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it("replace text formatting online", () => {
+        return TestUtils.runTest(() => {
+            const portionFormat = new model.PortionFormat();
+            portionFormat.fontColor = "#FFFFA500";
+            const api = TestUtils.getSlidesApi();
+            return api.replaceTextFormattingOnline(fs.createReadStream(TestUtils.localFilePath), "banana", "orange", portionFormat, false, TestUtils.password).then((result) => {
+                assert.equal(200, result.response.statusCode);
+                assert(result.body.length > 0);
+            });
+        });
+    });
+
     it("highlight shape text", () => {
         return TestUtils.runTest(async () => {
             const slideIndex = 6;

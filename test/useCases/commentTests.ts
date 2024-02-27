@@ -197,4 +197,15 @@ describe("Comment tests", () => {
             assert.equal(comments.list[0].type, model.SlideCommentBase.TypeEnum.Modern);
         });
     });
+
+    it("get comment authors", () => {
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+
+            const response = await api.getCommentAuthors(TestUtils.fileName, TestUtils.password, TestUtils.folderName);
+            const authors = response.body as model.CommentAuthors;
+            assert.equal(1, authors.list.length);
+        });
+    });
 });

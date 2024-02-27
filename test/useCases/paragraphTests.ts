@@ -268,7 +268,7 @@ describe("Paragraph tests", () => {
         assert.equal((result.body as model.Paragraphs).paragraphLinks.length, 1);
     });
 
-    it("get paragraph rect", async () => {
+    it("get paragraph rectangle", async () => {
         const slideIndex = 6;
         const shapeIndex = 2;
         const paragraphIndex = 1;

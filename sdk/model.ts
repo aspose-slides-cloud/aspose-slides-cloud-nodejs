@@ -2536,6 +2536,38 @@ export class ColorScheme extends ResourceBase {
 }
 
 /**
+ * Represents a comment author
+ */
+export class CommentAuthor {
+
+    /**
+     * Name
+     */
+    name?: string;
+
+    /**
+     * Initials
+     */
+    initials?: string;
+
+}
+
+/**
+ * Represents comments collection of slide
+ */
+export class CommentAuthors extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Slide comment list.
+     */
+    list?: Array<CommentAuthor>;
+
+}
+
+/**
  * Slide view properties.
  */
 export class CommonSlideViewProperties {

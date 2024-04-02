@@ -2840,6 +2840,55 @@ export class SlidesApi {
     }
 
     /**
+     * Deletes cropped areas of a pictire. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must refer to a picture frame).
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Presentation storage.
+     */
+    public async deletePictureCroppedAreas(name: string, slideIndex: number, shapeIndex: number, password: string, folder: string, storage: string = null): Promise<{response: http.ServerResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deletePictureCroppedAreas.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling deletePictureCroppedAreas.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deletePictureCroppedAreas.');
+        }
+        // verify required parameter 'password' is not null or undefined
+        if (password === null || password === undefined) {
+            throw new Error('The required parameter "password" was null or undefined when calling deletePictureCroppedAreas.');
+        }
+        // verify required parameter 'folder' is not null or undefined
+        if (folder === null || folder === undefined) {
+            throw new Error('The required parameter "folder" was null or undefined when calling deletePictureCroppedAreas.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/pictureCroppedAreas";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "DELETE",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
+    }
+
+    /**
      * Remove a portion. 
      * @param name Document name.
      * @param slideIndex Slide index.

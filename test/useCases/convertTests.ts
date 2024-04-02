@@ -304,4 +304,20 @@ describe("Convert tests", () => {
             assert.equal(200, response.response.statusCode);
         });
     });
+
+    it("with slide layout options", () => {
+        return TestUtils.runTest(async () => {
+            const slidesLayoutOptions = new model.HandoutLayoutingOptions();
+            slidesLayoutOptions.handout = model.HandoutLayoutingOptions.HandoutEnum.Handouts2;
+            slidesLayoutOptions.printSlideNumbers = true;
+
+            const pdfOptions = new model.PdfExportOptions();
+            pdfOptions.slidesLayoutOptions = slidesLayoutOptions;
+
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const response = await api.downloadPresentation(TestUtils.fileName, model.ExportFormat.Pdf, pdfOptions, TestUtils.password, TestUtils.folderName);
+            assert.equal(200, response.response.statusCode);
+        });
+    });
 });

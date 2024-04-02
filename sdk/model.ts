@@ -622,6 +622,11 @@ export class ShapeBase extends ResourceBase {
     hidden?: boolean;
 
     /**
+     * Gets or sets 'Mark as decorative' option.
+     */
+    isDecorative?: boolean;
+
+    /**
      * Gets or sets the X
      */
     x?: number;
@@ -2890,6 +2895,11 @@ export class Effect {
     presetClassType?: Effect.PresetClassTypeEnum;
 
     /**
+     * Preset class type.
+     */
+    animateTextType?: Effect.AnimateTextTypeEnum;
+
+    /**
      * Shape index.
      */
     shapeIndex: number;
@@ -3198,6 +3208,11 @@ export namespace Effect {
         MediaCall = <any> 'MediaCall',
         OLEActionVerbs = <any> 'OLEActionVerbs'
     }
+    export enum AnimateTextTypeEnum {
+        AllAtOnce = <any> 'AllAtOnce',
+        ByWord = <any> 'ByWord',
+        ByLetter = <any> 'ByLetter'
+    }
     export enum TriggerTypeEnum {
         AfterPrevious = <any> 'AfterPrevious',
         OnClick = <any> 'OnClick',
@@ -3324,7 +3339,8 @@ export enum ExportFormat {
     'Bmp' = <any> 'Bmp',
     'Fodp' = <any> 'Fodp',
     'Xaml' = <any> 'Xaml',
-    'Mpeg4' = <any> 'Mpeg4'
+    'Mpeg4' = <any> 'Mpeg4',
+    'Md' = <any> 'Md'
 }
 
 /**
@@ -4003,6 +4019,65 @@ export namespace GroupingCharacterElement {
 }
 
 /**
+ * Slides layouting options.
+ */
+export class SlidesLayoutOptions {
+
+    layoutType?: SlidesLayoutOptions.LayoutTypeEnum;
+
+}
+export namespace SlidesLayoutOptions {
+    export enum LayoutTypeEnum {
+        NotesComments = <any> 'NotesComments',
+        Handout = <any> 'Handout'
+    }
+}
+
+/**
+ * Handout layouting options
+ */
+export class HandoutLayoutingOptions extends SlidesLayoutOptions {
+    constructor() {
+        super();
+        this.layoutType = HandoutLayoutingOptions.LayoutTypeEnum.Handout;
+    }
+
+    /**
+     * Specified how many pages and in what sequence will be placed on the page.
+     */
+    handout?: HandoutLayoutingOptions.HandoutEnum;
+
+    /**
+     * True to print the displayed slide numbers.
+     */
+    printSlideNumbers?: boolean;
+
+    /**
+     * True to display comments on slide.
+     */
+    printComments?: boolean;
+
+    /**
+     * True to draw frames around the displayed slides.
+     */
+    printFrameSlide?: boolean;
+
+}
+export namespace HandoutLayoutingOptions {
+    export enum HandoutEnum {
+        Handouts1 = <any> 'Handouts1',
+        Handouts2 = <any> 'Handouts2',
+        Handouts3 = <any> 'Handouts3',
+        Handouts4Horizontal = <any> 'Handouts4Horizontal',
+        Handouts4Vertical = <any> 'Handouts4Vertical',
+        Handouts6Horizontal = <any> 'Handouts6Horizontal',
+        Handouts6Vertical = <any> 'Handouts6Vertical',
+        Handouts9Horizontal = <any> 'Handouts9Horizontal',
+        Handouts9Vertical = <any> 'Handouts9Vertical'
+    }
+}
+
+/**
  * Represents header/footer info of slide
  */
 export class HeaderFooter extends ResourceBase {
@@ -4084,6 +4159,16 @@ export class Html5ExportOptions extends ExportOptions {
      */
     animateShapes?: boolean;
 
+    /**
+     * Gets or sets embed images option.
+     */
+    embedImages?: boolean;
+
+    /**
+     * Slides layouting options
+     */
+    notesCommentsLayouting?: NotesCommentsLayoutingOptions;
+
 }
 
 /**
@@ -4131,29 +4216,9 @@ export class HtmlExportOptions extends ExportOptions {
     deletePicturesCroppedAreas?: boolean;
 
     /**
-     * Gets or sets the position of the notes on the page.
+     * Slides layouting options
      */
-    notesPosition?: HtmlExportOptions.NotesPositionEnum;
-
-    /**
-     * Gets or sets the position of the comments on the page.
-     */
-    commentsPosition?: HtmlExportOptions.CommentsPositionEnum;
-
-    /**
-     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-     */
-    commentsAreaWidth?: number;
-
-    /**
-     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-     */
-    commentsAreaColor?: string;
-
-    /**
-     * True if comments that have no author are displayed. (Applies only if comments are displayed).
-     */
-    showCommentsByNoAuthor?: boolean;
+    slidesLayoutOptions?: SlidesLayoutOptions;
 
 }
 export namespace HtmlExportOptions {
@@ -4164,16 +4229,6 @@ export namespace HtmlExportOptions {
         Dpi96 = <any> 'Dpi96',
         Dpi72 = <any> 'Dpi72',
         DocumentResolution = <any> 'DocumentResolution'
-    }
-    export enum NotesPositionEnum {
-        None = <any> 'None',
-        BottomFull = <any> 'BottomFull',
-        BottomTruncated = <any> 'BottomTruncated'
-    }
-    export enum CommentsPositionEnum {
-        None = <any> 'None',
-        Bottom = <any> 'Bottom',
-        Right = <any> 'Right'
     }
 }
 
@@ -4319,42 +4374,15 @@ export class ImageExportOptions extends ImageExportOptionsBase {
     }
 
     /**
-     * Gets or sets the position of the notes on the page.
-     */
-    notesPosition?: ImageExportOptions.NotesPositionEnum;
-
-    /**
-     * Gets or sets the position of the comments on the page.
-     */
-    commentsPosition?: ImageExportOptions.CommentsPositionEnum;
-
-    /**
-     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-     */
-    commentsAreaWidth?: number;
-
-    /**
-     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-     */
-    commentsAreaColor?: string;
-
-    /**
      * Show hidden slides. If true, hidden are exported.
      */
     showHiddenSlides?: boolean;
 
-}
-export namespace ImageExportOptions {
-    export enum NotesPositionEnum {
-        None = <any> 'None',
-        BottomFull = <any> 'BottomFull',
-        BottomTruncated = <any> 'BottomTruncated'
-    }
-    export enum CommentsPositionEnum {
-        None = <any> 'None',
-        Bottom = <any> 'Bottom',
-        Right = <any> 'Right'
-    }
+    /**
+     * Slides layouting options
+     */
+    slidesLayoutOptions?: SlidesLayoutOptions;
+
 }
 
 /**
@@ -5204,6 +5232,54 @@ export class NormalViewRestoredProperties {
      */
     dimensionSize?: number;
 
+}
+
+/**
+ * Notes &amp; comments layouting options.
+ */
+export class NotesCommentsLayoutingOptions extends SlidesLayoutOptions {
+    constructor() {
+        super();
+        this.layoutType = NotesCommentsLayoutingOptions.LayoutTypeEnum.NotesComments;
+    }
+
+    /**
+     * Gets or sets the position of the notes on the page.
+     */
+    notesPosition?: NotesCommentsLayoutingOptions.NotesPositionEnum;
+
+    /**
+     * Gets or sets the position of the comments on the page.
+     */
+    commentsPosition?: NotesCommentsLayoutingOptions.CommentsPositionEnum;
+
+    /**
+     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
+     */
+    commentsAreaWidth?: number;
+
+    /**
+     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
+     */
+    commentsAreaColor?: string;
+
+    /**
+     * True if comments that have no author are displayed. (Applies only if comments are displayed).
+     */
+    showCommentsByNoAuthor?: boolean;
+
+}
+export namespace NotesCommentsLayoutingOptions {
+    export enum NotesPositionEnum {
+        None = <any> 'None',
+        BottomFull = <any> 'BottomFull',
+        BottomTruncated = <any> 'BottomTruncated'
+    }
+    export enum CommentsPositionEnum {
+        None = <any> 'None',
+        Bottom = <any> 'Bottom',
+        Right = <any> 'Right'
+    }
 }
 
 /**
@@ -6217,29 +6293,9 @@ export class PdfExportOptions extends ExportOptions {
     additionalCommonFontFamilies?: Array<string>;
 
     /**
-     * Gets or sets the position of the notes on the page.
+     * Slides layouting options
      */
-    notesPosition?: PdfExportOptions.NotesPositionEnum;
-
-    /**
-     * Gets or sets the position of the comments on the page.
-     */
-    commentsPosition?: PdfExportOptions.CommentsPositionEnum;
-
-    /**
-     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-     */
-    commentsAreaWidth?: number;
-
-    /**
-     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-     */
-    commentsAreaColor?: string;
-
-    /**
-     * True if comments that have no author are displayed. (Applies only if comments are displayed).
-     */
-    showCommentsByNoAuthor?: boolean;
+    slidesLayoutOptions?: SlidesLayoutOptions;
 
     /**
      * Image transparent color.
@@ -6274,16 +6330,6 @@ export namespace PdfExportOptions {
         PdfA3a = <any> 'PdfA3a',
         PdfUa = <any> 'PdfUa',
         PdfA2u = <any> 'PdfA2u'
-    }
-    export enum NotesPositionEnum {
-        None = <any> 'None',
-        BottomFull = <any> 'BottomFull',
-        BottomTruncated = <any> 'BottomTruncated'
-    }
-    export enum CommentsPositionEnum {
-        None = <any> 'None',
-        Bottom = <any> 'Bottom',
-        Right = <any> 'Right'
     }
 }
 
@@ -7572,7 +7618,8 @@ export namespace Save {
         Bmp = <any> 'Bmp',
         Fodp = <any> 'Fodp',
         Xaml = <any> 'Xaml',
-        Mpeg4 = <any> 'Mpeg4'
+        Mpeg4 = <any> 'Mpeg4',
+        Md = <any> 'Md'
     }
 }
 
@@ -7681,7 +7728,8 @@ export namespace SaveSlide {
         Svg = <any> 'Svg',
         Fodp = <any> 'Fodp',
         Xaml = <any> 'Xaml',
-        Html5 = <any> 'Html5'
+        Html5 = <any> 'Html5',
+        Md = <any> 'Md'
     }
 }
 
@@ -8252,7 +8300,8 @@ export enum SlideExportFormat {
     'Svg' = <any> 'Svg',
     'Fodp' = <any> 'Fodp',
     'Xaml' = <any> 'Xaml',
-    'Html5' = <any> 'Html5'
+    'Html5' = <any> 'Html5',
+    'Md' = <any> 'Md'
 }
 
 /**
@@ -8411,6 +8460,11 @@ export class SlideShowProperties extends ResourceBase {
      * Show narrration.
      */
     showNarration?: boolean;
+
+    /**
+     * Show media controls.
+     */
+    showMediaControls?: boolean;
 
     /**
      * Use timings.
@@ -10101,29 +10155,14 @@ export class TiffExportOptions extends ImageExportOptionsBase {
     pixelFormat?: TiffExportOptions.PixelFormatEnum;
 
     /**
-     * Gets or sets the position of the notes on the page.
+     * Slides layouting options
      */
-    notesPosition?: TiffExportOptions.NotesPositionEnum;
+    slidesLayoutOptions?: SlidesLayoutOptions;
 
     /**
-     * Gets or sets the position of the comments on the page.
+     * Specifies the algorithm for converting a color image into a black and white image. This option will applied only if Aspose.Slides.Export.TiffOptions.CompressionType is set to Aspose.Slides.Export.TiffCompressionTypes.CCITT4 or Aspose.Slides.Export.TiffCompressionTypes.CCITT3.
      */
-    commentsPosition?: TiffExportOptions.CommentsPositionEnum;
-
-    /**
-     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-     */
-    commentsAreaWidth?: number;
-
-    /**
-     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-     */
-    commentsAreaColor?: string;
-
-    /**
-     * True if comments that have no author are displayed. (Applies only if comments are displayed).
-     */
-    showCommentsByNoAuthor?: boolean;
+    bwConversionMode?: TiffExportOptions.BwConversionModeEnum;
 
 }
 export namespace TiffExportOptions {
@@ -10142,15 +10181,15 @@ export namespace TiffExportOptions {
         Format24bppRgb = <any> 'Format24bppRgb',
         Format32bppArgb = <any> 'Format32bppArgb'
     }
-    export enum NotesPositionEnum {
-        None = <any> 'None',
-        BottomFull = <any> 'BottomFull',
-        BottomTruncated = <any> 'BottomTruncated'
-    }
-    export enum CommentsPositionEnum {
-        None = <any> 'None',
-        Bottom = <any> 'Bottom',
-        Right = <any> 'Right'
+    export enum BwConversionModeEnum {
+        Default = <any> 'Default',
+        Dithering = <any> 'Dithering',
+        DitheringFloydSteinberg = <any> 'DitheringFloydSteinberg',
+        Auto = <any> 'Auto',
+        AutoOtsu = <any> 'AutoOtsu',
+        Threshold25 = <any> 'Threshold25',
+        Threshold50 = <any> 'Threshold50',
+        Threshold75 = <any> 'Threshold75'
     }
 }
 

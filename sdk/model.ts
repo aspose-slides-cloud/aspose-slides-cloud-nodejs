@@ -1567,6 +1567,11 @@ export class DataPoint {
      */
     lineFormat?: LineFormat;
 
+    /**
+     * Gets or sets the marker.
+     */
+    marker?: SeriesMarker;
+
     type?: DataPoint.TypeEnum;
 
 }
@@ -4924,6 +4929,90 @@ export namespace LuminanceEffect {
 }
 
 /**
+ * Provides options that control how a presentation is saved in Html5 format.
+ */
+export class MarkdownExportOptions extends ExportOptions {
+    constructor() {
+        super();
+        this.format = 'md';
+    }
+
+    /**
+     * Specifies markdown specification to convert presentation. Default is TextOnly.
+     */
+    exportType?: MarkdownExportOptions.ExportTypeEnum;
+
+    /**
+     * Specifies markdown specification to convert presentation. Default is MultiMarkdown.
+     */
+    flavor?: MarkdownExportOptions.FlavorEnum;
+
+    /**
+     * Specifies whether the generated document should have new lines of \\\\r(Macintosh), \\\\n(Unix) or \\\\r\\\\n(Windows). Default is Unix.
+     */
+    newLineType?: MarkdownExportOptions.NewLineTypeEnum;
+
+    /**
+     * Specifies folder name to save images. Default is Images. 
+     */
+    imagesSaveFolderName?: string;
+
+    /**
+     * Specifies whether the generated document should include slide number. Default is false. 
+     */
+    showSlideNumber?: boolean;
+
+    /**
+     * Specifies whether the generated document should include comments. Default is false. 
+     */
+    showComments?: boolean;
+
+    /**
+     * Specifies whether the generated document should include hidden slides. Default is false. 
+     */
+    showHiddenSlides?: boolean;
+
+}
+export namespace MarkdownExportOptions {
+    export enum ExportTypeEnum {
+        Sequential = <any> 'Sequential',
+        TextOnly = <any> 'TextOnly',
+        Visual = <any> 'Visual'
+    }
+    export enum FlavorEnum {
+        Github = <any> 'Github',
+        Gruber = <any> 'Gruber',
+        MultiMarkdown = <any> 'MultiMarkdown',
+        CommonMark = <any> 'CommonMark',
+        MarkdownExtra = <any> 'MarkdownExtra',
+        Pandoc = <any> 'Pandoc',
+        Kramdown = <any> 'Kramdown',
+        Markua = <any> 'Markua',
+        Maruku = <any> 'Maruku',
+        Markdown2 = <any> 'Markdown2',
+        Remarkable = <any> 'Remarkable',
+        Showdown = <any> 'Showdown',
+        Ghost = <any> 'Ghost',
+        GitLab = <any> 'GitLab',
+        Haroopad = <any> 'Haroopad',
+        IaWriter = <any> 'IaWriter',
+        Redcarpet = <any> 'Redcarpet',
+        ScholarlyMarkdown = <any> 'ScholarlyMarkdown',
+        Taiga = <any> 'Taiga',
+        Trello = <any> 'Trello',
+        S9ETextFormatter = <any> 'S9ETextFormatter',
+        XWiki = <any> 'XWiki',
+        StackOverflow = <any> 'StackOverflow',
+        Default = <any> 'Default'
+    }
+    export enum NewLineTypeEnum {
+        Windows = <any> 'Windows',
+        Unix = <any> 'Unix',
+        Mac = <any> 'Mac'
+    }
+}
+
+/**
  * Master slide.
  */
 export class MasterSlide extends ResourceBase {
@@ -4961,6 +5050,17 @@ export class MasterSlides extends ResourceBase {
      */
     slideList?: Array<ResourceUri>;
 
+}
+
+/**
+ * Mathematical paragraph that is a container for mathematical blocks
+ */
+    /**
+    * Mathematical paragraph that is a container for mathematical blocks
+    */
+export enum MathFormat {
+    'MathML' = <any> 'MathML',
+    'LaTeX' = <any> 'LaTeX'
 }
 
 /**

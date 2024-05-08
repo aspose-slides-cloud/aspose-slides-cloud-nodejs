@@ -160,7 +160,7 @@ describe("Math tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.downloadPortionAsMathMl(TestUtils.fileName, 2, 3, 1, 1, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.downloadMathPortion(TestUtils.fileName, 2, 3, 1, 1, model.MathFormat.MathML, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     assert(result.body.length);
                 });
@@ -172,7 +172,7 @@ describe("Math tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.downloadPortionAsMathMl(TestUtils.fileName, 2, 1, 1, 1, TestUtils.password, TestUtils.folderName)
+                return api.downloadMathPortion(TestUtils.fileName, 2, 1, 1, 1, model.MathFormat.MathML, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Must have failed"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -186,7 +186,7 @@ describe("Math tests", () => {
             const outPath = TestUtils.folderName + "/mathml.xml";
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.savePortionAsMathMl(TestUtils.fileName, 2, 3, 1, 1, outPath, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.saveMathPortion(TestUtils.fileName, 2, 3, 1, 1, model.MathFormat.MathML, outPath, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     return api.objectExists(outPath).then((existsResult) => {
                         assert.equal(200, existsResult.response.statusCode);

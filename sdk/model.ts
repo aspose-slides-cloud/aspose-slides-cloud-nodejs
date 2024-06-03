@@ -1038,6 +1038,11 @@ export class Axis {
     hasTitle?: boolean;
 
     /**
+     * Axis title
+     */
+    title?: ChartTitle;
+
+    /**
      * Axis position
      */
     position?: Axis.PositionEnum;
@@ -2008,6 +2013,11 @@ export class Chart extends ShapeBase {
     dataSourceForCategories?: DataSource;
 
     /**
+     * True if the chart has a title.
+     */
+    hasTitle?: boolean;
+
+    /**
      * Gets or sets the title.
      */
     title?: ChartTitle;
@@ -2363,9 +2373,44 @@ export class ChartTitle {
     text?: string;
 
     /**
-     * Get or sets value determines visibility of title
+     * the X location
      */
-    hasTitle: boolean;
+    x?: number;
+
+    /**
+     * the Y location
+     */
+    y?: number;
+
+    /**
+     * Width
+     */
+    width?: number;
+
+    /**
+     * Height
+     */
+    height?: number;
+
+    /**
+     * true if other elements are allowed to overlay the legend
+     */
+    overlay?: boolean;
+
+    /**
+     * Get or sets the fill format.
+     */
+    fillFormat?: FillFormat;
+
+    /**
+     * Get or sets the effect format.
+     */
+    effectFormat?: EffectFormat;
+
+    /**
+     * Get or sets the line format.
+     */
+    lineFormat?: LineFormat;
 
 }
 
@@ -6431,6 +6476,18 @@ export namespace PdfExportOptions {
         PdfUa = <any> 'PdfUa',
         PdfA2u = <any> 'PdfA2u'
     }
+}
+
+/**
+ * PDF import options.
+ */
+export class PdfImportOptions {
+
+    /**
+     * True to detect tables.
+     */
+    detectTables: boolean;
+
 }
 
 /**

@@ -4,5 +4,6 @@
     "BaseUrl" : "@base_url@",
     "AsyncBaseUrl" : "@async_base_url@",
     "AuthBaseUrl" : "@base_auth_url@",
-    "Debug" : false
+    "Debug" : false,
+    "AllowInsecureRequests" : true
 }

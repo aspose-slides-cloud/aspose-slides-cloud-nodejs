@@ -112,7 +112,7 @@ describe("Create tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.deleteFile(TestUtils.filePath).then(() => {
-                return api.importFromPdf(TestUtils.fileName, fs.createReadStream("TestData/test.pdf"), null, TestUtils.folderName).then((result) => {
+                return api.importFromPdf(TestUtils.fileName, fs.createReadStream("TestData/test.pdf"), null, null, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                 });
             });
@@ -125,7 +125,9 @@ describe("Create tests", () => {
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getSlides(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((r1) => {
                     const slideCount = (r1.body as model.Slides).slideList.length;
-                    return api.importFromPdf(TestUtils.fileName, fs.createReadStream("TestData/test.pdf"), TestUtils.password, TestUtils.folderName).then((result) => {
+                    const options = new model.PdfImportOptions();
+                    options.detectTables = false;
+                    return api.importFromPdf(TestUtils.fileName, fs.createReadStream("TestData/test.pdf"), options, TestUtils.password, TestUtils.folderName).then((result) => {
                         assert.equal(200, result.response.statusCode);
                         return api.getSlides(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((r2) => {
                             assert.equal(slideCount + 4, (r2.body as model.Slides).slideList.length);

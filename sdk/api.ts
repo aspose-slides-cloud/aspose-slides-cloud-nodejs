@@ -7952,11 +7952,12 @@ export class SlidesApi {
      * Create presentation document from pdf or append pdf to an existing presentation. 
      * @param name Document name.
      * @param pdf PDF data.
+     * @param options Import options.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async importFromPdf(name: string, pdf: Readable, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
+    public async importFromPdf(name: string, pdf: Readable, options: model.PdfImportOptions = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Document}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling importFromPdf.');
@@ -7974,6 +7975,7 @@ export class SlidesApi {
             method: "POST",
             headers: {},
             url: localVarPath,
+            data: options,
             params: queryParameters
         };
         addHeaderParameter(requestOptions.headers, "password", password);

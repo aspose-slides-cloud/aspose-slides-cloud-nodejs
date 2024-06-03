@@ -24,6 +24,7 @@
 
 
 import axios from "axios";
+const https = require('https');
 
 axios.interceptors.request.use(request => {
     if ((request as any).debug) {
@@ -142,14 +143,16 @@ export function addHeaderParameter(headers: any, parameterName: string, paramete
 async function invokeApiMethodInternal(requestOptions: any, configuration: Configuration, notApplyAuthToRequest?: boolean): Promise<any> {
 
     if (configuration.allowInsecureRequests) {
-        requestOptions.rejectUnauthorized = false;
+        requestOptions.httpsAgent = new https.Agent({  
+            rejectUnauthorized: false
+        });
     }
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v24.4.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v24.5.0";
     if (configuration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = configuration.timeout;
     }

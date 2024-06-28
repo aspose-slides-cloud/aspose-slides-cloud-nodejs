@@ -5706,8 +5706,6 @@ export class Operation {
 
     created?: Date;
 
-    enqueued?: Date;
-
     started?: Date;
 
     failed?: Date;
@@ -6456,6 +6454,16 @@ export class PdfExportOptions extends ExportOptions {
      * Access permissions that should be granted when the document is opened with user access.  Default is AccessPermissions.None.             
      */
     accessPermissions?: AccessPermissions;
+
+    /**
+     * True to hide Ink elements in exported document.
+     */
+    hideInk?: boolean;
+
+    /**
+     * True to use ROP operation or Opacity for rendering brush.
+     */
+    interpretMaskOpAsOpacity?: boolean;
 
 }
 export namespace PdfExportOptions {

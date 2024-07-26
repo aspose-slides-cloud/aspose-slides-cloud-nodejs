@@ -58,20 +58,24 @@ describe("Text tests", () => {
             const newValue = "new_text";
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                        return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, TestUtils.password, TestUtils.folderName).then((resultWithEmpty) => {
+                        return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, null, TestUtils.password, TestUtils.folderName).then((resultWithEmpty) => {
                             assert.equal(200, resultWithEmpty.response.statusCode);
-                            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                                return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
-                                    assert.equal(200, slideResult.response.statusCode);
-                                    return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                                        return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, true, TestUtils.password, TestUtils.folderName).then((slideResultWithEmpty) => {
-                                            assert.equal(200, slideResultWithEmpty.response.statusCode);
-                                            assert((result.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
-                                            assert((slideResult.body as model.SlideReplaceResult).matches < (result.body as model.DocumentReplaceResult).matches);
-                                            assert((slideResult.body as model.SlideReplaceResult).matches < (slideResultWithEmpty.body as model.SlideReplaceResult).matches);
+                            return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, true, TestUtils.password, TestUtils.folderName).then((resultWholeWords) => {
+                                assert.equal(200, resultWithEmpty.response.statusCode);
+                                return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                                    return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
+                                        assert.equal(200, slideResult.response.statusCode);
+                                        return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                                            return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, true, TestUtils.password, TestUtils.folderName).then((slideResultWithEmpty) => {
+                                                assert.equal(200, slideResultWithEmpty.response.statusCode);
+                                                assert((result.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
+                                                assert((resultWholeWords.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
+                                                assert((slideResult.body as model.SlideReplaceResult).matches < (result.body as model.DocumentReplaceResult).matches);
+                                                assert((slideResult.body as model.SlideReplaceResult).matches < (slideResultWithEmpty.body as model.SlideReplaceResult).matches);
+                                            });
                                         });
                                     });
                                 });
@@ -88,9 +92,9 @@ describe("Text tests", () => {
             const oldValue = "text";
             const newValue = "new_text";
             const api = TestUtils.getSlidesApi();
-            return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, null, TestUtils.password).then((result) => {
+            return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, null, null, TestUtils.password).then((result) => {
                 assert.equal(200, result.response.statusCode);
-                return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, true, TestUtils.password).then((resultWithEmpty) => {
+                return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, true, null, TestUtils.password).then((resultWithEmpty) => {
                     assert.equal(200, resultWithEmpty.response.statusCode);
                     return api.replaceSlideTextOnline(fs.createReadStream(TestUtils.localFilePath), slideIndex, oldValue, newValue, null, TestUtils.password).then((slideResult) => {
                         assert.equal(200, slideResult.response.statusCode);

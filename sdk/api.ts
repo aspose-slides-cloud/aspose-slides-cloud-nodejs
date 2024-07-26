@@ -4922,60 +4922,6 @@ export class SlidesApi {
     }
 
     /**
-     * Convert Mathematical Text to MathML Format 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async downloadPortionAsMathMl(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling downloadPortionAsMathMl.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling downloadPortionAsMathMl.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling downloadPortionAsMathMl.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling downloadPortionAsMathMl.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling downloadPortionAsMathMl.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/mathml";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions = {
-            method: "POST",
-            headers: {},
-            url: localVarPath,
-            responseType: 'arraybuffer',
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
      * Save a presentation to a specified format. 
      * @param name Document name.
      * @param format Export format.
@@ -5802,6 +5748,23 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "FormatScheme");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Get default templates for HTML5 export. 
+     */
+    public async getHtml5Templates(): Promise<{response: http.ServerResponse, body: Buffer}> {
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/html5Templates";
+        const queryParameters: any = {};
+        const requestOptions = {
+            method: "GET",
+            url: localVarPath,
+            responseType: 'arraybuffer',
+            params: queryParameters
+        };
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
     }
 
@@ -8713,11 +8676,12 @@ export class SlidesApi {
      * @param oldValue Text value to be replaced.
      * @param newValue Text value to replace with.
      * @param ignoreCase True if character case must be ignored.
+     * @param wholeWordsOnly True to replace whole words only.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async replacePresentationText(name: string, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentReplaceResult}> {
+    public async replacePresentationText(name: string, oldValue: string, newValue: string, ignoreCase: boolean = null, wholeWordsOnly: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentReplaceResult}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling replacePresentationText.');
@@ -8736,6 +8700,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldValue", oldValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", newValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "wholeWordsOnly", wholeWordsOnly);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         const requestOptions = {
@@ -8756,9 +8721,10 @@ export class SlidesApi {
      * @param oldValue Text value to be replaced.
      * @param newValue Text value to replace with.
      * @param ignoreCase True if character case must be ignored.
+     * @param wholeWordsOnly True to replace whole words only.
      * @param password Document password.
      */
-    public async replacePresentationTextOnline(document: Readable, oldValue: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+    public async replacePresentationTextOnline(document: Readable, oldValue: string, newValue: string, ignoreCase: boolean = null, wholeWordsOnly: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
             throw new Error('The required parameter "document" was null or undefined when calling replacePresentationTextOnline.');
@@ -8776,6 +8742,7 @@ export class SlidesApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "oldValue", oldValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", newValue);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "wholeWordsOnly", wholeWordsOnly);
         const requestOptions = {
             method: "POST",
             headers: {},
@@ -9040,65 +9007,6 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
         localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions = {
-            method: "PUT",
-            headers: {},
-            url: localVarPath,
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        
-        return Promise.resolve({ response });
-    }
-
-    /**
-     * Convert Mathematical Text to MathML Format and saves result to the storage 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index.
-     * @param paragraphIndex Paragraph index.
-     * @param portionIndex Portion index.
-     * @param outPath Path to save result.
-     * @param password Document password.
-     * @param folder Presentation folder.
-     * @param storage Presentation storage.
-     */
-    public async savePortionAsMathMl(name: string, slideIndex: number, shapeIndex: number, paragraphIndex: number, portionIndex: number, outPath: string, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling savePortionAsMathMl.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling savePortionAsMathMl.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling savePortionAsMathMl.');
-        }
-        // verify required parameter 'paragraphIndex' is not null or undefined
-        if (paragraphIndex === null || paragraphIndex === undefined) {
-            throw new Error('The required parameter "paragraphIndex" was null or undefined when calling savePortionAsMathMl.');
-        }
-        // verify required parameter 'portionIndex' is not null or undefined
-        if (portionIndex === null || portionIndex === undefined) {
-            throw new Error('The required parameter "portionIndex" was null or undefined when calling savePortionAsMathMl.');
-        }
-        // verify required parameter 'outPath' is not null or undefined
-        if (outPath === null || outPath === undefined) {
-            throw new Error('The required parameter "outPath" was null or undefined when calling savePortionAsMathMl.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/mathml";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "paragraphIndex", ObjectSerializer.toString(paragraphIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "portionIndex", ObjectSerializer.toString(portionIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);

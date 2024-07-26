@@ -320,4 +320,29 @@ describe("Convert tests", () => {
             assert.equal(200, response.response.statusCode);
         });
     });
+
+    it("with custom html5 templates", () => {
+        return TestUtils.runTest(async () => {
+            const templatesPath = "Html5Templates";
+            const templateFileName = "pictureFrame.html";
+
+            const api = TestUtils.getSlidesApi();
+            await api.createFolder(templatesPath);
+            await api.copyFile(TestUtils.tempFolderName + "/" + templateFileName, templatesPath + "/" + templateFileName);
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const html5Options = new model.Html5ExportOptions();
+            html5Options.templatesPath = templatesPath;
+            html5Options.animateTransitions = true;
+            const response = await api.downloadPresentation(TestUtils.fileName, model.ExportFormat.Html5, html5Options, TestUtils.password, TestUtils.folderName);
+            assert.equal(200, response.response.statusCode);
+        });
+    });
+
+    it("get html5 templates", () => {
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getSlidesApi();
+            const response = await api.getHtml5Templates();
+            assert.equal(200, response.response.statusCode);
+        });
+    });
 });

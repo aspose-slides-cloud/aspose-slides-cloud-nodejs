@@ -2882,7 +2882,7 @@ export class DocumentProperty extends ResourceBase {
     /**
      * True for builtin property.
      */
-    builtIn: boolean;
+    builtIn?: boolean;
 
 }
 
@@ -3390,7 +3390,8 @@ export enum ExportFormat {
     'Fodp' = <any> 'Fodp',
     'Xaml' = <any> 'Xaml',
     'Mpeg4' = <any> 'Mpeg4',
-    'Md' = <any> 'Md'
+    'Md' = <any> 'Md',
+    'Xml' = <any> 'Xml'
 }
 
 /**
@@ -3404,6 +3405,11 @@ export class ExportOptions {
     defaultRegularFont?: string;
 
     /**
+     * Default regular font for rendering the presentation. 
+     */
+    gradientStyle?: ExportOptions.GradientStyleEnum;
+
+    /**
      * Gets of sets list of font fallback rules.
      */
     fontFallbackRules?: Array<FontFallbackRule>;
@@ -3415,6 +3421,12 @@ export class ExportOptions {
 
     format?: string;
 
+}
+export namespace ExportOptions {
+    export enum GradientStyleEnum {
+        Default = <any> 'Default',
+        PowerPointUI = <any> 'PowerPointUI'
+    }
 }
 
 /**
@@ -3855,6 +3867,8 @@ export class ImageExportOptionsBase extends ExportOptions {
     width?: number;
 
 }
+export namespace ImageExportOptionsBase {
+}
 
 /**
  * Provides options that control how a presentation is saved in Gif format.
@@ -3880,6 +3894,8 @@ export class GifExportOptions extends ImageExportOptionsBase {
      */
     defaultDelay?: number;
 
+}
+export namespace GifExportOptions {
 }
 
 /**
@@ -3911,12 +3927,12 @@ export class GradientFill extends FillFormat {
     /**
      * Gradient style.
      */
-    direction: GradientFill.DirectionEnum;
+    direction?: GradientFill.DirectionEnum;
 
     /**
      * Gradient shape.
      */
-    shape: GradientFill.ShapeEnum;
+    shape?: GradientFill.ShapeEnum;
 
     /**
      * Gradient stops.
@@ -3926,17 +3942,17 @@ export class GradientFill extends FillFormat {
     /**
      * Gradient angle.
      */
-    linearAngle: number;
+    linearAngle?: number;
 
     /**
      * True if the gradient is scaled.
      */
-    isScaled: boolean;
+    isScaled?: boolean;
 
     /**
      * Gradient flipping mode.
      */
-    tileFlip: GradientFill.TileFlipEnum;
+    tileFlip?: GradientFill.TileFlipEnum;
 
 }
 export namespace GradientFill {
@@ -4219,6 +4235,13 @@ export class Html5ExportOptions extends ExportOptions {
      */
     notesCommentsLayouting?: NotesCommentsLayoutingOptions;
 
+    /**
+     * Path to custom templates
+     */
+    templatesPath?: string;
+
+}
+export namespace Html5ExportOptions {
 }
 
 /**
@@ -4433,6 +4456,8 @@ export class ImageExportOptions extends ImageExportOptionsBase {
      */
     slidesLayoutOptions?: SlidesLayoutOptions;
 
+}
+export namespace ImageExportOptions {
 }
 
 /**
@@ -6465,6 +6490,11 @@ export class PdfExportOptions extends ExportOptions {
      */
     interpretMaskOpAsOpacity?: boolean;
 
+    /**
+     * True if text should be rasterized as a bitmap and saved to PDF when the font does not support bold styling. This approach can enhance the quality of text in the resulting PDF for certain fonts.
+     */
+    rasterizeUnsupportedFontStyles?: boolean;
+
 }
 export namespace PdfExportOptions {
     export enum TextCompressionEnum {
@@ -7214,9 +7244,14 @@ export class PptxExportOptions extends ExportOptions {
     }
 
     /**
-     * The conformance class to which the PresentationML document conforms. Read/write Conformance.
+     * The conformance class to which the PresentationML document conforms.
      */
     conformance?: PptxExportOptions.ConformanceEnum;
+
+    /**
+     * Specifies whether the ZIP64 format is used for the Presentation document. The default value is Zip64Mode.IfNecessary.
+     */
+    zip64Mode?: PptxExportOptions.Zip64ModeEnum;
 
 }
 export namespace PptxExportOptions {
@@ -7224,6 +7259,11 @@ export namespace PptxExportOptions {
         Ecma376 = <any> 'Ecma376',
         Iso29500Transitional = <any> 'Iso29500Transitional',
         Iso29500Strict = <any> 'Iso29500Strict'
+    }
+    export enum Zip64ModeEnum {
+        Never = <any> 'Never',
+        IfNecessary = <any> 'IfNecessary',
+        Always = <any> 'Always'
     }
 }
 
@@ -7360,12 +7400,12 @@ export class ProtectionProperties extends ResourceBase {
     /**
      * Returns true if the presentation protected for editing. 
      */
-    isWriteProtected: boolean;
+    isWriteProtected?: boolean;
 
     /**
      * Returns true if the presentation protected for reading. 
      */
-    isEncrypted: boolean;
+    isEncrypted?: boolean;
 
 }
 
@@ -7784,7 +7824,8 @@ export namespace Save {
         Fodp = <any> 'Fodp',
         Xaml = <any> 'Xaml',
         Mpeg4 = <any> 'Mpeg4',
-        Md = <any> 'Md'
+        Md = <any> 'Md',
+        Xml = <any> 'Xml'
     }
 }
 
@@ -7894,7 +7935,8 @@ export namespace SaveSlide {
         Fodp = <any> 'Fodp',
         Xaml = <any> 'Xaml',
         Html5 = <any> 'Html5',
-        Md = <any> 'Md'
+        Md = <any> 'Md',
+        Xml = <any> 'Xml'
     }
 }
 
@@ -8269,7 +8311,7 @@ export class Slide extends ResourceBase {
     /**
      * Specifies if shapes of the master slide should be shown on the slide. True by default.
      */
-    showMasterShapes: boolean;
+    showMasterShapes?: boolean;
 
     /**
      * Specifies if shapes of the master slide should be shown on the slide. True by default.
@@ -8466,7 +8508,8 @@ export enum SlideExportFormat {
     'Fodp' = <any> 'Fodp',
     'Xaml' = <any> 'Xaml',
     'Html5' = <any> 'Html5',
-    'Md' = <any> 'Md'
+    'Md' = <any> 'Md',
+    'Xml' = <any> 'Xml'
 }
 
 /**
@@ -9645,6 +9688,11 @@ export class Table extends ShapeBase {
      */
     verticalBanding?: boolean;
 
+    /**
+     * Transparency.
+     */
+    transparency?: number;
+
 }
 export namespace Table {
     export enum StyleEnum {
@@ -9768,6 +9816,11 @@ export class TableCell {
     marginBottom?: number;
 
     /**
+     * Transparency.
+     */
+    transparency?: number;
+
+    /**
      * Text anchor type.
      */
     textAnchorType?: TableCell.TextAnchorTypeEnum;
@@ -9882,7 +9935,7 @@ export class TableCellMergeOptions {
     /**
      * Allow splitting
      */
-    allowSplitting: boolean;
+    allowSplitting?: boolean;
 
 }
 
@@ -10763,6 +10816,8 @@ export class XamlExportOptions extends ExportOptions {
     exportHiddenSlides?: boolean;
 
 }
+export namespace XamlExportOptions {
+}
 
 /**
  * Provides options that control how a presentation is saved in XPS format.
@@ -10788,6 +10843,8 @@ export class XpsExportOptions extends ExportOptions {
      */
     drawSlidesFrame?: boolean;
 
+}
+export namespace XpsExportOptions {
 }
 
 /**

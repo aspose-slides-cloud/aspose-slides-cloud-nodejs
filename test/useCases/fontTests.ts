@@ -44,7 +44,7 @@ describe("Font tests", () => {
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.getFonts(TestUtils.fileName, TestUtils.password, TestUtils.folderName);
-            assert.equal(3, result.body.list.length);
+            assert.equal(4, result.body.list.length);
         });
     });
 
@@ -53,7 +53,7 @@ describe("Font tests", () => {
             const api = TestUtils.getSlidesApi();
             const stream = fs.createReadStream(TestUtils.localFilePath);
             const result = await api.getFontsOnline(stream, TestUtils.password);
-            assert.equal(3, result.body.list.length);
+            assert.equal(4, result.body.list.length);
         });
     });
 
@@ -64,7 +64,7 @@ describe("Font tests", () => {
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
 
             const result = await api.setEmbeddedFont(TestUtils.fileName, fontName, false, TestUtils.password, TestUtils.folderName);
-            assert.equal(3, result.body.list.length);
+            assert.equal(4, result.body.list.length);
             assert.equal(true, result.body.list[2].isEmbedded);
             assert.equal(fontName, result.body.list[2].fontName);
         });
@@ -91,7 +91,7 @@ describe("Font tests", () => {
             const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
             const result = await api.setEmbeddedFontFromRequest(stream, TestUtils.fileName, false, TestUtils.password, TestUtils.folderName);
-            assert.equal(3, result.body.list.length);
+            assert.equal(4, result.body.list.length);
             assert.equal(true, result.body.list[2].isEmbedded);
             assert.equal(fontName, result.body.list[2].fontName);
         });

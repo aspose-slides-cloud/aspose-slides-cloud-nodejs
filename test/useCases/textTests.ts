@@ -61,20 +61,26 @@ describe("Text tests", () => {
                 return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(200, result.response.statusCode);
                     return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                        return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, null, TestUtils.password, TestUtils.folderName).then((resultWithEmpty) => {
-                            assert.equal(200, resultWithEmpty.response.statusCode);
-                            return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, true, TestUtils.password, TestUtils.folderName).then((resultWholeWords) => {
-                                assert.equal(200, resultWithEmpty.response.statusCode);
-                                return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                                    return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
-                                        assert.equal(200, slideResult.response.statusCode);
+                        return api.replacePresentationRegex(TestUtils.fileName, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((resultRegex) => {
+                            assert.equal(200, resultRegex.response.statusCode);
+                            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                                return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, null, TestUtils.password, TestUtils.folderName).then((resultWithEmpty) => {
+                                    assert.equal(200, resultWithEmpty.response.statusCode);
+                                    return api.replacePresentationText(TestUtils.fileName, oldValue, newValue, true, true, TestUtils.password, TestUtils.folderName).then((resultWholeWords) => {
+                                        assert.equal(200, resultWithEmpty.response.statusCode);
                                         return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                                            return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, true, TestUtils.password, TestUtils.folderName).then((slideResultWithEmpty) => {
-                                                assert.equal(200, slideResultWithEmpty.response.statusCode);
-                                                assert((result.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
-                                                assert((resultWholeWords.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
-                                                assert((slideResult.body as model.SlideReplaceResult).matches < (result.body as model.DocumentReplaceResult).matches);
-                                                assert((slideResult.body as model.SlideReplaceResult).matches < (slideResultWithEmpty.body as model.SlideReplaceResult).matches);
+                                            return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
+                                                assert.equal(200, slideResult.response.statusCode);
+                                                return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                                                    return api.replaceSlideText(TestUtils.fileName, slideIndex, oldValue, newValue, true, TestUtils.password, TestUtils.folderName).then((slideResultWithEmpty) => {
+                                                        assert.equal(200, slideResultWithEmpty.response.statusCode);
+                                                        assert.equal((result.body as model.DocumentReplaceResult).matches, (resultRegex.body as model.DocumentReplaceResult).matches);
+                                                        assert((result.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
+                                                        assert((resultWholeWords.body as model.DocumentReplaceResult).matches < (resultWithEmpty.body as model.DocumentReplaceResult).matches);
+                                                        assert((slideResult.body as model.SlideReplaceResult).matches < (result.body as model.DocumentReplaceResult).matches);
+                                                        assert((slideResult.body as model.SlideReplaceResult).matches < (slideResultWithEmpty.body as model.SlideReplaceResult).matches);
+                                                    });
+                                                });
                                             });
                                         });
                                     });
@@ -94,12 +100,15 @@ describe("Text tests", () => {
             const api = TestUtils.getSlidesApi();
             return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, null, null, TestUtils.password).then((result) => {
                 assert.equal(200, result.response.statusCode);
-                return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, true, null, TestUtils.password).then((resultWithEmpty) => {
-                    assert.equal(200, resultWithEmpty.response.statusCode);
-                    return api.replaceSlideTextOnline(fs.createReadStream(TestUtils.localFilePath), slideIndex, oldValue, newValue, null, TestUtils.password).then((slideResult) => {
-                        assert.equal(200, slideResult.response.statusCode);
-                        return api.replaceSlideTextOnline(fs.createReadStream(TestUtils.localFilePath), slideIndex, oldValue, newValue, true, TestUtils.password).then((slideResultWithEmpty) => {
-                            assert.equal(200, slideResultWithEmpty.response.statusCode);
+                return api.replacePresentationRegexOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, null, TestUtils.password).then((resultRegex) => {
+                    assert.equal(200, resultRegex.response.statusCode);
+                    return api.replacePresentationTextOnline(fs.createReadStream(TestUtils.localFilePath), oldValue, newValue, true, null, TestUtils.password).then((resultWithEmpty) => {
+                        assert.equal(200, resultWithEmpty.response.statusCode);
+                        return api.replaceSlideTextOnline(fs.createReadStream(TestUtils.localFilePath), slideIndex, oldValue, newValue, null, TestUtils.password).then((slideResult) => {
+                            assert.equal(200, slideResult.response.statusCode);
+                            return api.replaceSlideTextOnline(fs.createReadStream(TestUtils.localFilePath), slideIndex, oldValue, newValue, true, TestUtils.password).then((slideResultWithEmpty) => {
+                                assert.equal(200, slideResultWithEmpty.response.statusCode);
+                            });
                         });
                     });
                 });
@@ -181,10 +190,57 @@ describe("Text tests", () => {
 
             const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
-            const result = await api.highlightShapeRegex(TestUtils.fileName, slideIndex, shapeIndex, highlightRegex,
-                highlightColor, null, false, TestUtils.password, TestUtils.folderName);
+            const result = await api.highlightShapeRegex(TestUtils.fileName, slideIndex, shapeIndex, highlightRegex, highlightColor, false, TestUtils.password, TestUtils.folderName);
 
             assert.equal(result.response.statusCode, 200)
+            const paragraph = await api.getParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
+            assert.equal(paragraph.body.portionList[1].text, textToHighlight);
+            assert.equal(paragraph.body.portionList[1].highlightColor, highlightColor);
+        });
+    });
+
+    it("highlight presentation text", () => {
+        return TestUtils.runTest(async () => {
+            const textToHighlight = "highlight";
+            const highlightColor = "#FFF5FF8A";
+
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const result = await api.highlightPresentationText(TestUtils.fileName, textToHighlight, highlightColor, null, false, TestUtils.password, TestUtils.folderName);
+            assert.equal(result.response.statusCode, 200);
+            const resultIgnoreCase = await api.highlightPresentationText(TestUtils.fileName, textToHighlight, highlightColor, null, true, TestUtils.password, TestUtils.folderName);
+            assert.equal(resultIgnoreCase.response.statusCode, 200);
+
+            assert.equal((result.body as model.DocumentReplaceResult).matches, (resultIgnoreCase.body as model.DocumentReplaceResult).matches);
+
+            const slideIndex = 6;
+            const shapeIndex = 1;
+            const paragraphIndex = 1;
+            const paragraph = await api.getParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
+            assert.equal(paragraph.body.portionList[1].text, textToHighlight);
+            assert.equal(paragraph.body.portionList[1].highlightColor, highlightColor);
+        });
+    });
+
+    it("highlight presentation regex", () => {
+        return TestUtils.runTest(async () => {
+            const textToHighlight = "highlight";
+            const highlightRegex = "h.ghl[abci]ght";
+            const highlightColor = "#FFF5FF8A";
+
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const result = await api.highlightPresentationRegex(TestUtils.fileName, highlightRegex, highlightColor, false, TestUtils.password, TestUtils.folderName);
+            assert.equal(result.response.statusCode, 200)
+
+            const resultIgnoreCase = await api.highlightPresentationRegex(TestUtils.fileName, highlightRegex, highlightColor, true, TestUtils.password, TestUtils.folderName);
+            assert.equal(resultIgnoreCase.response.statusCode, 200)
+
+            assert.equal((result.body as model.DocumentReplaceResult).matches, (resultIgnoreCase.body as model.DocumentReplaceResult).matches);
+
+            const slideIndex = 6;
+            const shapeIndex = 1;
+            const paragraphIndex = 1;
             const paragraph = await api.getParagraph(TestUtils.fileName, slideIndex, shapeIndex, paragraphIndex, TestUtils.password, TestUtils.folderName);
             assert.equal(paragraph.body.portionList[1].text, textToHighlight);
             assert.equal(paragraph.body.portionList[1].highlightColor, highlightColor);

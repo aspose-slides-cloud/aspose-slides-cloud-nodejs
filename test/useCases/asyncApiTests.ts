@@ -231,6 +231,76 @@ describe("Async Api tests", () => {
         });
     });
 
+    it("async split", () => {
+        return TestUtils.runTest(async () => {
+            const slidesApi = TestUtils.getSlidesApi();
+            const outFolder = "splitResult";
+
+            await slidesApi.deleteFolder(outFolder, null, true);
+            await slidesApi.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+
+            const api = TestUtils.getSlidesAsyncApi();
+            const startResult = await api.startSplit(TestUtils.fileName, model.SlideExportFormat.Png, null, null, null, null, null, outFolder, TestUtils.password, TestUtils.folderName);
+            assert.equal(201, startResult.response.statusCode);
+            const operationId = startResult.body;
+
+            var operation = null;
+            const maxTries = 20;
+            const sleepTimeout = 3;
+            for (var i = 0; i < maxTries; i++) {
+                await TestUtils.sleep(sleepTimeout);
+                var getStatusResult = await api.getOperationStatus(operationId);
+                operation = getStatusResult. body as model.Operation;
+                assert.equal(200, getStatusResult.response.statusCode);
+                if (operation.status != model.Operation.StatusEnum.Created
+                    && operation.status != model.Operation.StatusEnum.Enqueued
+                    && operation.status != model.Operation.StatusEnum.Started) {
+                    break;
+                }
+            }
+            assert.equal(model.Operation.StatusEnum.Finished, operation.status);
+            assert(operation.error == null);
+
+            const existsResult = await slidesApi.objectExists(outFolder);
+            assert.equal(200, existsResult.response.statusCode);
+            assert((existsResult.body as model.ObjectExist).exists);
+        });
+    });
+
+    it("async upload and split", () => {
+        return TestUtils.runTest(async () => {
+            const slidesApi = TestUtils.getSlidesApi();
+            const outFolder = "splitResult";
+            await slidesApi.deleteFolder(outFolder, null, true);
+
+            const api = TestUtils.getSlidesAsyncApi();
+            const startResult = await api.startUploadAndSplit(fs.createReadStream(TestUtils.localFilePath), model.SlideExportFormat.Png, outFolder, null, null, null, null, TestUtils.password);
+            assert.equal(201, startResult.response.statusCode);
+            const operationId = startResult.body;
+
+            var operation = null;
+            const maxTries = 20;
+            const sleepTimeout = 3;
+            for (var i = 0; i < maxTries; i++) {
+                await TestUtils.sleep(sleepTimeout);
+                var getStatusResult = await api.getOperationStatus(operationId);
+                operation = getStatusResult. body as model.Operation;
+                assert.equal(200, getStatusResult.response.statusCode);
+                if (operation.status != model.Operation.StatusEnum.Created
+                    && operation.status != model.Operation.StatusEnum.Enqueued
+                    && operation.status != model.Operation.StatusEnum.Started) {
+                    break;
+                }
+            }
+            assert.equal(model.Operation.StatusEnum.Finished, operation.status);
+            assert(operation.error == null);
+
+            const existsResult = await slidesApi.objectExists(outFolder);
+            assert.equal(200, existsResult.response.statusCode);
+            assert((existsResult.body as model.ObjectExist).exists);
+        });
+    });
+
     it("async bad operation", () => {
         return TestUtils.runTest(async () => {
             const api = TestUtils.getSlidesAsyncApi();

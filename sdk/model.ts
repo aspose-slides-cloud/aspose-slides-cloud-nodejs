@@ -5578,7 +5578,7 @@ export class OleObjectFrame extends ShapeBase {
     /**
      * True if an object is visible as icon.
      */
-    isObjectIcon: boolean;
+    isObjectIcon?: boolean;
 
     /**
      * The title for OleObject icon.             
@@ -5739,7 +5739,7 @@ export class Operation {
 
     finished?: Date;
 
-    error?: string;
+    error?: OperationError;
 
 }
 export namespace Operation {
@@ -5749,7 +5749,9 @@ export namespace Operation {
         ConvertAndSave = <any> 'ConvertAndSave',
         SavePresentation = <any> 'SavePresentation',
         Merge = <any> 'Merge',
-        MergeAndSave = <any> 'MergeAndSave'
+        MergeAndSave = <any> 'MergeAndSave',
+        Split = <any> 'Split',
+        UploadAndSplit = <any> 'UploadAndSplit'
     }
     export enum StatusEnum {
         Created = <any> 'Created',
@@ -5759,6 +5761,18 @@ export namespace Operation {
         Canceled = <any> 'Canceled',
         Finished = <any> 'Finished'
     }
+}
+
+export class OperationError {
+
+    code?: string;
+
+    description?: string;
+
+    httpStatusCode: number;
+
+    message?: string;
+
 }
 
 /**
@@ -9001,7 +9015,7 @@ export class SmartArt extends ShapeBase {
     /**
      * The state of the SmartArt diagram with regard to (left-to-right) LTR or (right-to-left) RTL, if the diagram supports reversal.
      */
-    isReversed: boolean;
+    isReversed?: boolean;
 
 }
 export namespace SmartArt {
@@ -9219,7 +9233,7 @@ export class SmartArtNode {
     /**
      * True for and assistant node.
      */
-    isAssistant: boolean;
+    isAssistant?: boolean;
 
     /**
      * Node text.

@@ -7768,9 +7768,50 @@ export class SlidesApi {
     /**
      * Highlight all matches of sample in text frame text using specified color. 
      * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index.
      * @param regex Regular expression.
+     * @param color Highlighting color.
+     * @param ignoreCase True to search ignoring char case.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async highlightPresentationRegex(name: string, regex: string, color: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentReplaceResult}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling highlightPresentationRegex.');
+        }
+        // verify required parameter 'regex' is not null or undefined
+        if (regex === null || regex === undefined) {
+            throw new Error('The required parameter "regex" was null or undefined when calling highlightPresentationRegex.');
+        }
+        // verify required parameter 'color' is not null or undefined
+        if (color === null || color === undefined) {
+            throw new Error('The required parameter "color" was null or undefined when calling highlightPresentationRegex.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/highlightRegex";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "regex", regex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", color);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "DocumentReplaceResult");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Highlight all matches of sample using specified color. 
+     * @param name Document name.
+     * @param text Text sample to highlight.
      * @param color Highlighting color.
      * @param wholeWordsOnly Match only whole words.
      * @param ignoreCase True to search ignoring char case.
@@ -7778,7 +7819,53 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async highlightShapeRegex(name: string, slideIndex: number, shapeIndex: number, regex: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shape}> {
+    public async highlightPresentationText(name: string, text: string, color: string, wholeWordsOnly: boolean = null, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentReplaceResult}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling highlightPresentationText.');
+        }
+        // verify required parameter 'text' is not null or undefined
+        if (text === null || text === undefined) {
+            throw new Error('The required parameter "text" was null or undefined when calling highlightPresentationText.');
+        }
+        // verify required parameter 'color' is not null or undefined
+        if (color === null || color === undefined) {
+            throw new Error('The required parameter "color" was null or undefined when calling highlightPresentationText.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/highlightText";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "text", text);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", color);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "wholeWordsOnly", wholeWordsOnly);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "DocumentReplaceResult");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Highlight all matches of sample in text frame text using specified color. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index.
+     * @param regex Regular expression.
+     * @param color Highlighting color.
+     * @param ignoreCase True to search ignoring char case.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async highlightShapeRegex(name: string, slideIndex: number, shapeIndex: number, regex: string, color: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Shape}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling highlightShapeRegex.');
@@ -7806,7 +7893,6 @@ export class SlidesApi {
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "regex", regex);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", color);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "wholeWordsOnly", wholeWordsOnly);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
@@ -8663,6 +8749,94 @@ export class SlidesApi {
         if (image != null) 
         {
             localVarFiles.push(image);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Replace text with a new value using a regex. 
+     * @param name Document name.
+     * @param pattern Text value pattern to be replaced.
+     * @param newValue Text value to replace with.
+     * @param ignoreCase True if character case must be ignored.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async replacePresentationRegex(name: string, pattern: string, newValue: string, ignoreCase: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.DocumentReplaceResult}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling replacePresentationRegex.');
+        }
+        // verify required parameter 'pattern' is not null or undefined
+        if (pattern === null || pattern === undefined) {
+            throw new Error('The required parameter "pattern" was null or undefined when calling replacePresentationRegex.');
+        }
+        // verify required parameter 'newValue' is not null or undefined
+        if (newValue === null || newValue === undefined) {
+            throw new Error('The required parameter "newValue" was null or undefined when calling replacePresentationRegex.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/replaceRegex";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", pattern);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", newValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "DocumentReplaceResult");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Replace text with a new value using a regex. 
+     * @param document Document data.
+     * @param pattern Text regex pattern to be replaced.
+     * @param newValue Text value to replace with.
+     * @param ignoreCase True if character case must be ignored.
+     * @param password Document password.
+     */
+    public async replacePresentationRegexOnline(document: Readable, pattern: string, newValue: string, ignoreCase: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling replacePresentationRegexOnline.');
+        }
+        // verify required parameter 'pattern' is not null or undefined
+        if (pattern === null || pattern === undefined) {
+            throw new Error('The required parameter "pattern" was null or undefined when calling replacePresentationRegexOnline.');
+        }
+        // verify required parameter 'newValue' is not null or undefined
+        if (newValue === null || newValue === undefined) {
+            throw new Error('The required parameter "newValue" was null or undefined when calling replacePresentationRegexOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/replaceRegex";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", pattern);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newValue", newValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "ignoreCase", ignoreCase);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            responseType: 'arraybuffer',
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
         }
         checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -12224,6 +12398,115 @@ export class SlidesAsyncApi {
             params: queryParameters
         };
         addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param name 
+     * @param format 
+     * @param options 
+     * @param width 
+     * @param height 
+     * @param from 
+     * @param to 
+     * @param destFolder 
+     * @param password 
+     * @param folder 
+     * @param storage 
+     * @param fontsFolder 
+     */
+    public async startSplit(name: string, format: model.SlideExportFormat, options: model.ExportOptions = null, width: number = null, height: number = null, from: number = null, to: number = null, destFolder: string = null, password: string = null, folder: string = null, storage: string = null, fontsFolder: string = null): Promise<{response: http.ServerResponse, body: string}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling startSplit.');
+        }
+        // verify required parameter 'format' is not null or undefined
+        if (format === null || format === undefined) {
+            throw new Error('The required parameter "format" was null or undefined when calling startSplit.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/{name}/split/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", width);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", height);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", from);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", to);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFolder", destFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: options,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param document Document data.
+     * @param format 
+     * @param destFolder 
+     * @param width 
+     * @param height 
+     * @param from 
+     * @param to 
+     * @param password 
+     * @param storage 
+     * @param fontsFolder 
+     * @param options 
+     */
+    public async startUploadAndSplit(document: Readable, format: model.SlideExportFormat, destFolder: string = null, width: number = null, height: number = null, from: number = null, to: number = null, password: string = null, storage: string = null, fontsFolder: string = null, options: model.ExportOptions = null): Promise<{response: http.ServerResponse, body: string}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling startUploadAndSplit.');
+        }
+        // verify required parameter 'format' is not null or undefined
+        if (format === null || format === undefined) {
+            throw new Error('The required parameter "format" was null or undefined when calling startUploadAndSplit.');
+        }
+        // verify value of enum parameter 'format' is valid
+        if (!Object.keys(model.SlideExportFormat).filter(i => model.SlideExportFormat[i].toLowerCase() == format.toString().toLowerCase()).length) {
+            throw new Error('Invalid value for format: ' + format + '. Must be one of the following: ' + Object.keys(model.SlideExportFormat).map(key => model.SlideExportFormat[key]).join());
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/split/{format}";
+        localVarPath = addPathParameterToUrl(localVarPath, "format", ObjectSerializer.toString(format));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFolder", destFolder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", width);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", height);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", from);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", to);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsFolder", fontsFolder);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: options,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "string");
         return Promise.resolve({ body: result, response });

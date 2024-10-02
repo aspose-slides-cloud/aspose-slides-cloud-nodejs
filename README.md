@@ -27,6 +27,10 @@ You may want to check out Aspose free [Powerpoint to PDF](https://products.aspos
 **Web:** HTML/HTML5
 **Other:** MPEG4, SWF (export whole presentations)
 
+## Enhancements in Version 24.9
+
+* Added **Upload** and **Download** methods to async API. They are identical to **UploadFile** and **DownloadFile** methods of the regular API, but file size is not restricted for them.
+
 ## Enhancements in Version 24.8
 
 * Added **StartSplit** and **StartUploadAndSplit** methods to async API.

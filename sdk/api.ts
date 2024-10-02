@@ -12104,6 +12104,29 @@ export class SlidesAsyncApi {
 
     /**
      *  
+     * @param path 
+     * @param storageName 
+     * @param versionId 
+     */
+    public async download(path: string = null, storageName: string = null, versionId: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/storage/file/{path}";
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", versionId);
+        const requestOptions = {
+            method: "GET",
+            url: localVarPath,
+            responseType: 'arraybuffer',
+            params: queryParameters
+        };
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
      * @param id 
      */
     public async getOperationResult(id: string): Promise<{response: http.ServerResponse, body: Buffer}> {
@@ -12509,6 +12532,37 @@ export class SlidesAsyncApi {
         checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "string");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     *  
+     * @param path 
+     * @param file File to upload
+     * @param storageName 
+     */
+    public async upload(path: string = null, file: Readable, storageName: string = null): Promise<{response: http.ServerResponse, body: model.FilesUploadResult}> {
+        // verify required parameter 'file' is not null or undefined
+        if (file === null || file === undefined) {
+            throw new Error('The required parameter "file" was null or undefined when calling upload.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/async/storage/file/{path}";
+        localVarPath = addPathParameterToUrl(localVarPath, "path", ObjectSerializer.toString(path));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", storageName);
+        const requestOptions = {
+            method: "PUT",
+            url: localVarPath,
+            params: queryParameters
+        };
+        let localVarFiles = [];
+        if (file != null) 
+        {
+            localVarFiles.push(file);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         return Promise.resolve({ body: result, response });
     }
 }

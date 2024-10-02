@@ -639,7 +639,7 @@ export class ShapeBase extends ResourceBase {
     /**
      * Gets z-order position of shape
      */
-    zOrderPosition: number;
+    zOrderPosition?: number;
 
     /**
      * Gets or sets the fill format.
@@ -9991,12 +9991,12 @@ export class TableRow {
     /**
      * Minimal height of the row.
      */
-    minimalHeight: number;
+    minimalHeight?: number;
 
     /**
      * Height of the row.
      */
-    height: number;
+    height?: number;
 
 }
 

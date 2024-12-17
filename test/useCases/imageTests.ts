@@ -122,11 +122,19 @@ describe("Image tests", () => {
             return null;
         })
     });
+    it("compress image",()=>{
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
+            var response = await  api.compressImage(TestUtils.fileName, 2, 2, 150, false, TestUtils.password, TestUtils.folderName);
+            assert.equal(200, response.response.statusCode);
+        })
+    });
     it("delete picture cropped areas",()=>{
         return TestUtils.runTest(async () => {
             const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
-            var response = await  api.deletePictureCroppedAreas(TestUtils.fileName, 2, 2, TestUtils.password, TestUtils.folderName);
+            var response = await  api.compressImage(TestUtils.fileName, 2, 2, null, true, TestUtils.password, TestUtils.folderName);
             assert.equal(200, response.response.statusCode);
         })
     });
@@ -134,8 +142,8 @@ describe("Image tests", () => {
         return TestUtils.runTest(async () => {
             const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath)
-            return api.deletePictureCroppedAreas(TestUtils.fileName, 2, 3, TestUtils.password, TestUtils.folderName)
-                .then(() => assert.fail("deletePictureCroppedAreas works only with picture frames"))
+            return api.compressImage(TestUtils.fileName, 2, 3, null, true, TestUtils.password, TestUtils.folderName)
+                .then(() => assert.fail("compressImage works only with picture frames"))
                 .catch((err) => {
                     assert.equal(400, err.code);
                 });

@@ -47,9 +47,10 @@ export class SlidesApi {
      * @param authBaseUrl Base authentication Url.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
      * @param timeout Timeout (in seconds) for an operation. Applies to the Slides operation, not to the HTTP request.
+     * @param httpRequestTimeout Timeout (in seconds) for an HTTP request. Applies to the HTTP request, not to the Slides operation.
      */
-    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
-        this._configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout);
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number, httpRequestTimeout?: number) {
+        this._configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout, httpRequestTimeout);
     }
 
     /**
@@ -222,6 +223,51 @@ export class SlidesApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Deletes cropped areas of a pictire. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must refer to a picture frame).
+     * @param resolution Target resolution in DPI.
+     * @param deletePictureCroppedAreas true to delete picture cropped areas.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Presentation storage.
+     */
+    public async compressImage(name: string, slideIndex: number, shapeIndex: number, resolution: number = null, deletePictureCroppedAreas: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling compressImage.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling compressImage.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling compressImage.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/compressImage";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", resolution);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "deletePictureCroppedAreas", deletePictureCroppedAreas);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
     }
 
     /**
@@ -2840,6 +2886,7 @@ export class SlidesApi {
     }
 
     /**
+     * @deprecated.
      * Deletes cropped areas of a pictire. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -6717,7 +6764,7 @@ export class SlidesApi {
      * @param folder Document folder.
      * @param storage Document storage.
      * @param shapeType Shape type.
-     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
+     * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2\").
      */
     public async getShapes(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null, shapeType: model.ShapeType = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.Shapes}> {
         // verify required parameter 'name' is not null or undefined
@@ -12097,9 +12144,10 @@ export class SlidesAsyncApi {
      * @param authBaseUrl Base authentication Url.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
      * @param timeout Timeout (in seconds) for an operation. Applies to the Slides operation, not to the HTTP request.
+     * @param httpRequestTimeout Timeout (in seconds) for an HTTP request. Applies to the HTTP request, not to the Slides operation.
      */
-    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
-        this._configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout);
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number, httpRequestTimeout?: number) {
+        this._configuration = new Configuration(appSid, appKey, baseUrl, authBaseUrl, debugMode, timeout, httpRequestTimeout);
     }
 
     /**

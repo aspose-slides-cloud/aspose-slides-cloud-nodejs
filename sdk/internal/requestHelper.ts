@@ -160,9 +160,12 @@ async function invokeApiMethodInternal(requestOptions: any, configuration: Confi
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v24.9.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v24.12.0";
     if (configuration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = configuration.timeout;
+    }
+    if (configuration.httpRequestTimeout) {
+        requestOptions.timeout = configuration.httpRequestTimeout * 1000;
     }
     for (var key in configuration.customHeaders) {
         requestOptions.headers[key] = configuration.customHeaders[key];

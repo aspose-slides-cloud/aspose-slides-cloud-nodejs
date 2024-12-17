@@ -2637,6 +2637,11 @@ export class CommonSlideViewProperties {
      */
     variableScale?: boolean;
 
+    /**
+     * Drawing guides
+     */
+    drawingGuides?: Array<DrawingGuide>;
+
 }
 
 /**
@@ -2902,6 +2907,29 @@ export class DocumentReplaceResult extends Document {
 }
 
 /**
+ * Drawing guide.
+ */
+export class DrawingGuide {
+
+    /**
+     * Last used view mode.
+     */
+    orientation: DrawingGuide.OrientationEnum;
+
+    /**
+     * Horizontal bar state.
+     */
+    position: number;
+
+}
+export namespace DrawingGuide {
+    export enum OrientationEnum {
+        Horizontal = <any> 'Horizontal',
+        Vertical = <any> 'Vertical'
+    }
+}
+
+/**
  * Represents a Duotone effect.
  */
 export class DuotoneEffect extends ImageTransformEffect {
@@ -3045,6 +3073,7 @@ export namespace Effect {
         Appear = <any> 'Appear',
         CurveUpDown = <any> 'CurveUpDown',
         Ascend = <any> 'Ascend',
+        FloatUp = <any> 'FloatUp',
         Blast = <any> 'Blast',
         Blinds = <any> 'Blinds',
         Blink = <any> 'Blink',
@@ -3077,6 +3106,7 @@ export namespace Effect {
         Darken = <any> 'Darken',
         Desaturate = <any> 'Desaturate',
         Descend = <any> 'Descend',
+        Floatdown = <any> 'Floatdown',
         Diamond = <any> 'Diamond',
         Dissolve = <any> 'Dissolve',
         EaseInOut = <any> 'EaseInOut',
@@ -3205,6 +3235,8 @@ export namespace Effect {
         BottomLeft = <any> 'BottomLeft',
         BottomRight = <any> 'BottomRight',
         Center = <any> 'Center',
+        ObjectCenter = <any> 'ObjectCenter',
+        SlideCenter = <any> 'SlideCenter',
         Clockwise = <any> 'Clockwise',
         CounterClockwise = <any> 'CounterClockwise',
         GradualAndCycleClockwise = <any> 'GradualAndCycleClockwise',
@@ -3403,6 +3435,11 @@ export class ExportOptions {
      * Default regular font for rendering the presentation. 
      */
     defaultRegularFont?: string;
+
+    /**
+     * True to delete delete all embedded binary objects.
+     */
+    deleteEmbeddedBinaryObjects?: boolean;
 
     /**
      * Default regular font for rendering the presentation. 
@@ -6509,6 +6546,11 @@ export class PdfExportOptions extends ExportOptions {
      */
     rasterizeUnsupportedFontStyles?: boolean;
 
+    /**
+     * True to convert all OLE data from the presentation to embedded files in the resulting PDF.
+     */
+    includeOleData?: boolean;
+
 }
 export namespace PdfExportOptions {
     export enum TextCompressionEnum {
@@ -6577,6 +6619,36 @@ export class PictureFill extends FillFormat {
     dpi: number;
 
     /**
+     * The horizontal offset of the texture from the shape's origin in points. A positive value moves the texture to the right, while a negative value moves it to the left.
+     */
+    tileOffsetX?: number;
+
+    /**
+     * The vertical offset of the texture from the shape's origin in points. A positive value moves the texture down, while a negative value moves it up.
+     */
+    tileOffsetY?: number;
+
+    /**
+     * The horizontal scale for the texture fill as a percentage.
+     */
+    tileScaleX?: number;
+
+    /**
+     * The vertical scale for the texture fill as a percentage.
+     */
+    tileScaleY?: number;
+
+    /**
+     * The way texture is aligned within the shape. This setting controls the starting point of the texture pattern and how it repeats across the shape.
+     */
+    tileAlignment?: PictureFill.TileAlignmentEnum;
+
+    /**
+     * Flips the texture tile around its horizontal, vertical or both axis.
+     */
+    tileFlip?: PictureFill.TileFlipEnum;
+
+    /**
      * Internal image link.
      */
     image?: ResourceUri;
@@ -6603,6 +6675,25 @@ export class PictureFill extends FillFormat {
 
 }
 export namespace PictureFill {
+    export enum TileAlignmentEnum {
+        TopLeft = <any> 'TopLeft',
+        Top = <any> 'Top',
+        TopRight = <any> 'TopRight',
+        Left = <any> 'Left',
+        Center = <any> 'Center',
+        Right = <any> 'Right',
+        BottomLeft = <any> 'BottomLeft',
+        Bottom = <any> 'Bottom',
+        BottomRight = <any> 'BottomRight',
+        NotDefined = <any> 'NotDefined'
+    }
+    export enum TileFlipEnum {
+        NoFlip = <any> 'NoFlip',
+        FlipX = <any> 'FlipX',
+        FlipY = <any> 'FlipY',
+        FlipBoth = <any> 'FlipBoth',
+        NotDefined = <any> 'NotDefined'
+    }
     export enum PictureFillModeEnum {
         Tile = <any> 'Tile',
         Stretch = <any> 'Stretch'
@@ -8136,7 +8227,7 @@ export class Shape extends GeometryShape {
     /**
      * Get or sets list to paragraphs list
      */
-    paragraphs?: ResourceUri;
+    paragraphs?: Array<Paragraph>;
 
     /**
      * Returns TextFrame's formatting properties.
@@ -10756,6 +10847,11 @@ export class ViewProperties extends ResourceBase {
      * True if the comments should be shown.
      */
     showComments?: ViewProperties.ShowCommentsEnum;
+
+    /**
+     * The grid spacing that should be used for the grid underlying the presentation document, in points.
+     */
+    gridSpacing?: number;
 
 }
 export namespace ViewProperties {

@@ -60,6 +60,11 @@ export class Configuration {
     public timeout: number;
 
     /**
+     *  Gets or sets HTTP request timeout in seconds. 0 stands for no timeout. The timeout applies to the HTTP request, not to the Slides operation.
+     */
+    public httpRequestTimeout: number;
+
+    /**
      *  Gets or sets a value indicating whether debug mode is enabled. In debug mode all requests and responses are logged to console.
      */
     public debugMode: boolean;
@@ -74,7 +79,7 @@ export class Configuration {
      */
     public allowInsecureRequests: boolean;
 
-    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number) {
+    constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number, httpRequestTimeout?: number) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
             this.authBaseUrl = baseUrl;
@@ -87,6 +92,7 @@ export class Configuration {
         this.appKey = appKey;
         this.debugMode = debugMode;
         this.timeout = timeout;
+        this.httpRequestTimeout = httpRequestTimeout;
         this.customHeaders = {};
         this.allowInsecureRequests = false;
     }

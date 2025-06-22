@@ -23,6 +23,7 @@
 */
 
 var assert = require('assert');
+var fs = require('fs');
 import * as model from "../../sdk/model";
 import {TestUtils} from "../testUtils";
 
@@ -70,6 +71,30 @@ describe("Shape format tests", () => {
                         assert(getResult.body as model.Shape);
                         assert((getResult.body as model.Shape).fillFormat as model.SolidFill);
                         assert((dto.fillFormat as model.SolidFill).color, ((getResult.body as model.Shape).fillFormat as model.SolidFill).color);
+                    });
+                });
+            });
+        });
+    });
+
+    it("shape format picture fill", () => {
+        return TestUtils.runTest(() => {
+            const slideIndex = 1;
+            const shapeIndex = 1;
+            const api = TestUtils.getSlidesApi();
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                const dto = new model.Shape();
+                const fillFormat = new model.PictureFill();
+                fillFormat.base64Data = fs.readFileSync("TestData/watermark.png").toString("base64");
+                fillFormat.resolution = 150;
+                dto.fillFormat = fillFormat;
+                return api.updateShape(TestUtils.fileName, slideIndex, shapeIndex, dto, TestUtils.password, TestUtils.folderName).then((putResult) => {
+                    assert.equal(200, putResult.response.statusCode);
+                    assert(putResult.body as model.Shape);
+                    return api.getShape(TestUtils.fileName, slideIndex, shapeIndex, TestUtils.password, TestUtils.folderName).then((getResult) => {
+                        assert.equal(200, getResult.response.statusCode);
+                        assert(getResult.body as model.Shape);
+                        assert((getResult.body as model.Shape).fillFormat as model.PictureFill);
                     });
                 });
             });

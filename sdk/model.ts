@@ -958,6 +958,11 @@ export class AudioFrame extends GeometryShape {
     volume?: AudioFrame.VolumeEnum;
 
     /**
+     * Audio volume percent.
+     */
+    volumeValue?: number;
+
+    /**
      * Audio data encoded in base64.
      */
     base64Data?: string;
@@ -971,6 +976,26 @@ export class AudioFrame extends GeometryShape {
      * Determines whether audio is automatically rewound to start after playing.
      */
     rewindAudio?: boolean;
+
+    /**
+     * Time duration for the initial fade-in of the media in milliseconds.
+     */
+    fadeInDuration?: number;
+
+    /**
+     * Time duration for the ending fade-out of the media in milliseconds.
+     */
+    fadeOutDuration?: number;
+
+    /**
+     * Time duration to be removed from the beginning of the media during playback in milliseconds.
+     */
+    trimFromStart?: number;
+
+    /**
+     * Time duration to be removed from the end of the media during playback in milliseconds.
+     */
+    trimFromEnd?: number;
 
     /**
      * Picture fill format.
@@ -1976,6 +2001,46 @@ export namespace Camera {
         PerspectiveRight = <any> 'PerspectiveRight',
         NotDefined = <any> 'NotDefined'
     }
+}
+
+/**
+ * Represents list of Links to Paragraphs resources
+ */
+export class CaptionTrack extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * Caption ID.
+     */
+    captionId: string;
+
+    /**
+     * Label.
+     */
+    label?: string;
+
+    /**
+     * Caption track data as string.
+     */
+    dataAsString?: string;
+
+}
+
+/**
+ * Represents list of Links to Paragraphs resources
+ */
+export class CaptionTracks extends ResourceBase {
+    constructor() {
+        super();
+    }
+
+    /**
+     * List of caption tracks.
+     */
+    items?: Array<CaptionTrack>;
+
 }
 
 /**
@@ -3423,7 +3488,8 @@ export enum ExportFormat {
     'Xaml' = <any> 'Xaml',
     'Mpeg4' = <any> 'Mpeg4',
     'Md' = <any> 'Md',
-    'Xml' = <any> 'Xml'
+    'Xml' = <any> 'Xml',
+    'Emf' = <any> 'Emf'
 }
 
 /**
@@ -3455,6 +3521,11 @@ export class ExportOptions {
      * Gets of sets list of font substitution rules.
      */
     fontSubstRules?: Array<FontSubstRule>;
+
+    /**
+     * True to skip hyperlinks with javascript calls when saving the presentation.
+     */
+    skipJavaScriptLinks?: boolean;
 
     format?: string;
 
@@ -4270,12 +4341,17 @@ export class Html5ExportOptions extends ExportOptions {
     /**
      * Slides layouting options
      */
-    notesCommentsLayouting?: NotesCommentsLayoutingOptions;
+    slidesLayoutOptions?: SlidesLayoutOptions;
 
     /**
      * Path to custom templates
      */
     templatesPath?: string;
+
+    /**
+     * true to disable ligatures in the rendered output.
+     */
+    disableFontLigatures?: boolean;
 
 }
 export namespace Html5ExportOptions {
@@ -4329,6 +4405,11 @@ export class HtmlExportOptions extends ExportOptions {
      * Slides layouting options
      */
     slidesLayoutOptions?: SlidesLayoutOptions;
+
+    /**
+     * true to disable ligatures in the rendered output.
+     */
+    disableFontLigatures?: boolean;
 
 }
 export namespace HtmlExportOptions {
@@ -5079,6 +5160,21 @@ export class MarkdownExportOptions extends ExportOptions {
      */
     showHiddenSlides?: boolean;
 
+    /**
+     * true to remove empty or whitespace-only lines from the final Markdown output. Default is false. 
+     */
+    removeEmptyLines?: boolean;
+
+    /**
+     * Specifies how repeated space characters are preserved to maintain visual alignment. 
+     */
+    handleRepeatedSpaces?: MarkdownExportOptions.HandleRepeatedSpacesEnum;
+
+    /**
+     * The format of slide number headers. 
+     */
+    slideNumberFormat?: string;
+
 }
 export namespace MarkdownExportOptions {
     export enum ExportTypeEnum {
@@ -5116,6 +5212,11 @@ export namespace MarkdownExportOptions {
         Windows = <any> 'Windows',
         Unix = <any> 'Unix',
         Mac = <any> 'Mac'
+    }
+    export enum HandleRepeatedSpacesEnum {
+        None = <any> 'None',
+        AlternateSpacesToNbsp = <any> 'AlternateSpacesToNbsp',
+        MultipleSpacesToNbsp = <any> 'MultipleSpacesToNbsp'
     }
 }
 
@@ -6664,6 +6765,16 @@ export class PictureFill extends FillFormat {
     svgData?: string;
 
     /**
+     * true to delete picture cropped areas on save.
+     */
+    deletePictureCroppedAreas?: boolean;
+
+    /**
+     * true to compress the picture image with the specified resolution (in dpi) on save.
+     */
+    resolution?: number;
+
+    /**
      * Fill mode.
      */
     pictureFillMode: PictureFill.PictureFillModeEnum;
@@ -7358,6 +7469,11 @@ export class PptxExportOptions extends ExportOptions {
      */
     zip64Mode?: PptxExportOptions.Zip64ModeEnum;
 
+    /**
+     * True to refresh the presentation thumbnail on save
+     */
+    refreshThumbnail?: boolean;
+
 }
 export namespace PptxExportOptions {
     export enum ConformanceEnum {
@@ -7930,7 +8046,8 @@ export namespace Save {
         Xaml = <any> 'Xaml',
         Mpeg4 = <any> 'Mpeg4',
         Md = <any> 'Md',
-        Xml = <any> 'Xml'
+        Xml = <any> 'Xml',
+        Emf = <any> 'Emf'
     }
 }
 
@@ -7971,7 +8088,8 @@ export namespace SaveShape {
         Gif = <any> 'Gif',
         Bmp = <any> 'Bmp',
         Tiff = <any> 'Tiff',
-        Svg = <any> 'Svg'
+        Svg = <any> 'Svg',
+        Emf = <any> 'Emf'
     }
 }
 
@@ -8041,7 +8159,8 @@ export namespace SaveSlide {
         Xaml = <any> 'Xaml',
         Html5 = <any> 'Html5',
         Md = <any> 'Md',
-        Xml = <any> 'Xml'
+        Xml = <any> 'Xml',
+        Emf = <any> 'Emf'
     }
 }
 
@@ -8289,7 +8408,8 @@ export enum ShapeExportFormat {
     'Gif' = <any> 'Gif',
     'Bmp' = <any> 'Bmp',
     'Tiff' = <any> 'Tiff',
-    'Svg' = <any> 'Svg'
+    'Svg' = <any> 'Svg',
+    'Emf' = <any> 'Emf'
 }
 
 /**
@@ -8614,7 +8734,8 @@ export enum SlideExportFormat {
     'Xaml' = <any> 'Xaml',
     'Html5' = <any> 'Html5',
     'Md' = <any> 'Md',
-    'Xml' = <any> 'Xml'
+    'Xml' = <any> 'Xml',
+    'Emf' = <any> 'Emf'
 }
 
 /**
@@ -9594,6 +9715,11 @@ export class SvgExportOptions extends ExportOptions {
      */
     useFrameRotation?: boolean;
 
+    /**
+     * true to disable ligatures in the rendered output.
+     */
+    disableFontLigatures?: boolean;
+
 }
 export namespace SvgExportOptions {
     export enum PicturesCompressionEnum {
@@ -9696,42 +9822,12 @@ export class SwfExportOptions extends ExportOptions {
     jpegQuality?: number;
 
     /**
-     * Gets or sets the position of the notes on the page.
+     * Slides layouting options
      */
-    notesPosition?: SwfExportOptions.NotesPositionEnum;
-
-    /**
-     * Gets or sets the position of the comments on the page.
-     */
-    commentsPosition?: SwfExportOptions.CommentsPositionEnum;
-
-    /**
-     * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
-     */
-    commentsAreaWidth?: number;
-
-    /**
-     * Gets or sets the color of comments area (Applies only if comments are displayed on the right).
-     */
-    commentsAreaColor?: string;
-
-    /**
-     * True if comments that have no author are displayed. (Applies only if comments are displayed).
-     */
-    showCommentsByNoAuthor?: boolean;
+    slidesLayoutOptions?: SlidesLayoutOptions;
 
 }
 export namespace SwfExportOptions {
-    export enum NotesPositionEnum {
-        None = <any> 'None',
-        BottomFull = <any> 'BottomFull',
-        BottomTruncated = <any> 'BottomTruncated'
-    }
-    export enum CommentsPositionEnum {
-        None = <any> 'None',
-        Bottom = <any> 'Bottom',
-        Right = <any> 'Right'
-    }
 }
 
 /**

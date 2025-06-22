@@ -102,6 +102,35 @@ describe("Image tests", () => {
             });
         });
     });
+    it("download quality", () => {
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getSlidesApi();
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.downloadImage(TestUtils.fileName, 1, model.ImageExportFormat.Jpeg, TestUtils.password, TestUtils.folderName, null, 100).then((goodResult) => {
+                    assert.equal(200, goodResult.response.statusCode);
+                    return api.downloadImage(TestUtils.fileName, 1, model.ImageExportFormat.Jpeg, TestUtils.password, TestUtils.folderName, null, 50).then((badResult) => {
+                        assert.equal(200, badResult.response.statusCode);
+                        assert(goodResult.body.length > badResult.body.length);
+                    });
+                });
+            });
+        });
+    });
+    it("download quality useless", () => {
+        return TestUtils.runTest(() => {
+            const api = TestUtils.getSlidesApi();
+            return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
+                return api.downloadImage(TestUtils.fileName, 1, model.ImageExportFormat.Png, TestUtils.password, TestUtils.folderName, null, 100).then((goodResult) => {
+                    assert.equal(200, goodResult.response.statusCode);
+                    return api.downloadImage(TestUtils.fileName, 1, model.ImageExportFormat.Png, TestUtils.password, TestUtils.folderName, null, 50).then((badResult) => {
+                        assert.equal(200, badResult.response.statusCode);
+                        //Quality property only has effect on Jpeg images so these two must be identical
+                        assert.equal(goodResult.body.length, badResult.body.length);
+                    });
+                });
+            });
+        });
+    });
     it("replace image",()=>{
         return TestUtils.runTest(async () => {
             const api = TestUtils.getSlidesApi();

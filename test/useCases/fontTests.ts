@@ -81,7 +81,19 @@ describe("Font tests", () => {
         });
     });
 
-    it("set embedded font from request", () => {
+    it("set embedded fonts", () => {
+        return TestUtils.runTest(async () => {
+            const fontName = "Calibri";
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            const result = await api.setEmbeddedFonts(TestUtils.fileName, null, [ fontName ], false, TestUtils.password, TestUtils.folderName);
+            assert.equal(4, result.body.list.length);
+            assert.equal(true, result.body.list[2].isEmbedded);
+            assert.equal(fontName, result.body.list[2].fontName);
+        });
+    });
+
+    it("set embedded fonts from request", () => {
         return TestUtils.runTest(async () => {
             const fontFileName = "calibri.ttf";
             const fontName = "Calibri";
@@ -90,14 +102,24 @@ describe("Font tests", () => {
             
             const api = TestUtils.getSlidesApi();
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
-            const result = await api.setEmbeddedFontFromRequest(stream, TestUtils.fileName, false, TestUtils.password, TestUtils.folderName);
+            const result = await api.setEmbeddedFonts(TestUtils.fileName, [ stream ], null, false, TestUtils.password, TestUtils.folderName);
             assert.equal(4, result.body.list.length);
             assert.equal(true, result.body.list[2].isEmbedded);
             assert.equal(fontName, result.body.list[2].fontName);
         });
     });
 
-    it("set embedded font from request online", () => {
+    it("set embedded fonts online", () => {
+        return TestUtils.runTest(async () => {
+            const fontName = "Calibri";
+            const fileStream = fs.createReadStream(TestUtils.localFilePath);
+            const api = TestUtils.getSlidesApi();
+            const result = await api.setEmbeddedFontsOnline(fileStream, null, [ fontName ], false, TestUtils.password);
+            assert.equal(200, result.response.statusCode);
+        });
+    });
+
+    it("set embedded fonts from request online", () => {
         return TestUtils.runTest(async () => {
             const fontFileName = "calibri.ttf";
 
@@ -105,7 +127,7 @@ describe("Font tests", () => {
             const fontStream = fs.createReadStream("TestData/" + fontFileName);
             
             const api = TestUtils.getSlidesApi();
-            const result = await api.setEmbeddedFontFromRequestOnline(fileStream, fontStream, false, TestUtils.password);
+            const result = await api.setEmbeddedFontsOnline(fileStream, [ fontStream ], null, false, TestUtils.password);
             assert.equal(200, result.response.statusCode);
         });
     });

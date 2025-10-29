@@ -26,7 +26,7 @@ var assert = require('assert');
 import * as model from "../../sdk/model";
 import {TestUtils} from "../testUtils";
 
-describe("Video tests", () => {
+describe("Audio tests", () => {
     it("caption tracks", () => {
         const slideIndex = 3;
         const shapeIndex = 3;
@@ -37,7 +37,7 @@ describe("Video tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                const dto = new model.VideoFrame();
+                const dto = new model.AudioFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
                 return api.createShape(TestUtils.fileName, slideIndex, dto, null, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
                     assert.equal(201, createResult.response.statusCode);

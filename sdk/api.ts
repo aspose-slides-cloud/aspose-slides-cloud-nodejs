@@ -704,6 +704,56 @@ export class SlidesApi {
     }
 
     /**
+     * Create video/audio captions track. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must refer to a video or audio frame).
+     * @param label Caption track label.
+     * @param data Caption track data.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Presentation storage.
+     */
+    public async createCaptionTrack(name: string, slideIndex: number, shapeIndex: number, label: string, data: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.CaptionTrack}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling createCaptionTrack.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling createCaptionTrack.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createCaptionTrack.');
+        }
+        // verify required parameter 'label' is not null or undefined
+        if (label === null || label === undefined) {
+            throw new Error('The required parameter "label" was null or undefined when calling createCaptionTrack.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "label", label);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            data: data,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        addHeaderParameter(requestOptions.headers, "Content-type", "text/plain");
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "CaptionTrack");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Add a new category to a chart. 
      * @param name Document name.
      * @param slideIndex Slide index.
@@ -2017,56 +2067,6 @@ export class SlidesApi {
     }
 
     /**
-     * Create video captions track. 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index (must refer to a picture frame).
-     * @param label Caption track label.
-     * @param data Caption track data.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Presentation storage.
-     */
-    public async createVideoCaptionTrack(name: string, slideIndex: number, shapeIndex: number, label: string, data: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.CaptionTrack}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling createVideoCaptionTrack.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling createVideoCaptionTrack.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling createVideoCaptionTrack.');
-        }
-        // verify required parameter 'label' is not null or undefined
-        if (label === null || label === undefined) {
-            throw new Error('The required parameter "label" was null or undefined when calling createVideoCaptionTrack.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "label", label);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions = {
-            method: "POST",
-            headers: {},
-            url: localVarPath,
-            data: data,
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        addHeaderParameter(requestOptions.headers, "Content-type", "text/plain");
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "CaptionTrack");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
      * Adds a text watermark to each slide of the presentation. Text watermark can be setup via method arguments or withing Shape DTO for detailed customization. Both options are applicable simultaneously.  
      * @param name Document name.
      * @param shape Shape DTO
@@ -2413,6 +2413,94 @@ export class SlidesApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
         return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Delete video/audio captions track. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must refer to a video or audio frame).
+     * @param captionsIndex Captions track index.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Presentation storage.
+     */
+    public async deleteCaptionTrack(name: string, slideIndex: number, shapeIndex: number, captionsIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteCaptionTrack.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteCaptionTrack.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteCaptionTrack.');
+        }
+        // verify required parameter 'captionsIndex' is not null or undefined
+        if (captionsIndex === null || captionsIndex === undefined) {
+            throw new Error('The required parameter "captionsIndex" was null or undefined when calling deleteCaptionTrack.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks/{captionsIndex}";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "captionsIndex", ObjectSerializer.toString(captionsIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "DELETE",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
+    }
+
+    /**
+     * Delete all video/audio captions tracks. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must refer to a video frame).
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Presentation storage.
+     */
+    public async deleteCaptionTracks(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling deleteCaptionTracks.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteCaptionTracks.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteCaptionTracks.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "DELETE",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        
+        return Promise.resolve({ response });
     }
 
     /**
@@ -4413,94 +4501,6 @@ export class SlidesApi {
     }
 
     /**
-     * Delete video captions track. 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index (must refer to a video frame).
-     * @param captionsIndex Captions track index.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Presentation storage.
-     */
-    public async deleteVideoCaptionTrack(name: string, slideIndex: number, shapeIndex: number, captionsIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteVideoCaptionTrack.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteVideoCaptionTrack.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteVideoCaptionTrack.');
-        }
-        // verify required parameter 'captionsIndex' is not null or undefined
-        if (captionsIndex === null || captionsIndex === undefined) {
-            throw new Error('The required parameter "captionsIndex" was null or undefined when calling deleteVideoCaptionTrack.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks/{captionsIndex}";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "captionsIndex", ObjectSerializer.toString(captionsIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions = {
-            method: "DELETE",
-            headers: {},
-            url: localVarPath,
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        
-        return Promise.resolve({ response });
-    }
-
-    /**
-     * Delete all video captions tracks. 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index (must refer to a video frame).
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Presentation storage.
-     */
-    public async deleteVideoCaptionTracks(name: string, slideIndex: number, shapeIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling deleteVideoCaptionTracks.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling deleteVideoCaptionTracks.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling deleteVideoCaptionTracks.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions = {
-            method: "DELETE",
-            headers: {},
-            url: localVarPath,
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        
-        return Promise.resolve({ response });
-    }
-
-    /**
      * Removes shapes with name \&quot;watermark\&quot; from the presentation. 
      * @param name Document name.
      * @param shapeName Name of the watermark shape. If null, default value \"watermark\"is used.
@@ -5584,6 +5584,49 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "SlideBackground");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Gets video/audio captions tracks. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (must refer to a video or audio frame).
+     * @param includeData true to include caption data string values in the response.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Presentation storage.
+     */
+    public async getCaptionTracks(name: string, slideIndex: number, shapeIndex: number, includeData: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.CaptionTracks}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling getCaptionTracks.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling getCaptionTracks.');
+        }
+        // verify required parameter 'shapeIndex' is not null or undefined
+        if (shapeIndex === null || shapeIndex === undefined) {
+            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getCaptionTracks.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeData", includeData);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "GET",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "CaptionTracks");
         return Promise.resolve({ body: result, response });
     }
 
@@ -7012,11 +7055,13 @@ export class SlidesApi {
      * Read slide images info. 
      * @param name Document name.
      * @param slideIndex Slide index.
+     * @param shapeIndex Shape index (null to search all shapes).
+     * @param shapeAltText Shape alt name (null to search all shapes).
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      */
-    public async getSlideImages(name: string, slideIndex: number, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Images}> {
+    public async getSlideImages(name: string, slideIndex: number, shapeIndex: number = null, shapeAltText: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.Images}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling getSlideImages.');
@@ -7029,6 +7074,8 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeIndex", shapeIndex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeAltText", shapeAltText);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
         const requestOptions = {
@@ -7884,49 +7931,6 @@ export class SlidesApi {
         addHeaderParameter(requestOptions.headers, "password", password);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "VbaProject");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Gets video captions tracks. 
-     * @param name Document name.
-     * @param slideIndex Slide index.
-     * @param shapeIndex Shape index (must refer to a picture frame).
-     * @param includeData true to include caption data string values in the response.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Presentation storage.
-     */
-    public async getVideoCaptionTracks(name: string, slideIndex: number, shapeIndex: number, includeData: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.CaptionTracks}> {
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling getVideoCaptionTracks.');
-        }
-        // verify required parameter 'slideIndex' is not null or undefined
-        if (slideIndex === null || slideIndex === undefined) {
-            throw new Error('The required parameter "slideIndex" was null or undefined when calling getVideoCaptionTracks.');
-        }
-        // verify required parameter 'shapeIndex' is not null or undefined
-        if (shapeIndex === null || shapeIndex === undefined) {
-            throw new Error('The required parameter "shapeIndex" was null or undefined when calling getVideoCaptionTracks.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/captionTracks";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
-        localVarPath = addPathParameterToUrl(localVarPath, "shapeIndex", ObjectSerializer.toString(shapeIndex));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeData", includeData);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions = {
-            method: "GET",
-            headers: {},
-            url: localVarPath,
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "CaptionTracks");
         return Promise.resolve({ body: result, response });
     }
 
@@ -10250,90 +10254,6 @@ export class SlidesApi {
     }
 
     /**
-     * Embeds font from request and returns presentation fonts info. 
-     * @param font Font data.
-     * @param name Document name.
-     * @param onlyUsed Only used characters will be embedded.
-     * @param password Document password.
-     * @param folder Document folder.
-     * @param storage Document storage.
-     */
-    public async setEmbeddedFontFromRequest(font: Readable, name: string, onlyUsed: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FontsData}> {
-        // verify required parameter 'font' is not null or undefined
-        if (font === null || font === undefined) {
-            throw new Error('The required parameter "font" was null or undefined when calling setEmbeddedFontFromRequest.');
-        }
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('The required parameter "name" was null or undefined when calling setEmbeddedFontFromRequest.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fonts/embedded";
-        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "onlyUsed", onlyUsed);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
-        const requestOptions = {
-            method: "POST",
-            headers: {},
-            url: localVarPath,
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        if (font != null) 
-        {
-            localVarFiles.push(font);
-        }
-        checkMultipartContent(requestOptions, localVarFiles);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "FontsData");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
-     * Embeds font from request and returns presentation. 
-     * @param document Document data.
-     * @param font Font data.
-     * @param onlyUsed Only used characters will be embedded.
-     * @param password Document password.
-     */
-    public async setEmbeddedFontFromRequestOnline(document: Readable, font: Readable, onlyUsed: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
-        // verify required parameter 'document' is not null or undefined
-        if (document === null || document === undefined) {
-            throw new Error('The required parameter "document" was null or undefined when calling setEmbeddedFontFromRequestOnline.');
-        }
-        // verify required parameter 'font' is not null or undefined
-        if (font === null || font === undefined) {
-            throw new Error('The required parameter "font" was null or undefined when calling setEmbeddedFontFromRequestOnline.');
-        }
-        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/fonts/embedded";
-        const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "onlyUsed", onlyUsed);
-        const requestOptions = {
-            method: "POST",
-            headers: {},
-            url: localVarPath,
-            responseType: 'arraybuffer',
-            params: queryParameters
-        };
-        addHeaderParameter(requestOptions.headers, "password", password);
-        let localVarFiles = [];
-        if (document != null) 
-        {
-            localVarFiles.push(document);
-        }
-        if (font != null) 
-        {
-            localVarFiles.push(font);
-        }
-        checkMultipartContent(requestOptions, localVarFiles);
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({ body: result, response });
-    }
-
-    /**
      * Embeds specified font and returns presentation. 
      * @param document Document data.
      * @param fontName Font name.
@@ -10367,6 +10287,84 @@ export class SlidesApi {
         if (document != null) 
         {
             localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Embeds fonts with specified names and/or fonts from request and returns presentation fonts info. 
+     * @param name Document name.
+     * @param fonts Font data.
+     * @param fontNames Font names.
+     * @param onlyUsed Only used characters will be embedded.
+     * @param password Document password.
+     * @param folder Document folder.
+     * @param storage Document storage.
+     */
+    public async setEmbeddedFonts(name: string, fonts: Array<Readable> = null, fontNames: Array<string> = null, onlyUsed: boolean = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.FontsData}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling setEmbeddedFonts.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/fonts/embedded";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontNames", fontNames);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "onlyUsed", onlyUsed);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (fonts != null) {
+            localVarFiles = localVarFiles.concat(fonts);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "FontsData");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Embeds font from request and returns presentation. 
+     * @param document Document data.
+     * @param fonts Font data.
+     * @param fontNames Font names.
+     * @param onlyUsed Only used characters will be embedded.
+     * @param password Document password.
+     */
+    public async setEmbeddedFontsOnline(document: Readable, fonts: Array<Readable> = null, fontNames: Array<string> = null, onlyUsed: boolean = null, password: string = null): Promise<{response: http.ServerResponse, body: Buffer}> {
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('The required parameter "document" was null or undefined when calling setEmbeddedFontsOnline.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/fonts/embedded";
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontNames", fontNames);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "onlyUsed", onlyUsed);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            responseType: 'arraybuffer',
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        if (fonts != null) {
+            localVarFiles = localVarFiles.concat(fonts);
         }
         checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);

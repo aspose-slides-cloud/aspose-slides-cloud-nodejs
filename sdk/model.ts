@@ -51,7 +51,8 @@ export namespace MathElement {
         Radical = <any> 'Radical',
         RightSubSuperscriptElement = <any> 'RightSubSuperscriptElement',
         SubscriptElement = <any> 'SubscriptElement',
-        SuperscriptElement = <any> 'SuperscriptElement'
+        SuperscriptElement = <any> 'SuperscriptElement',
+        Phantom = <any> 'Phantom'
     }
 }
 
@@ -6686,6 +6687,49 @@ export class PdfImportOptions {
 }
 
 /**
+ * Specifies an instance of mathematical text that contained within a MathParagraph and starts on its own line.
+ */
+export class PhantomElement extends MathElement {
+    constructor() {
+        super();
+        this.type = PhantomElement.TypeEnum.Phantom;
+    }
+
+    /**
+     * Base element
+     */
+    base?: MathElement;
+
+    /**
+     * true if the base element is displayed.
+     */
+    show?: boolean;
+
+    /**
+     * true if the the width of the base element should be treated as zero.
+     */
+    zeroWidth?: boolean;
+
+    /**
+     * true if the the ascent (height above baseline) of the base element should be treated as zero.
+     */
+    zeroAsc?: boolean;
+
+    /**
+     * true if the the descent (depth below baseline) of the base element should be treated as zero.
+     */
+    zeroDesc?: boolean;
+
+    /**
+     * true if operators and symbols inside the phantom still affect mathematical spacing around the phantom (as if visible).
+     */
+    transp?: boolean;
+
+}
+export namespace PhantomElement {
+}
+
+/**
  * Picture fill.
  */
 export class PictureFill extends FillFormat {
@@ -7072,6 +7116,11 @@ export class Portion extends ResourceBase {
     kumimoji?: Portion.KumimojiEnum;
 
     /**
+     * true to enable spell checking for the portion.
+     */
+    spellCheck?: boolean;
+
+    /**
      * Proving language ID.
      */
     languageId?: string;
@@ -7362,6 +7411,11 @@ export class PortionFormat {
      * Returns or sets the complex script font info.
      */
     complexScriptFont?: string;
+
+    /**
+     * true to enable spell checking for the portion.
+     */
+    spellCheck?: boolean;
 
 }
 export namespace PortionFormat {
@@ -9048,6 +9102,11 @@ export class SlideShowTransition {
      * Spokes.
      */
     spokes?: number;
+
+    /**
+     * The duration of the slide transition effect in milliseconds. If not set, the duration is determined automatically based on Speed and Type values.
+     */
+    duration?: number;
 
 }
 export namespace SlideShowTransition {

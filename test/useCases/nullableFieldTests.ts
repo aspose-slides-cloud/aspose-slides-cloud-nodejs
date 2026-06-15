@@ -59,7 +59,7 @@ describe("Nullable field tests", () => {
                         maxValue: max1
                     }
                 };
-                return api.createShape(TestUtils.fileName, 1, chart, null, null, TestUtils.password, TestUtils.folderName).then(() => {
+                return api.createShape(TestUtils.fileName, 1, chart, null, null, null, TestUtils.password, TestUtils.folderName).then(() => {
                     return api.getShape(TestUtils.fileName, 1, 5, TestUtils.password, TestUtils.folderName).then((result) => {
                         assert.equal(min1, (result.body as model.Chart).axes.horizontalAxis.minValue);
                         assert.equal(max1, (result.body as model.Chart).axes.horizontalAxis.maxValue);

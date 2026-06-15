@@ -106,7 +106,7 @@ describe("NotesSlide tests", () => {
                     dto.height = 200;
                     dto.shapeType = model.GeometryShape.ShapeTypeEnum.Rectangle;
                     dto.text = "New shape";
-                    return api.createSpecialSlideShape(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, dto, null, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
+                    return api.createSpecialSlideShape(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
                         assert.equal(201, createResult.response.statusCode);
                         assert.equal(dto.text, (createResult.body as model.Shape).text);
                         return api.getSpecialSlideShapes(TestUtils.fileName, slideIndex, model.SpecialSlideType.NotesSlide, TestUtils.password, TestUtils.folderName).then((result2) => {

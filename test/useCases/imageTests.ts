@@ -34,7 +34,7 @@ describe("Image tests", () => {
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 return api.getPresentationImages(TestUtils.fileName, TestUtils.password, TestUtils.folderName).then((presentationResult) => {
                     assert.equal(200, presentationResult.response.statusCode);
-                    return api.getSlideImages(TestUtils.fileName, 1, null, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
+                    return api.getSlideImages(TestUtils.fileName, 2, null, null, TestUtils.password, TestUtils.folderName).then((slideResult) => {
                         assert.equal(200, slideResult.response.statusCode);
                         assert((slideResult.body as model.Images).list.length < (presentationResult.body as model.Images).list.length);
                         return api.getSlideImages(TestUtils.fileName, 2, 2, null, TestUtils.password, TestUtils.folderName).then((shapeResult) => {

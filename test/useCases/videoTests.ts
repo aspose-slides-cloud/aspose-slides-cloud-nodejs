@@ -39,7 +39,7 @@ describe("Video tests", () => {
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.VideoFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
-                return api.createShape(TestUtils.fileName, slideIndex, dto, null, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
+                return api.createShape(TestUtils.fileName, slideIndex, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((createResult) => {
                     assert.equal(201, createResult.response.statusCode);
                     return api.getCaptionTracks(TestUtils.fileName, slideIndex, shapeIndex, null, TestUtils.password, TestUtils.folderName).then((getResult) => {
                         assert.equal(200, getResult.response.statusCode);

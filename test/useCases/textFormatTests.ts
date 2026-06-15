@@ -83,7 +83,7 @@ describe("text format tests", () => {
 
             shapeDto.textFrameFormat = textFrameFormatDto;
 
-            const result = await api.createShape(TestUtils.fileName, slideIndex, shapeDto, null, null, TestUtils.password, TestUtils.folderName);
+            const result = await api.createShape(TestUtils.fileName, slideIndex, shapeDto, null, null, null, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Shape).type, "Shape");
 
         });
@@ -117,7 +117,7 @@ describe("text format tests", () => {
 
             shapeDto.textFrameFormat = textFrameFormat;
 
-            const result = await api.createShape(TestUtils.fileName, slideIndex, shapeDto, null, null, TestUtils.password, TestUtils.folderName);
+            const result = await api.createShape(TestUtils.fileName, slideIndex, shapeDto, null, null, null, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Shape).type, "Shape");
 
         });

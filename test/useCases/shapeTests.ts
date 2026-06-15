@@ -90,7 +90,7 @@ describe("Shape tests", () => {
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.Shape();
                 dto.shapeType = model.GeometryShape.ShapeTypeEnum.Callout1;
-                return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.Shape);
                 });
@@ -118,7 +118,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.Shape(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.Shape(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Shape with undefinined type should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -131,7 +131,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.GraphicalObject(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.GraphicalObject(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("GraphicalObject should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -148,7 +148,7 @@ describe("Shape tests", () => {
                 const fill = new model.PictureFill();
                 fill.base64Data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g+ffp/AAZTAsWGL27gAAAAAElFTkSuQmCC";
                 dto.pictureFillFormat = fill;
-                return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.PictureFrame);
                 });
@@ -160,7 +160,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.PictureFrame(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.PictureFrame(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("PictureFrame with undefinined data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -175,7 +175,7 @@ describe("Shape tests", () => {
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.AudioFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
-                return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.AudioFrame);
                 });
@@ -187,7 +187,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.AudioFrame(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.AudioFrame(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("AudioFrame with undefinined data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -202,7 +202,7 @@ describe("Shape tests", () => {
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
                 const dto = new model.VideoFrame();
                 dto.base64Data = "bXAzc2FtcGxl";
-                return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.VideoFrame);
                 });
@@ -214,7 +214,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.VideoFrame(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.VideoFrame(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("VideoFrame with undefined data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -227,7 +227,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.OleObjectFrame(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.OleObjectFrame(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("OleObjectFrame  should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -259,7 +259,7 @@ describe("Shape tests", () => {
                 node2.text = "Second";
                 node2.orgChartLayout = model.SmartArtNode.OrgChartLayoutEnum.Initial;
                 dto.nodes = [node1, node2];
-                return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -298,7 +298,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.SmartArt(), null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, new model.SmartArt(), null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -310,7 +310,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.Chart(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.Chart(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Empty Chart should not have been created"))
                     .catch((err) => {
                         assert.equal(500, err.code);
@@ -385,7 +385,7 @@ describe("Shape tests", () => {
                 dto.columns = [column1, column2, column3, column4];
                 dto.firstRow = true;
                 dto.horizontalBanding = true;
-                return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -397,7 +397,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.Table(), null, null, TestUtils.password, TestUtils.folderName)
+                return api.createShape(TestUtils.fileName, 1, new model.Table(), null, null, null, TestUtils.password, TestUtils.folderName)
                     .then(() => assert.fail("Table with undefinined cell data should not have been created"))
                     .catch((err) => {
                         assert.equal(400, err.code);
@@ -410,7 +410,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.GroupShape(), null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, new model.GroupShape(), null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.GroupShape);
                 });
@@ -430,7 +430,7 @@ describe("Shape tests", () => {
                 const end = new model.ResourceUri();
                 end.href = "https://api.aspose.cloud/v3.0/slides/myPresentation.pptx/slides/1/shapes/2";
                 dto.endShapeConnectedTo = end;
-                return api.createShape(TestUtils.fileName, 1, dto, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, dto, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.SmartArt);
                 });
@@ -442,7 +442,7 @@ describe("Shape tests", () => {
         return TestUtils.runTest(() => {
             const api = TestUtils.getSlidesApi();
             return api.copyFile(TestUtils.tempFilePath, TestUtils.filePath).then(() => {
-                return api.createShape(TestUtils.fileName, 1, new model.Connector(), null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 1, new model.Connector(), null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert(result.body as model.Connector);
                 });
@@ -463,7 +463,7 @@ describe("Shape tests", () => {
             dto.height = 50;
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
-            const result = await api.createShape(TestUtils.fileName, slideIndex,  dto, null, null, TestUtils.password, TestUtils.folderName, null, "4");
+            const result = await api.createShape(TestUtils.fileName, slideIndex,  dto, null, null, null, TestUtils.password, TestUtils.folderName, null, "4");
 
             assert.equal((result.body as model.ShapeBase).type, "Shape");
         });
@@ -743,7 +743,7 @@ describe("Shape tests", () => {
             dto.targetSlideIndex = 2;
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
-            const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, TestUtils.password, TestUtils.folderName);
+            const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, null, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Shape).type, "ZoomFrame");
             assert.equal((result.body as model.ZoomFrame).targetSlideIndex, 2);
         });
@@ -762,7 +762,7 @@ describe("Shape tests", () => {
             dto.targetSectionIndex = 2;
 
             await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
-            const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, TestUtils.password, TestUtils.folderName);
+            const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, null, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Shape).type, "SectionZoomFrame");
             assert.equal((result.body as model.SectionZoomFrame).targetSectionIndex, 2);
         });
@@ -783,7 +783,7 @@ describe("Shape tests", () => {
         dto.linkPath = oleObjectFileName;
         dto.objectProgId = "Excel.Sheet.8";
         
-        const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, TestUtils.password, TestUtils.folderName);
+        const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, null, TestUtils.password, TestUtils.folderName);
         assert.equal(result.body.type, "OleObjectFrame");
         assert.equal((result.body as model.OleObjectFrame).linkPath, dto.linkPath);
     });
@@ -803,7 +803,7 @@ describe("Shape tests", () => {
         dto.embeddedFileBase64Data =  fs.readFileSync(oleObjectFileName, {encoding: 'base64'});
         dto.embeddedFileExtension = "xlsx";
 
-        const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, TestUtils.password, TestUtils.folderName);
+        const result = await api.createShape(TestUtils.fileName, slideIndex, dto, null, null, null, TestUtils.password, TestUtils.folderName);
 
         assert.equal((result.body as model.OleObjectFrame).embeddedFileBase64Data, dto.embeddedFileBase64Data);
         assert.equal((result.body as model.OleObjectFrame).embeddedFileExtension, dto.embeddedFileExtension);
@@ -819,7 +819,7 @@ describe("Shape tests", () => {
         assert.equal(0, shapes.body.shapesLinks.length);
         
         const groupShape = new model.GroupShape();
-        await  api.createShape(TestUtils.fileName, slideIndex, groupShape, null, null, TestUtils.password, TestUtils.folderName);
+        await  api.createShape(TestUtils.fileName, slideIndex, groupShape, null, null, null, TestUtils.password, TestUtils.folderName);
         
         const shape1 = new model.Shape();
         shape1.shapeType = ShapeTypeEnum.Rectangle; 
@@ -844,9 +844,9 @@ describe("Shape tests", () => {
         
         const shapePath = "1";
 
-        await api.createShape(TestUtils.fileName, slideIndex, shape1, null, null, TestUtils.password, TestUtils.folderName, null, shapePath);
-        await api.createShape(TestUtils.fileName, slideIndex, shape2, null, null, TestUtils.password, TestUtils.folderName, null, shapePath);
-        await api.createShape(TestUtils.fileName, slideIndex, shape2, null, null, TestUtils.password, TestUtils.folderName, null, shapePath);
+        await api.createShape(TestUtils.fileName, slideIndex, shape1, null, null, null, TestUtils.password, TestUtils.folderName, null, shapePath);
+        await api.createShape(TestUtils.fileName, slideIndex, shape2, null, null, null, TestUtils.password, TestUtils.folderName, null, shapePath);
+        await api.createShape(TestUtils.fileName, slideIndex, shape2, null, null, null, TestUtils.password, TestUtils.folderName, null, shapePath);
 
         shapes = await api.getShapes(TestUtils.fileName, slideIndex, TestUtils.password, TestUtils.folderName);
         assert.equal(1, shapes.body.shapesLinks.length);
@@ -943,6 +943,37 @@ describe("Shape tests", () => {
             const response = await api.deleteSmartArtNode(TestUtils.fileName, slideIndex, smartArtIndex, nodeIndex, subNodePath,
                 TestUtils.password, TestUtils.folderName);
             assert.equal(3, response.body.nodes[0].nodes.length)
+        });
+    });
+
+    it("smart art node default paragraph format", () => {
+        return TestUtils.runTest(async () => {
+            const slideIndex = 7;
+            const smartArtIndex = 1;
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+
+            const existing = (await api.getShape(TestUtils.fileName, slideIndex, smartArtIndex, TestUtils.password, TestUtils.folderName)).body as model.SmartArt;
+            const paragraphFormat = new model.ParagraphFormat();
+            const bulletFill = new SolidFill();
+            bulletFill.color = "#FFFF0000";
+            paragraphFormat.bulletFillFormat = bulletFill;
+            existing.nodes[0].defaultParagraphFormat = paragraphFormat;
+
+            const updated = (await api.updateShape(TestUtils.fileName, slideIndex, smartArtIndex, existing, TestUtils.password, TestUtils.folderName)).body as model.SmartArt;
+            assert.ok(updated.nodes[0].defaultParagraphFormat);
+            assert.equal("Solid", updated.nodes[0].defaultParagraphFormat.bulletFillFormat.type);
+            assert.equal("#FFFF0000", (updated.nodes[0].defaultParagraphFormat.bulletFillFormat as SolidFill).color);
+        });
+    });
+
+    it("shape clone from slide", () => {
+        return TestUtils.runTest(async () => {
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+
+            const result = await api.createShape(TestUtils.fileName, 3, null, 1, null, 1, null, TestUtils.password, TestUtils.folderName);
+            assert.ok(result.body);
         });
     });
 

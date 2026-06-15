@@ -37,6 +37,7 @@ import {
 import {TestUtils} from "../testUtils";
 
 var assert = require('assert');
+var fs = require('fs');
 
 describe("Chart tests", () => {
     it("get chart", async () => {
@@ -69,7 +70,7 @@ describe("Chart tests", () => {
                 series2.dataPoints = [{value: 55}, {value: 35}, {value: 90}];
                 chart.series = [series1, series2];
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
-                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -125,7 +126,7 @@ describe("Chart tests", () => {
                 
                 chart.series = [series1, series2];
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
-                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -158,7 +159,7 @@ describe("Chart tests", () => {
                 chart.series = [series1, series2];
                 chart.dataSourceForCategories = new model.Literals();
                 chart.categories = [{value: "Category1"}, {value: "Category2"}, {value: "Category3"}];
-                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(2, (result.body as model.Chart).series.length);
                     assert.equal(3, (result.body as model.Chart).categories.length);
@@ -360,7 +361,7 @@ describe("Chart tests", () => {
                 const category4 = new model.ChartCategory();
                 category4.value = "Stem2";
                 chart.categories = [category1, category2, category3, category4];
-                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(1, (result.body as model.Chart).series.length);
                     assert.equal(4, (result.body as model.Chart).categories.length);
@@ -416,7 +417,7 @@ describe("Chart tests", () => {
 
                 chart.categories = [category1, category2, category3, category4, category5, category6, category7, category8];
 
-                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     assert.equal(1, (result.body as model.Chart).series.length);
                     assert.equal(8, (result.body as model.Chart).categories.length);
@@ -634,12 +635,43 @@ describe("Chart tests", () => {
 
                 chart.series = [series1];
                 
-                return api.createShape(TestUtils.fileName, 3, chart, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
+                return api.createShape(TestUtils.fileName, 3, chart, null, null, null, TestUtils.password, TestUtils.folderName).then((result) => {
                     assert.equal(201, result.response.statusCode);
                     const series = ((result.body as model.Chart).series[0] as model.OneValueSeries);
                     assert.equal(90, series.dataPoints[2].value);
                 });
             });
+        });
+    });
+
+    it("import chart from workbook", () => {
+        return TestUtils.runTest(async () => {
+            const workbookFileName = "oleObject.xlsx";
+            const worksheetName = "Sheet1";
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+
+            const stream = fs.createReadStream(TestUtils.testDataPath + "/" + workbookFileName);
+            const result = await api.importChartFromWorkbook(TestUtils.fileName, 3, worksheetName, stream, null, 1,
+                null, null, null, null, null, TestUtils.password, TestUtils.folderName);
+            assert.equal(201, result.response.statusCode);
+            assert.equal("Chart", result.body.type);
+        });
+    });
+
+    it("import chart from workbook by path", () => {
+        return TestUtils.runTest(async () => {
+            const workbookFileName = "oleObject.xlsx";
+            const worksheetName = "Sheet1";
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            await api.uploadFile(TestUtils.folderName + "/" + workbookFileName,
+                fs.createReadStream(TestUtils.testDataPath + "/" + workbookFileName));
+
+            const result = await api.importChartFromWorkbook(TestUtils.fileName, 3, worksheetName, null, null, 1,
+                null, null, null, TestUtils.folderName + "/" + workbookFileName, null, TestUtils.password, TestUtils.folderName);
+            assert.equal(201, result.response.statusCode);
+            assert.equal("Chart", result.body.type);
         });
     });
 });

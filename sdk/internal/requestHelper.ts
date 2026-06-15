@@ -28,23 +28,25 @@ const https = require('https');
 
 axios.interceptors.request.use(request => {
     if ((request as any).debug) {
-        console.log('>> Request');
-        console.log((request as any).method + ' ' + (request as any).url);
-        console.log('Headers\n' + (request as any).headers);
-        console.log('Data: ' + JSON.stringify((request as any).data));
+        const log: (message: string) => void = (request as any).logger || console.log;
+        log('>> Request');
+        log((request as any).method + ' ' + (request as any).url);
+        log('Headers\n' + (request as any).headers);
+        log('Data: ' + JSON.stringify((request as any).data));
     }
     return request;
 });
 
 axios.interceptors.response.use(response => {
     if ((response.config as any).debug) {
-        console.log('<< Response');
-        console.log('Status: ' + (response as any).status);
-        console.log('Headers\n' + (response as any).headers);
+        const log: (message: string) => void = (response.config as any).logger || console.log;
+        log('<< Response');
+        log('Status: ' + (response as any).status);
+        log('Headers\n' + (response as any).headers);
         if (Buffer.isBuffer((response as any).data)) {
-            console.log('Data: binary (' + Buffer.byteLength(((response as any).data) as Buffer) + ' bytes)');
+            log('Data: binary (' + Buffer.byteLength(((response as any).data) as Buffer) + ' bytes)');
         } else {
-            console.log('Data: ' + JSON.stringify((response as any).data));
+            log('Data: ' + JSON.stringify((response as any).data));
         }
     }
     return response;
@@ -160,7 +162,7 @@ async function invokeApiMethodInternal(requestOptions: any, configuration: Confi
         requestOptions.headers = {};
     }
 
-    requestOptions.headers["x-aspose-client"] = "nodejs sdk v26.1.0";
+    requestOptions.headers["x-aspose-client"] = "nodejs sdk v26.6.0";
     if (configuration.timeout) {
         requestOptions.headers["x-aspose-timeout"] = configuration.timeout;
     }
@@ -177,6 +179,7 @@ async function invokeApiMethodInternal(requestOptions: any, configuration: Confi
         requestOptions.headers["Content-type"] = "application/x-www-form-urlencoded";
     }
     requestOptions.debug = configuration.debugMode;
+    requestOptions.logger = configuration.logger;
 
     return new Promise<any>((resolve, reject) => {
         const r = axios(requestOptions)

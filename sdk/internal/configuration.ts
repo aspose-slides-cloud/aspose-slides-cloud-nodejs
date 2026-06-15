@@ -49,10 +49,28 @@ export class Configuration {
      */
     public baseUrl: string = defaultBasePath;
 
+    private _asyncBaseUrl: string;
+    private _authBaseUrl: string;
+
     /**
-     * Base Url.
+     * Async Base Url. Defaults to baseUrl if not explicitly set.
      */
-    public authBaseUrl: string = defaultBasePath;
+    get asyncBaseUrl(): string {
+        return this._asyncBaseUrl !== undefined ? this._asyncBaseUrl : this.baseUrl;
+    }
+    set asyncBaseUrl(value: string) {
+        this._asyncBaseUrl = value;
+    }
+
+    /**
+     * Auth Base Url. Defaults to baseUrl if not explicitly set.
+     */
+    get authBaseUrl(): string {
+        return this._authBaseUrl !== undefined ? this._authBaseUrl : this.baseUrl;
+    }
+    set authBaseUrl(value: string) {
+        this._authBaseUrl = value;
+    }
 
     /**
      *  Gets or sets slides operation timeout in seconds. 0 stands for no timeout. The timeout applies to the Slides operation, not to the HTTP request.
@@ -65,9 +83,14 @@ export class Configuration {
     public httpRequestTimeout: number;
 
     /**
-     *  Gets or sets a value indicating whether debug mode is enabled. In debug mode all requests and responses are logged to console.
+     *  Gets or sets a value indicating whether debug mode is enabled. In debug mode all requests and responses are logged.
      */
     public debugMode: boolean;
+
+    /**
+     *  Gets or sets a custom log function used when debugMode is true. When not set, output goes to console.log.
+     */
+    public logger: (message: string) => void;
 
     /**
      *  Gets or sets collection of custom headers to be added to HTTP requests.
@@ -82,10 +105,9 @@ export class Configuration {
     constructor(appSid: string, appKey: string, baseUrl?: string, authBaseUrl?: string, debugMode?: boolean, timeout?: number, httpRequestTimeout?: number) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
-            this.authBaseUrl = baseUrl;
         }
         if (authBaseUrl) {
-            this.authBaseUrl = authBaseUrl;
+            this._authBaseUrl = authBaseUrl;
         }
 
         this.appSid = appSid;

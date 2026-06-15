@@ -7524,6 +7524,11 @@ export class PptxExportOptions extends ExportOptions {
     zip64Mode?: PptxExportOptions.Zip64ModeEnum;
 
     /**
+     * The compression level used when saving the presentation document. Higher compression levels produce smaller files but require more processing time. The actual compression ratio depends on the content of the presentation. The default value is CompressionLevel.Level6.
+     */
+    compressionLevel?: PptxExportOptions.CompressionLevelEnum;
+
+    /**
      * True to refresh the presentation thumbnail on save
      */
     refreshThumbnail?: boolean;
@@ -7539,6 +7544,18 @@ export namespace PptxExportOptions {
         Never = <any> 'Never',
         IfNecessary = <any> 'IfNecessary',
         Always = <any> 'Always'
+    }
+    export enum CompressionLevelEnum {
+        None = <any> 'None',
+        Level1 = <any> 'Level1',
+        Level2 = <any> 'Level2',
+        Level3 = <any> 'Level3',
+        Level4 = <any> 'Level4',
+        Level5 = <any> 'Level5',
+        Level6 = <any> 'Level6',
+        Level7 = <any> 'Level7',
+        Level8 = <any> 'Level8',
+        Level9 = <any> 'Level9'
     }
 }
 
@@ -9288,6 +9305,11 @@ export class SmartArt extends ShapeBase {
      */
     isReversed?: boolean;
 
+    /**
+     * Default paragraph format applied to all nodes. Write-only: not populated on read since there is no corresponding property at the SmartArt shape level in Aspose.Slides.
+     */
+    defaultParagraphFormat?: ParagraphFormat;
+
 }
 export namespace SmartArt {
     export enum LayoutEnum {
@@ -9520,6 +9542,11 @@ export class SmartArtNode {
      * Get or sets list to paragraphs list
      */
     paragraphs?: ResourceUri;
+
+    /**
+     * Default paragraph format for the node's text frame.
+     */
+    defaultParagraphFormat?: ParagraphFormat;
 
 }
 export namespace SmartArtNode {

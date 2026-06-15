@@ -27,6 +27,7 @@ import {Paragraph, Portion, TableCell, TableCellMergeOptions, TableCellSplitType
 import {TestUtils} from "../testUtils";
 
 var assert = require('assert');
+var fs = require('fs');
 
 describe("Table tests", () => {
     it("update table cell", () => {
@@ -380,6 +381,39 @@ describe("Table tests", () => {
             const result = await api.deleteTableCellPortion(TestUtils.fileName, slideIndex, shapeIndex, rowIndex, cellIndex,
                 paragraphIndex, portionIndex, TestUtils.password, TestUtils.folderName);
             assert.equal((result.body as model.Portions).items.length, 1);
+        });
+    });
+
+    it("import table from workbook", () => {
+        return TestUtils.runTest(async () => {
+            const workbookFileName = "oleObject.xlsx";
+            const worksheetName = "Sheet1";
+            const cellRange = "A1:B5";
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+
+            const stream = fs.createReadStream(TestUtils.testDataPath + "/" + workbookFileName);
+            const result = await api.importTableFromWorkbook(TestUtils.fileName, 9, worksheetName, cellRange, stream,
+                null, null, null, null, TestUtils.password, TestUtils.folderName);
+            assert.equal(201, result.response.statusCode);
+            assert.equal("Table", result.body.type);
+        });
+    });
+
+    it("import table from workbook by path", () => {
+        return TestUtils.runTest(async () => {
+            const workbookFileName = "oleObject.xlsx";
+            const worksheetName = "Sheet1";
+            const cellRange = "A1:B5";
+            const api = TestUtils.getSlidesApi();
+            await api.copyFile(TestUtils.tempFilePath, TestUtils.filePath);
+            await api.uploadFile(TestUtils.folderName + "/" + workbookFileName,
+                fs.createReadStream(TestUtils.testDataPath + "/" + workbookFileName));
+
+            const result = await api.importTableFromWorkbook(TestUtils.fileName, 9, worksheetName, cellRange, null,
+                null, null, TestUtils.folderName + "/" + workbookFileName, null, TestUtils.password, TestUtils.folderName);
+            assert.equal(201, result.response.statusCode);
+            assert.equal("Table", result.body.type);
         });
     });
 });

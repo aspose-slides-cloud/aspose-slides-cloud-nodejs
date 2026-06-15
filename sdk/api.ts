@@ -1397,13 +1397,14 @@ export class SlidesApi {
      * @param slideIndex Slide index.
      * @param dto Shape DTO.
      * @param shapeToClone Optional index for clone shape instead of adding a new one.
+     * @param cloneFromSlide Optional index of the slide to clone the shape from. When set, shapeToClone refers to a shape on that slide.
      * @param position Position of the new shape in the list. Default is at the end of the list.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createShape(name: string, slideIndex: number, dto: model.ShapeBase = null, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async createShape(name: string, slideIndex: number, dto: model.ShapeBase = null, shapeToClone: number = null, cloneFromSlide: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createShape.');
@@ -1417,6 +1418,7 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeToClone", shapeToClone);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromSlide", cloneFromSlide);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
@@ -1808,13 +1810,14 @@ export class SlidesApi {
      * @param slideType Slide type (master, layout or notes).
      * @param dto Shape DTO.
      * @param shapeToClone Optional index for clone shape instead of adding a new one.
+     * @param cloneFromSlide Optional index of the slide to clone the shape from. When set, shapeToClone refers to a shape on that slide.
      * @param position Position of the new shape in the list. Default is at the end of the list.
      * @param password Document password.
      * @param folder Document folder.
      * @param storage Document storage.
      * @param subShape Sub-shape path (e.g. \"3\", \"3/shapes/2).
      */
-    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase, shapeToClone: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+    public async createSpecialSlideShape(name: string, slideIndex: number, slideType: model.SpecialSlideType, dto: model.ShapeBase, shapeToClone: number = null, cloneFromSlide: number = null, position: number = null, password: string = null, folder: string = null, storage: string = null, subShape: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('The required parameter "name" was null or undefined when calling createSpecialSlideShape.');
@@ -1841,6 +1844,7 @@ export class SlidesApi {
         localVarPath = addPathParameterToUrl(localVarPath, "slideType", ObjectSerializer.toString(slideType));
         const queryParameters: any = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "shapeToClone", shapeToClone);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cloneFromSlide", cloneFromSlide);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", position);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
@@ -8164,6 +8168,68 @@ export class SlidesApi {
     }
 
     /**
+     * Imports a chart from an Excel workbook and adds it to the slide. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param worksheetName The name of the worksheet that contains the chart.
+     * @param document Excel workbook data.
+     * @param chartName The name of the chart. Required if chartIndex is not specified.
+     * @param chartIndex The zero-based index of the chart in the worksheet. Takes precedence over chartName.
+     * @param x X coordinate of the chart (EMU).
+     * @param y Y coordinate of the chart (EMU).
+     * @param embedAllWorkbook If true, the entire workbook is embedded; if false, only chart data.
+     * @param workbookPath Storage path to the workbook. If omitted, the workbook must be uploaded as multipart form data.
+     * @param workbookStorage Storage name for workbookPath.
+     * @param password Document password.
+     * @param folder Presentation folder.
+     * @param storage Presentation storage.
+     */
+    public async importChartFromWorkbook(name: string, slideIndex: number, worksheetName: string, document: Readable = null, chartName: string = null, chartIndex: number = null, x: number = null, y: number = null, embedAllWorkbook: boolean = null, workbookPath: string = null, workbookStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling importChartFromWorkbook.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling importChartFromWorkbook.');
+        }
+        // verify required parameter 'worksheetName' is not null or undefined
+        if (worksheetName === null || worksheetName === undefined) {
+            throw new Error('The required parameter "worksheetName" was null or undefined when calling importChartFromWorkbook.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/fromExcelChart";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "worksheetName", worksheetName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "chartName", chartName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "chartIndex", chartIndex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", x);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", y);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "embedAllWorkbook", embedAllWorkbook);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "workbookPath", workbookPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "workbookStorage", workbookStorage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
      * Create presentation document from html. 
      * @param name Document name.
      * @param html HTML data.
@@ -8292,6 +8358,68 @@ export class SlidesApi {
         checkMultipartContent(requestOptions, localVarFiles);
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = ObjectSerializer.deserialize(response.body, "Shapes");
+        return Promise.resolve({ body: result, response });
+    }
+
+    /**
+     * Imports a table from an Excel workbook and adds it to the slide. 
+     * @param name Document name.
+     * @param slideIndex Slide index.
+     * @param worksheetName The name of the worksheet that contains the table.
+     * @param cellRange The cell range that defines the table (e.g. \"A1:D10\").
+     * @param document Excel workbook data.
+     * @param x X coordinate of the table (EMU).
+     * @param y Y coordinate of the table (EMU).
+     * @param workbookPath Storage path to the workbook. If omitted, the workbook must be uploaded as multipart form data.
+     * @param workbookStorage Storage name for workbookPath.
+     * @param password Document password.
+     * @param folder Presentation folder.
+     * @param storage Presentation storage.
+     */
+    public async importTableFromWorkbook(name: string, slideIndex: number, worksheetName: string, cellRange: string, document: Readable = null, x: number = null, y: number = null, workbookPath: string = null, workbookStorage: string = null, password: string = null, folder: string = null, storage: string = null): Promise<{response: http.ServerResponse, body: model.ShapeBase}> {
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('The required parameter "name" was null or undefined when calling importTableFromWorkbook.');
+        }
+        // verify required parameter 'slideIndex' is not null or undefined
+        if (slideIndex === null || slideIndex === undefined) {
+            throw new Error('The required parameter "slideIndex" was null or undefined when calling importTableFromWorkbook.');
+        }
+        // verify required parameter 'worksheetName' is not null or undefined
+        if (worksheetName === null || worksheetName === undefined) {
+            throw new Error('The required parameter "worksheetName" was null or undefined when calling importTableFromWorkbook.');
+        }
+        // verify required parameter 'cellRange' is not null or undefined
+        if (cellRange === null || cellRange === undefined) {
+            throw new Error('The required parameter "cellRange" was null or undefined when calling importTableFromWorkbook.');
+        }
+        let localVarPath = this.configuration.getApiBaseUrl() + "/slides/{name}/slides/{slideIndex}/shapes/fromExcelTable";
+        localVarPath = addPathParameterToUrl(localVarPath, "name", ObjectSerializer.toString(name));
+        localVarPath = addPathParameterToUrl(localVarPath, "slideIndex", ObjectSerializer.toString(slideIndex));
+        const queryParameters: any = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "worksheetName", worksheetName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cellRange", cellRange);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", x);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", y);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "workbookPath", workbookPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "workbookStorage", workbookStorage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", storage);
+        const requestOptions = {
+            method: "POST",
+            headers: {},
+            url: localVarPath,
+            params: queryParameters
+        };
+        addHeaderParameter(requestOptions.headers, "password", password);
+        let localVarFiles = [];
+        if (document != null) 
+        {
+            localVarFiles.push(document);
+        }
+        checkMultipartContent(requestOptions, localVarFiles);
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = ObjectSerializer.deserialize(response.body, "ShapeBase");
         return Promise.resolve({ body: result, response });
     }
 
